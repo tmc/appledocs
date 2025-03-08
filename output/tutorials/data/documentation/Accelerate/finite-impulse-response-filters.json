@@ -1,0 +1,807 @@
+{
+  "abstract": [
+    {
+      "text": "Perform finite impulse response filtering with decimation and antialiasing on vectors of real or complex values.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Finite impulse response filters"
+  },
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters": {
+      "abstract": [
+        {
+          "text": "Apply biquadratic filters to single-channel and multichannel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Biquadratic IIR filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/biquadratic-iir-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/multichannel-biquadratic-filters": {
+      "abstract": [
+        {
+          "text": "Filter a multichannel signal with a cascade of biquadratic sections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/multichannel-biquadratic-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multichannel biquadratic filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/multichannel-biquadratic-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/recursive-filters": {
+      "abstract": [
+        {
+          "text": "Perform two-pole two-zero recursive filtering on a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/recursive-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recursive filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/recursive-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation": {
+      "abstract": [
+        {
+          "text": "Reduce the sample rate of a signal by specifying a decimation factor and applying a custom antialiasing filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+      "kind": "article",
+      "role": "article",
+      "title": "Resampling a signal with decimation",
+      "type": "topic",
+      "url": "/documentation/accelerate/resampling-a-signal-with-decimation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters": {
+      "abstract": [
+        {
+          "text": "Filter a single-channel signal with a cascade of biquadratic sections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Single-channel biquadratic filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/single-channel-biquadratic-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-1o8it": {
+      "abstract": [
+        {
+          "text": "Returns the downsampled double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downsample"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decimationFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-1o8it",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downsample(_:decimationFactor:filter:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/downsample(_:decimationfactor:filter:)-1o8it"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o": {
+      "abstract": [
+        {
+          "text": "Returns the downsampled single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downsample"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decimationFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downsample(_:decimationFactor:filter:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/downsample(_:decimationfactor:filter:)-40d8o"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:result:)-1g4a": {
+      "abstract": [
+        {
+          "text": "Calculates the downsampled single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downsample"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decimationFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:result:)-1g4a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downsample(_:decimationFactor:filter:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/downsample(_:decimationfactor:filter:result:)-1g4a"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:result:)-2y1iv": {
+      "abstract": [
+        {
+          "text": "Calculates the downsampled double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downsample"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decimationFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:result:)-2y1iv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downsample(_:decimationFactor:filter:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/downsample(_:decimationfactor:filter:result:)-2y1iv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp": {
+      "abstract": [
+        {
+          "text": "Performs single-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_desamp"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_desamp",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_desamp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD": {
+      "abstract": [
+        {
+          "text": "Performs double-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_desampD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_desampD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_desampd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_wiener": {
+      "abstract": [
+        {
+          "text": "Solves a system of linear equations for a single-precision symmetric Toeplitz coefficient matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_wiener"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_wiener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_wiener",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_wiener"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_wienerD": {
+      "abstract": [
+        {
+          "text": "Solves a system of linear equations for a double-precision symmetric Toeplitz coefficient matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_wienerD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_wienerD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_wienerD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_wienerd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zrdesamp": {
+      "abstract": [
+        {
+          "text": "Performs complex-real single-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_zrdesamp"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zrdesamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_zrdesamp",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_zrdesamp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zrdesampD": {
+      "abstract": [
+        {
+          "text": "Performs complex-real double-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_zrdesampD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zrdesampD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_zrdesampD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_zrdesampd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vector-filtering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/multichannel-biquadratic-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/recursive-filters"
+      ],
+      "title": "Vector filtering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "FIR-Filter-Creation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_wiener",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_wienerD"
+      ],
+      "title": "FIR Filter Creation"
+    },
+    {
+      "anchor": "Real-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-1o8it",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:)-40d8o",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:result:)-2y1iv",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/downsample(_:decimationFactor:filter:result:)-1g4a",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD"
+      ],
+      "title": "Real Vectors"
+    },
+    {
+      "anchor": "Complex-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zrdesamp",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zrdesampD"
+      ],
+      "title": "Complex Vectors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

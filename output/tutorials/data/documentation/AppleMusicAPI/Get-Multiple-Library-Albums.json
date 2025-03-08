@@ -1,0 +1,1236 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch one or more library albums by using their identifiers.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Albums"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-library-albums#ids",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Multiple Library Albums"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Multiple Library Albums"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/library/albums"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifiers for the library albums. The maximum fetch limit is 100.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ids",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbumsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:LibraryAlbumsResponse",
+              "text": "LibraryAlbumsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the requested resource object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/library/albums?ids=l.sticiFl"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{    ",
+                    "     \"data\": [",
+                    "        {",
+                    "            \"id\": \"l.sticiFl\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.sticiFl\",",
+                    "            \"attributes\": {",
+                    "                \"trackCount\": 15,",
+                    "                \"genreNames\": [",
+                    "                    \"Country\"",
+                    "                ],",
+                    "                \"releaseDate\": \"2022-02-11\",",
+                    "                \"name\": \"Bronco\",",
+                    "                \"artistName\": \"Orville Peck\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.sticiFl\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2022-08-06T02:18:57Z\"",
+                    "            },",
+                    "            \"relationships\": {",
+                    "                \"tracks\": {",
+                    "                    \"href\": \"/v1/me/library/albums/l.sticiFl/tracks\",",
+                    "                    \"data\": [",
+                    "                        {",
+                    "                            \"id\": \"i.PkdJJamIrQozOW\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.PkdJJamIrQozOW\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"trackNumber\": 1,",
+                    "                                \"releaseDate\": \"2022-02-11\",",
+                    "                                \"durationInMillis\": 195160,",
+                    "                                \"name\": \"Daytona Sand\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.PkdJJamIrQozOW\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593874\",",
+                    "                                    \"reportingId\": \"1607593874\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.6xpKRzXt6rDz0g\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.6xpKRzXt6rDz0g\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 2,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 250213,",
+                    "                                \"releaseDate\": \"2022-03-11\",",
+                    "                                \"name\": \"The Curse of the Blackened Eye\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.6xpKRzXt6rDz0g\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593881\",",
+                    "                                    \"reportingId\": \"1607593881\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.ZOM0NoJiAelKXG\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.ZOM0NoJiAelKXG\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 3,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"releaseDate\": \"2022-02-11\",",
+                    "                                \"durationInMillis\": 258667,",
+                    "                                \"name\": \"Outta Time\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.ZOM0NoJiAelKXG\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593891\",",
+                    "                                    \"reportingId\": \"1607593891\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.1YBmxKOcWM0k5b\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.1YBmxKOcWM0k5b\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"trackNumber\": 4,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"durationInMillis\": 182000,",
+                    "                                \"name\": \"Lafayette\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.1YBmxKOcWM0k5b\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593893\",",
+                    "                                    \"reportingId\": \"1607593893\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.V7Ba9oJh2E8okV\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.V7Ba9oJh2E8okV\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 5,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"releaseDate\": \"2022-02-11\",",
+                    "                                \"durationInMillis\": 210840,",
+                    "                                \"name\": \"C'mon Baby, Cry\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.V7Ba9oJh2E8okV\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593895\",",
+                    "                                    \"reportingId\": \"1607593895\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.AWPVEmkhDE7rz8\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.AWPVEmkhDE7rz8\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 6,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"durationInMillis\": 168587,",
+                    "                                \"name\": \"Iris Rose\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.AWPVEmkhDE7rz8\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593958\",",
+                    "                                    \"reportingId\": \"1607593958\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.V7Ba9oPs2E8okV\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.V7Ba9oPs2E8okV\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 7,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 289587,",
+                    "                                \"releaseDate\": \"2022-03-11\",",
+                    "                                \"name\": \"Kalahari Down\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.V7Ba9oPs2E8okV\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593960\",",
+                    "                                    \"reportingId\": \"1607593960\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.O1RQpZrsG2RmWD\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.O1RQpZrsG2RmWD\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 8,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"durationInMillis\": 208893,",
+                    "                                \"name\": \"Bronco\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.O1RQpZrsG2RmWD\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593961\",",
+                    "                                    \"reportingId\": \"1607593961\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.O1RQpZGuG2RmWD\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.O1RQpZGuG2RmWD\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 9,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 228160,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"name\": \"Trample Out the Days\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.O1RQpZGuG2RmWD\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593962\",",
+                    "                                    \"reportingId\": \"1607593962\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.AWPVEm0sDE7rz8\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.AWPVEm0sDE7rz8\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 10,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 216907,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"name\": \"Blush\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.AWPVEm0sDE7rz8\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593963\",",
+                    "                                    \"reportingId\": \"1607593963\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.qQd8aY0U1vV7Ma\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.qQd8aY0U1vV7Ma\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"trackNumber\": 11,",
+                    "                                \"releaseDate\": \"2022-03-11\",",
+                    "                                \"durationInMillis\": 191920,",
+                    "                                \"name\": \"Hexie Mountains\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.qQd8aY0U1vV7Ma\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593965\",",
+                    "                                    \"reportingId\": \"1607593965\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.gelXNbYFMg4aPB\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.gelXNbYFMg4aPB\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 12,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 199653,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"name\": \"Let Me Drown\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.gelXNbYFMg4aPB\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593967\",",
+                    "                                    \"reportingId\": \"1607593967\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.gelXXYohMg4aPB\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.gelXXYohMg4aPB\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 13,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 136000,",
+                    "                                \"releaseDate\": \"2022-02-11\",",
+                    "                                \"name\": \"Any Turn\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.gelXXYohMg4aPB\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593968\",",
+                    "                                    \"reportingId\": \"1607593968\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.LVk44LYU2bV0qR\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.LVk44LYU2bV0qR\",",
+                    "                            \"attributes\": {",
+                    "                                \"discNumber\": 1,",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"trackNumber\": 14,",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"durationInMillis\": 244093,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"name\": \"City of Gold\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.LVk44LYU2bV0qR\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593970\",",
+                    "                                    \"reportingId\": \"1607593970\"",
+                    "                                }",
+                    "                            }",
+                    "                        },",
+                    "                        {",
+                    "                            \"id\": \"i.QvzgNpeFEBxbzJ\",",
+                    "                            \"type\": \"library-songs\",",
+                    "                            \"href\": \"/v1/me/library/songs/i.QvzgNpeFEBxbzJ\",",
+                    "                            \"attributes\": {",
+                    "                                \"albumName\": \"Bronco\",",
+                    "                                \"discNumber\": 1,",
+                    "                                \"genreNames\": [",
+                    "                                    \"Country\"",
+                    "                                ],",
+                    "                                \"hasLyrics\": true,",
+                    "                                \"trackNumber\": 15,",
+                    "                                \"releaseDate\": \"2022-04-08\",",
+                    "                                \"durationInMillis\": 236360,",
+                    "                                \"name\": \"All I Can Say\",",
+                    "                                \"artistName\": \"Orville Peck\",",
+                    "                                \"artwork\": {",
+                    "                                    \"width\": 1200,",
+                    "                                    \"height\": 1200,",
+                    "                                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/6d/de/02/6dde02ae-a9fe-f96e-e81f-4f18ad13d2f9/886449873302.jpg/{w}x{h}bb.jpg\"",
+                    "                                },",
+                    "                                \"playParams\": {",
+                    "                                    \"id\": \"i.QvzgNpeFEBxbzJ\",",
+                    "                                    \"kind\": \"song\",",
+                    "                                    \"isLibrary\": true,",
+                    "                                    \"reporting\": true,",
+                    "                                    \"catalogId\": \"1607593972\",",
+                    "                                    \"reportingId\": \"1607593972\"",
+                    "                                }",
+                    "                            }",
+                    "                        }",
+                    "                    ],",
+                    "                    \"meta\": {",
+                    "                        \"total\": 15",
+                    "                    }",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "    ]",
+                    "}",
+                    "",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-165fz": {
+      "abstract": [
+        {
+          "text": "Fetch a library album’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-165fz",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Album's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-165fz"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Albums": {
+      "abstract": [
+        {
+          "text": "Fetch all the library albums in alphabetical order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Albums",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Library Albums"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Library Albums",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-all-library-albums"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Albums": {
+      "abstract": [
+        {
+          "text": "Fetch one or more library albums by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Albums",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Library Albums"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Library Albums",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-library-albums"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Album": {
+      "abstract": [
+        {
+          "text": "Fetch a library album by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Album",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Library Album"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Album",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-library-album"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbums": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a library album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbums"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbums",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbums"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryAlbums",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryalbums"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbumsResponse": {
+      "abstract": [
+        {
+          "text": "The response to a library albums request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbumsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbumsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbumsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryAlbumsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryalbumsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbums",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryAlbumsResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-User-Library-Albums",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Album",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-165fz",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Albums"
+      ],
+      "title": "Requesting User Library Albums"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-multiple-library-albums"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

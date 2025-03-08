@@ -1,0 +1,2881 @@
+{
+  "abstract": [
+    {
+      "text": "An object that reads media data from a single track of an asset.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAssetReaderTrackOutput",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAssetReaderTrackOutput"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAssetReaderTrackOutput"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAssetReaderTrackOutput"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Read the media data of an asset track by adding a track output to an asset reader. You can read the media samples in their stored format, or you can convert them to an alternative format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A track output produces uncompressed output. For audio output settings, this means that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVFormatIDKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must be ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreAudioTypes/kAudioFormatLinearPCM",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For video output settings, this means that the dictionary must contain values for uncompressed video output, as defined in ",
+              "type": "text"
+            },
+            {
+              "code": "Video Settings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A track output doesn’t support the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " audio setting key or the following video settings keys: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCleanApertureKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPixelAspectRatioKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoScalingModeKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When constructing video output settings, the choice of pixel format affects the performance and quality of the decompression. For optimal performance when decompressing video, the requested pixel format should be one that the decoder supports natively to avoid unnecessary conversions. Below are some recommendations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For H.264, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when you know the video is full range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for JPEG output.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr8",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is the preferred pixel format for video and generally provides the best performance when decoding. If you need to work in the RGB domain, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32BGRA",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in iOS, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32ARGB",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ProRes-encoded media can contain up to 12 bits per channel. For ProRes-encoded sources that you wish to preserve more than 8 bits per channel during decompression, use one of the following pixel formats: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr16",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_64ARGB",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " doesn’t support scaling with any of these high-bit-depth pixel formats. If you use the above pixel formats, don’t specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferWidthKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferHeightKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/outputSettings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary. Only ProRes encoders support these pixel formats.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ProRes 4444-encoded media can contain a mathematically lossless alpha channel. To preserve the alpha channel during decompression, use a pixel format with an alpha component such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_64ARGB",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To test whether your source contains an alpha channel, check that the track’s format description has a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "32",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReader",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreader"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads audio samples that result from mixing audio from one or more tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderAudioMixOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderAudioMixOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderAudioMixOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderaudiomixoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface to read media samples from an asset reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that creates timed metadata group objects for an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutputMetadataAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutputMetadataAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderOutputMetadataAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutputmetadataadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads sample references from an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderSampleReferenceOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderSampleReferenceOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderSampleReferenceOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadersamplereferenceoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from a single track of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderTrackOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/assetReaderTrackOutputWithTrack:outputSettings:": {
+      "abstract": [
+        {
+          "text": "Returns a new object that reads media data from an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "assetReaderTrackOutputWithTrack:outputSettings:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/assetReaderTrackOutputWithTrack:outputSettings:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assetReaderTrackOutputWithTrack:outputSettings:"
+        }
+      ],
+      "role": "symbol",
+      "title": "assetReaderTrackOutputWithTrack:outputSettings:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput/assetreadertrackoutputwithtrack:outputsettings:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/audioTimePitchAlgorithm": {
+      "abstract": [
+        {
+          "text": "The processing algorithm to use for scaled audio edits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioTimePitchAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioTimePitchAlgorithm",
+          "text": "AVAudioTimePitchAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/audioTimePitchAlgorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioTimePitchAlgorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioTimePitchAlgorithm",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/init(track:outputSettings:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that reads media data from an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/init(track:outputSettings:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTrack:outputSettings:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(track:outputSettings:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput/init(track:outputsettings:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/outputSettings": {
+      "abstract": [
+        {
+          "text": "The output settings for this track output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/outputSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput/outputsettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/track": {
+      "abstract": [
+        {
+          "text": "The track from which the output reads sample buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/track",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "track"
+        }
+      ],
+      "role": "symbol",
+      "title": "track",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput/track"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads composited video frames from one or more tracks of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderVideoCompositionOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderVideoCompositionOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderVideoCompositionOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadervideocompositionoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCleanApertureKey": {
+      "abstract": [
+        {
+          "text": "A key that defines the region within the video dimension displayed during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCleanApertureKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCleanApertureKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCleanApertureKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCleanApertureKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocleanaperturekey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPixelAspectRatioKey": {
+      "abstract": [
+        {
+          "text": "A key to access the video’s pixel aspect ratio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoPixelAspectRatioKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoPixelAspectRatioKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoPixelAspectRatioKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoPixelAspectRatioKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideopixelaspectratiokey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoScalingModeKey": {
+      "abstract": [
+        {
+          "text": "A key to retrieve the video scaling mode from a dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoScalingModeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoScalingModeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoScalingModeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoScalingModeKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideoscalingmodekey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files": {
+      "abstract": [
+        {
+          "text": "Render single images for the left eye and right eye from a multiview High Efficiency Video Coding format file by reading individual video frames.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading multiview 3D video files",
+      "type": "topic",
+      "url": "/documentation/avfoundation/reading-multiview-3d-video-files"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/video-settings": {
+      "abstract": [
+        {
+          "text": "Configure video processing settings using standard key and value constants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/video-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Video settings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/video-settings"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVFormatIDKey": {
+      "abstract": [
+        {
+          "text": "An integer value that represents the format of the audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVFormatIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVFormatIDKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVFormatIDKey",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVFormatIDKey"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey": {
+      "abstract": [
+        {
+          "text": "An integer value that represents the audio quality for conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleRateConverterAudioQualityKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSampleRateConverterAudioQualityKey",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreAudioTypes/kAudioFormatLinearPCM": {
+      "abstract": [
+        {
+          "text": "A key that specifies the linear PCM codec, and uses the standard flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFormatLinearPCM"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFormatID",
+          "text": "AudioFormatID"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreAudioTypes/kAudioFormatLinearPCM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioFormatLinearPCM",
+      "type": "topic",
+      "url": "/documentation/CoreAudioTypes/kAudioFormatLinearPCM"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMFormatDescriptionExtension_Depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCMFormatDescriptionExtension_Depth",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferHeightKey": {
+      "abstract": [
+        {
+          "text": "A key to the height of the pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelBufferHeightKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferHeightKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelBufferHeightKey",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelBufferHeightKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferWidthKey": {
+      "abstract": [
+        {
+          "text": "A key to the width of the pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelBufferWidthKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelBufferWidthKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelBufferWidthKey",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelBufferWidthKey"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32ARGB": {
+      "abstract": [
+        {
+          "text": "32-bit ARGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_32ARGB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32ARGB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_32ARGB",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_32ARGB"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32BGRA": {
+      "abstract": [
+        {
+          "text": "32-bit BGRA.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_32BGRA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_32BGRA",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_32BGRA",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_32BGRA"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange": {
+      "abstract": [
+        {
+          "text": "Bi-Planar Component Y’CbCr 8-bit 4:2:0, full-range (luma=[0,255] chroma=[1,255]).  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrBiPlanar` struct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange": {
+      "abstract": [
+        {
+          "text": "Bi-Planar Component Y’CbCr 8-bit 4:2:0, video-range (luma=[16,235] chroma=[16,240]).  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrBiPlanar` struct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10": {
+      "abstract": [
+        {
+          "text": "Component Y’CbCr 10-bit 4:2:2.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_422YpCbCr10"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_422YpCbCr10",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr16": {
+      "abstract": [
+        {
+          "text": "Component Y’CbCr 10,12,14,16-bit 4:2:2.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_422YpCbCr16"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_422YpCbCr16",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr16"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr8": {
+      "abstract": [
+        {
+          "text": "Component Y’CbCr 8-bit 4:2:2, ordered Cb Y’0 Cr Y’1.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_422YpCbCr8"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_422YpCbCr8",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr8"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16": {
+      "abstract": [
+        {
+          "text": "Component Y’CbCrA 16-bit 4:4:4:4, ordered A Y’ Cb Cr, full range alpha, video range Y’CbCr, 16-bit little-endian samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_4444AYpCbCr16"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_4444AYpCbCr16",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_4444AYpCbCr16"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_64ARGB": {
+      "abstract": [
+        {
+          "text": "64-bit ARGB, 16-bit big-endian samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_64ARGB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_64ARGB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_64ARGB",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_64ARGB"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-reading",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor"
+      ],
+      "title": "Media reading"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Track-Output",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/init(track:outputSettings:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/video-settings"
+      ],
+      "title": "Creating a Track Output"
+    },
+    {
+      "anchor": "Configuring-Audio-Settings",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/audioTimePitchAlgorithm"
+      ],
+      "title": "Configuring Audio Settings"
+    },
+    {
+      "anchor": "Inspecting-an-Output",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/outputSettings",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/track"
+      ],
+      "title": "Inspecting an Output"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAssetReaderTrackOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Track-Output",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/assetReaderTrackOutputWithTrack:outputSettings:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/init(track:outputSettings:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/video-settings"
+              ],
+              "title": "Creating a Track Output"
+            },
+            {
+              "anchor": "Configuring-Audio-Settings",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/audioTimePitchAlgorithm"
+              ],
+              "title": "Configuring Audio Settings"
+            },
+            {
+              "anchor": "Inspecting-an-Output",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/outputSettings",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput/track"
+              ],
+              "title": "Inspecting an Output"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-reading",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor"
+              ],
+              "title": "Media reading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAssetReaderTrackOutput"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVAssetReaderOutput",
+                    "text": "AVAssetReaderOutput"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1audioTimePitchAlgorithm/title",
+          "value": "audioTimePitchAlgorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1audioTimePitchAlgorithm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioTimePitchAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_422YpCbCr10/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_422YpCbCr10"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/title",
+          "value": "AVAssetReaderSampleReferenceOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelBufferHeightKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCVPixelBufferHeightKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_422YpCbCr8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_422YpCbCr8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/title",
+          "value": "AVAssetReaderAudioMixOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderAudioMixOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderAudioMixOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreAudioTypes~1kAudioFormatLinearPCM/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFormatLinearPCM"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/title",
+          "value": "AVAssetReaderOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1track/title",
+          "value": "track"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1track/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "track"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_64ARGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_64ARGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/title",
+          "value": "AVAssetReaderOutputMetadataAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_32BGRA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_32BGRA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1kCMFormatDescriptionExtension_Depth/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCMFormatDescriptionExtension_Depth"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVFormatIDKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVFormatIDKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelBufferWidthKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCVPixelBufferWidthKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoScalingModeKey/title",
+          "value": "AVVideoScalingModeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoScalingModeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoScalingModeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1init(track:outputSettings:)/title",
+          "value": "initWithTrack:outputSettings:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1init(track:outputSettings:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTrack:outputSettings:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/title",
+          "value": "AVAssetReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCleanApertureKey/title",
+          "value": "AVVideoCleanApertureKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCleanApertureKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCleanApertureKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoPixelAspectRatioKey/title",
+          "value": "AVVideoPixelAspectRatioKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoPixelAspectRatioKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoPixelAspectRatioKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSampleRateConverterAudioQualityKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSampleRateConverterAudioQualityKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_4444AYpCbCr16/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_4444AYpCbCr16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/title",
+          "value": "AVAssetReaderTrackOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/title",
+          "value": "AVAssetReaderVideoCompositionOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderVideoCompositionOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderVideoCompositionOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1outputSettings/title",
+          "value": "outputSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput~1outputSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_422YpCbCr16/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_422YpCbCr16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_420YpCbCr8BiPlanarFullRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_32ARGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_32ARGB"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetreadertrackoutput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetreadertrackoutput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

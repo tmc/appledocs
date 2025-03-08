@@ -1,0 +1,735 @@
+{
+  "abstract": [
+    {
+      "text": "Create a signature from an audio file or the microphone for a reference track in a custom catalog, or for matching tracks in a catalog.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.shazamkit/documentation/ShazamKit",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.shazamkit/documentation/ShazamKit/generating-a-signature-from-an-audio-buffer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ShazamKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating a signature from an audio buffer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generate a signature by adding an audio buffer in a supported format to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. You can add the audio buffer in one call or incrementally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common sources for audio are files in the app or the microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-signature-from-an-audio-file",
+          "level": 3,
+          "text": "Create a signature from an audio file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a signature from an audio file takes four steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an object for reading the audio file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convert the audio to a supported format. For a list of supported formats, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/append(_:at:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Append the converted audio to a signature generator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate the signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following demonstrates how to generate the signature from the audio file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Return the signature of an audio file.",
+            "func generateSignature(from audioURL: URL) -> SHSignature? {",
+            "    // Step 1.",
+            "    // Create an audio format that's compatible with ShazamKit.",
+            "    guard let audioFormat = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1) else {",
+            "        // Handle an error in creating the audio format.",
+            "        return nil",
+            "    }",
+            "",
+            "    // Create a signature generator to generate the final signature.",
+            "    let signatureGenerator = SHSignatureGenerator()",
+            "    ",
+            "    do {",
+            "        // Create an object for reading the audio file.",
+            "        let audioFile = try AVAudioFile(forReading: audioURL)",
+            "",
+            "        // Step 2.",
+            "        // Convert the audio to a supported format.",
+            "        CustomCatalog.convert(audioFile: audioFile, outputFormat: audioFormat) { buffer in",
+            "            do {",
+            "                // Step 3.",
+            "                // Append portions of the converted audio to the signature generator.",
+            "                try signatureGenerator.append(buffer, at: nil)",
+            "            } catch {",
+            "                // Handle an error generating the signature.",
+            "                return",
+            "            }",
+            "        }",
+            "    } catch {",
+            "        // Handle an error reading the audio file.",
+            "        return nil",
+            "    }",
+            "",
+            "    // Step 4.",
+            "    // Generate the signature.",
+            "    return signatureGenerator.signature()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The convert function has two main parts. First it configures the buffers used for the conversion and the format for the converted audio:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Convert an audio file to a new format one chunk at a time.",
+            "static func convert(audioFile: AVAudioFile,",
+            "                    outputFormat: AVAudioFormat,",
+            "                    processConvertedBlock: (AVAudioPCMBuffer) -> Void) {",
+            "    // Set the size of the conversion buffer.",
+            "    let frameCount = AVAudioFrameCount(",
+            "        (1024 * 64) / (audioFile.processingFormat.streamDescription.pointee.mBytesPerFrame)",
+            "    )",
+            "    // Calculate the number of frames for the output buffer.",
+            "    let outputFrameCapacity = AVAudioFrameCount(",
+            "         round(Double(frameCount) * (outputFormat.sampleRate / audioFile.processingFormat.sampleRate))",
+            "    )",
+            "",
+            "    // Create the input and output buffers for converting the file.",
+            "    guard let inputBuffer = AVAudioPCMBuffer(pcmFormat: audioFile.processingFormat, frameCapacity: frameCount),",
+            "          let outputBuffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: outputFrameCapacity) else {",
+            "        return",
+            "    }",
+            "",
+            "    // Create the format for the converter.",
+            "    guard let converter = AVAudioConverter(from: audioFile.processingFormat, to: outputFormat) else {",
+            "        return",
+            "    }",
+            "    ",
+            "   // Code to convert the file goes here. See the next listing.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the convert function reads chunks of audio from the input file and calls the block passed by ",
+              "type": "text"
+            },
+            {
+              "code": "generateSignature",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". That block appends the converted audio to the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    // Convert the audio file.",
+            "    while true {",
+            "    // Convert frames in the input buffer, writing them to the output buffer.",
+            "        let status = converter.convert(to: outputBuffer,",
+            "                                       error: nil) { inNumPackets, outStatus in",
+            "            do {",
+            "                // Read a frame from the audio file into the input buffer.",
+            "                try audioFile.read(into: inputBuffer)",
+            "                outStatus.pointee = .haveData",
+            "                return inputBuffer",
+            "            } catch {",
+            "                // Check if it's the end of the file or if an error occurred.",
+            "                if audioFile.framePosition >= audioFile.length {",
+            "                    outStatus.pointee = .endOfStream",
+            "                    return nil",
+            "                } else {",
+            "                    outStatus.pointee = .noDataNow",
+            "                    return nil",
+            "                }",
+            "            }",
+            "        }",
+            "",
+            "        switch status {",
+            "        case .error:",
+            "            // An error occurred during conversion; handle the error.",
+            "            return",
+            "",
+            "        case .endOfStream:",
+            "            // All of the input is converted.",
+            "            return",
+            "",
+            "        case .inputRanDry:",
+            "            // Some data was converted, but no more is available.",
+            "            processConvertedBlock(outputBuffer)",
+            "            return",
+            "",
+            "        default:",
+            "            processConvertedBlock(outputBuffer)",
+            "        }",
+            "",
+            "        // Reset the size of the buffers.",
+            "        inputBuffer.frameLength = 0",
+            "        outputBuffer.frameLength = 0",
+            "    }",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-signature-from-the-microphone",
+          "level": 3,
+          "text": "Create a signature from the microphone",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the microphone as the source for generating a signature is very similar to using it for matching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure a mixer as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/matching-audio-using-the-built-in-microphone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Change the ",
+              "type": "text"
+            },
+            {
+              "code": "addAudio",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to append the audio to the signature generator:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func addAudio(buffer: AVAudioPCMBuffer, audioTime: AVAudioTime) {",
+            "    do {",
+            "        // Add the audio to the signature generator.",
+            "        try signatureGenerator.append(buffer, at: audioTime)",
+            "    } catch {",
+            "        // Handle an error in appending audio to the generator.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start and stop the audio engine as needed using the ",
+              "type": "text"
+            },
+            {
+              "code": "startListening",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "stopListening",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/matching-audio-using-the-built-in-microphone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit": {
+      "abstract": [
+        {
+          "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShazamKit",
+      "type": "topic",
+      "url": "/documentation/shazamkit"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator": {
+      "abstract": [
+        {
+          "text": "An object for converting audio data into a signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSignatureGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSignatureGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSignatureGenerator",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsignaturegenerator"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/append(_:at:)": {
+      "abstract": [
+        {
+          "text": "Adds audio to the generator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioTime",
+          "text": "AVAudioTime"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/append(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appendBuffer:atTime:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "append(_:at:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsignaturegenerator/append(_:at:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/signature()": {
+      "abstract": [
+        {
+          "text": "Converts the audio buffer into a signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHSignature",
+          "text": "SHSignature"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/signature()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "signature()",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsignaturegenerator/signature()"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/matching-audio-using-the-built-in-microphone": {
+      "abstract": [
+        {
+          "text": "Use the audio stream from the microphone as the source for a ShazamKit session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/matching-audio-using-the-built-in-microphone",
+      "kind": "article",
+      "role": "article",
+      "title": "Matching audio using the built-in microphone",
+      "type": "topic",
+      "url": "/documentation/shazamkit/matching-audio-using-the-built-in-microphone"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Generating-a-signature-from-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/append(_:at:)",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/signature()"
+      ],
+      "title": "Generating a signature from audio"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Generating-a-signature-from-audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/append(_:at:)",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSignatureGenerator/signature()"
+              ],
+              "title": "Generating a signature from audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator~1signature()/title",
+          "value": "signature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator~1signature()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "signature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator/title",
+          "value": "SHSignatureGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSignatureGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSignatureGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator~1append(_:at:)/title",
+          "value": "appendBuffer:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSignatureGenerator~1append(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "appendBuffer:atTime:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shazamkit/generating-a-signature-from-an-audio-buffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/shazamkit/generating-a-signature-from-an-audio-buffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

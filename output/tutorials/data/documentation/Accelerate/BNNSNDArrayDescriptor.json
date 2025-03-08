@@ -1,0 +1,4274 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that describes the shape, stride, data type, and, optionally, the memory location of an n-dimensional array.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@BNNSNDArrayDescriptor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BNNSNDArrayDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BNNSNDArrayDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "BNNSNDArrayDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure as the primary mechanism to pass the description of data to and from BNNS functions. The description may include a pointer to the memory location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, use the following code when you’re passing immutable weights to a convolution layer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let weights: [Float] = [ ... ]",
+            "",
+            "weights.withUnsafeBufferPointer { weightsPtr in",
+            "    ",
+            "    let weightsDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                                  layout: BNNSDataLayoutConvolutionWeightsOIHW,",
+            "                                                  size: (3, 3, 1, 1, 0, 0, 0, 0),",
+            "                                                  stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                  data: UnsafeMutableRawPointer(mutating: weightsPtr.baseAddress!),",
+            "                                                  data_type: .float,",
+            "                                                  table_data: nil,",
+            "                                                  table_data_type: .float,",
+            "                                                  data_scale: 1,",
+            "                                                  data_bias: 0)",
+            "",
+            "    // Create and apply convolution layer.",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting a stride value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that BNNS calculates stride, without padding, for that axis. For example, the stride for both of the following n-dimensional array descriptors is the same:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let inputDescriptor = BNNSNDArrayDescriptor(flags: flags,",
+            "                                           layout: BNNSDataLayoutRowMajorMatrix,",
+            "                                           size: (3, 3, 0, 0, 0, 0, 0, 0),",
+            "                                           stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                           data: nil,",
+            "                                           data_type: .float,",
+            "                                           table_data: nil,",
+            "                                           table_data_type: .float,",
+            "                                           data_scale: 1,",
+            "                                           data_bias: 0)",
+            "",
+            "let inputDescriptor = BNNSNDArrayDescriptor(flags: flags,",
+            "                                           layout: BNNSDataLayoutRowMajorMatrix,",
+            "                                           size: (3, 3, 0, 0, 0, 0, 0, 0),",
+            "                                           stride: (1, 3, 0, 0, 0, 0, 0, 0),",
+            "                                           data: nil,",
+            "                                           data_type: .float,",
+            "                                           table_data: nil,",
+            "                                           table_data_type: .float,",
+            "                                           data_scale: 1,",
+            "                                           data_bias: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to specify the data when, for example, you’re passing that data directly to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following code creates ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures for the input and output of a convolution operation. The data property of both descriptors is nil, and the input and output data are passed directly to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let input: [Float] = [ ... ]",
+            "var output: [Float] = [ ... ]",
+            "",
+            "let inDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                         layout: BNNSDataLayoutImageCHW,",
+            "                                         size: (6, 6, 1, 0, 0, 0, 0, 0),",
+            "                                         stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                         data: nil,",
+            "                                         data_type: .float,",
+            "                                         table_data: nil,",
+            "                                         table_data_type: .float,",
+            "                                         data_scale: 1,",
+            "                                         data_bias: 0)",
+            "",
+            "let outDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                          layout: BNNSDataLayoutImageCHW,",
+            "                                          size: (4, 4, 1, 0, 0, 0, 0, 0),",
+            "                                          stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                          data: nil,",
+            "                                          data_type: .float,",
+            "                                          table_data: nil,",
+            "                                          table_data_type: .float,",
+            "                                          data_scale: 1,",
+            "                                          data_bias: 0)",
+            "",
+            "var parameters = BNNSLayerParametersConvolution(i_desc: inDescriptor,",
+            "                                                w_desc: weightsDescriptor,",
+            "                                                o_desc: outDescriptor,",
+            "                                                bias: biasDescriptor,",
+            "                                                activation: .identity,",
+            "                                                x_stride: 1, y_stride: 1,",
+            "                                                x_dilation_stride: 0, y_dilation_stride: 0,",
+            "                                                x_padding: 0, y_padding: 0,",
+            "                                                groups: 1,",
+            "                                                pad: (0, 0, 0, 0))",
+            "",
+            "// `convolutionLayer` is a `BNNSFilter` created by `BNNSFilterCreateLayerConvolution` using `parameters`.",
+            "",
+            "let error = BNNSFilterApplyBatch(convolutionLayer, 1,",
+            "                                 input, inStride,",
+            "                                 &output, outStride)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Shape": {
+      "abstract": [
+        {
+          "text": "Constants that describe the size and data layout of an n-dimensional array descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shape"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Shape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shape"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.Shape",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/shape"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout": {
+      "abstract": [
+        {
+          "text": "Constants that describe the data type of an n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayout",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayout"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutGetRank(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutGetRank"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutGetRank(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataLayoutGetRank"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataLayoutGetRank(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatalayoutgetrank(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataType": {
+      "abstract": [
+        {
+          "text": "BNNS Data Types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDataType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDataType"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDataType",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdatatype"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a filter to a set of input objects, writing the result to a set of output objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterApplyBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterApplyBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFilterApplyBatch(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfilterapplybatch(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerData": {
+      "abstract": [
+        {
+          "text": "A structure containing common layer parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerData"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSLayerData",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnslayerdata"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor": {
+      "abstract": [
+        {
+          "text": "A structure that describes the shape, stride, data type, and, optionally, the memory location of an n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNDArrayDescriptor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(initializingFrom:shape:batchSize:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that’s initialized with a copy of the elements in the specified collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "initializingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(initializingFrom:shape:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(initializingFrom:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(initializingfrom:shape:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:shape:batchSize:)-1697a": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that’s initialized with random values within the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:shape:batchSize:)-1697a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomIn:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomin:shape:batchsize:)-1697a"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:shape:batchSize:)-5a2p2": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that’s initialized with random values within the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:shape:batchSize:)-5a2p2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomIn:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomin:shape:batchsize:)-5a2p2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:using:shape:batchSize:)-3w6ig": {
+      "abstract": [
+        {
+          "text": "Returns a new array descriptor that’s initialized with random values within the specified range, using the given generator as a source for randomness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Generator"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Generator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:using:shape:batchSize:)-3w6ig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomIn:using:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomin:using:shape:batchsize:)-3w6ig"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:using:shape:batchSize:)-5kbi8": {
+      "abstract": [
+        {
+          "text": "Returns a new array descriptor that’s initialized with random values within the specified range, using the given generator as a source for randomness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Generator"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomIn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Generator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:using:shape:batchSize:)-5kbi8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomIn:using:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomin:using:shape:batchsize:)-5kbi8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomNormalUsing:mean:standardDeviation:shape:batchSize:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomNormalUsing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO15RandomGeneratorC",
+          "text": "RandomGenerator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mean"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "standardDeviation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomNormalUsing:mean:standardDeviation:shape:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomNormalUsing:mean:standardDeviation:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomnormalusing:mean:standarddeviation:shape:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomUniformUsing:range:shape:batchSize:)-2rorb": {
+      "abstract": [
+        {
+          "text": "Returns a new array descriptor that’s initialized with random integer values from the continuous uniform distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomUniformUsing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO15RandomGeneratorC",
+          "text": "RandomGenerator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomUniformUsing:range:shape:batchSize:)-2rorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomUniformUsing:range:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomuniformusing:range:shape:batchsize:)-2rorb"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomUniformUsing:range:shape:batchSize:)-761hg": {
+      "abstract": [
+        {
+          "text": "Returns a new array descriptor that’s initialized with random floating-point values from the continuous uniform distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "randomUniformUsing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO15RandomGeneratorC",
+          "text": "RandomGenerator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomUniformUsing:range:shape:batchSize:)-761hg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(randomUniformUsing:range:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(randomuniformusing:range:shape:batchsize:)-761hg"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(repeating:shape:batchSize:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that’s initialized with a single, repeated scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(repeating:shape:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(repeating:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocate(repeating:shape:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocateUninitialized(scalarType:shape:batchSize:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that’s allocated with uninitialized memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateUninitialized"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "scalarType"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10BNNSScalarP",
+          "text": "BNNSScalar"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocateUninitialized(scalarType:shape:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateUninitialized(scalarType:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/allocateuninitialized(scalartype:shape:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data": {
+      "abstract": [
+        {
+          "text": "A pointer that is optional and points to the underlying data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/dataSize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/dataSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataSize",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/datasize"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_bias": {
+      "abstract": [
+        {
+          "text": "The bias you use to convert integer and unsigned integer data to floating point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data_bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_bias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data_bias"
+        }
+      ],
+      "role": "symbol",
+      "title": "data_bias",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/data_bias"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_scale": {
+      "abstract": [
+        {
+          "text": "The scale you use to convert integer and unsigned integer data to floating point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data_scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_scale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data_scale"
+        }
+      ],
+      "role": "symbol",
+      "title": "data_scale",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/data_scale"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_type": {
+      "abstract": [
+        {
+          "text": "The data type of the n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data_type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data_type"
+        }
+      ],
+      "role": "symbol",
+      "title": "data_type",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/data_type"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/deallocate()": {
+      "abstract": [
+        {
+          "text": "Deallocates the memory block previously allocated to this n-dimensional array descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/deallocate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocate()",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/deallocate()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/flags": {
+      "abstract": [
+        {
+          "text": "Flags that control some behaviors of the n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSNDArrayFlags",
+          "text": "BNNSNDArrayFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/flags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flags"
+        }
+      ],
+      "role": "symbol",
+      "title": "flags",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/flags"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init()": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:scalarType:shape:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that references the same data as the specified raw pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scalarType"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10BNNSScalarP",
+          "text": "BNNSScalar"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:scalarType:shape:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:scalarType:shape:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init(data:scalartype:shape:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:scalarType:shape:batchSize:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sw",
+          "text": "UnsafeMutableRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scalarType"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate10BNNSScalarP",
+          "text": "BNNSScalar"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:scalarType:shape:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:scalarType:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init(data:scalartype:shape:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:shape:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor that references the same data as the specified pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:shape:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:shape:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init(data:shape:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:shape:batchSize:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:shape:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:shape:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init(data:shape:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(dataType:shape:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor from the specified data type and shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(dataType:shape:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dataType:shape:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init(datatype:shape:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(flags:layout:size:stride:data:data_type:table_data:table_data_type:data_scale:data_bias:)": {
+      "abstract": [
+        {
+          "text": "Returns a new n-dimensional array descriptor with the specified parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSNDArrayFlags",
+          "text": "BNNSNDArrayFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "layout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data_type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "table_data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "table_data_type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data_scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data_bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(flags:layout:size:stride:data:data_type:table_data:table_data_type:data_scale:data_bias:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(flags:layout:size:stride:data:data_type:table_data:table_data_type:data_scale:data_bias:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/init(flags:layout:size:stride:data:data_type:table_data:table_data_type:data_scale:data_bias:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/layout": {
+      "abstract": [
+        {
+          "text": "The dimension of the n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataLayout",
+          "text": "BNNSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "layout",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/layout"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/makeArray(of:batchSize:)": {
+      "abstract": [
+        {
+          "text": "Returns a new array that contains a copy of the n-dimensional array descriptor’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/makeArray(of:batchSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeArray(of:batchSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/makearray(of:batchsize:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/shape": {
+      "abstract": [
+        {
+          "text": "The shape of the n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO5ShapeO",
+          "text": "Shape"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/shape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shape",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/shape"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/size": {
+      "abstract": [
+        {
+          "text": "The number of values in each dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "size"
+        }
+      ],
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/size"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/stride": {
+      "abstract": [
+        {
+          "text": "The increment, in values, between consecutive elements in each dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/stride",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stride"
+        }
+      ],
+      "role": "symbol",
+      "title": "stride",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/stride"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data": {
+      "abstract": [
+        {
+          "text": "The lookup table for indexed data types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "table_data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "table_data"
+        }
+      ],
+      "role": "symbol",
+      "title": "table_data",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/table_data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data_type": {
+      "abstract": [
+        {
+          "text": "The data type of the lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "table_data_type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSDataType",
+          "text": "BNNSDataType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data_type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "table_data_type"
+        }
+      ],
+      "role": "symbol",
+      "title": "table_data_type",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor/table_data_type"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayFlags": {
+      "abstract": [
+        {
+          "text": "Options that control the behavior of an n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNDArrayFlags",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarrayflags"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "N-dimensional-array-descriptor-essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerData",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Shape",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataType",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutGetRank(_:)"
+      ],
+      "title": "N-dimensional array descriptor essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Array-Descriptor",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(flags:layout:size:stride:data:data_type:table_data:table_data_type:data_scale:data_bias:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:scalarType:shape:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:shape:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(dataType:shape:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init()"
+      ],
+      "title": "Creating an Array Descriptor"
+    },
+    {
+      "anchor": "Specifying-the-Behavior-of-an-N-Dimensional-Array",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayFlags"
+      ],
+      "title": "Specifying the Behavior of an N-Dimensional Array."
+    },
+    {
+      "anchor": "Accessing-the-Properties-of-an-Array-Descriptor",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/flags",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/layout",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/size",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/stride",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_type",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data_type",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_scale",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_bias",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/shape"
+      ],
+      "title": "Accessing the Properties of an Array Descriptor"
+    },
+    {
+      "anchor": "Allocating-and-Deallocating-Memory",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(initializingFrom:shape:batchSize:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomUniformUsing:range:shape:batchSize:)-2rorb",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomUniformUsing:range:shape:batchSize:)-761hg",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:shape:batchSize:)-1697a",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:shape:batchSize:)-5a2p2",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:using:shape:batchSize:)-5kbi8",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomIn:using:shape:batchSize:)-3w6ig",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(repeating:shape:batchSize:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocateUninitialized(scalarType:shape:batchSize:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/deallocate()"
+      ],
+      "title": "Allocating and Deallocating Memory"
+    },
+    {
+      "anchor": "Generating-an-Array-from-an-Array-Descriptors-Data",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/makeArray(of:batchSize:)"
+      ],
+      "title": "Generating an Array from an Array Descriptor’s Data"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:scalarType:shape:batchSize:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/init(data:shape:batchSize:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/dataSize"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/allocate(randomNormalUsing:mean:standardDeviation:shape:batchSize:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BNNSNDArrayDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Specifying-the-Behavior-of-an-N-Dimensional-Array",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayFlags"
+              ],
+              "title": "Specifying the Behavior of an N-Dimensional Array."
+            },
+            {
+              "anchor": "Accessing-the-Properties-of-an-Array-Descriptor",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/flags",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/layout",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/size",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/stride",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_type",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/table_data_type",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_scale",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor/data_bias"
+              ],
+              "title": "Accessing the Properties of an Array Descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "N-dimensional-array-descriptor-essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerData",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayout",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataType",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSDataLayoutGetRank(_:)"
+              ],
+              "title": "N-dimensional array descriptor essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "BNNSNDArrayDescriptor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerData/title",
+          "value": "BNNSLayerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data_scale/title",
+          "value": "data_scale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data_scale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data_scale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data_bias/title",
+          "value": "data_bias"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data_bias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data_bias"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1stride/title",
+          "value": "stride"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1stride/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stride"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout/title",
+          "value": "BNNSDataLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1table_data_type/title",
+          "value": "table_data_type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1table_data_type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "table_data_type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/title",
+          "value": "BNNSNDArrayDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1size/title",
+          "value": "size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataType/title",
+          "value": "BNNSDataType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterApplyBatch(_:_:_:_:_:_:)/title",
+          "value": "BNNSFilterApplyBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterApplyBatch(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterApplyBatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1table_data/title",
+          "value": "table_data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1table_data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "table_data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutGetRank(_:)/title",
+          "value": "BNNSDataLayoutGetRank"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDataLayoutGetRank(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDataLayoutGetRank"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1layout/title",
+          "value": "layout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1layout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data_type/title",
+          "value": "data_type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1data_type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data_type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1flags/title",
+          "value": "flags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor~1flags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "flags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayFlags/title",
+          "value": "BNNSNDArrayFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsndarraydescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsndarraydescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

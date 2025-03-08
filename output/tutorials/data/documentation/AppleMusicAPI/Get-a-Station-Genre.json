@@ -1,1 +1,737 @@
-{"identifier":{"interfaceLanguage":"data","url":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Station-Genre"},"abstract":[{"type":"text","text":"Fetch a station genre by using its identifier."}],"metadata":{"platforms":[{"name":"Apple Music","introducedAt":"1.0","beta":false}],"navigatorTitle":[{"text":"Get a Station Genre","kind":"identifier"}],"symbolKind":"httpRequest","roleHeading":"Web Service Endpoint","modules":[{"name":"Apple Music API"}],"title":"Get a Station Genre","role":"symbol","externalID":"rest:music_api:get:v1-catalog-{}-station-genres-{}"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.applemusicapi/documentation/AppleMusicAPI"]]},"kind":"symbol","sections":[],"variants":[{"paths":["/documentation/applemusicapi/get-a-station-genre"],"traits":[{"interfaceLanguage":"data"}]}],"primaryContentSections":[{"tokens":[{"kind":"method","text":"GET"},{"kind":"text","text":" "},{"kind":"baseURL","text":"https://api.music.apple.com/"},{"kind":"path","text":"v1/catalog/"},{"kind":"parameter","text":"{storefront}"},{"kind":"path","text":"/station-genres/"},{"kind":"parameter","text":"{id}"}],"title":"URL","kind":"restEndpoint"},{"source":"path","title":"Path Parameters","kind":"restParameters","items":[{"required":true,"name":"id","type":[{"text":"string","kind":"text"}],"content":[{"type":"paragraph","inlineContent":[{"text":"The unique identifier for the station genre.","type":"text"}]}],"attributes":[]},{"required":true,"name":"storefront","type":[{"text":"string","kind":"text"}],"content":[{"inlineContent":[{"type":"text","text":"An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the "},{"type":"codeVoice","code":"id"},{"type":"text","text":" attributes of "},{"type":"codeVoice","code":"Storefront"},{"type":"text","text":" objects."}],"type":"paragraph"}],"attributes":[]}]},{"source":"query","title":"Query Parameters","kind":"restParameters","items":[{"required":false,"attributes":[],"content":[{"type":"paragraph","inlineContent":[{"text":"Additional relationships to include in the fetch.","type":"text"}]}],"type":[{"text":"[string]","kind":"text"}],"name":"include"},{"required":false,"attributes":[],"content":[{"type":"paragraph","inlineContent":[{"text":"The localization to use, specified by a language tag. The possible values are in the ","type":"text"},{"code":"supportedLanguageTags","type":"codeVoice"},{"text":" array belonging to the ","type":"text"},{"code":"Storefront","type":"codeVoice"},{"text":" object specified by ","type":"text"},{"code":"storefront","type":"codeVoice"},{"text":". Otherwise, the default is ","type":"text"},{"code":"defaultLanguageTag","type":"codeVoice"},{"text":" in ","type":"text"},{"code":"Storefront","type":"codeVoice"},{"text":".","type":"text"}]}],"type":[{"text":"string","kind":"text"}],"name":"l"},{"required":false,"attributes":[],"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"A list of attribute extensions to apply to resources in the response."}]}],"type":[{"text":"[string]","kind":"text"}],"name":"extend"}]},{"title":"Response Codes","kind":"restResponses","items":[{"content":[{"inlineContent":[{"type":"text","text":"The request was successful."}],"type":"paragraph"}],"reason":"OK","status":200,"type":[{"text":"StationGenresResponse","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse","kind":"typeIdentifier","preciseIdentifier":"data:music_api:StationGenresResponse"}],"mimeType":"application/json"},{"content":[{"inlineContent":[{"type":"text","text":"A response indicating an incorrect "},{"type":"codeVoice","code":"Authorization"},{"type":"text","text":" header."}],"type":"paragraph"}],"reason":"Unauthorized","status":401,"type":[{"preciseIdentifier":"data:music_api:UnauthorizedResponse","text":"UnauthorizedResponse","kind":"typeIdentifier","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse"}],"mimeType":"application/json"},{"content":[{"inlineContent":[{"type":"text","text":"A response indicating an error occurred on the server."}],"type":"paragraph"}],"reason":"Internal Server Error","status":500,"type":[{"text":"ErrorsResponse","kind":"typeIdentifier","preciseIdentifier":"data:music_api:ErrorsResponse","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse"}],"mimeType":"application/json"}]},{"kind":"content","content":[{"level":2,"anchor":"Discussion","text":"Discussion","type":"heading"},{"type":"paragraph","inlineContent":[{"text":"If successful, the HTTP status code is 200 (OK) and the ","type":"text"},{"type":"codeVoice","code":"data"},{"text":" array contains the requested resource object. If unsuccessful, the HTTP status code indicates the error and the details are in the ","type":"text"},{"type":"codeVoice","code":"errors"},{"text":" array. For more information, see ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses"},{"text":".","type":"text"}]},{"level":3,"anchor":"Example","text":"Example","type":"heading"},{"type":"tabNavigator","tabs":[{"title":"Request","content":[{"type":"codeListing","syntax":null,"code":["https://api.music.apple.com/v1/catalog/us/station-genres/1149486336"]}]},{"title":"Response","content":[{"code":["{","    \"data\": [","        {","            \"id\": \"1149486336\",","            \"type\": \"station-genres\",","            \"href\": \"/v1/catalog/us/station-genres/1149486336\",","            \"attributes\": {","                \"name\": \"Pop\"","            }","        }","    ]","}",""],"syntax":"json","type":"codeListing"}]}]}]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"identifiers":["doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenres","doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse"],"title":"Related Documentation","anchor":"Related-Documentation"},{"identifiers":["doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-i4r0","doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Stations-Genres","doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Station-Genres"],"title":"Requesting a Catalog Station Genre","anchor":"Requesting-a-Catalog-Station-Genre","generated":true}],"references":{"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/technologies","type":"topic","title":"Technologies","url":"/documentation/technologies","kind":"technologies","role":"overview"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenres":{"identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenres","abstract":[{"type":"text","text":"A resource object that represents a station genre."}],"navigatorTitle":[{"text":"StationGenres","kind":"identifier"}],"title":"StationGenres","fragments":[{"text":"object ","kind":"text"},{"text":"StationGenres","kind":"identifier"}],"kind":"symbol","type":"topic","url":"/documentation/applemusicapi/stationgenres","role":"symbol"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Stations-Genres":{"type":"topic","title":"Get Multiple Stations Genres","kind":"symbol","role":"symbol","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Stations-Genres","navigatorTitle":[{"text":"Get Multiple Stations Genres","kind":"identifier"}],"abstract":[{"type":"text","text":"Fetch one or more station genres by using their identifiers."}],"url":"/documentation/applemusicapi/get-multiple-stations-genres"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Station-Genres":{"identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Station-Genres","abstract":[{"type":"text","text":"Fetch all station genres for a given storefront."}],"navigatorTitle":[{"text":"Get All Station Genres","kind":"identifier"}],"title":"Get All Station Genres","kind":"symbol","type":"topic","url":"/documentation/applemusicapi/get-all-station-genres","role":"symbol"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses":{"abstract":[{"type":"text","text":"Write a request and handle responses from the API."}],"role":"article","url":"/documentation/applemusicapi/handling-requests-and-responses","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses","type":"topic","title":"Handling Requests and Responses","kind":"article"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI":{"abstract":[{"text":"Integrate streaming music with catalog and personal content.","type":"text"}],"type":"topic","title":"Apple Music API","kind":"symbol","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI","role":"collection","url":"/documentation/applemusicapi"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-i4r0":{"abstract":[{"text":"Fetch a station genre’s relationship by using its identifier.","type":"text"}],"identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-i4r0","type":"topic","title":"Get a Station Genre’s Relationship Directly by Name","url":"/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-i4r0","navigatorTitle":[{"text":"Fetch a relationship on this resource by name","kind":"identifier"}],"kind":"symbol","role":"symbol"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse":{"title":"UnauthorizedResponse","type":"topic","role":"symbol","navigatorTitle":[{"text":"UnauthorizedResponse","kind":"identifier"}],"kind":"symbol","fragments":[{"text":"object ","kind":"text"},{"text":"UnauthorizedResponse","kind":"identifier"}],"url":"/documentation/applemusicapi/unauthorizedresponse","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse","abstract":[{"type":"text","text":"A response object indicating that the request’s authorization is missing or invalid."}]},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse":{"abstract":[{"text":"A response object indicating that an error occurred while processing the request.","type":"text"}],"fragments":[{"text":"object ","kind":"text"},{"text":"ErrorsResponse","kind":"identifier"}],"identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse","type":"topic","title":"ErrorsResponse","url":"/documentation/applemusicapi/errorsresponse","navigatorTitle":[{"text":"ErrorsResponse","kind":"identifier"}],"kind":"symbol","role":"symbol"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse":{"navigatorTitle":[{"text":"StationGenresResponse","kind":"identifier"}],"abstract":[{"type":"text","text":"The response to a specific station genres resource request."}],"type":"topic","fragments":[{"text":"object ","kind":"text"},{"text":"StationGenresResponse","kind":"identifier"}],"title":"StationGenresResponse","kind":"symbol","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse","role":"symbol","url":"/documentation/applemusicapi/stationgenresresponse"},"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Station-Genre":{"type":"topic","title":"Get a Station Genre","kind":"symbol","role":"symbol","identifier":"doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Station-Genre","navigatorTitle":[{"text":"Get a Station Genre","kind":"identifier"}],"abstract":[{"type":"text","text":"Fetch a station genre by using its identifier."}],"url":"/documentation/applemusicapi/get-a-station-genre"}},"diffAvailability":{"major":{"change":"added","platform":"Apple Music","versions":["1.0","1.2"]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Fetch a station genre by using its identifier.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Station-Genre"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-catalog-{}-station-genres-{}",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get a Station Genre"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Station Genre"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/station-genres/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the station genre.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:StationGenresResponse",
+              "text": "StationGenresResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the requested resource object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/catalog/us/station-genres/1149486336"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"id\": \"1149486336\",",
+                    "            \"type\": \"station-genres\",",
+                    "            \"href\": \"/v1/catalog/us/station-genres/1149486336\",",
+                    "            \"attributes\": {",
+                    "                \"name\": \"Pop\"",
+                    "            }",
+                    "        }",
+                    "    ]",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-i4r0": {
+      "abstract": [
+        {
+          "text": "Fetch a station genre’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-i4r0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Station Genre’s Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-i4r0"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Station-Genres": {
+      "abstract": [
+        {
+          "text": "Fetch all station genres for a given storefront.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Station-Genres",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Station Genres"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Station Genres",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-all-station-genres"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Stations-Genres": {
+      "abstract": [
+        {
+          "text": "Fetch one or more station genres by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Stations-Genres",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Stations Genres"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Stations Genres",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-stations-genres"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Station-Genre": {
+      "abstract": [
+        {
+          "text": "Fetch a station genre by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Station-Genre",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Station Genre"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Station Genre",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-station-genre"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenres": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a station genre.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StationGenres"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenres",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StationGenres"
+        }
+      ],
+      "role": "symbol",
+      "title": "StationGenres",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/stationgenres"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse": {
+      "abstract": [
+        {
+          "text": "The response to a specific station genres resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StationGenresResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StationGenresResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "StationGenresResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/stationgenresresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenres",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/StationGenresResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-a-Catalog-Station-Genre",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-i4r0",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Stations-Genres",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Station-Genres"
+      ],
+      "title": "Requesting a Catalog Station Genre"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-a-station-genre"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

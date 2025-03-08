@@ -1,1 +1,948 @@
-{"abstract":[{"type":"text","text":"Writes all entries from a directory to the archive stream."}],"schemaVersion":{"major":0,"minor":3,"patch":0},"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)"},"sections":[],"metadata":{"platforms":[{"unavailable":false,"introducedAt":"14.0","beta":false,"name":"iOS","deprecated":false},{"unavailable":false,"introducedAt":"14.0","beta":false,"name":"iPadOS","deprecated":false},{"unavailable":false,"beta":false,"name":"Mac Catalyst","deprecated":false},{"unavailable":false,"introducedAt":"11.0","beta":false,"name":"macOS","deprecated":false},{"unavailable":false,"introducedAt":"14.0","beta":false,"name":"tvOS","deprecated":false},{"unavailable":false,"beta":false,"name":"visionOS","deprecated":false},{"unavailable":false,"introducedAt":"7.0","beta":false,"name":"watchOS","deprecated":false}],"role":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"writeDirectoryContents","kind":"identifier"},{"text":"(","kind":"text"},{"text":"archiveFrom","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:6System8FilePathV","text":"FilePath","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"path","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:6System8FilePathV","text":"FilePath","kind":"typeIdentifier"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"keySet"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ArchiveHeader","preciseIdentifier":"s:12AppleArchive0B6HeaderC"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"FieldKeySet","preciseIdentifier":"s:12AppleArchive0B6HeaderC11FieldKeySetC"},{"kind":"text","text":", "},{"kind":"externalParam","text":"selectUsing"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ArchiveHeader","preciseIdentifier":"s:12AppleArchive0B6HeaderC"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"EntryFilter","preciseIdentifier":"s:12AppleArchive0B6HeaderC11EntryFiltera"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"flags"},{"kind":"text","text":": "},{"text":"ArchiveFlags","kind":"typeIdentifier","preciseIdentifier":"s:12AppleArchive0B5FlagsV"},{"text":", ","kind":"text"},{"text":"threadCount","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Int","kind":"typeIdentifier","preciseIdentifier":"s:Si"},{"text":") ","kind":"text"},{"text":"throws","kind":"keyword"}],"extendedModule":"AppleArchive","modules":[{"name":"Apple Archive"}],"title":"writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)","roleHeading":"Instance Method","symbolKind":"method","externalID":"s:12AppleArchive0B6StreamC22writeDirectoryContents11archiveFrom4path6keySet11selectUsing5flags11threadCounty6System8FilePathV_AMSgAA0B6HeaderC08FieldKeyK0CAP18EntryMessageStatusVAP0wX0V_AmP0W10FilterDataOSgtcSgAA0B5FlagsVSitKF"},"kind":"symbol","variants":[{"paths":["/documentation/applearchive/archivestream/writedirectorycontents(archivefrom:path:keyset:selectusing:flags:threadcount:)"],"traits":[{"interfaceLanguage":"swift"}]}],"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"writeDirectoryContents","kind":"identifier"},{"text":"(","kind":"text"},{"text":"archiveFrom","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"directory","kind":"internalParam"},{"text":": ","kind":"text"},{"text":"FilePath","identifier":"doc://com.externally.resolved.symbol/s:6System8FilePathV","kind":"typeIdentifier","preciseIdentifier":"s:6System8FilePathV"},{"text":", ","kind":"text"},{"text":"path","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"FilePath","identifier":"doc://com.externally.resolved.symbol/s:6System8FilePathV","kind":"typeIdentifier","preciseIdentifier":"s:6System8FilePathV"},{"text":"? = nil, ","kind":"text"},{"text":"keySet","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"ArchiveHeader","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader","kind":"typeIdentifier","preciseIdentifier":"s:12AppleArchive0B6HeaderC"},{"text":".","kind":"text"},{"text":"FieldKeySet","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/FieldKeySet","kind":"typeIdentifier","preciseIdentifier":"s:12AppleArchive0B6HeaderC11FieldKeySetC"},{"text":", ","kind":"text"},{"text":"selectUsing","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"filter","kind":"internalParam"},{"text":": ","kind":"text"},{"text":"ArchiveHeader","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader","preciseIdentifier":"s:12AppleArchive0B6HeaderC","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"EntryFilter","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/EntryFilter","preciseIdentifier":"s:12AppleArchive0B6HeaderC11EntryFiltera","kind":"typeIdentifier"},{"text":"? = nil, ","kind":"text"},{"text":"flags","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"ArchiveFlags","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveFlags","preciseIdentifier":"s:12AppleArchive0B5FlagsV","kind":"typeIdentifier"},{"text":" = [], ","kind":"text"},{"text":"threadCount","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Int","identifier":"doc://com.externally.resolved.symbol/s:Si","preciseIdentifier":"s:Si","kind":"typeIdentifier"},{"text":" = 0) ","kind":"text"},{"text":"throws","kind":"keyword"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"languages":["swift"]}]},{"parameters":[{"name":"directory","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The base directory that the operation scans and archives."}]}]},{"name":"path","content":[{"type":"paragraph","inlineContent":[{"text":"An optional subdirectory to restrict the scan.","type":"text"}]}]},{"name":"keySet","content":[{"inlineContent":[{"text":"The fields to include for each entry.","type":"text"}],"type":"paragraph"}]},{"name":"filter","content":[{"inlineContent":[{"text":"A closure that’s called for each entry that’s received by the stream.","type":"text"}],"type":"paragraph"}]},{"name":"flags","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Flags that control the behavior of the operation."}]}]},{"name":"threadCount","content":[{"inlineContent":[{"type":"text","text":"The number of worker threads that the operation uses, set to "},{"type":"codeVoice","code":"0"},{"type":"text","text":" for default."}],"type":"paragraph"}]}],"kind":"parameters"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.applearchive/documentation/AppleArchive","doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream"]]},"references":{"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveFlags":{"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ArchiveFlags","kind":"identifier"}],"type":"topic","title":"ArchiveFlags","url":"/documentation/applearchive/archiveflags","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveFlags","navigatorTitle":[{"text":"ArchiveFlags","kind":"identifier"}],"abstract":[],"kind":"symbol","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","abstract":[{"text":"","type":"text"}],"type":"topic","title":"Technologies","kind":"technologies"},"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader":{"abstract":[{"text":"An AppleArchive entry header.","type":"text"}],"navigatorTitle":[{"text":"ArchiveHeader","kind":"identifier"}],"kind":"symbol","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader","role":"symbol","url":"/documentation/applearchive/archiveheader","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"ArchiveHeader","kind":"identifier"}],"title":"ArchiveHeader"},"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/FieldKeySet":{"abstract":[{"text":"An object that represents a field key set.","type":"text"}],"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"FieldKeySet","kind":"identifier"}],"url":"/documentation/applearchive/archiveheader/fieldkeyset","kind":"symbol","title":"ArchiveHeader.FieldKeySet","navigatorTitle":[{"text":"FieldKeySet","kind":"identifier"}],"identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/FieldKeySet","role":"symbol","type":"topic"},"doc://com.externally.resolved.symbol/s:6System8FilePathV":{"kind":"symbol","type":"topic","identifier":"doc://com.externally.resolved.symbol/s:6System8FilePathV","role":"symbol","title":"FilePath","abstract":[{"text":"Represents a location in the file system.","type":"text"}],"url":"/documentation/System/FilePath","fragments":[{"text":"struct","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"FilePath"}]},"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)":{"role":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"text":"writeDirectoryContents","kind":"identifier"},{"text":"(","kind":"text"},{"kind":"externalParam","text":"archiveFrom"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:6System8FilePathV","text":"FilePath"},{"text":", ","kind":"text"},{"kind":"externalParam","text":"path"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:6System8FilePathV","text":"FilePath"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"keySet"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:12AppleArchive0B6HeaderC","text":"ArchiveHeader"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:12AppleArchive0B6HeaderC11FieldKeySetC","text":"FieldKeySet"},{"kind":"text","text":", "},{"kind":"externalParam","text":"selectUsing"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:12AppleArchive0B6HeaderC","text":"ArchiveHeader"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"EntryFilter","preciseIdentifier":"s:12AppleArchive0B6HeaderC11EntryFiltera"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"flags"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"ArchiveFlags","preciseIdentifier":"s:12AppleArchive0B5FlagsV"},{"kind":"text","text":", "},{"kind":"externalParam","text":"threadCount"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"},{"text":") ","kind":"text"},{"text":"throws","kind":"keyword"}],"title":"writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)","abstract":[{"text":"Writes all entries from a directory to the archive stream.","type":"text"}],"type":"topic","kind":"symbol","url":"/documentation/applearchive/archivestream/writedirectorycontents(archivefrom:path:keyset:selectusing:flags:threadcount:)"},"doc://com.externally.resolved.symbol/s:Si":{"role":"symbol","type":"topic","identifier":"doc://com.externally.resolved.symbol/s:Si","title":"Int","kind":"symbol","fragments":[{"text":"@frozen","kind":"attribute"},{"text":" ","kind":"text"},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Int","kind":"identifier"}],"url":"/documentation/Swift/Int","abstract":[{"text":"A signed integer value type.","type":"text"}]},"doc://com.apple.applearchive/documentation/AppleArchive":{"abstract":[{"text":"Perform multithreaded lossless compression of directories, files, and data.","type":"text"}],"url":"/documentation/applearchive","kind":"symbol","title":"Apple Archive","identifier":"doc://com.apple.applearchive/documentation/AppleArchive","role":"collection","type":"topic"},"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream":{"kind":"symbol","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream","title":"ArchiveStream","fragments":[{"kind":"keyword","text":"class"},{"text":" ","kind":"text"},{"text":"ArchiveStream","kind":"identifier"}],"navigatorTitle":[{"kind":"identifier","text":"ArchiveStream"}],"role":"symbol","abstract":[{"text":"An archive stream that reads from and writes to data blobs","type":"text"}],"url":"/documentation/applearchive/archivestream","type":"topic"},"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/EntryFilter":{"fragments":[{"kind":"keyword","text":"typealias"},{"text":" ","kind":"text"},{"text":"EntryFilter","kind":"identifier"}],"type":"topic","title":"ArchiveHeader.EntryFilter","url":"/documentation/applearchive/archiveheader/entryfilter","identifier":"doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/EntryFilter","navigatorTitle":[{"kind":"identifier","text":"EntryFilter"}],"abstract":[{"type":"text","text":"A type alias for the parameters passed to an archive stream operation’s entry selection and status closure."}],"kind":"symbol","role":"symbol"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Writes all entries from a directory to the archive stream.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applearchive/documentation/AppleArchive",
+        "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppleArchive",
+    "externalID": "s:12AppleArchive0B6StreamC22writeDirectoryContents11archiveFrom4path6keySet11selectUsing5flags11threadCounty6System8FilePathV_AMSgAA0B6HeaderC08FieldKeyK0CAP18EntryMessageStatusVAP0wX0V_AmP0W10FilterDataOSgtcSgAA0B5FlagsVSitKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "writeDirectoryContents"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "archiveFrom"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:6System8FilePathV",
+        "text": "FilePath"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "path"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:6System8FilePathV",
+        "text": "FilePath"
+      },
+      {
+        "kind": "text",
+        "text": "?, "
+      },
+      {
+        "kind": "externalParam",
+        "text": "keySet"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+        "text": "ArchiveHeader"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:12AppleArchive0B6HeaderC11FieldKeySetC",
+        "text": "FieldKeySet"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "selectUsing"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+        "text": "ArchiveHeader"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:12AppleArchive0B6HeaderC11EntryFiltera",
+        "text": "EntryFilter"
+      },
+      {
+        "kind": "text",
+        "text": "?, "
+      },
+      {
+        "kind": "externalParam",
+        "text": "flags"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:12AppleArchive0B5FlagsV",
+        "text": "ArchiveFlags"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "threadCount"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Si",
+        "text": "Int"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple Archive"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeDirectoryContents"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "archiveFrom"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "directory"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:6System8FilePathV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:6System8FilePathV",
+              "text": "FilePath"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "path"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:6System8FilePathV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:6System8FilePathV",
+              "text": "FilePath"
+            },
+            {
+              "kind": "text",
+              "text": "? = nil, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "keySet"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+              "text": "ArchiveHeader"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/FieldKeySet",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12AppleArchive0B6HeaderC11FieldKeySetC",
+              "text": "FieldKeySet"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "selectUsing"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "filter"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+              "text": "ArchiveHeader"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/EntryFilter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12AppleArchive0B6HeaderC11EntryFiltera",
+              "text": "EntryFilter"
+            },
+            {
+              "kind": "text",
+              "text": "? = nil, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12AppleArchive0B5FlagsV",
+              "text": "ArchiveFlags"
+            },
+            {
+              "kind": "text",
+              "text": " = [], "
+            },
+            {
+              "kind": "externalParam",
+              "text": "threadCount"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Si",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": " = 0) "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The base directory that the operation scans and archives.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "directory"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional subdirectory to restrict the scan.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "path"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The fields to include for each entry.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keySet"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A closure that’s called for each entry that’s received by the stream.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "filter"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Flags that control the behavior of the operation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of worker threads that the operation uses, set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for default.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "threadCount"
+        }
+      ]
+    }
+  ],
+  "references": {
+    "doc://com.apple.applearchive/documentation/AppleArchive": {
+      "abstract": [
+        {
+          "text": "Perform multithreaded lossless compression of directories, files, and data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Archive",
+      "type": "topic",
+      "url": "/documentation/applearchive"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArchiveFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArchiveFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArchiveFlags",
+      "type": "topic",
+      "url": "/documentation/applearchive/archiveflags"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader": {
+      "abstract": [
+        {
+          "text": "An AppleArchive entry header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArchiveHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArchiveHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArchiveHeader",
+      "type": "topic",
+      "url": "/documentation/applearchive/archiveheader"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/EntryFilter": {
+      "abstract": [
+        {
+          "text": "A type alias for the parameters passed to an archive stream operation’s entry selection and status closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntryFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/EntryFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntryFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArchiveHeader.EntryFilter",
+      "type": "topic",
+      "url": "/documentation/applearchive/archiveheader/entryfilter"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/FieldKeySet": {
+      "abstract": [
+        {
+          "text": "An object that represents a field key set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FieldKeySet"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveHeader/FieldKeySet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FieldKeySet"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArchiveHeader.FieldKeySet",
+      "type": "topic",
+      "url": "/documentation/applearchive/archiveheader/fieldkeyset"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream": {
+      "abstract": [
+        {
+          "text": "An archive stream that reads from and writes to data blobs",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArchiveStream"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArchiveStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArchiveStream",
+      "type": "topic",
+      "url": "/documentation/applearchive/archivestream"
+    },
+    "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)": {
+      "abstract": [
+        {
+          "text": "Writes all entries from a directory to the archive stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeDirectoryContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "archiveFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keySet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+          "text": "ArchiveHeader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC11FieldKeySetC",
+          "text": "FieldKeySet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selectUsing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+          "text": "ArchiveHeader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC11EntryFiltera",
+          "text": "EntryFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B5FlagsV",
+          "text": "ArchiveFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.applearchive/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)",
+      "type": "topic",
+      "url": "/documentation/applearchive/archivestream/writedirectorycontents(archivefrom:path:keyset:selectusing:flags:threadcount:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:6System8FilePathV": {
+      "abstract": [
+        {
+          "text": "Represents a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6System8FilePathV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FilePath",
+      "type": "topic",
+      "url": "/documentation/System/FilePath"
+    },
+    "doc://com.externally.resolved.symbol/s:Si": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Si",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applearchive/archivestream/writedirectorycontents(archivefrom:path:keyset:selectusing:flags:threadcount:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

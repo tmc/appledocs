@@ -1,0 +1,1207 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch all the library playlists in alphabetical order.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Playlists"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-library-playlists#all",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get All Library Playlists"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get All Library Playlists"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/library/playlists"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The next page or group of objects to fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:LibraryPlaylistsResponse",
+              "text": "LibraryPlaylistsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the requested resource object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/library/playlists"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"next\": \"/v1/me/library/playlists?offset=25\",",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"id\": \"p.JL6884DCbMXbx2\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.JL6884DCbMXbx2\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.JL6884DCbMXbx2\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"A-team\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.mmRll1dIl68lJ3\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.mmRll1dIl68lJ3\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.mmRll1dIl68lJ3\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Acapella\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.mmRll4xCl68lJ3\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.mmRll4xCl68lJ3\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.mmRll4xCl68lJ3\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"ahalahaaala\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.b16GGBDFbmMbZ1\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.b16GGBDFbmMbZ1\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.b16GGBDFbmMbZ1\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Ball is life\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.ldvAAJgi8mV82J\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.ldvAAJgi8mV82J\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.ldvAAJgi8mV82J\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Banger EDM\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.mmRll4Dil68lJ3\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.mmRll4Dil68lJ3\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.mmRll4Dil68lJ3\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"BP\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\",",
+                    "                \"description\": {",
+                    "                    \"standard\": \"\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.ldvAlgxh8mV82J\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.ldvAlgxh8mV82J\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.ldvAlgxh8mV82J\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Bros\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\",",
+                    "                \"description\": {",
+                    "                    \"standard\": \"\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.b16GGVGIbmMbZ1\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.b16GGVGIbmMbZ1\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.b16GGVGIbmMbZ1\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"California King Bed\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.eoGxxavFkPRkoD\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.eoGxxavFkPRkoD\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.eoGxxavFkPRkoD\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Charlie Shotton\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.ldvAL1Xh8mV82J\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.ldvAL1Xh8mV82J\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.ldvAL1Xh8mV82J\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"ChilLAX\",",
+                    "                \"dateAdded\": \"2019-10-15T16: 07: 45Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.ldvAAKYs8mV82J\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.ldvAAKYs8mV82J\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.ldvAAKYs8mV82J\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Chilltronic\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.GE5rOQZuPmxPZA\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.GE5rOQZuPmxPZA\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.GE5rOQZuPmxPZA\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": false,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Purchased Music\",",
+                    "                \"dateAdded\": \"2016-04-17T06: 15: 52Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.eoGxxMxHkPRkoD\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.eoGxxMxHkPRkoD\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.eoGxxMxHkPRkoD\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Clusterfuck\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.mmRl3Boil68lJ3\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.mmRl3Boil68lJ3\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.mmRl3Boil68lJ3\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"D^2\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.mmRlvRdHl68lJ3\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.mmRlvRdHl68lJ3\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.mmRlvRdHl68lJ3\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"D^3\",",
+                    "                \"dateAdded\": \"2020-01-17T05: 10: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.ldvAA61h8mV82J\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.ldvAA61h8mV82J\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.ldvAA61h8mV82J\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Deep House\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.eoGxxYEFkPRkoD\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.eoGxxYEFkPRkoD\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.eoGxxYEFkPRkoD\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Df\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.DV7rrqVhRYlRkE\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.DV7rrqVhRYlRkE\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.DV7rrqVhRYlRkE\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"E~D~M\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.RB1Ae4VC14X1bg\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.RB1Ae4VC14X1bg\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.RB1Ae4VC14X1bg\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"E~D~M1\",",
+                    "                \"dateAdded\": \"2020-01-17T05: 10: 46Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.RB1AAbkc14X1bg\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.RB1AAbkc14X1bg\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.RB1AAbkc14X1bg\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Eighteeeeens\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.b16Ge6ktbmMbZ1\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.b16Ge6ktbmMbZ1\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.b16Ge6ktbmMbZ1\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Eighteeeeens1\",",
+                    "                \"dateAdded\": \"2020-01-17T05: 10: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.RB1AJrJc14X1bg\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.RB1AJrJc14X1bg\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.RB1AJrJc14X1bg\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true,",
+                    "                    \"globalId\": \"pl.u-jV89DqDTdL9dN7\"",
+                    "                },",
+                    "                \"hasCatalog\": true,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": true,",
+                    "                \"name\": \"End of Covid\",",
+                    "                \"dateAdded\": \"2021-06-19T02: 37: 56Z\",",
+                    "                \"description\": {",
+                    "                    \"standard\": \"\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.eoGxx8eHkPRkoD\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.eoGxx8eHkPRkoD\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.eoGxx8eHkPRkoD\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"hasCatalog\": false,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"FAAALLLllliinnnnggg\",",
+                    "                \"dateAdded\": \"2019-10-14T07: 14: 47Z\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.GE5rdm3cPmxPZA\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.GE5rdm3cPmxPZA\",",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"width\": null,",
+                    "                    \"height\": null,",
+                    "                    \"url\": \"https: //is2-ssl.mzstatic.com/image/thumb/Features124/v4/c7/65/0e/c7650e0f-1403-bf84-4631-b43fcf5c0e65/source/{w}x{h}cc.jpeg\"",
+                    "                },",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.GE5rdm3cPmxPZA\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true,",
+                    "                    \"globalId\": \"pl.pm-20e9f373919da080f53d220d517f74d7\",",
+                    "                    \"versionHash\": \"c3a49729-d5de-41a9-8a5e-4e13cdad31b1\"",
+                    "                },",
+                    "                \"hasCatalog\": true,",
+                    "                \"canEdit\": false,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Favorites Mix\",",
+                    "                \"dateAdded\": \"2020-10-29T19: 24: 28Z\",",
+                    "                \"description\": {",
+                    "                    \"standard\": \"The songs you love. The more you use Apple Music, the better the mix. Refreshed every Tuesday.\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.mmRl3MAIl68lJ3\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.mmRl3MAIl68lJ3\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.mmRl3MAIl68lJ3\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true,",
+                    "                    \"globalId\": \"pl.u-KVXBD71IZWlZPA\"",
+                    "                },",
+                    "                \"hasCatalog\": true,",
+                    "                \"canEdit\": true,",
+                    "                \"isPublic\": false,",
+                    "                \"name\": \"Fire\",",
+                    "                \"dateAdded\": \"2019-10-11T15: 07: 31Z\"",
+                    "            }",
+                    "        }",
+                    "    ],",
+                    "    \"meta\": {",
+                    "        \"total\": 115",
+                    "    }",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-5l22w": {
+      "abstract": [
+        {
+          "text": "Fetch a library playlist’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-5l22w",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Playlist's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-5l22w"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Playlists": {
+      "abstract": [
+        {
+          "text": "Fetch all the library playlists in alphabetical order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Playlists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Library Playlists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Library Playlists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-all-library-playlists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlists": {
+      "abstract": [
+        {
+          "text": "Fetch one or more library playlists by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Library Playlists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Library Playlists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-library-playlists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist": {
+      "abstract": [
+        {
+          "text": "Fetch a library playlist by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Library Playlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Playlist",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-library-playlist"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylists": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a library playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylists"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylists"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse": {
+      "abstract": [
+        {
+          "text": "The response to a library playlists request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylistsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylists",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-a-Library-Playlist",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-5l22w",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlists"
+      ],
+      "title": "Requesting a Library Playlist"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-all-library-playlists"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

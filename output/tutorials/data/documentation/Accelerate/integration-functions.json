@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "Compute the running sum, Simpson, or trapezoidal integration of a vector.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/integration-functions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Integration functions"
+  },
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/absolute-and-negation-functions": {
+      "abstract": [
+        {
+          "text": "Compute the absolute or negated value of each element in a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/absolute-and-negation-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Absolute and negation functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/absolute-and-negation-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/clipping-limit-and-threshold-operations": {
+      "abstract": [
+        {
+          "text": "Apply clipping, limit, or threshold rules to the elements in a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/clipping-limit-and-threshold-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipping, limit, and threshold operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/clipping-limit-and-threshold-operations"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/complex-conjugation-functions": {
+      "abstract": [
+        {
+          "text": "Calculate the complex conjugate of the elements in a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/complex-conjugation-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Complex conjugation functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/complex-conjugation-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fractional-part-extraction": {
+      "abstract": [
+        {
+          "text": "Truncate the elements of a vector to a fraction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fractional-part-extraction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fractional part extraction",
+      "type": "topic",
+      "url": "/documentation/accelerate/fractional-part-extraction"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/normalization-functions": {
+      "abstract": [
+        {
+          "text": "Compute the mean and standard deviation of a vector and calculate new elements to have a zero mean and a unit standard deviation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/normalization-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Normalization functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/normalization-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/phase-computation-functions": {
+      "abstract": [
+        {
+          "text": "Calculate the element-wise phase values, in radians, of a complex vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/phase-computation-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Phase computation functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/phase-computation-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/IntegrationRule": {
+      "abstract": [
+        {
+          "text": "Integration rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegrationRule"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/IntegrationRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntegrationRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.IntegrationRule",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/integrationrule"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:)-1bw3x": {
+      "abstract": [
+        {
+          "text": "Returns the integration of a double-precision vector using the specified rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integrate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO",
+          "text": "vDSP"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO15IntegrationRuleO",
+          "text": "IntegrationRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stepSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:)-1bw3x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integrate(_:using:stepSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/integrate(_:using:stepsize:)-1bw3x"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:)-7wei4": {
+      "abstract": [
+        {
+          "text": "Returns the integration of a single-precision vector using the specified rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integrate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO",
+          "text": "vDSP"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO15IntegrationRuleO",
+          "text": "IntegrationRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stepSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:)-7wei4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integrate(_:using:stepSize:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/integrate(_:using:stepsize:)-7wei4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:result:)-44lew": {
+      "abstract": [
+        {
+          "text": "Performs the integration of a single-precision using the specified rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integrate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO",
+          "text": "vDSP"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO15IntegrationRuleO",
+          "text": "IntegrationRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stepSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:result:)-44lew",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integrate(_:using:stepSize:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/integrate(_:using:stepsize:result:)-44lew"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:result:)-75jvf": {
+      "abstract": [
+        {
+          "text": "Performs the integration of a double-precision using the specified rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integrate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO",
+          "text": "vDSP"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4vDSPO15IntegrationRuleO",
+          "text": "IntegrationRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stepSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:result:)-75jvf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integrate(_:using:stepSize:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/integrate(_:using:stepsize:result:)-75jvf"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vrsum": {
+      "abstract": [
+        {
+          "text": "Performs running sum integration over a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vrsum"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vrsum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vrsum",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vrsum"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vrsumD": {
+      "abstract": [
+        {
+          "text": "Performs running sum integration over a double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vrsumD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vrsumD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vrsumD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vrsumd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vsimps": {
+      "abstract": [
+        {
+          "text": "Performs Simpson integration over a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vsimps"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vsimps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vsimps",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vsimps"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vsimpsD": {
+      "abstract": [
+        {
+          "text": "Performs Simpson integration over a double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vsimpsD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vsimpsD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vsimpsD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vsimpsd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vtrapz": {
+      "abstract": [
+        {
+          "text": "Performs trapezoidal integration over a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vtrapz"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vtrapz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vtrapz",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vtrapz"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vtrapzD": {
+      "abstract": [
+        {
+          "text": "Performs trapezoidal integration over a double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vtrapzD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vtrapzD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vtrapzD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vtrapzd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vector-squaring-functions": {
+      "abstract": [
+        {
+          "text": "Compute the square, signed square, or squared magnitude of the elements in a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vector-squaring-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vector squaring functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/vector-squaring-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/zero-crossing-search": {
+      "abstract": [
+        {
+          "text": "Count and find the zero crossings in a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/zero-crossing-search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Zero crossing search",
+      "type": "topic",
+      "url": "/documentation/accelerate/zero-crossing-search"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Single-vector-arithmetic-functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/absolute-and-negation-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/clipping-limit-and-threshold-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/normalization-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/phase-computation-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/complex-conjugation-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/vector-squaring-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/fractional-part-extraction",
+        "doc://com.apple.accelerate/documentation/Accelerate/zero-crossing-search"
+      ],
+      "title": "Single-vector arithmetic functions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Integration",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:)-1bw3x",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:)-7wei4",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:result:)-75jvf",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/integrate(_:using:stepSize:result:)-44lew",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/IntegrationRule"
+      ],
+      "title": "Integration"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The functions in this group perform integration on the values in a vector.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Running-Sum-Integration",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vrsum",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vrsumD"
+      ],
+      "title": "Running Sum Integration"
+    },
+    {
+      "anchor": "Simpson-Integration",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vsimps",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vsimpsD"
+      ],
+      "title": "Simpson Integration"
+    },
+    {
+      "anchor": "Trapezoidal-Integration",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vtrapz",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vtrapzD"
+      ],
+      "title": "Trapezoidal Integration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

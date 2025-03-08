@@ -1,0 +1,1288 @@
+{
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1658109,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "MDQuery"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MDQuery is a CF-compliant object, follows the CF conventions,and can be used with the CF polymorphic functions, such as ",
+              "type": "text"
+            },
+            {
+              "code": "CFRetain",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".MDQuery encapsulates queries against the System store of the filemetadata. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An MDQuery normally executes asynchronously and posts progressnotifications as the results are collected. During the gatheringphase the query results conform to the specified value lists andsorting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MDQuery gathers results and processes updates only while thecurrent thread's run loop is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For functions that take an MDQueryRef parameter, if this parameteris not a valid MDQueryRef, the behavior is undefined. ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isnot a valid MDQueryRef. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For functions that take CF*Ref parameters, such as CFStringRefand CFArrayRef, if this parameter is not a valid CF object of thecorrect type, the behavior is undefined. ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isnot a valid CF*Ref. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1724796": {
+      "identifier": "devLink-1724796",
+      "title": "Spotlight Overview",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/MetadataIntro/MetadataIntro.html#//apple_ref/doc/uid/TP40001268"
+    },
+    "devLink-1726035": {
+      "identifier": "devLink-1726035",
+      "title": "File Metadata Search Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/SpotlightQuery/Concepts/Introduction.html#//apple_ref/doc/uid/TP40001841"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413004-mdquerycopyquerystring": {
+      "abstract": [
+        {
+          "text": "Returns the query string of the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCopyQueryString"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413004-mdquerycopyquerystring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCopyQueryString(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413004-mdquerycopyquerystring"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413006-mdquerygetbatchingparameters": {
+      "abstract": [
+        {
+          "text": "Returns the current parameters that control the batching of progress notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetBatchingParameters"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!) -> MDQueryBatchingParams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413006-mdquerygetbatchingparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetBatchingParameters(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413006-mdquerygetbatchingparameters"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413008-mdquerygetresultcount": {
+      "abstract": [
+        {
+          "text": "Returns the number of results currently collected by the query. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetResultCount"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413008-mdquerygetresultcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetResultCount(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413008-mdquerygetresultcount"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413009-mdquerygetcountofresultswithattr": {
+      "abstract": [
+        {
+          "text": "Returns the number of results which have the given attribute and attribute value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetCountOfResultsWithAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFString!, CFTypeRef!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413009-mdquerygetcountofresultswithattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetCountOfResultsWithAttributeValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413009-mdquerygetcountofresultswithattr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413017-mdquerysetcreatevaluefunction": {
+      "abstract": [
+        {
+          "text": "Sets the function used to create the value objects of the MDQuery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetCreateValueFunction"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, MDQueryCreateValueFunction!, UnsafeMutableRawPointer!, UnsafePointer<CFArrayCallBacks>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413017-mdquerysetcreatevaluefunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetCreateValueFunction(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413017-mdquerysetcreatevaluefunction"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413019-mdquerysetdispatchqueue": {
+      "abstract": [
+        {
+          "text": "Sets the dispatch queue on which query results will be delivered by MDQueryExecute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, dispatch_queue_t!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413019-mdquerysetdispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413019-mdquerysetdispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413021-mdquerysetsortcomparatorblock": {
+      "abstract": [
+        {
+          "text": "Sets the block used to sort the results of an MDQuery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetSortComparatorBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, ((UnsafePointer<Unmanaged<CFTypeRef>?>?, UnsafePointer<Unmanaged<CFTypeRef>?>?) -> CFComparisonResult)!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413021-mdquerysetsortcomparatorblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetSortComparatorBlock(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413021-mdquerysetsortcomparatorblock"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413027-mdquerycreatesubset": {
+      "abstract": [
+        {
+          "text": "Creates a new query that is a subset of the specified parentquery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCreateSubset"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, MDQuery!, CFString!, CFArray!, CFArray!) -> MDQuery!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413027-mdquerycreatesubset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCreateSubset(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413027-mdquerycreatesubset"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413029-mdquerycreate": {
+      "abstract": [
+        {
+          "text": "Creates a new query instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CFArray!, CFArray!) -> MDQuery!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413029-mdquerycreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCreate(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413029-mdquerycreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413032-mdqueryisgatheringcomplete": {
+      "abstract": [
+        {
+          "text": "Returns true if the first phase of a query, the initial result gathering, has finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryIsGatheringComplete"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413032-mdqueryisgatheringcomplete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryIsGatheringComplete(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413032-mdqueryisgatheringcomplete"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413037-mdquerygettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier of all MDQuery instances",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413037-mdquerygettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413037-mdquerygettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413041-mdquerydisableupdates": {
+      "abstract": [
+        {
+          "text": "Disables updates to the query result list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryDisableUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413041-mdquerydisableupdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryDisableUpdates(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413041-mdquerydisableupdates"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413046-mdquerygetattributevalueofresult": {
+      "abstract": [
+        {
+          "text": "Returns the value of the named attribute for the result at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetAttributeValueOfResultAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFString!, CFIndex) -> UnsafeMutableRawPointer!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413046-mdquerygetattributevalueofresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetAttributeValueOfResultAtIndex(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413046-mdquerygetattributevalueofresult"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413048-mdquerysetsearchscope": {
+      "abstract": [
+        {
+          "text": "Sets the search scope for a query instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetSearchScope"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFArray!, OptionBits)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413048-mdquerysetsearchscope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetSearchScope(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413048-mdquerysetsearchscope"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413055-mdquerygetresultatindex": {
+      "abstract": [
+        {
+          "text": "Returns the current result at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetResultAtIndex"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFIndex) -> UnsafeRawPointer!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413055-mdquerygetresultatindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetResultAtIndex(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413055-mdquerygetresultatindex"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413059-mdquerycopysortingattributes": {
+      "abstract": [
+        {
+          "text": "Returns the list of attribute names used to sort the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCopySortingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413059-mdquerycopysortingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCopySortingAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413059-mdquerycopysortingattributes"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413064-mdquerysetcreateresultfunction": {
+      "abstract": [
+        {
+          "text": "Sets the function used to create the result objects of the MDQuery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetCreateResultFunction"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, MDQueryCreateResultFunction!, UnsafeMutableRawPointer!, UnsafePointer<CFArrayCallBacks>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413064-mdquerysetcreateresultfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetCreateResultFunction(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413064-mdquerysetcreateresultfunction"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413066-mdqueryenableupdates": {
+      "abstract": [
+        {
+          "text": "Enables updates to the query result list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryEnableUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413066-mdqueryenableupdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryEnableUpdates(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413066-mdqueryenableupdates"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413071-mdquerycopyvaluelistattributes": {
+      "abstract": [
+        {
+          "text": "Returns the list of attribute names for which values are being collected by the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCopyValueListAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413071-mdquerycopyvaluelistattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCopyValueListAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413071-mdquerycopyvaluelistattributes"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413077-mdquerystop": {
+      "abstract": [
+        {
+          "text": "Stops the query from generating more results. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryStop"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413077-mdquerystop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryStop(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413077-mdquerystop"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413085-mdquerysetmaxcount": {
+      "abstract": [
+        {
+          "text": "Sets the maximum number of results returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetMaxCount"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFIndex)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413085-mdquerysetmaxcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetMaxCount(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413085-mdquerysetmaxcount"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413087-mdquerysetsortcomparator": {
+      "abstract": [
+        {
+          "text": "Sets the function used to sort the results of an MDQuery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetSortComparator"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, MDQuerySortComparatorFunction!, UnsafeMutableRawPointer!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413087-mdquerysetsortcomparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetSortComparator(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413087-mdquerysetsortcomparator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413093-mdquerygetindexofresult": {
+      "abstract": [
+        {
+          "text": "Returns the current index of the given result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryGetIndexOfResult"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, UnsafeRawPointer!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413093-mdquerygetindexofresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryGetIndexOfResult(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413093-mdquerygetindexofresult"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413099-mdqueryexecute": {
+      "abstract": [
+        {
+          "text": "Run the query, and populate the query with the results. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryExecute"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFOptionFlags) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413099-mdqueryexecute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryExecute(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413099-mdqueryexecute"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413103-mdquerysetbatchingparameters": {
+      "abstract": [
+        {
+          "text": "Set the query batching parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySetBatchingParameters"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, MDQueryBatchingParams)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413103-mdquerysetbatchingparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySetBatchingParameters(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413103-mdquerysetbatchingparameters"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1413105-mdquerycopyvaluesofattribute": {
+      "abstract": [
+        {
+          "text": "Returns the list of values from the results of the query for the specified attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCopyValuesOfAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "(MDQuery!, CFString!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1413105-mdquerycopyvaluesofattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCopyValuesOfAttribute(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1413105-mdquerycopyvaluesofattribute"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File Metadata",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdquerydidfinishnotification": {
+      "abstract": [
+        {
+          "text": "Indicates that a query has finished with the initial result-gathering phase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdquerydidfinishnotification",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kMDQueryDidFinishNotification",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata/mdquery/kmdquerydidfinishnotification"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdquerydidupdatenotification": {
+      "abstract": [
+        {
+          "text": "Indicates that a query’s results list has change during the live-update phase of a query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdquerydidupdatenotification",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kMDQueryDidUpdateNotification",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata/mdquery/kmdquerydidupdatenotification"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdqueryprogressnotification": {
+      "abstract": [
+        {
+          "text": "Indicates that a query’s results list has change during the initial result-gathering phase of a query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdqueryprogressnotification",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kMDQueryProgressNotification",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata/mdquery/kmdqueryprogressnotification"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/query_result_change_keys": {
+      "abstract": [
+        {
+          "text": "Specify the items that have changed in the query results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/query_result_change_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Query Result Change Keys",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata/mdquery/query_result_change_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/query_search_scope_keys": {
+      "abstract": [
+        {
+          "text": "Specify the scope of a query’s search.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/query_search_scope_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Query Search Scope Keys",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata/mdquery/query_search_scope_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/result_relevance_sorting_key": {
+      "abstract": [
+        {
+          "text": "Key used in a user notification’s description dictionary that indicates the relevance of a result.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/result_relevance_sorting_key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Result Relevance Sorting Key",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_metadata/mdquery/result_relevance_sorting_key"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/mdquery": {
+      "abstract": [
+        {
+          "text": "A reference to a MDQuery object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/mdquery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuery",
+      "type": "topic",
+      "url": "/documentation/coreservices/mdquery"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/mdquerybatchingparams": {
+      "abstract": [
+        {
+          "text": "Structure containing the progress notification batchingparameters of a MDQuery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryBatchingParams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/mdquerybatchingparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryBatchingParams",
+      "type": "topic",
+      "url": "/documentation/coreservices/mdquerybatchingparams"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/mdquerycreateresultfunction": {
+      "abstract": [
+        {
+          "text": "Callback function used to create the result objects stored and returned by a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCreateResultFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/mdquerycreateresultfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCreateResultFunction",
+      "type": "topic",
+      "url": "/documentation/coreservices/mdquerycreateresultfunction"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/mdquerycreatevaluefunction": {
+      "abstract": [
+        {
+          "text": "Callback function usedto create the value objects stored and returned by a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryCreateValueFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/mdquerycreatevaluefunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryCreateValueFunction",
+      "type": "topic",
+      "url": "/documentation/coreservices/mdquerycreatevaluefunction"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/mdqueryoptionflags": {
+      "abstract": [
+        {
+          "text": "Specify the execution mode for a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQueryOptionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/mdqueryoptionflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQueryOptionFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/mdqueryoptionflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/mdquerysortcomparatorfunction": {
+      "abstract": [
+        {
+          "text": "Callback function used to sort the results of a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDQuerySortComparatorFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/mdquerysortcomparatorfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MDQuerySortComparatorFunction",
+      "type": "topic",
+      "url": "/documentation/coreservices/mdquerysortcomparatorfunction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1724796",
+        "devLink-1726035"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1658145",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1413029-mdquerycreate",
+        "doc://com.apple.documentation/documentation/coreservices/1413027-mdquerycreatesubset",
+        "doc://com.apple.documentation/documentation/coreservices/1413048-mdquerysetsearchscope",
+        "doc://com.apple.documentation/documentation/coreservices/1413019-mdquerysetdispatchqueue"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Queries"
+    },
+    {
+      "anchor": "1658206",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1413085-mdquerysetmaxcount",
+        "doc://com.apple.documentation/documentation/coreservices/1413006-mdquerygetbatchingparameters",
+        "doc://com.apple.documentation/documentation/coreservices/1413103-mdquerysetbatchingparameters",
+        "doc://com.apple.documentation/documentation/coreservices/1413071-mdquerycopyvaluelistattributes",
+        "doc://com.apple.documentation/documentation/coreservices/1413059-mdquerycopysortingattributes",
+        "doc://com.apple.documentation/documentation/coreservices/1413004-mdquerycopyquerystring"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting Query Parameters"
+    },
+    {
+      "anchor": "1658280",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1413064-mdquerysetcreateresultfunction",
+        "doc://com.apple.documentation/documentation/coreservices/1413087-mdquerysetsortcomparator",
+        "doc://com.apple.documentation/documentation/coreservices/1413017-mdquerysetcreatevaluefunction"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting Callback Functions"
+    },
+    {
+      "anchor": "1658322",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1413099-mdqueryexecute",
+        "doc://com.apple.documentation/documentation/coreservices/1413077-mdquerystop",
+        "doc://com.apple.documentation/documentation/coreservices/1413041-mdquerydisableupdates",
+        "doc://com.apple.documentation/documentation/coreservices/1413066-mdqueryenableupdates",
+        "doc://com.apple.documentation/documentation/coreservices/1413032-mdqueryisgatheringcomplete"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting, Stopping and Pausing Queries"
+    },
+    {
+      "anchor": "1658404",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1413105-mdquerycopyvaluesofattribute",
+        "doc://com.apple.documentation/documentation/coreservices/1413046-mdquerygetattributevalueofresult",
+        "doc://com.apple.documentation/documentation/coreservices/1413009-mdquerygetcountofresultswithattr",
+        "doc://com.apple.documentation/documentation/coreservices/1413093-mdquerygetindexofresult",
+        "doc://com.apple.documentation/documentation/coreservices/1413055-mdquerygetresultatindex",
+        "doc://com.apple.documentation/documentation/coreservices/1413008-mdquerygetresultcount",
+        "doc://com.apple.documentation/documentation/coreservices/1413021-mdquerysetsortcomparatorblock"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Query Result Values"
+    },
+    {
+      "anchor": "1658514",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1413037-mdquerygettypeid"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Type Identifier"
+    },
+    {
+      "anchor": "1658540",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/mdquerysortcomparatorfunction",
+        "doc://com.apple.documentation/documentation/coreservices/mdquerycreateresultfunction",
+        "doc://com.apple.documentation/documentation/coreservices/mdquerycreatevaluefunction"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1658581",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/mdquerybatchingparams"
+      ],
+      "kind": "taskGroup",
+      "title": "Batching Parameters"
+    },
+    {
+      "anchor": "1658644",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/mdquery"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1658673",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/mdqueryoptionflags"
+      ],
+      "kind": "taskGroup",
+      "title": "Query Option Flags"
+    },
+    {
+      "anchor": "1658733",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdquerydidfinishnotification",
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdquerydidupdatenotification",
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/kmdqueryprogressnotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "1658860",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/query_result_change_keys",
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/query_search_scope_keys",
+        "doc://com.apple.documentation/documentation/coreservices/file_metadata/mdquery/result_relevance_sorting_key"
+      ],
+      "kind": "taskGroup",
+      "title": "Notification Info Keys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/file_metadata/mdquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/file_metadata/mdquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "abstract": [
+    {
+      "text": "Perform fast Fourier transforms out of place on 2D real data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-real-fft"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Out-of-Place Functions for 2D Real FFT"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions in this group use the following operation for a forward real-to-complex transform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "N0 = 1 << Log2N0;",
+            "N1 = 1 << Log2N1;",
+            "",
+            "if (IA1 == 0) IA1 = IA0*N0/2;",
+            "if (IC1 == 0) IC1 = IC0*N0/2;",
+            "",
+            "scale = 2;",
+            "",
+            "// Define a real matrix, h:",
+            "for (j1 = 0; j1 < N1  ; ++j1)",
+            "for (j0 = 0; j0 < N0/2; ++j0)",
+            "{",
+            "    h[j1][2*j0+0] = A->realp[j1*IA1 + j0*IA0]",
+            "              + i * A->imagp[j1*IA1 + j0*IA0];",
+            "    h[j1][2*j0+1] = A->realp[j1*IA1 + j0*IA0]",
+            "              + i * A->imagp[j1*IA1 + j0*IA0];",
+            "}",
+            "",
+            "// Perform Discrete Fourier Transform.",
+            "for (k1 = 0; k1 < N1; ++k1)",
+            "for (k0 = 0; k0 < N0; ++k0)",
+            "    H[k1][k0] = scale * sum(sum(h[j1][j0]",
+            "        * e**(-Direction*2*pi*i*j0*k0/N0), 0 <= j0 < N0)",
+            "        * e**(-Direction*2*pi*i*j1*k1/N1), 0 <= j1 < N1);",
+            "",
+            "// Pack special pure-real elements into output matrix:",
+            "C->realp[0*IC1][0*IC0] = H[0   ][0   ].",
+            "C->imagp[0*IC1][0*IC0] = H[0   ][N0/2]",
+            "C->realp[1*IC1][0*IC0] = H[N1/2][0   ].",
+            "C->imagp[1*IC1][0*IC0] = H[N1/2][N0/2]",
+            "",
+            "// Pack two vectors into output matrix \"vertically\":",
+            "// (This awkward format is due to a legacy implementation.)",
+            "for (k1 = 1; k1 < N1/2; ++k1)",
+            "{",
+            "    C->realp[(2*k1+0)*IC1][0*IC0] = Re(H[k1][0   ]);",
+            "    C->realp[(2*k1+1)*IC1][0*IC0] = Im(H[k1][0   ]);",
+            "    C->imagp[(2*k1+0)*IC1][0*IC0] = Re(H[k1][N0/2]);",
+            "    C->imagp[(2*k1+1)*IC1][0*IC0] = Im(H[k1][N0/2]);",
+            "}",
+            "",
+            "// Store regular elements:",
+            "for (k1 = 0; k1 < N1  ; ++k1)",
+            "for (k0 = 1; k0 < N0/2; ++k0)",
+            "{",
+            "    C->realp[k1*IC1 + k0*IC0] = Re(H[k1][k0]);",
+            "    C->imagp[k1*IC1 + k0*IC0] = Im(H[k1][k0]);",
+            "}",
+            "",
+            ""
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions in this group use the following operation for an inverse complex-to-real transform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "N0 = 1 << Log2N0;",
+            "N1 = 1 << Log2N1;",
+            "",
+            "if (IA1 == 0) IA1 = IA0*N0/2;",
+            "if (IC1 == 0) IC1 = IC0*N0/2;",
+            "",
+            "scale = 1. / (N1*N0);",
+            "",
+            "// Define a complex matrix, h, in multiple steps:",
+            "",
+            "// Unpack the special elements:",
+            "h[0   ][0   ] = A->realp[0*IA1][0*IA0];",
+            "h[0   ][N0/2] = A->imagp[0*IA1][0*IA0];",
+            "h[N1/2][0   ] = A->realp[1*IA1][0*IA0];",
+            "h[N1/2][N0/2] = A->imagp[1*IA1][0*IA0];",
+            "",
+            "// Unpack the two vectors from \"vertical\" storage:",
+            "for (j1 = 1; j1 < N1/2; ++j1)",
+            "{",
+            "    h[j1][0   ] = A->realp[(2*j1+0)*IA1][0*IA0]",
+            "            + i * A->realp[(2*j1+1)*IA1][0*IA0]",
+            "    h[j1][N0/2] = A->imagp[(2*j1+0)*IA1][0*IA0]",
+            "            + i * A->imagp[(2*j1+1)*IA1][0*IA0]",
+            "}",
+            "",
+            "// Take regular elements:",
+            "for (j1 = 0; j1 < N1  ; ++j1)",
+            "for (j0 = 1; j0 < N0/2; ++j0)",
+            "{",
+            "    h[j1][j0   ] = A->realp[j1*IA1 + j0*IA0]",
+            "             + i * A->imagp[j1*IA1 + j0*IA0];",
+            "    h[j1][N0-j0] = conj(h[j1][j0]);",
+            "}",
+            "",
+            "// Perform Discrete Fourier Transform.",
+            "for (k1 = 0; k1 < N1; ++k1)",
+            "for (k0 = 0; k0 < N0; ++k0)",
+            "    H[k1][k0] = scale * sum(sum(h[j1][j0]",
+            "        * e**(-Direction*2*pi*i*j0*k0/N0), 0 <= j0 < N0)",
+            "        * e**(-Direction*2*pi*i*j1*k1/N1), 0 <= j1 < N1);",
+            "",
+            "// Store result.",
+            "for (k1 = 0; k1 < N1  ; ++k1)",
+            "for (k0 = 0; k0 < N0/2; ++k0)",
+            "{",
+            "    C->realp[k1*IC1 + k0*IC0] = Re(H[k1][2*k0+0]);",
+            "    C->imagp[k1*IC1 + k0*IC0] = Im(H[k1][2*k0+1]);",
+            "}",
+            ""
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The temporary buffer versions perform the same operation but use a temporary buffer for improved performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fast Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/fast-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 2D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 2D Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-2d-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zrop": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, single-precision real FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zrop"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zrop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zrop",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zrop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zropD": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, double-precision real FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zropD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zropD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zropD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zropd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zropt": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, single-precision real FFT using a temporary buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zropt"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zropt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zropt",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zropt"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zroptD": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, double-precision real FFT using a temporary buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zroptD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zroptD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zroptD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zroptd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Functions-for-2D-Real-FFT",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-real-fft"
+      ],
+      "title": "Functions for 2D Real FFT"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Out-of-Place-FFT-Functions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zrop",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zropD"
+      ],
+      "title": "Out-of-Place FFT Functions"
+    },
+    {
+      "anchor": "Out-of-Place-FFT-Functions-with-Temporary-Buffer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zropt",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zroptD"
+      ],
+      "title": "Out-of-Place FFT Functions with Temporary Buffer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

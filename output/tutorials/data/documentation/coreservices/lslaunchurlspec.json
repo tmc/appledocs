@@ -1,0 +1,799 @@
+{
+  "abstract": [
+    {
+      "text": "The specification for launching an app, opening items, or both, along with related information.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/launch_services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1448241,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@LSLaunchURLSpec",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "LSLaunchURLSpec"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LSLaunchURLSpec"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LSLaunchURLSpec"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This data type defines a URL-based launch specification designating, by URL, an app to launch, items to open, or both. To request that items be opened in a particular app, set ",
+              "type": "text"
+            },
+            {
+              "code": "appURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "itemURLs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " accordingly. To request that each designated item be opened in its own preferred app, set ",
+              "type": "text"
+            },
+            {
+              "code": "appURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".If the item URL’s scheme is ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (designating either a file or a directory), the selection of the preferred app is based on the designated item’s filename extension, file type, and creator signature; otherwise, it is based on the URL scheme (such as ",
+              "type": "text"
+            },
+            {
+              "code": "http",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ftp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "mailto",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). To request that a particular app be launched without opening any document, set ",
+              "type": "text"
+            },
+            {
+              "code": "appURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " accordingly and set ",
+              "type": "text"
+            },
+            {
+              "code": "itemURLs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441986-lsopenfromurlspec": {
+      "abstract": [
+        {
+          "text": "Opens one or more items for a URL in the preferred apps or a designated app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSOpenFromURLSpec"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<LSLaunchURLSpec>, UnsafeMutablePointer<Unmanaged<CFURL>?>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441986-lsopenfromurlspec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSOpenFromURLSpec(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441986-lsopenfromurlspec"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442850-lsopencfurlref": {
+      "abstract": [
+        {
+          "text": "Opens an item for a URL in the default manner in its preferred app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSOpenCFURLRef"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, UnsafeMutablePointer<Unmanaged<CFURL>?>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442850-lsopencfurlref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSOpenCFURLRef(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442850-lsopencfurlref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/launch_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/launch_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Launch Services",
+      "type": "topic",
+      "url": "/documentation/coreservices/launch_services"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchflags": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSLaunchFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec": {
+      "abstract": [
+        {
+          "text": "The specification for launching an app, opening items, or both, along with related information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSLaunchURLSpec"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSLaunchURLSpec",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443566-appurl": {
+      "abstract": [
+        {
+          "text": "A Core Foundation URL reference designating the application to launch; see the ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFURL Reference",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " in the Core Foundation Reference Documentation for a description of the ",
+          "type": "text"
+        },
+        {
+          "code": "CFURLRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": " data type.The URL must have scheme ",
+          "type": "text"
+        },
+        {
+          "code": "file",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and contain a valid path to an application file or application bundle. Set this field to ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to request that each item in the ",
+          "type": "text"
+        },
+        {
+          "code": "itemURLs",
+          "type": "codeVoice"
+        },
+        {
+          "text": " array be opened in its own preferred application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "appURL"
+        },
+        {
+          "kind": "text",
+          "text": ": Unmanaged<CFURL>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443566-appurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appURL",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1443566-appurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443759-itemurls": {
+      "abstract": [
+        {
+          "text": "A reference to an array of Core Foundation URL references designating the item or items to open; see the ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFArray Reference",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " in the Core Foundation Reference Documentation for a description of the ",
+          "type": "text"
+        },
+        {
+          "code": "CFArrayRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": " data type. The value of this field can be ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", in which case the application designated by ",
+          "type": "text"
+        },
+        {
+          "code": "appURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " will be launched without opening any items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": Unmanaged<CFArray>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443759-itemurls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemURLs",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1443759-itemurls"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443957-launchflags": {
+      "abstract": [
+        {
+          "text": "Launch flags specifying how to launch each application (including whether to print or merely open documents); see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchflags",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for a description of these flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": LSLaunchFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443957-launchflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1443957-launchflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1444528-init": {
+      "abstract": [
+        {
+          "text": "Create a launch URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1444528-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1444528-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1445136-passthruparams": {
+      "abstract": [
+        {
+          "text": "A pointer to an Apple event descriptor that is passed untouched as an optional parameter, with keyword ",
+          "type": "text"
+        },
+        {
+          "code": "keyAEPropData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (",
+          "type": "text"
+        },
+        {
+          "code": "'prdt'",
+          "type": "codeVoice"
+        },
+        {
+          "text": "), in the Apple event sent to each application launched or activated (whether individual preferred applications or the application designated by ",
+          "type": "text"
+        },
+        {
+          "code": "appURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": "). See the ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Event Manager Reference",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " in the Carbon Interapplication Communication Documentation for a description of the ",
+          "type": "text"
+        },
+        {
+          "code": "AEDesc",
+          "type": "codeVoice"
+        },
+        {
+          "text": " data type. The value of this field can be ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "passThruParams"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AEDesc>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1445136-passthruparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "passThruParams",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1445136-passthruparams"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1446360-init": {
+      "abstract": [
+        {
+          "text": "Create a launch URL with the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "appURL"
+        },
+        {
+          "kind": "text",
+          "text": ": Unmanaged<CFURL>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": Unmanaged<CFArray>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passThruParams"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AEDesc>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": LSLaunchFlags, "
+        },
+        {
+          "kind": "identifier",
+          "text": "asyncRefCon"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1446360-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(appURL:itemURLs:passThruParams:launchFlags:asyncRefCon:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1446360-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1448168-asyncrefcon": {
+      "abstract": [
+        {
+          "text": "A pointer to an arbitrary application-defined value, passed in the Carbon event notifying you of an application’s launch or termination (if you have registered for such notification). The value of this field can be ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "asyncRefCon"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1448168-asyncrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asyncRefCon",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec/1448168-asyncrefcon"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lssharedfilelist": {
+      "abstract": [
+        {
+          "text": "A persistent list of file-system objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSSharedFileList"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lssharedfilelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSharedFileList",
+      "type": "topic",
+      "url": "/documentation/coreservices/lssharedfilelist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lssharedfilelistitem": {
+      "abstract": [
+        {
+          "text": "A file-system object in the shared file list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSSharedFileListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lssharedfilelistitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSharedFileListItem",
+      "type": "topic",
+      "url": "/documentation/coreservices/lssharedfilelistitem"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1442850-lsopencfurlref",
+        "doc://com.apple.documentation/documentation/coreservices/1441986-lsopenfromurlspec",
+        "doc://com.apple.documentation/documentation/coreservices/lssharedfilelist",
+        "doc://com.apple.documentation/documentation/coreservices/lssharedfilelistitem"
+      ],
+      "title": "Opening Items"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3578797",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1444528-init",
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1446360-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Launch URL"
+    },
+    {
+      "anchor": "3578798",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443566-appurl",
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1448168-asyncrefcon",
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443759-itemurls",
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1443957-launchflags",
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec/1445136-passthruparams"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring a Launch URL"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/lslaunchurlspec"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/lslaunchurlspec"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

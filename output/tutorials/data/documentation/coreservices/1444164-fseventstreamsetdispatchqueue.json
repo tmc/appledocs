@@ -1,0 +1,411 @@
+{
+  "abstract": [
+    {
+      "text": "Schedules the stream on the specified dispatch queue.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/file_system_events"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1444164,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@FSEventStreamSetDispatchQueue",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "FSEventStreamSetDispatchQueue"
+      },
+      {
+        "kind": "text",
+        "text": "(FSEventStreamRef, dispatch_queue_t?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "FSEventStreamSetDispatchQueue(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FSEventStreamSetDispatchQueue"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "streamRef"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreamref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSEventStreamRef",
+              "text": "FSEventStreamRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "q"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid stream.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "streamRef"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dispatch queue to use to receive events (or ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to stop receiving events from the stream).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "q"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The caller is responsible for ensuring that the stream is scheduled on a dispatch queue and that the queue is started.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s a problem scheduling the stream on the queue, an error will be returned when you try to start the stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start receiving events on the stream, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1448000-fseventstreamstart",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove the stream from the queue on which it was scheduled, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " queue parameter or call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which does the same thing. You must eventually call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and it’s an error to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " without having the stream either scheduled on a runloop or a dispatch queue, so don’t set the dispatch queue to ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamSetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444164-fseventstreamsetdispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamInvalidate(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446990-fseventstreaminvalidate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448000-fseventstreamstart": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448000-fseventstreamstart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamStart(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448000-fseventstreamstart"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_system_events": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_system_events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System Events",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_system_events"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fseventstreamref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreamref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fseventstreamref"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1444164-fseventstreamsetdispatchqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/1444164-fseventstreamsetdispatchqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

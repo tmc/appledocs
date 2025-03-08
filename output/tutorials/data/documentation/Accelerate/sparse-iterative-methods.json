@@ -1,0 +1,921 @@
+{
+  "abstract": [
+    {
+      "text": "Select a suitable iterative method to solve a system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-methods"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Sparse Iterative Methods"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sparse Iterative methods solve ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " through an iterative process that only requires multiplication by ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A__ᵀ",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". However, if ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is numerically difficult, the iterative process may fail to converge to a solution. Even for problems where the process converges, it may do so slowly. You can fix both of these issues through the application of a problem-specific preconditioner that approximates the inverse of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseCGOptions": {
+      "abstract": [
+        {
+          "text": "Options for creating a conjugate gradient (CG) method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseCGOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseCGOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseCGOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseCGOptions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsecgoptions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseConjugateGradient()": {
+      "abstract": [
+        {
+          "text": "Returns a conjugate gradient (CG) method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseConjugateGradient"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConjugateGradient()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseConjugateGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseConjugateGradient()",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseconjugategradient()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseConjugateGradient(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a conjugate gradient (CG) method with specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseConjugateGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseCGOptions",
+          "text": "SparseCGOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConjugateGradient(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseConjugateGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseConjugateGradient(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseconjugategradient(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRES()": {
+      "abstract": [
+        {
+          "text": "Returns a generalized minimal residual (GMRES) method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseGMRES"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRES()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseGMRES"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseGMRES()",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsegmres()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRES(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a generalized minimal residual (GMRES) method with specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseGMRES"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseGMRESOptions",
+          "text": "SparseGMRESOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRES(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseGMRES"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseGMRES(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsegmres(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRESOptions": {
+      "abstract": [
+        {
+          "text": "Options for creating a generalized minimal residual (GMRES) method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseGMRESOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRESOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseGMRESOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseGMRESOptions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsegmresoptions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod": {
+      "abstract": [
+        {
+          "text": "The base type for all iterative methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseIterativeMethod",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseiterativemethod"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMR()": {
+      "abstract": [
+        {
+          "text": "Returns a default least squares minimum residual (LSMR) method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseLSMR"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMR()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseLSMR"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseLSMR()",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparselsmr()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMR(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a least squares minimum residual method with specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseLSMR"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseLSMROptions",
+          "text": "SparseLSMROptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseIterativeMethod",
+          "text": "SparseIterativeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMR(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseLSMR"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseLSMR(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparselsmr(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMROptions": {
+      "abstract": [
+        {
+          "text": "Options for creating a least squares minimum residual method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseLSMROptions"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMROptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseLSMROptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseLSMROptions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparselsmroptions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/preconditioners": {
+      "abstract": [
+        {
+          "text": "Create preconditioners for iterative solves.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/preconditioners",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preconditioners",
+      "type": "topic",
+      "url": "/documentation/accelerate/preconditioners"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods": {
+      "abstract": [
+        {
+          "text": "Use iterative methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using iterative methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-iterative-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterate-functions": {
+      "abstract": [
+        {
+          "text": "Perform a single iteration of the specified iterative method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterate-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterate Functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterate-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-matrix-rhs": {
+      "abstract": [
+        {
+          "text": "Solve a system with a right-hand-side dense matrix using iterative methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-matrix-rhs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterative Solving Functions (Matrix RHS)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterative-solving-functions-matrix-rhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-vector-rhs": {
+      "abstract": [
+        {
+          "text": "Solve a system with a right-hand-side dense vector using iterative methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-vector-rhs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Iterative Solving Functions (Vector RHS)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-iterative-solving-functions-vector-rhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library": {
+      "abstract": [
+        {
+          "text": "Solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Solvers",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-solvers-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Solving-systems-with-iterative-sparse-methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-matrix-rhs",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterative-solving-functions-vector-rhs",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-iterate-functions",
+        "doc://com.apple.accelerate/documentation/Accelerate/preconditioners"
+      ],
+      "title": "Solving systems with iterative sparse methods"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Sparse-Iterative-Methods-for-Symmetric-Positive-Definite-Coefficient-Matrices",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseConjugateGradient()",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseConjugateGradient(_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseCGOptions"
+      ],
+      "title": "Sparse Iterative Methods for Symmetric Positive-Definite Coefficient Matrices"
+    },
+    {
+      "anchor": "Sparse-Iterative-Methods-for-Symmetric-Indefinite-and-Unsymmetric-Coefficient-Matrices",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRES()",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRES(_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseGMRESOptions"
+      ],
+      "title": "Sparse Iterative Methods for Symmetric Indefinite and Unsymmetric Coefficient Matrices"
+    },
+    {
+      "anchor": "Sparse-Iterative-Methods-for-Overdetermined-and-Underdetermined-Systems",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMR()",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMR(_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseLSMROptions"
+      ],
+      "title": "Sparse Iterative Methods for Overdetermined and Underdetermined Systems"
+    },
+    {
+      "anchor": "Iterative-Method-Structure",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseIterativeMethod"
+      ],
+      "title": "Iterative Method Structure"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeMethod/title",
+          "value": "SparseIterativeMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseIterativeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseIterativeMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseIterativeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMR(_:)/title",
+          "value": "SparseLSMR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMR(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseLSMR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMROptions/title",
+          "value": "SparseLSMROptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMROptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseLSMROptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMROptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseLSMROptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConjugateGradient(_:)/title",
+          "value": "SparseConjugateGradient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConjugateGradient(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseConjugateGradient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRESOptions/title",
+          "value": "SparseGMRESOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRESOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseGMRESOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRESOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseGMRESOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConjugateGradient()/title",
+          "value": "SparseConjugateGradient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConjugateGradient()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseConjugateGradient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRES(_:)/title",
+          "value": "SparseGMRES"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRES(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseGMRES"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRES()/title",
+          "value": "SparseGMRES"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseGMRES()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseGMRES"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseCGOptions/title",
+          "value": "SparseCGOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseCGOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseCGOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseCGOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseCGOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMR()/title",
+          "value": "SparseLSMR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseLSMR()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseLSMR"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

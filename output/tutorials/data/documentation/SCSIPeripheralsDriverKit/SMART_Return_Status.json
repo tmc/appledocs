@@ -1,0 +1,556 @@
+{
+  "abstract": [
+    {
+      "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to return status.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Return_Status"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SMART_Return_Status#*$@S@SCSIDeviceOutParameters#*$@S@SCSIDeviceInParameters#k#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SMART_Return_Status"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIPeripheralsDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SMART_Return_Status"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "22.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SMART_Return_Status"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SMART_Return_Status"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceOutParameters",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@SCSIDeviceOutParameters",
+              "text": "SCSIDeviceOutParameters"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "request"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceInParameters",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@SCSIDeviceInParameters",
+              "text": "SCSIDeviceInParameters"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "response"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@UInt64",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UInt64",
+              "text": "UInt64"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "senseBufAddr"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An object that contains the request information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "request"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An empty ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceInParameters",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object. On return, the framework populates this object with the response information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "response"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address of the sense buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "senseBufAddr"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the call successfully fills the CDB; ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method in your dext to prefill a 16-byte CDB for the standard SMART SCSI Command to return status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for peripherals that use SCSI Block Command and Multimedia Command protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIPeripheralsDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceInParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains properties from an inbound response from a SCSI device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCSIDeviceInParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceInParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCSIDeviceInParameters",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/scsideviceinparameters"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceOutParameters": {
+      "abstract": [
+        {
+          "text": "A structure that contains parameters for an outbound request to a SCSI device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCSIDeviceOutParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SCSIDeviceOutParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCSIDeviceOutParameters",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/scsideviceoutparameters"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Enable_Disable_AutoSave": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to enable or disable the autosave feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Enable_Disable_AutoSave"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Enable_Disable_AutoSave",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Enable_Disable_AutoSave",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_enable_disable_autosave"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Enable_Disable_Operations": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to enable or disable operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Enable_Disable_Operations"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Enable_Disable_Operations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Enable_Disable_Operations",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_enable_disable_operations"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Execute_Offline_Immediate": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to execute an immediate offline test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Execute_Offline_Immediate"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Execute_Offline_Immediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Execute_Offline_Immediate",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_execute_offline_immediate"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Get_Identify_Data": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to get identify data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Get_Identify_Data"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Get_Identify_Data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Get_Identify_Data",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_get_identify_data"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Data": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to read data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Read_Data"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Read_Data",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_read_data"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Data_Thresholds": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to read data thresholds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Read_Data_Thresholds"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Data_Thresholds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Read_Data_Thresholds",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_read_data_thresholds"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Log_At_Address": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to read log data from an address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Read_Log_At_Address"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Log_At_Address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Read_Log_At_Address",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_read_log_at_address"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Return_Status": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to return status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Return_Status"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Return_Status",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Return_Status",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_return_status"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Write_Log_At_Address": {
+      "abstract": [
+        {
+          "text": "Fills a Command Descriptor Block (CDB) to perform a SMART SCSI Command to write log data at an address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SMART_Write_Log_At_Address"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Write_Log_At_Address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SMART_Write_Log_At_Address",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/smart_write_log_at_address"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@UInt64": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@UInt64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt64",
+      "type": "topic",
+      "url": "/documentation/driverkit/uint64"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Self-Monitoring-Analysis-and-Reporting-Technology-SMART-Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Enable_Disable_Operations",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Enable_Disable_AutoSave",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Execute_Offline_Immediate",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Data",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Data_Thresholds",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Read_Log_At_Address",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Write_Log_At_Address",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/SMART_Get_Identify_Data"
+      ],
+      "title": "Creating Self-Monitoring, Analysis and Reporting Technology (SMART) Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsiperipheralsdriverkit/smart_return_status"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

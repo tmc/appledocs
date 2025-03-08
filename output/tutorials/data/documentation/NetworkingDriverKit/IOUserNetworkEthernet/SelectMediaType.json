@@ -1,0 +1,407 @@
+{
+  "abstract": [
+    {
+      "text": "Selects the media type to use when communicating with the network stack.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SelectMediaType"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserNetworkEthernet@F@SelectMediaType#i#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SelectMediaType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "NetworkingDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SelectMediaType"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "DriverKit",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "SelectMediaType"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SelectMediaType"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOUserNetworkMediaType",
+              "text": "IOUserNetworkMediaType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mediaType"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The media type to use for network communication. This type must be one that you declared previous when calling the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mediaType"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "kIOReturnSuccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success, or another value if an error occurred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Override this method and use it to configure your driver for the specified media type. In your implementation, validate the requested media type and make any adjustments as needed. For example, if the ",
+              "type": "text"
+            },
+            {
+              "code": "mediaType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/kIOUserNetworkMediaEthernetAuto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you might choose an explicit media type instead. After validating the type, configure your driver for that type and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkStatus-5cxiq",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to report the driver’s status back to the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for Ethernet networking devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet": {
+      "abstract": [
+        {
+          "text": "The object you use to manage the setup, configuration, and teardown of your networking driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkEthernet",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes": {
+      "abstract": [
+        {
+          "text": "Tells the system what types of networking media your driver supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportAvailableMediaTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportAvailableMediaTypes",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportavailablemediatypes"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkStatus-5cxiq": {
+      "abstract": [
+        {
+          "text": "Reports the status of the link between the device and your driver to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ReportLinkStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportLinkStatus-5cxiq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReportLinkStatus",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/reportlinkstatus-5cxiq"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SelectMediaType": {
+      "abstract": [
+        {
+          "text": "Selects the media type to use when communicating with the network stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SelectMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/SelectMediaType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SelectMediaType",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/selectmediatype"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType": {
+      "abstract": [
+        {
+          "text": "A structure describing a specific Ethernet type and configuration that your driver supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkMediaType",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkmediatype"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/kIOUserNetworkMediaEthernetAuto": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kIOUserNetworkMediaEthernetAuto"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/kIOUserNetworkMediaEthernetAuto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOUserNetworkMediaEthernetAuto",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/kiousernetworkmediaethernetauto"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Declaring-the-Supported-Media-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/ReportAvailableMediaTypes",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMediaType"
+      ],
+      "title": "Declaring the Supported Media Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkingdriverkit/iousernetworkethernet/selectmediatype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

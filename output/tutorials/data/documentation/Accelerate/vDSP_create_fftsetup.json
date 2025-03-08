@@ -1,0 +1,828 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a setup structure that contains precalculated data for single-precision FFT functions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_create_fftsetup",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "vDSP_create_fftsetup"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "vDSP_create_fftsetup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_create_fftsetup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FFTSetup",
+              "text": "FFTSetup"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_create_fftsetup"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__Log2n"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FFTRadix",
+              "text": "FFTRadix"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__Radix"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The base-two logarithm of the maximum number of elements the setup structure transforms. Subsequent calls to FFT functions using the resulting setup may transform this length or less.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Log2n"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Specifies radix options. This function only supports radix-2; other radices are deprecated. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Accelerate/discrete-fourier-transforms",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for radix-3, and radix-5.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__Radix"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns an ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/fftsetup",
+              "type": "text"
+            },
+            {
+              "text": " structure for use with FFT functions. Returns ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to create a weights array of complex exponential values that the vDSP FFT functions use for forward transforms. Precalculating these values during, for example, your app’s initialization, boosts FFT performance. You can use the same setup structure to perform transformations on vectors that contain up to ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": "Log2n elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For 2D transformations, specify ",
+              "type": "text"
+            },
+            {
+              "code": "Log2n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the greater of the number of rows and the number of columns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1579978-vdsp_destroy_fftsetup",
+              "type": "text"
+            },
+            {
+              "text": " to deallocate the setup structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To learn how the vDSP library scales and arranges the FFT output, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix": {
+      "abstract": [
+        {
+          "text": "The radix of the FFT decomposition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTRadix"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTRadix"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTRadix",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftradix"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for a single-precision FFT transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTSetupD": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for a double-precision FFT transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTSetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTSetupD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTSetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTSetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing": {
+      "abstract": [
+        {
+          "text": "Multiply signal data by window sequence values when performing transforms with noninteger period signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing spectral leakage with windowing",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-spectral-leakage-with-windowing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Format source data for the vDSP Fourier functions, and interpret the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding data packing for Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/understanding-data-packing-for-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_CreateSetup": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length": {
+      "abstract": [
+        {
+          "text": "An unsigned-integer value that represents the size of vectors and the indices of elements in vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_Length"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_Length"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_length"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for single-precision FFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_create_fftsetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_create_fftsetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_create_fftsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetupD": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for double-precision FFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_create_fftsetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_create_fftsetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_create_fftsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetup": {
+      "abstract": [
+        {
+          "text": "Deallocates an existing single-precision FFT setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_destroy_fftsetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_destroy_fftsetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_destroy_fftsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetupD": {
+      "abstract": [
+        {
+          "text": "Deallocates an existing double-precision FFT setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_destroy_fftsetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_destroy_fftsetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_destroy_fftsetupd"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/discrete-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/discrete-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Discrete Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/Accelerate/discrete-fourier-transforms"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/understanding-data-packing-for-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Format source data for the vDSP Fourier functions, and interpret the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding data packing for Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/Accelerate/understanding-data-packing-for-fourier-transforms"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "FFT-Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_CreateSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTSetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix"
+      ],
+      "title": "FFT Setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetup/title",
+          "value": "FFTSetup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTRadix/title",
+          "value": "FFTRadix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTRadix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTRadix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTRadix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTRadix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/title",
+          "value": "vDSP_Length"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetupD/title",
+          "value": "FFTSetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetupD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetupD/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetupD"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vdsp_create_fftsetup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

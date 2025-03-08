@@ -1,0 +1,2033 @@
+{
+  "abstract": [
+    {
+      "text": "Add Sign in with Apple capabilities to apps that can’t directly access Sign in with Apple JS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/incorporating-sign-in-with-apple-into-other-platforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Sign in with Apple JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Incorporating Sign in with Apple into other platforms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add Sign in with Apple to apps that don’t have access to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, you control the sign-in request manually. Perform this request by adding a custom Sign in with Apple button, sending the required query parameters, handling the return request, and returning control back to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-custom-Sign-in-with-Apple-button",
+          "level": 3,
+          "text": "Add a custom Sign in with Apple button",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple provides three secure HTTP URLs that generate Sign in with Apple button images corresponding to three modes: center-aligned, left-aligned, and logo only. Entering one of these URLs in a browser triggers the download of the related button image as a PNG file. Use this file to customize and embed your button of choice in your application or service. You can also test and preview custom buttons at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appleid.apple.com/signinwithapple/button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the button image by adding query parameters to the URL. If you send invalid query parameters to the endpoint URL, the server returns a 404 Page Not Found error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a center-aligned button, use the secure HTTP URL ",
+              "type": "text"
+            },
+            {
+              "code": "appleid.cdn-apple.com/appleid/button",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can customize the button with the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The height of the button image in points. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "30",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "64",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "30",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "height",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The width of the button image in points. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "130",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "375",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "140",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "width",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The background color for the button image. The possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "white",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "black",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "black",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "color",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean value that determines whether the button image has a border. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "false",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "border",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of button image returned. The possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sign-in",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "continue",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sign-in",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The corner radius for the button image in points. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "50",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default  is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "15",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "border_radius",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The scale of the button image. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "6",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scale",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The language used for text on the button. The possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ar_SA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ca_ES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "cs_CZ",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "da_DK",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "de_DE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "el_GR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "en_GB",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "en_US",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "es_ES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "es_MX",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "fi_FI",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "fr_CA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "fr_FR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "hr_HR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "hu_HU",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "id_ID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "it_IT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "iw_IL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ja_JP",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ko_KR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ms_MY",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nl_NL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "no_NO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "pl_PL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "pt_BR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "pt_PT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ro_RO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ru_RU",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", sk_SK, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sv_SE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "th_TH",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "tr_TR",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "uk_UA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "vi_VI",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "zh_CN",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "zh_HK",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "zh_TW",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "locale",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a left-aligned button, use the secure HTTP URL ",
+              "type": "text"
+            },
+            {
+              "code": "appleid.cdn-apple.com/appleid/button/left",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can customize the button with the center-aligned attributes above and with the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The label’s distance, in points, from the left side of the button. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "182",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The value can’t be larger than half of the width of the button. The label auto-adjusts to fit the recommended margins.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "label-position",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Apple logo’s distance, in points, from the left side of the button. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "182",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The value can’t be larger than half of the width of the button. The logo auto-adjusts to fit the recommended margins.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "logo-position",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size of the logo. The values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "small",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "medium",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "large",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "logo-size",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of button image returned. The possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sign-in",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "continue",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sign-in",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a button with the Apple logo only, use the secure HTTP URL ",
+              "type": "text"
+            },
+            {
+              "code": "appleid.cdn-apple.com/appleid/button/logo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can customize the button with the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size, in points, of the Apple logo. This sets both the width and the height of the logo since the button is square.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "size",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The background color for the button image. The possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "white",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "black",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "black",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "color",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean value that determines whether the button image has a border. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "false",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "border",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The corner radius for the button image in points. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "50",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default  is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "15",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "border_radius",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A multiplier that increases the width and height of the button. For example, a value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "2",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " doubles the button width and height. The minimum and maximum values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "6",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", respectively. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scale",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user clicks any of these button types, open a browser tab with the authorization URL and the authorization query parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-the-required-query-parameters",
+          "level": 3,
+          "text": "Send the required query parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Direct the authorization request using the HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to the URL: ",
+              "type": "text"
+            },
+            {
+              "code": "appleid.apple.com/auth/authorize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The URL contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Required. The identifier (App ID or Services ID) for your app. The identifier must not include your Team ID, to help mitigate the possibility of exposing sensitive data to the end user. Authorization code and refresh token validation requests require this parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "client_id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Required. The URI to which the authorization redirects. It must include a domain name and can’t be an IP address or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "localhost",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "redirect_uri",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Required. The type of response requested. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "code",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "id_token",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". You can request only ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "code",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or both ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "code",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "id_token",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Requesting only ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "id_token",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is unsupported. When requesting ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "id_token",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "response_mode",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " must be either ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "fragment",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "form_post",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "response_type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of user information requested from Apple. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "name",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "email",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". You can request one, both, or none. Use space separation and percent-encoding for multiple scopes; for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "\"scope=name%20email\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "scope",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of response mode expected. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "query",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "fragment",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "form_post",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If you requested any scopes, the value must be ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "form_post",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "response_mode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The current state of the request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A String value used to associate a client session with an ID token. This value is also used to mitigate replay attacks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "nonce",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Handle-the-response",
+          "level": 3,
+          "text": "Handle the response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Sign in with Apple UI appears in the opened browser tab, the user can sign in and accept any terms and conditions for your app. After Apple processes the authorization request, the handling of the response depends on the value in ",
+              "type": "text"
+            },
+            {
+              "code": "response_mode:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "query",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, the response parameters are added to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/redirectURI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value as query parameters, and the browser is redirected to the resulting value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "fragment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, the response parameters are added to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirectURI",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value as a fragment, and the browser is redirected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "form_post",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, an HTTP ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "POST",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " request containing the results of the authorization is sent to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redirectURI",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The HTTP body contains the result parameters with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "application/x-www-form-urlencoded",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " content type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A successful response contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A single-use authorization code that’s valid for five minutes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "code",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON web token containing the user’s identity information.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "id_token",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The state contained in the Authorize URL.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON string containing the data requested in the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/scope",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " property. The returned data is in the following format: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "{ \"name\": { \"firstName\": string, \"lastName\": string }, \"email\": string }",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "user",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error occurs, the HTTP body contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The returned error code.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The state contained in the Authorize URL.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The only error code that might be returned is ",
+                  "type": "text"
+                },
+                {
+                  "code": "user_cancelled_authorize",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This error code is returned if the user clicks Cancel during the web flow.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Return-control-to-the-app",
+          "level": 3,
+          "text": "Return control to the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the end of the authorization flow, Apple performs a ",
+              "type": "text"
+            },
+            {
+              "code": "form_post",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "redirect_uri",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value you provided. At this point, the authorization flow is complete, and it’s your server’s responsibility to persist the data and return control to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platforms that support custom URL schemes — iOS 12.0 and earlier and Android — must handle the data resulting from the authorization flow by storing it on their app server in the logic of their ",
+              "type": "text"
+            },
+            {
+              "code": "redirect_uri",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint. You then redirect the custom URL scheme to give control back to the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS": {
+      "abstract": [
+        {
+          "text": "Provide users a fast, secure way to sign in to your web service with their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple JS",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/redirectURI": {
+      "abstract": [
+        {
+          "text": "The URI to which the authorization redirects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/redirectURI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "redirectURI",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/clientconfigi/redirecturi"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/scope": {
+      "abstract": [
+        {
+          "text": "The amount of user information requested from Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/scope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scope",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/clientconfigi/scope"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI": {
+      "abstract": [
+        {
+          "text": "Communicate between your app servers and Apple’s authentication servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple REST API",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi"
+    },
+    "https://appleid.apple.com/signinwithapple/button": {
+      "identifier": "https://appleid.apple.com/signinwithapple/button",
+      "title": "Sign in with Apple Button",
+      "titleInlineContent": [
+        {
+          "text": "Sign in with Apple Button",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appleid.apple.com/signinwithapple/button"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI"
+      ],
+      "title": "Related Documentation"
+    }
+  ]
+}

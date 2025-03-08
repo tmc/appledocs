@@ -1,0 +1,4543 @@
+{
+  "abstract": [
+    {
+      "text": "Perform basic arithmetic and logical functions on 128-bit vectors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/veclib"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vbasicops"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vBasicOps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vBasicOps.h declares a set of basic arithmetic and logical functions on 128-bit vectors, using the integer types from vecLibTypes.h.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function names begin with “v,” followed by a mnemonic for the type of operation, e.g. “S” or “U” for signed or unsigned, then the width of the operation, then the name of the operation. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "vS8Divide",
+              "type": "codeVoice"
+            },
+            {
+              "text": " performs division of signed 8-bit values packed into 128-bit vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vA128Shift(_:_:)": {
+      "abstract": [
+        {
+          "text": "128-bit arithmetic (signed) shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vA128Shift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vA128Shift(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vA128Shift"
+        }
+      ],
+      "role": "symbol",
+      "title": "vA128Shift(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/va128shift(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vA64Shift(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit arithmetic (signed) shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vA64Shift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vA64Shift(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vA64Shift"
+        }
+      ],
+      "role": "symbol",
+      "title": "vA64Shift(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/va64shift(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vA64Shift2(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit arithmetic (signed) shift with two shift factors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vA64Shift2"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vA64Shift2(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vA64Shift2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vA64Shift2(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/va64shift2(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vL128Rotate(_:_:)": {
+      "abstract": [
+        {
+          "text": "128-bit left rotate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vL128Rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vL128Rotate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vL128Rotate"
+        }
+      ],
+      "role": "symbol",
+      "title": "vL128Rotate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vl128rotate(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vL64Rotate(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit left rotate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vL64Rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vL64Rotate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vL64Rotate"
+        }
+      ],
+      "role": "symbol",
+      "title": "vL64Rotate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vl64rotate(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vL64Rotate2(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit left rotate with two rotation factors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vL64Rotate2"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vL64Rotate2(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vL64Rotate2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vL64Rotate2(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vl64rotate2(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vLL128Shift(_:_:)": {
+      "abstract": [
+        {
+          "text": "128-bit logical left shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vLL128Shift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vLL128Shift(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vLL128Shift"
+        }
+      ],
+      "role": "symbol",
+      "title": "vLL128Shift(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vll128shift(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vLL64Shift(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit logical left shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vLL64Shift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vLL64Shift(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vLL64Shift"
+        }
+      ],
+      "role": "symbol",
+      "title": "vLL64Shift(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vll64shift(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vLL64Shift2(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit logical left shift with two shift factors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vLL64Shift2"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vLL64Shift2(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vLL64Shift2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vLL64Shift2(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vll64shift2(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vLR128Shift(_:_:)": {
+      "abstract": [
+        {
+          "text": "128-bit logical right shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vLR128Shift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vLR128Shift(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vLR128Shift"
+        }
+      ],
+      "role": "symbol",
+      "title": "vLR128Shift(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vlr128shift(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vLR64Shift(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit logical right shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vLR64Shift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vLR64Shift(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vLR64Shift"
+        }
+      ],
+      "role": "symbol",
+      "title": "vLR64Shift(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vlr64shift(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vLR64Shift2(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit logical right shift with two shift factors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vLR64Shift2"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vLR64Shift2(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vLR64Shift2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vLR64Shift2(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vlr64shift2(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vR128Rotate(_:_:)": {
+      "abstract": [
+        {
+          "text": "128-bit right rotate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vR128Rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vR128Rotate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vR128Rotate"
+        }
+      ],
+      "role": "symbol",
+      "title": "vR128Rotate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vr128rotate(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vR64Rotate(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit right rotate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vR64Rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vR64Rotate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vR64Rotate"
+        }
+      ],
+      "role": "symbol",
+      "title": "vR64Rotate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vr64rotate(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vR64Rotate2(_:_:)": {
+      "abstract": [
+        {
+          "text": "64-bit right rotate with two rotation factors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vR64Rotate2"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vR64Rotate2(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vR64Rotate2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vR64Rotate2(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vr64rotate2(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS128Add(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 128-bit addition (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS128Add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS128Add(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS128Add"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS128Add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs128add(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS128AddS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 128-bit addition with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS128AddS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS128AddS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS128AddS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS128AddS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs128adds(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS128Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 128-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS128Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS128Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS128Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS128Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs128divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS128HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 128-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS128HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS128HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS128HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS128HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs128halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS128Sub(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 128-bit subtraction (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS128Sub"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS128Sub(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS128Sub"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS128Sub(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs128sub(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS128SubS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 128-bit subtraction with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS128SubS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS128SubS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS128SubS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS128SubS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs128subs(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS16Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 16-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS16Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt16",
+          "text": "vSInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt16",
+          "text": "vSInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt16",
+          "text": "vSInt16"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt16",
+          "text": "vSInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS16Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS16Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS16Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs16divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS16HalfMultiply": {
+      "abstract": [
+        {
+          "text": "Signed 16-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vS16HalfMultiply"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS16HalfMultiply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vS16HalfMultiply",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs16halfmultiply"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS32Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 32-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS32Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS32Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS32Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS32Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs32divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS32FullMulEven(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 32-bit multiplication; results are twice as wide as multiplicands, even-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS32FullMulEven"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS32FullMulEven(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS32FullMulEven"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS32FullMulEven(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs32fullmuleven(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS32FullMulOdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 32-bit multiplication; results are twice as wide as multiplicands, odd-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS32FullMulOdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS32FullMulOdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS32FullMulOdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS32FullMulOdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs32fullmulodd(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS32HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 32-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS32HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS32HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS32HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS32HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs32halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64Add": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit addition (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vS64Add"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64Add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vS64Add",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64add"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64AddS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit addition with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS64AddS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64AddS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS64AddS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS64AddS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64adds(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS64Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS64Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS64Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64FullMulEven(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit multiplication; results are twice as wide as multiplicands, even-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS64FullMulEven"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64FullMulEven(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS64FullMulEven"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS64FullMulEven(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64fullmuleven(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64FullMulOdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit multiplication; results are twice as wide as multiplicands, odd-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS64FullMulOdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64FullMulOdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS64FullMulOdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS64FullMulOdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64fullmulodd(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS64HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS64HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS64HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64Sub": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit subtraction (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vS64Sub"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64Sub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vS64Sub",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64sub"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS64SubS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 64-bit subtraction with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS64SubS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt32",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS64SubS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS64SubS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS64SubS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs64subs(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS8Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 8-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS8Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS8Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS8Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS8Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs8divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vS8HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Signed 8-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vS8HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vSInt8",
+          "text": "vSInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vS8HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vS8HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vS8HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vs8halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU128Add(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 128-bit addition (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU128Add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU128Add(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU128Add"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU128Add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu128add(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU128AddS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 128-bit addition with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU128AddS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU128AddS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU128AddS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU128AddS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu128adds(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU128Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 128-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU128Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU128Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU128Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU128Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu128divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU128HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 128-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU128HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU128HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU128HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU128HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu128halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU128Sub(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 128-bit subtraction (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU128Sub"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU128Sub(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU128Sub"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU128Sub(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu128sub(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU128SubS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 128-bit subtraction with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU128SubS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU128SubS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU128SubS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU128SubS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu128subs(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU16Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 16-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU16Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt16",
+          "text": "vUInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt16",
+          "text": "vUInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt16",
+          "text": "vUInt16"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt16",
+          "text": "vUInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU16Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU16Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU16Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu16divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU16HalfMultiply": {
+      "abstract": [
+        {
+          "text": "Unsigned 16-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vU16HalfMultiply"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU16HalfMultiply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vU16HalfMultiply",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu16halfmultiply"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU32Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 32-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU32Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU32Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU32Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU32Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu32divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU32FullMulEven(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 32-bit multiplication; results are twice as wide as multiplicands, even-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU32FullMulEven"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU32FullMulEven(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU32FullMulEven"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU32FullMulEven(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu32fullmuleven(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU32FullMulOdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 32-bit multiplication; results are twice as wide as multiplicands, odd-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU32FullMulOdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU32FullMulOdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU32FullMulOdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU32FullMulOdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu32fullmulodd(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU32HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 32-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU32HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU32HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU32HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU32HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu32halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64Add": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit addition (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vU64Add"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64Add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vU64Add",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64add"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64AddS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit addition with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU64AddS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64AddS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU64AddS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU64AddS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64adds(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU64Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU64Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU64Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64FullMulEven(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit multiplication; results are twice as wide as multiplicands, even-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU64FullMulEven"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64FullMulEven(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU64FullMulEven"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU64FullMulEven(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64fullmuleven(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64FullMulOdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit multiplication; results are twice as wide as multiplicands, odd-numbered elements of multiplicand vectors are used.  Note the big-endian convention: the leftmost element is element 0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU64FullMulOdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64FullMulOdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU64FullMulOdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU64FullMulOdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64fullmulodd(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU64HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU64HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU64HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64Sub": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit subtraction (modular arithmetic).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vU64Sub"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64Sub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vU64Sub",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64sub"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU64SubS(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 64-bit subtraction with saturation (clipping).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU64SubS"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt32",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU64SubS(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU64SubS"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU64SubS(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu64subs(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU8Divide(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 8-bit division.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU8Divide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU8Divide(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU8Divide"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU8Divide(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu8divide(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vU8HalfMultiply(_:_:)": {
+      "abstract": [
+        {
+          "text": "Unsigned 8-bit multiplication; results are same width as multiplicands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vU8HalfMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vUInt8",
+          "text": "vUInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vU8HalfMultiply(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vU8HalfMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "vU8HalfMultiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vu8halfmultiply(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/veclib": {
+      "abstract": [
+        {
+          "text": "Perform computations on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/veclib",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vecLib",
+      "type": "topic",
+      "url": "/documentation/accelerate/veclib"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Shift-and-Rotate-Functions-from-vBasicOpsh",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vLL128Shift(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vLR128Shift(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vLL64Shift(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vLL64Shift2(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vLR64Shift(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vLR64Shift2(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vA64Shift(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vA64Shift2(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vA128Shift(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vL64Rotate(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vR64Rotate(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vL64Rotate2(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vR64Rotate2(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vL128Rotate(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vR128Rotate(_:_:)"
+      ],
+      "title": "Shift and Rotate Functions (from vBasicOps.h)"
+    },
+    {
+      "anchor": "Integer-Arithmetic-Functions-from-vBasicOpsh",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64Add",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64AddS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64Add",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64AddS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU128Add(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU128AddS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS128Add(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS128AddS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64Sub",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64SubS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64Sub",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64SubS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU128Sub(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU128SubS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS128Sub(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS128SubS(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU8HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS8HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU16HalfMultiply",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS16HalfMultiply",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU32HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS32HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU128HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS128HalfMultiply(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU32FullMulEven(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU32FullMulOdd(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS32FullMulEven(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS32FullMulOdd(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64FullMulEven(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64FullMulOdd(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64FullMulEven(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64FullMulOdd(_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU8Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS8Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU16Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS16Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU32Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS32Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU64Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS64Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vU128Divide(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vS128Divide(_:_:_:)"
+      ],
+      "title": "Integer Arithmetic Functions (from vBasicOps.h)"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32FullMulEven(_:_:)/title",
+          "value": "vU32FullMulEven"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32FullMulEven(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU32FullMulEven"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLR64Shift2(_:_:)/title",
+          "value": "vLR64Shift2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLR64Shift2(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vLR64Shift2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vL64Rotate2(_:_:)/title",
+          "value": "vL64Rotate2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vL64Rotate2(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vL64Rotate2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vL128Rotate(_:_:)/title",
+          "value": "vL128Rotate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vL128Rotate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vL128Rotate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64SubS(_:_:)/title",
+          "value": "vS64SubS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64SubS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS64SubS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU8Divide(_:_:_:)/title",
+          "value": "vU8Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU8Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU8Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64FullMulEven(_:_:)/title",
+          "value": "vS64FullMulEven"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64FullMulEven(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS64FullMulEven"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128Add(_:_:)/title",
+          "value": "vU128Add"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128Add(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU128Add"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64FullMulOdd(_:_:)/title",
+          "value": "vU64FullMulOdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64FullMulOdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU64FullMulOdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128Add(_:_:)/title",
+          "value": "vS128Add"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128Add(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS128Add"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU16Divide(_:_:_:)/title",
+          "value": "vU16Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU16Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU16Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32FullMulEven(_:_:)/title",
+          "value": "vS32FullMulEven"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32FullMulEven(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS32FullMulEven"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64SubS(_:_:)/title",
+          "value": "vU64SubS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64SubS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU64SubS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64HalfMultiply(_:_:)/title",
+          "value": "vS64HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS64HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64Divide(_:_:_:)/title",
+          "value": "vS64Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS64Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vA64Shift(_:_:)/title",
+          "value": "vA64Shift"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vA64Shift(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vA64Shift"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLL64Shift2(_:_:)/title",
+          "value": "vLL64Shift2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLL64Shift2(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vLL64Shift2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS8HalfMultiply(_:_:)/title",
+          "value": "vS8HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS8HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS8HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS8Divide(_:_:_:)/title",
+          "value": "vS8Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS8Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS8Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128Sub(_:_:)/title",
+          "value": "vS128Sub"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128Sub(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS128Sub"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64FullMulOdd(_:_:)/title",
+          "value": "vS64FullMulOdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64FullMulOdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS64FullMulOdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128Divide(_:_:_:)/title",
+          "value": "vS128Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS128Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vR64Rotate2(_:_:)/title",
+          "value": "vR64Rotate2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vR64Rotate2(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vR64Rotate2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vA128Shift(_:_:)/title",
+          "value": "vA128Shift"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vA128Shift(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vA128Shift"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vA64Shift2(_:_:)/title",
+          "value": "vA64Shift2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vA64Shift2(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vA64Shift2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64AddS(_:_:)/title",
+          "value": "vU64AddS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64AddS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU64AddS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128HalfMultiply(_:_:)/title",
+          "value": "vS128HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS128HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128HalfMultiply(_:_:)/title",
+          "value": "vU128HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU128HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64HalfMultiply(_:_:)/title",
+          "value": "vU64HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU64HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64AddS(_:_:)/title",
+          "value": "vS64AddS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS64AddS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS64AddS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128Divide(_:_:_:)/title",
+          "value": "vU128Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU128Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64Divide(_:_:_:)/title",
+          "value": "vU64Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU64Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128SubS(_:_:)/title",
+          "value": "vS128SubS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128SubS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS128SubS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32Divide(_:_:_:)/title",
+          "value": "vU32Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU32Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32FullMulOdd(_:_:)/title",
+          "value": "vU32FullMulOdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32FullMulOdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU32FullMulOdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLR64Shift(_:_:)/title",
+          "value": "vLR64Shift"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLR64Shift(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vLR64Shift"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU8HalfMultiply(_:_:)/title",
+          "value": "vU8HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU8HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU8HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS16Divide(_:_:_:)/title",
+          "value": "vS16Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS16Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS16Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vL64Rotate(_:_:)/title",
+          "value": "vL64Rotate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vL64Rotate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vL64Rotate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128Sub(_:_:)/title",
+          "value": "vU128Sub"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128Sub(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU128Sub"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vR128Rotate(_:_:)/title",
+          "value": "vR128Rotate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vR128Rotate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vR128Rotate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32Divide(_:_:_:)/title",
+          "value": "vS32Divide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32Divide(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS32Divide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32HalfMultiply(_:_:)/title",
+          "value": "vU32HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU32HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU32HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128AddS(_:_:)/title",
+          "value": "vU128AddS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128AddS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU128AddS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64FullMulEven(_:_:)/title",
+          "value": "vU64FullMulEven"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU64FullMulEven(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU64FullMulEven"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vR64Rotate(_:_:)/title",
+          "value": "vR64Rotate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vR64Rotate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vR64Rotate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLR128Shift(_:_:)/title",
+          "value": "vLR128Shift"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLR128Shift(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vLR128Shift"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128SubS(_:_:)/title",
+          "value": "vU128SubS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vU128SubS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vU128SubS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLL64Shift(_:_:)/title",
+          "value": "vLL64Shift"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLL64Shift(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vLL64Shift"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32HalfMultiply(_:_:)/title",
+          "value": "vS32HalfMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32HalfMultiply(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS32HalfMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32FullMulOdd(_:_:)/title",
+          "value": "vS32FullMulOdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS32FullMulOdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS32FullMulOdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128AddS(_:_:)/title",
+          "value": "vS128AddS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vS128AddS(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vS128AddS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLL128Shift(_:_:)/title",
+          "value": "vLL128Shift"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vLL128Shift(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vLL128Shift"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

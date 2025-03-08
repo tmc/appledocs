@@ -1,0 +1,912 @@
+{
+  "abstract": [
+    {
+      "text": "Prepare your webpage to authorize users through Sign in with Apple.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-webpage-for-sign-in-with-apple"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Sign in with Apple JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your webpage for Sign in with Apple"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use HTML and JavaScript to add Sign in with Apple to your webpage. Configure an authorization object and add a button that allows users to sign in to your webpage with their Apple ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Embed-Sign-in-with-Apple-JS",
+          "level": 3,
+          "text": "Embed Sign in with Apple JS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the script tag and link to Apple’s hosted version of the Sign in with Apple JS framework in your web page:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<script type=\"text/javascript\" src=\"https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js\"></script>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Embedding the framework gives you access to the Sign in with Apple authorization features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Authorization-Object",
+          "level": 3,
+          "text": "Configure the Authorization Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get started quickly, configure Sign in with Apple JS with a default markup setup. Alternatively, use JavaScript to configure the authorization object, or use a combination of the two.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the authorization object using only markup by setting the meta tags in the header section and displaying a Sign in with Apple button. For more information about the client configuration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<html>",
+            "    <head>",
+            "        <meta name=\"appleid-signin-client-id\" content=\"[CLIENT_ID]\">",
+            "        <meta name=\"appleid-signin-scope\" content=\"[SCOPES]\">",
+            "        <meta name=\"appleid-signin-redirect-uri\" content=\"[REDIRECT_URI]\">",
+            "        <meta name=\"appleid-signin-state\" content=\"[STATE]\">",
+            "        <meta name=\"appleid-signin-nonce\" content=\"[NONCE]\">",
+            "        <meta name=\"appleid-signin-use-popup\" content=\"true\">",
+            "    </head>",
+            "    <body>",
+            "        <div id=\"appleid-signin\" data-color=\"black\" data-border=\"true\" data-type=\"sign in\"></div>",
+            "        <script type=\"text/javascript\" src=\"https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js\"></script>",
+            "    </body>",
+            "</html>"
+          ],
+          "syntax": "html",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The host specified in ",
+                  "type": "text"
+                },
+                {
+                  "code": "appleid-signin-redirect-uri",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must include a domain name. It can’t be an IP address or ",
+                  "type": "text"
+                },
+                {
+                  "code": "localhost",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For more information, visit ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also configure the authorization object using the JavaScript APIs and display a Sign in with Apple button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<html>",
+            "    <head>",
+            "    </head>",
+            "    <body>",
+            "        <script type=\"text/javascript\" src=\"https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js\"></script>",
+            "        <div id=\"appleid-signin\" data-color=\"black\" data-border=\"true\" data-type=\"sign in\"></div>",
+            "        <script type=\"text/javascript\">",
+            "            AppleID.auth.init({",
+            "                clientId : '[CLIENT_ID]',",
+            "                scope : '[SCOPES]',",
+            "                redirectURI : '[REDIRECT_URI]',",
+            "                state : '[STATE]',",
+            "                nonce : '[NONCE]',",
+            "                usePopup : true",
+            "            });",
+            "        </script>",
+            "    </body>",
+            "</html>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you can combine the two configuration options: you can set the meta tags in the header, while at the same time using JavaScript APIs. This configuration provides a default implementation through the meta tags, but gives you the ability to override the initial information using the JavaScript APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use space separation when requesting multiple scopes; for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"scope=name email\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-the-Authorization-Response",
+          "level": 3,
+          "text": "Handle the Authorization Response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user clicks the Sign in with Apple button, the framework sends the authorization information to Apple. Apple processes the authorization request, and sends an HTTP POST request containing the results of the authorization to the URL provided in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/redirectURI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The HTTP body contains the result parameters with a content-type of ",
+              "type": "text"
+            },
+            {
+              "code": "application/x-www-form-urlencoded",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A successful response contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A single-use authentication code that expires after five minutes. To learn how to validate this code to obtain user tokens, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "code",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON web token (JWT) containing the user’s identification information. For more information,  see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "id_token",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An arbitrary string  passed by the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/init",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function, representing the current state of the authorization request. This value is also used to mitigate cross-site request forgery attacks, by comparing against the state value contained in the authorization response.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A JSON string containing the data requested in the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/scope",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " property. The returned data is in the following format:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "user",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "{ \"name\": { \"firstName\": string, \"lastName\": string }, \"email\": string }",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple only returns the user object the first time the user authorizes the app. Validate and persist this information from your app to your server. Subsequent authorization requests do not contain the user object, however, the user’s email is provided in the identity token for all requests. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error occurs, the HTTP body contains the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The returned error code.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The state passed by the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/init",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function. Compare against the state value provided in the initial authorization request to mitigate cross-site request forgery attacks.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "state",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Currently, the only error code returned is ",
+                  "type": "text"
+                },
+                {
+                  "code": "user_cancelled_authorize",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The framework returns this error code when the user clicks the Cancel button.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use the pop-up option, your app sends the authorization information to Apple when the user clicks the Sign in with Apple button. After Apple’s server processes the authorization request, it dispatches a Domain Object Model (DOM) event containing the results of the authorization: ",
+              "type": "text"
+            },
+            {
+              "code": "AppleIDSignInOnSuccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success, or ",
+              "type": "text"
+            },
+            {
+              "code": "AppleIDSignInOnFailure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle the response, add an event listener:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Listen for authorization success.",
+            "document.addEventListener('AppleIDSignInOnSuccess', (event) => {",
+            "    // Handle successful response.",
+            "    console.log(event.detail.data);",
+            "});",
+            "",
+            "// Listen for authorization failures.",
+            "document.addEventListener('AppleIDSignInOnFailure', (event) => {",
+            "     // Handle error.",
+            "     console.log(event.detail.error);",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/signIn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function started the authorization process, the function returns a promise object that resolves if the authorization succeeds. If the authorization fails, the function rejects the promise object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of how to handle the response when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/signIn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try {",
+            "     const data = await AppleID.auth.signIn()",
+            "     // Handle successful response.",
+            "} catch ( error ) {",
+            "     // Handle error.",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon authorization success, the server returns the following data object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "     \"authorization\": {",
+            "       \"code\": \"[CODE]\",",
+            "       \"id_token\": \"[ID_TOKEN]\",",
+            "       \"state\": \"[STATE]\"",
+            "     },",
+            "     \"user\": {",
+            "       \"email\": \"[EMAIL]\",",
+            "       \"name\": {",
+            "         \"firstName\": \"[FIRST_NAME]\",",
+            "         \"lastName\": \"[LAST_NAME]\"",
+            "       }",
+            "     }",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon failure, the server returns the following data object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"error\": \"[ERROR_CODE]\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS": {
+      "abstract": [
+        {
+          "text": "Provide users a fast, secure way to sign in to your web service with their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple JS",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/init": {
+      "abstract": [
+        {
+          "text": "Initialize the authentication object with a configuration object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/authi/init"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/signIn": {
+      "abstract": [
+        {
+          "text": "Sign in using the configuration object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/AuthI/signIn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signIn",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/authi/signin"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI": {
+      "abstract": [
+        {
+          "text": "An object that contains a user’s configuration information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ClientConfigI",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/clientconfigi"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/redirectURI": {
+      "abstract": [
+        {
+          "text": "The URI to which the authorization redirects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/redirectURI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "redirectURI",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/clientconfigi/redirecturi"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/scope": {
+      "abstract": [
+        {
+          "text": "The amount of user information requested from Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS/ClientConfigI/scope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scope",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs/clientconfigi/scope"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens": {
+      "abstract": [
+        {
+          "text": "Validate an authorization grant code delivered to your app to obtain tokens, or validate an existing refresh token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Generate and validate tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate and validate tokens",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/generate-and-validate-tokens"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Securely authenticate users and create accounts for them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service": {
+      "abstract": [
+        {
+          "text": "Stay in touch with users who opt for an anonymous email address with Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating using the private email relay service",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Authenticate users with your web service by associating an existing app with a Services ID and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your environment for Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/configuring-your-environment-for-sign-in-with-apple"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

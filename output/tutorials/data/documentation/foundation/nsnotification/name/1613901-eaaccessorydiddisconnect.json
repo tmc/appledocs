@@ -1,0 +1,430 @@
+{
+  "abstract": [
+    {
+      "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/externalaccessory",
+        "doc://com.apple.documentation/documentation/externalaccessory/eaaccessorymanager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1613901,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@EAAccessoryDidDisconnectNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "EAAccessoryDidDisconnect"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "External Accessory"
+      }
+    ],
+    "parent": {
+      "title": "NSNotification.Name"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "3.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "3.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "EAAccessoryDidDisconnect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EAAccessoryDidDisconnect"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object is the shared accessory manager. The ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", whose value is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object representing the accessory that was disconnected. Before delivery of this notification can occur, you must call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to let the system know you are interested in receiving this notification. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your accessory manager has a delegate, the delegate can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate/accessoryDidDisconnect(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to receive this notification instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/externalaccessory": {
+      "identifier": "doc://com.apple.documentation/documentation/externalaccessory",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Accessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory"
+    },
+    "doc://com.apple.documentation/documentation/externalaccessory/eaaccessorymanager": {
+      "identifier": "doc://com.apple.documentation/documentation/externalaccessory/eaaccessorymanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryManager",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorymanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect": {
+      "abstract": [
+        {
+          "text": "A notification that the system sends when an accessory becomes connected and available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidConnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect": {
+      "abstract": [
+        {
+          "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidDisconnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory": {
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessory",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessory"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate/accessoryDidDisconnect(_:)": {
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryDelegate/accessoryDidDisconnect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryDidDisconnect(_:)",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorydelegate/accessorydiddisconnect(_:)"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey": {
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryKey",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorykey"
+    },
+    "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()": {
+      "identifier": "doc://com.apple.externalaccessory/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForLocalNotifications()",
+      "type": "topic",
+      "url": "/documentation/externalaccessory/eaaccessorymanager/registerforlocalnotifications()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect"
+      ],
+      "title": "External Accessory"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/externalaccessory/eaaccessorydiddisconnectnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

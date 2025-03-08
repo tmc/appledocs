@@ -1,0 +1,1511 @@
+{
+  "abstract": [
+    {
+      "text": "Create vImage buffers with the correct dimensions to convert to and from images with subsampled chroma information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/converting-chroma-subsampled-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting chroma-subsampled images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you work with video data, you often work with images represented by separate luminance (Y) and chrominance (CbCr) information at different resolutions. The vImage library provides functionality to convert images in this format to an interleaved RGB format, which simplifies applying some image-processing operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, other image transformations, such as adjusting saturation, require that you convert an RGB image to YCbCr. Reducing the resolution of the chrominance information can also improve the performance of your app because you’re only processing half or a quarter of the number of pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Chroma subsampling",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " describes the encoding that compresses image data by reducing the resolution of the chrominance information. Chroma subsampling relies on the fact that human vision is less sensitive to color than luminance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in this article uses the 4:2:0 subsampling scheme, which means there’s one Cb and one Cr pixel for every four luminance pixels. That is, each chrominance channel is half of the width and half of the height of the luminance channel. For example, 4:2:0 subsampling represents a 4 x 2 image with a 4 x 2 luminance channel and two 2 x 1 chrominance channels:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4264983",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The images below show the 4:2:0 subsampling scheme applied to a photograph. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " luminance channel has the same resolution as the original image. However, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Cb",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Cr",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " chrominance channels have a lower resolution. For each 2 x 2 square of pixels in the luminance channel, the chrominance channels only contain a single pixel. Therefore, the chrominance channels are a quarter of the size of the luminance channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3866875",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-Core-Video-and-Core-Graphics-image-formats",
+          "level": 3,
+          "text": "Define the Core Video and Core Graphics image formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re working with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, the vImage library provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat_CreateWithCVPixelBuffer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/make(buffer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions that generate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure from a Core Video pixel buffer. However, the code in this article defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/Format/format420YpCbCr8PlanarFullRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Core Video image format that describes the YpCbCr image. The code below also defines an 8-bit-per-channel RGB Core Graphics image format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var cgImageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8 * 3,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue))!",
+            "",
+            "let cvImageFormat = vImageCVImageFormat.make(",
+            "    format: .format420YpCbCr8PlanarFullRange,",
+            "    matrix: kvImage_ARGBToYpCbCrMatrix_ITU_R_601_4.pointee,",
+            "    chromaSiting: .center,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    alphaIsOpaqueHint: true)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-the-Core-Graphics-to-Core-Video-conversion",
+          "level": 3,
+          "text": "Perform the Core Graphics to Core Video conversion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Core Video and Core Graphics image format descriptions to create an any-to-any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that converts from Core Graphics to Core Video image format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cgToCvConverter = try vImageConverter.make(sourceFormat: cgImageFormat,",
+            "                                               destinationFormat: cvImageFormat)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The converter provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/destinationBufferCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that you use to generate the correct number of destination buffers. Although the chrominance size is a quarter of the luminance sizes, declare the sizes of all three pixel buffers as the source image size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let ypCbCr8PlanarBuffers = (0 ..< cgToCvConverter.destinationBufferCount).map { _ in",
+            "    vImage.PixelBuffer<vImage.Planar8>(size: rgbSourceBuffer.size)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The source and destination vlmage buffers that you pass to an any-to-any conversion must all share the same dimensions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the code below, ",
+              "type": "text"
+            },
+            {
+              "code": "rgbSourceBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a format of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (that matches the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure above) which contains a source image. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-587gc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to populate the destination buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try cgToCvConverter.convert(from: [rgbSourceBuffer],",
+            "                            to: ypCbCr8PlanarBuffers)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the three pixel buffers in the ",
+              "type": "text"
+            },
+            {
+              "code": "ypCbCr8PlanarBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contain the luminance and two chrominance channels. The image below shows the luminance channel (left), the Cb channel (middle), and the Cr channel (right):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4264989",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-an-operation-to-the-subsampled-chrominance-channels",
+          "level": 3,
+          "text": "Apply an operation to the subsampled chrominance channels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the two chrominance channels are the same size as the full-sized luminance channel, they only contain a quarter of the data. If you’re applying an image-processing operation to the Cb and Cr channels, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeRegionOfInterest(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This ensures that you’re not processing unused pixels. The code below reduces the saturation of the image using the technique discussed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let saturation = Float(0.25)",
+            "let preBias = -128",
+            "let divisor = 0x1000",
+            "let postBias = 128 * divisor",
+            "let factor = Int(saturation * Float(divisor))",
+            "",
+            "// Define a region of interest that's a quarter of the area of the",
+            "// luminance channel.",
+            "let roi = CGRect(x: 0, y: 0,",
+            "                 width: ypCbCr8PlanarBuffers[0].width / 2,",
+            "                 height: ypCbCr8PlanarBuffers[0].height / 2)",
+            "",
+            "// Indices 1 and 2 refer to the Cb and Cr buffers, respectively.",
+            "for index in [1, 2] {",
+            "    ypCbCr8PlanarBuffers[index].withUnsafeRegionOfInterest(roi) { buffer in",
+            "        buffer.multiply(by: factor,",
+            "                        divisor: divisor,",
+            "                        preBias: preBias,",
+            "                        postBias: postBias,",
+            "                        destination: buffer)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about limiting the effect of vImage operations to rectangular regions of interest, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-the-Core-Video-to-Core-Graphics-conversion",
+          "level": 3,
+          "text": "Perform the Core Video to Core Graphics conversion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert the YpCbCr buffers to an RGB buffer, create a converter with the Core Video image format as the source and the Core Graphics image format as the destination. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-587gc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as above, but specify the ",
+              "type": "text"
+            },
+            {
+              "code": "ypCbCr8PlanarBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array as the source and an 8-bit-per-channel interleaved buffer as the destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cvToCgConverter = try vImageConverter.make(sourceFormat: cvImageFormat,",
+            "                                               destinationFormat: cgImageFormat)",
+            "",
+            "let rgbDestinationBuffer = vImage.PixelBuffer<vImage.Interleaved8x3>(",
+            "    size: ypCbCr8PlanarBuffers.first!.size)",
+            "",
+            "try cvToCgConverter.convert(from: ypCbCr8PlanarBuffers,",
+            "                            to: [rgbDestinationBuffer])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "rgbDestinationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the desaturated version (right) of the original image (left).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4264990",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of the convert-any-to-any function by converting a CMYK image to an RGB image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a basic image conversion workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-conversion-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion": {
+      "abstract": [
+        {
+          "text": "Convert an image to a different format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-perform-any-to-any-conversion": {
+      "abstract": [
+        {
+          "text": "Convert between Core Video or Core Graphics image data of arbitrary color spaces and bit depths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-perform-any-to-any-conversion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that perform any-to-any conversion",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-perform-any-to-any-conversion"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x3": {
+      "abstract": [
+        {
+          "text": "A three-channel, 8-bit-per-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved8x3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved8x3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeRegionOfInterest(_:_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pixel buffer that references the image data within the specified region of interest.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeRegionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/withUnsafeRegionOfInterest(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeRegionOfInterest(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/withunsaferegionofinterest(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat": {
+      "abstract": [
+        {
+          "text": "A mutable description of image encoding in a Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageCVImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageCVImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageCVImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagecvimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/Format/format420YpCbCr8PlanarFullRange": {
+      "abstract": [
+        {
+          "text": "A full-range, planar YpCbCr 4:2:0 pixel format with 8 bits per channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "format420YpCbCr8PlanarFullRange"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/Format/format420YpCbCr8PlanarFullRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vImageCVImageFormat.Format.format420YpCbCr8PlanarFullRange",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagecvimageformat/format/format420ypcbcr8planarfullrange"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/make(buffer:)": {
+      "abstract": [
+        {
+          "text": "Creates the description of the image encoding in an existing Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "make"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImageCVImageFormatRef",
+          "text": "vImageCVImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat/make(buffer:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "make(buffer:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagecvimageformat/make(buffer:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat_CreateWithCVPixelBuffer(_:)": {
+      "abstract": [
+        {
+          "text": "Creates the description of the image encoding in an existing Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageCVImageFormat_CreateWithCVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImageCVImageFormatRef",
+          "text": "vImageCVImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageCVImageFormat_CreateWithCVPixelBuffer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageCVImageFormat_CreateWithCVPixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageCVImageFormat_CreateWithCVPixelBuffer(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagecvimageformat_createwithcvpixelbuffer(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter": {
+      "abstract": [
+        {
+          "text": "A description of a conversion from one image format to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConverter",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-587gc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F2"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F1"
+        },
+        {
+          "kind": "text",
+          "text": ">], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F2"
+        },
+        {
+          "kind": "text",
+          "text": ">]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/convert(from:to:)-587gc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(from:to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter/convert(from:to:)-587gc"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/destinationBufferCount": {
+      "abstract": [
+        {
+          "text": "The number of destination buffers written to by the converter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationBufferCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConverter/destinationBufferCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationBufferCount",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconverter/destinationbuffercount"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to discrete luminance and chrominance channels, and apply color and contrast treatments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting saturation and applying tone mapping",
+      "type": "topic",
+      "url": "/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e": {
+      "abstract": [
+        {
+          "text": "An image buffer that holds pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+      "kind": "article",
+      "role": "article",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvpixelbuffer-q2e"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3866875": {
+      "alt": "A diagram that shows the sizes and content of the two chrominance channels and single luminance channel of a YpCbCr image compared to an RGB image of the same subject. On the left are the three YpCbCr channels and on the right in the single, interleaved RGB image.",
+      "identifier": "media-3866875",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/696306b4d1602091ebaca151924bab5d/media-3866875@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0324d570a6f811cbdbca1a355478ba74/media-3866875~dark@2x.png"
+        }
+      ]
+    },
+    "media-4264983": {
+      "alt": "A diagram showing source RGB pixels converted to discrete luminance and chrominance pixels arranged as two-times-two tiles.",
+      "identifier": "media-4264983",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc95d53c190aa0f91c8411fcd7bbf01a/media-4264983@2x.png"
+        }
+      ]
+    },
+    "media-4264989": {
+      "alt": "Three grayscale images of the different planes of the YpCrCb representation of a photograph of a flower. The first image contains the luminance information. The second and third images contain the chrominance information and are scaled that the only fill the top-left quarter of the image.",
+      "identifier": "media-4264989",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/05210844d773d099f3ddea68afb37de1/media-4264989@2x.png"
+        }
+      ]
+    },
+    "media-4264990": {
+      "alt": "A side-by-side comparison of the original photograph of a flower and the desaturated version of the same photograph.",
+      "identifier": "media-4264990",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1df1b26d502a07d2261f0ac6c69daf84/media-4264990@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Converting-any-to-any",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-conversion-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-perform-any-to-any-conversion"
+      ],
+      "title": "Converting any-to-any"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/title",
+          "value": "vImageConverterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConverterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat/title",
+          "value": "vImageCVImageFormatRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageCVImageFormatRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageCVImageFormatRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat_CreateWithCVPixelBuffer(_:)/title",
+          "value": "vImageCVImageFormat_CreateWithCVPixelBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageCVImageFormat_CreateWithCVPixelBuffer(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageCVImageFormat_CreateWithCVPixelBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "abstract": [
+    {
+      "text": "Registers your driver with the networking stack.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-4jqw8"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserNetworkEthernet@F@RegisterEthernetInterface#$@S@IOUserNetworkMACAddress#*$@S@IOUserNetworkPacketBufferPool#**$@S@IOUserNetworkPacketQueue#i#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "RegisterEthernetInterface"
+      }
+    ],
+    "modules": [
+      {
+        "name": "NetworkingDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RegisterEthernetInterface"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "DriverKit",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "RegisterEthernetInterface"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RegisterEthernetInterface"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMACAddress",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOUserNetworkMACAddress",
+              "text": "IOUserNetworkMACAddress"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "macAddress"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketBufferPool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOUserNetworkPacketBufferPool",
+              "text": "IOUserNetworkPacketBufferPool"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pool"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOUserNetworkPacketQueue",
+              "text": "IOUserNetworkPacketQueue"
+            },
+            {
+              "kind": "text",
+              "text": " * * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queues"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "queueCount"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The MAC address of the hardware your driver supports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "macAddress"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The buffer pool you use to store incoming and outgoing packets.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pool"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array containing the four queues you use to process incoming and outgoing network packets. This array must contain one queue each of types ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The order of the queues in the array doesn’t matter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "queues"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of queues in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "queues",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "queues",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter must contain 4 items.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "queueCount"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method toward the end of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method when your driver is ready to begin processing incoming and outgoing network packets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for Ethernet networking devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "NetworkingDriverKit",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet": {
+      "abstract": [
+        {
+          "text": "The object you use to manage the setup, configuration, and teardown of your networking driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkEthernet"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkEthernet",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-4jqw8": {
+      "abstract": [
+        {
+          "text": "Registers your driver with the networking stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RegisterEthernetInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/RegisterEthernetInterface-4jqw8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterEthernetInterface",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/registerethernetinterface-4jqw8"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/free"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkethernet/init"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMACAddress": {
+      "abstract": [
+        {
+          "text": "A hardware address for a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkMACAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkMACAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkMACAddress",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkmacaddress"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketBufferPool": {
+      "abstract": [
+        {
+          "text": "An object that manages the storage space for packets coming into and out of your driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkPacketBufferPool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketBufferPool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkPacketBufferPool",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketbufferpool"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue": {
+      "abstract": [
+        {
+          "text": "The base class for the queues that manage the packets moving to and from your device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkPacketQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkPacketQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkPacketQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkpacketqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue": {
+      "abstract": [
+        {
+          "text": "The queue you use to store packets that you successfully transferred to the networking stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkRxCompletionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxCompletionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkRxCompletionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkrxcompletionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue": {
+      "abstract": [
+        {
+          "text": "The queue that receives packets from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkRxSubmissionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkRxSubmissionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkRxSubmissionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworkrxsubmissionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue": {
+      "abstract": [
+        {
+          "text": "The queue you use to store packets that you successfully transferred to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkTxCompletionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxCompletionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkTxCompletionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworktxcompletionqueue"
+    },
+    "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue": {
+      "abstract": [
+        {
+          "text": "The queue that receives packets from the networking stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserNetworkTxSubmissionQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkTxSubmissionQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserNetworkTxSubmissionQueue",
+      "type": "topic",
+      "url": "/documentation/networkingdriverkit/iousernetworktxsubmissionqueue"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint32_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint32_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint32_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-Driver-Service",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/init",
+        "doc://com.apple.networkingdriverkit/documentation/NetworkingDriverKit/IOUserNetworkEthernet/free"
+      ],
+      "title": "Configuring the Driver Service"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkingdriverkit/iousernetworkethernet/registerethernetinterface-4jqw8"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

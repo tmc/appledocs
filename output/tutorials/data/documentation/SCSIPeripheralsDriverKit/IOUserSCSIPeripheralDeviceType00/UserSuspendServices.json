@@ -1,0 +1,352 @@
+{
+  "abstract": [
+    {
+      "text": "Suspends services and allows the dext to communicate with the external drive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit",
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00/UserSuspendServices"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserSCSIPeripheralDeviceType00@F@UserSuspendServices#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UserSuspendServices"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIPeripheralsDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UserSuspendServices"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "22.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "UserSuspendServices"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UserSuspendServices"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value that indicates the result of the suspend request. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicates success. For error definitions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method allows the dext to try to obtain a clear window to communicate with the external drive. Calling this method attempts to close any open references to the media. This informs file systems that someone is accessing the media. You can use this cleared window of communication for things like firmware updates without risking harm to the user’s data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This call expects you to unmount existing volumes upstream of this drive before invoking this API. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DiskArbitration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to programmatically unmount any such volumes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent power state transitions during this window, you can optionally acquire a power assertion before invoking this API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/DiskArbitration": {
+      "abstract": [
+        {
+          "text": "Provides mechanisms to register and block disk mount or unmount events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DiskArbitration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Disk Arbitration",
+      "type": "topic",
+      "url": "/documentation/DiskArbitration"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iokit_constants": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+      "kind": "article",
+      "role": "article",
+      "title": "IOKit Constants",
+      "type": "topic",
+      "url": "/documentation/iokit/iokit_constants"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for peripherals that use SCSI Block Command and Multimedia Command protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIPeripheralsDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that works with type 00 devices, those that use SCSI Block Commands (SBC).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserSCSIPeripheralDeviceType00"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSCSIPeripheralDeviceType00",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/iouserscsiperipheraldevicetype00"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00/UserResumeServices": {
+      "abstract": [
+        {
+          "text": "Resumes normal services after a suspension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserResumeServices"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00/UserResumeServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserResumeServices",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/iouserscsiperipheraldevicetype00/userresumeservices"
+    },
+    "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00/UserSuspendServices": {
+      "abstract": [
+        {
+          "text": "Suspends services and allows the dext to communicate with the external drive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserSuspendServices"
+        }
+      ],
+      "identifier": "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00/UserSuspendServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserSuspendServices",
+      "type": "topic",
+      "url": "/documentation/scsiperipheralsdriverkit/iouserscsiperipheraldevicetype00/usersuspendservices"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Suspending-and-resuming-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scsiperipheralsdriverkit/documentation/SCSIPeripheralsDriverKit/IOUserSCSIPeripheralDeviceType00/UserResumeServices"
+      ],
+      "title": "Suspending and resuming services"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsiperipheralsdriverkit/iouserscsiperipheraldevicetype00/usersuspendservices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

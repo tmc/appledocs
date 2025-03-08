@@ -1,0 +1,2035 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that contains options that affect the symbolic stage of a sparse factorization.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@SparseSymbolicFactorOptions",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SparseSymbolicFactorOptions"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SparseSymbolicFactorOptions"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SparseSymbolicFactorOptions"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SparseSymbolicFactorOptions"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports the following ordering algorithms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderDefault",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default ordering (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderAMD",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for symmetric and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderCOLAMD",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for unsymmetric factorizations).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderUser",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user-supplied ordering, or identity if ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/order",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "null",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderAMD",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Approximate minimum degree (AMD) ordering. There’s a large overhead cost if you use it for QR-based factorization due to explicit formation of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AᵀA",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderMetis",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "METIS nested dissection ordering. There’s a large overhead cost if you use it for QR-based factorization due to explicit formation of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AᵀA",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderCOLAMD",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The column AMD ordering for ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AᵀA",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". This isn’t valid for symmetric factorizations (use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderAMD",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseControl_t": {
+      "abstract": [
+        {
+          "text": "Options that control the computation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseControl_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseControl_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseControl_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseControl_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsecontrol_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorization_t": {
+      "abstract": [
+        {
+          "text": "Constants that define the factorization type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseFactorization_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorization_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseFactorization_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseFactorization_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsefactorization_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseNumericFactorOptions": {
+      "abstract": [
+        {
+          "text": "A structure that contains options that affect the numerical stage of a sparse factorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseNumericFactorOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseNumericFactorOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseNumericFactorOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseNumericFactorOptions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsenumericfactoroptions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderAMD": {
+      "abstract": [
+        {
+          "text": "Approximate minimum degree (AMD) ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOrderAMD"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderAMD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOrderAMD"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOrderAMD",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseorderamd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderCOLAMD": {
+      "abstract": [
+        {
+          "text": "The column AMD ordering for ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AᵀA",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOrderCOLAMD"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderCOLAMD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOrderCOLAMD"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOrderCOLAMD",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseordercolamd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderDefault": {
+      "abstract": [
+        {
+          "text": "The default ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOrderDefault"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderDefault",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOrderDefault"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOrderDefault",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseorderdefault"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderMetis": {
+      "abstract": [
+        {
+          "text": "METIS nested dissection ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOrderMetis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderMetis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOrderMetis"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOrderMetis",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseordermetis"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderUser": {
+      "abstract": [
+        {
+          "text": "The user-supplied ordering, or identity if the order parameter is null.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOrderUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrderUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOrderUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOrderUser",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseorderuser"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOrder_t": {
+      "abstract": [
+        {
+          "text": "Options that define which ordering algorithm to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOrder_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOrder_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseorder_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions": {
+      "abstract": [
+        {
+          "text": "A structure that contains options that affect the symbolic stage of a sparse factorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSymbolicFactorOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSymbolicFactorOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSymbolicFactorOptions",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/control": {
+      "abstract": [
+        {
+          "text": "The flags that control the computation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "control"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseControl_t",
+          "text": "SparseControl_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/control",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "control"
+        }
+      ],
+      "role": "symbol",
+      "title": "control",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/control"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/free": {
+      "abstract": [
+        {
+          "text": "The function for freeing allocated storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/free",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/free"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/ignoreRowsAndColumns": {
+      "abstract": [
+        {
+          "text": "An array that contains row and column indices to ignore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoreRowsAndColumns"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/ignoreRowsAndColumns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ignoreRowsAndColumns"
+        }
+      ],
+      "role": "symbol",
+      "title": "ignoreRowsAndColumns",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/ignorerowsandcolumns"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/init(control:orderMethod:order:ignoreRowsAndColumns:malloc:free:reportError:)": {
+      "abstract": [
+        {
+          "text": "Creates a new structure that contains options that affect the symbolic stage of a sparse factorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "control"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseControl_t",
+          "text": "SparseControl_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orderMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "order"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ignoreRowsAndColumns"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "malloc"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "free"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reportError"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/init(control:orderMethod:order:ignoreRowsAndColumns:malloc:free:reportError:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(control:orderMethod:order:ignoreRowsAndColumns:malloc:free:reportError:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/init(control:ordermethod:order:ignorerowsandcolumns:malloc:free:reporterror:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/malloc": {
+      "abstract": [
+        {
+          "text": "The function for allocating any necessary storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "malloc"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/malloc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "malloc"
+        }
+      ],
+      "role": "symbol",
+      "title": "malloc",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/malloc"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/order": {
+      "abstract": [
+        {
+          "text": "The user-supplied array for ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "order"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "order"
+        }
+      ],
+      "role": "symbol",
+      "title": "order",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/order"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/orderMethod": {
+      "abstract": [
+        {
+          "text": "The ordering algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseOrder_t",
+          "text": "SparseOrder_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/orderMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orderMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "orderMethod",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/ordermethod"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/reportError": {
+      "abstract": [
+        {
+          "text": "The function for reporting parameter errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportError"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/reportError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reportError"
+        }
+      ],
+      "role": "symbol",
+      "title": "reportError",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymbolicfactoroptions/reporterror"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods": {
+      "abstract": [
+        {
+          "text": "Use direct methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using direct methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-direct-methods"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOrder_t"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Structures-that-Specify-Factorization-Type-and-Factorization-Options",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorization_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseNumericFactorOptions"
+      ],
+      "title": "Structures that Specify Factorization Type and Factorization Options"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Symbolic-Factor-Options-Structure",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/init(control:orderMethod:order:ignoreRowsAndColumns:malloc:free:reportError:)"
+      ],
+      "title": "Creating a Symbolic Factor Options Structure"
+    },
+    {
+      "anchor": "Inspecting-Symbolic-Factor-Options",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/control",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseControl_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/orderMethod",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/order",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOrder_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/ignoreRowsAndColumns",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/malloc",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/free",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/reportError"
+      ],
+      "title": "Inspecting Symbolic Factor Options"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SparseSymbolicFactorOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSymbolicFactorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSymbolicFactorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Inspecting-Symbolic-Factor-Options",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/control",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseControl_t",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/orderMethod",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/order",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOrder_t",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/ignoreRowsAndColumns",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/malloc",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/free",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSymbolicFactorOptions/reportError"
+              ],
+              "title": "Inspecting Symbolic Factor Options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOrder_t"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Structures-that-Specify-Factorization-Type-and-Factorization-Options",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorization_t",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseNumericFactorOptions"
+              ],
+              "title": "Structures that Specify Factorization Type and Factorization Options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SparseSymbolicFactorOptions"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions/title",
+          "value": "SparseSymbolicFactorOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSymbolicFactorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSymbolicFactorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrder_t/title",
+          "value": "SparseOrder_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrder_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrder_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrder_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrder_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderCOLAMD/title",
+          "value": "SparseOrderCOLAMD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderCOLAMD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrderCOLAMD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderMetis/title",
+          "value": "SparseOrderMetis"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderMetis/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrderMetis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1free/title",
+          "value": "free"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1free/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "free"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1ignoreRowsAndColumns/title",
+          "value": "ignoreRowsAndColumns"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1ignoreRowsAndColumns/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ignoreRowsAndColumns"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1orderMethod/title",
+          "value": "orderMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1orderMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "orderMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseFactorization_t/title",
+          "value": "SparseFactorization_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseFactorization_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseFactorization_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseFactorization_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseFactorization_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseControl_t/title",
+          "value": "SparseControl_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseControl_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseControl_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseControl_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseControl_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1control/title",
+          "value": "control"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1control/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "control"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseNumericFactorOptions/title",
+          "value": "SparseNumericFactorOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseNumericFactorOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseNumericFactorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseNumericFactorOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseNumericFactorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1order/title",
+          "value": "order"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1order/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "order"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderDefault/title",
+          "value": "SparseOrderDefault"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderDefault/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrderDefault"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderAMD/title",
+          "value": "SparseOrderAMD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderAMD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrderAMD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1malloc/title",
+          "value": "malloc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1malloc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "malloc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1reportError/title",
+          "value": "reportError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymbolicFactorOptions~1reportError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reportError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderUser/title",
+          "value": "SparseOrderUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOrderUser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOrderUser"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/sparsesymbolicfactoroptions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/sparsesymbolicfactoroptions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

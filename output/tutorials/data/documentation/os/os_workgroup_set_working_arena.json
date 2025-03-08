@@ -1,0 +1,628 @@
+{
+  "abstract": [
+    {
+      "text": "Distributes a block of managed memory to the threads of a workgroup.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.os/documentation/os/os_workgroup_set_working_arena"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_workgroup_set_working_arena",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "os_workgroup_set_working_arena"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "os_workgroup_set_working_arena"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_workgroup_set_working_arena"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_workgroup_set_working_arena"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_t",
+              "text": "os_workgroup_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "wg"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "arena"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "max_workers"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_working_arena_destructor_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_working_arena_destructor_t",
+              "text": "os_workgroup_working_arena_destructor_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "destructor"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The workgroup in which to store the shared data. The workgroup must not have any joined threads, and the workgroup must be idle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "wg"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the data you want to distribute among the workgroup’s threads. Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to remove any shared data from a workgroup.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "arena"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum number of threads that may request a unique index from the workgroup. If your threads share all of the data, rather than operate on only part of that data, specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "max_workers"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A function to deallocate the memory in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arena",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "destructor"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success or an error code if the function encountered a problem. For example, the function returns ",
+              "type": "text"
+            },
+            {
+              "code": "ENOMEM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it is unable to allocate the memory it needs to manage the arena data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to distribute a block of memory that you created to the threads of the workgroup. Configure the block of memory with the work that you want to those threads to perform. Call this function before you start an interval or parallel workgroup, and before you join any threads to the workgroup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After assigning the arena data to the workgroup, join your threads and start your task. In each thread, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_get_working_arena",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to retrieve the shared ",
+              "type": "text"
+            },
+            {
+              "code": "arena",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data, and optionally the thread’s unique index into that data. Unique indexes allow you to divide the ",
+              "type": "text"
+            },
+            {
+              "code": "arena",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data evenly among your threads. Each thread uses its index to access the appropriate portion of the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call this function more than once, each subsequent call uses the ",
+              "type": "text"
+            },
+            {
+              "code": "destructor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to clean up the previous arena data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_get_working_arena": {
+      "abstract": [
+        {
+          "text": "Retrieves the workgroup’s shared data, and the thread-specific index into that data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_get_working_arena"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_get_working_arena",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_get_working_arena",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_get_working_arena"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_index": {
+      "abstract": [
+        {
+          "text": "A unique index that the workgroup assigns to its joined threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_index"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_index",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_index"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_max_parallel_threads": {
+      "abstract": [
+        {
+          "text": "Returns the maximum number of threads that the system recommends you add to the specified workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_max_parallel_threads"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_max_parallel_threads",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_max_parallel_threads",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_max_parallel_threads"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_mpt_attr_t": {
+      "abstract": [
+        {
+          "text": "An opaque structure containing attributes related to a request for the maximum number of parallel threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_mpt_attr_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_mpt_attr_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_mpt_attr_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_mpt_attr_t"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_set_working_arena": {
+      "abstract": [
+        {
+          "text": "Distributes a block of managed memory to the threads of a workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_set_working_arena"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_set_working_arena",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_set_working_arena",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_set_working_arena"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_t": {
+      "abstract": [
+        {
+          "text": "An opaque object representing a default workgroup in the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_t"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_working_arena_destructor_t": {
+      "abstract": [
+        {
+          "text": "A function that deallocates a workgroup’s currently assigned shared memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_working_arena_destructor_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_working_arena_destructor_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_working_arena_destructor_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_working_arena_destructor_t"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint32_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint32_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint32_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Workgroup-Configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/os_workgroup_max_parallel_threads",
+        "doc://com.apple.os/documentation/os/os_workgroup_mpt_attr_t",
+        "doc://com.apple.os/documentation/os/os_workgroup_get_working_arena",
+        "doc://com.apple.os/documentation/os/os_workgroup_index",
+        "doc://com.apple.os/documentation/os/os_workgroup_working_arena_destructor_t"
+      ],
+      "title": "Workgroup Configuration"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/os_workgroup_set_working_arena"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

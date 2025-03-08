@@ -1,0 +1,1868 @@
+{
+  "abstract": [
+    {
+      "text": "A storage device attachment backed by a Network Block Device (NBD) client.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)VZNetworkBlockDeviceStorageDeviceAttachment",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "VZNetworkBlockDeviceStorageDeviceAttachment"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This storage device attachment provides a Network Block Device (NBD) client implementation. The NBD client connects to an NBD server referred to by an NBD Uniform Resource Indicator (URI), represented as an URL in this API. The NBD server runs outside of and isn’t controlled by the Virtualization framework. The NBD client forwards the guest’s I/O operations to the NBD server, which handles the I/O operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The NBD client attempts to connect to the NBD server referred to by the URL used when you started the VM with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, it’s important to note that a connection attempt isn’t made when the framework initializes the attachment object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reconnection attempts take place throughout the life cycle of the VM when the NBD client encounters a recoverable error such as connection timeout and unexpected connection errors. The NBD client disconnects from the server when the VM shuts down.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using this attachment requires the app to have the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement because this attachment opens an outgoing network connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a device that uses an NBD service, first initialize a ",
+              "type": "text"
+            },
+            {
+              "code": "VZNetworkBlockDeviceStorageDeviceAttachment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the URI of an NBD server, then use the attachment to configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as shown in the example below (the attachment works with any subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", not just ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioBlockDeviceConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "    let url = try URL(string: \"nbd://localhost:10809/myDisk\")",
+                    "    let attachment = try VZNetworkBlockDeviceStorageDeviceAttachment(url: url, timeout: 5.0, isForcedReadOnly: false, synchronizationMode: .full)",
+                    "    let blockDevice = VZVirtioBlockDeviceConfiguration(attachment: attachment)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "    NSURL *url = [[NSURL alloc] initWithString:@\"nbd://localhost:10809/myDisk\"]",
+                    "    NSError *error = nil;",
+                    "    VZNetworkBlockDeviceStorageDeviceAttachment *attachment =",
+                    "        [[VZNetworkBlockDeviceStorageDeviceAttachment alloc] initWithURL:url",
+                    "                                                                 timeout:5.0",
+                    "                                                          forcedReadOnly:NO",
+                    "                                                     synchronizationMode:VZDiskSynchronizationModeFull",
+                    "                                                                   error:&error];",
+                    "    if (!attachment) {",
+                    "        // Handle the error.",
+                    "    }",
+                    "",
+                    "    VZVirtioBlockDeviceConfiguration *blockDevice = [[VZVirtioBlockDeviceConfiguration alloc] initWithAttachment:attachment];",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Network Block Devices, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/proto.md",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on GitHub.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the NBD URL format, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/uri.md",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on GitHub.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may open outgoing network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.network.client",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.network.client"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZDiskBlockDeviceStorageDeviceAttachment": {
+      "abstract": [
+        {
+          "text": "A storage device attachment that uses a disk to store data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZDiskBlockDeviceStorageDeviceAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDiskBlockDeviceStorageDeviceAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZDiskBlockDeviceStorageDeviceAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZDiskBlockDeviceStorageDeviceAttachment",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZDiskImageStorageDeviceAttachment": {
+      "abstract": [
+        {
+          "text": "A device that stores content in a disk image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZDiskImageStorageDeviceAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZDiskImageStorageDeviceAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZDiskImageStorageDeviceAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZDiskImageStorageDeviceAttachment",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzdiskimagestoragedeviceattachment"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment": {
+      "abstract": [
+        {
+          "text": "A storage device attachment backed by a Network Block Device (NBD) client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZNetworkBlockDeviceStorageDeviceAttachment",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate": {
+      "abstract": [
+        {
+          "text": "The object that receives messages about changes to the network block device attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)VZNetworkBlockDeviceStorageDeviceAttachmentDelegate",
+          "text": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/delegate"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:)": {
+      "abstract": [
+        {
+          "text": "Creates a new network block device (NBD) storage attachment from an NDB Uniform Resource Indicator (URI) represented as a URL that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/init(url:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)": {
+      "abstract": [
+        {
+          "text": "Creates a new network block device storage attachment from an NBD Uniform Resource Indicator (URI) represented as a URL, timeout value, and read-only and synchronization modes that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isForcedReadOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "synchronizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VZDiskSynchronizationMode",
+          "text": "VZDiskSynchronizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:timeout:isForcedReadOnly:synchronizationMode:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/init(url:timeout:isforcedreadonly:synchronizationmode:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the underlying disk attachment network is in a read-only state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isForcedReadOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "forcedReadOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "isForcedReadOnly",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/isforcedreadonly"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/synchronizationMode": {
+      "abstract": [
+        {
+          "text": "The mode in which the NBD client synchronizes data with the NBD server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronizationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VZDiskSynchronizationMode",
+          "text": "VZDiskSynchronizationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/synchronizationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "synchronizationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "synchronizationMode",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/synchronizationmode"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/timeout": {
+      "abstract": [
+        {
+          "text": "The timeout value in seconds for the connection between the client and server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/timeout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeout",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/timeout"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/url": {
+      "abstract": [
+        {
+          "text": "The URL that refers to the NBD server to which the NBD client will connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/validate(_:)": {
+      "abstract": [
+        {
+          "text": "Checks if the URL is a valid network block device URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/validate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validate(_:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/validate(_:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachmentDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you implement to respond to changes to a network block device attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachmentDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate",
+      "type": "topic",
+      "url": "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachmentdelegate"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment": {
+      "abstract": [
+        {
+          "text": "The common behaviors for storage devices in the guest system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZStorageDeviceAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZStorageDeviceAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZStorageDeviceAttachment",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzstoragedeviceattachment"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "The common configuration traits for storage device requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZStorageDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZStorageDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZStorageDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzstoragedeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioBlockDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration object that requests the creation of a virtual storage device in the guest system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioBlockDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioBlockDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioBlockDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioBlockDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioblockdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start()": {
+      "abstract": [
+        {
+          "text": "Starts the VM and notifies the specified completion handler if startup was successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/start()"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/proto.md": {
+      "identifier": "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/proto.md",
+      "title": "Network Block Device Specification",
+      "titleInlineContent": [
+        {
+          "text": "Network Block Device Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/proto.md"
+    },
+    "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/uri.md": {
+      "identifier": "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/uri.md",
+      "title": "Network Block Device URL specification",
+      "titleInlineContent": [
+        {
+          "text": "Network Block Device URL specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/NetworkBlockDevice/nbd/blob/master/doc/uri.md"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Attachment-points",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDiskBlockDeviceStorageDeviceAttachment",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZDiskImageStorageDeviceAttachment",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment"
+      ],
+      "title": "Attachment points"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-network-block-device-attachments",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:)",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)"
+      ],
+      "title": "Creating network block device attachments"
+    },
+    {
+      "anchor": "Validating-a-network-block-devices-URL",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/validate(_:)"
+      ],
+      "title": "Validating a network block device’s URL"
+    },
+    {
+      "anchor": "Getting-information-about-the-attachment-point",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/synchronizationMode",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/timeout",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/url"
+      ],
+      "title": "Getting information about the attachment point"
+    },
+    {
+      "anchor": "Observing-changes-to-the-network-block-device",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+      ],
+      "title": "Observing changes to the network block device"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "VZNetworkBlockDeviceStorageDeviceAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.virtualization/documentation/Virtualization"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-network-block-device-attachments",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:)",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)"
+              ],
+              "title": "Creating network block device attachments"
+            },
+            {
+              "anchor": "Validating-a-network-block-devices-URL",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/validate(_:)"
+              ],
+              "title": "Validating a network block device’s URL"
+            },
+            {
+              "anchor": "Getting-information-about-the-attachment-point",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/isForcedReadOnly",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/synchronizationMode",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/timeout",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/url"
+              ],
+              "title": "Getting information about the attachment point"
+            },
+            {
+              "anchor": "Observing-changes-to-the-network-block-device",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/delegate",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+              ],
+              "title": "Observing changes to the network block device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Attachment-points",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDiskBlockDeviceStorageDeviceAttachment",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZDiskImageStorageDeviceAttachment",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment"
+              ],
+              "title": "Attachment points"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZStorageDeviceAttachment",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)VZStorageDeviceAttachment",
+                    "text": "VZStorageDeviceAttachment"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1start()/title",
+          "value": "startWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1synchronizationMode/title",
+          "value": "synchronizationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1synchronizationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "synchronizationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachmentDelegate/title",
+          "value": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachmentDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachmentDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachmentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1url/title",
+          "value": "URL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1isForcedReadOnly/title",
+          "value": "forcedReadOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1isForcedReadOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "forcedReadOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1init(url:timeout:isForcedReadOnly:synchronizationMode:)/title",
+          "value": "initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1init(url:timeout:isForcedReadOnly:synchronizationMode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDiskImageStorageDeviceAttachment/title",
+          "value": "VZDiskImageStorageDeviceAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDiskImageStorageDeviceAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDiskImageStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDiskImageStorageDeviceAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDiskImageStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZStorageDeviceAttachment/title",
+          "value": "VZStorageDeviceAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZStorageDeviceAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZStorageDeviceAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1validate(_:)/title",
+          "value": "validateURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1validate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1init(url:)/title",
+          "value": "initWithURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1init(url:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZStorageDeviceConfiguration/title",
+          "value": "VZStorageDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZStorageDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZStorageDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZStorageDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZStorageDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1timeout/title",
+          "value": "timeout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment~1timeout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioBlockDeviceConfiguration/title",
+          "value": "VZVirtioBlockDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioBlockDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioBlockDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioBlockDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioBlockDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDiskBlockDeviceStorageDeviceAttachment/title",
+          "value": "VZDiskBlockDeviceStorageDeviceAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDiskBlockDeviceStorageDeviceAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDiskBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZDiskBlockDeviceStorageDeviceAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZDiskBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment/title",
+          "value": "VZNetworkBlockDeviceStorageDeviceAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZNetworkBlockDeviceStorageDeviceAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZNetworkBlockDeviceStorageDeviceAttachment"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

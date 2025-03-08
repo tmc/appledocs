@@ -1,0 +1,861 @@
+{
+  "abstract": [
+    {
+      "text": "Gets the highest-numbered document ID in an index.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/search_kit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1444628-skindexgetmaximumdocumentid"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1444628,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SKIndexGetMaximumDocumentID",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKIndexGetMaximumDocumentID"
+      },
+      {
+        "kind": "text",
+        "text": "(SKIndex!) -> SKDocumentID"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SKIndexGetMaximumDocumentID(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKIndexGetMaximumDocumentID"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "inIndex"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/skindex",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SKIndexRef",
+              "text": "SKIndex"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocumentid",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SKDocumentID",
+              "text": "SKDocumentID"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An index.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inIndex"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A document ID object containing the highest-numbered document ID in the index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1449093-skindexgetdocumentcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine whether an index is fragmented and in need of compaction. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1443628-skindexcompact",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1680841",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In versions of macOS prior to OS X v10.4, the return type for ",
+              "type": "text"
+            },
+            {
+              "code": "SKIndexGetMaximumDocumentID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " was ",
+              "type": "text"
+            },
+            {
+              "code": "CFIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The return type in macOS 10.4 and later is ",
+              "type": "text"
+            },
+            {
+              "code": "SKDocumentID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442212-skindexdocumentiteratorcopynext": {
+      "abstract": [
+        {
+          "text": "Obtains the next document URL object (of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") from an index using a document iterator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexDocumentIteratorCopyNext"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndexDocumentIterator!) -> Unmanaged<SKDocument>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442212-skindexdocumentiteratorcopynext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexDocumentIteratorCopyNext(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442212-skindexdocumentiteratorcopynext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443022-skindexdocumentiteratorgettypeid": {
+      "abstract": [
+        {
+          "text": "Gets the type identifier for Search Kit document iterators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexDocumentIteratorGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443022-skindexdocumentiteratorgettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexDocumentIteratorGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443022-skindexdocumentiteratorgettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443461-skindexgetanalysisproperties": {
+      "abstract": [
+        {
+          "text": "Gets the text analysis properties of an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexGetAnalysisProperties"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> Unmanaged<CFDictionary>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443461-skindexgetanalysisproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexGetAnalysisProperties(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443461-skindexgetanalysisproperties"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443628-skindexcompact": {
+      "abstract": [
+        {
+          "text": "Invokes all pending updates associated with an index, compacts the index if compaction is needed, and commits all changes to backing store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexCompact"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443628-skindexcompact",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexCompact(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443628-skindexcompact"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444278-skindexgetmaximumtermid": {
+      "abstract": [
+        {
+          "text": "Gets the highest-numbered term ID in an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexGetMaximumTermID"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444278-skindexgetmaximumtermid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexGetMaximumTermID(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444278-skindexgetmaximumtermid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444375-skindexremovedocument": {
+      "abstract": [
+        {
+          "text": "Removes a document URL object (of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") and its children, if any, from an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexRemoveDocument"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, SKDocument!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444375-skindexremovedocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexRemoveDocument(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444375-skindexremovedocument"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444518-skindexadddocumentwithtext": {
+      "abstract": [
+        {
+          "text": "Adds a document URL (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") object, and the associated document’s textual content, to an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexAddDocumentWithText"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, SKDocument!, CFString!, Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444518-skindexadddocumentwithtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexAddDocumentWithText(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444518-skindexadddocumentwithtext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444628-skindexgetmaximumdocumentid": {
+      "abstract": [
+        {
+          "text": "Gets the highest-numbered document ID in an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexGetMaximumDocumentID"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> SKDocumentID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444628-skindexgetmaximumdocumentid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexGetMaximumDocumentID(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444628-skindexgetmaximumdocumentid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444897-skindexadddocument": {
+      "abstract": [
+        {
+          "text": "Adds location information for a file-based document, and the document’s textual content, to an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexAddDocument"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, SKDocument!, CFString!, Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444897-skindexadddocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexAddDocument(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444897-skindexadddocument"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445329-skindexgetmaximumbytesbeforeflus": {
+      "abstract": [
+        {
+          "text": "Not recommended. Gets the memory size limit for updates to an index, measured in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexGetMaximumBytesBeforeFlush"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445329-skindexgetmaximumbytesbeforeflus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexGetMaximumBytesBeforeFlush(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445329-skindexgetmaximumbytesbeforeflus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446189-skindexdocumentiteratorcreate": {
+      "abstract": [
+        {
+          "text": "Creates an index-based iterator for document URL objects (of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") owned by a parent document URL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexDocumentIteratorCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, SKDocument!) -> Unmanaged<SKIndexDocumentIterator>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446189-skindexdocumentiteratorcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexDocumentIteratorCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446189-skindexdocumentiteratorcreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus": {
+      "abstract": [
+        {
+          "text": "Not recommended. Sets the memory size limit for updates to an index, measured in bytes. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexSetMaximumBytesBeforeFlush"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, CFIndex)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexSetMaximumBytesBeforeFlush(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448935-skindexrenamedocument": {
+      "abstract": [
+        {
+          "text": "Changes the name of a document URL object (of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") in an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexRenameDocument"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, SKDocument!, CFString!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448935-skindexrenamedocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexRenameDocument(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448935-skindexrenamedocument"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449093-skindexgetdocumentcount": {
+      "abstract": [
+        {
+          "text": "Gets the total number of documents represented in an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexGetDocumentCount"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449093-skindexgetdocumentcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexGetDocumentCount(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449093-skindexgetdocumentcount"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449899-skindexmovedocument": {
+      "abstract": [
+        {
+          "text": "Changes the parent of a document URL object (of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ") in an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexMoveDocument"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!, SKDocument!, SKDocument!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449899-skindexmovedocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexMoveDocument(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449899-skindexmovedocument"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1450667-skindexflush": {
+      "abstract": [
+        {
+          "text": "Invokes all pending updates associated with an index and commits them to backing store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKIndexFlush"
+        },
+        {
+          "kind": "text",
+          "text": "(SKIndex!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1450667-skindexflush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndexFlush(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1450667-skindexflush"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/search_kit": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/search_kit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search Kit",
+      "type": "topic",
+      "url": "/documentation/coreservices/search_kit"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/skdocument": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKDocument",
+      "type": "topic",
+      "url": "/documentation/coreservices/skdocument"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/skdocumentid": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/skdocumentid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKDocumentID",
+      "type": "topic",
+      "url": "/documentation/coreservices/skdocumentid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/skindex": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/skindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKIndex",
+      "type": "topic",
+      "url": "/documentation/coreservices/skindex"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1444518-skindexadddocumentwithtext",
+        "doc://com.apple.documentation/documentation/coreservices/1444897-skindexadddocument",
+        "doc://com.apple.documentation/documentation/coreservices/1450667-skindexflush",
+        "doc://com.apple.documentation/documentation/coreservices/1443628-skindexcompact",
+        "doc://com.apple.documentation/documentation/coreservices/1449093-skindexgetdocumentcount",
+        "doc://com.apple.documentation/documentation/coreservices/1444278-skindexgetmaximumtermid",
+        "doc://com.apple.documentation/documentation/coreservices/1446189-skindexdocumentiteratorcreate",
+        "doc://com.apple.documentation/documentation/coreservices/1442212-skindexdocumentiteratorcopynext",
+        "doc://com.apple.documentation/documentation/coreservices/1443022-skindexdocumentiteratorgettypeid",
+        "doc://com.apple.documentation/documentation/coreservices/1443461-skindexgetanalysisproperties",
+        "doc://com.apple.documentation/documentation/coreservices/1449899-skindexmovedocument",
+        "doc://com.apple.documentation/documentation/coreservices/1444375-skindexremovedocument",
+        "doc://com.apple.documentation/documentation/coreservices/1448935-skindexrenamedocument",
+        "doc://com.apple.documentation/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus",
+        "doc://com.apple.documentation/documentation/coreservices/1445329-skindexgetmaximumbytesbeforeflus"
+      ],
+      "title": "Managing Indexes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1444628-skindexgetmaximumdocumentid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/1444628-skindexgetmaximumdocumentid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

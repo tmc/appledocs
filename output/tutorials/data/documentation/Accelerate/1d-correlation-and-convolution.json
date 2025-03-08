@@ -1,0 +1,1090 @@
+{
+  "abstract": [
+    {
+      "text": "Use correlation to compare and convolution to combine vectors of real or complex data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/1d-correlation-and-convolution"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "1D correlation and convolution"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP library provides functions that calculate the convolution and correlation of a signal and a filter. Both operations compute the sliding dot product of the filter and the section of the input signal that the filter is over. What the operation produced depends on whether the stride is positive or negative:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With a positive stride through the filter, the correlation operation computes the similarity between the signal and the filter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With a negative stride through the filter, the convolution operation computes the effect of the filter on the signal. For example, to apply a low-pass filter to a signal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/2d-convolution": {
+      "abstract": [
+        {
+          "text": "Perform convolution operations on matrices of real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/2d-convolution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "2D convolution",
+      "type": "topic",
+      "url": "/documentation/accelerate/2d-convolution"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:)-1nv65": {
+      "abstract": [
+        {
+          "text": "Returns the 1D convolution of a double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolve"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:)-1nv65",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolve(_:withKernel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/convolve(_:withkernel:)-1nv65"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:)-4p0rt": {
+      "abstract": [
+        {
+          "text": "Returns the 1D convolution of a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolve"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:)-4p0rt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolve(_:withKernel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/convolve(_:withkernel:)-4p0rt"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:result:)-2z66w": {
+      "abstract": [
+        {
+          "text": "Calculates the 1D convolution of a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolve"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:result:)-2z66w",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolve(_:withKernel:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/convolve(_:withkernel:result:)-2z66w"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:result:)-8j76l": {
+      "abstract": [
+        {
+          "text": "Calculates the 1D convolution of a double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolve"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:result:)-8j76l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolve(_:withKernel:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/convolve(_:withkernel:result:)-8j76l"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:)-7f6o0": {
+      "abstract": [
+        {
+          "text": "Returns the correlation of a double-precision signal vector and a filter vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "correlate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:)-7f6o0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "correlate(_:withKernel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/correlate(_:withkernel:)-7f6o0"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:)-9sol8": {
+      "abstract": [
+        {
+          "text": "Returns the correlation of a single-precision signal vector and a filter vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "correlate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:)-9sol8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "correlate(_:withKernel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/correlate(_:withkernel:)-9sol8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:result:)-1lb82": {
+      "abstract": [
+        {
+          "text": "Calculates the correlation of a double-precision signal vector and a filter vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "correlate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:result:)-1lb82",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "correlate(_:withKernel:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/correlate(_:withkernel:result:)-1lb82"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:result:)-377zj": {
+      "abstract": [
+        {
+          "text": "Calculates the correlation of a single-precision signal vector and a filter vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "correlate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:result:)-377zj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "correlate(_:withKernel:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/correlate(_:withkernel:result:)-377zj"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_conv": {
+      "abstract": [
+        {
+          "text": "Performs either correlation or convolution on two real single-precision vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_conv"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_conv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_conv",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_conv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_convD": {
+      "abstract": [
+        {
+          "text": "Performs either correlation or convolution on two real double-precision vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_convD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_convD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_convD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_convd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zconv": {
+      "abstract": [
+        {
+          "text": "Performs either correlation or convolution on two complex single-precision vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_zconv"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zconv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_zconv",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_zconv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zconvD": {
+      "abstract": [
+        {
+          "text": "Performs either correlation or convolution on two complex double-precision vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_zconvD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zconvD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_zconvD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_zconvd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vector-and-matrix-correlation-and-convolution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/2d-convolution"
+      ],
+      "title": "Vector and matrix correlation and convolution"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Real-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:)-1nv65",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:)-4p0rt",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:result:)-8j76l",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/convolve(_:withKernel:result:)-2z66w",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:)-7f6o0",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:)-9sol8",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:result:)-1lb82",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/correlate(_:withKernel:result:)-377zj",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_conv",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_convD"
+      ],
+      "title": "Real Vectors"
+    },
+    {
+      "anchor": "Complex-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zconv",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_zconvD"
+      ],
+      "title": "Complex Vectors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,896 @@
+{
+  "abstract": [
+    {
+      "text": "Convert the bit depths and formats of planar fixed- and floating-point image data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-noninteger-planar-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Functions that convert between noninteger planar buffers"
+  },
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion": {
+      "abstract": [
+        {
+          "text": "Convert an image to a different format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-integer-interleaved-buffers": {
+      "abstract": [
+        {
+          "text": "Convert the bit depths of interleaved integer image data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-integer-interleaved-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert between integer interleaved buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-between-integer-interleaved-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-integer-planar-buffers": {
+      "abstract": [
+        {
+          "text": "Convert the bit depths of planar integer image data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-integer-planar-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert between integer planar buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-between-integer-planar-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-noninteger-interleaved-buffers": {
+      "abstract": [
+        {
+          "text": "Convert the bit depths and formats of interleaved fixed- and floating-point image data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-noninteger-interleaved-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert between noninteger interleaved buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-between-noninteger-interleaved-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-integer-interleaved-buffers-to-noninteger-interleaved-buffers": {
+      "abstract": [
+        {
+          "text": "Convert interleaved integer image data to fixed- and floating-point format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-integer-interleaved-buffers-to-noninteger-interleaved-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert from integer interleaved buffers to noninteger interleaved buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-from-integer-interleaved-buffers-to-noninteger-interleaved-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-integer-planar-buffers-to-noninteger-planar-buffers": {
+      "abstract": [
+        {
+          "text": "Convert planar integer image data to fixed- and floating-point format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-integer-planar-buffers-to-noninteger-planar-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert from integer planar buffers to noninteger planar buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-from-integer-planar-buffers-to-noninteger-planar-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-noninteger-interleaved-buffers-to-integer-interleaved-buffers": {
+      "abstract": [
+        {
+          "text": "Convert interleaved fixed- and floating-point image data to integer format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-noninteger-interleaved-buffers-to-integer-interleaved-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert from noninteger interleaved buffers to integer interleaved buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-from-noninteger-interleaved-buffers-to-integer-interleaved-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-noninteger-planar-buffers-to-integer-planar-buffers": {
+      "abstract": [
+        {
+          "text": "Convert planar fixed- and floating-point image data to integer format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-noninteger-planar-buffers-to-integer-planar-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Functions that convert from noninteger planar buffers to integer planar buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/functions-that-convert-from-noninteger-planar-buffers-to-integer-planar-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Fto16Q12(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a floating-point 16-bit planar buffer to a fixed-point 16-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_16Fto16Q12"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Fto16Q12(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_16Fto16Q12"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_16Fto16Q12(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_16fto16q12(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Q12to16F(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a fixed-point 16-bit planar buffer to a floating-point 16-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_16Q12to16F"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Q12to16F(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_16Q12to16F"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_16Q12to16F(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_16q12to16f(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Q12toF(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a fixed-point 16-bit planar buffer to a floating-point 32-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_16Q12toF"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Q12toF(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_16Q12toF"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_16Q12toF(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_16q12tof(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Fto16Q12(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a floating-point 32-bit planar buffer to a fixed-point 16-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_Fto16Q12"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Fto16Q12(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_Fto16Q12"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_Fto16Q12(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_fto16q12(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Planar16FtoPlanarF(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a floating-point 16-bit planar buffer to a floating-point 32-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_Planar16FtoPlanarF"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Planar16FtoPlanarF(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_Planar16FtoPlanarF"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_Planar16FtoPlanarF(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_planar16ftoplanarf(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_PlanarFtoPlanar16F(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a floating-point 32-bit planar buffer to a floating-point 16-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_PlanarFtoPlanar16F"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_PlanarFtoPlanar16F(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_PlanarFtoPlanar16F"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_PlanarFtoPlanar16F(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_planarftoplanar16f(_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Type-conversion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-integer-planar-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-integer-interleaved-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-integer-planar-buffers-to-noninteger-planar-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-integer-interleaved-buffers-to-noninteger-interleaved-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-between-noninteger-interleaved-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-noninteger-planar-buffers-to-integer-planar-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/functions-that-convert-from-noninteger-interleaved-buffers-to-integer-interleaved-buffers"
+      ],
+      "title": "Type conversion"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Converting-from-floating-point-16-bit-per-channel-buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Fto16Q12(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Planar16FtoPlanarF(_:_:_:)"
+      ],
+      "title": "Converting from floating-point 16-bit-per-channel buffers"
+    },
+    {
+      "anchor": "Converting-from-fixed-point-16-bit-per-channel-buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Q12to16F(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_16Q12toF(_:_:_:)"
+      ],
+      "title": "Converting from fixed-point 16-bit-per-channel buffers"
+    },
+    {
+      "anchor": "Converting-from-floating-point-32-bit-per-channel-buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_PlanarFtoPlanar16F(_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Fto16Q12(_:_:_:)"
+      ],
+      "title": "Converting from floating-point 32-bit-per-channel buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_16Q12to16F(_:_:_:)/title",
+          "value": "vImageConvert_16Q12to16F"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_16Q12to16F(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_16Q12to16F"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_PlanarFtoPlanar16F(_:_:_:)/title",
+          "value": "vImageConvert_PlanarFtoPlanar16F"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_PlanarFtoPlanar16F(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_PlanarFtoPlanar16F"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_Fto16Q12(_:_:_:)/title",
+          "value": "vImageConvert_Fto16Q12"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_Fto16Q12(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_Fto16Q12"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_16Q12toF(_:_:_:)/title",
+          "value": "vImageConvert_16Q12toF"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_16Q12toF(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_16Q12toF"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_Planar16FtoPlanarF(_:_:_:)/title",
+          "value": "vImageConvert_Planar16FtoPlanarF"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_Planar16FtoPlanarF(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_Planar16FtoPlanarF"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_16Fto16Q12(_:_:_:)/title",
+          "value": "vImageConvert_16Fto16Q12"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_16Fto16Q12(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_16Fto16Q12"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

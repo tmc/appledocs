@@ -1,0 +1,1771 @@
+{
+  "abstract": [
+    {
+      "text": "The description of range and clamping information for YpCbCr pixel formats.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@vImage_YpCbCrPixelRange",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "vImage_YpCbCrPixelRange"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "vImage_YpCbCrPixelRange"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "vImage_YpCbCrPixelRange"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Y’CbCr formats frequently don’t use the entire representable range available to them to represent image data. While a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "full range",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " video format does use the entire range, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "video range",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " format often leaves the extrema unused, except perhaps to represent values outside of the standard ",
+              "type": "text"
+            },
+            {
+              "code": "Y'=[0,1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "CbCr = [-0.5,0.5]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " range. For example, an 8-bit video range format typically uses the range ",
+              "type": "text"
+            },
+            {
+              "code": "[16,235]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for Y’ and ",
+              "type": "text"
+            },
+            {
+              "code": "[16,240]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for Cb and Cr.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows examples of typical Y’CbCr pixel ranges:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The 8-bit pixel range that's unclamped.",
+            "let pixelRange = vImage_YpCbCrPixelRange(Yp_bias: 16,",
+            "                                         CbCr_bias: 128,",
+            "                                         YpRangeMax: 235,",
+            "                                         CbCrRangeMax: 240,",
+            "                                         YpMax: 255,",
+            "                                         YpMin: 0,",
+            "                                         CbCrMax: 255,",
+            "                                         CbCrMin: 1)",
+            "",
+            " // The 8-bit pixel range that's clamped to video range.",
+            "let pixelRange = vImage_YpCbCrPixelRange(Yp_bias: 16,",
+            "                                         CbCr_bias: 128,",
+            "                                         YpRangeMax: 265,",
+            "                                         CbCrRangeMax: 240,",
+            "                                         YpMax: 235,",
+            "                                         YpMin: 16,",
+            "                                         CbCrMax: 240,",
+            "                                         CbCrMin: 16)",
+            "        ",
+            "// The 8-bit pixel range that's clamped to full range.",
+            "let pixelRange = vImage_YpCbCrPixelRange(Yp_bias: 0,",
+            "                                         CbCr_bias: 128,",
+            "                                         YpRangeMax: 255,",
+            "                                         CbCrRangeMax: 255,",
+            "                                         YpMax: 255,",
+            "                                         YpMin: 1,",
+            "                                         CbCrMax: 255,",
+            "                                         CbCrMin: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bias is the prebias for YUV to RGB and the postbias for RGB to YUV.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageARGBType": {
+      "abstract": [
+        {
+          "text": "Constants that describe the encoding of an ARGB image for conversions between RGB and YpCbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageARGBType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageARGBType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageARGBType"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageARGBType",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageargbtype"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Generates the information that describes the conversion from ARGB to YpCbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_ARGBToYpCbCrMatrix",
+          "text": "vImage_ARGBToYpCbCrMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_YpCbCrPixelRange",
+          "text": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_ARGBToYpCbCr",
+          "text": "vImage_ARGBToYpCbCr"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageARGBType",
+          "text": "vImageARGBType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@vImageYpCbCrType",
+          "text": "vImageYpCbCrType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_argbtoypcbcr_generateconversion(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageYpCbCrType": {
+      "abstract": [
+        {
+          "text": "Constants that describe the encoding of a YpCbCr image for conversions between RGB and YpCbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageYpCbCrType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageYpCbCrType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageYpCbCrType"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageYpCbCrType",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageypcbcrtype"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCr": {
+      "abstract": [
+        {
+          "text": "The information that describes the conversion from ARGB to YpCbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_ARGBToYpCbCr"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_ARGBToYpCbCr"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_ARGBToYpCbCr",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_argbtoypcbcr"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCrMatrix": {
+      "abstract": [
+        {
+          "text": "The 3 x 3 matrix that the vImage library uses to convert from RGB to YpCbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_ARGBToYpCbCrMatrix"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCrMatrix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_ARGBToYpCbCrMatrix"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_ARGBToYpCbCrMatrix",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_argbtoypcbcrmatrix"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange": {
+      "abstract": [
+        {
+          "text": "The description of range and clamping information for YpCbCr pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrPixelRange"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_YpCbCrPixelRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_YpCbCrPixelRange",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMax": {
+      "abstract": [
+        {
+          "text": "The encoding of the maximum allowed ",
+          "type": "text"
+        },
+        {
+          "code": "{Cb, Cr}",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CbCrMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CbCrMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "CbCrMax",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/cbcrmax"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMin": {
+      "abstract": [
+        {
+          "text": "The encoding of the minimum allowed ",
+          "type": "text"
+        },
+        {
+          "code": "{Cb, Cr}",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CbCrMin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CbCrMin"
+        }
+      ],
+      "role": "symbol",
+      "title": "CbCrMin",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/cbcrmin"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrRangeMax": {
+      "abstract": [
+        {
+          "text": "The encoding for ",
+          "type": "text"
+        },
+        {
+          "code": "{Cb, Cr} = 0.5",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for this video format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CbCrRangeMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrRangeMax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CbCrRangeMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "CbCrRangeMax",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/cbcrrangemax"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCr_bias": {
+      "abstract": [
+        {
+          "text": "The encoding for ",
+          "type": "text"
+        },
+        {
+          "code": "{Cb, Cr} = 0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for this video format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CbCr_bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCr_bias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CbCr_bias"
+        }
+      ],
+      "role": "symbol",
+      "title": "CbCr_bias",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/cbcr_bias"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMax": {
+      "abstract": [
+        {
+          "text": "The encoding for the maximum allowed Y’ value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "YpMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "YpMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "YpMax",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/ypmax"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMin": {
+      "abstract": [
+        {
+          "text": "The encoding of the minimum allowed Y’ value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "YpMin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "YpMin"
+        }
+      ],
+      "role": "symbol",
+      "title": "YpMin",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/ypmin"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpRangeMax": {
+      "abstract": [
+        {
+          "text": "The encoding for ",
+          "type": "text"
+        },
+        {
+          "code": "Y' = 1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for this video format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "YpRangeMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpRangeMax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "YpRangeMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "YpRangeMax",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/yprangemax"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/Yp_bias": {
+      "abstract": [
+        {
+          "text": "The encoding for ",
+          "type": "text"
+        },
+        {
+          "code": "Y' = 0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for this video format (varies by bit depth).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Yp_bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/Yp_bias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Yp_bias"
+        }
+      ],
+      "role": "symbol",
+      "title": "Yp_bias",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/yp_bias"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/init()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/init(Yp_bias:CbCr_bias:YpRangeMax:CbCrRangeMax:YpMax:YpMin:CbCrMax:CbCrMin:)": {
+      "abstract": [
+        {
+          "text": "Returns a structure describing range and clamping information for Y’CbCr pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "Yp_bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "CbCr_bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "YpRangeMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "CbCrRangeMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "YpMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "YpMin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "CbCrMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "CbCrMin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/init(Yp_bias:CbCr_bias:YpRangeMax:CbCrRangeMax:YpMax:YpMin:CbCrMax:CbCrMin:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(Yp_bias:CbCr_bias:YpRangeMax:CbCrRangeMax:YpMax:YpMin:CbCrMax:CbCrMin:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_ypcbcrpixelrange/init(yp_bias:cbcr_bias:yprangemax:cbcrrangemax:ypmax:ypmin:cbcrmax:cbcrmin:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Generating-conversion-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageYpCbCrType",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageARGBType",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCrMatrix",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCr"
+      ],
+      "title": "Generating conversion information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Pixel-Range",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/init(Yp_bias:CbCr_bias:YpRangeMax:CbCrRangeMax:YpMax:YpMin:CbCrMax:CbCrMin:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/init()"
+      ],
+      "title": "Creating a Pixel Range"
+    },
+    {
+      "anchor": "Pixel-Range-Properties",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/Yp_bias",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCr_bias",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpRangeMax",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrRangeMax",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMax",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMin",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMax",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMin"
+      ],
+      "title": "Pixel Range Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Pixel-Range-Properties",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/Yp_bias",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCr_bias",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpRangeMax",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrRangeMax",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMax",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/YpMin",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMax",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_YpCbCrPixelRange/CbCrMin"
+              ],
+              "title": "Pixel Range Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Generating-conversion-information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImageYpCbCrType",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImageARGBType",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCrMatrix",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_ARGBToYpCbCr"
+              ],
+              "title": "Generating conversion information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "vImage_YpCbCrPixelRange"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "vImage_YpCbCrPixelRange"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_ARGBToYpCbCrMatrix/title",
+          "value": "vImage_ARGBToYpCbCrMatrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_ARGBToYpCbCrMatrix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_ARGBToYpCbCrMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_ARGBToYpCbCrMatrix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_ARGBToYpCbCrMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageARGBType/title",
+          "value": "vImageARGBType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageARGBType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageARGBType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageARGBType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageARGBType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1YpMin/title",
+          "value": "YpMin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1YpMin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "YpMin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCrMin/title",
+          "value": "CbCrMin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCrMin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CbCrMin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGBToYpCbCr_GenerateConversion(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_ARGBToYpCbCr_GenerateConversion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/title",
+          "value": "vImage_YpCbCrPixelRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_YpCbCrPixelRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1YpMax/title",
+          "value": "YpMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1YpMax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "YpMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCr_bias/title",
+          "value": "CbCr_bias"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCr_bias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CbCr_bias"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageYpCbCrType/title",
+          "value": "vImageYpCbCrType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageYpCbCrType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageYpCbCrType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageYpCbCrType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageYpCbCrType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1Yp_bias/title",
+          "value": "Yp_bias"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1Yp_bias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Yp_bias"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1YpRangeMax/title",
+          "value": "YpRangeMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1YpRangeMax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "YpRangeMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCrRangeMax/title",
+          "value": "CbCrRangeMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCrRangeMax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CbCrRangeMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCrMax/title",
+          "value": "CbCrMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_YpCbCrPixelRange~1CbCrMax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CbCrMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_ARGBToYpCbCr/title",
+          "value": "vImage_ARGBToYpCbCr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_ARGBToYpCbCr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_ARGBToYpCbCr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_ARGBToYpCbCr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_ARGBToYpCbCr"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vimage_ypcbcrpixelrange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/vimage_ypcbcrpixelrange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

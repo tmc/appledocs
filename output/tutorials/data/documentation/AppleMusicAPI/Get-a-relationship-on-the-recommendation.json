@@ -1,0 +1,1020 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch a recommendation’s relationship by using its identifier.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.1",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-relationship-on-the-recommendation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-recommendations-{}-{}",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get a relationship on the recommendation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Recommendation Relationship Directly by Name"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/recommendations/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{relationship}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ID for the recommendation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "contents"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of the relationship you want to fetch for this recommendation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "relationship",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/RelationshipResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:RelationshipResponse",
+              "text": "RelationshipResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect Authorization header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendation/Relationships-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/recommendations/6-27s5hU6azhJY/contents"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"id\": \"pl.pm-20e9f373919da080ea5e53d0c834bfea\",",
+                    "            \"type\": \"playlists\",",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.pm-20e9f373919da080ea5e53d0c834bfea\",",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is2-ssl.mzstatic.com/image/thumb/Features114/v4/9f/fe/a4/9ffea4c9-ac6e-ea9e-89c4-29c1ebf32dcf/U0MtTVMtV1ctUGVyc29uYWxpemVkX01peGVzLU5ld011c2ljLUFEQU1fSUQ9MTExOTM4OTk2Ny5wbmc.png/{w}x{h}cc.jpg\",",
+                    "                    \"bgColor\": \"fc6a7b\",",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"121010\",",
+                    "                    \"textColor3\": \"351418\",",
+                    "                    \"textColor4\": \"351f21\"",
+                    "                },",
+                    "                \"isChart\": false,",
+                    "                \"url\": \"https://music.apple.com/us/playlist/new-music-mix/pl.pm-20e9f373919da080ea5e53d0c834bfea\",",
+                    "                \"lastModifiedDate\": \"2022-04-15T01:04:34Z\",",
+                    "                \"name\": \"New Music Mix\",",
+                    "                \"playlistType\": \"personal-mix\",",
+                    "                \"curatorName\": \"Apple Music for Me\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.pm-20e9f373919da080ea5e53d0c834bfea\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"versionHash\": \"e806c16946615eb4afbaae664b5f3b4d5558204bc768f82a64343c8aec159971\"",
+                    "                },",
+                    "                \"description\": {",
+                    "                    \"standard\": \"Discover new music from artists we think you'll like. Refreshed every Friday.\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"pl.pm-20e9f373919da080cebec9e066527fcc\",",
+                    "            \"type\": \"playlists\",",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.pm-20e9f373919da080cebec9e066527fcc\",",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is4-ssl.mzstatic.com/image/thumb/Features114/v4/83/47/18/83471885-22a3-e3f0-3589-374fd60fe6b0/U0MtTVMtV1ctUGVyc29uYWxpemVkX01peGVzLUZhdm9yaXRlcy1BREFNX0lEPTExMTk2OTMyODIucG5n.png/{w}x{h}cc.jpg\",",
+                    "                    \"bgColor\": \"5500e8\",",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"b18bfd\",",
+                    "                    \"textColor3\": \"d45be3\",",
+                    "                    \"textColor4\": \"9d6ef9\"",
+                    "                },",
+                    "                \"isChart\": false,",
+                    "                \"url\": \"https://music.apple.com/us/playlist/favorites-mix/pl.pm-20e9f373919da080cebec9e066527fcc\",",
+                    "                \"lastModifiedDate\": \"2022-04-12T00:36:26Z\",",
+                    "                \"name\": \"Favorites Mix\",",
+                    "                \"playlistType\": \"personal-mix\",",
+                    "                \"curatorName\": \"Apple Music for Me\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.pm-20e9f373919da080cebec9e066527fcc\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"versionHash\": \"29a5a080b52a6f016e3e642db9d35c9cb415b629d8aa7e9aad11747d1268536d\"",
+                    "                },",
+                    "                \"description\": {",
+                    "                    \"standard\": \"The songs you love. The more you use Apple Music, the better the mix. Refreshed every Tuesday.\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"pl.pm-20e9f373919da080a92d499ffb0c8974\",",
+                    "            \"type\": \"playlists\",",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.pm-20e9f373919da080a92d499ffb0c8974\",",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is5-ssl.mzstatic.com/image/thumb/Features124/v4/7d/5e/8e/7d5e8efa-6d09-e23a-037a-48e19b5a7b6d/U0MtTVMtV1ctUGVyc29uYWxpemVkX01peGVzLUdldFVwLUFEQU1fSUQ9MTQ0MTI3Njc4MS5wbmc.png/{w}x{h}cc.jpg\",",
+                    "                    \"bgColor\": \"f02807\",",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"120f03\",",
+                    "                    \"textColor3\": \"321401\",",
+                    "                    \"textColor4\": \"331403\"",
+                    "                },",
+                    "                \"isChart\": false,",
+                    "                \"url\": \"https://music.apple.com/us/playlist/get-up-mix/pl.pm-20e9f373919da080a92d499ffb0c8974\",",
+                    "                \"lastModifiedDate\": \"2022-04-11T01:53:08Z\",",
+                    "                \"name\": \"Get Up! Mix\",",
+                    "                \"playlistType\": \"personal-mix\",",
+                    "                \"curatorName\": \"Apple Music for Me\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.pm-20e9f373919da080a92d499ffb0c8974\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"versionHash\": \"72f82e6b6f2a2a2ed815ab4b3cecc1e2a4386d2a131ad1a20a4bb6e58f8f463c\"",
+                    "                },",
+                    "                \"description\": {",
+                    "                    \"standard\": \"Whether it’s Monday morning or Friday night, get going with this personalized mix of upbeat music.\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"pl.pm-20e9f373919da08064bdcea5b99d1fb9\",",
+                    "            \"type\": \"playlists\",",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.pm-20e9f373919da08064bdcea5b99d1fb9\",",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"width\": 4320,",
+                    "                    \"height\": 1080,",
+                    "                    \"url\": \"https://is2-ssl.mzstatic.com/image/thumb/Features114/v4/ab/fa/bd/abfabdec-2a43-dcb7-8991-5ab180c0fa6d/U0MtTVMtV1ctUGVyc29uYWxpemVkX01peGVzLUNoaWxsLUFEQU1fSUQ9MTE5OTIyMjI0My5wbmc.png/{w}x{h}cc.jpg\",",
+                    "                    \"bgColor\": \"145079\",",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"5cfafb\",",
+                    "                    \"textColor3\": \"5ed7de\",",
+                    "                    \"textColor4\": \"4cd5df\"",
+                    "                },",
+                    "                \"isChart\": false,",
+                    "                \"url\": \"https://music.apple.com/us/playlist/chill-mix/pl.pm-20e9f373919da08064bdcea5b99d1fb9\",",
+                    "                \"lastModifiedDate\": \"2022-04-10T01:31:40Z\",",
+                    "                \"name\": \"Chill Mix\",",
+                    "                \"playlistType\": \"personal-mix\",",
+                    "                \"curatorName\": \"Apple Music for Me\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.pm-20e9f373919da08064bdcea5b99d1fb9\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"versionHash\": \"b0c1a0fff713230e787bc9ed2e994bd8123a7427e6da85725bbfff7180d893be\"",
+                    "                },",
+                    "                \"description\": {",
+                    "                    \"standard\": \"Handpicked songs to help you relax and unwind. Updated every Sunday.\"",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "    ]",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Recommendations": {
+      "abstract": [
+        {
+          "text": "Fetch default recommendations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Recommendations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Recommendations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Default Recommendations",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-all-recommendations"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Recommendations": {
+      "abstract": [
+        {
+          "text": "Fetch one or more recommendations by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Recommendations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Recommendations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Recommendations",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-recommendations"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Recommendation": {
+      "abstract": [
+        {
+          "text": "Fetch a recommendation by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Recommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Recommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Recommendation",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-recommendation"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-relationship-on-the-recommendation": {
+      "abstract": [
+        {
+          "text": "Fetch a recommendation’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-relationship-on-the-recommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a relationship on the recommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Recommendation Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-relationship-on-the-recommendation"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendation": {
+      "abstract": [
+        {
+          "text": "A resource object that represents recommended resources for a user calculated using their selected preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersonalRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersonalRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersonalRecommendation",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/personalrecommendation"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendation/Relationships-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The relationships for a recommendation resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersonalRecommendation.Relationships"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendation/Relationships-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersonalRecommendation.Relationships"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersonalRecommendation.Relationships",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/personalrecommendation/relationships-data.dictionary"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendationResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for personal recommendations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersonalRecommendationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersonalRecommendationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersonalRecommendationResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/personalrecommendationresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/RelationshipResponse": {
+      "abstract": [
+        {
+          "text": "The response for a direct resource relationship fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RelationshipResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/RelationshipResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RelationshipResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RelationshipResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/relationshipresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendation",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PersonalRecommendationResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Recommendations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Recommendation",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Recommendations",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Recommendations"
+      ],
+      "title": "Requesting Recommendations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-a-relationship-on-the-recommendation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

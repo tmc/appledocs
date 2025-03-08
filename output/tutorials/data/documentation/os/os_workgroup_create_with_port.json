@@ -1,0 +1,450 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new workgroup that is bound to the workgroup with the specified Mach port.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.os/documentation/os/os_workgroup_create_with_port"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_workgroup_create_with_port",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "os_workgroup_create_with_port"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "os_workgroup_create_with_port"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_workgroup_create_with_port"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_t",
+              "text": "os_workgroup_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_workgroup_create_with_port"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@mach_port_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mach_port_t",
+              "text": "mach_port_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mach_port"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional name for the workgroup. Use this name to identify the workgroups you create. You may specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "name"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A port that represents the send right for a kernel workgroup object. Typically, you obtain this port from another process, which creates it using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.os/documentation/os/os_workgroup_copy_port",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function. This function doesn’t consume a reference to the port’s send right.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mach_port"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An immutable workgroup object that refers to the workgroup with the specified port.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to join threads of your app to a workgroup in a different process. A process may export its workgroup’s Mach port to coordinate any work it’s doing with similar work happening in other processes. For example, the system’s audio APIs export workgroups that allow other processes to provide audio data on the same schedule as the system. Use this function to construct a local workgroup from the provided port information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The workgroup this function returns is a reference to the workgroup with the specified port. You can add threads to the newly created workgroup, but you cannot change the configuration or scheduling details of the original group. For example, you cannot start, stop, or update the deadlines for an interval workgroup, and those functions return errors if you try to do so. Instead, the process that owns the original workgroup handles all configuration and scheduling details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function sets the name of the new workgroup to the value in the ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. It then configures the new workgroup as a reference to the workgroup in the ",
+              "type": "text"
+            },
+            {
+              "code": "wg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The newly created workgroup doesn’t contain any threads initially, and it doesn’t contain any context data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_attr_t": {
+      "abstract": [
+        {
+          "text": "An opaque structure for storing workgroup-related attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_attr_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_attr_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_attr_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_attr_t"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_copy_port": {
+      "abstract": [
+        {
+          "text": "Returns the Mach port associated with the workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_copy_port"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_copy_port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_copy_port",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_copy_port"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_create_with_port": {
+      "abstract": [
+        {
+          "text": "Creates a new workgroup that is bound to the workgroup with the specified Mach port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_create_with_port"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_create_with_port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_create_with_port",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_create_with_port"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_create_with_workgroup": {
+      "abstract": [
+        {
+          "text": "Create a new workgroup that is bound to the specified workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_create_with_workgroup"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_create_with_workgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_create_with_workgroup",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_create_with_workgroup"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_t": {
+      "abstract": [
+        {
+          "text": "An opaque object representing a default workgroup in the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_t"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@mach_port_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@mach_port_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_port_t",
+      "type": "topic",
+      "url": "/documentation/kernel/mach_port_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Common-Utilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/os_workgroup_create_with_workgroup",
+        "doc://com.apple.os/documentation/os/os_workgroup_copy_port",
+        "doc://com.apple.os/documentation/os/os_workgroup_t",
+        "doc://com.apple.os/documentation/os/os_workgroup_attr_t"
+      ],
+      "title": "Common Utilities"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/os_workgroup_create_with_port"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

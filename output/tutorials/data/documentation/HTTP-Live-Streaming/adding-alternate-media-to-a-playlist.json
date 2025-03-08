@@ -1,0 +1,1210 @@
+{
+  "abstract": [
+    {
+      "text": "Specify Rendition Playlists that can override the main presentation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adding-alternate-media-to-a-playlist"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding alternate media to a playlist"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding alternate media to a Multivariant Playlist allows a provider to specify one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a set of variant playlists as an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "override",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of the main presentation. The client",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plays only the override media (audio or video), and suppresses any media of the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type from the main presentation, if present. This allows a presentation to offer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple versions of the media without requiring the provider to store duplicate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "media, or requiring the client to download all variants when it only needs one. It",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also allows additional media to be offered subsequently without remastering the original",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-alternate-media",
+          "level": 3,
+          "text": "Add alternate media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a Multivariant Playlist that provides additional audio renditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio\",LANGUAGE=\"eng\",NAME=\"English\",AUTOSELECT=YES, DEFAULT=YES,URI=\"eng/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio\",LANGUAGE=\"fre\",NAME=\"Français\",AUTOSELECT=YES, DEFAULT=NO,URI=\"fre/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio\",LANGUAGE=\"sp\",NAME=\"Espanol\",AUTOSELECT=YES, DEFAULT=NO,URI=\"sp/prog_index.m3u8\"",
+            "",
+            "#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=195023,CODECS=\"avc1.42e00a,mp4a.40.2\",AUDIO=\"audio\"",
+            "lo/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=591680,CODECS=\"avc1.42e01e,mp4a.40.2\",AUDIO=\"audio\"",
+            "hi/prog_index.m3u8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tags used in this Multivariant Playlist example include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Identifies an element of a media selection group. All the elements of a media selection group must have similar characteristics, for example, the same codecs and the same maximum bandwidth.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-MEDIA",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "indicates that the next URL in the Multivariant Playlist identifies a Rendition Playlist. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " for the basic parameters.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-STREAM-INF",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The EXT-X-MEDIA tag has the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required) A string indicating the type of media. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "AUDIO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "VIDEO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SUBTITLES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CLOSED-CAPTIONS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "TYPE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required) A string specifying the group that the media selection belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "GROUP-ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A string that identifies the primary language used in the media selection.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "LANGUAGE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required) A string that describes the primary language used in the media selection.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NAME ",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A string that indicates that the client may play the media selection in the absence of explicit user preference. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "YES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If the value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "DEFAULT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "YES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", this value must also be ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "YES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AUTOSELECT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A string indicating that the media selection should be played if the user hasn’t selected another option. Valid values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "YES",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "DEFAULT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required for closed captions) A string that specifies a rendition within the segments in the media playlist. When the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CLOSED-CAPTIONS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "INSTREAM-ID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " must have one of the following values: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CC1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CC3",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CC3",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CC4",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SERVICEn",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", where ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "n",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is between 1 and 63.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "INSTREAM-ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A string containing a language tag for the rendition. An associated language is often different from the language specified in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "LANGUAGE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ASSOC-LANGUAGE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required when two renditions have the same codec but a different number of channels) An ordered string that indicates the maximum number of independent, simultaneous audio channels present in a media segment.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CHANNELS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A string containing a URI that identifies the media playlist file. If the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CLOSED-CAPTIONS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", this attribute must be omitted. When this attribute is omitted, the media content is in the original variant.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "URI",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When its URI attribute is omitted, the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-MEDIA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag can indicate that the media",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "described is included in the URI of the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-STREAM-INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag has the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A quoted string that indicates the set of audio streams that may be used when playing the presentation. This value must match the value of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "GROUP-ID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute of an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-MEDIA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag elsewhere in the Multivariant Playlist whose ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "AUDIO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AUDIO",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A quoted string that indicates the set of video streams that may be used when playing the presentation. This value must match the value of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "GROUP-ID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute of an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-MEDIA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag elsewhere in the Multivariant Playlist whose ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "VIDEO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "VIDEO",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) A quoted string that indicates the set of subtitle renditions that can be used. This value must match the value of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "GROUP-ID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute of an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-MEDIA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag elsewhere in the Multivariant Playlist whose ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SUBTITLE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "SUBTITLES",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) Either a quoted string that indicates the set of closed captions that can be used or an enumerated string with the value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NONE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". When this value is a quoted string, it must match the value of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "GROUP-ID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute of an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-MEDIA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag elsewhere in the Multivariant Playlist whose ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TYPE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " attribute is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CLOSED-CAPTIONS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If the enumerated value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NONE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", all ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-STREAM-INF",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tags must have this attribute with a value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NONE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CLOSED-CAPTIONS",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can have multiple audio groups to allow changes in codes or bit rate. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each audio group in a variant must have the same alternates in it. For example, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can’t have English in one audio group and leave it out of the other group. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example defines two audio groups, one for low bit rates and one for high bit rates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Both audio groups define the same set of languages but are called based on the available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bandwidth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-lo\",LANGUAGE=\"eng\",NAME=\"English\",AUTOSELECT=YES, DEFAULT=YES,URI=\"englo/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-lo\",LANGUAGE=\"fre\",NAME=\"Français\",AUTOSELECT=YES, DEFAULT=NO,URI=\"frelo/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-lo\",LANGUAGE=\"es\",NAME=\"Espanol\",AUTOSELECT=YES, DEFAULT=NO,URI=\"splo/prog_index.m3u8\"",
+            "",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-hi\",LANGUAGE=\"eng\",NAME=\"English\",AUTOSELECT=YES, DEFAULT=YES,URI=\"eng/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-hi\",LANGUAGE=\"fre\",NAME=\"Français\",AUTOSELECT=YES, DEFAULT=NO,URI=\"fre/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"audio-hi\",LANGUAGE=\"es\",NAME=\"Espanol\",AUTOSELECT=YES, DEFAULT=NO,URI=\"sp/prog_index.m3u8\"",
+            "",
+            "#EXT-X-STREAM-INF:BANDWIDTH=195023,CODECS=\"mp4a.40.5\", AUDIO=\"audio-lo\"",
+            "lo/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=260000,CODECS=\"avc1.42e01e,mp4a.40.2\", AUDIO=\"audio-lo\"",
+            "hi/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=591680,CODECS=\"mp4a.40.2, avc1.64001e\", AUDIO=\"audio-hi\"",
+            "lo/prog_index.m3u8",
+            "#EXT-X-STREAM-INF:BANDWIDTH=650000,CODECS=\"avc1.42e01e,mp4a.40.2\", AUDIO=\"audio-hi\"",
+            "hi/prog_index.m3u8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-Groups-and-Single-Options",
+          "level": 3,
+          "text": "Combine Groups and Single Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can have both a group and a single stream in a playlist. This is often done when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have multiple camera angles that all use the same audio. Create a group for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video streams and then declare the single audio stream. The following example shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a playlist with three camera angles and a single audio stream:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"500kbs\",NAME=\"Angle1\",AUTOSELECT=YES,DEFAULT=YES",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"500kbs\",NAME=\"Angle2\",AUTOSELECT=YES,DEFAULT=NO, URI=\"Angle2/500kbs/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"500kbs\",NAME=\"Angle3\",AUTOSELECT=YES,DEFAULT=NO, URI=\"Angle3/500kbs/prog_index.m3u8\"",
+            "",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aac\",LANGUAGE=\"en\",NAME=\"English\",AUTOSELECT=YES, DEFAULT=YES,URI=\"eng/prog_index.m3u8\"",
+            "#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=754857,CODECS=\"mp4a.40.2,avc1.4d401e\", VIDEO=\"500kbs\",AUDIO=\"aac\"",
+            "Angle1/500kbs/prog_index.m3u8"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide different streams for different bit rates, a different video group ID",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is needed for each bit rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"200kbs\",NAME=\"Angle1\",AUTOSELECT=YES,DEFAULT=YES",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"200kbs\",NAME=\"Angle2\",AUTOSELECT=YES,DEFAULT=NO, URI=\"Angle2/200kbs/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"200kbs\",NAME=\"Angle3\",AUTOSELECT=YES,DEFAULT=NO, URI=\"Angle3/200kbs/prog_index.m3u8\"",
+            "",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"500kbs\",NAME=\"Angle1\",AUTOSELECT=YES,DEFAULT=YES",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"500kbs\",NAME=\"Angle2\",AUTOSELECT=YES,DEFAULT=NO, URI=\"Angle2/500kbs/prog_index.m3u8\"",
+            "#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID=\"500kbs\",NAME=\"Angle3\",AUTOSELECT=YES,DEFAULT=NO, URI=\"Angle3/500kbs/prog_index.m3u8\"",
+            "",
+            "#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"aac\",LANGUAGE=\"en\",NAME=\"English\",AUTOSELECT=YES, DEFAULT=YES,URI=\"eng/prog_index.m3u8\"",
+            "",
+            "#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=300000,CODECS=\"mp4a.40.2,avc1.4d401e\", VIDEO=\"200kbs\",AUDIO=\"aac\"",
+            "Angle1/200kbs/prog_index.m3u",
+            "",
+            "#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=754857,CODECS=\"mp4a.40.2,avc1.4d401e\", VIDEO=\"500kbs\",AUDIO=\"aac\"",
+            "Angle1/500kbs/prog_index.m3u8",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist": {
+      "abstract": [
+        {
+          "text": "Offer multiple playlist files to provide different encodings of the same content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Multivariant Playlist",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/creating-a-multivariant-playlist"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "View and compare playlists for different HLS applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Example playlists for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/example-playlists-for-http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist": {
+      "abstract": [
+        {
+          "text": "Add branding or ads to a playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist",
+      "kind": "article",
+      "role": "article",
+      "title": "Incorporating Ads into a Playlist",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/incorporating-ads-into-a-playlist"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Modified-playlists",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist"
+      ],
+      "title": "Modified playlists"
+    }
+  ]
+}

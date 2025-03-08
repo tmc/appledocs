@@ -1,1 +1,769 @@
-{"abstract":[{"type":"text","text":"Performs single-precision FIR filtering with decimation and antialiasing."}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.accelerate/documentation/Accelerate"]]},"identifier":{"interfaceLanguage":"occ","url":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp"},"seeAlsoSections":[{"title":"Real Vectors","anchor":"Real-Vectors","identifiers":["doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD"],"generated":true}],"metadata":{"platforms":[{"introducedAt":"4.0","beta":false,"name":"iOS","unavailable":false,"deprecated":false},{"introducedAt":"4.0","beta":false,"name":"iPadOS","unavailable":false,"deprecated":false},{"introducedAt":"13.1","beta":false,"name":"Mac Catalyst","unavailable":false,"deprecated":false},{"introducedAt":"10.4","beta":false,"name":"macOS","unavailable":false,"deprecated":false},{"beta":false,"name":"tvOS","unavailable":false,"deprecated":false},{"introducedAt":"1.0","beta":false,"name":"visionOS","unavailable":false,"deprecated":false},{"introducedAt":"2.0","beta":false,"name":"watchOS","unavailable":false,"deprecated":false}],"role":"symbol","symbolKind":"func","externalID":"c:@F@vDSP_desamp","roleHeading":"Function","modules":[{"name":"Accelerate"}],"navigatorTitle":[{"text":"vDSP_desamp","kind":"identifier"}],"title":"vDSP_desamp","fragments":[{"text":"vDSP_desamp","kind":"identifier"}]},"primaryContentSections":[{"declarations":[{"languages":["occ"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"tokens":[{"text":"extern","kind":"keyword"},{"text":" ","kind":"text"},{"text":"void","preciseIdentifier":"c:v","kind":"typeIdentifier"},{"text":" ","kind":"text"},{"text":"vDSP_desamp","kind":"identifier"},{"text":"(","kind":"text"},{"text":"const","kind":"keyword"},{"text":" ","kind":"text"},{"text":"float","preciseIdentifier":"c:f","kind":"typeIdentifier"},{"text":" * ","kind":"text"},{"text":"__A","kind":"internalParam"},{"text":", ","kind":"text"},{"text":"vDSP_Stride","preciseIdentifier":"c:@T@vDSP_Stride","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Stride","kind":"typeIdentifier"},{"text":" ","kind":"text"},{"text":"__DF","kind":"internalParam"},{"text":", ","kind":"text"},{"text":"const","kind":"keyword"},{"text":" ","kind":"text"},{"text":"float","preciseIdentifier":"c:f","kind":"typeIdentifier"},{"text":" * ","kind":"text"},{"text":"__F","kind":"internalParam"},{"text":", ","kind":"text"},{"text":"float","preciseIdentifier":"c:f","kind":"typeIdentifier"},{"text":" * ","kind":"text"},{"text":"__C","kind":"internalParam"},{"text":", ","kind":"text"},{"text":"vDSP_Length","preciseIdentifier":"c:@T@vDSP_Length","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length","kind":"typeIdentifier"},{"text":" ","kind":"text"},{"text":"__N","kind":"internalParam"},{"text":", ","kind":"text"},{"text":"vDSP_Length","preciseIdentifier":"c:@T@vDSP_Length","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length","kind":"typeIdentifier"},{"text":" ","kind":"text"},{"text":"__P","kind":"internalParam"},{"text":");","kind":"text"}]}],"kind":"declarations"},{"parameters":[{"content":[{"inlineContent":[{"type":"text","text":"Single-precision real input vector. The size of "},{"code":"A","type":"codeVoice"},{"type":"text","text":" must be at least "},{"code":"DF * (N-1) + P","type":"codeVoice"},{"type":"text","text":" (see below)."}],"type":"paragraph"}],"name":"__A"},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Decimation factor."}]}],"name":"__DF"},{"content":[{"type":"paragraph","inlineContent":[{"text":"Single-precision real filter vector.","type":"text"}]}],"name":"__F"},{"content":[{"inlineContent":[{"type":"text","text":"Single-precision real output vector."}],"type":"paragraph"}],"name":"__C"},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Length of output vector "},{"type":"codeVoice","code":"C"},{"type":"text","text":"."}]}],"name":"__N"},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Length of filter vector "},{"code":"F","type":"codeVoice"},{"type":"text","text":"."}]}],"name":"__P"}],"kind":"parameters"},{"kind":"mentions","mentions":["doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation"]},{"kind":"content","content":[{"type":"heading","level":2,"anchor":"Discussion","text":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Performs finite impulse response (FIR) filtering at selected positions of the input vector "},{"type":"codeVoice","code":"A"},{"type":"text","text":", with the filter "},{"type":"codeVoice","code":"F"},{"type":"text","text":", using the decimation factor "},{"type":"codeVoice","code":"DF"},{"type":"text","text":". Results are left in the output vector "},{"type":"codeVoice","code":"C"},{"type":"text","text":"."}]},{"type":"paragraph","inlineContent":[{"text":"This function can run in place, but ","type":"text"},{"code":"C","type":"codeVoice"},{"text":" cannot be in place with ","type":"text"},{"code":"F","type":"codeVoice"},{"text":".","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"This function’s operation is indicated by the following pseudocode:","type":"text"}]},{"type":"codeListing","syntax":"objc","code":["for (n = 0; n < N; ++n)","{","    sum = 0;","    for (p = 0; p < P; ++p)","        sum += A[n * DF + p] * F[p];","    C[n] = sum;","}"]},{"type":"aside","name":"Note","content":[{"inlineContent":[{"text":"","type":"text"},{"text":" ","type":"text"},{"text":"The ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp"},{"text":" function may rearrange the order of operations and use various floating-point precisions, so actual results may not be calculated in exactly the same way as the pseudocode above.","type":"text"}],"type":"paragraph"}],"style":"note"}]}],"sections":[],"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/accelerate/vdsp_desamp"]}],"kind":"symbol","references":{"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","kind":"technologies","url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"type":"topic"},"doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation":{"url":"/documentation/accelerate/resampling-a-signal-with-decimation","title":"Resampling a signal with decimation","abstract":[{"type":"text","text":"Reduce the sample rate of a signal by specifying a decimation factor and applying a custom antialiasing filter."}],"type":"topic","role":"article","kind":"article","identifier":"doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation"},"doc://com.apple.accelerate/documentation/Accelerate":{"abstract":[{"text":"Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.","type":"text"}],"type":"topic","title":"Accelerate","identifier":"doc://com.apple.accelerate/documentation/Accelerate","kind":"symbol","url":"/documentation/accelerate","role":"collection"},"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length":{"type":"topic","role":"symbol","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length","navigatorTitle":[{"text":"vDSP_Length","kind":"identifier"}],"title":"vDSP_Length","url":"/documentation/accelerate/vdsp_length","fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"vDSP_Length","kind":"identifier"}],"kind":"symbol","abstract":[{"text":"An unsigned-integer value that represents the size of vectors and the indices of elements in vectors.","type":"text"}]},"doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp":{"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp","fragments":[{"kind":"identifier","text":"vDSP_desamp"}],"abstract":[{"type":"text","text":"Performs single-precision FIR filtering with decimation and antialiasing."}],"role":"symbol","title":"vDSP_desamp","url":"/documentation/accelerate/vdsp_desamp","kind":"symbol","type":"topic"},"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Stride":{"url":"/documentation/accelerate/vdsp_stride","navigatorTitle":[{"kind":"identifier","text":"vDSP_Stride"}],"kind":"symbol","role":"symbol","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"vDSP_Stride"}],"abstract":[{"text":"An integer value that represents the differences between indices of elements, including the lengths of strides.","type":"text"}],"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_Stride","title":"vDSP_Stride","type":"topic"},"doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD":{"type":"topic","kind":"symbol","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD","abstract":[{"text":"Performs double-precision FIR filtering with decimation and antialiasing.","type":"text"}],"role":"symbol","url":"/documentation/accelerate/vdsp_desampd","title":"vDSP_desampD","fragments":[{"text":"vDSP_desampD","kind":"identifier"}]}},"variantOverrides":[{"patch":[{"value":"vDSP_Length","path":"/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/title","op":"replace"},{"path":"/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/fragments","value":[{"text":"vDSP_Length","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/navigatorTitle","value":[{"kind":"identifier","text":"vDSP_Length"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Stride/title","value":"vDSP_Stride","op":"replace"},{"path":"/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Stride/fragments","value":[{"kind":"identifier","text":"vDSP_Stride"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Stride/navigatorTitle","value":[{"kind":"identifier","text":"vDSP_Stride"}],"op":"replace"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Performs single-precision FIR filtering with decimation and antialiasing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_desamp",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "vDSP_desamp"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "vDSP_desamp"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_desamp"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_desamp"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__A"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__DF"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__F"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__C"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__N"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "__P"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-precision real input vector. The size of ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be at least ",
+                  "type": "text"
+                },
+                {
+                  "code": "DF * (N-1) + P",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " (see below).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__A"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Decimation factor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__DF"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-precision real filter vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__F"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Single-precision real output vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Length of output vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Length of filter vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "F",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__P"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Performs finite impulse response (FIR) filtering at selected positions of the input vector ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with the filter ",
+              "type": "text"
+            },
+            {
+              "code": "F",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", using the decimation factor ",
+              "type": "text"
+            },
+            {
+              "code": "DF",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Results are left in the output vector ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function can run in place, but ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": " cannot be in place with ",
+              "type": "text"
+            },
+            {
+              "code": "F",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function’s operation is indicated by the following pseudocode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (n = 0; n < N; ++n)",
+            "{",
+            "    sum = 0;",
+            "    for (p = 0; p < P; ++p)",
+            "        sum += A[n * DF + p] * F[p];",
+            "    C[n] = sum;",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function may rearrange the order of operations and use various floating-point precisions, so actual results may not be calculated in exactly the same way as the pseudocode above.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation": {
+      "abstract": [
+        {
+          "text": "Reduce the sample rate of a signal by specifying a decimation factor and applying a custom antialiasing filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+      "kind": "article",
+      "role": "article",
+      "title": "Resampling a signal with decimation",
+      "type": "topic",
+      "url": "/documentation/accelerate/resampling-a-signal-with-decimation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length": {
+      "abstract": [
+        {
+          "text": "An unsigned-integer value that represents the size of vectors and the indices of elements in vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_Length"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Length",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_Length"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_length"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Stride": {
+      "abstract": [
+        {
+          "text": "An integer value that represents the differences between indices of elements, including the lengths of strides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_Stride"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_Stride",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_Stride"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_stride"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp": {
+      "abstract": [
+        {
+          "text": "Performs single-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_desamp"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_desamp",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_desamp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD": {
+      "abstract": [
+        {
+          "text": "Performs double-precision FIR filtering with decimation and antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_desampD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_desampD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_desampd"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Real-Vectors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_desampD"
+      ],
+      "title": "Real Vectors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/title",
+          "value": "vDSP_Length"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Length/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Stride/title",
+          "value": "vDSP_Stride"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Stride/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Stride"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_Stride/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_Stride"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vdsp_desamp"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

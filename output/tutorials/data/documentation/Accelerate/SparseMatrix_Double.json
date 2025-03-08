@@ -1,0 +1,1079 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that contains a sparse matrix of double-precision, floating-point values.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@SparseMatrix_Double",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SparseMatrix_Double"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SparseMatrix_Double"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SparseMatrix_Double"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically use sparse matrices to represent the sparse coefficient matrix in the matrix equation ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure provides a pointer to its underlying data, and information about its structure and attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accelerate framework uses the compressed sparse column (CSC) format to store sparse matrices. CSC stores the matrix as a series of column vectors that specifies only the nonzero entries as ",
+              "type": "text"
+            },
+            {
+              "code": "(row-index, value)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pairs. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/creating-sparse-matrices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you finish using a sparse matrix, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseCleanup(_:)-6ywzn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to release its references to any memory that the Sparse Solvers library allocates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t": {
+      "abstract": [
+        {
+          "text": "A structure that represents the attributes of a matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseAttributes_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseAttributes_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseAttributes_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseattributes_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseCleanup(_:)-6ywzn": {
+      "abstract": [
+        {
+          "text": "Releases a matrix of double-precision values’ references to any memory that the Sparse Solvers library allocates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseCleanup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Double",
+          "text": "SparseMatrix_Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseCleanup(_:)-6ywzn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseCleanup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseCleanup(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsecleanup(_:)-6ywzn"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure": {
+      "abstract": [
+        {
+          "text": "A description of the sparsity structure of a sparse matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrixStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrixStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrixStructure",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrixstructure"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double": {
+      "abstract": [
+        {
+          "text": "A structure that contains a sparse matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrix_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/data": {
+      "abstract": [
+        {
+          "text": "The array of contiguous values in the nonzero blocks of the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_double/data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/init(structure:data:)": {
+      "abstract": [
+        {
+          "text": "Creates a sparse matrix with the specified structure that contains double-precision values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "structure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrixStructure",
+          "text": "SparseMatrixStructure"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/init(structure:data:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(structure:data:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_double/init(structure:data:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/structure": {
+      "abstract": [
+        {
+          "text": "The sparsity structure of the matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "structure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrixStructure",
+          "text": "SparseMatrixStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/structure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "structure"
+        }
+      ],
+      "role": "symbol",
+      "title": "structure",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_double/structure"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float": {
+      "abstract": [
+        {
+          "text": "A structure that contains a sparse matrix of single-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseMatrix_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseMatrix_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsematrix_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices from coordinate format arrays and BLAS opaque matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion from Other Formats",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion-from-other-formats"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices for factorization and solving systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating sparse matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-sparse-matrices"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/creating-sparse-matrices": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices for factorization and solving systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/creating-sparse-matrices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating sparse matrices",
+      "type": "topic",
+      "url": "/documentation/Accelerate/creating-sparse-matrices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-sparse-matrices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats"
+      ],
+      "title": "Creating sparse matrices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Sparse-Matrix",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/init(structure:data:)"
+      ],
+      "title": "Creating a Sparse Matrix"
+    },
+    {
+      "anchor": "Inspecting-a-Matrixs-Structure-and-Data",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/structure",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/data"
+      ],
+      "title": "Inspecting a Matrix’s Structure and Data"
+    },
+    {
+      "anchor": "Specifying-the-Structure-and-Attributes-of-a-Sparse-Matrix",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t"
+      ],
+      "title": "Specifying the Structure and Attributes of a Sparse Matrix"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SparseMatrix_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Inspecting-a-Matrixs-Structure-and-Data",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/structure",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Double/data"
+              ],
+              "title": "Inspecting a Matrix’s Structure and Data"
+            },
+            {
+              "anchor": "Specifying-the-Structure-and-Attributes-of-a-Sparse-Matrix",
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrixStructure",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t"
+              ],
+              "title": "Specifying the Structure and Attributes of a Sparse Matrix"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-sparse-matrices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseMatrix_Float"
+              ],
+              "title": "Creating sparse matrices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SparseMatrix_Double"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double~1structure/title",
+          "value": "structure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double~1structure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "structure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t/title",
+          "value": "SparseAttributes_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseAttributes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseAttributes_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure/title",
+          "value": "SparseMatrixStructure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrixStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrixStructure/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrixStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseCleanup(_:)-6ywzn/title",
+          "value": "SparseCleanup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseCleanup(_:)-6ywzn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseCleanup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Float/title",
+          "value": "SparseMatrix_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/title",
+          "value": "SparseMatrix_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseMatrix_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseMatrix_Double"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/sparsematrix_double"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/sparsematrix_double"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

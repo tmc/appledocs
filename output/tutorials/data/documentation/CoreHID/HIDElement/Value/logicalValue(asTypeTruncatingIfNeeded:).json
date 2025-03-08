@@ -1,0 +1,895 @@
+{
+  "abstract": [
+    {
+      "text": "The raw value of the data cast as an integer type and bound by the ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "’s logical minimum and logical maximum values.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CoreHID/documentation/CoreHID",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/logicalValue(asTypeTruncatingIfNeeded:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CoreHID",
+    "externalID": "s:7CoreHID10HIDElementV5ValueV07logicalD024asTypeTruncatingIfNeededxSgxm_ts17FixedWidthIntegerRzlF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "logicalValue"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "genericParameter",
+        "text": "IntegerType"
+      },
+      {
+        "kind": "text",
+        "text": ">("
+      },
+      {
+        "kind": "externalParam",
+        "text": "asTypeTruncatingIfNeeded"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "IntegerType"
+      },
+      {
+        "kind": "text",
+        "text": ".Type) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "IntegerType"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core HID"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "logicalValue(asTypeTruncatingIfNeeded:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "logicalValue"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "IntegerType"
+            },
+            {
+              "kind": "text",
+              "text": ">("
+            },
+            {
+              "kind": "externalParam",
+              "text": "asTypeTruncatingIfNeeded"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "IntegerType"
+            },
+            {
+              "kind": "text",
+              "text": ".Type) -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "IntegerType"
+            },
+            {
+              "kind": "text",
+              "text": "? "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "IntegerType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s17FixedWidthIntegerP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s17FixedWidthIntegerP",
+              "text": "FixedWidthInteger"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type to which to cast the underlying bytes before applying bounds, truncating or extending the bytes as necessary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "asTypeTruncatingIfNeeded"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data cast as the requested type, or nil if out of bounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the raw value is out of bounds, this returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if the logical minimum and logical maximum are specified as ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "127",
+              "type": "codeVoice"
+            },
+            {
+              "text": " respectively, and the raw value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the logical value is undefined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CoreHID/documentation/CoreHID": {
+      "abstract": [
+        {
+          "text": "Interact with keyboards, mice, and other human interface devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core HID",
+      "type": "topic",
+      "url": "/documentation/corehid"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement": {
+      "abstract": [
+        {
+          "text": "A representation of an item from a report descriptor for a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDElement",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value": {
+      "abstract": [
+        {
+          "text": "Data associated with a HID element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDElement.Value",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/bytes": {
+      "abstract": [
+        {
+          "text": "The data as an array of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/bytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bytes",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value/bytes"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/integerValue(asTypeTruncatingIfNeeded:)": {
+      "abstract": [
+        {
+          "text": "The raw value of the data cast as an integer type, with no transformations applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "integerValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asTypeTruncatingIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "IntegerType"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/integerValue(asTypeTruncatingIfNeeded:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integerValue(asTypeTruncatingIfNeeded:)",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value/integervalue(astypetruncatingifneeded:)"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/logicalValue(asTypeTruncatingIfNeeded:)": {
+      "abstract": [
+        {
+          "text": "The raw value of the data cast as an integer type and bound by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "’s logical minimum and logical maximum values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "logicalValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "asTypeTruncatingIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/logicalValue(asTypeTruncatingIfNeeded:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logicalValue(asTypeTruncatingIfNeeded:)",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value/logicalvalue(astypetruncatingifneeded:)"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/physicalValue(fromTypeTruncatingIfNeeded:as:)": {
+      "abstract": [
+        {
+          "text": "The logical value of the data, shifted and scaled by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "’s physical minimum, physical maximum and exponent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "FloatingType"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromTypeTruncatingIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "IntegerType"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "FloatingType"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "FloatingType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/physicalValue(fromTypeTruncatingIfNeeded:as:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicalValue(fromTypeTruncatingIfNeeded:as:)",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value/physicalvalue(fromtypetruncatingifneeded:as:)"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/timestamp": {
+      "abstract": [
+        {
+          "text": "The time that this data was received by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency15SuspendingClockV",
+          "text": "SuspendingClock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency15SuspendingClockV7InstantV",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/timestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value/timestamp"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s17FixedWidthIntegerP": {
+      "abstract": [
+        {
+          "text": "An integer type that uses a fixed size for every instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FixedWidthInteger"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sz",
+          "text": "BinaryInteger"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25LosslessStringConvertibleP",
+          "text": "LosslessStringConvertible"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sj9MagnitudeQa",
+          "text": "Magnitude"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s17FixedWidthIntegerP",
+          "text": "FixedWidthInteger"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sj9MagnitudeQa",
+          "text": "Magnitude"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SU",
+          "text": "UnsignedInteger"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sx6StrideQa",
+          "text": "Stride"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s17FixedWidthIntegerP",
+          "text": "FixedWidthInteger"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sx6StrideQa",
+          "text": "Stride"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SZ",
+          "text": "SignedInteger"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s17FixedWidthIntegerP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FixedWidthInteger",
+      "type": "topic",
+      "url": "/documentation/Swift/FixedWidthInteger"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Get-element-data-and-values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/bytes",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/integerValue(asTypeTruncatingIfNeeded:)",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/physicalValue(fromTypeTruncatingIfNeeded:as:)",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value/timestamp"
+      ],
+      "title": "Get element data and values"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehid/hidelement/value/logicalvalue(astypetruncatingifneeded:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3228 @@
+{
+  "abstract": [
+    {
+      "text": "A container for image data from a photo capture output.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVCapturePhoto",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVCapturePhoto"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVCapturePhoto"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVCapturePhoto"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-camera-capture-to-collect-a-portrait-effects-matte",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/saving-captured-photos",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-and-saving-live-photos",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/tracking-photo-capture-progress",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-a-bracketed-photo-sequence",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you capture photos with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, your delegate object receives each resulting image and related data in the form of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This object is an immutable wrapper from which you can retrieve various results of the photo capture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the photo image pixel buffer, an AVCapturePhoto object can also contain a preview-sized pixel buffer, capture metadata, and, on supported devices, depth data and camera calibration data. From an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, you can generate data appropriate for writing to a file, such as HEVC encoded image data containerized in the HEIC file format and including a preview image, depth data and other attachments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance wraps a single image result. For example, if you request a bracketed capture of three images, your callback is called three times, each time delivering a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy": {
+      "abstract": [
+        {
+          "text": "A lightly-processed photo with data that the system may use to process and fetch a higher-resolution asset at a later time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeferredPhotoProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeferredPhotoProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDeferredPhotoProxy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedeferredphotoproxy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the status of optical image stabilization hardware during a bracketed photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LensStabilizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LensStabilizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.LensStabilizationStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/lensstabilizationstatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto": {
+      "abstract": [
+        {
+          "text": "A container for image data from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/bracketSettings": {
+      "abstract": [
+        {
+          "text": "The variations available for bracketed capture settings for this photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bracketSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureBracketedStillImageSettings",
+          "text": "AVCaptureBracketedStillImageSettings"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/bracketSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bracketSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "bracketSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/bracketsettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cameraCalibrationData": {
+      "abstract": [
+        {
+          "text": "Calibration information for the camera device that captured the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraCalibrationData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCameraCalibrationData",
+          "text": "AVCameraCalibrationData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cameraCalibrationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraCalibrationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraCalibrationData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/cameracalibrationdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cgImageRepresentation()": {
+      "abstract": [
+        {
+          "text": "Extracts and returns the captured photo’s primary image as a Core Graphics image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgImageRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cgImageRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CGImageRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "cgImageRepresentation()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/cgimagerepresentation()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorCenterWeightedMeanConfidenceLevel": {
+      "abstract": [
+        {
+          "text": "A score that summarizes the overall confidence level of a constant color photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantColorCenterWeightedMeanConfidenceLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorCenterWeightedMeanConfidenceLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantColorCenterWeightedMeanConfidenceLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "constantColorCenterWeightedMeanConfidenceLevel",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/constantcolorcenterweightedmeanconfidencelevel"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorConfidenceMap": {
+      "abstract": [
+        {
+          "text": "A pixel buffer where each pixel value indicates how fully the system achieves the constant color effect in the corresponding region of the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantColorConfidenceMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorConfidenceMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantColorConfidenceMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "constantColorConfidenceMap",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/constantcolorconfidencemap"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData": {
+      "abstract": [
+        {
+          "text": "Depth or disparity map data captured with the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/depthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/embeddedThumbnailPhotoFormat": {
+      "abstract": [
+        {
+          "text": "A dictionary describing the data format for a preview-sized image accompanying the captured photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "embeddedThumbnailPhotoFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/embeddedThumbnailPhotoFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "embeddedThumbnailPhotoFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "embeddedThumbnailPhotoFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/embeddedthumbnailphotoformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()": {
+      "abstract": [
+        {
+          "text": "Generates and returns a flat data representation of the photo and its attachments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileDataRepresentation()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/filedatarepresentation()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)": {
+      "abstract": [
+        {
+          "text": "Gets a customized representation of the photo data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCapturePhotoFileDataRepresentationCustomizer",
+          "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentationWithCustomizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileDataRepresentation(with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/filedatarepresentation(with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)": {
+      "abstract": [
+        {
+          "text": "Generates and returns a flat data representation of the photo using the specified replacements for some or all of its attachments.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withReplacementMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementEmbeddedThumbnailPhotoFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementEmbeddedThumbnailPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replacementDepthData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/filedatarepresentation(withreplacementmetadata:replacementembeddedthumbnailphotoformat:replacementembeddedthumbnailpixelbuffer:replacementdepthdata:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isConstantColorFallbackPhoto": {
+      "abstract": [
+        {
+          "text": "A Boolean value that Indicates whether this photo is a fallback photo for a constant color capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConstantColorFallbackPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isConstantColorFallbackPhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantColorFallbackPhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "isConstantColorFallbackPhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/isconstantcolorfallbackphoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isRawPhoto": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this photo object contains RAW format data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRawPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isRawPhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rawPhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "isRawPhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/israwphoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/lensStabilizationStatus": {
+      "abstract": [
+        {
+          "text": "Information about the use of lens stabilization during bracketed photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lensStabilizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureLensStabilizationStatus",
+          "text": "LensStabilizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/lensStabilizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lensStabilizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "lensStabilizationStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/lensstabilizationstatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/metadata": {
+      "abstract": [
+        {
+          "text": "A dictionary of metadata describing the captured image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadata",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/metadata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount": {
+      "abstract": [
+        {
+          "text": "The 1-based index of this photo capture relative to other results from the same capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "photoCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoCount",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/photocount"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer": {
+      "abstract": [
+        {
+          "text": "The uncompressed or RAW image sample buffer for the photo, if requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelBuffer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/pixelbuffer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/portraitEffectsMatte": {
+      "abstract": [
+        {
+          "text": "The portrait effects matte captured with the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPortraitEffectsMatte",
+          "text": "AVPortraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/portraitEffectsMatte",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatte"
+        }
+      ],
+      "role": "symbol",
+      "title": "portraitEffectsMatte",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/portraiteffectsmatte"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewCGImageRepresentation()": {
+      "abstract": [
+        {
+          "text": "Extracts and returns the captured photo’s preview image as a Core Graphics image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewCGImageRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewCGImageRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewCGImageRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "previewCGImageRepresentation()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/previewcgimagerepresentation()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewPixelBuffer": {
+      "abstract": [
+        {
+          "text": "The pixel data for a preview-sized version of the photo, if requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewPixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewPixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "previewPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/previewpixelbuffer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/resolvedSettings": {
+      "abstract": [
+        {
+          "text": "The settings object that was used to request this photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvedSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureResolvedPhotoSettings",
+          "text": "AVCaptureResolvedPhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/resolvedSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolvedSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolvedSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/resolvedsettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/semanticSegmentationMatte(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the semantic segmentation matte associated with this photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "semanticSegmentationMatte"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVSemanticSegmentationMatte",
+          "text": "AVSemanticSegmentationMatte"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVSemanticSegmentationMatteType",
+          "text": "MatteType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVSemanticSegmentationMatte",
+          "text": "AVSemanticSegmentationMatte"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/semanticSegmentationMatte(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "semanticSegmentationMatteForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "semanticSegmentationMatte(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/semanticsegmentationmatte(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sequenceCount": {
+      "abstract": [
+        {
+          "text": "The 1-based index of this photo in a bracketed capture sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sequenceCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sequenceCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sequenceCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "sequenceCount",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/sequencecount"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sourceDeviceType": {
+      "abstract": [
+        {
+          "text": "The type of device that captured the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceDeviceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sourceDeviceType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceDeviceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceDeviceType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/sourcedevicetype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/timestamp": {
+      "abstract": [
+        {
+          "text": "The time at which the image was captured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/timestamp"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for monitoring progress and receiving results from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoCaptureDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoCaptureDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoCaptureDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to customize the packaging of photo data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoFileDataRepresentationCustomizer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotofiledatarepresentationcustomizer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that monitors changes to a photo output’s capture readiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutputReadinessCoordinator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutputreadinesscoordinator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol to receive updates about a photo output’s capture readiness.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutputReadinessCoordinatorDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutputreadinesscoordinatordelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for capturing still photos.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureStillImageOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureStillImageOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureStillImageOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturestillimageoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-a-bracketed-photo-sequence": {
+      "abstract": [
+        {
+          "text": "Capture several photos at once, varying parameters like exposure duration or light sensitivity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-a-bracketed-photo-sequence",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Bracketed Photo Sequence",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-a-bracketed-photo-sequence"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-and-saving-live-photos": {
+      "abstract": [
+        {
+          "text": "Capture Live Photos like those created in the system Camera app and save them to the Photos library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-and-saving-live-photos",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing and Saving Live Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-and-saving-live-photos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images": {
+      "abstract": [
+        {
+          "text": "Add the power of a photography studio and lighting rig to your app with the new Constant Color API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing consistent color images",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-consistent-color-images"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-in-raw-and-apple-proraw-formats": {
+      "abstract": [
+        {
+          "text": "Support professional photography workflows by enabling minimally processed image capture in your camera app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-in-raw-and-apple-proraw-formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Photos in RAW and Apple ProRAW Formats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-photos-in-raw-and-apple-proraw-formats"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth": {
+      "abstract": [
+        {
+          "text": "Get a depth map with a photo to create effects like the system camera’s Portrait mode (on compatible devices).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Photos with Depth",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-photos-with-depth"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos": {
+      "abstract": [
+        {
+          "text": "Configure and capture single or multiple still images, Live Photos, and other forms of photography.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capturing Still and Live Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-still-and-live-photos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images": {
+      "abstract": [
+        {
+          "text": "Enable delivery of reduced-size images with the main image in a photo capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-thumbnail-and-preview-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Thumbnail and Preview Images",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-thumbnail-and-preview-images"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data": {
+      "abstract": [
+        {
+          "text": "Get processed image data without compression to use for filtering or lossless output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-uncompressed-image-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Uncompressed Image Data",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-uncompressed-image-data"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-camera-capture-to-collect-a-portrait-effects-matte": {
+      "abstract": [
+        {
+          "text": "Prepare your app to capture a portrait effects matte when taking photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/configuring-camera-capture-to-collect-a-portrait-effects-matte",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Camera Capture to Collect a Portrait Effects Matte",
+      "type": "topic",
+      "url": "/documentation/avfoundation/configuring-camera-capture-to-collect-a-portrait-effects-matte"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/saving-captured-photos": {
+      "abstract": [
+        {
+          "text": "Add an image and other data from a photo capture to the photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/saving-captured-photos",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving Captured Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/saving-captured-photos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/tracking-photo-capture-progress": {
+      "abstract": [
+        {
+          "text": "Monitor key events during capture to provide feedback in your camera UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/tracking-photo-capture-progress",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking Photo Capture Progress",
+      "type": "topic",
+      "url": "/documentation/avfoundation/tracking-photo-capture-progress"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Incorporate scanned documents and pictures from a user’s iPhone, iPad, or iPod touch into your Mac app using Continuity Camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Continuity Camera in Your Mac App",
+      "type": "topic",
+      "url": "/documentation/AppKit/supporting-continuity-camera-in-your-mac-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Photo-capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-in-raw-and-apple-proraw-formats",
+        "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput"
+      ],
+      "title": "Photo capture"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Resolving-Photo-Capture-Requests",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/resolvedSettings",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/timestamp"
+      ],
+      "title": "Resolving Photo Capture Requests"
+    },
+    {
+      "anchor": "Accessing-Photo-Pixel-Data",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isRawPhoto",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer"
+      ],
+      "title": "Accessing Photo Pixel Data"
+    },
+    {
+      "anchor": "Accessing-Preview-Photo-Data",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/embeddedThumbnailPhotoFormat",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewPixelBuffer"
+      ],
+      "title": "Accessing Preview Photo Data"
+    },
+    {
+      "anchor": "Accessing-Photo-Metadata",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cameraCalibrationData",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sourceDeviceType",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/portraitEffectsMatte"
+      ],
+      "title": "Accessing Photo Metadata"
+    },
+    {
+      "anchor": "Packaging-Data-for-File-Output",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cgImageRepresentation()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewCGImageRepresentation()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)"
+      ],
+      "title": "Packaging Data for File Output"
+    },
+    {
+      "anchor": "Enabling-Constant-Color",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorCenterWeightedMeanConfidenceLevel",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorConfidenceMap",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isConstantColorFallbackPhoto"
+      ],
+      "title": "Enabling Constant Color"
+    },
+    {
+      "anchor": "Examining-Bracketed-Capture-Information",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/bracketSettings",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sequenceCount",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/lensStabilizationStatus",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus"
+      ],
+      "title": "Examining Bracketed Capture Information"
+    },
+    {
+      "anchor": "Accessing-Segmentation-Mattes",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/semanticSegmentationMatte(for:)"
+      ],
+      "title": "Accessing Segmentation Mattes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVCapturePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Resolving-Photo-Capture-Requests",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/resolvedSettings",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/photoCount",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/timestamp"
+              ],
+              "title": "Resolving Photo Capture Requests"
+            },
+            {
+              "anchor": "Accessing-Photo-Pixel-Data",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isRawPhoto",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/pixelBuffer"
+              ],
+              "title": "Accessing Photo Pixel Data"
+            },
+            {
+              "anchor": "Accessing-Preview-Photo-Data",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/embeddedThumbnailPhotoFormat",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewPixelBuffer"
+              ],
+              "title": "Accessing Preview Photo Data"
+            },
+            {
+              "anchor": "Accessing-Photo-Metadata",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cameraCalibrationData",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sourceDeviceType",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/metadata",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/portraitEffectsMatte"
+              ],
+              "title": "Accessing Photo Metadata"
+            },
+            {
+              "anchor": "Packaging-Data-for-File-Output",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(with:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoFileDataRepresentationCustomizer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/cgImageRepresentation()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/previewCGImageRepresentation()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)"
+              ],
+              "title": "Packaging Data for File Output"
+            },
+            {
+              "anchor": "Enabling-Constant-Color",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorCenterWeightedMeanConfidenceLevel",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/constantColorConfidenceMap",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/isConstantColorFallbackPhoto"
+              ],
+              "title": "Enabling Constant Color"
+            },
+            {
+              "anchor": "Examining-Bracketed-Capture-Information",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/bracketSettings",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/sequenceCount",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/lensStabilizationStatus",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus"
+              ],
+              "title": "Examining Bracketed Capture Information"
+            },
+            {
+              "anchor": "Accessing-Segmentation-Mattes",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/semanticSegmentationMatte(for:)"
+              ],
+              "title": "Accessing Segmentation Mattes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Photo-capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-consistent-color-images",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-in-raw-and-apple-proraw-formats",
+                "doc://com.apple.documentation/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeferredPhotoProxy",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinator",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutputReadinessCoordinatorDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureStillImageOutput"
+              ],
+              "title": "Photo capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVCapturePhoto"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoFileDataRepresentationCustomizer/title",
+          "value": "AVCapturePhotoFileDataRepresentationCustomizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoFileDataRepresentationCustomizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoFileDataRepresentationCustomizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoFileDataRepresentationCustomizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1lensStabilizationStatus/title",
+          "value": "lensStabilizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1lensStabilizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lensStabilizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1isConstantColorFallbackPhoto/title",
+          "value": "constantColorFallbackPhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1isConstantColorFallbackPhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constantColorFallbackPhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1sequenceCount/title",
+          "value": "sequenceCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1sequenceCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sequenceCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate/title",
+          "value": "AVCapturePhotoCaptureDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoCaptureDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoCaptureDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1bracketSettings/title",
+          "value": "bracketSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1bracketSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bracketSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeferredPhotoProxy/title",
+          "value": "AVCaptureDeferredPhotoProxy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeferredPhotoProxy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeferredPhotoProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeferredPhotoProxy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeferredPhotoProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1pixelBuffer/title",
+          "value": "pixelBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1pixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1isRawPhoto/title",
+          "value": "rawPhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1isRawPhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rawPhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1resolvedSettings/title",
+          "value": "resolvedSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1resolvedSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resolvedSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1semanticSegmentationMatte(for:)/title",
+          "value": "semanticSegmentationMatteForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1semanticSegmentationMatte(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "semanticSegmentationMatteForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureStillImageOutput/title",
+          "value": "AVCaptureStillImageOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureStillImageOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureStillImageOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureStillImageOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureStillImageOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation()/title",
+          "value": "fileDataRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fileDataRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1previewCGImageRepresentation()/title",
+          "value": "previewCGImageRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1previewCGImageRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewCGImageRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1photoCount/title",
+          "value": "photoCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1photoCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "photoCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1portraitEffectsMatte/title",
+          "value": "portraitEffectsMatte"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1portraitEffectsMatte/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "portraitEffectsMatte"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1sourceDeviceType/title",
+          "value": "sourceDeviceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1sourceDeviceType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceDeviceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinatorDelegate/title",
+          "value": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinatorDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinatorDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation(with:)/title",
+          "value": "fileDataRepresentationWithCustomizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fileDataRepresentationWithCustomizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1depthData/title",
+          "value": "depthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1depthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1embeddedThumbnailPhotoFormat/title",
+          "value": "embeddedThumbnailPhotoFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1embeddedThumbnailPhotoFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "embeddedThumbnailPhotoFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1timestamp/title",
+          "value": "timestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1LensStabilizationStatus/title",
+          "value": "AVCaptureLensStabilizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1LensStabilizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureLensStabilizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1LensStabilizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureLensStabilizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1constantColorConfidenceMap/title",
+          "value": "constantColorConfidenceMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1constantColorConfidenceMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constantColorConfidenceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1constantColorCenterWeightedMeanConfidenceLevel/title",
+          "value": "constantColorCenterWeightedMeanConfidenceLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1constantColorCenterWeightedMeanConfidenceLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constantColorCenterWeightedMeanConfidenceLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)/title",
+          "value": "fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation(withReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinator/title",
+          "value": "AVCapturePhotoOutputReadinessCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutputReadinessCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutputReadinessCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/title",
+          "value": "AVCapturePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1cameraCalibrationData/title",
+          "value": "cameraCalibrationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1cameraCalibrationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraCalibrationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1metadata/title",
+          "value": "metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1previewPixelBuffer/title",
+          "value": "previewPixelBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1previewPixelBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previewPixelBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1cgImageRepresentation()/title",
+          "value": "CGImageRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1cgImageRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturephoto"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturephoto"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

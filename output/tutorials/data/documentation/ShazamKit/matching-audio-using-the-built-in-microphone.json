@@ -1,0 +1,1109 @@
+{
+  "abstract": [
+    {
+      "text": "Use the audio stream from the microphone as the source for a ShazamKit session.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.shazamkit/documentation/ShazamKit",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.shazamkit/documentation/ShazamKit/matching-audio-using-the-built-in-microphone"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ShazamKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Matching audio using the built-in microphone"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an audio engine with a mixer node to connect to the microphone and convert the audio format into one that’s compatible with ShazamKit. You’ll also need to add a description of the intended use of the microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-microphone-use-description",
+          "level": 3,
+          "text": "Add a microphone use description",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The microphone is a protected resource and requires permission from the user. Your app must provide a description of the intended use by adding a ",
+              "type": "text"
+            },
+            {
+              "code": "Privacy - Microphone Usage Description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to App Info. For more information on accessing protected resources, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-an-audio-mixer-and-install-a-tap",
+          "level": 3,
+          "text": "Configure an audio mixer and install a tap",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access the microphone using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioMixerNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert the sound into one that’s compatible with ShazamKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by adding properties to your matcher class for the audio engine and mixer node. Then add a property for the active ShazamKit session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let audioEngine = AVAudioEngine()",
+            "let mixerNode = AVAudioMixerNode()",
+            "",
+            "// The session for the active ShazamKit match request.",
+            "let session: SHSession?"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a function that appends an audio buffer to the buffer used for matching. The audio engine calls this function when new audio is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func addAudio(buffer: AVAudioPCMBuffer, audioTime: AVAudioTime) {",
+            "    // Add the audio to the current match request.",
+            "    session?.matchStreamingBuffer(buffer, at: audioTime)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, add a method that configures the audio engine and mixer, and installs the tap that calls your add audio function. A tap provides access to the input of the audio engine. Call this function from the initialization code for your object because you only need to set up the engine once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func configureAudioEngine() {",
+            "    // Get the native audio format of the engine's input bus.",
+            "    let inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)",
+            "    ",
+            "    // Set an output format compatible with ShazamKit.",
+            "    let outputFormat = AVAudioFormat(standardFormatWithSampleRate: 48000, channels: 1)",
+            "    ",
+            "    // Create a mixer node to convert the input.",
+            "    audioEngine.attach(mixerNode)",
+            "",
+            "    // Attach the mixer to the microphone input and the output of the audio engine.",
+            "    audioEngine.connect(audioEngine.inputNode, to: mixerNode, format: inputFormat)",
+            "    audioEngine.connect(mixerNode, to: audioEngine.outputNode, format: outputFormat)",
+            "        ",
+            "    // Install a tap on the mixer node to capture the microphone audio.",
+            "    mixerNode.installTap(onBus: 0,",
+            "                         bufferSize: 8192,",
+            "                         format: outputFormat) { buffer, audioTime in",
+            "        // Add captured audio to the buffer used for making a match.",
+            "        self.addAudio(buffer: buffer, audioTime: audioTime)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The output from the built-in microphone on devices running iOS 14 and earlier is already in a format that’s compatible with ShazamKit. Other microphones or input sources may not be compatible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Start-and-stop-the-audio-engine",
+          "level": 3,
+          "text": "Start and stop the audio engine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a function to start listening to the microphone using the tap on the mixer node. You must request access to the microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startListening() throws {",
+            "    // Throw an error if the audio engine is already running.",
+            "    guard !audioEngine.isRunning else { return }",
+            "    let audioSession = AVAudioSession.sharedInstance()",
+            "    ",
+            "    // Ask the user for permission to use the mic if required then start the engine.",
+            "    try audioSession.setCategory(.playAndRecord)",
+            "    audioSession.requestRecordPermission { [weak self] success in",
+            "        guard success, let self = self else { return }",
+            "        try? self.audioEngine.start()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The category uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioRoutingArbiter/Category/playAndRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " because the input of the mixer records the mic and the output plays the result. The tap captures the audio buffers from the output of the mixer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add another function to stop listening to the microphone. Call this function when you no longer need information about the matched item, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem/predictedCurrentMatchOffset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Also call this function when there’s a value for error in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate/session(_:didNotFindMatchFor:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func stopListening() {",
+            "    // Check if the audio engine is already recording.",
+            "    if audioEngine.isRunning {",
+            "        audioEngine.stop()",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/pause()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " the engine instead of stopping it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-a-match-in-a-catalog",
+          "level": 3,
+          "text": "Check for a match in a catalog",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check for a match by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for a catalog and starting the audio engine. The following function demonstrates this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func match(_ catalog: SHCustomCatalog) throws {",
+            "    // Create a session if one doesn't already exist.",
+            "    if (session == nil) {",
+            "        session = SHSession(catalog: catalog)",
+            "        session?.delegate = self",
+            "    }",
+            "    ",
+            "    // Start listening to the audio to find a match.",
+            "    try startListening()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your matcher uses multiple catalogs, you must create a new session when the catalog changes. The following function shows an example of this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func match(_ catalog: SHCustomCatalog) throws {",
+            "    // Create a new session if there's an existing session with a different catalog.",
+            "    if session?.catalog != catalog {",
+            "        // Stop any active match request.",
+            "        stopListening()",
+            "        ",
+            "        session = SHSession(catalog: catalog)",
+            "        session?.delegate = self",
+            "    }",
+            "    try startListening()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioMixerNode": {
+      "abstract": [
+        {
+          "text": "An object that takes any number of inputs and converts them into a single output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioMixerNode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioMixerNode",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioMixerNode"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioRoutingArbiter/Category/playAndRecord": {
+      "abstract": [
+        {
+          "text": "The app plays and records audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAndRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioRoutingArbiter/Category/playAndRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter.Category.playAndRecord",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioRoutingArbiter/Category/playAndRecord"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/pause()": {
+      "abstract": [
+        {
+          "text": "Pauses playback of the current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/pause()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pause()",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer/pause()"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit": {
+      "abstract": [
+        {
+          "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShazamKit",
+      "type": "topic",
+      "url": "/documentation/shazamkit"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem/predictedCurrentMatchOffset": {
+      "abstract": [
+        {
+          "text": "The updated timecode in the reference recording that matches the current playback position of the query audio, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedCurrentMatchOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem/predictedCurrentMatchOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictedCurrentMatchOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "predictedCurrentMatchOffset",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatchedmediaitem/predictedcurrentmatchoffset"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession": {
+      "abstract": [
+        {
+          "text": "An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/match(_:)": {
+      "abstract": [
+        {
+          "text": "Searches for the query signature in the reference signatures that the session catalog contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHSignature",
+          "text": "SHSignature"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/match(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchSignature:"
+        }
+      ],
+      "role": "symbol",
+      "title": "match(_:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsession/match(_:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/matchStreamingBuffer(_:at:)": {
+      "abstract": [
+        {
+          "text": "Converts the audio in the buffer to a signature, and searches the reference signatures in the session catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchStreamingBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioTime",
+          "text": "AVAudioTime"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/matchStreamingBuffer(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchStreamingBuffer:atTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchStreamingBuffer(_:at:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsession/matchstreamingbuffer(_:at:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate/session(_:didNotFindMatchFor:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the query signature doesn’t match an item in the catalog, or that there’s an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHSession",
+          "text": "SHSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didNotFindMatchFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHSignature",
+          "text": "SHSignature"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate/session(_:didNotFindMatchFor:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didNotFindMatchForSignature:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didNotFindMatchFor:error:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsessiondelegate/session(_:didnotfindmatchfor:error:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Making-a-match",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/match(_:)",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/matchStreamingBuffer(_:at:)"
+      ],
+      "title": "Making a match"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Making-a-match",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/match(_:)",
+                "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession/matchStreamingBuffer(_:at:)"
+              ],
+              "title": "Making a match"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate~1session(_:didNotFindMatchFor:error:)/title",
+          "value": "session:didNotFindMatchForSignature:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate~1session(_:didNotFindMatchFor:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didNotFindMatchForSignature:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioMixerNode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioNode",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1pause()/title",
+          "value": "pause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1pause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "pause"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1Category~1playAndRecord/title",
+          "value": "AVAudioRoutingArbitrationCategoryPlayAndRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1Category~1playAndRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbitrationCategoryPlayAndRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession~1matchStreamingBuffer(_:at:)/title",
+          "value": "matchStreamingBuffer:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession~1matchStreamingBuffer(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchStreamingBuffer:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession~1match(_:)/title",
+          "value": "matchSignature:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession~1match(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchSignature:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem~1predictedCurrentMatchOffset/title",
+          "value": "predictedCurrentMatchOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem~1predictedCurrentMatchOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "predictedCurrentMatchOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/title",
+          "value": "SHSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shazamkit/matching-audio-using-the-built-in-microphone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/shazamkit/matching-audio-using-the-built-in-microphone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

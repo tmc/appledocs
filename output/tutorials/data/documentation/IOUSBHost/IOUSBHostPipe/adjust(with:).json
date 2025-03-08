@@ -1,0 +1,1100 @@
+{
+  "abstract": [
+    {
+      "text": "Adjusts the behavior of periodic endpoints to consume a different amount of bus bandwidth.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iousbhost/documentation/IOUSBHost",
+        "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/adjust(with:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)IOUSBHostPipe(im)adjustPipeWithDescriptors:error:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "adjust"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "with"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SP",
+        "text": "UnsafePointer"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@S@IOUSBHostIOSourceDescriptors",
+        "text": "IOUSBHostIOSourceDescriptors"
+      },
+      {
+        "kind": "text",
+        "text": ">) "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOUSBHost"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "adjustPipeWithDescriptors:error:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "adjust(with:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "adjust"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "descriptors"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SP",
+              "text": "UnsafePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOUSBHostIOSourceDescriptors",
+              "text": "IOUSBHostIOSourceDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": ">) "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " describing the new endpoint policy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "descriptors"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During creation, periodic (interrupt and isochronous) endpoints reserve bus bandwidth to allow for maximum packet size, mult (the maximum number of packets that this endpoint supports), burst size, and the endpoint service interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an endpoint won’t use all of the allocated bandwidth, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/adjust(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to reduce the bandwidth reserved for the endpoint. Copy the original endpoint descriptors, adjust maximum packet size, mult, burst size, and interval, then pass to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/adjust(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The altered descriptors must pass validation from the kernel for policy changes to process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nserror": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iousbhost/documentation/IOUSBHost": {
+      "abstract": [
+        {
+          "text": "Create host-mode user space drivers for USB devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOUSBHost",
+      "type": "topic",
+      "url": "/documentation/iousbhost"
+    },
+    "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors": {
+      "abstract": [
+        {
+          "text": "The descriptors for a single endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostIOSourceDescriptors"
+        }
+      ],
+      "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostIOSourceDescriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOUSBHostIOSourceDescriptors",
+      "type": "topic",
+      "url": "/documentation/iousbhost/iousbhostiosourcedescriptors"
+    },
+    "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe": {
+      "abstract": [
+        {
+          "text": "The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostPipe"
+        }
+      ],
+      "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostPipe"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOUSBHostPipe",
+      "type": "topic",
+      "url": "/documentation/iousbhost/iousbhostpipe"
+    },
+    "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/adjust(with:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the behavior of periodic endpoints to consume a different amount of bus bandwidth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjust"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@IOUSBHostIOSourceDescriptors",
+          "text": "IOUSBHostIOSourceDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/adjust(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustPipeWithDescriptors:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "adjust(with:)",
+      "type": "topic",
+      "url": "/documentation/iousbhost/iousbhostpipe/adjust(with:)"
+    },
+    "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/descriptors": {
+      "abstract": [
+        {
+          "text": "A property that retrieves the current endpoint descriptors controlling the endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@IOUSBHostIOSourceDescriptors",
+          "text": "IOUSBHostIOSourceDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/descriptors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "descriptors",
+      "type": "topic",
+      "url": "/documentation/iousbhost/iousbhostpipe/descriptors"
+    },
+    "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/originalDescriptors": {
+      "abstract": [
+        {
+          "text": "A property that retrieves the original endpoint descriptors from the pipe at the point of creation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@IOUSBHostIOSourceDescriptors",
+          "text": "IOUSBHostIOSourceDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/originalDescriptors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "originalDescriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "originalDescriptors",
+      "type": "topic",
+      "url": "/documentation/iousbhost/iousbhostpipe/originaldescriptors"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.externally.resolved.symbol/s:SP": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafePointer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Periodic-Bandwidth",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+        "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/descriptors",
+        "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/originalDescriptors"
+      ],
+      "title": "Managing Periodic Bandwidth"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "adjustPipeWithDescriptors:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "adjustPipeWithDescriptors:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.iousbhost/documentation/IOUSBHost",
+                "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Periodic-Bandwidth",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+                "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/descriptors",
+                "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostPipe/originalDescriptors"
+              ],
+              "title": "Managing Periodic Bandwidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "adjustPipeWithDescriptors:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@S@IOUSBHostIOSourceDescriptors",
+                    "text": "IOUSBHostIOSourceDescriptors"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "descriptors"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "error:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A reference to ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.iousbhost/documentation/IOUSBHost/IOUSBHostIOSourceDescriptors",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " describing the new endpoint policy.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "descriptors"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " in Objective-C that contains an ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "doc://com.apple.documentation/documentation/kernel/ioreturn",
+                        "type": "text"
+                      },
+                      {
+                        "text": " value on failure.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "",
+                    "type": "text"
+                  },
+                  {
+                    "code": "YES",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if the request completes successfully; otherwise, ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NO",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe~1adjust(with:)/title",
+          "value": "adjustPipeWithDescriptors:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe~1adjust(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "adjustPipeWithDescriptors:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostIOSourceDescriptors/title",
+          "value": "IOUSBHostIOSourceDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostIOSourceDescriptors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUSBHostIOSourceDescriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostIOSourceDescriptors/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUSBHostIOSourceDescriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe/title",
+          "value": "IOUSBHostPipe"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUSBHostPipe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUSBHostPipe"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe~1descriptors/title",
+          "value": "descriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe~1descriptors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "descriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe~1originalDescriptors/title",
+          "value": "originalDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iousbhost~1documentation~1IOUSBHost~1IOUSBHostPipe~1originalDescriptors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "originalDescriptors"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iousbhost/iousbhostpipe/adjust(with:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/iousbhost/iousbhostpipe/adjust(with:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

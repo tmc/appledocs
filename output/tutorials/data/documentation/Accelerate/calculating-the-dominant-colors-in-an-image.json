@@ -1,0 +1,1584 @@
+{
+  "abstract": [
+    {
+      "text": "Find the main colors in an image by implementing k-means clustering using the Accelerate framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/bnns-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/classic-bnns-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/calculating-the-dominant-colors-in-an-image"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Calculating the dominant colors in an image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accelerate framework provides libraries that allow you to extract a specified number (",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") of average colors in an image. This sample code app computes these colors using the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "k-means algorithm",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The k-means algorithm finds the ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dominant colors by ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " random centroids that define the centers of color clusters in the source image. The algorithm finds the closest colors to each centroid and updates each centroid to the average value of the closest colors. The process iterates over this step until the solution converges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows the sample code app. The source image is on the left and a 3D point cloud of the color distribution is on the right. At the bottom of the image is a set of swatches that show the ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dominant colors in the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "calculating-dominant-colors-in-image_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calculating the dominant colors in an image is useful for applications such as creating color palettes for GIF image creation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Store-the-pixel-values",
+          "level": 3,
+          "text": "Store the pixel values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app stores the pixel values in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures with external storage. This approach ensures that the vImage library doesn’t add any additional padding to the image rows that could interfere with the k-means clustering result. For more information about row padding, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The storage and pixel buffer for each red value.",
+            "let redStorage = UnsafeMutableBufferPointer<Float>.allocate(capacity: dimension * dimension)",
+            "let redBuffer: vImage.PixelBuffer<vImage.PlanarF>",
+            "",
+            "/// The storage and pixel buffer for each green value.",
+            "let greenStorage = UnsafeMutableBufferPointer<Float>.allocate(capacity: dimension * dimension)",
+            "let greenBuffer: vImage.PixelBuffer<vImage.PlanarF>",
+            "",
+            "/// The storage and pixel buffer for each blue value.",
+            "let blueStorage = UnsafeMutableBufferPointer<Float>.allocate(capacity: dimension * dimension)",
+            "let blueBuffer: vImage.PixelBuffer<vImage.PlanarF>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "init()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function initializes the three pixel buffers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "redBuffer = vImage.PixelBuffer<vImage.PlanarF>(",
+            "    data: redStorage.baseAddress!,",
+            "    width: dimension,",
+            "    height: dimension,",
+            "    byteCountPerRow: dimension * MemoryLayout<Float>.stride)",
+            "",
+            "greenBuffer = vImage.PixelBuffer<vImage.PlanarF>(",
+            "    data: greenStorage.baseAddress!,",
+            "    width: dimension,",
+            "    height: dimension,",
+            "    byteCountPerRow: dimension * MemoryLayout<Float>.stride)",
+            "",
+            "blueBuffer = vImage.PixelBuffer<vImage.PlanarF>(",
+            "    data: blueStorage.baseAddress!,",
+            "    width: dimension,",
+            "    height: dimension,",
+            "    byteCountPerRow: dimension * MemoryLayout<Float>.stride)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code app scales all images to ",
+              "type": "text"
+            },
+            {
+              "code": "dimension * dimension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-the-cluster-centroids",
+          "level": 3,
+          "text": "Initialize the cluster centroids",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "KMeansCalculator.initializeCentroids()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function initializes the centroids from the red, green, and blue source pixels. The function initializes the first centroid as a random color in the source image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let randomIndex = Int.random(in: 0 ..< dimension * dimension)",
+            "centroids.append(Centroid(red: redStorage[randomIndex],",
+            "                          green: greenStorage[randomIndex],",
+            "                          blue: blueStorage[randomIndex]))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below uses the distance from the previous centroid as a weight to initialize subsequent centroids. This ensures that centroids are distributed across the image colors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for i in 1 ..< k {",
+            "    distanceSquared(x0: greenStorage.baseAddress!, x1: centroids[i - 1].green,",
+            "                    y0: blueStorage.baseAddress!, y1: centroids[i - 1].blue,",
+            "                    z0: redStorage.baseAddress!, z1: centroids[i - 1].red,",
+            "                    n: greenStorage.count,",
+            "                    result: tmp.baseAddress!)",
+            "    ",
+            "    let randomIndex = weightedRandomIndex(tmp)",
+            "    ",
+            "    centroids.append(Centroid(red: redStorage[randomIndex],",
+            "                              green: greenStorage[randomIndex],",
+            "                              blue: blueStorage[randomIndex]))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Calculate-the-distances-between-centroids-and-image-colors",
+          "level": 3,
+          "text": "Calculate the distances between centroids and image colors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "KMeansCalculator.updateCentroids()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is responsible for updating the ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " centroids. The sample code app works in three dimensions with red, green, and blue as the axes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step that the sample code project takes is to calculate the distance in 3D RGB space between each color in the source image and each of the ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " centroids. Because the distances are used for comparisons only, the code below calculates the distance squared and avoids the overhead of calculating square roots:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for centroid in centroids.enumerated() {",
+            "    distanceSquared(x0: greenStorage.baseAddress!, x1: centroid.element.green,",
+            "                    y0: blueStorage.baseAddress!, y1: centroid.element.blue,",
+            "                    z0: redStorage.baseAddress!, z1: centroid.element.red,",
+            "                    n: greenStorage.count,",
+            "                    result: distances.baseAddress!.advanced(by: dimension * dimension * centroid.offset))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below is an example 8 x 1 pixel image. The image’s colors are such that the green and blue values in each color are the same.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "original_8x1_image_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following graphic shows a 2D representation of the distribution of the eight pixel colors in the small image above. The simplified version uses red as the horizontal axis and green-blue as the vertical axis. The illustration represents the eight pixel colors as circles and represents two centroids as squares.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "k-means-simplified_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Given the following two rows represent the eight 2D colors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[ 0.0, 0.0, 2.0, 3.0, 7.0, 5.0, 6.0, 4.0 ]    // Red color values for colors 0...7.",
+            "[ 6.0, 1.0, 0.0, 2.0, 7.0, 5.0, 2.0, 3.0 ]    // Green-blue color values for colors 0...7."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following matrix shows the distances squared. The top row represents the distances to centroid ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and the bottom row represents the distances to centroid ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[ 9.0, 34.0, 37.0, 16.0, 17.0,  5.0, 25.0, 10.0,        // For centroid _A_.",
+            " 50.0, 25.0, 10.0,  5.0, 40.0, 16.0,  2.0,  5.0 ]       // For centroid _B_."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Calculate-the-closest-centroid-to-each-image-color",
+          "level": 3,
+          "text": "Calculate the closest centroid to each image color",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The BNNS library’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ReductionLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ReductionFunction/argMin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reduction function that reduces the distances matrix to a vector that contains the index of the closest centroid for each color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before performing the reduction, the code below creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that references the distances data so that the app doesn’t perform a copy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeCentroidIndices() -> [Int32] {",
+            "    let distancesDescriptor = BNNSNDArrayDescriptor(",
+            "        data: distances,",
+            "        shape: .matrixRowMajor(dimension * dimension, k))!",
+            "    ",
+            "    let reductionLayer = BNNS.ReductionLayer(function: .argMin,",
+            "                                             input: distancesDescriptor,",
+            "                                             output: centroidIndicesDescriptor,",
+            "                                             weights: nil)",
+            "    ",
+            "    try! reductionLayer?.apply(batchSize: 1,",
+            "                               input: distancesDescriptor,",
+            "                               output: centroidIndicesDescriptor)",
+            "    ",
+            "    return centroidIndicesDescriptor.makeArray(of: Int32.self)!",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the simplified example above, the ",
+              "type": "text"
+            },
+            {
+              "code": "centroidIndicesDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following values after the code applies reduction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[ 0, 1, 1, 1, 0, 0, 1, 1 ]      // 0 represents centroid _A_, and 1 represents centroid _B_."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Gather-the-color-data-for-each-centroid",
+          "level": 3,
+          "text": "Gather the color data for each centroid",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code app uses the data in the ",
+              "type": "text"
+            },
+            {
+              "code": "centroidIndices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array to gather the color data into vectors for each centroid.  For each centroid in the ",
+              "type": "text"
+            },
+            {
+              "code": "centroids",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, the code below creates an array that contains the indices into the color arrays of the colors nearest to that centroid:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let indices = centroidIndices.enumerated().filter {",
+            "    $0.element == centroid.offset",
+            "}.map {",
+            "    // `vDSP.gather` uses one-based indices.",
+            "    UInt($0.offset + 1)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the 2D colors example, the ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[ 0,          4, 5 ]          // For centroid _A_.",
+            "[    1, 2, 3,       6, 7 ]    // For centroid _B_."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/gather(_:indices:)-4yt3o",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns arrays that contain ",
+              "type": "text"
+            },
+            {
+              "code": "indices.count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " color values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let gatheredRed = vDSP.gather(redStorage,",
+            "                              indices: indices)",
+            "",
+            "let gatheredGreen = vDSP.gather(greenStorage,",
+            "                                indices: indices)",
+            "",
+            "let gatheredBlue = vDSP.gather(blueStorage,",
+            "                               indices: indices)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the simplified example above, the following shows the gathered red and green-blue values for the two centroids:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[ 0.0,               7.0, 5.0 ]             // Gathered red values for centroid _A_.   ",
+            "[ 6.0,               7.0, 5.0 ]             // Gathered green-blue values for centroid _A_.",
+            "",
+            "[     0.0, 2.0, 3.0,           6.0, 4.0 ]   // Gathered red values for centroid _B_.",
+            "[     1.0, 0.0, 2.0,           2.0, 3.0 ]   // Gathered green-blue values for centroid _B_."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code updates each centroid with the average of their corresponding gathered colors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "centroids[centroid.offset].red = vDSP.mean(gatheredRed)",
+            "centroids[centroid.offset].green = vDSP.mean(gatheredGreen)",
+            "centroids[centroid.offset].blue = vDSP.mean(gatheredBlue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the example 2D centroids after the update:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "k-means-simplified-iterated_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "4.0    // Mean red value for centroid _A_.",
+            "6.0    // Mean green-blue value for centroid _A_.",
+            "",
+            "3.0    // Mean red value for centroid _B_.",
+            "1.6    // Mean green-blue value for centroid _B_."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code repeats these steps until the updates to each centroid fall within a specified tolerance. Once the centroid changes become negligible, the app treats the k-means process as converged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-quantized-image-using-the-dominant-colors",
+          "level": 3,
+          "text": "Generate a quantized image using the dominant colors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample code app calculates the ",
+              "type": "text"
+            },
+            {
+              "code": "k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dominant colors, it uses that data to quantize the source image. That is, the app replaces each color in the image with the color of the nearest centroid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The quantization step uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/scatter(input:indices:output:axis:reductionFunction:filterParameters:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that performs an operation that’s the inverse of the gather function the app uses for calculating k-means.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each centroid, the sample finds the indices of the nearest colors and replaces the color values with that of the centroid:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let indicesDescriptor = BNNSNDArrayDescriptor.allocate(",
+            "    initializingFrom: indices,",
+            "    shape: .vector(indices.count))",
+            "",
+            "defer {",
+            "    indicesDescriptor.deallocate()",
+            "}",
+            "",
+            "scatter(value: centroid.element.red, to: redQuantizedStorage)",
+            "scatter(value: centroid.element.green, to: greenQuantizedStorage)",
+            "scatter(value: centroid.element.blue, to: blueQuantizedStorage)",
+            "",
+            "/// Scatters the repeated `value` to the `destination` using the `indicesDescriptor`.",
+            "func scatter(value: Float,",
+            "             to destination: UnsafeMutableBufferPointer<Float>) {",
+            "    let srcDescriptor = BNNSNDArrayDescriptor.allocate(repeating: value,",
+            "                                                       shape: .vector(indices.count))",
+            "    let dstDescriptor = BNNSNDArrayDescriptor(data: destination,",
+            "                                              shape: .vector(dimension * dimension))!",
+            "    ",
+            "    try! BNNS.scatter(input: srcDescriptor,",
+            "                      indices: indicesDescriptor,",
+            "                      output: dstDescriptor,",
+            "                      axis: 0,",
+            "                      reductionFunction: .sum)",
+            "    ",
+            "    srcDescriptor.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image below shows an original image of some oranges and the quantized version rendered with the five dominant colors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "quantized_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "10c1a54316bc/CalculatingTheDominantColorsInAnImage.zip": {
+      "checksum": "10c1a54316bc16c8a5eb398893e8b130e7c51d5c04711ca69df9daffc9c4f50434b7103167456cbc846d3fe15fb6f24844b83803dd0baba35eef950bb2f8013d",
+      "identifier": "10c1a54316bc/CalculatingTheDominantColorsInAnImage.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/10c1a54316bc/CalculatingTheDominantColorsInAnImage.zip"
+    },
+    "calculating-dominant-colors-in-image_2x.png": {
+      "alt": "A screenshot of the sample code app. The top row of the screenshot contains a photograph of a butterfly on the left and a three-dimensional point cloud showing the image pixels plotted in a cube with axes for red, green, and blue on the right. The bottom row of the screenshot contains five color swatches that represent the five dominant colors in the butterfly photograph.",
+      "identifier": "calculating-dominant-colors-in-image_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8cc4c1ce6e33825d8398512aedaa2f2/calculating-dominant-colors-in-image_2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ReductionFunction/argMin": {
+      "abstract": [
+        {
+          "text": "A reduction function that computes the index of the minimum value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "argMin"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ReductionFunction/argMin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS.ReductionFunction.argMin",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/reductionfunction/argmin"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ReductionLayer": {
+      "abstract": [
+        {
+          "text": "A layer object that wraps a reduction filter and manages its deinitialization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReductionLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/ReductionLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReductionLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.ReductionLayer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/reductionlayer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/scatter(input:indices:output:axis:reductionFunction:filterParameters:)": {
+      "abstract": [
+        {
+          "text": "Scatters the elements of a tensor along a single axis.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scatter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reductionFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO17ReductionFunctionO",
+          "text": "ReductionFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/scatter(input:indices:output:axis:reductionFunction:filterParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scatter(input:indices:output:axis:reductionFunction:filterParameters:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/scatter(input:indices:output:axis:reductionfunction:filterparameters:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor": {
+      "abstract": [
+        {
+          "text": "A structure that describes the shape, stride, data type, and, optionally, the memory location of an n-dimensional array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSNDArrayDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSNDArrayDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSNDArrayDescriptor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsndarraydescriptor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image": {
+      "abstract": [
+        {
+          "text": "Use a gamma function to apply a linear or exponential curve.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the brightness and contrast of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-brightness-and-contrast-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image": {
+      "abstract": [
+        {
+          "text": "Convert an image to L*a*b* color space and apply hue adjustment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the hue of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-hue-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images": {
+      "abstract": [
+        {
+          "text": "Use the vImage library’s polynomial transform to apply tone curve adjustments to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying tone curve adjustments to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-tone-curve-adjustments-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/bnns-library": {
+      "abstract": [
+        {
+          "text": "Implement and run neural networks for training and inference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/bnns-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/classic-bnns-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/classic-bnns-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classic BNNS API",
+      "type": "topic",
+      "url": "/documentation/accelerate/classic-bnns-api"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library": {
+      "abstract": [
+        {
+          "text": "Use Model I/O and vImage to composite a photograph over a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "computer-generated sky.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Sharing texture data between the Model I/O framework and the vImage library",
+      "type": "topic",
+      "url": "/documentation/accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects": {
+      "abstract": [
+        {
+          "text": "Render real-time video effects with the vImage Pixel Buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using vImage pixel buffers to generate video effects",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/gather(_:indices:)-4yt3o": {
+      "abstract": [
+        {
+          "text": "Returns a gathered copy of the specified double-precision vector using a vector that defines the indices to keep.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gather"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/gather(_:indices:)-4yt3o",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gather(_:indices:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/gather(_:indices:)-4yt3o"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "k-means-simplified-iterated_2x.png": {
+      "alt": "An eight-by-eight grid that contains the series of eight colors in the previous graphic. The two squares that represent the centroids are in slightly different positions compared to the previous graphic to show that they better represent the center of the color clusters.",
+      "identifier": "k-means-simplified-iterated_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec456a4aaef76543a3c2642bd96e1c6b/k-means-simplified-iterated_2x.png"
+        }
+      ]
+    },
+    "k-means-simplified_2x.png": {
+      "alt": "An eight-by-eight grid that contains the series of eight colors in the previous graphic mapped in two dimensions. The grid also contains two squares marked A and B that represent the two centroids for the two color clusters.",
+      "identifier": "k-means-simplified_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/936a69b7d6caff4a788d5c8643a77183/k-means-simplified_2x.png"
+        }
+      ]
+    },
+    "original_8x1_image_2x.png": {
+      "alt": "A graphic with a horizontal series of eight colored squares that are numbered from zero through seven, from left to right.",
+      "identifier": "original_8x1_image_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76185bc809750c4f42b62e215ca568c2/original_8x1_image_2x.png"
+        }
+      ]
+    },
+    "quantized_2x.png": {
+      "alt": "Two photographs of some oranges. On the left is the original, full-color image. On the right is the quantized image that shows color banding.",
+      "identifier": "quantized_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aec12436493280699fa95fd70af5054e/quantized_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "10c1a54316bc/CalculatingTheDominantColorsInAnImage.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "vImage-Pixel-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/sharing-texture-data-between-the-model-io-framework-and-the-vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"
+      ],
+      "title": "vImage Pixel Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/title",
+          "value": "BNNSNDArrayDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSNDArrayDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSNDArrayDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

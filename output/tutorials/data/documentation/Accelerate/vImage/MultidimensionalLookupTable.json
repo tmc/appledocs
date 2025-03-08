@@ -1,0 +1,1668 @@
+{
+  "abstract": [
+    {
+      "text": "A multidimensional lookup table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Accelerate",
+    "externalID": "s:10Accelerate6vImageO27MultidimensionalLookupTableV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MultidimensionalLookupTable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MultidimensionalLookupTable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "vImage.MultidimensionalLookupTable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MultidimensionalLookupTable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a multidimensional lookup table to transform the colors in an image. The lookup table defines an output color based on the input color values. The vImage multidimensional lookup table provides interpolation to compute output color values that don’t have an explicit entry in the table for a given input color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " applies transforms to 32-bit planar pixel buffers. There are pixel buffer functions available to convert between bit depths and interleaved to planar buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a simple lookup table that implements the Rec. 709 luma coefficients to convert from a 3-channel RGB image to a single-channel grayscale image. The lookup table is a 3D cube with 32 entries per channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let entriesPerChannel = UInt8(32)",
+            "let srcChannelCount = 3",
+            "let destChannelCount = 1",
+            "",
+            "let lookupTableElementCount = Int(pow(Float(entriesPerChannel),",
+            "                                      Float(srcChannelCount))) *",
+            "Int(destChannelCount)",
+            "",
+            "let tableData = [UInt16](unsafeUninitializedCapacity: lookupTableElementCount) {",
+            "    buffer, count in",
+            "    ",
+            "    let multiplier = Float(UInt16.max)",
+            "    var bufferIndex = 0",
+            "    ",
+            "    for red in ( 0 ..< entriesPerChannel) {",
+            "        for green in ( 0 ..< entriesPerChannel) {",
+            "            for blue in ( 0 ..< entriesPerChannel) {",
+            "                ",
+            "                let normalizedRed = Float(red) / Float(entriesPerChannel - 1)",
+            "                let normalizedGreen = Float(green) / Float(entriesPerChannel - 1)",
+            "                let normalizedBlue = Float(blue) / Float(entriesPerChannel - 1)",
+            "                ",
+            "                let gray = (normalizedRed * 0.2126) +",
+            "                           (normalizedGreen * 0.7152) +",
+            "                           (normalizedBlue * 0.0722)",
+            "                ",
+            "                buffer[ bufferIndex ] = UInt16(gray * multiplier)",
+            "                bufferIndex += 1",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    count = lookupTableElementCount",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the lookup table data to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let entryCountPerSourceChannel = [UInt8](repeating: entriesPerChannel,",
+            "                                         count: srcChannelCount)",
+            "",
+            "let lookupTable = vImage.MultidimensionalLookupTable(",
+            "    entryCountPerSourceChannel: entryCountPerSourceChannel,",
+            "    destinationChannelCount: destChannelCount,",
+            "    data: tableData)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the `",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(sources:destinations:interpolation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "` function to transform a 3-channel RGB image to a grayscale image. In this example, the source is interleaved. The code demonstrates calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-462ja",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to deinterleave the source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let src = vImage.PixelBuffer<vImage.InterleavedFx3>( ... )",
+            "",
+            "let planarSources = src.planarBuffers()",
+            "",
+            "let dest = vImage.PixelBuffer<vImage.PlanarF>(size: src.size)",
+            "",
+            "lookupTable.apply(sources: planarSources,",
+            "                  destinations: [dest],",
+            "                  interpolation: .none)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "dest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a grayscale representation of the source RGB image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table": {
+      "abstract": [
+        {
+          "text": "Precompute translation values to optimize color space conversion and other pointwise operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying color transforms to images with a multidimensional lookup table",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vImage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/ConvolutionKernel": {
+      "abstract": [
+        {
+          "text": "Constants that describe 1D convolution kernels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConvolutionKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/ConvolutionKernel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConvolutionKernel"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.ConvolutionKernel",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/convolutionkernel"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/ConvolutionKernel2D": {
+      "abstract": [
+        {
+          "text": "A 2D matrix that represents a convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConvolutionKernel2D"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/ConvolutionKernel2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConvolutionKernel2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.ConvolutionKernel2D",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/convolutionkernel2d"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat": {
+      "abstract": [
+        {
+          "text": "A buffer that contains pixels with a data type that’s unknown at compile time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.DynamicPixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/dynamicpixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Fx2": {
+      "abstract": [
+        {
+          "text": "A two-channel, 16-bit-per-channel, floating-point interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Fx2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Fx2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Fx2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved16Fx2",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved16fx2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Fx4": {
+      "abstract": [
+        {
+          "text": "A four-channel, 16-bit-per-channel, floating-point interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Fx4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Fx4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Fx4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved16Fx4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved16fx4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Ux2": {
+      "abstract": [
+        {
+          "text": "A two-channel, 16-bit-per-channel, unsigned-integer interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Ux2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Ux2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Ux2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved16Ux2",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved16ux2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Ux4": {
+      "abstract": [
+        {
+          "text": "A four-channel, 16-bit-per-channel, unsigned-integer interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Ux4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Ux4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved16Ux4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved16Ux4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved16ux4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x2": {
+      "abstract": [
+        {
+          "text": "A two-channel, 8-bit-per-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved8x2",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved8x2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x3": {
+      "abstract": [
+        {
+          "text": "A three-channel, 8-bit-per-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved8x3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved8x3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4": {
+      "abstract": [
+        {
+          "text": "A four-channel, 8-bit-per-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved8x4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved8x4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx2": {
+      "abstract": [
+        {
+          "text": "A two-channel, 32-bit-per-channel, floating-point interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.InterleavedFx2",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleavedfx2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx3": {
+      "abstract": [
+        {
+          "text": "A three-channel, 32-bit-per-channel, floating-point interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.InterleavedFx3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleavedfx3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx4": {
+      "abstract": [
+        {
+          "text": "A four-channel, 32-bit-per-channel, floating-point interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterleavedFx4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.InterleavedFx4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleavedfx4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable": {
+      "abstract": [
+        {
+          "text": "A multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MultidimensionalLookupTable"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MultidimensionalLookupTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.MultidimensionalLookupTable",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/InterpolationMethod": {
+      "abstract": [
+        {
+          "text": "Describes the method a multidimensional lookup table uses the generate interpolated values between lookup table values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterpolationMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/InterpolationMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterpolationMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.MultidimensionalLookupTable.InterpolationMethod",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/interpolationmethod"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(source:destination:interpolation:)": {
+      "abstract": [
+        {
+          "text": "Transforms a multiple plane pixel buffer using the multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SrcFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "DestFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SrcFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DestFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interpolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO27MultidimensionalLookupTableV",
+          "text": "MultidimensionalLookupTable"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO27MultidimensionalLookupTableV19InterpolationMethodO",
+          "text": "InterpolationMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(source:destination:interpolation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(source:destination:interpolation:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/apply(source:destination:interpolation:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(sources:destinations:interpolation:)": {
+      "abstract": [
+        {
+          "text": "Transforms an array of planar pixel buffers using the multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interpolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO27MultidimensionalLookupTableV",
+          "text": "MultidimensionalLookupTable"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO27MultidimensionalLookupTableV19InterpolationMethodO",
+          "text": "InterpolationMethod"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(sources:destinations:interpolation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(sources:destinations:interpolation:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/apply(sources:destinations:interpolation:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/destinationChannelCount": {
+      "abstract": [
+        {
+          "text": "The number of destination channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationChannelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/destinationChannelCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationChannelCount",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/destinationchannelcount"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/entryCountPerSourceChannel": {
+      "abstract": [
+        {
+          "text": "An array that contains the number of table entries for each dimension of the lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entryCountPerSourceChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/entryCountPerSourceChannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entryCountPerSourceChannel",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/entrycountpersourcechannel"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/init(entryCountPerSourceChannel:destinationChannelCount:data:)": {
+      "abstract": [
+        {
+          "text": "Returns a new multidimensional lookup table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "entryCountPerSourceChannel"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationChannelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/init(entryCountPerSourceChannel:destinationChannelCount:data:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(entryCountPerSourceChannel:destinationChannelCount:data:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/init(entrycountpersourcechannel:destinationchannelcount:data:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/sourceChannelCount": {
+      "abstract": [
+        {
+          "text": "The number of source channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceChannelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/sourceChannelCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceChannelCount",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/multidimensionallookuptable/sourcechannelcount"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Options": {
+      "abstract": [
+        {
+          "text": "Set flags on vImage operations to specify processing options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Options",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/options"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-462ja": {
+      "abstract": [
+        {
+          "text": "Returns two 8-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x2",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-462ja",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-462ja"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/StructuringElement": {
+      "abstract": [
+        {
+          "text": "A 2D matrix that represents a morphology kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StructuringElement"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/StructuringElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StructuringElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.StructuringElement",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/structuringelement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-images-with-a-multidimensional-lookup-table"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/StructuringElement",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/ConvolutionKernel",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/ConvolutionKernel2D",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/DynamicPixelFormat",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Fx2",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Fx4",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Ux2",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved16Ux4",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x2",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x3",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx2",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx3",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/InterleavedFx4",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Options"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/init(entryCountPerSourceChannel:destinationChannelCount:data:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/destinationChannelCount",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/entryCountPerSourceChannel",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/sourceChannelCount"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(source:destination:interpolation:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/apply(sources:destinations:interpolation:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/MultidimensionalLookupTable/InterpolationMethod"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vimage/multidimensionallookuptable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

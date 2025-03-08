@@ -1,0 +1,312 @@
+{
+  "abstract": [
+    {
+      "text": "Perform fast Fourier transforms out of place on 2D complex data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-complex-fft"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Out-of-Place Functions for 2D Complex FFT"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions in this group use the following operation for a complex-to-complex transform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "N0 = 1 << Log2N0;",
+            "N1 = 1 << Log2N1;",
+            "",
+            "if (IA1 == 0) IA1 = IA0*N0;",
+            "if (IC1 == 0) IC1 = IC0*N0;",
+            "",
+            "scale = 0 < Direction ? 1 : 1. / (N1*N0);",
+            "",
+            "// Define a complex matrix, h:",
+            "for (j1 = 0; j1 < N1; ++j1)",
+            "for (j0 = 0; j0 < N0; ++j0)",
+            "    h[j1][j0] = A->realp[j1*IA1 + j0*IA0]",
+            "          + i * A->imagp[j1*IA1 + j0*IA0];",
+            "",
+            "// Perform Discrete Fourier Transform.",
+            "for (k1 = 0; k1 < N1; ++k1)",
+            "for (k0 = 0; k0 < N0; ++k0)",
+            "    H[k1][k0] = scale * sum(sum(h[j1][j0]",
+            "        * e**(-Direction*2*pi*i*j0*k0/N0), 0 <= j0 < N0)",
+            "        * e**(-Direction*2*pi*i*j1*k1/N1), 0 <= j1 < N1);",
+            "",
+            "// Store result.",
+            "for (k1 = 0; k1 < N1; ++k1)",
+            "for (k0 = 0; k0 < N0; ++k0)",
+            "{",
+            "    C->realp[k1*IC1 + k0*IC0] = Re(H[k1][k0]);",
+            "    C->imagp[k1*IC1 + k0*IC0] = Im(H[k1][k0]);",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The temporary buffer versions perform the same operation but use a temporary buffer for improved performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fast Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/fast-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 2D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 2D Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-2d-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zop": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, single-precision complex FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zop"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zop",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zopD": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, double-precision complex FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zopD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zopD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zopD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zopd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zopt": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, single-precision complex FFT using a temporary buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zopt"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zopt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zopt",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zopt"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zoptD": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse out-of-place, double-precision complex FFT using a temporary buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zoptD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zoptD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zoptD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zoptd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Functions-for-2D-Complex-FFT",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-complex-fft"
+      ],
+      "title": "Functions for 2D Complex FFT"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Out-of-Place-FFT-Functions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zop",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zopD"
+      ],
+      "title": "Out-of-Place FFT Functions"
+    },
+    {
+      "anchor": "Out-of-Place-FFT-Functions-with-Temporary-Buffer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zopt",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zoptD"
+      ],
+      "title": "Out-of-Place FFT Functions with Temporary Buffer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

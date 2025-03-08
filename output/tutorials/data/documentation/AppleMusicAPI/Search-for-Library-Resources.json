@@ -1,0 +1,952 @@
+{
+  "abstract": [
+    {
+      "text": "Search the library by using a query.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Search-for-Library-Resources"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-library-search",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Search for Library Resources"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Search for Library Resources"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/library/search"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The text for the search, with a plus sign (",
+                  "type": "text"
+                },
+                {
+                  "code": "+",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") between each word to replace spaces (for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "term=james+br",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "term",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "library-albums",
+                "library-artists",
+                "library-music-videos",
+                "library-playlists",
+                "library-songs"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The list of the types of resources to include in the results. The possible values are ",
+                  "type": "text"
+                },
+                {
+                  "code": "library-albums",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "library-songs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "library-playlists",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "library-artists",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "library-music-videos",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "types",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "5"
+            },
+            {
+              "kind": "maximum",
+              "value": "25"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The next page or group of objects to fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibrarySearchResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:LibrarySearchResponse",
+              "text": "LibrarySearchResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "results",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a map of search results. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/library/search?types=library-songs,library-albums&term=Happier"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"results\": {",
+                    "        \"library-songs\": {",
+                    "            \"href\": \"/v1/me/library/search?term=Happier&types=library-songs\",",
+                    "            \"next\": \"/v1/me/library/search?offset=5&term=Happier&types=library-songs\",",
+                    "            \"data\": [",
+                    "                {",
+                    "                    \"id\": \"i.PkdNMlmi2og2p5\",",
+                    "                    \"type\": \"library-songs\",",
+                    "                    \"href\": \"/v1/me/library/songs/i.PkdNMlmi2og2p5\",",
+                    "                    \"attributes\": {",
+                    "                        \"artwork\": {",
+                    "                            \"width\": 1200,",
+                    "                            \"height\": 1200,",
+                    "                            \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music115/v4/2d/f3/c9/2df3c9fd-e0eb-257c-c035-b04f05a66580/21UMGIM36691.rgb.jpg/{w}x{h}bb.jpeg\"",
+                    "                        },",
+                    "                        \"artistName\": \"Billie Eilish\",",
+                    "                        \"discNumber\": 1,",
+                    "                        \"genreNames\": [",
+                    "                            \"Alternative\"",
+                    "                        ],",
+                    "                        \"durationInMillis\": 206623,",
+                    "                        \"releaseDate\": \"2021-07-30\",",
+                    "                        \"name\": \"Everybody Dies\",",
+                    "                        \"hasLyrics\": true,",
+                    "                        \"albumName\": \"Happier Than Ever\",",
+                    "                        \"playParams\": {",
+                    "                            \"id\": \"i.PkdNMlmi2og2p5\",",
+                    "                            \"kind\": \"song\",",
+                    "                            \"isLibrary\": true,",
+                    "                            \"reporting\": true,",
+                    "                            \"catalogId\": \"1564530960\"",
+                    "                        },",
+                    "                        \"trackNumber\": 11",
+                    "                    }",
+                    "                },",
+                    "                {",
+                    "                    \"id\": \"i.gelNOLouL41Lxo\",",
+                    "                    \"type\": \"library-songs\",",
+                    "                    \"href\": \"/v1/me/library/songs/i.gelNOLouL41Lxo\",",
+                    "                    \"attributes\": {",
+                    "                        \"artwork\": {",
+                    "                            \"width\": 1200,",
+                    "                            \"height\": 1200,",
+                    "                            \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music115/v4/2d/f3/c9/2df3c9fd-e0eb-257c-c035-b04f05a66580/21UMGIM36691.rgb.jpg/{w}x{h}bb.jpeg\"",
+                    "                        },",
+                    "                        \"artistName\": \"Billie Eilish\",",
+                    "                        \"discNumber\": 1,",
+                    "                        \"genreNames\": [",
+                    "                            \"Alternative\"",
+                    "                        ],",
+                    "                        \"durationInMillis\": 214059,",
+                    "                        \"releaseDate\": \"2021-07-30\",",
+                    "                        \"name\": \"OverHeated\",",
+                    "                        \"hasLyrics\": true,",
+                    "                        \"albumName\": \"Happier Than Ever\",",
+                    "                        \"playParams\": {",
+                    "                            \"id\": \"i.gelNOLouL41Lxo\",",
+                    "                            \"kind\": \"song\",",
+                    "                            \"isLibrary\": true,",
+                    "                            \"reporting\": true,",
+                    "                            \"catalogId\": \"1564530959\"",
+                    "                        },",
+                    "                        \"trackNumber\": 10,",
+                    "                        \"contentRating\": \"explicit\"",
+                    "                    }",
+                    "                },",
+                    "                {",
+                    "                    \"id\": \"i.1YBx1GAHq0vqZP\",",
+                    "                    \"type\": \"library-songs\",",
+                    "                    \"href\": \"/v1/me/library/songs/i.1YBx1GAHq0vqZP\",",
+                    "                    \"attributes\": {",
+                    "                        \"artwork\": {",
+                    "                            \"width\": 1200,",
+                    "                            \"height\": 1200,",
+                    "                            \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music115/v4/2d/f3/c9/2df3c9fd-e0eb-257c-c035-b04f05a66580/21UMGIM36691.rgb.jpg/{w}x{h}bb.jpeg\"",
+                    "                        },",
+                    "                        \"artistName\": \"Billie Eilish\",",
+                    "                        \"discNumber\": 1,",
+                    "                        \"genreNames\": [",
+                    "                            \"Alternative\"",
+                    "                        ],",
+                    "                        \"durationInMillis\": 195777,",
+                    "                        \"releaseDate\": \"2021-06-09\",",
+                    "                        \"name\": \"NDA\",",
+                    "                        \"hasLyrics\": true,",
+                    "                        \"albumName\": \"Happier Than Ever\",",
+                    "                        \"playParams\": {",
+                    "                            \"id\": \"i.1YBx1GAHq0vqZP\",",
+                    "                            \"kind\": \"song\",",
+                    "                            \"isLibrary\": true,",
+                    "                            \"reporting\": true,",
+                    "                            \"catalogId\": \"1564531177\"",
+                    "                        },",
+                    "                        \"trackNumber\": 13,",
+                    "                        \"contentRating\": \"explicit\"",
+                    "                    }",
+                    "                },",
+                    "                {",
+                    "                    \"id\": \"i.QvzN9lPfVx2VZ3\",",
+                    "                    \"type\": \"library-songs\",",
+                    "                    \"href\": \"/v1/me/library/songs/i.QvzN9lPfVx2VZ3\",",
+                    "                    \"attributes\": {",
+                    "                        \"artwork\": {",
+                    "                            \"width\": 1200,",
+                    "                            \"height\": 1200,",
+                    "                            \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music115/v4/2d/f3/c9/2df3c9fd-e0eb-257c-c035-b04f05a66580/21UMGIM36691.rgb.jpg/{w}x{h}bb.jpeg\"",
+                    "                        },",
+                    "                        \"artistName\": \"Billie Eilish\",",
+                    "                        \"discNumber\": 1,",
+                    "                        \"genreNames\": [",
+                    "                            \"Alternative\"",
+                    "                        ],",
+                    "                        \"durationInMillis\": 196731,",
+                    "                        \"releaseDate\": \"2021-07-30\",",
+                    "                        \"name\": \"Billie Bossa Nova\",",
+                    "                        \"hasLyrics\": true,",
+                    "                        \"albumName\": \"Happier Than Ever\",",
+                    "                        \"playParams\": {",
+                    "                            \"id\": \"i.QvzN9lPfVx2VZ3\",",
+                    "                            \"kind\": \"song\",",
+                    "                            \"isLibrary\": true,",
+                    "                            \"reporting\": true,",
+                    "                            \"catalogId\": \"1564530941\"",
+                    "                        },",
+                    "                        \"trackNumber\": 3",
+                    "                    }",
+                    "                },",
+                    "                {",
+                    "                    \"id\": \"i.gelNOzPuL41Lxo\",",
+                    "                    \"type\": \"library-songs\",",
+                    "                    \"href\": \"/v1/me/library/songs/i.gelNOzPuL41Lxo\",",
+                    "                    \"attributes\": {",
+                    "                        \"artwork\": {",
+                    "                            \"width\": 1200,",
+                    "                            \"height\": 1200,",
+                    "                            \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music115/v4/2d/f3/c9/2df3c9fd-e0eb-257c-c035-b04f05a66580/21UMGIM36691.rgb.jpg/{w}x{h}bb.jpeg\"",
+                    "                        },",
+                    "                        \"artistName\": \"Billie Eilish\",",
+                    "                        \"discNumber\": 1,",
+                    "                        \"genreNames\": [",
+                    "                            \"Alternative\"",
+                    "                        ],",
+                    "                        \"durationInMillis\": 298899,",
+                    "                        \"releaseDate\": \"2021-07-30\",",
+                    "                        \"name\": \"Happier Than Ever\",",
+                    "                        \"hasLyrics\": true,",
+                    "                        \"albumName\": \"Happier Than Ever\",",
+                    "                        \"playParams\": {",
+                    "                            \"id\": \"i.gelNOzPuL41Lxo\",",
+                    "                            \"kind\": \"song\",",
+                    "                            \"isLibrary\": true,",
+                    "                            \"reporting\": true,",
+                    "                            \"catalogId\": \"1564531202\"",
+                    "                        },",
+                    "                        \"trackNumber\": 15,",
+                    "                        \"contentRating\": \"explicit\"",
+                    "                    }",
+                    "                }",
+                    "            ]",
+                    "        },",
+                    "        \"library-albums\": {",
+                    "            \"href\": \"/v1/me/library/search?term=Happier&types=library-albums\",",
+                    "            \"data\": [",
+                    "                {",
+                    "                    \"id\": \"l.qrRWYhq\",",
+                    "                    \"type\": \"library-albums\",",
+                    "                    \"href\": \"/v1/me/library/albums/l.qrRWYhq\",",
+                    "                    \"attributes\": {",
+                    "                        \"playParams\": {",
+                    "                            \"id\": \"l.qrRWYhq\",",
+                    "                            \"kind\": \"album\",",
+                    "                            \"isLibrary\": true",
+                    "                        },",
+                    "                        \"dateAdded\": \"2021-09-10T18: 12: 57Z\",",
+                    "                        \"artistName\": \"Billie Eilish\",",
+                    "                        \"trackCount\": 16,",
+                    "                        \"name\": \"Happier Than Ever\",",
+                    "                        \"genreNames\": [",
+                    "                            \"Alternative\"",
+                    "                        ],",
+                    "                        \"releaseDate\": \"2021-07-30\",",
+                    "                        \"artwork\": {",
+                    "                            \"width\": 1200,",
+                    "                            \"height\": 1200,",
+                    "                            \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music115/v4/2d/f3/c9/2df3c9fd-e0eb-257c-c035-b04f05a66580/21UMGIM36691.rgb.jpg/{w}x{h}bb.jpeg\"",
+                    "                        }",
+                    "                    }",
+                    "                }",
+                    "            ]",
+                    "        }",
+                    "    },",
+                    "    \"meta\": {",
+                    "        \"results\": {",
+                    "            \"order\": [",
+                    "                \"library-songs\",",
+                    "                \"library-albums\"",
+                    "            ]",
+                    "        }",
+                    "    }",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibrarySearchResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for a library search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibrarySearchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibrarySearchResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibrarySearchResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibrarySearchResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/librarysearchresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Search-for-Library-Resources": {
+      "abstract": [
+        {
+          "text": "Search the library by using a query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Search-for-Library-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Search for Library Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for Library Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/search-for-library-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibrarySearchResponse"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/search-for-library-resources"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

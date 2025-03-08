@@ -1,0 +1,1630 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a source of time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CMClockRef",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMClock"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMClock"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CMClock"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMClock"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A clock represents a source of time information: a piece of hardware that measures the passage of time. One example of a clock is the host time clock, accessible via ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetHostTimeClock()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It measures time using the CPU system clock, which in macOS is ",
+              "type": "text"
+            },
+            {
+              "code": "mach_absolute_time()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Every audio device is also a clock because the audio samples that it outputs or inputs each have a defined duration (for example, 1/48000 of a second for 48 kHz audio).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CMClocks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are read-only; they cannot be stopped or started, and the current time cannot be set. A ",
+              "type": "text"
+            },
+            {
+              "code": "CMClock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has one primary function, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTime(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which tells what time it is now. Additionally, the ",
+              "type": "text"
+            },
+            {
+              "code": "CMSync",
+              "type": "codeVoice"
+            },
+            {
+              "text": " infrastructure monitors relative drift between ",
+              "type": "text"
+            },
+            {
+              "code": "CMClocks",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock": {
+      "abstract": [
+        {
+          "text": "An object that represents a source of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMClock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClock",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/CMSyncProtocol-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/CMSyncProtocol-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMSyncProtocol Implementations",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/cmsyncprotocol-implementations"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/Error": {
+      "abstract": [
+        {
+          "text": "Constants that describe clock errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClock.Error",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/error"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/anchorTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current time from a clock and the matching time from the clock’s reference clock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchorTime"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (anchorTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", referenceTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/anchorTime()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anchorTime()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/anchortime()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/audioDevice()": {
+      "abstract": [
+        {
+          "text": "Returns the audio device the clock tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (deviceUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, deviceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioDeviceID",
+          "text": "AudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": ", trackingDefaultDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/audioDevice()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "audioDevice()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/audiodevice()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/convertHostTimeToSystemUnits(_:)": {
+      "abstract": [
+        {
+          "text": "Converts a host time from a time structure to the host time’s native units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertHostTimeToSystemUnits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/convertHostTimeToSystemUnits(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertHostTimeToSystemUnits(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/converthosttimetosystemunits(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/convertSystemUnitsToHostTime(_:)": {
+      "abstract": [
+        {
+          "text": "Converts a host time from native units to a time structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertSystemUnitsToHostTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/convertSystemUnitsToHostTime(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertSystemUnitsToHostTime(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/convertsystemunitstohosttime(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/hostTimeClock": {
+      "abstract": [
+        {
+          "text": "The singleton clock that the system identifies as host time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hostTimeClock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/hostTimeClock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hostTimeClock",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/hosttimeclock"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/invalidate()": {
+      "abstract": [
+        {
+          "text": "Stops the clock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/invalidate()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/mightDrift(relativeTo:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether it’s possible for one timebase or clock to drift relative to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mightDrift"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/mightDrift(relativeTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mightDrift(relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/mightdrift(relativeto:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/setAudioDeviceID(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the audio device by using the device identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioDeviceID",
+          "text": "AudioDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/setAudioDeviceID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAudioDeviceID(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/setaudiodeviceid(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/setAudioDeviceUID(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the audio device by using the unique device identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAudioDeviceUID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/setAudioDeviceUID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAudioDeviceUID(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/setaudiodeviceuid(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/time": {
+      "abstract": [
+        {
+          "text": "The current time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "time",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/time"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/typeID": {
+      "abstract": [
+        {
+          "text": "The Core Foundation identifier that corresponds to the clock structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/typeID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typeID",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock/typeid"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetHostTimeClock()": {
+      "abstract": [
+        {
+          "text": "Returns a reference to the singleton clock that reflects the host time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMClockGetHostTimeClock"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetHostTimeClock()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMClockGetHostTimeClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClockGetHostTimeClock()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclockgethosttimeclock()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTime(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the current time from a clock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMClockGetTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTime(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMClockGetTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClockGetTime(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclockgettime(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the core foundation type identifier of a clock type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMClockGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMClockGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClockGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclockgettypeid()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMClockOrTimebase": {
+      "abstract": [
+        {
+          "text": "A type you use in argument lists and function results to indicate that you can pass either a clock or timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMClockOrTimebase"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMClockOrTimebase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMClockOrTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMClockOrTimebase",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclockortimebase"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSyncProtocol": {
+      "abstract": [
+        {
+          "text": "A type that provides behavior for syncing time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSyncProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSyncProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSyncProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSyncProtocol",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsyncprotocol"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSyncProtocol",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClockOrTimebase",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTypeID()"
+      ],
+      "title": "Data Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Inspecting-a-Clock",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/time",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/typeID"
+      ],
+      "title": "Inspecting a Clock"
+    },
+    {
+      "anchor": "Stopping-a-Clock",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/invalidate()"
+      ],
+      "title": "Stopping a Clock"
+    },
+    {
+      "anchor": "Getting-the-Host-Time",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/hostTimeClock"
+      ],
+      "title": "Getting the Host Time"
+    },
+    {
+      "anchor": "Getting-Time-and-Devices",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/anchorTime()",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/audioDevice()",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/setAudioDeviceID(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/setAudioDeviceUID(_:)"
+      ],
+      "title": "Getting Time and Devices"
+    },
+    {
+      "anchor": "Determining-Time-Drift",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/mightDrift(relativeTo:)"
+      ],
+      "title": "Determining Time Drift"
+    },
+    {
+      "anchor": "Converting-Time",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/convertHostTimeToSystemUnits(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/convertSystemUnitsToHostTime(_:)"
+      ],
+      "title": "Converting Time"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/Error"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMClock/CMSyncProtocol-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMClockRef"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremedia/documentation/CoreMedia"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-Types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMClockOrTimebase",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMClockGetTypeID()"
+              ],
+              "title": "Data Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@S@OpaqueCMClock",
+                    "text": "OpaqueCMClock"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMClockRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClock/title",
+          "value": "CMClockRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockOrTimebase/title",
+          "value": "CMClockOrTimebaseRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockOrTimebase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockOrTimebaseRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockOrTimebase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockOrTimebaseRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockGetTime(_:)/title",
+          "value": "CMClockGetTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockGetTime(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockGetTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockGetHostTimeClock()/title",
+          "value": "CMClockGetHostTimeClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockGetHostTimeClock()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockGetHostTimeClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockGetTypeID()/title",
+          "value": "CMClockGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMClockGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMClockGetTypeID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmclock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmclock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

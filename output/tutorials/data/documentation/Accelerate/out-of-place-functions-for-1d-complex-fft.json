@@ -1,0 +1,481 @@
+{
+  "abstract": [
+    {
+      "text": "Perform fast Fourier transforms out of place on 1D complex data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-complex-fft"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Out-of-Place Functions for 1D Complex FFT"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions in this group use the following operation for a complex-to-complex transform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "N = 1 << Log2N;",
+            "",
+            "scale = 0 < Direction ? 1 : 1./N;",
+            "",
+            "// Define a complex vector, h:",
+            "for (j = 0; j < N; ++j)",
+            "    h[j] = A->realp[j*IA] + i * A->imagp[j*IA];",
+            "",
+            "// Perform Discrete Fourier Transform.",
+            "for (k = 0; k < N; ++k)",
+            "    H[k] = scale * sum(h[j] * e**(-Direction*2*pi*i*j*k/N), 0 <= j < N);",
+            "",
+            "// Store result.",
+            "for (k = 0; k < N; ++k)",
+            "{",
+            "    C->realp[k*IC] = Re(H[k]);",
+            "    C->imagp[k*IC] = Im(H[k]);",
+            "}",
+            ""
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The temporary buffer versions perform the same operation but use a temporary buffer for improved performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fast Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/fast-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 1D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 1D Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-1d-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT16_copv": {
+      "abstract": [
+        {
+          "text": "Performs a 16-element FFT on interleaved-complex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_FFT16_copv"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT16_copv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_FFT16_copv",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft16_copv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT16_zopv": {
+      "abstract": [
+        {
+          "text": "Performs a 16-element FFT on split-complex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_FFT16_zopv"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT16_zopv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_FFT16_zopv",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft16_zopv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT32_copv": {
+      "abstract": [
+        {
+          "text": "Performs a 32-element FFT on interleaved-complex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_FFT32_copv"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT32_copv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_FFT32_copv",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft32_copv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT32_zopv": {
+      "abstract": [
+        {
+          "text": "Performs a 32-element FFT on split-complex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_FFT32_zopv"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT32_zopv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_FFT32_zopv",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft32_zopv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft3_zop": {
+      "abstract": [
+        {
+          "text": "Computes a single-precision out-of-place radix-3 complex FFT, either forward or inverse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft3_zop"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft3_zop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft3_zop",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft3_zop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft3_zopD": {
+      "abstract": [
+        {
+          "text": "Computes a double-precision out-of-place radix-3 complex FFT, either forward or inverse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft3_zopD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft3_zopD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft3_zopD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft3_zopd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft5_zop": {
+      "abstract": [
+        {
+          "text": "Computes a single-precision out-of-place radix-5 complex FFT, either forward or inverse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft5_zop"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft5_zop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft5_zop",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft5_zop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft5_zopD": {
+      "abstract": [
+        {
+          "text": "Computes a double-precision out-of-place radix-5 complex FFT, either forward or inverse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft5_zopD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft5_zopD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft5_zopD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft5_zopd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zop": {
+      "abstract": [
+        {
+          "text": "Computes a forward or inverse out-of-place, single-precision complex FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft_zop"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft_zop",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft_zop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zopD": {
+      "abstract": [
+        {
+          "text": "Computes a forward or inverse out-of-place, double-precision complex FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft_zopD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zopD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft_zopD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft_zopd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zopt": {
+      "abstract": [
+        {
+          "text": "Computes a forward or inverse out-of-place, single-precision complex FFT using a temporary buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft_zopt"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zopt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft_zopt",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft_zopt"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zoptD": {
+      "abstract": [
+        {
+          "text": "Computes a forward or inverse out-of-place, double-precision complex FFT using a temporary buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft_zoptD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zoptD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft_zoptD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft_zoptd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Functions-for-1D-Complex-FFT",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-complex-fft"
+      ],
+      "title": "Functions for 1D Complex FFT"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Out-of-Place-FFT-Functions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zop",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zopD"
+      ],
+      "title": "Out-of-Place FFT Functions"
+    },
+    {
+      "anchor": "Out-of-Place-FFT-Functions-with-Temporary-Buffer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zopt",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zoptD"
+      ],
+      "title": "Out-of-Place FFT Functions with Temporary Buffer"
+    },
+    {
+      "anchor": "Fixed-Length-FFT-Functions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT16_copv",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT32_copv",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT16_zopv",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_FFT32_zopv"
+      ],
+      "title": "Fixed-Length FFT Functions"
+    },
+    {
+      "anchor": "Radix-3-and-Radix-5-FFT-Functions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft3_zop",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft3_zopD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft5_zop",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft5_zopD"
+      ],
+      "title": "Radix 3 and Radix 5 FFT Functions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

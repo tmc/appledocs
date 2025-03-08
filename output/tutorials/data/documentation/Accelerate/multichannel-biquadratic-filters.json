@@ -1,0 +1,921 @@
+{
+  "abstract": [
+    {
+      "text": "Filter a multichannel signal with a cascade of biquadratic sections.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/multichannel-biquadratic-filters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Multichannel biquadratic filters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP library implements biquadratic filtering as a cascade of individual infinite impulse response (IIR) filters called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sections.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " Each section has its own set of feedback and feedforward coefficients, and implements a direct-form 2 filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the biquadratic filter function executes, the sections execute in sequence. Each section processes the entire input signal and passes its output to the next section for further processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The vDSP biquadratic filters work in place. That is, the source and destination pointers may point to the same memory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Although you can use ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/kernel/1579994-vdsp_biquadm",
+                  "type": "text"
+                },
+                {
+                  "text": " to process a single channel of data, it’s optimized for processing multiple channels of data independently. When processing only a single channel, the single-channel API ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " may provide better performance and energy efficiency. When processing a single channel in isolation, it’s best practice to use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " whenever possible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note on performance and energy efficiency",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters": {
+      "abstract": [
+        {
+          "text": "Apply biquadratic filters to single-channel and multichannel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Biquadratic IIR filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/biquadratic-iir-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts": {
+      "abstract": [
+        {
+          "text": "Change the frequency response of an audio signal by manipulating frequency-domain data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Equalizing audio with discrete cosine transforms (DCTs)",
+      "type": "topic",
+      "url": "/documentation/accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters": {
+      "abstract": [
+        {
+          "text": "Perform finite impulse response filtering with decimation and antialiasing on vectors of real or complex values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Finite impulse response filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/finite-impulse-response-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/recursive-filters": {
+      "abstract": [
+        {
+          "text": "Perform two-pole two-zero recursive filtering on a vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/recursive-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recursive filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/recursive-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters": {
+      "abstract": [
+        {
+          "text": "Filter a single-channel signal with a cascade of biquadratic sections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Single-channel biquadratic filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/single-channel-biquadratic-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad": {
+      "abstract": [
+        {
+          "text": "Applies a single-precision single-channel biquadratic IIR filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquad"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquad",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquad"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm": {
+      "abstract": [
+        {
+          "text": "Applies a single-precision multichannel biquadratic IIR filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadmD": {
+      "abstract": [
+        {
+          "text": "Applies a double-precision multichannel biquadratic IIR filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadmD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadmD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadmD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadmd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CopyState": {
+      "abstract": [
+        {
+          "text": "Copies the filter state from one single-precision multichannel biquadratic IIR filter object to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_CopyState"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CopyState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_CopyState",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_copystate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CopyStateD": {
+      "abstract": [
+        {
+          "text": "Copies the filter state from one double-precision multichannel biquadratic IIR filter object to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_CopyStateD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CopyStateD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_CopyStateD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_copystated"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Builds a data structure that contains precalculated data for use by a single-precision, multichannel cascaded biquadratic filter function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CreateSetupD": {
+      "abstract": [
+        {
+          "text": "Builds a data structure that contains precalculated data for use by a double-precision, multichannel cascaded biquadratic filter function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_CreateSetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CreateSetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_CreateSetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_createsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_DestroySetup": {
+      "abstract": [
+        {
+          "text": "Destroys a single-precision multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_DestroySetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_DestroySetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_DestroySetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_destroysetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_DestroySetupD": {
+      "abstract": [
+        {
+          "text": "Destroys a double-precision multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_DestroySetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_DestroySetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_DestroySetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_destroysetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_ResetState": {
+      "abstract": [
+        {
+          "text": "Resets the filter state of a single-precision multichannel biquadratic IIR filter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_ResetState"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_ResetState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_ResetState",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_resetstate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_ResetStateD": {
+      "abstract": [
+        {
+          "text": "Resets the filter state of a double-precision multichannel biquadratic IIR filter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_ResetStateD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_ResetStateD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_ResetStateD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_resetstated"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetActiveFilters": {
+      "abstract": [
+        {
+          "text": "Activates or deactivates individual sections in a single-precision, multichannel biquadratic filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetActiveFilters"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetActiveFilters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetActiveFilters",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setactivefilters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetActiveFiltersD": {
+      "abstract": [
+        {
+          "text": "Activates or deactivates individual sections in a double-precision, multichannel biquadratic filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetActiveFiltersD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetActiveFiltersD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetActiveFiltersD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setactivefiltersd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsDouble": {
+      "abstract": [
+        {
+          "text": "Sets the double-precision coefficients of the specified single-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetCoefficientsDouble"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsDouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetCoefficientsDouble",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setcoefficientsdouble"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsDoubleD": {
+      "abstract": [
+        {
+          "text": "Sets the double-precision coefficients of the specified double-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetCoefficientsDoubleD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsDoubleD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetCoefficientsDoubleD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setcoefficientsdoubled"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsSingle": {
+      "abstract": [
+        {
+          "text": "Sets the single-precision coefficients of the specified single-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetCoefficientsSingle"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsSingle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetCoefficientsSingle",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setcoefficientssingle"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsSingleD": {
+      "abstract": [
+        {
+          "text": "Sets the single-precision coefficients of the specified double-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetCoefficientsSingleD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsSingleD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetCoefficientsSingleD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setcoefficientssingled"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsDouble": {
+      "abstract": [
+        {
+          "text": "Sets the double-precision coefficient target values of the specified single-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetTargetsDouble"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsDouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetTargetsDouble",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_settargetsdouble"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsDoubleD": {
+      "abstract": [
+        {
+          "text": "Sets the double-precision coefficient target values of the specified double-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetTargetsDoubleD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsDoubleD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetTargetsDoubleD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_settargetsdoubled"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsSingle": {
+      "abstract": [
+        {
+          "text": "Sets the single-precision coefficient target values of the specified single-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetTargetsSingle"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsSingle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetTargetsSingle",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_settargetssingle"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsSingleD": {
+      "abstract": [
+        {
+          "text": "Sets the single-precision coefficient target values of the specified double-precision, multichannel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetTargetsSingleD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsSingleD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetTargetsSingleD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_settargetssingled"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_Setup": {
+      "abstract": [
+        {
+          "text": "A data structure that contains precalculated data for use by a single-precision, multichannel cascaded biquadratic filter function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_Setup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_Setup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_Setup"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_biquadm_Setup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetupD": {
+      "abstract": [
+        {
+          "text": "A data structure that contains precalculated data for use by a double-precision, multichannel cascaded biquadratic filter function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetupD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquadm_SetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP_biquadm_SetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquadm_setupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vector-filtering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/finite-impulse-response-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/recursive-filters"
+      ],
+      "title": "Vector filtering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Equalizing-audio-with-biquadratic-filters",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts"
+      ],
+      "title": "Equalizing audio with biquadratic filters"
+    },
+    {
+      "anchor": "Creating-a-multichannel-biquadratic-filter-setup",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CreateSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_Setup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CreateSetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetupD"
+      ],
+      "title": "Creating a multichannel biquadratic filter setup"
+    },
+    {
+      "anchor": "Copying-the-filter-state-of-a-multichannel-biquadratic-filter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CopyState",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_CopyStateD"
+      ],
+      "title": "Copying the filter state of a multichannel biquadratic filter"
+    },
+    {
+      "anchor": "Resetting-the-filter-state-of-a-multichannel-biquadratic-filter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_ResetState",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_ResetStateD"
+      ],
+      "title": "Resetting the filter state of a multichannel biquadratic filter"
+    },
+    {
+      "anchor": "Setting-the-filter-state-of-a-multichannel-biquadratic-filter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetActiveFilters",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetActiveFiltersD"
+      ],
+      "title": "Setting the filter state of a multichannel biquadratic filter"
+    },
+    {
+      "anchor": "Setting-the-coefficients-of-a-multichannel-biquadratic-filter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsSingle",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsDouble",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsSingleD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetCoefficientsDoubleD"
+      ],
+      "title": "Setting the coefficients of a multichannel biquadratic filter"
+    },
+    {
+      "anchor": "Setting-the-target-values-of-a-multichannel-biquadratic-filter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsSingle",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsDouble",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsSingleD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_SetTargetsDoubleD"
+      ],
+      "title": "Setting the target values of a multichannel biquadratic filter"
+    },
+    {
+      "anchor": "Applying-a-multichannel-biquadratic-filter",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadmD"
+      ],
+      "title": "Applying a multichannel biquadratic filter"
+    },
+    {
+      "anchor": "Destroying-a-multichannel-biquadratic-filter-setup",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_DestroySetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquadm_DestroySetupD"
+      ],
+      "title": "Destroying a multichannel biquadratic filter setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_biquadm_SetupD/title",
+          "value": "vDSP_biquadm_SetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_biquadm_SetupD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_biquadm_SetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_biquadm_SetupD/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_biquadm_SetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_biquadm_Setup/title",
+          "value": "vDSP_biquadm_Setup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_biquadm_Setup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_biquadm_Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDSP_biquadm_Setup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDSP_biquadm_Setup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

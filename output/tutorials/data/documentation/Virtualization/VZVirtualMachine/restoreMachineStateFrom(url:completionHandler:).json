@@ -1,1 +1,1193 @@
-{"abstract":[{"text":"Restores a VM from a previously saved state.","type":"text"}],"identifier":{"url":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)","interfaceLanguage":"swift"},"metadata":{"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"restoreMachineStateFrom"},{"kind":"text","text":"("},{"kind":"externalParam","text":"url"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:10Foundation3URLV","text":"URL"},{"kind":"text","text":", "},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":": ((any "},{"text":"Error","preciseIdentifier":"s:s5ErrorP","kind":"typeIdentifier"},{"text":")?) -> ","kind":"text"},{"text":"Void","preciseIdentifier":"s:s4Voida","kind":"typeIdentifier"},{"text":")","kind":"text"}],"title":"restoreMachineStateFrom(url:completionHandler:)","navigatorTitle":[{"text":"restoreMachineStateFromURL:completionHandler:","kind":"identifier"}],"externalID":"c:objc(cs)VZVirtualMachine(im)restoreMachineStateFromURL:completionHandler:","modules":[{"name":"Virtualization"}],"role":"symbol","platforms":[{"introducedAt":"14.0","name":"macOS","beta":false,"deprecated":false,"unavailable":false}],"roleHeading":"Instance Method","symbolKind":"method"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.virtualization/documentation/Virtualization","doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine"]]},"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"identifiers":["doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)"],"title":"Saving and restoring the VM state","generated":true,"anchor":"Saving-and-restoring-the-VM-state"}],"sections":[],"primaryContentSections":[{"declarations":[{"platforms":["macOS"],"languages":["swift"],"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"restoreMachineStateFrom"},{"kind":"text","text":"("},{"kind":"externalParam","text":"url"},{"kind":"text","text":" "},{"kind":"internalParam","text":"saveFileURL"},{"kind":"text","text":": "},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/s:10Foundation3URLV","preciseIdentifier":"s:10Foundation3URLV","text":"URL"},{"kind":"text","text":", "},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":": "},{"kind":"keyword","text":"@escaping"},{"kind":"text","text":" ((any "},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/s:s5ErrorP","preciseIdentifier":"s:s5ErrorP","text":"Error"},{"kind":"text","text":")?) -> "},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/s:s4Voida","preciseIdentifier":"s:s4Voida","text":"Void"},{"kind":"text","text":")"}]},{"platforms":["macOS"],"languages":["swift"],"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"restoreMachineStateFrom"},{"kind":"text","text":"("},{"kind":"externalParam","text":"url"},{"kind":"text","text":" "},{"kind":"internalParam","text":"saveFileURL"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"URL","preciseIdentifier":"s:10Foundation3URLV","identifier":"doc://com.externally.resolved.symbol/s:10Foundation3URLV"},{"kind":"text","text":") "},{"kind":"keyword","text":"async"},{"kind":"text","text":" "},{"kind":"keyword","text":"throws"}]}],"kind":"declarations"},{"parameters":[{"name":"saveFileURL","content":[{"inlineContent":[{"text":"An ","type":"text"},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/foundation/nsurl","isActive":true},{"text":" that indicates the location where the framework reads the saved state of the VM.","type":"text"}],"type":"paragraph"}]},{"name":"completionHandler","content":[{"inlineContent":[{"text":"A block the framework calls after the VM has been successfully restored or upon an error.","type":"text"}],"type":"paragraph"}]}],"kind":"parameters"},{"content":[{"anchor":"Discussion","level":2,"text":"Discussion","type":"heading"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Use this method to restore a stopped VM to a state previously saved to file through "},{"isActive":true,"identifier":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)","type":"reference"},{"type":"text","text":"."}]},{"type":"paragraph","inlineContent":[{"text":"The method fails if any of the following conditions are true:","type":"text"}]},{"items":[{"content":[{"inlineContent":[{"type":"text","text":"The Virtualization framework can’t open or read the file."}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The file contents are incompatible with the current configuration."}]}]},{"content":[{"inlineContent":[{"type":"text","text":"The VM you’re trying to restore isn’t in the "},{"identifier":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped","isActive":true,"type":"reference"},{"type":"text","text":" state."}],"type":"paragraph"}]}],"type":"unorderedList"},{"type":"paragraph","inlineContent":[{"type":"text","text":"If this method fails, the framework returns an error, and the VM state doesn’t change."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"If this method is successful, the framework restores the VM and places it in the paused state."}]}],"kind":"content"}],"kind":"symbol","references":{"doc://com.externally.resolved.symbol/s:s4Voida":{"role":"symbol","type":"topic","title":"Void","identifier":"doc://com.externally.resolved.symbol/s:s4Voida","abstract":[{"type":"text","text":"The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`."}],"kind":"symbol","url":"/documentation/Swift/Void","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"Void"},{"kind":"text","text":" = ()"}]},"doc://com.apple.virtualization/documentation/Virtualization":{"type":"topic","abstract":[{"text":"Create virtual machines and run macOS and Linux-based operating systems.","type":"text"}],"role":"collection","kind":"symbol","identifier":"doc://com.apple.virtualization/documentation/Virtualization","title":"Virtualization","url":"/documentation/virtualization"},"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine":{"type":"topic","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"VZVirtualMachine"}],"identifier":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine","abstract":[{"type":"text","text":"An object that manages the overall state and configuration of your VM."}],"role":"symbol","title":"VZVirtualMachine","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"VZVirtualMachine"}],"url":"/documentation/virtualization/vzvirtualmachine"},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","role":"overview","kind":"technologies","abstract":[{"text":"","type":"text"}],"type":"topic","url":"/documentation/technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.externally.resolved.symbol/c:objc(cs)NSError":{"abstract":[{"type":"text","text":"Information about an error condition including a domain, a domain-specific error code, and application-specific information."}],"title":"NSError","fragments":[{"kind":"text","text":"class "},{"text":"NSError","kind":"identifier"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSError","kind":"symbol","url":"/documentation/foundation/nserror","type":"topic","role":"symbol"},"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped":{"kind":"symbol","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"stopped"}],"identifier":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped","navigatorTitle":[{"kind":"identifier","text":"VZVirtualMachineStateStopped"}],"title":"VZVirtualMachine.State.stopped","url":"/documentation/virtualization/vzvirtualmachine/state-swift.enum/stopped","role":"symbol","type":"topic","abstract":[{"type":"text","text":"The VM isn’t running."}]},"doc://com.externally.resolved.symbol/s:s5ErrorP":{"role":"symbol","type":"topic","title":"Error","identifier":"doc://com.externally.resolved.symbol/s:s5ErrorP","abstract":[{"type":"text","text":"A type representing an error value that can be thrown."}],"kind":"symbol","url":"/documentation/Swift/Error","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Error","kind":"identifier"},{"text":" : ","kind":"text"},{"preciseIdentifier":"s:s8SendableP","text":"Sendable","kind":"typeIdentifier"}]},"doc://com.apple.documentation/documentation/foundation/nsurl":{"abstract":[{"text":"An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/foundation/nsurl","title":"NSURL","fragments":[{"text":"class ","kind":"text"},{"text":"NSURL","kind":"identifier"}],"type":"topic","role":"symbol","kind":"symbol","url":"/documentation/foundation/nsurl"},"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)":{"kind":"symbol","navigatorTitle":[{"text":"saveMachineStateToURL:completionHandler:","kind":"identifier"}],"title":"saveMachineStateTo(url:completionHandler:)","identifier":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)","url":"/documentation/virtualization/vzvirtualmachine/savemachinestateto(url:completionhandler:)","role":"symbol","abstract":[{"text":"Saves the state of a VM.","type":"text"}],"type":"topic","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"saveMachineStateTo"},{"kind":"text","text":"("},{"kind":"externalParam","text":"url"},{"text":": ","kind":"text"},{"text":"URL","preciseIdentifier":"s:10Foundation3URLV","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"completionHandler","kind":"externalParam"},{"text":": ((any ","kind":"text"},{"text":"Error","preciseIdentifier":"s:s5ErrorP","kind":"typeIdentifier"},{"text":")?) -> ","kind":"text"},{"text":"Void","preciseIdentifier":"s:s4Voida","kind":"typeIdentifier"},{"text":")","kind":"text"}]},"doc://com.externally.resolved.symbol/s:10Foundation3URLV":{"type":"topic","fragments":[{"kind":"text","text":"struct "},{"kind":"identifier","text":"URL"}],"title":"URL","kind":"symbol","identifier":"doc://com.externally.resolved.symbol/s:10Foundation3URLV","url":"/documentation/foundation/url","abstract":[{"text":"A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.","type":"text"}],"role":"symbol"},"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)":{"title":"restoreMachineStateFrom(url:completionHandler:)","identifier":"doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)","type":"topic","role":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"restoreMachineStateFrom","kind":"identifier"},{"text":"(","kind":"text"},{"text":"url","kind":"externalParam"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"URL","preciseIdentifier":"s:10Foundation3URLV"},{"text":", ","kind":"text"},{"text":"completionHandler","kind":"externalParam"},{"kind":"text","text":": ((any "},{"kind":"typeIdentifier","preciseIdentifier":"s:s5ErrorP","text":"Error"},{"text":")?) -> ","kind":"text"},{"preciseIdentifier":"s:s4Voida","text":"Void","kind":"typeIdentifier"},{"text":")","kind":"text"}],"abstract":[{"text":"Restores a VM from a previously saved state.","type":"text"}],"url":"/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)","kind":"symbol","navigatorTitle":[{"text":"restoreMachineStateFromURL:completionHandler:","kind":"identifier"}]}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"op":"replace","value":"occ","path":"/identifier/interfaceLanguage"},{"op":"replace","value":[{"beta":false,"name":"macOS","deprecated":false,"unavailable":false,"introducedAt":"14.0"}],"path":"/metadata/platforms"},{"op":"replace","value":"Instance Method","path":"/metadata/roleHeading"},{"op":"replace","value":"restoreMachineStateFromURL:completionHandler:","path":"/metadata/title"},{"op":"replace","path":"/metadata/symbolKind","value":"method"},{"op":"replace","path":"/metadata/fragments","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"restoreMachineStateFromURL:completionHandler:"}]},{"op":"replace","path":"/hierarchy","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.virtualization/documentation/Virtualization","doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine"]]}},{"op":"add","path":"/topicSections","value":null},{"op":"add","path":"/relationshipsSections","value":null},{"op":"replace","path":"/seeAlsoSections","value":[{"title":"Saving and restoring the VM state","generated":true,"anchor":"Saving-and-restoring-the-VM-state","identifiers":["doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)"]}]},{"op":"replace","path":"/primaryContentSections/0","value":{"kind":"declarations","declarations":[{"languages":["occ"],"platforms":["macOS"],"tokens":[{"text":"- (","kind":"text"},{"text":"void","preciseIdentifier":"c:v","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"restoreMachineStateFromURL:","kind":"identifier"},{"text":"(","kind":"text"},{"text":"NSURL","preciseIdentifier":"c:objc(cs)NSURL","kind":"typeIdentifier"},{"text":" *) ","kind":"text"},{"text":"saveFileURL","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"completionHandler:","kind":"identifier"},{"text":"(","kind":"text"},{"text":"void","preciseIdentifier":"c:v","kind":"typeIdentifier"},{"text":" (^)(","kind":"text"},{"text":"NSError","preciseIdentifier":"c:objc(cs)NSError","kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSError"},{"text":" * ","kind":"text"},{"text":"errorOrNil","kind":"internalParam"},{"kind":"text","text":")) "},{"kind":"internalParam","text":"completionHandler"},{"kind":"text","text":";"}]}]}},{"op":"replace","value":{"parameters":[{"name":"saveFileURL","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"An "},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/foundation/nsurl","isActive":true},{"type":"text","text":" that indicates the location where the framework reads the saved state of the VM."}]}]},{"name":"completionHandler","content":[{"type":"paragraph","inlineContent":[{"text":"A block the framework calls after the VM has been successfully restored or upon an error.","type":"text"}]}]}],"kind":"parameters"},"path":"/primaryContentSections/1"},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title","value":"VZVirtualMachine"},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments","value":[{"text":"VZVirtualMachine","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle","value":[{"text":"VZVirtualMachine","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1State-swift.enum~1stopped/title","value":"VZVirtualMachineStateStopped"},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1State-swift.enum~1stopped/fragments","value":[{"kind":"identifier","text":"VZVirtualMachineStateStopped"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract","value":[{"type":"text","text":"An object that represents the location of a resource, such as an item on a remote server or the path to a local file. "}]},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1saveMachineStateTo(url:completionHandler:)/title","value":"saveMachineStateToURL:completionHandler:"},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1saveMachineStateTo(url:completionHandler:)/fragments","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"saveMachineStateToURL:completionHandler:"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1restoreMachineStateFrom(url:completionHandler:)/title","value":"restoreMachineStateFromURL:completionHandler:"},{"path":"/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1restoreMachineStateFrom(url:completionHandler:)/fragments","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"restoreMachineStateFromURL:completionHandler:"}],"op":"replace"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Restores a VM from a previously saved state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)VZVirtualMachine(im)restoreMachineStateFromURL:completionHandler:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "restoreMachineStateFrom"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "url"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation3URLV",
+        "text": "URL"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "completionHandler"
+      },
+      {
+        "kind": "text",
+        "text": ": ((any "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s5ErrorP",
+        "text": "Error"
+      },
+      {
+        "kind": "text",
+        "text": ")?) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "restoreMachineStateFromURL:completionHandler:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "restoreMachineStateFrom(url:completionHandler:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreMachineStateFrom"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "saveFileURL"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation3URLV",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " ((any "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5ErrorP",
+              "text": "Error"
+            },
+            {
+              "kind": "text",
+              "text": ")?) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreMachineStateFrom"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "saveFileURL"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation3URLV",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " that indicates the location where the framework reads the saved state of the VM.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "saveFileURL"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A block the framework calls after the VM has been successfully restored or upon an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completionHandler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to restore a stopped VM to a state previously saved to file through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method fails if any of the following conditions are true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Virtualization framework can’t open or read the file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The file contents are incompatible with the current configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The VM you’re trying to restore isn’t in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this method fails, the framework returns an error, and the VM state doesn’t change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this method is successful, the framework restores the VM and places it in the paused state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped": {
+      "abstract": [
+        {
+          "text": "The VM isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopped"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineStateStopped"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine.State.stopped",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/state-swift.enum/stopped"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Restores a VM from a previously saved state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreMachineStateFrom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreMachineStateFromURL:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreMachineStateFrom(url:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Saves the state of a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveMachineStateTo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveMachineStateToURL:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveMachineStateTo(url:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/savemachinestateto(url:completionhandler:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation3URLV": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    },
+    "doc://com.externally.resolved.symbol/s:s5ErrorP": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Saving-and-restoring-the-VM-state",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)"
+      ],
+      "title": "Saving and restoring the VM state"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "restoreMachineStateFromURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreMachineStateFromURL:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.virtualization/documentation/Virtualization",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Saving-and-restoring-the-VM-state",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)"
+              ],
+              "title": "Saving and restoring the VM state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "restoreMachineStateFromURL:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSURL",
+                    "text": "NSURL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "saveFileURL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "completionHandler:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^)("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "errorOrNil"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "completionHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " that indicates the location where the framework reads the saved state of the VM.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "saveFileURL"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A block the framework calls after the VM has been successfully restored or upon an error.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "completionHandler"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1State-swift.enum~1stopped/title",
+          "value": "VZVirtualMachineStateStopped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1State-swift.enum~1stopped/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineStateStopped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1saveMachineStateTo(url:completionHandler:)/title",
+          "value": "saveMachineStateToURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1saveMachineStateTo(url:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveMachineStateToURL:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1restoreMachineStateFrom(url:completionHandler:)/title",
+          "value": "restoreMachineStateFromURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1restoreMachineStateFrom(url:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreMachineStateFromURL:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

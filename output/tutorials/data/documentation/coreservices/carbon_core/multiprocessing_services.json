@@ -1,0 +1,596 @@
+{
+  "abstract": [
+    {
+      "text": "Support multitasking in your app.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "In macOS 10.8 and later, use Grand Central Dispatch (GCD) or POSIX threads instead. For more information, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1737073",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " framework reference, and ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1695500",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/carbon_core/multiprocessing_services"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1661795,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Multiprocessing Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiprocessing Services is an API that lets you create preemptive tasks in your application that can run on one or more microprocessors. Unlike the cooperative threads created by the Thread Manager, Multiprocessing Services automatically divides processor time among the available tasks, so that no particular task can monopolize the system. This document is relevant to you if you want to add multitasking capability to your Mac OS applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, Carbon supports Multiprocessing Services with the following restrictions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Debugging functions are not implemented. Use the mach APIs provided by the system to implement debugging services.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Opaque notification IDs are local to your process; they are not globally addressable across processes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Global memory allocation is not supported.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1674081",
+          "level": 3,
+          "text": "Gestalt Constants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can determine which system software calls are preemptively-safe for Multiprocessing Services by using the preemptive function attribute selectors defined in the Gestalt Manager. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695500": {
+      "identifier": "devLink-1695500",
+      "title": "Threading Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i"
+    },
+    "devLink-1737073": {
+      "identifier": "devLink-1737073",
+      "title": "Concurrency Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "article",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestalt Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/gestalt_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/multiprocessing_services": {
+      "abstract": [
+        {
+          "text": "Support multitasking in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/multiprocessing_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multiprocessing Services",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/multiprocessing_services"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpdeletederr": {
+      "abstract": [
+        {
+          "text": "The desired notification the function was waiting upon was deleted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPDeletedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpdeletederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPDeletedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpdeletederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpinsufficientresourceserr": {
+      "abstract": [
+        {
+          "text": "Could not complete task due to unavailable Multiprocessing Services resources. Note that many functions return this value as a general error when the desired action could not be performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPInsufficientResourcesErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpinsufficientresourceserr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPInsufficientResourcesErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpinsufficientresourceserr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpinvalididerr": {
+      "abstract": [
+        {
+          "text": "Invalid ID value. For example, an invalid message queue ID was passed to ",
+          "type": "text"
+        },
+        {
+          "code": "MPNotifyQueue",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPInvalidIDErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpinvalididerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPInvalidIDErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpinvalididerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpiterationenderr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPIterationEndErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpiterationenderr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPIterationEndErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpiterationenderr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpprivilegederr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPPrivilegedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpprivilegederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPPrivilegedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpprivilegederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpprocesscreatederr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPProcessCreatedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpprocesscreatederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPProcessCreatedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpprocesscreatederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmpprocessterminatederr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPProcessTerminatedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmpprocessterminatederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPProcessTerminatedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmpprocessterminatederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmptaskblockederr": {
+      "abstract": [
+        {
+          "text": "The desired task is blocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPTaskBlockedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmptaskblockederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPTaskBlockedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmptaskblockederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmptaskcreatederr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPTaskCreatedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmptaskcreatederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPTaskCreatedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmptaskcreatederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmptaskstoppederr": {
+      "abstract": [
+        {
+          "text": "The desired task is stopped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPTaskStoppedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmptaskstoppederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPTaskStoppedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmptaskstoppederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kmptimeouterr": {
+      "abstract": [
+        {
+          "text": "The designated timeout interval passed before the function could take action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMPTimeoutErr"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kmptimeouterr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kMPTimeoutErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/kmptimeouterr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1663965",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "Result codes defined for Multiprocessing Services are listed below.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kmpiterationenderr",
+        "doc://com.apple.documentation/documentation/coreservices/kmpprivilegederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmpprocesscreatederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmpprocessterminatederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmptaskcreatederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmptaskblockederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmptaskstoppederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmpdeletederr",
+        "doc://com.apple.documentation/documentation/coreservices/kmptimeouterr",
+        "doc://com.apple.documentation/documentation/coreservices/kmpinsufficientresourceserr",
+        "doc://com.apple.documentation/documentation/coreservices/kmpinvalididerr"
+      ],
+      "kind": "taskGroup",
+      "title": "Result Codes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/carbon_core/multiprocessing_services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/carbon_core/multiprocessing_services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

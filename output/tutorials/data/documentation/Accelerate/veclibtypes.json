@@ -1,0 +1,1502 @@
+{
+  "abstract": [
+    {
+      "text": "Create and work with 128-bit vector data types.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/veclib"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/veclibtypes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vecLibTypes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vecLibTypes.h header file defines a set of vector data types (",
+              "type": "text"
+            },
+            {
+              "code": "vFloat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vUInt32",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", etc.), which represent 128-bit vectors containing values of type ",
+              "type": "text"
+            },
+            {
+              "code": "float",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UInt32",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", etc. The vBasicOps.h and vfp.h headers make use of these types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The type names all begin with the letter “v,” followed by a mnemonic for the scalar data type used for elements of the vector. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "vUInt32",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vSInt16",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "vFloat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", etc.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/OS_la_object": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_la_object"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/OS_la_object",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_la_object"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_la_object",
+      "type": "topic",
+      "url": "/documentation/accelerate/os_la_object"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_attribute_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_attribute_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_attribute_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_attribute_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_attribute_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_attribute_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_count_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_count_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_count_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_count_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_count_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_count_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_deallocator_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_deallocator_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_deallocator_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_deallocator_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_deallocator_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_deallocator_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_hint_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_hint_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_hint_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_hint_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_hint_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_hint_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_index_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_index_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_index_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_index_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_index_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_index_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_norm_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_norm_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_norm_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_norm_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_norm_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_norm_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_object_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_object_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_object_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_object_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_object_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_scalar_type_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_scalar_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_scalar_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_scalar_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_scalar_type_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_scalar_type_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/la_status_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "la_status_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/la_status_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "la_status_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "la_status_t",
+      "type": "topic",
+      "url": "/documentation/accelerate/la_status_t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vBool32": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "bool int",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vBool32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vBool32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vBool32"
+        }
+      ],
+      "role": "symbol",
+      "title": "vBool32",
+      "type": "topic",
+      "url": "/documentation/accelerate/vbool32"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDouble": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "double",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDouble"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDouble",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDouble"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDouble",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdouble"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vFloat": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "float",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vFloat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vFloat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vFloat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vfloat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vSInt16": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "signed short",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vSInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vSInt16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vSInt16"
+        }
+      ],
+      "role": "symbol",
+      "title": "vSInt16",
+      "type": "topic",
+      "url": "/documentation/accelerate/vsint16"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vSInt32": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "signed int",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vSInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vSInt32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vSInt32"
+        }
+      ],
+      "role": "symbol",
+      "title": "vSInt32",
+      "type": "topic",
+      "url": "/documentation/accelerate/vsint32"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vSInt64": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "int64_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vSInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vSInt64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vSInt64"
+        }
+      ],
+      "role": "symbol",
+      "title": "vSInt64",
+      "type": "topic",
+      "url": "/documentation/accelerate/vsint64"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vSInt8": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "signed char",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vSInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vSInt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vSInt8"
+        }
+      ],
+      "role": "symbol",
+      "title": "vSInt8",
+      "type": "topic",
+      "url": "/documentation/accelerate/vsint8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vUInt16": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "unsigned short",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vUInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vUInt16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vUInt16"
+        }
+      ],
+      "role": "symbol",
+      "title": "vUInt16",
+      "type": "topic",
+      "url": "/documentation/accelerate/vuint16"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vUInt32": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "unsigned int",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vUInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vUInt32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vUInt32"
+        }
+      ],
+      "role": "symbol",
+      "title": "vUInt32",
+      "type": "topic",
+      "url": "/documentation/accelerate/vuint32"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vUInt64": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "uint64_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vUInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vUInt64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vUInt64"
+        }
+      ],
+      "role": "symbol",
+      "title": "vUInt64",
+      "type": "topic",
+      "url": "/documentation/accelerate/vuint64"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vUInt8": {
+      "abstract": [
+        {
+          "text": "A 128-bit vector packed with ",
+          "type": "text"
+        },
+        {
+          "code": "unsigned char",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vUInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vUInt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vUInt8"
+        }
+      ],
+      "role": "symbol",
+      "title": "vUInt8",
+      "type": "topic",
+      "url": "/documentation/accelerate/vuint8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/veclib": {
+      "abstract": [
+        {
+          "text": "Perform computations on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/veclib",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vecLib",
+      "type": "topic",
+      "url": "/documentation/accelerate/veclib"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Type-Aliases",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/la_attribute_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_count_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_deallocator_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_hint_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_index_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_norm_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_object_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_scalar_type_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/la_status_t",
+        "doc://com.apple.accelerate/documentation/Accelerate/OS_la_object"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "vecLibTypes",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vUInt8",
+        "doc://com.apple.accelerate/documentation/Accelerate/vSInt8",
+        "doc://com.apple.accelerate/documentation/Accelerate/vUInt16",
+        "doc://com.apple.accelerate/documentation/Accelerate/vSInt16",
+        "doc://com.apple.accelerate/documentation/Accelerate/vUInt32",
+        "doc://com.apple.accelerate/documentation/Accelerate/vSInt32",
+        "doc://com.apple.accelerate/documentation/Accelerate/vUInt64",
+        "doc://com.apple.accelerate/documentation/Accelerate/vSInt64",
+        "doc://com.apple.accelerate/documentation/Accelerate/vFloat",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDouble",
+        "doc://com.apple.accelerate/documentation/Accelerate/vBool32"
+      ],
+      "title": "vecLibTypes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_norm_t/title",
+          "value": "la_norm_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_norm_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_norm_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_norm_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_norm_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt64/title",
+          "value": "vSInt64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt64/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt64/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vFloat/title",
+          "value": "vFloat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vFloat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vFloat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vFloat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vFloat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_deallocator_t/title",
+          "value": "la_deallocator_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_deallocator_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_deallocator_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_deallocator_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_deallocator_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt8/title",
+          "value": "vSInt8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt8/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDouble/title",
+          "value": "vDouble"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDouble/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDouble"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vDouble/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vDouble"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vBool32/title",
+          "value": "vBool32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vBool32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vBool32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vBool32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vBool32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_hint_t/title",
+          "value": "la_hint_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_hint_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_hint_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_hint_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_hint_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_count_t/title",
+          "value": "la_count_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_count_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_count_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_count_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_count_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt16/title",
+          "value": "vUInt16"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt16/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt16/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt64/title",
+          "value": "vUInt64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt64/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt64/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt32/title",
+          "value": "vSInt32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_scalar_type_t/title",
+          "value": "la_scalar_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_scalar_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_scalar_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_scalar_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_scalar_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_object_t/title",
+          "value": "la_object_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_object_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_object_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt16/title",
+          "value": "vSInt16"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt16/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vSInt16/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vSInt16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt32/title",
+          "value": "vUInt32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1OS_la_object/title",
+          "value": "OS_la_object"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1OS_la_object/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_la_object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1OS_la_object/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_la_object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_attribute_t/title",
+          "value": "la_attribute_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_attribute_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_attribute_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_attribute_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_attribute_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt8/title",
+          "value": "vUInt8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vUInt8/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vUInt8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_index_t/title",
+          "value": "la_index_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_index_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_index_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_status_t/title",
+          "value": "la_status_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_status_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_status_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1la_status_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "la_status_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

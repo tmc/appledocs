@@ -1,0 +1,1740 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to determine a user’s risk of exposure.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/exposure-risk-value-calculation-in-exposurenotification-version-1"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Exposure Risk Value Calculation in ExposureNotification Version 1"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ExposureNotification framework uses an Exposure Risk Value to assist the user in determining whether they may have been exposed to the coronavirus. Health authorities have flexibility in calculating this value by setting weights and values in a configuration object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adopt this method of risk assessment, set the ",
+              "type": "text"
+            },
+            {
+              "code": "ENAPIVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the integer value ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram illustrates the data structure and formula used to calculate the Exposure Risk Value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3667011",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following parameters are used to calculate a risk for each exposure incident:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Transmission risk is intended to reflect the status of infection in the affected user and its effect on risk of transmission. The value is based on the affected user’s symptoms, when symptoms first appeared, level of diagnosis verification, or other determination from the app or a health authority.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Transmission Risk",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Cumulative duration of the exposure. The framework measures this value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Duration",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Days since the exposure incident. The framework measures this value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Days",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The attenuation (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "transmission power - RSSI",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") can vary during an exposure event. Attenuation values greater than 0 are weighted by the duration at each risk level and averaged for the overall duration. The framework measures and calculates this value.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Attenuation",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo/totalRiskScore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is calculated using the following formula:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "totalRiskScore = transmissionRiskValue * durationRiskValue *",
+            "daysSinceLastExposureRiskValue * attenuationRiskValue"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Level values are in the range of 0-8. While the formula’s range can be up to 4096, the framework limits ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo/totalRiskScore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the upper limit of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskScore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which has a maximum value of 255.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram illustrates an example of an Exposure Risk Value calculated for a person who was exposed to another person who was diagnosed positive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3667010",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For this example, the other user reported a positive diagnosis, the encounter between the two devices lasted 14 minutes, it happened 4 days ago, and the signal strength attenuation between their phones had a weighted average of 68. The ",
+              "type": "text"
+            },
+            {
+              "code": "totalRiskScore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is limited and set to 255.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To exclude exposure incidents with a risk score below a certain amount, set  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScoreFullRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The framework doesn’t use this property when calculating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary/matchedKeyCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureThreshold",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration": {
+      "abstract": [
+        {
+          "text": "The object that contains parameters for configuring exposure notification risk scoring behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENExposureConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENExposureConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENExposureConfiguration",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationDurationThresholds": {
+      "abstract": [
+        {
+          "text": "The configurable signal-loss thresholds for calculating exposure risk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attenuationDurationThresholds"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationDurationThresholds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attenuationDurationThresholds"
+        }
+      ],
+      "role": "symbol",
+      "title": "attenuationDurationThresholds",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/attenuationdurationthresholds"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationLevelValues": {
+      "abstract": [
+        {
+          "text": "The level values for attenuation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attenuationLevelValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationLevelValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attenuationLevelValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "attenuationLevelValues",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/attenuationlevelvalues"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationWeight": {
+      "abstract": [
+        {
+          "text": "The weight assigned to a score for the Bluetooth signal strength.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attenuationWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationWeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attenuationWeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "attenuationWeight",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/attenuationweight"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureLevelValues": {
+      "abstract": [
+        {
+          "text": "The level values for days since last exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "daysSinceLastExposureLevelValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureLevelValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "daysSinceLastExposureLevelValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "daysSinceLastExposureLevelValues",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/dayssincelastexposurelevelvalues"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureThreshold": {
+      "abstract": [
+        {
+          "text": "The number of days to consider when calculating the risk level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "daysSinceLastExposureThreshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureThreshold",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "daysSinceLastExposureThreshold"
+        }
+      ],
+      "role": "symbol",
+      "title": "daysSinceLastExposureThreshold",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/dayssincelastexposurethreshold"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureWeight": {
+      "abstract": [
+        {
+          "text": "The weight assigned to a score for the days since the user’s exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "daysSinceLastExposureWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureWeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "daysSinceLastExposureWeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "daysSinceLastExposureWeight",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/dayssincelastexposureweight"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationLevelValues": {
+      "abstract": [
+        {
+          "text": "The level values for duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "durationLevelValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationLevelValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "durationLevelValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "durationLevelValues",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/durationlevelvalues"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationWeight": {
+      "abstract": [
+        {
+          "text": "The weight assigned to a score for the duration of the user’s exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "durationWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationWeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "durationWeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "durationWeight",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/durationweight"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/metadata": {
+      "abstract": [
+        {
+          "text": "The metadata you use to configure the exposure calculations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadata",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/metadata"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScore": {
+      "abstract": [
+        {
+          "text": "The value that is the user’s minimum risk score.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumRiskScore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENRiskScore",
+          "text": "ENRiskScore"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumRiskScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumRiskScore",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/minimumriskscore"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScoreFullRange": {
+      "abstract": [
+        {
+          "text": "The value that is the user’s full-range minimum risk score.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumRiskScoreFullRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScoreFullRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumRiskScoreFullRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumRiskScoreFullRange",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/minimumriskscorefullrange"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskLevelValues": {
+      "abstract": [
+        {
+          "text": "The level values for transmission risk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transmissionRiskLevelValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskLevelValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transmissionRiskLevelValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "transmissionRiskLevelValues",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/transmissionrisklevelvalues"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskWeight": {
+      "abstract": [
+        {
+          "text": "The weight assigned to a score for the affected user’s estimated risk of transmission.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transmissionRiskWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskWeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transmissionRiskWeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "transmissionRiskWeight",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureconfiguration/transmissionriskweight"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary/matchedKeyCount": {
+      "abstract": [
+        {
+          "text": "The number of keys that matched for an exposure detection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchedKeyCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary/matchedKeyCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchedKeyCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchedKeyCount",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuredetectionsummary/matchedkeycount"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo": {
+      "abstract": [
+        {
+          "text": "The incident information related to a potential exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENExposureInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENExposureInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENExposureInfo",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureinfo"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo/totalRiskScore": {
+      "abstract": [
+        {
+          "text": "The value that represents the total risk score the framework calculates for this exposure incident.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "totalRiskScore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENRiskScore",
+          "text": "ENRiskScore"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo/totalRiskScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "totalRiskScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "totalRiskScore",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposureinfo/totalriskscore"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevel": {
+      "abstract": [
+        {
+          "text": "The user’s estimated risk of exposure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENRiskLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENRiskLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENRiskLevel",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enrisklevel"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevelValue": {
+      "abstract": [
+        {
+          "text": "The value associated with a particular risk level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENRiskLevelValue"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevelValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENRiskLevelValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENRiskLevelValue",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enrisklevelvalue"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskScore": {
+      "abstract": [
+        {
+          "text": "A value signifying the risk of an exposure event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENRiskScore"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENRiskScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENRiskScore",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enriskscore"
+    },
+    "media-3667010": {
+      "alt": "A diagram showing an example of calculating the risk score.",
+      "identifier": "media-3667010",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e039cc5b66b62addecb0b41471bcf6d/media-3667010@2x.png"
+        }
+      ]
+    },
+    "media-3667011": {
+      "alt": "A diagram that shows how the Exposure Risk Value is calculated.",
+      "identifier": "media-3667011",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0dc0bbf69a650930047281f99a54461/media-3667011@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Exposure-Information",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskScore",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevel",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevelValue"
+      ],
+      "title": "Exposure Information"
+    },
+    {
+      "anchor": "Level-Configuration",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationDurationThresholds",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationLevelValues",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureLevelValues",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationLevelValues",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskLevelValues",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/metadata"
+      ],
+      "title": "Level Configuration"
+    },
+    {
+      "anchor": "Minimum-Threshold-Configuration",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScore",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScoreFullRange"
+      ],
+      "title": "Minimum Threshold Configuration"
+    },
+    {
+      "anchor": "Weight-Configuration",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationWeight",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureWeight",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationWeight",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskWeight"
+      ],
+      "title": "Weight Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Exposure-Information",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureInfo",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskScore",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevel",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENRiskLevelValue"
+              ],
+              "title": "Exposure Information"
+            },
+            {
+              "anchor": "Level-Configuration",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationDurationThresholds",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationLevelValues",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureLevelValues",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationLevelValues",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskLevelValues",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/metadata"
+              ],
+              "title": "Level Configuration"
+            },
+            {
+              "anchor": "Minimum-Threshold-Configuration",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScore",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/minimumRiskScoreFullRange"
+              ],
+              "title": "Minimum Threshold Configuration"
+            },
+            {
+              "anchor": "Weight-Configuration",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/attenuationWeight",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/daysSinceLastExposureWeight",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/durationWeight",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureConfiguration/transmissionRiskWeight"
+              ],
+              "title": "Weight Configuration"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1daysSinceLastExposureWeight/title",
+          "value": "daysSinceLastExposureWeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1daysSinceLastExposureWeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "daysSinceLastExposureWeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1minimumRiskScoreFullRange/title",
+          "value": "minimumRiskScoreFullRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1minimumRiskScoreFullRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumRiskScoreFullRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1durationLevelValues/title",
+          "value": "durationLevelValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1durationLevelValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "durationLevelValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1attenuationWeight/title",
+          "value": "attenuationWeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1attenuationWeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attenuationWeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1durationWeight/title",
+          "value": "durationWeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1durationWeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "durationWeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration/title",
+          "value": "ENExposureConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1daysSinceLastExposureThreshold/title",
+          "value": "daysSinceLastExposureThreshold"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1daysSinceLastExposureThreshold/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "daysSinceLastExposureThreshold"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1attenuationLevelValues/title",
+          "value": "attenuationLevelValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1attenuationLevelValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attenuationLevelValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1minimumRiskScore/title",
+          "value": "minimumRiskScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1minimumRiskScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumRiskScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1transmissionRiskWeight/title",
+          "value": "transmissionRiskWeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1transmissionRiskWeight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transmissionRiskWeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskLevelValue/title",
+          "value": "ENRiskLevelValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskLevelValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENRiskLevelValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskLevelValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENRiskLevelValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1daysSinceLastExposureLevelValues/title",
+          "value": "daysSinceLastExposureLevelValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1daysSinceLastExposureLevelValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "daysSinceLastExposureLevelValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureInfo~1totalRiskScore/title",
+          "value": "totalRiskScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureInfo~1totalRiskScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "totalRiskScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1attenuationDurationThresholds/title",
+          "value": "attenuationDurationThresholds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1attenuationDurationThresholds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attenuationDurationThresholds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureInfo/title",
+          "value": "ENExposureInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1transmissionRiskLevelValues/title",
+          "value": "transmissionRiskLevelValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1transmissionRiskLevelValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transmissionRiskLevelValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1metadata/title",
+          "value": "metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureConfiguration~1metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskScore/title",
+          "value": "ENRiskScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENRiskScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskScore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENRiskScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDetectionSummary~1matchedKeyCount/title",
+          "value": "matchedKeyCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDetectionSummary~1matchedKeyCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "matchedKeyCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskLevel/title",
+          "value": "ENRiskLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENRiskLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENRiskLevel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENRiskLevel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/exposure-risk-value-calculation-in-exposurenotification-version-1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/exposure-risk-value-calculation-in-exposurenotification-version-1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
