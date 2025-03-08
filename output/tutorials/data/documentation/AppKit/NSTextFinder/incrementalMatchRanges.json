@@ -1,1 +1,844 @@
-{"metadata":{"role":"symbol","modules":[{"name":"AppKit"}],"roleHeading":"Instance Property","externalID":"c:objc(cs)NSTextFinder(py)incrementalMatchRanges","navigatorTitle":[{"kind":"identifier","text":"incrementalMatchRanges"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"incrementalMatchRanges"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"NSValue","preciseIdentifier":"c:objc(cs)NSValue"},{"kind":"text","text":"]"}],"platforms":[{"deprecated":false,"introducedAt":"10.7","unavailable":false,"beta":false,"name":"macOS"}],"symbolKind":"property","title":"incrementalMatchRanges"},"kind":"symbol","sections":[],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalMatchRanges"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit","doc://com.apple.appkit/documentation/AppKit/NSTextFinder"]]},"abstract":[{"type":"text","text":"Array of incremental search matches posted on the main queue, which have been found during a background search."}],"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"anchor":"Incremental-Search-Configuration","title":"Incremental Search Configuration","generated":true,"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)","doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled","doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView"]}],"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["macOS"],"languages":["swift"],"tokens":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"incrementalMatchRanges"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSValue","text":"NSValue","preciseIdentifier":"c:objc(cs)NSValue"},{"kind":"text","text":"] { "},{"kind":"keyword","text":"get"},{"kind":"text","text":" }"}]}]},{"kind":"content","content":[{"text":"Discussion","anchor":"Discussion","type":"heading","level":2},{"type":"paragraph","inlineContent":[{"text":"This array is updated periodically on the main queue as the incremental search operation on a background queue finds matches. You can use this property when incrementalSearchingShouldDimContentView is ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.documentation/documentation/swift/false","type":"reference"},{"text":" to know where to draw highlights for incremental matches.","type":"text"}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"If no incremental search is active, or there are no matches found, this array will be empty. If an incremental search is currently in progress, but not yet complete, this will return all the ranges found so far."}]},{"type":"paragraph","inlineContent":[{"text":"This array is key-value observing compliant and can be observed to know when to update your highlights. When ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1417881-new","type":"reference"},{"text":" and ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1414041-old","type":"reference"},{"text":" options are used, the key-value observing change dictionary provides the ranges (and their indexes) that are added or removed. This allows the invalidation of the minimal region necessary to sync highlights with the receiver’s results.","type":"text"}]}]}],"variants":[{"paths":["/documentation/appkit/nstextfinder/incrementalmatchranges"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/appkit/nstextfinder/incrementalmatchranges"],"traits":[{"interfaceLanguage":"occ"}]}],"references":{"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled":{"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isIncrementalSearchingEnabled","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled","abstract":[{"text":"Determines if incremental searching is enabled.","type":"text"}],"type":"topic","title":"isIncrementalSearchingEnabled","kind":"symbol","navigatorTitle":[{"text":"incrementalSearchingEnabled","kind":"identifier"}],"url":"/documentation/appkit/nstextfinder/isincrementalsearchingenabled","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","type":"topic","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","kind":"technologies"},"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView":{"abstract":[{"type":"text","text":"Determines the type of incremental search feedback to be presented"}],"type":"topic","title":"incrementalSearchingShouldDimContentView","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"incrementalSearchingShouldDimContentView","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"}],"kind":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView","role":"symbol","url":"/documentation/appkit/nstextfinder/incrementalsearchingshoulddimcontentview","navigatorTitle":[{"text":"incrementalSearchingShouldDimContentView","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSTextFinder":{"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSTextFinder","kind":"identifier"}],"title":"NSTextFinder","url":"/documentation/appkit/nstextfinder","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSTextFinder","type":"topic","abstract":[{"type":"text","text":"An optional search-and-replace find interface inside a view, usually a scroll view."}],"kind":"symbol","navigatorTitle":[{"text":"NSTextFinder","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)","navigatorTitle":[{"kind":"identifier","text":"drawIncrementalMatchHighlightInRect:"}],"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"drawIncrementalMatchHighlight"},{"kind":"text","text":"("},{"kind":"externalParam","text":"in"},{"kind":"text","text":": "},{"preciseIdentifier":"c:@T@NSRect","kind":"typeIdentifier","text":"NSRect"},{"kind":"text","text":")"}],"kind":"symbol","abstract":[{"type":"text","text":"Override this method to draw custom highlighting."}],"type":"topic","title":"drawIncrementalMatchHighlight(in:)","role":"symbol","url":"/documentation/appkit/nstextfinder/drawincrementalmatchhighlight(in:)"},"doc://com.apple.appkit/documentation/AppKit":{"kind":"symbol","url":"/documentation/appkit","title":"AppKit","type":"topic","abstract":[{"text":"Construct and manage a graphical, event-driven user interface for your macOS app.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit","role":"collection"},"doc://com.apple.documentation/documentation/swift/false":{"title":"false","type":"topic","identifier":"doc://com.apple.documentation/documentation/swift/false","role":"symbol","abstract":[{"text":"A false value.","type":"text"}],"kind":"symbol","url":"/documentation/swift/false"},"doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1417881-new":{"fragments":[{"text":"static var ","kind":"text"},{"text":"new","kind":"identifier"},{"text":": NSKeyValueObservingOptions","kind":"text"}],"identifier":"doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1417881-new","abstract":[{"text":"Indicates that the change dictionary should provide the new attribute value, if applicable.","type":"text"}],"type":"topic","title":"new","kind":"symbol","url":"/documentation/foundation/nskeyvalueobservingoptions/1417881-new","role":"symbol"},"doc://com.externally.resolved.symbol/c:objc(cs)NSValue":{"fragments":[{"kind":"text","text":"class "},{"kind":"identifier","text":"NSValue"}],"title":"NSValue","url":"/documentation/foundation/nsvalue","role":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSValue","type":"topic","abstract":[{"type":"text","text":"A simple container for a single C or Objective-C data item."}],"kind":"symbol"},"doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1414041-old":{"url":"/documentation/foundation/nskeyvalueobservingoptions/1414041-old","fragments":[{"kind":"text","text":"static var "},{"kind":"identifier","text":"old"},{"kind":"text","text":": NSKeyValueObservingOptions"}],"title":"old","kind":"symbol","abstract":[{"type":"text","text":"Indicates that the change dictionary should contain the old attribute value, if applicable."}],"identifier":"doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1414041-old","role":"symbol","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalMatchRanges":{"title":"incrementalMatchRanges","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"incrementalMatchRanges","kind":"identifier"},{"text":": [","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSValue","text":"NSValue","kind":"typeIdentifier"},{"text":"]","kind":"text"}],"kind":"symbol","abstract":[{"text":"Array of incremental search matches posted on the main queue, which have been found during a background search.","type":"text"}],"type":"topic","role":"symbol","url":"/documentation/appkit/nstextfinder/incrementalmatchranges","identifier":"doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalMatchRanges","navigatorTitle":[{"text":"incrementalMatchRanges","kind":"identifier"}]}},"variantOverrides":[{"patch":[{"path":"/identifier/interfaceLanguage","value":"occ","op":"replace"},{"path":"/metadata/platforms","value":[{"beta":false,"name":"macOS","introducedAt":"10.7","unavailable":false,"deprecated":false}],"op":"replace"},{"path":"/metadata/roleHeading","value":"Instance Property","op":"replace"},{"path":"/metadata/title","value":"incrementalMatchRanges","op":"replace"},{"path":"/metadata/symbolKind","value":"property","op":"replace"},{"path":"/metadata/fragments","value":[{"kind":"identifier","text":"incrementalMatchRanges"}],"op":"replace"},{"path":"/hierarchy","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit","doc://com.apple.appkit/documentation/AppKit/NSTextFinder"]]},"op":"replace"},{"op":"add","path":"/topicSections","value":null},{"op":"add","path":"/relationshipsSections","value":null},{"op":"replace","path":"/seeAlsoSections","value":[{"generated":true,"anchor":"Incremental-Search-Configuration","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)","doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled","doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView"],"title":"Incremental Search Configuration"}]},{"op":"replace","path":"/primaryContentSections/0","value":{"kind":"declarations","declarations":[{"languages":["occ"],"tokens":[{"text":"@property","kind":"keyword"},{"text":" (","kind":"text"},{"text":"copy","kind":"keyword"},{"text":", ","kind":"text"},{"text":"readonly","kind":"keyword"},{"text":") ","kind":"text"},{"text":"NSArray<NSValue *>","kind":"typeIdentifier","preciseIdentifier":"c:Q$objc(cs)NSArray"},{"text":" * ","kind":"text"},{"text":"incrementalMatchRanges","kind":"identifier"},{"text":";","kind":"text"}],"platforms":["Mac Catalyst","macOS"]}]}},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1isIncrementalSearchingEnabled/title","value":"incrementalSearchingEnabled"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1isIncrementalSearchingEnabled/fragments","value":[{"text":"incrementalSearchingEnabled","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalSearchingShouldDimContentView/title","value":"incrementalSearchingShouldDimContentView"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalSearchingShouldDimContentView/fragments","value":[{"kind":"identifier","text":"incrementalSearchingShouldDimContentView"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder/title","value":"NSTextFinder"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder/fragments","value":[{"kind":"identifier","text":"NSTextFinder"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder/navigatorTitle","value":[{"kind":"identifier","text":"NSTextFinder"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1drawIncrementalMatchHighlight(in:)/title","value":"drawIncrementalMatchHighlightInRect:"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1drawIncrementalMatchHighlight(in:)/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"drawIncrementalMatchHighlightInRect:"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nskeyvalueobservingoptions~11417881-new/title","value":"NSKeyValueObservingOptionNew"},{"op":"replace","path":"/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nskeyvalueobservingoptions~11414041-old/title","value":"NSKeyValueObservingOptionOld"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalMatchRanges/title","value":"incrementalMatchRanges"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalMatchRanges/fragments","value":[{"text":"incrementalMatchRanges","kind":"identifier"}]}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Array of incremental search matches posted on the main queue, which have been found during a background search.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextFinder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalMatchRanges"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTextFinder(py)incrementalMatchRanges",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "incrementalMatchRanges"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSValue",
+        "text": "NSValue"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "incrementalMatchRanges"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "incrementalMatchRanges"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "incrementalMatchRanges"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSValue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSValue",
+              "text": "NSValue"
+            },
+            {
+              "kind": "text",
+              "text": "] { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This array is updated periodically on the main queue as the incremental search operation on a background queue finds matches. You can use this property when incrementalSearchingShouldDimContentView is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to know where to draw highlights for incremental matches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no incremental search is active, or there are no matches found, this array will be empty. If an incremental search is currently in progress, but not yet complete, this will return all the ranges found so far.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This array is key-value observing compliant and can be observed to know when to update your highlights. When ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1417881-new",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1414041-old",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " options are used, the key-value observing change dictionary provides the ranges (and their indexes) that are added or removed. This allows the invalidation of the minimal region necessary to sync highlights with the receiver’s results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFinder": {
+      "abstract": [
+        {
+          "text": "An optional search-and-replace find interface inside a view, usually a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextFinder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextFinder"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextFinder",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfinder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)": {
+      "abstract": [
+        {
+          "text": "Override this method to draw custom highlighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawIncrementalMatchHighlight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawIncrementalMatchHighlightInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawIncrementalMatchHighlight(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfinder/drawincrementalmatchhighlight(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalMatchRanges": {
+      "abstract": [
+        {
+          "text": "Array of incremental search matches posted on the main queue, which have been found during a background search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "incrementalMatchRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSValue",
+          "text": "NSValue"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalMatchRanges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "incrementalMatchRanges"
+        }
+      ],
+      "role": "symbol",
+      "title": "incrementalMatchRanges",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfinder/incrementalmatchranges"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView": {
+      "abstract": [
+        {
+          "text": "Determines the type of incremental search feedback to be presented",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "incrementalSearchingShouldDimContentView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "incrementalSearchingShouldDimContentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "incrementalSearchingShouldDimContentView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfinder/incrementalsearchingshoulddimcontentview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled": {
+      "abstract": [
+        {
+          "text": "Determines if incremental searching is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIncrementalSearchingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "incrementalSearchingEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isIncrementalSearchingEnabled",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfinder/isincrementalsearchingenabled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1414041-old": {
+      "abstract": [
+        {
+          "text": "Indicates that the change dictionary should contain the old attribute value, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "old"
+        },
+        {
+          "kind": "text",
+          "text": ": NSKeyValueObservingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1414041-old",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "old",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyvalueobservingoptions/1414041-old"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1417881-new": {
+      "abstract": [
+        {
+          "text": "Indicates that the change dictionary should provide the new attribute value, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        },
+        {
+          "kind": "text",
+          "text": ": NSKeyValueObservingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservingoptions/1417881-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyvalueobservingoptions/1417881-new"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSValue": {
+      "abstract": [
+        {
+          "text": "A simple container for a single C or Objective-C data item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSValue"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsvalue"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Incremental-Search-Configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView"
+      ],
+      "title": "Incremental Search Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "incrementalMatchRanges"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "incrementalMatchRanges"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextFinder"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Incremental-Search-Configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/drawIncrementalMatchHighlight(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/isIncrementalSearchingEnabled",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextFinder/incrementalSearchingShouldDimContentView"
+              ],
+              "title": "Incremental Search Configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<NSValue *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "incrementalMatchRanges"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1isIncrementalSearchingEnabled/title",
+          "value": "incrementalSearchingEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1isIncrementalSearchingEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "incrementalSearchingEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalSearchingShouldDimContentView/title",
+          "value": "incrementalSearchingShouldDimContentView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalSearchingShouldDimContentView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "incrementalSearchingShouldDimContentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder/title",
+          "value": "NSTextFinder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextFinder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextFinder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1drawIncrementalMatchHighlight(in:)/title",
+          "value": "drawIncrementalMatchHighlightInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1drawIncrementalMatchHighlight(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawIncrementalMatchHighlightInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nskeyvalueobservingoptions~11417881-new/title",
+          "value": "NSKeyValueObservingOptionNew"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nskeyvalueobservingoptions~11414041-old/title",
+          "value": "NSKeyValueObservingOptionOld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalMatchRanges/title",
+          "value": "incrementalMatchRanges"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextFinder~1incrementalMatchRanges/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "incrementalMatchRanges"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstextfinder/incrementalmatchranges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstextfinder/incrementalmatchranges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

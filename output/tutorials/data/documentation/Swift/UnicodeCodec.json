@@ -1,0 +1,814 @@
+{
+  "abstract": [
+    {
+      "text": "A Unicode encoding form that translates between Unicode scalar values and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "form-specific code units.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/UnicodeCodec"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s12UnicodeCodecP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UnicodeCodec"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UnicodeCodec"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UnicodeCodec"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UnicodeCodec"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "_UnicodeEncoding"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeCodec",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol declares methods that decode code unit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequences into Unicode scalar values and encode Unicode scalar values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into code unit sequences. The standard library implements codecs for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "UTF-8, UTF-16, and UTF-32 encoding schemes as the ",
+              "type": "text"
+            },
+            {
+              "code": "UTF8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UTF16",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "UTF32",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types, respectively. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "Unicode.Scalar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type to work with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "decoded Unicode scalar values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/ASCII": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASCII"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/ASCII",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASCII"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.ASCII",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/ascii"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/ParseResult": {
+      "abstract": [
+        {
+          "text": "The result of attempting to parse a ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from some input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/ParseResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParseResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.ParseResult",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/parseresult"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/UTF16": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTF16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/UTF16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTF16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.UTF16",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/utf16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/UTF32": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTF32"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/UTF32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTF32"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.UTF32",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/utf32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unicode/UTF8": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTF8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unicode/UTF8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTF8"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unicode.UTF8",
+      "type": "topic",
+      "url": "/documentation/swift/unicode/utf8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnicodeCodec": {
+      "abstract": [
+        {
+          "text": "A Unicode encoding form that translates between Unicode scalar values and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "form-specific code units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnicodeCodec"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnicodeCodec",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnicodeCodec"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnicodeCodec",
+      "type": "topic",
+      "url": "/documentation/swift/unicodecodec"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/decode(_:)": {
+      "abstract": [
+        {
+          "text": "Starts or continues decoding a code unit sequence into Unicode scalar",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decode"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s21UnicodeDecodingResultO",
+          "text": "UnicodeDecodingResult"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/decode(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "decode(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unicodecodec/decode(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/encode(_:into:)": {
+      "abstract": [
+        {
+          "text": "Encodes a Unicode scalar as a series of code units by calling the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "closure on each code unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7UnicodeO",
+          "text": "Unicode"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7UnicodeO6ScalarV",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s16_UnicodeEncodingP8CodeUnitQa",
+          "text": "CodeUnit"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/encode(_:into:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "encode(_:into:)",
+      "type": "topic",
+      "url": "/documentation/swift/unicodecodec/encode(_:into:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/init()": {
+      "abstract": [
+        {
+          "text": "Creates an instance of the codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/init()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/swift/unicodecodec/init()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnicodeDecodingResult": {
+      "abstract": [
+        {
+          "text": "The result of one Unicode decoding step.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnicodeDecodingResult"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnicodeDecodingResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnicodeDecodingResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnicodeDecodingResult",
+      "type": "topic",
+      "url": "/documentation/swift/unicodedecodingresult"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Unicode/UTF16",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/UTF32",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/UTF8"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Unicode-Codecs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Unicode/ASCII",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/UTF8",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/UTF16",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/UTF32",
+        "doc://com.apple.Swift/documentation/Swift/UnicodeDecodingResult",
+        "doc://com.apple.Swift/documentation/Swift/Unicode/ParseResult"
+      ],
+      "title": "Unicode Codecs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/init()"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/decode(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnicodeCodec/encode(_:into:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/unicodecodec"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "abstract": [
+    {
+      "text": "Creates and returns a text provider built from the specified format string.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider/textProviderWithFormat:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CLKTextProvider(cm)textProviderWithFormat:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "+ "
+      },
+      {
+        "kind": "identifier",
+        "text": "textProviderWithFormat:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "textProviderWithFormat:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "textProviderWithFormat:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+              "text": "CLKTextProvider"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "textProviderWithFormat:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "format"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A format string to use when building the text provider. To insert content from another text provider into the string, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "%@",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " placeholder. For more information and examples about the placeholders you can use in this string, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html#//apple_ref/doc/uid/20000943",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFStrings/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This parameter must not be ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "format"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A text provider object built from the specified arguments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to create a text provider comprising text and the content of other objects, including other text providers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-Multicolor-Text",
+          "level": 3,
+          "text": "Set Up Multicolor Text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The graphic complications support multicolor text in some text fields. To create multicolor text, build a composite text provider using two or more text providers with different tint colors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CLKTextProvider *energyTextProvider = [CLKSimpleTextProvider textProviderWithText:myMoveString];",
+            "energyTextProvider.tintColor = myEnergyColor;",
+            "",
+            "CLKTextProvider *exerciseTextProvider = [CLKSimpleTextProvider textProviderWithText:myExerciseString];",
+            "exerciseTextProvider.tintColor = myExerciseColor;",
+            "",
+            "CLKTextProvider *standTextProvider = [CLKSimpleTextProvider textProviderWithText:myStandString];",
+            "standTextProvider.tintColor = myStandColor;",
+            "",
+            "NSString *separatorString = NSLocalizedString(MY_LOCALIZED_SEPERATOR, @\"Seperator for compound data strings.\");",
+            "",
+            "CLKTextProvider *multiColorTextProvider = [CLKTextProvider textProviderWithFormat:@\"%@%@%@%@%@\",",
+            "                                           energyTextProvider,",
+            "                                           separatorString,",
+            "                                           exerciseTextProvider,",
+            "                                           separatorString,",
+            "                                           standTextProvider];",
+            "",
+            "multiColorTextProvider.tintColor = UIColor.darkTextColor;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tinted graphic complications flatten multicolor text, and display the text using the tint color selected by the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider": {
+      "abstract": [
+        {
+          "text": "The common behavior for displaying text-based data in a complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKTextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clktextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider/textProviderWithFormat:": {
+      "abstract": [
+        {
+          "text": "Creates and returns a text provider built from the specified format string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "textProviderWithFormat:"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKTextProvider/textProviderWithFormat:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textProviderWithFormat:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textProviderWithFormat:",
+      "type": "topic",
+      "url": "/documentation/clockkit/clktextprovider/textproviderwithformat:"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSString": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html#//apple_ref/doc/uid/20000943": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html#//apple_ref/doc/uid/20000943",
+      "title": "Formatting String Objects",
+      "titleInlineContent": [
+        {
+          "text": "Formatting String Objects",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html#//apple_ref/doc/uid/20000943"
+    },
+    "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFStrings/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFStrings/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265",
+      "title": "String Format Specifiers",
+      "titleInlineContent": [
+        {
+          "text": "String Format Specifiers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFStrings/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTextProvider/title",
+          "value": "CLKTextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKTextProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKTextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSString/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/clktextprovider/textproviderwithformat:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
