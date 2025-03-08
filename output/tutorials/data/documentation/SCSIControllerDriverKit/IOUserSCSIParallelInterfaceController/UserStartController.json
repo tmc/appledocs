@@ -1,0 +1,409 @@
+{
+  "abstract": [
+    {
+      "text": "Starts the controller in response to a call from the framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserSCSIParallelInterfaceController@F@UserStartController#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UserStartController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIControllerDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UserStartController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "UserStartController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UserStartController"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value that indicates the result of initialization. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicates success. For error definitions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework always calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before sending any requests to the driver for execution. The framework calls this method after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to start the services that the specific host bus adapter (HBA) dext driver provides. After completing this call, all services provided by the HBA driver are available to the client.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sample implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sets its local power state to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then calls a hypothetical ",
+              "type": "text"
+            },
+            {
+              "code": "EnableReplyInterrupt()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " convenience function. Next, it enables the interrupt dispatch source, and returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Signaling success like this indicates to the kernel that the dext is now up and ready to serve I/O.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t",
+            "IMPL ( ExampleSCSIDext, UserStartController )",
+            "{",
+            "    ",
+            "    kern_return_t ret = kIOReturnError;",
+            "    ",
+            "    ivars->fCurrentPowerState = kIOServicePowerCapabilityOn;",
+            "",
+            "    // Enable interrupts on the hardware",
+            "    EnableReplyInterrupt ( );",
+            "    ",
+            "    // Enable interrupt event source",
+            "    ret = ivars->fIntSource->SetEnable ( true );",
+            "    __Require ( ( kIOReturnSuccess == ret ), Exit );",
+            "",
+            "    …",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon": {
+      "abstract": [
+        {
+          "text": "The device is fully powered.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOServicePowerCapabilityOn",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilityon"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iokit_constants": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+      "kind": "article",
+      "role": "article",
+      "title": "IOKit Constants",
+      "type": "topic",
+      "url": "/documentation/iokit/iokit_constants"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for SCSI protocol-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIControllerDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with SCSI-based devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserSCSIParallelInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSCSIParallelInterfaceController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController": {
+      "abstract": [
+        {
+          "text": "Initializes the controller in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserInitializeController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserInitializeController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userinitializecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController": {
+      "abstract": [
+        {
+          "text": "Starts the controller in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserStartController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserStartController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userstartcontroller"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeController"
+      ],
+      "title": "Managing Controllers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userstartcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

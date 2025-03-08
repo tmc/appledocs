@@ -1,0 +1,318 @@
+{
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/BundledParallelTaskCompletion"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserSCSIParallelInterfaceController@F@BundledParallelTaskCompletion#*$@S@OSAction#*1s#s#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "BundledParallelTaskCompletion"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIControllerDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BundledParallelTaskCompletion"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "BundledParallelTaskCompletion"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BundledParallelTaskCompletion"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@OSAction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSAction",
+              "text": "OSAction"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "action"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint16_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint16_t",
+              "text": "uint16_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parallelResponseSlotIndices"
+            },
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "kind": "number",
+              "text": "32"
+            },
+            {
+              "kind": "text",
+              "text": "], "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint16_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint16_t",
+              "text": "uint16_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parallelResponseSlotIndicesCount"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "\t@function BundledParallelTaskCompletion",
+            "\t@abstract Type definition for asynchronous completion routine.",
+            "\t@discussion Dext class should use this method to complete one or more requests it",
+            "    received via UserProcessBundledParallelTasks method.",
+            "\tDext class should populate SCSIUserParallelResponse for each request to be",
+            "\tcompleted and make it available in the shared response buffers, and pass the response",
+            "    buffer slot indices in parameter parallelResponseSlotIndices.",
+            "\tThere is one to one mapping between command and response buffers and dext should",
+            "\tuse same slot number for related command and response payloads.",
+            "\t@param action Pointer to the OSAction object of the async request specified",
+            "\tin UserProcessBundledParallelTasks",
+            "\t@param parallelResponseSlotIndices Contains indices of the shared response buffer",
+            "    slots containing SCSIUserParallelResponse for each task to be completed.",
+            "\t@param parallelResponseSlotIndicesCount The number of tasks to be completed. The",
+            "    entries from zero to ( parallelResponseSlotIndicesCount - 1) in parameter",
+            "    parallelResponseSlotIndices should have valid indices.",
+            "\t@result void"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for SCSI protocol-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIControllerDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with SCSI-based devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserSCSIParallelInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSCSIParallelInterfaceController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/BundledParallelTaskCompletion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BundledParallelTaskCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/BundledParallelTaskCompletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BundledParallelTaskCompletion",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/bundledparalleltaskcompletion"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@OSAction": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@OSAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint16_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint16_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint16_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint16_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/bundledparalleltaskcompletion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,717 @@
+{
+  "abstract": [
+    {
+      "text": "Creates the specified target.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserSCSIParallelInterfaceController@F@UserCreateTargetForID#k#*$@S@OSDictionary#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UserCreateTargetForID"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIControllerDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UserCreateTargetForID"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "UserCreateTargetForID"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UserCreateTargetForID"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@SCSIDeviceIdentifier",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SCSIDeviceIdentifier",
+              "text": "SCSIDeviceIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetID"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@OSDictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSDictionary",
+              "text": "OSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetDict"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ID of the target to create.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetID"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " containing all of the target properties.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetDict"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value that indicates the result of target creation. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicates success. For error definitions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your driver extension class calls this method to create a new target for the ",
+              "type": "text"
+            },
+            {
+              "code": "targetID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The framework creates the new target before the call returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As part of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call, the kernel calls several APIs like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which run on the default dispatch queue of the dext. Synchronously calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the default dispatch queue blocks the default dispatch queue until ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " finishes. Subsequent calls from the kernel like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " won’t have a chance to run on the default queue, leading to a deadlock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can avoid this problem by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from an asynchronous handler function. Start by creating an async handler function for your custom dext class in its ",
+              "type": "text"
+            },
+            {
+              "code": "iig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "virtual void AsyncEventHandler ( OSAction *  action TARGET,                                 uint32_t    targetID ) = 0;",
+            "",
+            "virtual void AsyncCreateTargetForID ( OSAction *  action,",
+            "                                    uint32_t    targetID )",
+            "                                    TYPE ( ExampleSCSIDext::AsyncEventHandler ) QUEUENAME ( AuxiliaryQueue );"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This handler function can then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void",
+            "IMPL ( MyCustomService, AsyncCreateTargetForID )",
+            "{",
+            "     kern_return_t ret;",
+            "     …",
+            "     ret = UserCreateTargetForID (targetID, NULL);",
+            "     …",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then you can call this handler in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kern_return_t",
+            "IMPL ( MyCustomService, UserStartController )",
+            "{",
+            "    …",
+            "    ret = CreateActionAsyncCreateTargetForID ( sizeof ( void * ), &ivars->fAsyncEventHandler );",
+            "    assert ( kIOReturnSuccess == ret );",
+            "",
+            "    AsyncEventHandler ( ivars->fAsyncEventHandler, targetID );",
+            "    …",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This implementation ensures ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls the event handler asynchronously, which frees up the default dispatch queue for subsequent calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdictionary": {
+      "abstract": [
+        {
+          "text": "A container for a collection with elements that are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iokit_constants": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+      "kind": "article",
+      "role": "article",
+      "title": "IOKit Constants",
+      "type": "topic",
+      "url": "/documentation/iokit/iokit_constants"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for SCSI protocol-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIControllerDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with SCSI-based devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserSCSIParallelInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSCSIParallelInterfaceController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID": {
+      "abstract": [
+        {
+          "text": "Creates the specified target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserCreateTargetForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserCreateTargetForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserCreateTargetForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usercreatetargetforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDestroyTargetForID": {
+      "abstract": [
+        {
+          "text": "Destroys the specified target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserDestroyTargetForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDestroyTargetForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDestroyTargetForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userdestroytargetforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID": {
+      "abstract": [
+        {
+          "text": "Initializes a target device in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserInitializeTargetForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserInitializeTargetForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userinitializetargetforid"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveTargetProperties": {
+      "abstract": [
+        {
+          "text": "Removes properties from a target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserRemoveTargetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveTargetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserRemoveTargetProperties",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userremovetargetproperties"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetTargetProperties": {
+      "abstract": [
+        {
+          "text": "Sets properties on the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserSetTargetProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetTargetProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserSetTargetProperties",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usersettargetproperties"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController": {
+      "abstract": [
+        {
+          "text": "Starts the controller in response to a call from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserStartController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserStartController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserStartController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/userstartcontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetPresentForID": {
+      "abstract": [
+        {
+          "text": "Checks if a specific target is present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserTargetPresentForID"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetPresentForID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserTargetPresentForID",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usertargetpresentforid"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@OSDictionary": {
+      "abstract": [
+        {
+          "text": "A container for a collection with elements that are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@OSDictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@SCSIDeviceIdentifier": {
+      "abstract": [
+        {
+          "text": "64-bit number to represent a SCSI Device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@SCSIDeviceIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCSIDeviceIdentifier",
+      "type": "topic",
+      "url": "/documentation/kernel/scsideviceidentifier"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Targets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserInitializeTargetForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserDestroyTargetForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserTargetPresentForID",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserSetTargetProperties",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserRemoveTargetProperties"
+      ],
+      "title": "Managing Targets"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usercreatetargetforid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
