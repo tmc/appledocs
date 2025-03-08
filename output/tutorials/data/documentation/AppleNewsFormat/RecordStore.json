@@ -1,0 +1,719 @@
+{
+  "abstract": [
+    {
+      "text": "The object that contains JSON data for a data table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:RecordStore",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "RecordStore"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RecordStore"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.7",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "RecordStore"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "RecordStore"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Provides information about the data that can be in each data record.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The order of the descriptors determines the order of the columns (or the rows if the table’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "dataOrientation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is set to horizontal.)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Version 1.5",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "descriptors",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:DataDescriptor",
+              "text": "DataDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Provides data records that fit within the structure defined by ",
+                  "type": "text"
+                },
+                {
+                  "code": "descriptors",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Each descriptor can be used only once per record.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You can choose not to include all values from a given record in a data table. Only data that corresponds to a data descriptor will be included in your data table.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "records",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore/records-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:RecordStore.records",
+              "text": "RecordStore.records"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/defining-and-using-table-styles"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "RecordStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object uses two required properties to provide the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a table and to specify how that data will be used in the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "descriptors",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " define how the data is interpreted and how it will be displayed in the table. For each set of data, data descriptors communicate the data type, unique keys, data formats, and header labels for the table.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "records",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " provide the actual data as a set of key-value pairs that relate to the descriptors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, your data ",
+              "type": "text"
+            },
+            {
+              "code": "descriptors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " might describe a table that contains stock symbols and prices; each data record could provide the symbol and price for a particular stock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This object can be used in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"datatable\",",
+            "      \"showDescriptorLabels\": true,",
+            "      \"sortBy\": [",
+            "        {",
+            "          \"descriptor\": \"id-name\",",
+            "          \"direction\": \"descending\"",
+            "        }",
+            "      ],",
+            "      \"data\": {",
+            "        \"descriptors\": [",
+            "          {",
+            "            \"identifier\": \"id-name\",",
+            "            \"key\": \"name\",",
+            "            \"label\": {",
+            "              \"type\": \"formatted_text\",",
+            "              \"text\": \"Name\"",
+            "            },",
+            "            \"dataType\": \"string\"",
+            "          },",
+            "          {",
+            "            \"identifier\": \"id-occupation\",",
+            "            \"key\": \"occupation\",",
+            "            \"label\": \"Occupation\",",
+            "            \"dataType\": \"string\"",
+            "          }",
+            "        ],",
+            "        \"records\": [",
+            "          {",
+            "            \"name\": \"Amelia Earhart\",",
+            "            \"occupation\": \"Pilot\"",
+            "          },",
+            "          {",
+            "            \"name\": \"Grace Hopper\",",
+            "            \"occupation\": \"Computer Scientist\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-json-table": {
+      "abstract": [
+        {
+          "text": "Add a table to your article that displays JSON data in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-json-table",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a JSON Table",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-json-table"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/defining-and-using-table-styles": {
+      "abstract": [
+        {
+          "text": "Apply table styles, such as borders and backgrounds, to the rows, columns, and cells in your HTML and JSON  tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-and-using-table-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining and Using Table Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/defining-and-using-table-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DataDescriptor": {
+      "abstract": [
+        {
+          "text": "The object for providing the data type, data formatting, and label for a field in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataDescriptor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/datadescriptor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DataFormat": {
+      "abstract": [
+        {
+          "text": "Properties shared by all data format obejct types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataFormat",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/dataformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable": {
+      "abstract": [
+        {
+          "text": "The component for adding a JSON data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataTable",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/datatable"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTableSorting": {
+      "abstract": [
+        {
+          "text": "A data category by which to sort the table in descending or ascending order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataTableSorting"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTableSorting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataTableSorting"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataTableSorting",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/datatablesorting"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FloatDataFormat": {
+      "abstract": [
+        {
+          "text": "The object that allows you to specify the number of digits after the decimal point for numeric values in data table cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatDataFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FloatDataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FloatDataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "FloatDataFormat",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/floatdataformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageDataFormat": {
+      "abstract": [
+        {
+          "text": "The object that allows you to specify the minimum and maximum dimensions for images in data table cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageDataFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageDataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageDataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageDataFormat",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/imagedataformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore": {
+      "abstract": [
+        {
+          "text": "The object that contains JSON data for a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecordStore"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecordStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecordStore",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/recordstore"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore/records-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Define and provide data records that fit within the structure defined by descriptors for a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecordStore.records"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore/records-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecordStore.records"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecordStore.records",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/recordstore/records-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tables-with-JSON-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-json-table",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/DataDescriptor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTableSorting",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/DataFormat",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/FloatDataFormat",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageDataFormat"
+      ],
+      "title": "Tables with JSON Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/RecordStore/records-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/recordstore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}
