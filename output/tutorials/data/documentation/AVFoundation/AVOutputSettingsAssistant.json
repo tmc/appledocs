@@ -1,0 +1,2021 @@
+{
+  "abstract": [
+    {
+      "text": "An object that builds audio and video output settings dictionaries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVOutputSettingsAssistant",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVOutputSettingsAssistant"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVOutputSettingsAssistant"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVOutputSettingsAssistant"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an output settings assistant to create the audio and video settings that you use to configure instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You create an assistant with a specific preset configuration, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset/hevc3840x2160WithAlpha",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset/preset1920x1080",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can accept the settings dictionaries as is to generate a file that conforms to the criteria that the preset implies. You may also use the dictionaries it generates as a base configuration that you can customize as you require.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Providing the assistant additional details about your source media helps it generate more complete results. For example, setting a value for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property ensures that the assistant generates settings that don’t scale up video frames from a smaller size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter": {
+      "abstract": [
+        {
+          "text": "An object that writes media data to a container file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriter",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput": {
+      "abstract": [
+        {
+          "text": "An object that appends media samples to a track in an asset writer’s output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup": {
+      "abstract": [
+        {
+          "text": "A group of inputs with tracks that are mutually exclusive to each other for playback or processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputgroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends timed metadata groups to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputMetadataAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputMetadataAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputMetadataAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputmetadataadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends video samples to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPixelBufferAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputPixelBufferAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputPixelBufferAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputpixelbufferadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that appends tagged buffer groups to an asset writer input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinputtaggedpixelbuffergroupadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant": {
+      "abstract": [
+        {
+          "text": "An object that builds audio and video output settings dictionaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsAssistant"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsAssistant"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVOutputSettingsAssistant",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/audioSettings": {
+      "abstract": [
+        {
+          "text": "An audio settings dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/audioSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/audiosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/availableOutputSettingsPresets()": {
+      "abstract": [
+        {
+          "text": "Returns an array of preset values to use to initialize an output settings assistant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableOutputSettingsPresets"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVOutputSettingsPreset",
+          "text": "AVOutputSettingsPreset"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/availableOutputSettingsPresets()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableOutputSettingsPresets"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableOutputSettingsPresets()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/availableoutputsettingspresets()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/init(preset:)": {
+      "abstract": [
+        {
+          "text": "Creates an output setting assistant with a preset configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "preset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVOutputSettingsPreset",
+          "text": "AVOutputSettingsPreset"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/init(preset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputSettingsAssistantWithPreset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(preset:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/init(preset:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/outputFileType": {
+      "abstract": [
+        {
+          "text": "A uniform type identifier (UTI) that indicates the type of file to write.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFileType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVFileType",
+          "text": "AVFileType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/outputFileType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputFileType"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputFileType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/outputfiletype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceAudioFormat": {
+      "abstract": [
+        {
+          "text": "The format of the source audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceAudioFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMAudioFormatDescriptionRef",
+          "text": "CMAudioFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceAudioFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceAudioFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceAudioFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/sourceaudioformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoAverageFrameDuration": {
+      "abstract": [
+        {
+          "text": "A time value that describes the average frame duration of the video data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceVideoAverageFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoAverageFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceVideoAverageFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceVideoAverageFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoFormat": {
+      "abstract": [
+        {
+          "text": "The format of the source video data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceVideoFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoFormatDescriptionRef",
+          "text": "CMVideoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceVideoFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceVideoFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/sourcevideoformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoMinFrameDuration": {
+      "abstract": [
+        {
+          "text": "A time value that describes the minimum frame duration of the video data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceVideoMinFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoMinFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceVideoMinFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceVideoMinFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/videoSettings": {
+      "abstract": [
+        {
+          "text": "A video settings dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/videoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingsassistant/videosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset": {
+      "abstract": [
+        {
+          "text": "A structure that defines preset configurations for an output settings assistant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVOutputSettingsPreset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingspreset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset/hevc3840x2160WithAlpha": {
+      "abstract": [
+        {
+          "text": "A preset for HEVC with Alpha video at 3840 by 2160 pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hevc3840x2160WithAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVOutputSettingsPreset",
+          "text": "AVOutputSettingsPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset/hevc3840x2160WithAlpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsPresetHEVC3840x2160WithAlpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "hevc3840x2160WithAlpha",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingspreset/hevc3840x2160withalpha"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset/preset1920x1080": {
+      "abstract": [
+        {
+          "text": "A preset for H.264 video at 1920 by 1080 pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preset1920x1080"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVOutputSettingsPreset",
+          "text": "AVOutputSettingsPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset/preset1920x1080",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVOutputSettingsPreset1920x1080"
+        }
+      ],
+      "role": "symbol",
+      "title": "preset1920x1080",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avoutputsettingspreset/preset1920x1080"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video": {
+      "abstract": [
+        {
+          "text": "Create video content for visionOS by converting an existing 3D HEVC file to a multiview HEVC format, optionally adding spatial metadata to create a spatial video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting side-by-side 3D video to multiview HEVC and spatial video",
+      "type": "topic",
+      "url": "/documentation/avfoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color": {
+      "abstract": [
+        {
+          "text": "Check color reproduction for a video in your app by using test patterns, video test equipment, and light-measurement instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Evaluating an App’s Video Color",
+      "type": "topic",
+      "url": "/documentation/avfoundation/evaluating-an-app-s-video-color"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information": {
+      "abstract": [
+        {
+          "text": "Inspect and set video color space information when writing and transcoding media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Tagging Media with Video Color Information",
+      "type": "topic",
+      "url": "/documentation/avfoundation/tagging-media-with-video-color-information"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "Create an HTTP Live Streaming presentation by turning a movie file into a sequence of fragmented MPEG-4 files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Writing Fragmented MPEG-4 Files for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/avfoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata": {
+      "abstract": [
+        {
+          "text": "Add spatial metadata to stereo photos and videos to create spatial media for viewing on Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating spatial photos and videos with spatial metadata",
+      "type": "topic",
+      "url": "/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-writing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+        "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup"
+      ],
+      "title": "Media writing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Assistant",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/init(preset:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/availableOutputSettingsPresets()"
+      ],
+      "title": "Creating an Assistant"
+    },
+    {
+      "anchor": "Configuring-Output-Settings",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/outputFileType",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/audioSettings",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceAudioFormat",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/videoSettings",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoFormat",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoMinFrameDuration",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoAverageFrameDuration"
+      ],
+      "title": "Configuring Output Settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVOutputSettingsAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Assistant",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/init(preset:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsPreset",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/availableOutputSettingsPresets()"
+              ],
+              "title": "Creating an Assistant"
+            },
+            {
+              "anchor": "Configuring-Output-Settings",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/outputFileType",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/audioSettings",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceAudioFormat",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/videoSettings",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoFormat",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoMinFrameDuration",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVOutputSettingsAssistant/sourceVideoAverageFrameDuration"
+              ],
+              "title": "Configuring Output Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-writing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/writing-fragmented-mpeg-4-files-for-http-live-streaming",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+                "doc://com.apple.documentation/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/tagging-media-with-video-color-information",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/evaluating-an-app-s-video-color",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputPixelBufferAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputTaggedPixelBufferGroupAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputMetadataAdaptor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInputGroup"
+              ],
+              "title": "Media writing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVOutputSettingsAssistant"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1audioSettings/title",
+          "value": "audioSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1audioSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/title",
+          "value": "AVOutputSettingsAssistant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsAssistant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset~1preset1920x1080/title",
+          "value": "AVOutputSettingsPreset1920x1080"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset~1preset1920x1080/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsPreset1920x1080"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset/title",
+          "value": "AVOutputSettingsPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceVideoAverageFrameDuration/title",
+          "value": "sourceVideoAverageFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceVideoAverageFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceVideoAverageFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceVideoMinFrameDuration/title",
+          "value": "sourceVideoMinFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceVideoMinFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceVideoMinFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1init(preset:)/title",
+          "value": "outputSettingsAssistantWithPreset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1init(preset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "outputSettingsAssistantWithPreset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/title",
+          "value": "AVAssetWriterInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset~1hevc3840x2160WithAlpha/title",
+          "value": "AVOutputSettingsPresetHEVC3840x2160WithAlpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsPreset~1hevc3840x2160WithAlpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVOutputSettingsPresetHEVC3840x2160WithAlpha"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1videoSettings/title",
+          "value": "videoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1videoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1outputFileType/title",
+          "value": "outputFileType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1outputFileType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputFileType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceVideoFormat/title",
+          "value": "sourceVideoFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceVideoFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceVideoFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/title",
+          "value": "AVAssetWriterInputGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1availableOutputSettingsPresets()/title",
+          "value": "availableOutputSettingsPresets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1availableOutputSettingsPresets()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableOutputSettingsPresets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/title",
+          "value": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputTaggedPixelBufferGroupAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputTaggedPixelBufferGroupAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceAudioFormat/title",
+          "value": "sourceAudioFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVOutputSettingsAssistant~1sourceAudioFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceAudioFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/title",
+          "value": "AVAssetWriter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/title",
+          "value": "AVAssetWriterInputMetadataAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputMetadataAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/title",
+          "value": "AVAssetWriterInputPixelBufferAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPixelBufferAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInputPixelBufferAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInputPixelBufferAdaptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avoutputsettingsassistant"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avoutputsettingsassistant"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

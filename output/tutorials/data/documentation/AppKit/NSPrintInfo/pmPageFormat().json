@@ -1,0 +1,1114 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a Core Printing object configured with the print info’s page format information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPageFormat()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPrintInfo(im)PMPageFormat",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "pmPageFormat"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sv",
+        "text": "UnsafeMutableRawPointer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PMPageFormat"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "pmPageFormat()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "pmPageFormat"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sv",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pointer to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpageformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, an opaque data type that stores information such as the paper size, orientation, and scale of pages in a printing session. You should not call ",
+              "type": "text"
+            },
+            {
+              "code": "PMRelease",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to release the returned object, except to balance calls to ",
+              "type": "text"
+            },
+            {
+              "code": "PMRetain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that your code also issued.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The information in the returned ",
+              "type": "text"
+            },
+            {
+              "code": "PMPageFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is consistent with the receiver’s page format information at the time this method is called. Subsequent changes to the receiving ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrintInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object do not result in changes to the information in the ",
+              "type": "text"
+            },
+            {
+              "code": "PMPageFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you make changes to the data in the ",
+              "type": "text"
+            },
+            {
+              "code": "PMPageFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, you should invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPageFormat()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to synchronize those changes with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrintInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that created the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo": {
+      "abstract": [
+        {
+          "text": "An object that stores information that’s used to generate printed output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/SettingKey": {
+      "abstract": [
+        {
+          "text": "The type you use to specify a print info setting key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/SettingKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintInfo.SettingKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/settingkey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPageFormat()": {
+      "abstract": [
+        {
+          "text": "Returns a Core Printing object configured with the print info’s page format information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pmPageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPageFormat()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PMPageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "pmPageFormat()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/pmpageformat()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSession()": {
+      "abstract": [
+        {
+          "text": "Returns a Core Printing object configured with the print info’s session information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pmPrintSession"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSession()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PMPrintSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "pmPrintSession()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/pmprintsession()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSettings()": {
+      "abstract": [
+        {
+          "text": "Returns a Core Printing object configured with the print info’s print settings information",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pmPrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSettings()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "pmPrintSettings()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/pmprintsettings()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/printSettings": {
+      "abstract": [
+        {
+          "text": "A mutable dictionary containing the print settings from Core Printing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableDictionary",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/printSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "printSettings",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/printsettings"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/takeSettings(from:)": {
+      "abstract": [
+        {
+          "text": "Updates the print info with all the settings and attributes in the specified PDF info object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "takeSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPDFInfo",
+          "text": "NSPDFInfo"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/takeSettings(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "takeSettingsFromPDFInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "takeSettings(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/takesettings(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPageFormat()": {
+      "abstract": [
+        {
+          "text": "Synchronizes the print info’s page format information with information from its associated page format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateFromPMPageFormat"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPageFormat()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateFromPMPageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateFromPMPageFormat()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/updatefrompmpageformat()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPrintSettings()": {
+      "abstract": [
+        {
+          "text": "Synchronizes the print info’s print settings information with information from its associated print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateFromPMPrintSettings"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPrintSettings()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateFromPMPrintSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateFromPMPrintSettings()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo/updatefrompmprintsettings()"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmpageformat": {
+      "abstract": [
+        {
+          "text": "An opaque type that stores the settings in the Page Setup dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPageFormat",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmpageformat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sv": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutableRawPointer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-Core-Printing-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/printSettings",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/SettingKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSession()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSettings()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPageFormat()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPrintSettings()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/takeSettings(from:)"
+      ],
+      "title": "Accessing Core Printing Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PMPageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMPageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-Core-Printing-Information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/printSettings",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/SettingKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSession()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/pmPrintSettings()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPageFormat()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/updateFromPMPrintSettings()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo/takeSettings(from:)"
+              ],
+              "title": "Accessing Core Printing Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PMPageFormat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A pointer to a ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmpageformat",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": " object, an opaque data type that stores information such as the paper size, orientation, and scale of pages in a printing session. You should not call ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "PMRelease",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " to release the returned object, except to balance calls to ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "PMRetain",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " that your code also issued.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1pmPrintSettings()/title",
+          "value": "PMPrintSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1pmPrintSettings()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMPrintSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/title",
+          "value": "NSPrintInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1updateFromPMPageFormat()/title",
+          "value": "updateFromPMPageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1updateFromPMPageFormat()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateFromPMPageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1pmPageFormat()/title",
+          "value": "PMPageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1pmPageFormat()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMPageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1updateFromPMPrintSettings()/title",
+          "value": "updateFromPMPrintSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1updateFromPMPrintSettings()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateFromPMPrintSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1SettingKey/title",
+          "value": "NSPrintInfoSettingKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1SettingKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfoSettingKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1SettingKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfoSettingKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1takeSettings(from:)/title",
+          "value": "takeSettingsFromPDFInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1takeSettings(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "takeSettingsFromPDFInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1pmPrintSession()/title",
+          "value": "PMPrintSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1pmPrintSession()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMPrintSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1printSettings/title",
+          "value": "printSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo~1printSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printSettings"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsprintinfo/pmpageformat()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsprintinfo/pmpageformat()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

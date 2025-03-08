@@ -1,0 +1,562 @@
+{
+  "abstract": [
+    {
+      "text": "The object for specifying the color and location for a color stop in a gradient.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/ColorStop"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:ColorStop",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ColorStop"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ColorStop"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.7",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "ColorStop"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ColorStop"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The color of this color stop.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "color",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Color",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Color",
+              "text": "Color"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "0"
+            },
+            {
+              "kind": "maximum",
+              "value": "100"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional location of the color stop within the gradient, as a percentage of the gradient size. If you omit ",
+                  "type": "text"
+                },
+                {
+                  "code": "location",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Apple News calculates the length of the stop by first subtracting color stops with specified locations from the full length, then equally distributing the remaining length.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "location",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "number"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this object for gradients in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style definition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"container\",",
+            "      \"layout\": {",
+            "        \"ignoreDocumentMargin\": true,",
+            "        \"minimumHeight\": \"50vh\"",
+            "      },",
+            "      \"style\": {",
+            "        \"fill\": {",
+            "          \"type\": \"linear_gradient\",",
+            "          \"angle\": -10,",
+            "          \"colorStops\": [",
+            "            {",
+            "              \"color\": \"#FFFFFF\",",
+            "              \"location\": 0",
+            "            },",
+            "            {",
+            "              \"color\": \"#FFFFFF\",",
+            "              \"location\": 20",
+            "            },",
+            "            {",
+            "              \"color\": \"#AAAAAA\",",
+            "              \"location\": 50",
+            "            },",
+            "            {",
+            "              \"color\": \"#333333\",",
+            "              \"location\": 90",
+            "            },",
+            "            {",
+            "              \"color\": \"#000000\",",
+            "              \"location\": 100",
+            "            }",
+            "          ]",
+            "        }",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"body\",",
+            "          \"textStyle\": {",
+            "            \"textColor\": \"#FFFFFF\"",
+            "          },",
+            "          \"text\": \"Fade to black.\"",
+            "        }",
+            "      ]",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component": {
+      "abstract": [
+        {
+          "text": "Change the appearance of the backgrounds in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying a Background to a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/applying-a-background-to-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Color": {
+      "abstract": [
+        {
+          "text": "The strings for defining colors in Apple News Format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "role": "symbol",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/color"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ColorStop": {
+      "abstract": [
+        {
+          "text": "The object for specifying the color and location for a color stop in a gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColorStop"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ColorStop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColorStop"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColorStop",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/colorstop"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Fill": {
+      "abstract": [
+        {
+          "text": "The object for setting a fill type and attachment for a component’s background fill.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Fill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Fill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fill"
+        }
+      ],
+      "role": "symbol",
+      "title": "Fill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/fill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/GradientFill": {
+      "abstract": [
+        {
+          "text": "The properties all gradient fill types share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GradientFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/GradientFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GradientFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "GradientFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/gradientfill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageFill": {
+      "abstract": [
+        {
+          "text": "The object for adding an image background fill to a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/imagefill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill": {
+      "abstract": [
+        {
+          "text": "The object for displaying a linear gradient as a component background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGradientFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGradientFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGradientFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/lineargradientfill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/RepeatableImageFill": {
+      "abstract": [
+        {
+          "text": "The object for adding a background image that Apple News can repeat.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RepeatableImageFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/RepeatableImageFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RepeatableImageFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "RepeatableImageFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/repeatableimagefill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/VideoFill": {
+      "abstract": [
+        {
+          "text": "The object for adding a video background fill to a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/VideoFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/videofill"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Backgrounds-for-Components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageFill",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/RepeatableImageFill",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/VideoFill",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/GradientFill",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Fill"
+      ],
+      "title": "Backgrounds for Components"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/colorstop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

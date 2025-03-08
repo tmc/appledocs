@@ -1,0 +1,1395 @@
+{
+  "abstract": [
+    {
+      "text": "The object for applying styles to cells in a table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableCellStyle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:TableCellStyle",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "TableCellStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TableCellStyle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.7",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "TableCellStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "TableCellStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The background color for the cell.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you omit this property, the background is transparent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The cell background color is highest priority, followed by the column, and finally the row. Apple News applies all three colors, meaning that non-opaque values can cause combined colors. For example, using a red row together with a blue cell, both with 50% opacity, creates a purple cell.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "backgroundColor",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Color",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Color",
+              "text": "Color"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The border for the cell. Because the border is inside the cell, it affects the size of the content within the cell. The bigger the border, the less available space for content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "border",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableBorder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:TableBorder",
+              "text": "TableBorder"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of styles you apply to cells that meet specified conditions. You can use this to change the appearance of specific table cells.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "conditional",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableCellStyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ConditionalTableCellStyle",
+              "text": "ConditionalTableCellStyle"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedTypes",
+              "values": [
+                [
+                  {
+                    "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:news_format:SupportedUnits",
+                    "text": "SupportedUnits"
+                  }
+                ],
+                [
+                  {
+                    "kind": "text",
+                    "text": "number"
+                  }
+                ]
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The height of the cell and its row, as a number in points, or using one of the units of measure for components.See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, the height of each row is determined by the height of the content in that row.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "height",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:SupportedUnits",
+              "text": "SupportedUnits"
+            },
+            {
+              "kind": "text",
+              "text": " | number)"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "number"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "left"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "left",
+                "center",
+                "right"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Defines the horizontal alignment of content inside cells.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "horizontalAlignment",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedTypes",
+              "values": [
+                [
+                  {
+                    "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:news_format:SupportedUnits",
+                    "text": "SupportedUnits"
+                  }
+                ],
+                [
+                  {
+                    "kind": "text",
+                    "text": "number"
+                  }
+                ]
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The minimum width of the cell and its column, as a number in points or in one of the available units of measure for components. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "minimumWidth",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:SupportedUnits",
+              "text": "SupportedUnits"
+            },
+            {
+              "kind": "text",
+              "text": " | number)"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "number"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedTypes",
+              "values": [
+                [
+                  {
+                    "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:news_format:SupportedUnits",
+                    "text": "SupportedUnits"
+                  }
+                ],
+                [
+                  {
+                    "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Padding",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:news_format:Padding",
+                    "text": "Padding"
+                  }
+                ],
+                [
+                  {
+                    "kind": "text",
+                    "text": "number"
+                  }
+                ]
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The space around the content in a table cell in points, supported units, or a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Padding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that specifies padding for each side separately.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "padding",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:SupportedUnits",
+              "text": "SupportedUnits"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Padding",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Padding",
+              "text": "Padding"
+            },
+            {
+              "kind": "text",
+              "text": " | number)"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "number"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedTypes",
+              "values": [
+                [
+                  {
+                    "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:news_format:ComponentTextStyle",
+                    "text": "ComponentTextStyle"
+                  }
+                ],
+                [
+                  {
+                    "kind": "text",
+                    "text": "string"
+                  }
+                ]
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name string of one of your styles in the Article ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "textStyle",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ComponentTextStyle",
+              "text": "ComponentTextStyle"
+            },
+            {
+              "kind": "text",
+              "text": " | string)"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "center"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "top",
+                "center",
+                "bottom"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Defines the vertical alignment of content inside cells.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "verticalAlignment",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The column width, as a percentage only. This property only indicates proportionate width; you can’t use it to control exact width. See ",
+                  "type": "text"
+                },
+                {
+                  "code": "minimumWidth",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "width",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply styles that affect the look of the cells in your tables, including the background color, the horizontal alignment of cell contents, and the cell height, width, and padding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also specify conditional styles for cells — styles applied to cells that meet certain criteria. For example, you might choose to change the background color for a cell at a specific location. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableCellStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this object in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"datatable\",",
+            "      \"style\": \"bookTableStyle\",",
+            "      \"showDescriptorLabels\": true,",
+            "      \"sortBy\": [",
+            "        {",
+            "          \"descriptor\": \"id-publication-date\",",
+            "          \"direction\": \"ascending\"",
+            "        }",
+            "      ],",
+            "      \"data\": {",
+            "        \"descriptors\": [",
+            "          {",
+            "            \"identifier\": \"id-publication-date\",",
+            "            \"key\": \"publicationDate\",",
+            "            \"label\": \"Date\",",
+            "            \"dataType\": \"string\"",
+            "          },",
+            "          {",
+            "            \"identifier\": \"id-title\",",
+            "            \"key\": \"title\",",
+            "            \"label\": \"Title\",",
+            "            \"dataType\": \"string\"",
+            "          },",
+            "          {",
+            "            \"identifier\": \"id-publisher\",",
+            "            \"key\": \"publisher\",",
+            "            \"label\": \"Publisher\",",
+            "            \"dataType\": \"string\"",
+            "          }",
+            "        ],",
+            "        \"records\": [",
+            "          {",
+            "            \"title\": \"Mardi\",",
+            "            \"publicationDate\": \"1849\",",
+            "            \"publisher\": \"Harper & Brothers\"",
+            "          },",
+            "          {",
+            "            \"title\": \"Typee\",",
+            "            \"publicationDate\": \"1846\",",
+            "            \"publisher\": \"Wiley and Putnam\"",
+            "          },",
+            "          {",
+            "            \"title\": \"White-Jacket\",",
+            "            \"publicationDate\": \"1850\",",
+            "            \"publisher\": \"Harper & Brothers\"",
+            "          },",
+            "          {",
+            "            \"title\": \"Omoo\",",
+            "            \"publicationDate\": \"1847\",",
+            "            \"publisher\": \"Harper & Brothers\"",
+            "          },",
+            "          {",
+            "            \"title\": \"Redburn\",",
+            "            \"publicationDate\": \"1849\",",
+            "            \"publisher\": \"Harper & Brothers\"",
+            "          },",
+            "          {",
+            "            \"title\": \"Moby-Dick\",",
+            "            \"publicationDate\": \"1851\",",
+            "            \"publisher\": \"Harper & Brothers\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }",
+            "  ],",
+            "  \"componentStyles\": {",
+            "    \"bookTableStyle\": {",
+            "      \"tableStyle\": {",
+            "        \"columns\": {",
+            "          \"backgroundColor\": \"#eeeeee\",",
+            "          \"conditional\": [",
+            "            {",
+            "              \"selectors\": [",
+            "                {",
+            "                  \"columnIndex\": 0",
+            "                }",
+            "              ],",
+            "              \"backgroundColor\": \"#dddddd\"",
+            "            }",
+            "          ]",
+            "        },",
+            "        \"headerCells\": {",
+            "          \"padding\": 5,",
+            "          \"textStyle\": {",
+            "            \"fontWeight\": \"bold\"",
+            "          }",
+            "        },",
+            "        \"cells\": {",
+            "          \"padding\": 2",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/defining-and-using-table-styles": {
+      "abstract": [
+        {
+          "text": "Apply table styles, such as borders and backgrounds, to the rows, columns, and cells in your HTML and JSON  tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-and-using-table-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining and Using Table Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/defining-and-using-table-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components": {
+      "abstract": [
+        {
+          "text": "Specify the units of measure to use for margins, minimum heights, and other dimensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Measurements for Components",
+      "type": "topic",
+      "url": "/documentation/applenews/specifying-measurements-for-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object containing component text style defaults as well as component text styles that components in the article can use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentTextStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentTextStyles"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.componentTextStyles",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/componenttextstyles-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Color": {
+      "abstract": [
+        {
+          "text": "The strings for defining colors in Apple News Format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "role": "symbol",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/color"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the style for a text component, including spacing, alignment, and drop caps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableCellStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying a style to table cells that meet certain conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalTableCellStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableCellStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalTableCellStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalTableCellStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionaltablecellstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableColumnStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying styles to table columns that meet certain conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalTableColumnStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableColumnStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalTableColumnStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalTableColumnStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionaltablecolumnstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableRowStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying styles to table rows that meet certain conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalTableRowStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableRowStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalTableRowStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalTableRowStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionaltablerowstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FormattedText": {
+      "abstract": [
+        {
+          "text": "The object for specifying formatted text content and styling for captions in table cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormattedText"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FormattedText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FormattedText"
+        }
+      ],
+      "role": "symbol",
+      "title": "FormattedText",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/formattedtext"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Padding": {
+      "abstract": [
+        {
+          "text": "The object for defining space around the content in a table cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Padding"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Padding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Padding"
+        }
+      ],
+      "role": "symbol",
+      "title": "Padding",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/padding"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits": {
+      "abstract": [
+        {
+          "text": "The units of measurement Apple News Format supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupportedUnits"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupportedUnits"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupportedUnits",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/supportedunits"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableBorder": {
+      "abstract": [
+        {
+          "text": "The object for setting borders for tables.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableBorder"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableBorder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableBorder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableBorder",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tableborder"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableCellSelector": {
+      "abstract": [
+        {
+          "text": "The object for defining conditions that apply a conditional style to a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableCellSelector"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableCellSelector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableCellSelector"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableCellSelector",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablecellselector"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableCellStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying styles to cells in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableCellStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableCellStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableCellStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableCellStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablecellstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableColumnSelector": {
+      "abstract": [
+        {
+          "text": "The object for defining conditions that apply a conditional style to a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnSelector"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableColumnSelector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnSelector"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnSelector",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablecolumnselector"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableColumnStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying styles to columns in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableColumnStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableColumnStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableColumnStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablecolumnstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableRowSelector": {
+      "abstract": [
+        {
+          "text": "The object for defining conditions that apply a conditional style to a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowSelector"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableRowSelector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRowSelector"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRowSelector",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablerowselector"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableRowStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying styles to rows in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableRowStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRowStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRowStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablerowstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStrokeStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the color, width, and style of a stroke in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableStrokeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStrokeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableStrokeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableStrokeStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablestrokestyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining a style for rows, columns, cells, and headers in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablestyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableCellStyle"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Table-Styles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/defining-and-using-table-styles",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableRowStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableRowStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableRowSelector",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableColumnStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableColumnStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableColumnSelector",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTableCellStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableCellSelector",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableBorder",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStrokeStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Padding",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/FormattedText"
+      ],
+      "title": "Table Styles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/tablecellstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

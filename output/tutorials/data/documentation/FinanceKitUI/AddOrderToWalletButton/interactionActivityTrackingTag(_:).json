@@ -1,1 +1,585 @@
-{"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.FinanceKit/documentation/FinanceKitUI","doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton"]]},"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"platforms":["iOS","iPadOS"],"tokens":[{"text":"nonisolated","kind":"attribute"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"interactionActivityTrackingTag","kind":"identifier"},{"text":"(","kind":"text"},{"text":"_","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"tag","kind":"internalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:SS","text":"String","identifier":"doc://com.externally.resolved.symbol/s:SS","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"some","kind":"keyword"},{"text":" ","kind":"text"},{"preciseIdentifier":"s:7SwiftUI4ViewP","text":"View","identifier":"doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP","kind":"typeIdentifier"},{"text":"\n","kind":"text"}]}]},{"kind":"parameters","parameters":[{"content":[{"inlineContent":[{"text":"The tag used to track user interactions","type":"text"},{"text":" ","type":"text"},{"text":"hosted by this view as activities.","type":"text"}],"type":"paragraph"}],"name":"tag"}]},{"kind":"content","content":[{"type":"heading","anchor":"return-value","text":"Return Value","level":2},{"type":"paragraph","inlineContent":[{"text":"A view that uses a tracking tag.","type":"text"}]}]},{"kind":"content","content":[{"anchor":"discussion","type":"heading","level":2,"text":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"The following example tracks the scrolling activity of a "},{"code":"List","type":"codeVoice"},{"type":"text","text":":"}]},{"type":"codeListing","code":["List {","    Section(\"Today\") {","        ForEach(messageStore.today) { message in","            Text(message.title)","        }","    }","}",".interactionActivityTrackingTag(\"MessagesList\")"],"syntax":null},{"type":"paragraph","inlineContent":[{"text":"The resolved activity tracking tag is additive, so using the","type":"text"},{"text":" ","type":"text"},{"text":"modifier across the view hierarchy builds the tag from top to","type":"text"},{"text":" ","type":"text"},{"text":"bottom. The example below shows a hierarchical usage of this","type":"text"},{"text":" ","type":"text"},{"text":"modifier with the resulting tag ","type":"text"},{"code":"Home-Feed","type":"codeVoice"},{"text":":","type":"text"}]},{"type":"codeListing","code":["var body: some View {","    Home()","        .interactionActivityTrackingTag(\"Home\")","}","","struct Home: View {","    var body: some View {","        List {","            Text(\"A List Item\")","            Text(\"A Second List Item\")","            Text(\"A Third List Item\")","        }","        .interactionActivityTrackingTag(\"Feed\")","    }","}"],"syntax":null}]}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/financekitui/addordertowalletbutton/interactionactivitytrackingtag(_:)"]}],"kind":"symbol","sections":[],"abstract":[{"text":"Sets a tag that you use for tracking interactivity.","type":"text"}],"metadata":{"role":"symbol","externalID":"s:7SwiftUI4ViewPAAE30interactionActivityTrackingTagyQrSSF::SYNTHESIZED::s:12FinanceKitUI22AddOrderToWalletButtonV","modules":[{"relatedModules":["SwiftUI"],"name":"FinanceKitUI"}],"extendedModule":"SwiftUI","roleHeading":"Instance Method","title":"interactionActivityTrackingTag(_:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"interactionActivityTrackingTag"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"},{"kind":"text","text":") -> "},{"kind":"keyword","text":"some"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"View","preciseIdentifier":"s:7SwiftUI4ViewP"}],"platforms":[{"beta":false,"name":"iOS","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"iPadOS","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"Mac Catalyst","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"macOS","introducedAt":"13.0","deprecated":false,"unavailable":false},{"beta":false,"name":"tvOS","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"watchOS","introducedAt":"9.0","deprecated":false,"unavailable":false}],"symbolKind":"method"},"schemaVersion":{"major":0,"minor":3,"patch":0},"identifier":{"url":"doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton/interactionActivityTrackingTag(_:)","interfaceLanguage":"swift"},"references":{"doc://com.externally.resolved.symbol/s:SS":{"type":"topic","title":"String","abstract":[{"type":"text","text":"A Unicode string value that is a collection of characters."}],"role":"symbol","fragments":[{"kind":"attribute","text":"@frozen"},{"kind":"text","text":" "},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"String","kind":"identifier"}],"url":"/documentation/Swift/String","identifier":"doc://com.externally.resolved.symbol/s:SS","kind":"symbol"},"doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton/interactionActivityTrackingTag(_:)":{"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"interactionActivityTrackingTag","kind":"identifier"},{"text":"(","kind":"text"},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"some","kind":"keyword"},{"text":" ","kind":"text"},{"text":"View","preciseIdentifier":"s:7SwiftUI4ViewP","kind":"typeIdentifier"}],"kind":"symbol","identifier":"doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton/interactionActivityTrackingTag(_:)","type":"topic","url":"/documentation/financekitui/addordertowalletbutton/interactionactivitytrackingtag(_:)","abstract":[{"text":"Sets a tag that you use for tracking interactivity.","type":"text"}],"role":"symbol","title":"interactionActivityTrackingTag(_:)"},"doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton":{"identifier":"doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton","abstract":[{"text":"A button you use to add an order to a person’s Apple Wallet.","type":"text"}],"title":"AddOrderToWalletButton","role":"symbol","url":"/documentation/financekitui/addordertowalletbutton","type":"topic","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"AddOrderToWalletButton"}],"kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"AddOrderToWalletButton"}]},"doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP":{"identifier":"doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP","abstract":[{"text":"A type that represents part of your app’s user interface and provides modifiers that you use to configure views.","type":"text"}],"title":"View","role":"symbol","url":"/documentation/SwiftUI/View","type":"topic","fragments":[{"kind":"attribute","text":"@"},{"preciseIdentifier":"s:ScM","kind":"attribute","text":"MainActor"},{"kind":"text","text":" "},{"kind":"attribute","text":"@preconcurrency"},{"kind":"text","text":" "},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"View"}],"kind":"symbol"},"doc://com.apple.FinanceKit/documentation/FinanceKitUI":{"identifier":"doc://com.apple.FinanceKit/documentation/FinanceKitUI","abstract":[{"text":"Add orders to Apple Wallet.","type":"text"}],"title":"FinanceKitUI","role":"collection","url":"/documentation/financekitui","type":"topic","kind":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"text":"","type":"text"}],"title":"Technologies","role":"overview","url":"/documentation/technologies","type":"topic","kind":"technologies"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Sets a tag that you use for tracking interactivity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.FinanceKit/documentation/FinanceKitUI",
+        "doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton/interactionActivityTrackingTag(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SwiftUI",
+    "externalID": "s:7SwiftUI4ViewPAAE30interactionActivityTrackingTagyQrSSF::SYNTHESIZED::s:12FinanceKitUI22AddOrderToWalletButtonV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "interactionActivityTrackingTag"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "keyword",
+        "text": "some"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7SwiftUI4ViewP",
+        "text": "View"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FinanceKitUI",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "interactionActivityTrackingTag(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "interactionActivityTrackingTag"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "tag"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "keyword",
+              "text": "some"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The tag used to track user interactions",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "hosted by this view as activities.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "tag"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A view that uses a tracking tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example tracks the scrolling activity of a ",
+              "type": "text"
+            },
+            {
+              "code": "List",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "List {",
+            "    Section(\"Today\") {",
+            "        ForEach(messageStore.today) { message in",
+            "            Text(message.title)",
+            "        }",
+            "    }",
+            "}",
+            ".interactionActivityTrackingTag(\"MessagesList\")"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resolved activity tracking tag is additive, so using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier across the view hierarchy builds the tag from top to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bottom. The example below shows a hierarchical usage of this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier with the resulting tag ",
+              "type": "text"
+            },
+            {
+              "code": "Home-Feed",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    Home()",
+            "        .interactionActivityTrackingTag(\"Home\")",
+            "}",
+            "",
+            "struct Home: View {",
+            "    var body: some View {",
+            "        List {",
+            "            Text(\"A List Item\")",
+            "            Text(\"A Second List Item\")",
+            "            Text(\"A Third List Item\")",
+            "        }",
+            "        .interactionActivityTrackingTag(\"Feed\")",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.FinanceKit/documentation/FinanceKitUI": {
+      "abstract": [
+        {
+          "text": "Add orders to Apple Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKitUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FinanceKitUI",
+      "type": "topic",
+      "url": "/documentation/financekitui"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton": {
+      "abstract": [
+        {
+          "text": "A button you use to add an order to a person’s Apple Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddOrderToWalletButton"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddOrderToWalletButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddOrderToWalletButton",
+      "type": "topic",
+      "url": "/documentation/financekitui/addordertowalletbutton"
+    },
+    "doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton/interactionActivityTrackingTag(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a tag that you use for tracking interactivity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactionActivityTrackingTag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.FinanceKit/documentation/FinanceKitUI/AddOrderToWalletButton/interactionActivityTrackingTag(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interactionActivityTrackingTag(_:)",
+      "type": "topic",
+      "url": "/documentation/financekitui/addordertowalletbutton/interactionactivitytrackingtag(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/financekitui/addordertowalletbutton/interactionactivitytrackingtag(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

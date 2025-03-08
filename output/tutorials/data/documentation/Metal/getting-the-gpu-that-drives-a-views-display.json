@@ -1,0 +1,1067 @@
+{
+  "abstract": [
+    {
+      "text": "Keep up to date with the optimal device for your display.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/getting-the-gpu-that-drives-a-views-display"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting the GPU that Drives a View’s Display"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user can have multiple external displays connected directly to a Mac or to an external GPU. Each view in your app shows on a single display, and a single GPU drives each display. The display in which your view appears and the GPU that drives the display can change dynamically; therefore, you need to prepare your app to handle these changes. Register for display change notifications, get the device that drives your view’s display, and decide if your app should use that device to present rendered graphics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-Display-Change-Notifications",
+          "level": 3,
+          "text": "Handle Display Change Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register for the following notifications so the system can notify your app about specific display changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system posts this notification when any window, including the window containing your view, moves to a different display.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/didChangeScreenNotification",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system posts this notification when the Mac system’s display configuration changes; for example, when the user connects or disconnects an external display from the system. Another example is when the GPU driving the display changes, such as when system has automatic graphics switching enabled and switches between the discrete and integrated GPUs to drive the display.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/didChangeScreenParametersNotification",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system posts a display change notification, you can decide if you should get and use a new device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@objc func handleDisplayChanges(notification: NSNotification) {",
+                    "    // Handle display changes",
+                    "}",
+                    "",
+                    "func registerForDisplayChangeNotifications() {",
+                    "    NotificationCenter.default.addObserver(self,",
+                    "                                           selector: #selector(handleDisplayChanges(notification:)),",
+                    "                                           name: NSNotification.Name(rawValue: \"NSWindowDidChangeScreenNotification\"),",
+                    "                                           object: nil)",
+                    "    ",
+                    "    NotificationCenter.default.addObserver(self,",
+                    "                                           selector: #selector(handleDisplayChanges(notification:)),",
+                    "                                           name: NSNotification.Name(rawValue: \"NSApplicationDidChangeScreenParametersNotification\"),",
+                    "                                           object: nil)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)handleDisplayChanges:(NSNotification *)notification",
+                    "{",
+                    "    // Handle display changes",
+                    "}",
+                    "",
+                    "- (void)registerForDisplayChangeNotifications",
+                    "{",
+                    "    [[NSNotificationCenter defaultCenter] addObserver:self",
+                    "                                             selector:@selector(handleDisplayChanges:)",
+                    "                                                 name:NSWindowDidChangeScreenNotification",
+                    "                                               object:nil];",
+                    "    ",
+                    "    [[NSNotificationCenter defaultCenter] addObserver:self",
+                    "                                             selector:@selector(handleDisplayChanges:)",
+                    "                                                 name:NSApplicationDidChangeScreenParametersNotification",
+                    "                                               object:nil];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deregister from the previous notifications, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-Device-that-Drives-Your-Views-Display",
+          "level": 3,
+          "text": "Identify the Device that Drives Your View’s Display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdirectdisplayid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value for the display in which your view currently appears. Then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get the device that drives that display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard let viewDisplayID = mtkView.window?.screen?.deviceDescription[NSDeviceDescriptionKey(\"NSScreenNumber\")] as? CGDirectDisplayID else { return }",
+                    "let displayDevice = CGDirectDisplayCopyCurrentMetalDevice(viewDisplayID)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSNumber           *screenNumber = _mtkView.window.screen.deviceDescription[@\"NSScreenNumber\"];",
+                    "CGDirectDisplayID  viewDisplayID  = [screenNumber unsignedIntValue];",
+                    "id <MTLDevice>     displayDevice  = CGDirectDisplayCopyCurrentMetalDevice(viewDisplayID);"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/didChangeScreenParametersNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the configuration of the displays attached to the computer is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeScreenParametersNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/didChangeScreenParametersNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeScreenParametersNotification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/didChangeScreenParametersNotification"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/didChangeScreenNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a portion of the window object’s frame moved onto or off of a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeScreenNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/didChangeScreenNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeScreenNotification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/didChangeScreenNotification"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald": {
+      "abstract": [
+        {
+          "text": "Returns the GPU device instance that’s currently driving a display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDirectDisplayCopyCurrentMetalDevice"
+        },
+        {
+          "kind": "text",
+          "text": "(CGDirectDisplayID) -> (any MTLDevice)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDirectDisplayCopyCurrentMetalDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdirectdisplayid": {
+      "abstract": [
+        {
+          "text": "A unique identifier for an attached display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDirectDisplayID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdirectdisplayid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDirectDisplayID",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdirectdisplayid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver": {
+      "abstract": [
+        {
+          "text": "Removes matching entries from the notification center's dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1407263-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:name:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1407263-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the Metal device instances in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCopyAllDevices()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcopyalldevices()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevicesWithObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCopyAllDevicesWithObserver",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcopyalldeviceswithobserver"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver(handler:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevicesWithObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLDeviceNotificationHandler",
+          "text": "MTLDeviceNotificationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (devices"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": "], observer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver(handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCopyAllDevicesWithObserver(handler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcopyalldeviceswithobserver(handler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler": {
+      "abstract": [
+        {
+          "text": "A Swift closure or an Objective-C block that Metal calls",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when the system adds or removes a GPU device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDeviceNotificationHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName": {
+      "abstract": [
+        {
+          "text": "A notification that represents a change to a GPU device in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDeviceNotificationName",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationname"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a registered observer of device notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRemoveDeviceObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRemoveDeviceObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRemoveDeviceObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlremovedeviceobserver(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac": {
+      "abstract": [
+        {
+          "text": "Locate, identify, and choose suitable GPUs for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding Multiple GPUs on an Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/metal/finding-multiple-gpus-on-an-intel-based-mac"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Locating-GPUs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+        "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()",
+        "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver(handler:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+        "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald",
+        "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler",
+        "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName"
+      ],
+      "title": "Locating GPUs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Locating-GPUs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/finding-multiple-gpus-on-an-intel-based-mac",
+                "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevices()",
+                "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver",
+                "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+                "doc://com.apple.documentation/documentation/coregraphics/1493900-cgdirectdisplaycopycurrentmetald",
+                "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationHandler",
+                "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName"
+              ],
+              "title": "Locating GPUs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~11493900-cgdirectdisplaycopycurrentmetald/title",
+          "value": "CGDirectDisplayCopyCurrentMetalDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationHandler/title",
+          "value": "MTLDeviceNotificationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter~11407263-removeobserver/title",
+          "value": "removeObserver:name:object:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName/title",
+          "value": "MTLDeviceNotificationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceNotificationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCopyAllDevices()/title",
+          "value": "MTLCopyAllDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCopyAllDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCopyAllDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1didChangeScreenParametersNotification/title",
+          "value": "NSApplicationDidChangeScreenParametersNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1didChangeScreenParametersNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSApplicationDidChangeScreenParametersNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1didChangeScreenNotification/title",
+          "value": "NSWindowDidChangeScreenNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1didChangeScreenNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindowDidChangeScreenNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRemoveDeviceObserver(_:)/title",
+          "value": "MTLRemoveDeviceObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRemoveDeviceObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRemoveDeviceObserver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/getting-the-gpu-that-drives-a-views-display"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/getting-the-gpu-that-drives-a-views-display"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
