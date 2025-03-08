@@ -1,0 +1,680 @@
+{
+  "abstract": [
+    {
+      "text": "A structure defining an I2C bus transaction.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit",
+        "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1812630,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "IOKit"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "tag",
+    "title": "IOI2CRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "struct IOI2CRequest {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   IOOptionBits sendTransactionType;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   IOOptionBits replyTransactionType;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t sendAddress;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t replyAddress;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint8_t sendSubAddress;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint8_t replySubAddress;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint8_t __reservedA[2];"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint64_t minReplyDelay;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   IOReturn result;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   IOOptionBits commFlags;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #if defined(__LP64__)"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t __padA;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #else"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   vm_address_t sendBuffer;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #endif"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t sendBytes;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t __reservedB[2];"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #if defined(__LP64__)"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t __padB;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #else"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   vm_address_t replyBuffer;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #endif"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t replyBytes;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   IOI2CRequestCompletion completion;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #if !defined(__LP64__)"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t __padC[5];"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #else"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   vm_address_t sendBuffer;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   vm_address_t replyBuffer;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #endif"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t __reservedC[10];"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #ifdef __ppc__"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   uint32_t __reservedD;"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   #endif"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "};"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This structure is used to request an I2C transaction consisting of a send (write) to and reply (read) from a device, either of which is optional, to be carried out atomically on an I2C bus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOI2CInterface.h User-Space",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2cinterface_h_user-space"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812650-_reserveda": {
+      "abstract": [
+        {
+          "text": "Set to zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812650-_reserveda",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "__reservedA",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812650-_reserveda"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812670-_reservedb": {
+      "abstract": [
+        {
+          "text": "Set to zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812670-_reservedb",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "__reservedB",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812670-_reservedb"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812697-_reservedc": {
+      "abstract": [
+        {
+          "text": "Set to zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812697-_reservedc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "__reservedC",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812697-_reservedc"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812723-_reservedd": {
+      "abstract": [
+        {
+          "text": "Set to zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812723-_reservedd",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "__reservedD",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812723-_reservedd"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410310-replytransactiontype": {
+      "abstract": [
+        {
+          "text": "Specifies one of four possible reply transaction types. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410310-replytransactiontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replyTransactionType",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410310-replytransactiontype"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410312-sendaddress": {
+      "abstract": [
+        {
+          "text": "I2C address to write.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410312-sendaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendAddress",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410312-sendaddress"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410320-sendtransactiontype": {
+      "abstract": [
+        {
+          "text": "Specifies one of three possible transaction types. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410320-sendtransactiontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendTransactionType",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410320-sendtransactiontype"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410325-replyaddress": {
+      "abstract": [
+        {
+          "text": "I2C Address from which to read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410325-replyaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replyAddress",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410325-replyaddress"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410339-sendsubaddress": {
+      "abstract": [
+        {
+          "text": "I2C subaddress to write.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410339-sendsubaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendSubAddress",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410339-sendsubaddress"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410343-sendbuffer": {
+      "abstract": [
+        {
+          "text": "Pointer to the send buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410343-sendbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendBuffer",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410343-sendbuffer"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410347-sendbytes": {
+      "abstract": [
+        {
+          "text": "Number of bytes to send. Set to actual bytes sent on completion of the request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410347-sendbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendBytes",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410347-sendbytes"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410352-replybuffer": {
+      "abstract": [
+        {
+          "text": "Pointer to the reply buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410352-replybuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replyBuffer",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410352-replybuffer"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410355-replybytes": {
+      "abstract": [
+        {
+          "text": "Max bytes to reply (size of replyBuffer). Set to actual bytes received on completion of the request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410355-replybytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replyBytes",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410355-replybytes"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410358-replysubaddress": {
+      "abstract": [
+        {
+          "text": "I2C Address from which to read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410358-replysubaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replySubAddress",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410358-replysubaddress"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410361-result": {
+      "abstract": [
+        {
+          "text": "The result of the transaction. Common errors are kIOReturnNoDevice if there is no device responding at the given address, kIOReturnUnsupportedMode if the type of transaction is unsupported on the requested bus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410361-result",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410361-result"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410364-commflags": {
+      "abstract": [
+        {
+          "text": "Flags that modify the I2C transaction type. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410364-commflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commFlags",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410364-commflags"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410371-completion": {
+      "abstract": [
+        {
+          "text": "A completion routine to be executed when the request completes. If NULL is passed, the request is synchronous, otherwise it may execute asynchronously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410371-completion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completion",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410371-completion"
+    },
+    "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410394-minreplydelay": {
+      "abstract": [
+        {
+          "text": "Minimum delay as absolute time between send and reply transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410394-minreplydelay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minReplyDelay",
+      "type": "topic",
+      "url": "/documentation/iokit/ioi2crequest/1410394-minreplydelay"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1818224",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812650-_reserveda",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410361-result",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410371-completion",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410364-commflags",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410394-minreplydelay",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410312-sendaddress",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410339-sendsubaddress",
+        "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812670-_reservedb",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410320-sendtransactiontype",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410343-sendbuffer",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410347-sendbytes",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410325-replyaddress",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410358-replysubaddress",
+        "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812697-_reservedc",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410310-replytransactiontype",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410352-replybuffer",
+        "doc://com.apple.documentation/documentation/iokit/ioi2crequest/1410355-replybytes",
+        "doc://com.apple.documentation/documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest/1812723-_reservedd"
+      ],
+      "kind": "taskGroup",
+      "title": "Fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/iokit/ioi2cinterface_h_user-space/ioi2crequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

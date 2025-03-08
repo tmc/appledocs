@@ -1,0 +1,1743 @@
+{
+  "abstract": [
+    {
+      "text": "The URL for the document’s backup file that was created during an autosave operation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSDocument/backupFileURL"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDocument(py)backupFileURL",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "backupFileURL"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation3URLV",
+        "text": "URL"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "backupFileURL"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "backupFileURL"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "backupFileURL"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation3URLV",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": "? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property specifies the location of the backup file, if any. If a backup file cannot be created or is not needed, the value of this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in OS X v10.8, document versions can be preserved using a backup file created during an autosave operation, which supports document versioning. This property gives you access to the backup file’s URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using an autosave backup file for preserving versions is efficient. This is because an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is able to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/replacingoptions/1416449-bymoving",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option when it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1412297-replaceitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The document gets the value of this property twice during saving:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Before calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method: This is to check whether using the replace-by-moving option is possible and, if not, to allow the system to preserve data by instead using copying.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method: This is to discover where to put the backup file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/saveOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveInPlaceOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operation type, you must check this property’s value. If it is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", move the previous contents of the file (that would be overwritten) to the URL’s location. The default implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " does this.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a backup file from within your custom implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412432-replaceitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", using a backup item name of ",
+              "type": "text"
+            },
+            {
+              "code": "[[self backupFileURL] lastPathComponent]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and an option of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/itemreplacementoptions/1410152-withoutdeletingbackupitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option. If your custom implementation is unable to keep the backup file, you must override this property and return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ensure that the document’s file gets correctly preserved before it gets overwritten.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns a non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value based on the value of ",
+              "type": "text"
+            },
+            {
+              "code": "[self fileURL]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but only if the document’s file needs to be preserved prior to saving or if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Otherwise, it returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for macOS documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveInPlaceOperation": {
+      "abstract": [
+        {
+          "text": "An operation that overwrites the document’s current contents with autosave data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosaveInPlaceOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveInPlaceOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAutosaveInPlaceOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument.SaveOperationType.autosaveInPlaceOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/saveoperationtype/autosaveinplaceoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/saveOperation": {
+      "abstract": [
+        {
+          "text": "An operation that overwrites a document’s file or file package with the document’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/saveOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSaveOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument.SaveOperationType.saveOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/saveoperationtype/saveoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withDelegate:didAutosave:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Autosaves the document’s contents to an appropriate location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAutosave"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withDelegate:didAutosave:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosave(withDelegate:didAutosave:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosave(withdelegate:didautosave:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Autosaves the document’s contents to an appropriate file-system location, as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withImplicitCancellability"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosaveWithImplicitCancellability:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosave(withImplicitCancellability:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosave(withimplicitcancellability:completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/backupFileURL": {
+      "abstract": [
+        {
+          "text": "The URL for the document’s backup file that was created during an autosave operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backupFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/backupFileURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backupFileURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "backupFileURL",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/backupfileurl"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/checkAutosavingSafety()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether it is safe to autosave document changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkAutosavingSafety"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/checkAutosavingSafety()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkAutosavingSafetyAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkAutosavingSafety()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/checkautosavingsafety()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/hasUnautosavedChanges": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the document has changes that have not been autosaved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasUnautosavedChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/hasUnautosavedChanges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasUnautosavedChanges"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasUnautosavedChanges",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/hasunautosavedchanges"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions": {
+      "abstract": [
+        {
+          "text": "Returns whether the document subclass supports version management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preservesVersions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preservesVersions"
+        }
+      ],
+      "role": "symbol",
+      "title": "preservesVersions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/preservesversions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/scheduleAutosaving()": {
+      "abstract": [
+        {
+          "text": "Schedules periodic autosaving for the purpose of crash protection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleAutosaving"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/scheduleAutosaving()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduleAutosaving"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduleAutosaving()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/scheduleautosaving()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the document to a file or file package located by a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeSafely"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSSaveOperationType",
+          "text": "SaveOperationType"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeSafelyToURL:ofType:forSaveOperation:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeSafely(to:ofType:for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/writesafely(to:oftype:for:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412432-replaceitem": {
+      "abstract": [
+        {
+          "text": "Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "backupItemName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.ItemReplacementOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultingItemURL"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSURL?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412432-replaceitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceItem(at:withItemAt:backupItemName:options:resultingItemURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412432-replaceitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/itemreplacementoptions/1410152-withoutdeletingbackupitem": {
+      "abstract": [
+        {
+          "text": "The backup item remains in place after a successful replacement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "withoutDeletingBackupItem"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.ItemReplacementOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/itemreplacementoptions/1410152-withoutdeletingbackupitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withoutDeletingBackupItem",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/itemreplacementoptions/1410152-withoutdeletingbackupitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/1412297-replaceitem": {
+      "abstract": [
+        {
+          "text": "Replace the contents of the specified file with the contents of the current version’s file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileVersion.ReplacingOptions) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/1412297-replaceitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceItem(at:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/1412297-replaceitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion/replacingoptions/1416449-bymoving": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "byMoving"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileVersion.ReplacingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion/replacingoptions/1416449-bymoving",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "byMoving",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion/replacingoptions/1416449-bymoving"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSURL": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation3URLV": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Autosaving-the-Document",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/checkAutosavingSafety()",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/hasUnautosavedChanges",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/scheduleAutosaving()",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withDelegate:didAutosave:contextInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)"
+      ],
+      "title": "Autosaving the Document"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "backupFileURL"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backupFileURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Autosaving-the-Document",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/checkAutosavingSafety()",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/hasUnautosavedChanges",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/scheduleAutosaving()",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withDelegate:didAutosave:contextInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)"
+              ],
+              "title": "Autosaving the Document"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSURL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSURL",
+                    "text": "NSURL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "backupFileURL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11412432-replaceitem/title",
+          "value": "replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager/title",
+          "value": "NSFileManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosave(withImplicitCancellability:completionHandler:)/title",
+          "value": "autosaveWithImplicitCancellability:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosave(withImplicitCancellability:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "autosaveWithImplicitCancellability:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1checkAutosavingSafety()/title",
+          "value": "checkAutosavingSafetyAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1checkAutosavingSafety()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkAutosavingSafetyAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/title",
+          "value": "NSDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1saveOperation/title",
+          "value": "NSSaveOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1saveOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSaveOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSURL/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1hasUnautosavedChanges/title",
+          "value": "hasUnautosavedChanges"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1hasUnautosavedChanges/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasUnautosavedChanges"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1backupFileURL/title",
+          "value": "backupFileURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1backupFileURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backupFileURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsfileversion~1replacingoptions~11416449-bymoving/title",
+          "value": "NSFileVersionReplacingByMoving"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsfileversion~11412297-replaceitem/title",
+          "value": "replaceItemAtURL:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1preservesVersions/title",
+          "value": "preservesVersions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1preservesVersions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preservesVersions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~1itemreplacementoptions~11410152-withoutdeletingbackupitem/title",
+          "value": "NSFileManagerItemReplacementWithoutDeletingBackupItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1autosaveInPlaceOperation/title",
+          "value": "NSAutosaveInPlaceOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1autosaveInPlaceOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAutosaveInPlaceOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1scheduleAutosaving()/title",
+          "value": "scheduleAutosaving"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1scheduleAutosaving()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scheduleAutosaving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1writeSafely(to:ofType:for:)/title",
+          "value": "writeSafelyToURL:ofType:forSaveOperation:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1writeSafely(to:ofType:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeSafelyToURL:ofType:forSaveOperation:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosave(withDelegate:didAutosave:contextInfo:)/title",
+          "value": "autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosave(withDelegate:didAutosave:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsdocument/backupfileurl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsdocument/backupfileurl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

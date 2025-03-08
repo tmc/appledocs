@@ -1,0 +1,2336 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the smallest contiguous range for glyphs lying wholly or partially within the specified rectangle of the text container.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRectWithoutAdditionalLayout:in:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSLayoutManager(im)glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "glyphRange"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "forBoundingRectWithoutAdditionalLayout"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSRect",
+        "text": "NSRect"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "in"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSTextContainer",
+        "text": "NSTextContainer"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "NSRange"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "glyphRange(forBoundingRectWithoutAdditionalLayout:in:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphRange"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forBoundingRectWithoutAdditionalLayout"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "bounds"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSRect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "in"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "container"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContainer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSTextContainer",
+              "text": "NSTextContainer"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "NSRange"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bounding rectangle for which to return glyphs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bounds"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The text container in which the glyphs are laid out.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "container"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The range of glyphs that would need to be displayed in order to draw all glyphs that fall (even partially) within the given bounding rectangle. The range returned can include glyphs that don’t fall inside or intersect ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", although the first and last glyphs in the range always do. At most this method returns the glyph range for the whole container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRect:in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this variant of the method doesn’t perform glyph generation or layout. Its results, though faster, can be incorrect. This method is primarily for use by ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; you should rarely need to use it yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bounding rectangles are always in container coordinates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the layout and display of text characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/boundingRect(forGlyphRange:in:)": {
+      "abstract": [
+        {
+          "text": "Returns the bounding rectangle for the specified glyphs in a container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/boundingRect(forGlyphRange:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundingRectForGlyphRange:inTextContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundingRect(forGlyphRange:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/boundingrect(forglyphrange:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the character that lies beneath the specified point using the specified container’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characterIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fractionOfDistanceBetweenInsertionPoints"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:"
+        }
+      ],
+      "role": "symbol",
+      "title": "characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/characterindex(for:in:fractionofdistancebetweeninsertionpoints:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterRange(forGlyphRange:actualGlyphRange:)": {
+      "abstract": [
+        {
+          "text": "Returns the range of characters that correspond to the glyphs in the specified glyph range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characterRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actualGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRangePointer",
+          "text": "NSRangePointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterRange(forGlyphRange:actualGlyphRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "characterRangeForGlyphRange:actualGlyphRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "characterRange(forGlyphRange:actualGlyphRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/characterrange(forglyphrange:actualglyphrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)": {
+      "abstract": [
+        {
+          "text": "Enumerates enclosing rectangles for the specified glyph range in a text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateEnclosingRects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withinSelectedGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/enumerateenclosingrects(forglyphrange:withinselectedglyphrange:in:using:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateLineFragments(forGlyphRange:using:)": {
+      "abstract": [
+        {
+          "text": "Enumerates line fragments intersecting with the specified glyph range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateLineFragments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forGlyphRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateLineFragments(forGlyphRange:using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumerateLineFragmentsForGlyphRange:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumerateLineFragments(forGlyphRange:using:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/enumeratelinefragments(forglyphrange:using:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/fractionOfDistanceThroughGlyph(for:in:)": {
+      "abstract": [
+        {
+          "text": "Returns the fraction of the distance between the glyph at the specified point and the next glyph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fractionOfDistanceThroughGlyph"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/fractionOfDistanceThroughGlyph(for:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fractionOfDistanceThroughGlyphForPoint:inTextContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fractionOfDistanceThroughGlyph(for:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/fractionofdistancethroughglyph(for:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)": {
+      "abstract": [
+        {
+          "text": "Returns insertion points in bulk for a specified line fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLineFragmentInsertionPoints"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCharacterAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alternatePositions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inDisplayOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "positions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "characterIndexes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/getlinefragmentinsertionpoints(forcharacterat:alternatepositions:indisplayorder:positions:characterindexes:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the glyph at the specified location in a text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "glyphIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "glyphIndexForPoint:inTextContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "glyphIndex(for:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/glyphindex(for:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:fractionOfDistanceThroughGlyph:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the glyph at the specified point using the container’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "glyphIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fractionOfDistanceThroughGlyph"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:fractionOfDistanceThroughGlyph:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:"
+        }
+      ],
+      "role": "symbol",
+      "title": "glyphIndex(for:in:fractionOfDistanceThroughGlyph:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/glyphindex(for:in:fractionofdistancethroughglyph:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the range of glyphs lying within the specified text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "glyphRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "glyphRangeForTextContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "glyphRange(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/glyphrange(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRect:in:)": {
+      "abstract": [
+        {
+          "text": "Returns the smallest contiguous range for glyphs lying wholly or partially within the specified rectangle of the text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "glyphRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBoundingRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRect:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "glyphRangeForBoundingRect:inTextContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "glyphRange(forBoundingRect:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/glyphrange(forboundingrect:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRectWithoutAdditionalLayout:in:)": {
+      "abstract": [
+        {
+          "text": "Returns the smallest contiguous range for glyphs lying wholly or partially within the specified rectangle of the text container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "glyphRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBoundingRectWithoutAdditionalLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextContainer",
+          "text": "NSTextContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRectWithoutAdditionalLayout:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "glyphRange(forBoundingRectWithoutAdditionalLayout:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/glyphrange(forboundingrectwithoutadditionallayout:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forCharacterRange:actualCharacterRange:)": {
+      "abstract": [
+        {
+          "text": "Returns the range of glyphs that the specified range of characters generates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "glyphRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCharacterRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "actualCharacterRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRangePointer",
+          "text": "NSRangePointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forCharacterRange:actualCharacterRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "glyphRangeForCharacterRange:actualCharacterRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "glyphRange(forCharacterRange:actualCharacterRange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/glyphrange(forcharacterrange:actualcharacterrange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/range(ofNominallySpacedGlyphsContaining:)": {
+      "abstract": [
+        {
+          "text": "Returns the range of displayable glyphs that surround the glyph at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofNominallySpacedGlyphsContaining"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/range(ofNominallySpacedGlyphsContaining:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rangeOfNominallySpacedGlyphsContainingIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "range(ofNominallySpacedGlyphsContaining:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager/range(ofnominallyspacedglyphscontaining:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextContainer": {
+      "abstract": [
+        {
+          "text": "A region where text layout occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextContainer",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextcontainer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@_NSRange": {
+      "abstract": [
+        {
+          "text": "A Swift-only concrete structure that backs the range type alias.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "_NSRange"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@_NSRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "_NSRange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrange-jio"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSRect": {
+      "abstract": [
+        {
+          "text": "A rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrect"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performing-advanced-layout-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/boundingRect(forGlyphRange:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterRange(forGlyphRange:actualGlyphRange:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateLineFragments(forGlyphRange:using:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/fractionOfDistanceThroughGlyph(for:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:fractionOfDistanceThroughGlyph:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRect:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forCharacterRange:actualCharacterRange:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/range(ofNominallySpacedGlyphsContaining:)"
+      ],
+      "title": "Performing advanced layout queries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Performing-advanced-layout-queries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/boundingRect(forGlyphRange:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/characterRange(forGlyphRange:actualGlyphRange:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/enumerateLineFragments(forGlyphRange:using:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/fractionOfDistanceThroughGlyph(for:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphIndex(for:in:fractionOfDistanceThroughGlyph:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forBoundingRect:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/glyphRange(forCharacterRange:actualCharacterRange:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager/range(ofNominallySpacedGlyphsContaining:)"
+              ],
+              "title": "Performing advanced layout queries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@S@_NSRange",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@S@_NSRange",
+                    "text": "NSRange"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "glyphRangeForBoundingRectWithoutAdditionalLayout:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSRect",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSRect",
+                    "text": "NSRect"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "bounds"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "inTextContainer:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextContainer",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSTextContainer",
+                    "text": "NSTextContainer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "container"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The bounding rectangle for which to return glyphs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "bounds"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The text container in which the glyphs are laid out.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "container"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "The range of glyphs that would need to be displayed in order to draw all glyphs that fall (even partially) within the given bounding rectangle. The range returned can include glyphs that don’t fall inside or intersect ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "bounds",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ", although the first and last glyphs in the range always do. At most this method returns the glyph range for the whole container.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager/title",
+          "value": "NSLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(forBoundingRectWithoutAdditionalLayout:in:)/title",
+          "value": "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(forBoundingRectWithoutAdditionalLayout:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphRangeForBoundingRectWithoutAdditionalLayout:inTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)/title",
+          "value": "getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1getLineFragmentInsertionPoints(forCharacterAt:alternatePositions:inDisplayOrder:positions:characterIndexes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphIndex(for:in:fractionOfDistanceThroughGlyph:)/title",
+          "value": "glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphIndex(for:in:fractionOfDistanceThroughGlyph:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(forBoundingRect:in:)/title",
+          "value": "glyphRangeForBoundingRect:inTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(forBoundingRect:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphRangeForBoundingRect:inTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(forCharacterRange:actualCharacterRange:)/title",
+          "value": "glyphRangeForCharacterRange:actualCharacterRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(forCharacterRange:actualCharacterRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphRangeForCharacterRange:actualCharacterRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)/title",
+          "value": "characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1characterIndex(for:in:fractionOfDistanceBetweenInsertionPoints:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)/title",
+          "value": "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1enumerateEnclosingRects(forGlyphRange:withinSelectedGlyphRange:in:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1fractionOfDistanceThroughGlyph(for:in:)/title",
+          "value": "fractionOfDistanceThroughGlyphForPoint:inTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1fractionOfDistanceThroughGlyph(for:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fractionOfDistanceThroughGlyphForPoint:inTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1characterRange(forGlyphRange:actualGlyphRange:)/title",
+          "value": "characterRangeForGlyphRange:actualGlyphRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1characterRange(forGlyphRange:actualGlyphRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "characterRangeForGlyphRange:actualGlyphRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1enumerateLineFragments(forGlyphRange:using:)/title",
+          "value": "enumerateLineFragmentsForGlyphRange:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1enumerateLineFragments(forGlyphRange:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumerateLineFragmentsForGlyphRange:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1range(ofNominallySpacedGlyphsContaining:)/title",
+          "value": "rangeOfNominallySpacedGlyphsContainingIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1range(ofNominallySpacedGlyphsContaining:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rangeOfNominallySpacedGlyphsContainingIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(for:)/title",
+          "value": "glyphRangeForTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphRange(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphRangeForTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphIndex(for:in:)/title",
+          "value": "glyphIndexForPoint:inTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1glyphIndex(for:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "glyphIndexForPoint:inTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1boundingRect(forGlyphRange:in:)/title",
+          "value": "boundingRectForGlyphRange:inTextContainer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager~1boundingRect(forGlyphRange:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingRectForGlyphRange:inTextContainer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContainer/title",
+          "value": "NSTextContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nslayoutmanager/glyphrange(forboundingrectwithoutadditionallayout:in:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nslayoutmanager/glyphrange(forboundingrectwithoutadditionallayout:in:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
