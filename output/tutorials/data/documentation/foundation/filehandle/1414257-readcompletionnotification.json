@@ -1,0 +1,566 @@
+{
+  "abstract": [
+    {
+      "text": "Posted when the file handle reads the data currently available in a file or at a communications channel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/filehandle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414257,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSFileHandleReadCompletionNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class let "
+      },
+      {
+        "kind": "identifier",
+        "text": "readCompletionNotification"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "FileHandle"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "readCompletionNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "readCompletionNotification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It makes the data available to observers by putting it in the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. To cause the posting of this notification, you must send either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1417635-readinbackgroundandnotify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1416294-readinbackgroundandnotify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "NSFileHandle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object is the ",
+              "type": "text"
+            },
+            {
+              "code": "NSFileHandle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that sent the notification. The ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2555617",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSFileHandleNotificationDataItem",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object containing the available data read from a socket connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@\"NSFileHandleError\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSNumber",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object containing an integer representing the UNIX-type error which occurred.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "abstract": [
+        {
+          "text": "An object-oriented wrapper for a file descriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle reads the data currently available in a file or at a communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCompletionNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCompletionNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1414257-readcompletionnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification#2555617": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification#2555617",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/filehandle/1414257-readcompletionnotification#2555617"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1416294-readinbackgroundandnotify": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1416294-readinbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInBackgroundAndNotify(forModes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1416294-readinbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1417635-readinbackgroundandnotify": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1417635-readinbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInBackgroundAndNotify()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1417635-readinbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle determines that data is currently available for reading in a file or at a communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleDataAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleDataAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle reads all data in the file or, in a communications channel, until the other process signals the end of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleReadToEndOfFileCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleReadToEndOfFileCompletion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted": {
+      "abstract": [
+        {
+          "text": "Posted when a file handle object establishes a socket connection between two processes, creates a file handle object for one end of the connection, and makes this object available to observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleConnectionAccepted"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleConnectionAccepted",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl"
+      ],
+      "title": "Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilehandlereadcompletionnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filehandle/1414257-readcompletionnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

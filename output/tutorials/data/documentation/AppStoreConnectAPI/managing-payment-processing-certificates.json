@@ -1,0 +1,813 @@
+{
+  "abstract": [
+    {
+      "text": "Create and update certificates so your app uses Apple Pay and Wallet.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-payment-processing-certificates"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing merchant IDs and Payment Processing certificates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Managing your merchant Identifier (ID) and Payment Processing certificates keeps the Apple Pay service active in your app. To set up your Apple developer account and Xcode to implement Apple Pay in your apps, complete three steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a merchant ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a Payment Processing certificate. To learn more about certificates for Apple Pay and Wallet, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable Apple Pay in Xcode. To learn more see, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/passkit/setting-up-apple-pay",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Once you set up Apple Pay in your apps, you then can replace Payment Processing certificates as they near their expiration date — 25 months after you create them. To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/maintaining_your_environment#overview",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-merchant-ID",
+          "level": 3,
+          "text": "Create a merchant ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A merchant ID uniquely identifies you to Apple Pay as a merchant who is able to accept payments. A merchant ID never expires, and you can use the same one for multiple apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a merchant ID, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-merchantIds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"data\": {",
+            "        \"type\": \"merchantIds\",",
+            "        \"attributes\": {",
+            "            \"identifier\": \"com.myapp.merchant1\",",
+            "            \"name\": \"MyMerchantName\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "identifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is a unique identifier for your merchant. The value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "name",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is a descriptive name for the merchant.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-Payment-Processing-certificate",
+          "level": 3,
+          "text": "Create Payment Processing certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a certificate to use with Apple Pay, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-certificates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"certificates\",",
+            "    \"attributes\": {",
+            "        \"certificateType\": \"APPLE_PAY\",",
+            "        \"csrContent\" : \"<PEM-CSR-Content>\"",
+            "    },",
+            "    \"relationships\": {",
+            "      \"merchantId\": {",
+            "        \"data\": {",
+            "          \"type\": \"merchantIds\",",
+            "          \"id\": \"1234567890\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field in the example payload is a 10-character string that the prior request returns. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "csrContent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is your certificate-signing request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Rotate-a-Payment-Processing-certificate",
+          "level": 3,
+          "text": "Rotate a Payment Processing certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use one of three options to replace a payment-processing certificate nearing its 25-month expiration date. Each option takes into account that you can have more than one payment processing certificate, but only one can be ",
+              "type": "text"
+            },
+            {
+              "code": "activated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for use at any time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Let the existing Payment Process certificate expire. Then create a new Payment Processing certificate using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-certificates",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". The created certificate automatically has the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "activated",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TRUE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Expire and create",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Create a new Payment Processing certificate using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-certificates",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". Revoke the existing certificate nearing expiration by using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-certificates-_id_",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". The new Payment Processing certificate automatically has the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "activated",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TRUE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": " Create then revoke",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Create a new Payment Processing certificate using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-certificates",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". Then explicitly “activate” the new certificate using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": " Create and activate",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The “Create and activate” option also deactivates the expiring certificate by automatically setting the ",
+                  "type": "text"
+                },
+                {
+                  "code": "activated",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key to ",
+                  "type": "text"
+                },
+                {
+                  "code": "FALSE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-certificates-_id_": {
+      "abstract": [
+        {
+          "text": "Revoke a lost, stolen, compromised, or expiring signing certificate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-certificates-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/certificates/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Revoke a Certificate",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-certificates-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-merchantIds-_id_": {
+      "abstract": [
+        {
+          "text": "Delete a specific merchant ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-merchantIds-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/merchantIds/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a merchant ID",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-merchantids-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds": {
+      "abstract": [
+        {
+          "text": "List all merchant Ids for your team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/merchantIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "List merchant IDs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-merchantids"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds-_id_": {
+      "abstract": [
+        {
+          "text": "Get information for a merchant ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/merchantIds/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read details for a merchant ID",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-merchantids-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds-_id_-certificates": {
+      "abstract": [
+        {
+          "text": "Get a list of all certificates for a specific merchant ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds-_id_-certificates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/merchantIds/{id}/certificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "List certificates for a merchant ID",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-merchantids-_id_-certificates"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_": {
+      "abstract": [
+        {
+          "text": "Update the activation status for a specific certificate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-certificates-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/certificates/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a certificate",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-certificates-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-merchantIds-_id_": {
+      "abstract": [
+        {
+          "text": "Update a specific merchant ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-merchantIds-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/merchantIds/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify merchant IDs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-merchantids-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-certificates": {
+      "abstract": [
+        {
+          "text": "Create a new certificate using a certificate signing request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-certificates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/certificates"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Certificate",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-certificates"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-merchantIds": {
+      "abstract": [
+        {
+          "text": "Add a new merchant ID to your team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-merchantIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/merchantIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a merchant ID",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-merchantids"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids": {
+      "abstract": [
+        {
+          "text": "Manage your merchant ID for Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/merchantids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Merchant ID",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/merchantids"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/apple_pay_on_the_web/maintaining_your_environment#overview": {
+      "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/maintaining_your_environment#overview",
+      "title": "Maintaining Your Environment",
+      "titleInlineContent": [
+        {
+          "text": "Maintaining Your Environment",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/apple_pay_on_the_web/maintaining_your_environment#overview"
+    },
+    "https://developer.apple.com/documentation/passkit/setting-up-apple-pay": {
+      "identifier": "https://developer.apple.com/documentation/passkit/setting-up-apple-pay",
+      "title": "Setting up Apple Pay",
+      "titleInlineContent": [
+        {
+          "text": "Setting up Apple Pay",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/passkit/setting-up-apple-pay"
+    },
+    "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay/": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay/",
+      "title": "Configure Apple Pay",
+      "titleInlineContent": [
+        {
+          "text": "Configure Apple Pay",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-capabilities/configure-apple-pay/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-merchant-IDs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-merchantIds-_id_-certificates",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-merchantIds-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-merchantIds",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-merchantIds-_id_"
+      ],
+      "title": "Managing merchant IDs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/managing-payment-processing-certificates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

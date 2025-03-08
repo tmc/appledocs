@@ -1,0 +1,1474 @@
+{
+  "abstract": [
+    {
+      "text": "Configure capture formats and camera frame rates.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Formats"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example illustrates how to select an iOS device’s highest possible frame rate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func configureCameraForHighestFrameRate(device: AVCaptureDevice) {",
+            "    ",
+            "    var bestFormat: AVCaptureDevice.Format?",
+            "    var bestFrameRateRange: AVFrameRateRange?",
+            "",
+            "    for format in device.formats {",
+            "        for range in format.videoSupportedFrameRateRanges {",
+            "            if range.maxFrameRate > bestFrameRateRange?.maxFrameRate ?? 0 {",
+            "                bestFormat = format",
+            "                bestFrameRateRange = range",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    if let bestFormat = bestFormat, ",
+            "       let bestFrameRateRange = bestFrameRateRange {",
+            "        do {",
+            "            try device.lockForConfiguration()",
+            "            ",
+            "            // Set the device's active format.",
+            "            device.activeFormat = bestFormat",
+            "            ",
+            "            // Set the device's min/max frame duration.",
+            "            let duration = bestFrameRateRange.minFrameDuration",
+            "            device.activeVideoMinFrameDuration = duration",
+            "            device.activeVideoMaxFrameDuration = duration",
+            "            ",
+            "            device.unlockForConfiguration()",
+            "        } catch {",
+            "            // Handle error.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most common configurations of capture settings are available through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and its available presets. However, on iOS devices, some specialized options (such as high frame rate) require directly setting a capture format on an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In iOS, directly configuring a capture device’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property changes the capture session’s preset to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Upon making this change, the capture session no longer automatically configures the capture format when you call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/startRunning()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method or call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/commitConfiguration()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method after changing the session topology.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "In macOS, a capture session can still automatically configure the capture format after you make changes. To prevent automatic changes to the capture format in macOS, follow the advice listed under the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Format": {
+      "abstract": [
+        {
+          "text": "A class that defines media formats and capture settings that capture devices support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Format"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Format",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Format"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.Format",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/format"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat": {
+      "abstract": [
+        {
+          "text": "The currently active depth data format of the capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeDepthDataFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeDepthDataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeDepthDataFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activedepthdataformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataMinFrameDuration": {
+      "abstract": [
+        {
+          "text": "The minimum frame duration of depth data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeDepthDataMinFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataMinFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeDepthDataMinFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeDepthDataMinFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activedepthdataminframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeFormat": {
+      "abstract": [
+        {
+          "text": "The capture format in use by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+          "text": "Format"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activeformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMaxFrameDuration": {
+      "abstract": [
+        {
+          "text": "The currently active maximum frame duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeVideoMaxFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMaxFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeVideoMaxFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeVideoMaxFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activevideomaxframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMinFrameDuration": {
+      "abstract": [
+        {
+          "text": "The currently active minimum frame duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeVideoMinFrameDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMinFrameDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeVideoMinFrameDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeVideoMinFrameDuration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activevideominframeduration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/formats": {
+      "abstract": [
+        {
+          "text": "The capture formats a device supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formats"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/formats",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "formats"
+        }
+      ],
+      "role": "symbol",
+      "title": "formats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/formats"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device monitors the subject area for changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubjectAreaChangeMonitoringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subjectAreaChangeMonitoringEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSubjectAreaChangeMonitoringEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()": {
+      "abstract": [
+        {
+          "text": "Requests exclusive access to configure device hardware properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockForConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockForConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockForConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/lockforconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a capture device detects a substantial change to the video subject area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subjectAreaDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "subjectAreaDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/subjectareadidchangenotification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()": {
+      "abstract": [
+        {
+          "text": "Releases exclusive control over device hardware properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockForConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockForConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlockForConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/unlockforconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority": {
+      "abstract": [
+        {
+          "text": "A preset that doesn’t specify audio and video output settings for a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputPriority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSession",
+          "text": "AVCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureSessionPreset",
+          "text": "Preset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSessionPresetInputPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputPriority",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/preset/inputpriority"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/commitConfiguration()": {
+      "abstract": [
+        {
+          "text": "Commits one or more changes to a running capture session’s configuration in a single atomic update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commitConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/commitConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commitConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "commitConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/commitconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/startRunning()": {
+      "abstract": [
+        {
+          "text": "Starts the flow of data through the capture pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startRunning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/startRunning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "startRunning()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/startrunning()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color": {
+      "abstract": [
+        {
+          "text": "Manage HDR and color space settings for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-color"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure": {
+      "abstract": [
+        {
+          "text": "Configure the automatic exposure behavior of a camera, or manually control its exposure settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exposure",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-exposure"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus": {
+      "abstract": [
+        {
+          "text": "Configure the automatic focus behavior of a camera, or manually set its lens position.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-focus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting": {
+      "abstract": [
+        {
+          "text": "Configure the device flash, torch, and low light settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lighting",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-lighting"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance": {
+      "abstract": [
+        {
+          "text": "Configure the automatic white balance behavior of a camera, or manually control white balance settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "White Balance",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-white-balance"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom": {
+      "abstract": [
+        {
+          "text": "Configure device zooming behavior and inspect hardware capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Zoom",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-zoom"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup": {
+      "abstract": [
+        {
+          "text": "Configure built-in cameras and microphones, and external capture devices, for media capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capture setup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-setup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Camera-Hardware",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom"
+      ],
+      "title": "Configuring Camera Hardware"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-Capture-Formats",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/formats",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Format"
+      ],
+      "title": "Configuring Capture Formats"
+    },
+    {
+      "anchor": "Configuring-Frame-Durations",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMinFrameDuration",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMaxFrameDuration",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataMinFrameDuration"
+      ],
+      "title": "Configuring Frame Durations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-Capture-Formats",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/formats",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/Format"
+              ],
+              "title": "Configuring Capture Formats"
+            },
+            {
+              "anchor": "Configuring-Frame-Durations",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMinFrameDuration",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeVideoMaxFrameDuration",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataMinFrameDuration"
+              ],
+              "title": "Configuring Frame Durations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Camera-Hardware",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom"
+              ],
+              "title": "Configuring Camera Hardware"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1commitConfiguration()/title",
+          "value": "commitConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1commitConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commitConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSubjectAreaChangeMonitoringEnabled/title",
+          "value": "subjectAreaChangeMonitoringEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSubjectAreaChangeMonitoringEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subjectAreaChangeMonitoringEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1Format/title",
+          "value": "AVCaptureDeviceFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1Format/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1Format/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeFormat/title",
+          "value": "activeFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/title",
+          "value": "AVCaptureSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeDepthDataFormat/title",
+          "value": "activeDepthDataFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeDepthDataFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeDepthDataFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeVideoMaxFrameDuration/title",
+          "value": "activeVideoMaxFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeVideoMaxFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeVideoMaxFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1Preset~1inputPriority/title",
+          "value": "AVCaptureSessionPresetInputPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1Preset~1inputPriority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionPresetInputPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1lockForConfiguration()/title",
+          "value": "lockForConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1lockForConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockForConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeVideoMinFrameDuration/title",
+          "value": "activeVideoMinFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeVideoMinFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeVideoMinFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1unlockForConfiguration()/title",
+          "value": "unlockForConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1unlockForConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockForConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1subjectAreaDidChangeNotification/title",
+          "value": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1subjectAreaDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeDepthDataMinFrameDuration/title",
+          "value": "activeDepthDataMinFrameDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeDepthDataMinFrameDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeDepthDataMinFrameDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1startRunning()/title",
+          "value": "startRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1startRunning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1formats/title",
+          "value": "formats"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1formats/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "formats"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/capture-device-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/capture-device-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

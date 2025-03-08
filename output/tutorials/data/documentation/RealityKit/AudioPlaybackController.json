@@ -1,0 +1,1568 @@
+{
+  "abstract": [
+    {
+      "text": "A controller that manages an audio playback instance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation23AudioPlaybackControllerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AudioPlaybackController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AudioPlaybackController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AudioPlaybackController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioPlaybackController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can obtain an audio playback controller by calling an entity’s Entity/prepareAudio(",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": ":) or Entity/playAudio(",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":) method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which creates a controller with the associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To play multiple instances of a resource, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to obtain new AudioPlaybackControllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During playback, the audio appears to come from the entity that you used to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create the controller. As you move around the MR scene, RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modulates the characteristics of the audio to account for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Playback commences only after the entity is parented and placed within a scene.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After playback completes, or if you call the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/stop()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the audio resource resets,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allowing you to replay the resource from the beginning. Alternatively, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enable indefinite looping by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "loops",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the audio resource to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Look for one of the events in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you want to be alerted when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "certain aspects of audio playback occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents": {
+      "abstract": [
+        {
+          "text": "Events associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorConfiguration": {
+      "abstract": [
+        {
+          "text": "A container for various settings for preparing and playing an AudioGeneratorController.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioGeneratorConfiguration",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiogeneratorconfiguration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController": {
+      "abstract": [
+        {
+          "text": "A controller that manages the playback of a real-time audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioGeneratorController",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiogeneratorcontroller"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController": {
+      "abstract": [
+        {
+          "text": "A controller that manages an audio playback instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPlaybackController",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/Decibel": {
+      "abstract": [
+        {
+          "text": "A type alias for Double expressing that the value is in Decibels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decibel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/Decibel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decibel"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPlaybackController.Decibel",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/decibel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPlaybackController.ID",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/id-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/Identifiable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/Identifiable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifiable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/identifiable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/completionHandler": {
+      "abstract": [
+        {
+          "text": "A closure that the playback controller executes when it reaches the end",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/completionHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completionHandler",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/completionhandler"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/entity": {
+      "abstract": [
+        {
+          "text": "The entity from which the audio stream emanates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/fade(to:duration:)": {
+      "abstract": [
+        {
+          "text": "Transitions the gain to the given value over a time interval using a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "linear curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerC",
+          "text": "AudioPlaybackController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerCAAE7Decibela",
+          "text": "Decibel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/fade(to:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fade(to:duration:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/fade(to:duration:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/gain": {
+      "abstract": [
+        {
+          "text": "The individual gain in decibels of the audio playback controller output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerC",
+          "text": "AudioPlaybackController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerCAAE7Decibela",
+          "text": "Decibel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/gain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gain",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/gain"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/id-87o6y": {
+      "abstract": [
+        {
+          "text": "The stable identity of the controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/id-87o6y",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/id-87o6y"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/isPlaying": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether playback is currently active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPlaying"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/isPlaying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPlaying",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/isplaying"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/pause()": {
+      "abstract": [
+        {
+          "text": "Pauses playback of the audio resource while maintaining the position in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/pause()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pause()",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/pause()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/play()": {
+      "abstract": [
+        {
+          "text": "Plays the audio resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "play"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/play()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "play()",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/play()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/resource": {
+      "abstract": [
+        {
+          "text": "The resource that provides the audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/resource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/resource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/reverbSendLevel": {
+      "abstract": [
+        {
+          "text": "The send level from this playback controller to the reverb system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reverbSendLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerC",
+          "text": "AudioPlaybackController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerCAAE7Decibela",
+          "text": "Decibel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/reverbSendLevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reverbSendLevel",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/reverbsendlevel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/seek(to:)": {
+      "abstract": [
+        {
+          "text": "Sets the playback position to the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/seek(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seek(to:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/seek(to:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/speed": {
+      "abstract": [
+        {
+          "text": "The rate of playback of the audio resource, with a range of ",
+          "type": "text"
+        },
+        {
+          "code": "[.25, 4]",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/speed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/speed"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/stop()": {
+      "abstract": [
+        {
+          "text": "Stops playback of the audio resource and discards the location in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/stop()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller/stop()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource": {
+      "abstract": [
+        {
+          "text": "A playable audio resource",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares and plays a new audio playback instance on this entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAudio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AudioPlaybackControllerC",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAudio(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAudio(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playaudio(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction": {
+      "abstract": [
+        {
+          "text": "An action which plays an audio resource on the given target entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayAudioAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/playaudioaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorConfiguration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction"
+      ],
+      "title": "Playback controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-the-controller",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/id-87o6y",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/ID-swift.typealias"
+      ],
+      "title": "Identifying the controller"
+    },
+    {
+      "anchor": "Managing-the-resource",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/resource"
+      ],
+      "title": "Managing the resource"
+    },
+    {
+      "anchor": "Setting-the-volume",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/gain",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/fade(to:duration:)"
+      ],
+      "title": "Setting the volume"
+    },
+    {
+      "anchor": "Setting-the-speed",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/speed"
+      ],
+      "title": "Setting the speed"
+    },
+    {
+      "anchor": "Setting-the-reverb",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/reverbSendLevel"
+      ],
+      "title": "Setting the reverb"
+    },
+    {
+      "anchor": "Starting-and-stopping-audio-playback",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/play()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/pause()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/stop()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/isPlaying"
+      ],
+      "title": "Starting and stopping audio playback"
+    },
+    {
+      "anchor": "Handling-completion",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/completionHandler"
+      ],
+      "title": "Handling completion"
+    },
+    {
+      "anchor": "Finding-the-associated-entity",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/entity"
+      ],
+      "title": "Finding the associated entity"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/seek(to:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/Decibel"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController/Identifiable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/audioplaybackcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

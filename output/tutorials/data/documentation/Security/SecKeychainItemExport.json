@@ -1,0 +1,983 @@
+{
+  "abstract": [
+    {
+      "text": "Exports one or more certificates, keys, or identities.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecKeychainItemExport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecKeychainItemExport",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecKeychainItemExport"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecKeychainItemExport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecKeychainItemExport"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemExport"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "keychainItemOrArray"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecExternalFormat",
+              "text": "SecExternalFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outputFormat"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemImportExportFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecItemImportExportFlags",
+              "text": "SecItemImportExportFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@SecKeyImportExportParameters",
+              "text": "SecKeyImportExportParameters"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "keyParams"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDataRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDataRef",
+              "text": "CFDataRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "exportedData"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The keychain item or items to export. You can export only the following types of keychain items: ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecCertificateRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecKeyRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecIdentityRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you are exporting exactly one item, you can specify a ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecKeychainItemRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object. Otherwise this parameter is a ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFArrayRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object containing a number of items of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecKeychainItemRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keychainItemOrArray"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The format of the desired external representation for the item. Set this parameter to ",
+                  "type": "text"
+                },
+                {
+                  "code": "kSecFormatUnknown",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to use the default for that item type. Possible values for this parameter and default values are enumerated in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outputFormat"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A flag indicating whether the exported item should have PEM armor. PEM armor refers to a way of expressing binary data as an ASCII string so that it can be transferred over text-only channels such as email. Set this flag to ",
+                  "type": "text"
+                },
+                {
+                  "code": "kSecItemPemArmour",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you want PEM armoring.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a structure containing a set of input parameters for the function. If no key items are being exported, these parameters are optional and you can set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "keyParams",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keyParams"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, points to the external representation of the keychain item or items.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "exportedData"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function works only with keys, certificates, and identities. An identity is the combination of a certificate and its associated private key. Although public keys are commonly stored in certificates, they can be stored separately in the keychain as well; for example, when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreatePair",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to create a key pair, both the public and private keys are stored in the keychain. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSearchCopyNext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to find a key or certificate. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function in the Certificate, Key, and Trust API to find an identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is deprecated in macOS 10.7 and later; use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecExternalFormat": {
+      "abstract": [
+        {
+          "text": "The external format of a keychain item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecExternalFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecExternalFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecExternalFormat",
+      "type": "topic",
+      "url": "/documentation/security/secexternalformat"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext": {
+      "abstract": [
+        {
+          "text": "Finds the next identity matching specified search criteria",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearchCopyNext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySearchCopyNext",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearchcopynext"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Exports one or more certificates, keys, or identities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemExport"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecExternalFormat",
+          "text": "SecExternalFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecItemImportExportFlags",
+          "text": "SecItemImportExportFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SecItemImportExportKeyParameters",
+          "text": "SecItemImportExportKeyParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemExport"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemExport(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemexport(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemImportExportFlags": {
+      "abstract": [
+        {
+          "text": "The import and export function flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemImportExportFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemImportExportFlags",
+      "type": "topic",
+      "url": "/documentation/security/secitemimportexportflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreatePair": {
+      "abstract": [
+        {
+          "text": "Creates an asymmetric key pair and stores it in a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreatePair"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreatePair",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeyCreatePair",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreatepair"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters": {
+      "abstract": [
+        {
+          "text": "The legacy import/export parameter structure.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyImportExportParameters",
+      "type": "topic",
+      "url": "/documentation/security/seckeyimportexportparameters"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemExport": {
+      "abstract": [
+        {
+          "text": "Exports one or more certificates, keys, or identities.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemExport"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemExport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainItemExport",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemexport"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainSearchCopyNext": {
+      "abstract": [
+        {
+          "text": "Finds the next keychain item matching the given search criteria.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainSearchCopyNext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainSearchCopyNext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainSearchCopyNext",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainsearchcopynext"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDataRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable CFData object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFData"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDataRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFTypeRef": {
+      "abstract": [
+        {
+          "text": "An untyped \"generic\" reference to any Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFTypeRef"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFTypeRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftyperef"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportFlags/title",
+          "value": "SecItemImportExportFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/title",
+          "value": "SecKeyImportExportParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemExport(_:_:_:_:_:)/title",
+          "value": "SecItemExport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemExport(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemExport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat/title",
+          "value": "SecExternalFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecExternalFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecExternalFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDataRef/title",
+          "value": "CFDataRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/seckeychainitemexport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

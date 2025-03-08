@@ -1,0 +1,1776 @@
+{
+  "abstract": [
+    {
+      "text": "Get a depth map with a photo to create effects like the system camera’s Portrait mode (on compatible devices).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/additional-data-capture"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Capturing Photos with Depth"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS devices with a back-facing dual camera or a front-facing TrueDepth camera, the capture system can record depth information. A depth map is like an image; however, instead of each pixel providing a color, it indicates distance from the camera to that part of the image (either in absolute terms, or relative to other pixels in the depth map).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a depth map together with a photo to create image-processing effects that treat foreground and background elements of a photo differently, like the Portrait mode in the iOS Camera app. By saving color and depth data separately, you can even apply and change these effects long after a photo has been captured.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2978410",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add depth capture to many of the other photography workflows covered in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by adding the following steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-for-Depth-Photo-Capture",
+          "level": 3,
+          "text": "Prepare for Depth Photo Capture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To capture depth maps, you’ll need to first select a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInDualCamera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInTrueDepthCamera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " capture device as your session’s video input. Even if an iOS device has a dual camera or TrueDepth camera, selecting the default back- or front-facing camera doesn’t enable depth capture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capturing depth also requires an internal reconfiguration of the capture pipeline, briefly delaying capture and interrupting any in-progress captures. Before shooting your first depth photo, make sure you configure the pipeline appropriately by enabling depth capture on your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Select a depth-capable capture device.",
+            "guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,",
+            "    for: .video, position: .unspecified)",
+            "    else { fatalError(\"No dual camera.\") }",
+            "guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),",
+            "    self.captureSession.canAddInput(videoDeviceInput)",
+            "    else { fatalError(\"Can't add video input.\") }",
+            "self.captureSession.beginConfiguration()",
+            "self.captureSession.addInput(videoDeviceInput)",
+            "",
+            "// Set up photo output for depth data capture.",
+            "let photoOutput = AVCapturePhotoOutput()",
+            "guard self.captureSession.canAddOutput(photoOutput)",
+            "    else { fatalError(\"Can't add photo output.\") }",
+            "self.captureSession.addOutput(photoOutput)",
+            "self.captureSession.sessionPreset = .photo",
+            "// Enable delivery of depth data after adding the output to the capture session.",
+            "photoOutput.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported",
+            "self.captureSession.commitConfiguration()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Enabling depth capture on a dual camera locks the zoom factor of both the wide and telephoto cameras.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-Settings",
+          "level": 3,
+          "text": "Choose Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once your photo output is ready for depth capture, you can request that any individual photos capture a depth map along with the color image. Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, choosing the format for the color image. Then, enable depth capture and depth output (and any other settings you’d like for that photo) and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])",
+            "photoSettings.isDepthDataDeliveryEnabled = photoOutput.isDepthDataDeliverySupported",
+            "",
+            "// Shoot the photo, using a custom class to handle capture delegate callbacks.",
+            "let captureProcessor = PhotoCaptureProcessor()",
+            "photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Results",
+          "level": 3,
+          "text": "Handle Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a capture, the photo output calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, providing the photo and captured depth data as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you plan to use the captured depth data immediately—for example, to display a preview of a depth-based image processing effect—you can find it in the photo object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, the capture output embeds depth data and depth-related metadata when you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to produce file data for saving the photo. If you add the resulting file to the Photos library, other apps (including the system Photos app) automatically recognize the depth data within and can apply depth-based image processing effects. (If you need to disable this option, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/embedsDepthDataInPhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " setting).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "About-Disparity-Depth-and-Accuracy",
+          "level": 3,
+          "text": "About Disparity, Depth, and Accuracy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable depth capture with the back-facing dual camera on compatible devices (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the system captures imagery using both cameras. Because the two parallel cameras are a small distance apart on the back of the device, similar features found in both images show a parallax shift: objects that are closer to the camera shift by a greater distance between the two images. The capture system uses this difference, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "disparity",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", to infer the relative distances from the camera to objects in the image, as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2978411",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each point in a depth map captured by a dual camera device measures disparity units of 1/meters, and offers ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy/relative",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " accuracy. An individual point isn’t a good estimate of real-world distance, but the variation between points is consistent enough to use for depth-based image processing effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The TrueDepth camera projects an infrared light pattern in front of the camera and images that pattern with an infrared camera. By observing how objects in the scene distorts the pattern, the capture system can calculate the distance rom the camera to each point in the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The TrueDepth camera produces disparity maps by default so that the resulting depth data is similar to that produced by a dual camera device. However, unlike a dual camera device, the TrueDepth camera can directly measure depth (in meters) with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy/absolute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " accuracy. To capture depth instead of disparity, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the capture device before starting your capture session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Select a depth (not disparity) format that works with the active color format.",
+            "let availableFormats = captureDevice.activeFormat.supportedDepthDataFormats",
+            "",
+            "let depthFormat = availableFormats.filter { format in",
+            "    let pixelFormatType =",
+            "        CMFormatDescriptionGetMediaSubType(format.formatDescription)",
+            "    ",
+            "    return (pixelFormatType == kCVPixelFormatType_DepthFloat16 ||",
+            "            pixelFormatType == kCVPixelFormatType_DepthFloat32)",
+            "}.first",
+            "",
+            "// Set the capture device to use that depth format.",
+            "captureSession.beginConfiguration()",
+            "captureDevice.activeDepthDataFormat = depthFormat",
+            "captureSession.commitConfiguration()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData": {
+      "abstract": [
+        {
+          "text": "Information about the camera characteristics used to capture images and depth data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCameraCalibrationData"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCameraCalibrationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCameraCalibrationData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcameracalibrationdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records scene depth information on compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDepthDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDepthDataOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDepthDataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedepthdataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInDualCamera": {
+      "abstract": [
+        {
+          "text": "A built-in camera device type that consists of a wide-angle and telephoto camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "builtInDualCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInDualCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceTypeBuiltInDualCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "builtInDualCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtindualcamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInTrueDepthCamera": {
+      "abstract": [
+        {
+          "text": "A device that consists of two cameras, one Infrared and one YUV.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "builtInTrueDepthCamera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/builtInTrueDepthCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceTypeBuiltInTrueDepthCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "builtInTrueDepthCamera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtintruedepthcamera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat": {
+      "abstract": [
+        {
+          "text": "The currently active depth data format of the capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeDepthDataFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeDepthDataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeDepthDataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeDepthDataFormat",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activedepthdataformat"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto": {
+      "abstract": [
+        {
+          "text": "A container for image data from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData": {
+      "abstract": [
+        {
+          "text": "Depth or disparity map data captured with the photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/depthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/depthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()": {
+      "abstract": [
+        {
+          "text": "Generates and returns a flat data representation of the photo and its attachments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileDataRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileDataRepresentation()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto/filedatarepresentation()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with the captured image and associated metadata resulting from a photo capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoOutput",
+          "text": "AVCapturePhotoOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishProcessingPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhoto",
+          "text": "AVCapturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoCaptureDelegate/photoOutput(_:didFinishProcessingPhoto:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureOutput:didFinishProcessingPhoto:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "photoOutput(_:didFinishProcessingPhoto:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingphoto:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)": {
+      "abstract": [
+        {
+          "text": "Initiates a photo capture using the specified settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoSettings",
+          "text": "AVCapturePhotoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCapturePhotoCaptureDelegate",
+          "text": "AVCapturePhotoCaptureDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturePhotoWithSettings:delegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturePhoto(with:delegate:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a single photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/embedsDepthDataInPhoto": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether any depth data captured with the photo is included when generating output file data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "embedsDepthDataInPhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings/embedsDepthDataInPhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "embedsDepthDataInPhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "embedsDepthDataInPhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings/embedsdepthdatainphoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData": {
+      "abstract": [
+        {
+          "text": "A container for per-pixel distance or disparity information captured by compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy/absolute": {
+      "abstract": [
+        {
+          "text": "Values within the depth map are absolutely accurate within the physical world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy/absolute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDepthDataAccuracyAbsolute"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData.Accuracy.absolute",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/accuracy/absolute"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy/relative": {
+      "abstract": [
+        {
+          "text": "Values within the depth data map are usable for foreground/background separation, but are not absolutely accurate in the physical world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relative"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy/relative",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDepthDataAccuracyRelative"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData.Accuracy.relative",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/accuracy/relative"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/additional-data-capture": {
+      "abstract": [
+        {
+          "text": "Capture additional data including depth and metadata, and synchronize capture from multiple outputs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/additional-data-capture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Additional data capture",
+      "type": "topic",
+      "url": "/documentation/avfoundation/additional-data-capture"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream": {
+      "abstract": [
+        {
+          "text": "Render a capture stream with rose-colored filtering and depth effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCamFilter: Applying Filters to a Capture Stream",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcamfilter-applying-filters-to-a-capture-stream"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-depth-using-the-lidar-camera": {
+      "abstract": [
+        {
+          "text": "Access the LiDAR camera on supporting devices to capture precise depth data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-depth-using-the-lidar-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing depth using the LiDAR camera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-depth-using-the-lidar-camera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos": {
+      "abstract": [
+        {
+          "text": "Configure and capture single or multiple still images, Live Photos, and other forms of photography.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-still-and-live-photos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capturing Still and Live Photos",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-still-and-live-photos"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually": {
+      "abstract": [
+        {
+          "text": "Generate a depth image and attach it to your own image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Auxiliary Depth Data Manually",
+      "type": "topic",
+      "url": "/documentation/avfoundation/creating-auxiliary-depth-data-manually"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-live-video-by-leveraging-truedepth-camera-data": {
+      "abstract": [
+        {
+          "text": "Apply your own background to a live capture feed streamed from the front-facing TrueDepth camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-live-video-by-leveraging-truedepth-camera-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing Live Video by Leveraging TrueDepth Camera Data",
+      "type": "topic",
+      "url": "/documentation/avfoundation/enhancing-live-video-by-leveraging-truedepth-camera-data"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture": {
+      "abstract": [
+        {
+          "text": "Capture high-quality still images, Live Photos, and supporting photo data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Photo capture",
+      "type": "topic",
+      "url": "/documentation/avfoundation/photo-capture"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera": {
+      "abstract": [
+        {
+          "text": "Visualize depth data in 2D and 3D from the TrueDepth camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Streaming Depth Data from the TrueDepth Camera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/streaming-depth-data-from-the-truedepth-camera"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599",
+      "title": "iOS Device Compatibility Reference",
+      "titleInlineContent": [
+        {
+          "text": "iOS Device Compatibility Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013599"
+    },
+    "media-2978410": {
+      "alt": "Figure showing how iOS creates a Portrait photo effect using a color camera image and a depth map",
+      "identifier": "media-2978410",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8337b3173f36940a6d6c99678e3fe926/media-2978410.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d06edb877980433bf589ec401cb91f66/media-2978410@2x.png"
+        }
+      ]
+    },
+    "media-2978411": {
+      "alt": "Figure showing how parallax differences between two photos create a depth map",
+      "identifier": "media-2978411",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6be268875cf57ad452973bfbb31b483/media-2978411.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94f213d5be82fedf7626347d3b221af4/media-2978411@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Depth-data-capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-depth-using-the-lidar-camera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-live-video-by-leveraging-truedepth-camera-data",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData"
+      ],
+      "title": "Depth data capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Depth-data-capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData"
+              ],
+              "title": "Depth data capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation()/title",
+          "value": "fileDataRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1fileDataRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fileDataRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1embedsDepthDataInPhoto/title",
+          "value": "embedsDepthDataInPhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings~1embedsDepthDataInPhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "embedsDepthDataInPhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/title",
+          "value": "AVCapturePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1builtInTrueDepthCamera/title",
+          "value": "AVCaptureDeviceTypeBuiltInTrueDepthCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1builtInTrueDepthCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTypeBuiltInTrueDepthCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/title",
+          "value": "capturePhotoWithSettings:delegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "capturePhotoWithSettings:delegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1depthData/title",
+          "value": "depthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto~1depthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/title",
+          "value": "AVDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/title",
+          "value": "captureOutput:didFinishProcessingPhoto:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoCaptureDelegate~1photoOutput(_:didFinishProcessingPhoto:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:didFinishProcessingPhoto:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/title",
+          "value": "AVCapturePhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy~1relative/title",
+          "value": "AVDepthDataAccuracyRelative"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy~1relative/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataAccuracyRelative"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy~1absolute/title",
+          "value": "AVDepthDataAccuracyAbsolute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy~1absolute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataAccuracyAbsolute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCameraCalibrationData/title",
+          "value": "AVCameraCalibrationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCameraCalibrationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCameraCalibrationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCameraCalibrationData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCameraCalibrationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeDepthDataFormat/title",
+          "value": "activeDepthDataFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeDepthDataFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeDepthDataFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/title",
+          "value": "AVCaptureDepthDataOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDepthDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDepthDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1builtInDualCamera/title",
+          "value": "AVCaptureDeviceTypeBuiltInDualCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1builtInDualCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTypeBuiltInDualCamera"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/capturing-photos-with-depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/capturing-photos-with-depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

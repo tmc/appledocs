@@ -1,0 +1,620 @@
+{
+  "abstract": [
+    {
+      "text": "Support high-dynamic-range (HDR) video content in your app by using the HDR editing and playback capabilities of AVFoundation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/video-effects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/editing-and-playing-hdr-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Editing and Playing HDR Video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC20 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10009/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "690ad4b1d285/EditingAndPlayingHDRVideo.zip": {
+      "checksum": "690ad4b1d28599db200b278cdbe35b4b71a574f8869a31b0831a550be92ad457fb07886f03a439ff9e0be67b1cedf7e5ac22098a315eb36cdd0392392b8d5548",
+      "identifier": "690ad4b1d285/EditingAndPlayingHDRVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/690ad4b1d285/EditingAndPlayingHDRVideo.zip"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition": {
+      "abstract": [
+        {
+          "text": "A mutable video composition subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableVideoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablevideocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction": {
+      "abstract": [
+        {
+          "text": "A mutable video composition instruction subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableVideoCompositionInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablevideocompositioninstruction"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction": {
+      "abstract": [
+        {
+          "text": "An object used to modify the transform, cropping, and opacity ramps applied to a given track in a mutable composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionLayerInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableVideoCompositionLayerInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableVideoCompositionLayerInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablevideocompositionlayerinstruction"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition": {
+      "abstract": [
+        {
+          "text": "An object that describes how to compose video frames at particular points in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class": {
+      "abstract": [
+        {
+          "text": "An operation that a compositor performs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCompositionInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositioninstruction-swift.class"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction": {
+      "abstract": [
+        {
+          "text": "An object used to modify the transform, cropping, and opacity ramps applied to a given track in a composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionLayerInstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVVideoCompositionLayerInstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVVideoCompositionLayerInstruction",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avvideocompositionlayerinstruction"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/debugging-avfoundation-audio-mixes-compositions-and-video-compositions": {
+      "abstract": [
+        {
+          "text": "Resolve common problems when creating compositions, video compositions, and audio mixes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/debugging-avfoundation-audio-mixes-compositions-and-video-compositions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Debugging AVFoundation audio mixes, compositions, and video compositions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/debugging-avfoundation-audio-mixes-compositions-and-video-compositions"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/video-effects": {
+      "abstract": [
+        {
+          "text": "Define standard video transition effects, synchronize layer animations with media timing, and create custom video compositors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/video-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Video effects",
+      "type": "topic",
+      "url": "/documentation/avfoundation/video-effects"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10009/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10009/",
+      "title": "10009: Edit and Play Back HDR Video with AVFoundation",
+      "titleInlineContent": [
+        {
+          "text": "10009: Edit and Play Back HDR Video with AVFoundation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10009/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "690ad4b1d285/EditingAndPlayingHDRVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Built-in-video-compositing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/debugging-avfoundation-audio-mixes-compositions-and-video-compositions",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction"
+      ],
+      "title": "Built-in video compositing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Built-in-video-compositing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoComposition",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoComposition",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionInstruction-swift.class",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionInstruction",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVVideoCompositionLayerInstruction",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableVideoCompositionLayerInstruction"
+              ],
+              "title": "Built-in video compositing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionLayerInstruction/title",
+          "value": "AVMutableVideoCompositionLayerInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionLayerInstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionLayerInstruction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionInstruction-swift.class/title",
+          "value": "AVVideoCompositionInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionInstruction-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionInstruction-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionLayerInstruction/title",
+          "value": "AVVideoCompositionLayerInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionLayerInstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoCompositionLayerInstruction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoCompositionLayerInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoComposition/title",
+          "value": "AVMutableVideoComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition/title",
+          "value": "AVVideoComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVVideoComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVVideoComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionInstruction/title",
+          "value": "AVMutableVideoCompositionInstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionInstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionInstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableVideoCompositionInstruction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableVideoCompositionInstruction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/editing-and-playing-hdr-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/editing-and-playing-hdr-video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

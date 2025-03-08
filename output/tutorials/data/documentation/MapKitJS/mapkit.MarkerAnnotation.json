@@ -1,0 +1,502 @@
+{
+  "abstract": [
+    {
+      "text": "An annotation that displays a balloon-shaped marker at the designated location.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "MapKit JS",
+      "versions": [
+        "5.0",
+        "5.78.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/mapkit.MarkerAnnotation",
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "mapkit.MarkerAnnotation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: MapKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "mapkit.MarkerAnnotation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit-js-5"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "marker",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a balloon-shaped annotation that contains a glyph or text. On the map, the marker appears when its coordinate is in view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a customized marker that specifies a color for the balloon background and the glyph, and provides custom glyph images. Color properties accept either a color name, here “brown” and “green”, or the equivalent hexadecimal color value such as “",
+              "type": "text"
+            },
+            {
+              "code": "#A52A2A",
+              "type": "codeVoice"
+            },
+            {
+              "text": "” and “",
+              "type": "text"
+            },
+            {
+              "code": "#008000",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”, respectively. Or, you can use a specific color that matches your apps specific design. For more information on standardized colors, see the CSS working group’s list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://drafts.csswg.org/css-color/#named-colors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var portland = new mapkit.Coordinate(45.5231, -122.6765);",
+            "var customMarker = new MarkerAnnotation(portland, {",
+            "    color: \"green\",",
+            "    glyphColor: \"brown\",",
+            "    glyphImage: { 1: \"glyphImage.png\" },",
+            "    selectedGlyphImage: { 1: \"detailedIcon.png\", 2: \"detailedIcon_2x.png\", 3: \"detailedIcon_3x.png\" }",
+            "});"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a marker annotation with a custom callout implemented by the callout delegate. In this example, the annotation is a dot when selected because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/selectedGlyphImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var calloutDelegate = {",
+            "    calloutRightAccessoryForAnnotation: function() {",
+            "        var accessoryViewRight = document.createElement(\"a\");",
+            "        accessoryViewRight.className = \"right-accessory-view\";",
+            "        accessoryViewRight.href = \"https://www.nps.gov/stli/index.htm\";",
+            "        accessoryViewRight.target = \"_blank\";",
+            "        accessoryViewRight.appendChild(document.createTextNode(\"ⓘ\"));",
+            "",
+            "        return accessoryViewRight;",
+            "    }",
+            "};",
+            "",
+            "var annotation = new mapkit.MarkerAnnotation(new mapkit.Coordinate(40.6892, -74.0445), {",
+            "    title: \"Title\",",
+            "    subtitle: \"Subtitle\",",
+            "    callout: calloutDelegate",
+            "});"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "type": "thematicBreak"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/MarkerAnnotationConstructorOptions": {
+      "abstract": [
+        {
+          "text": "An object containing the options that create a marker annotation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MarkerAnnotationConstructorOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarkerAnnotationConstructorOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/markerannotationconstructoroptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit-js-5": {
+      "abstract": [
+        {
+          "text": "Use the most up-to-date version of MapKit JS on your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit-js-5",
+      "kind": "article",
+      "role": "article",
+      "title": "MapKit JS 5",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit-js-5"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Annotation/mapkit.Annotation": {
+      "abstract": [
+        {
+          "text": "Creates a new annotation given its location and initialization options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Annotation/mapkit.Annotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.Annotation",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.annotation/mapkit.annotation"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.FeatureVisibility": {
+      "abstract": [
+        {
+          "text": "Constants indicating the visibility of different adaptive map features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.FeatureVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.FeatureVisibility",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.featurevisibility"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation": {
+      "abstract": [
+        {
+          "text": "An annotation that displays a balloon-shaped marker at the designated location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.MarkerAnnotation",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/color": {
+      "abstract": [
+        {
+          "text": "The background color of the balloon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/color",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/color"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphColor": {
+      "abstract": [
+        {
+          "text": "The fill color of the glyph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "glyphColor",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/glyphcolor"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphImage": {
+      "abstract": [
+        {
+          "text": "The image to display in the marker balloon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "glyphImage",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/glyphimage"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphText": {
+      "abstract": [
+        {
+          "text": "The text to display in the marker balloon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "glyphText",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/glyphtext"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/mapkit.MarkerAnnotation": {
+      "abstract": [
+        {
+          "text": "Creates a marker annotation at the coordinate location with provided options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/mapkit.MarkerAnnotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.MarkerAnnotation",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/mapkit.markerannotation"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/selectedGlyphImage": {
+      "abstract": [
+        {
+          "text": "The image to display in the marker balloon when the user selects the marker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/selectedGlyphImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedGlyphImage",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/selectedglyphimage"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/subtitleVisibility": {
+      "abstract": [
+        {
+          "text": "A value that determines the behavior of the subtitle’s visibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/subtitleVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtitleVisibility",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/subtitlevisibility"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/titleVisibility": {
+      "abstract": [
+        {
+          "text": "A value that determines the behavior of the title’s visibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/titleVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "titleVisibility",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.markerannotation/titlevisibility"
+    },
+    "https://drafts.csswg.org/css-color/#named-colors": {
+      "identifier": "https://drafts.csswg.org/css-color/#named-colors",
+      "title": "common color names and values",
+      "titleInlineContent": [
+        {
+          "text": "common color names and values",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://drafts.csswg.org/css-color/#named-colors"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Annotation/mapkit.Annotation"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-marker-annotation",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/mapkit.MarkerAnnotation",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/MarkerAnnotationConstructorOptions"
+      ],
+      "title": "Creating a marker annotation"
+    },
+    {
+      "anchor": "Setting-visibility",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/subtitleVisibility",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/titleVisibility",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.FeatureVisibility"
+      ],
+      "title": "Setting visibility"
+    },
+    {
+      "anchor": "Setting-appearance",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/color",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphColor"
+      ],
+      "title": "Setting appearance"
+    },
+    {
+      "anchor": "Setting-the-glyph-image-and-text",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphText",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/glyphImage",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.MarkerAnnotation/selectedGlyphImage"
+      ],
+      "title": "Setting the glyph image and text"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/mapkit.markerannotation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

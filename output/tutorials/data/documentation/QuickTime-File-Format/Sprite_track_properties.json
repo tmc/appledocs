@@ -1,0 +1,797 @@
+{
+  "abstract": [
+    {
+      "text": "Define properties that apply to an entire sprite track.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sprite track properties"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Sprite media is deprecated in the QuickTime file format. The information that follows documents existing content containing sprite media and should not be used for new development.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to defining properties for individual sprites, you can also define properties that apply to an entire sprite track. These properties may override default behavior or provide hints to the sprite media handler. The following sprite track properties are supported:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies a background color for the sprite track. The background color is used for any area that is not covered by regular sprites or background sprites. If you do not specify a background color, the sprite track uses black as the default background color.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kSpriteTrackPropertyBackgroundColor",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies a preferred bit depth for the sprite track’s offscreen buffer. The allowable values are 8 and 16. To save memory, you should set the value of this property to the minimum depth needed. If you do not specify a bit depth, the sprite track allocates an offscreen buffer with the depth of the deepest intersecting monitor.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kSpriteTrackPropertyOffscreenBitDepth",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies the sample format for the sprite track. If you do not specify a sample format, the sprite track uses the default format, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "kKeyFrameAndSingleOverride",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kSpriteTrackPropertySampleFormat",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify sprite track properties, you create a single QT atom container and add a leaf atom for each property you want to specify. To add the properties to a sprite track, you call the media handler function ",
+              "type": "text"
+            },
+            {
+              "code": "SetMediaPropertyAtom",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To retrieve a sprite track’s properties, you call the media handler function ",
+              "type": "text"
+            },
+            {
+              "code": "GetMediaPropertyAtom",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sprite track properties and their corresponding data types are listed in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atom type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atom ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Leaf data type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertyBackgroundColor",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RGBColor",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertyOffscreenBitDepth",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unsigned short",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertySampleFormat",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "long",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertyHasActions",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertyQTIdleEventsFrequency",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UInt32",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertyVisible",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpriteTrackPropertyScaleSpritesToScaleWorld",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When pasting portions of two different tracks together, the Movie Toolbox checks to see that all sprite track properties match. If, in fact, they do match, the paste results in a single sprite track instead of two.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media": {
+      "abstract": [
+        {
+          "text": "Store 3D image data in a base media in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+      "kind": "article",
+      "role": "article",
+      "title": "3D media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/3d_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to replace the default cursors used by QuickTime VR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom cursor atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/custom_cursor_atom"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container": {
+      "abstract": [
+        {
+          "text": "An atom container that includes general information about the node such as the node’s type, ID, and name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Node information atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_information_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom": {
+      "abstract": [
+        {
+          "text": "An atom that is the parent of one or more node ID atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Node parent atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_parent_atom"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key": {
+      "abstract": [
+        {
+          "text": "Build QT atom container-based data structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key",
+      "kind": "article",
+      "role": "article",
+      "title": "QT atom container description key",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/qt_atom_container_description_key"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors": {
+      "abstract": [
+        {
+          "text": "Specify simple button behaviors for sprites in a sprite track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite button behaviors",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_button_behaviors"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media": {
+      "abstract": [
+        {
+          "text": "Sprite media is used to store character-based animation data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types": {
+      "abstract": [
+        {
+          "text": "Atoms that represent sprite media and data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media atom and data types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_atom_and_data_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats": {
+      "abstract": [
+        {
+          "text": "Set sprite media handlers in QT atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media handler sample QT atom container formats",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_handler_sample_qt_atom_container_formats"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format": {
+      "abstract": [
+        {
+          "text": "Set sprite media handler track properties in a QT atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media handler track properties QT atom container format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_handler_track_properties_qt_atom_container_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format": {
+      "abstract": [
+        {
+          "text": "A media format for that stores sprite track information in atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite track media format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_track_media_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media": {
+      "abstract": [
+        {
+          "text": "Store pairs of values to be interpolated between in QuickTime movies using tween media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tween media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media": {
+      "abstract": [
+        {
+          "text": "Atoms that describe the QuickTime VR world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VR media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/vr_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar": {
+      "abstract": [
+        {
+          "text": "Embed QT event handlers in their media samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar",
+      "kind": "article",
+      "role": "article",
+      "title": "Wired action grammar",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/wired_action_grammar"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure": {
+      "abstract": [
+        {
+          "text": "An atom that describes the type of a node and its location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Node_location_atom_structure",
+          "text": "Node location atom structure ('nloc')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Node location atom structure ('nloc')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_location_atom_structure"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-data-atom-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container"
+      ],
+      "title": "Media data atom types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sprite_track_properties"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

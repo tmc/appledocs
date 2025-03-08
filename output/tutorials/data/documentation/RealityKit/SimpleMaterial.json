@@ -1,0 +1,1416 @@
+{
+  "abstract": [
+    {
+      "text": "A basic material that responds to lights in the scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation14SimpleMaterialV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SimpleMaterial"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SimpleMaterial"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SimpleMaterial"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SimpleMaterial"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SimpleMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " responds to both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "real and virtual lighting to enhance realism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a model by setting it as one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent/materials",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let simpleMaterial = SimpleMaterial(",
+            "    color: .red, isMetallic: false",
+            ")",
+            "let model = ModelComponent(",
+            "    mesh: .generateBox(size: 1),",
+            "    materials: [simpleMaterial]",
+            ")",
+            "redBoxEntity.components.set(model)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a red ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that is not metallic, and one that is metallic:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "center",
+            "center"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not metallic",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metallic",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "simplematerial-not-metallic",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "simplematerial-metallic",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent/materials": {
+      "abstract": [
+        {
+          "text": "The materials that define the model’s visual appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "materials"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation8MaterialP",
+          "text": "Material"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent/materials",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "materials",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent/materials"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial": {
+      "abstract": [
+        {
+          "text": "A basic material that responds to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/BaseColor-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The type used to represent base color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BaseColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/BaseColor-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BaseColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial.BaseColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/basecolor-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/FaceCulling-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An alias for the cull mode object that’s appropriate for this material class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FaceCulling"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/FaceCulling-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FaceCulling"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial.FaceCulling",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/faceculling-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Material-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Material-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Material Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/material-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Parameters": {
+      "abstract": [
+        {
+          "text": "The parameter type that custom materials uses for properties the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "framework passes to shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Parameters"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Parameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Parameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial.Parameters",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/parameters"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Texture": {
+      "abstract": [
+        {
+          "text": "The type used to represent textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Texture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Texture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Texture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial.Texture",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/texture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/TriangleFillMode-swift.typealias": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TriangleFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/TriangleFillMode-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TriangleFillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial.TriangleFillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/trianglefillmode-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/baseColor-swift.property": {
+      "abstract": [
+        {
+          "text": "The base color of the material.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit22MaterialColorParameterO",
+          "text": "MaterialColorParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/baseColor-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/basecolor-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/color": {
+      "abstract": [
+        {
+          "text": "The material’s color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialV",
+          "text": "SimpleMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialVAAE9BaseColora",
+          "text": "BaseColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/color",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/color"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/faceCulling-swift.property": {
+      "abstract": [
+        {
+          "text": "A process in which the system specifies polygons to remove before",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rendering a mesh using this material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "faceCulling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialV",
+          "text": "SimpleMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialVAAE11FaceCullinga",
+          "text": "FaceCulling"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/faceCulling-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "faceCulling",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/faceculling-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init()": {
+      "abstract": [
+        {
+          "text": "Creates a simple material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init(color:roughness:isMetallic:)-1qshm": {
+      "abstract": [
+        {
+          "text": "Creates a simple material with specific characteristics in macOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialV",
+          "text": "SimpleMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation8MaterialP0A3KitE5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23MaterialScalarParameterO",
+          "text": "MaterialScalarParameter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMetallic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init(color:roughness:isMetallic:)-1qshm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:roughness:isMetallic:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/init(color:roughness:ismetallic:)-1qshm"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init(color:roughness:isMetallic:)-mwh5": {
+      "abstract": [
+        {
+          "text": "Creates a simple material with specific characteristics in macOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialV",
+          "text": "SimpleMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation8MaterialP0A3KitE5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23MaterialScalarParameterO",
+          "text": "MaterialScalarParameter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isMetallic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init(color:roughness:isMetallic:)-mwh5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:roughness:isMetallic:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/init(color:roughness:ismetallic:)-mwh5"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/metallic": {
+      "abstract": [
+        {
+          "text": "A Boolean value that you set to control whether the material has a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "metallic look.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metallic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23MaterialScalarParameterO",
+          "text": "MaterialScalarParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/metallic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metallic",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/metallic"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/readsDepth": {
+      "abstract": [
+        {
+          "text": "A boolean value that determines whether this material performs the depth test by reading RealityKit’s depth buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readsDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/readsDepth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readsDepth",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/readsdepth"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/roughness": {
+      "abstract": [
+        {
+          "text": "The roughness of the material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23MaterialScalarParameterO",
+          "text": "MaterialScalarParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/roughness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roughness",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/roughness"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/tintColor-18qur": {
+      "abstract": [
+        {
+          "text": "A tint color applied to the base color in macOS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tintColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/tintColor-18qur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tintColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/tintcolor-18qur"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/tintColor-6aik0": {
+      "abstract": [
+        {
+          "text": "A tint color applied to the base color in macOS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tintColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/tintColor-6aik0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tintColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/tintcolor-6aik0"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/triangleFillMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The object that controls how RealityKit draws triangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "triangleFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialV",
+          "text": "SimpleMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14SimpleMaterialV16TriangleFillModea",
+          "text": "TriangleFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/triangleFillMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "triangleFillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/trianglefillmode-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/writesDepth": {
+      "abstract": [
+        {
+          "text": "A boolean value that determines whether this material writes its depth into RealityKit’s depth buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writesDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/writesDepth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writesDepth",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial/writesdepth"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene": {
+      "abstract": [
+        {
+          "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding procedural assets to a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "simplematerial-metallic": {
+      "alt": "A screenshot of a red cube in a living room scene. The cube is rounded on the edges and appears to be made of a reflective metal material.",
+      "identifier": "simplematerial-metallic",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d58949e85bccef55e9218565e2e3f237/simplematerial-metallic.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/428c4729eb87ccf6ebc8cdad0b414ce5/simplematerial-metallic~dark.jpg"
+        }
+      ]
+    },
+    "simplematerial-not-metallic": {
+      "alt": "A screenshot of a red cube in a living room scene. The cube is rounded on the edges and appears to be made of a reflective plastic material.",
+      "identifier": "simplematerial-not-metallic",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c42115ca829aa1fde7b9c344fac4ebc/simplematerial-not-metallic.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94bf8fbed7e8e9fc37853d548ee8f44f/simplematerial-not-metallic~dark.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Simple-materials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/BaseColor-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Texture",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Parameters",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/FaceCulling-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/TriangleFillMode-swift.typealias"
+      ],
+      "title": "Simple materials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-simple-material",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init(color:roughness:isMetallic:)-mwh5",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/init(color:roughness:isMetallic:)-1qshm"
+      ],
+      "title": "Creating a simple material"
+    },
+    {
+      "anchor": "Characterizing-a-material",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/color",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/baseColor-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/BaseColor-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/tintColor-18qur",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/tintColor-6aik0",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Texture",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/metallic",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/roughness",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Parameters"
+      ],
+      "title": "Characterizing a material"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/faceCulling-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/readsDepth",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/triangleFillMode-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/writesDepth"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/FaceCulling-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/TriangleFillMode-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial/Material-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/simplematerial"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

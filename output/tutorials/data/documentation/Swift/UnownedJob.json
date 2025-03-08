@@ -1,0 +1,1365 @@
+{
+  "abstract": [
+    {
+      "text": "A unit of schedulable work.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/UnownedJob"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:ScJ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UnownedJob"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UnownedJob"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UnownedJob"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UnownedJob"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unless you’re implementing a scheduler,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you don’t generally interact with jobs directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "UnownedJob",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be eventually run ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "exactly once",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "runSynchronously(on:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Not doing so is effectively going to leak and “hang” the work that the job represents (e.g. a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/swift/bitwisecopyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Executor": {
+      "abstract": [
+        {
+          "text": "A service that can execute jobs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Executor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Executor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Executor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Executor",
+      "type": "topic",
+      "url": "/documentation/swift/executor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExecutorJob": {
+      "abstract": [
+        {
+          "text": "A unit of schedulable work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExecutorJob"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExecutorJob",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExecutorJob"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExecutorJob",
+      "type": "topic",
+      "url": "/documentation/swift/executorjob"
+    },
+    "doc://com.apple.Swift/documentation/Swift/JobPriority": {
+      "abstract": [
+        {
+          "text": "The priority of this job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JobPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/JobPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JobPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "JobPriority",
+      "type": "topic",
+      "url": "/documentation/swift/jobpriority"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialAsyncTask": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartialAsyncTask"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialAsyncTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartialAsyncTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "PartialAsyncTask",
+      "type": "topic",
+      "url": "/documentation/swift/partialasynctask"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SerialExecutor": {
+      "abstract": [
+        {
+          "text": "A service that executes jobs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SerialExecutor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SerialExecutor"
+        }
+      ],
+      "role": "symbol",
+      "title": "SerialExecutor",
+      "type": "topic",
+      "url": "/documentation/swift/serialexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Task",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Task"
+        }
+      ],
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/swift/task"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TaskExecutor": {
+      "abstract": [
+        {
+          "text": "An executor that may be used as preferred executor by a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TaskExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TaskExecutor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TaskExecutor"
+        }
+      ],
+      "role": "symbol",
+      "title": "TaskExecutor",
+      "type": "topic",
+      "url": "/documentation/swift/taskexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob": {
+      "abstract": [
+        {
+          "text": "A unit of schedulable work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnownedJob"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnownedJob"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnownedJob",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/customstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/init(_:)-8ra8c": {
+      "abstract": [
+        {
+          "text": "Create an ",
+          "type": "text"
+        },
+        {
+          "code": "UnownedJob",
+          "type": "codeVoice"
+        },
+        {
+          "text": " whose lifetime must be managed carefully until it is run exactly once.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency11ExecutorJobV",
+          "text": "ExecutorJob"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/init(_:)-8ra8c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/init(_:)-8ra8c"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/init(_:)-9f1zn": {
+      "abstract": [
+        {
+          "text": "Create an ",
+          "type": "text"
+        },
+        {
+          "code": "UnownedJob",
+          "type": "codeVoice"
+        },
+        {
+          "text": " whose lifetime must be managed carefully until it is run exactly once.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency3JobV",
+          "text": "Job"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/init(_:)-9f1zn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/init(_:)-9f1zn"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/priority": {
+      "abstract": [
+        {
+          "text": "The priority of this job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency11JobPriorityV",
+          "text": "JobPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/priority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "priority",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/priority"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(isolatedTo:taskExecutor:)": {
+      "abstract": [
+        {
+          "text": "Run this job isolated to the passed in serial executor, while executing it on the specified task executor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runSynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolatedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sce",
+          "text": "UnownedSerialExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "taskExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency19UnownedTaskExecutorV",
+          "text": "UnownedTaskExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(isolatedTo:taskExecutor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runSynchronously(isolatedTo:taskExecutor:)",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/runsynchronously(isolatedto:taskexecutor:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(on:)-4eaxu": {
+      "abstract": [
+        {
+          "text": "Run this job isolated to the passed task executor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runSynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency19UnownedTaskExecutorV",
+          "text": "UnownedTaskExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(on:)-4eaxu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runSynchronously(on:)",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/runsynchronously(on:)-4eaxu"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(on:)-o1nb": {
+      "abstract": [
+        {
+          "text": "Run this job on the passed in executor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runSynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sce",
+          "text": "UnownedSerialExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(on:)-o1nb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runSynchronously(on:)",
+      "type": "topic",
+      "url": "/documentation/swift/unownedjob/runsynchronously(on:)-o1nb"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedSerialExecutor": {
+      "abstract": [
+        {
+          "text": "An unowned reference to a serial executor (a ",
+          "type": "text"
+        },
+        {
+          "code": "SerialExecutor",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "value).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedSerialExecutor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnownedSerialExecutor",
+      "type": "topic",
+      "url": "/documentation/swift/unownedserialexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedTaskExecutor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnownedTaskExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedTaskExecutor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnownedTaskExecutor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnownedTaskExecutor",
+      "type": "topic",
+      "url": "/documentation/swift/unownedtaskexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/globalConcurrentExecutor": {
+      "abstract": [
+        {
+          "text": "The global concurrent executor that is used by default for Swift Concurrency",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "globalConcurrentExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sch",
+          "text": "TaskExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/globalConcurrentExecutor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "globalConcurrentExecutor",
+      "type": "topic",
+      "url": "/documentation/swift/globalconcurrentexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/withTaskExecutorPreference(_:isolation:operation:)": {
+      "abstract": [
+        {
+          "text": "Configure the current task hierarchy’s task executor preference to the passed ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/TaskExecutor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and execute the passed in closure by immediately hopping to that executor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withTaskExecutorPreference"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sch",
+          "text": "TaskExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/withTaskExecutorPreference(_:isolation:operation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withTaskExecutorPreference(_:isolation:operation:)",
+      "type": "topic",
+      "url": "/documentation/swift/withtaskexecutorpreference(_:isolation:operation:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Executors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Executor",
+        "doc://com.apple.Swift/documentation/Swift/ExecutorJob",
+        "doc://com.apple.Swift/documentation/Swift/SerialExecutor",
+        "doc://com.apple.Swift/documentation/Swift/TaskExecutor",
+        "doc://com.apple.Swift/documentation/Swift/PartialAsyncTask",
+        "doc://com.apple.Swift/documentation/Swift/JobPriority",
+        "doc://com.apple.Swift/documentation/Swift/UnownedSerialExecutor",
+        "doc://com.apple.Swift/documentation/Swift/UnownedTaskExecutor",
+        "doc://com.apple.Swift/documentation/Swift/globalConcurrentExecutor",
+        "doc://com.apple.Swift/documentation/Swift/withTaskExecutorPreference(_:isolation:operation:)"
+      ],
+      "title": "Executors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/init(_:)-8ra8c",
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/init(_:)-9f1zn"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/priority"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(isolatedTo:taskExecutor:)",
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(on:)-4eaxu",
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/runSynchronously(on:)-o1nb"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnownedJob/CustomStringConvertible-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/unownedjob"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

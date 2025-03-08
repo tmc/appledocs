@@ -1,0 +1,932 @@
+{
+  "abstract": [
+    {
+      "text": "Supply keyframe sequences to do linear or nonlinear particle animations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/animating-particle-properties-across-disparate-values"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Animating Particle Properties Across Disparate Values"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object enables you to specify multiple values for an emitter node’s properties over a specific time period. The property values you choose may be arbitrary, which results in your ability to graph those property changes linearly or nonlinearly over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use a sequence, the values are not randomized. Instead, the sequence specifies all of the values of the property. Each keyframe value includes a value object and a timestamp. The timestamps are specified in a range from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the birth of the particle and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents its death.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The properties for which ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " offers a keyframe sequence are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sequence of arbitrary colors a particle should reflect over its lifetime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Embers from a fire might specify the color sequence (white, yellow, orange, and brown) to appear hot, and then cool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sequence of color blend factors a particle should apply over its lifetime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Embers from a fire might specify the color blend factor sequence (0, 1, 0, 1, … etc.) to simulate flickering.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sequence of sizes of a particle over its lifetime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Balloons might use the scale sequence (0.1, 1, 1, 1, 0.1) to simulate inflation, and flying for some time before deflating.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sequence of levels of transparency a particle undergoes over its lifetime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fireflies might specify a disparate sequence of alpha values to simulate random lighting patterns as they travel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to animate the scale of an emitter node’s particles over their lifetime. Initially, the particles’ scale is ",
+              "type": "text"
+            },
+            {
+              "code": "0.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then increases to ",
+              "type": "text"
+            },
+            {
+              "code": "0.7",
+              "type": "codeVoice"
+            },
+            {
+              "text": " one-quarter of the way through the sequence. Three-quarters of the way through the sequence, the scale reaches its minimum size, ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It remains at this size until it dies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let scaleSequence = SKKeyframeSequence(keyframeValues: [0.2, 0.7, 0.1],",
+                    "                                       times: [0.0, 0.250, 0.75])",
+                    "myEmitter.particleScaleSequence = scaleSequence"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKKeyframeSequence  *scaleSequence = [[SKKeyframeSequence alloc] initWithKeyframeValues:@[@0.2,@0.7,@0.1] times:@[@0.0,@0.250,@0.75]];",
+                    "myEmitter.particleScaleSequence = scaleSequence;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode": {
+      "abstract": [
+        {
+          "text": "A source of various particle effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEmitterNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction": {
+      "abstract": [
+        {
+          "text": "An action executed by new particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particleaction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the alpha value of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAlphaSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlealphasequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the color blend factor of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlendFactorSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorblendfactorsequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the color components of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorsequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the scale factor of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleScaleSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleScaleSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleScaleSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlescalesequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence": {
+      "abstract": [
+        {
+          "text": "An object that performs interpolation between values specified at different times (keyframes).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKKeyframeSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKKeyframeSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKKeyframeSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKKeyframeSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skkeyframesequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animating-Particles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction"
+      ],
+      "title": "Animating Particles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animating-Particles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction"
+              ],
+              "title": "Animating Particles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSequence/title",
+          "value": "particleAlphaSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAlphaSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSequence/title",
+          "value": "particleScaleSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleScaleSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorSequence/title",
+          "value": "particleColorSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAction/title",
+          "value": "particleAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSequence/title",
+          "value": "particleColorBlendFactorSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlendFactorSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence/title",
+          "value": "SKKeyframeSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKKeyframeSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKKeyframeSequence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKKeyframeSequence"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/animating-particle-properties-across-disparate-values"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/animating-particle-properties-across-disparate-values"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

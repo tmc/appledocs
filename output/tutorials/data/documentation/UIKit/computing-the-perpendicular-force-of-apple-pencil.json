@@ -1,1 +1,293 @@
-{"identifier":{"url":"doc://com.apple.uikit/documentation/UIKit/computing-the-perpendicular-force-of-apple-pencil","interfaceLanguage":"swift"},"abstract":[{"text":"Adjust the force values reported by Apple Pencil so that they’re consistent with 3D Touch force values.","type":"text"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"article","metadata":{"role":"article","title":"Computing the perpendicular force of Apple Pencil","modules":[{"name":"UIKit"}],"roleHeading":"Article"},"sections":[],"variants":[{"paths":["/documentation/uikit/computing-the-perpendicular-force-of-apple-pencil"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/uikit/computing-the-perpendicular-force-of-apple-pencil"],"traits":[{"interfaceLanguage":"occ"}]}],"primaryContentSections":[{"content":[{"type":"heading","anchor":"overview","level":2,"text":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"On a 3D Touch device, force from a person’s fingers is measured perpendicular to the surface of the screen. However, force reported by Apple Pencil is measured along its long axis, which often isn’t perpendicular to the screen. Instead of using the Apple Pencil force values as is, you might want to compute only the perpendicular portion of the force so that you can use the same code for touches originating from a person’s fingers or from Apple Pencil."}]},{"type":"paragraph","inlineContent":[{"text":"The following code shows how to add a ","type":"text"},{"type":"codeVoice","code":"perpendicularForce"},{"text":" property to the ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UITouch","type":"reference","isActive":true},{"text":" class to report the perpendicular force supplied by Apple Pencil. For touches involving Apple Pencil, this method divides the reported force value by the sine of the pencil’s altitude. For other touches, it reports the existing force value.","type":"text"}]},{"type":"codeListing","syntax":"swift","code":["extension UITouch {","    var perpendicularForce: CGFloat {","        if type == .pencil {","            return force / sin(altitudeAngle)","        } else {","            return force","        }","    }","}",""]}],"kind":"content"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.uikit/documentation/UIKit","doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions","doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil"],["doc://com.apple.documentation/documentation/technologies","doc://com.apple.uikit/documentation/UIKit","doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures","doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil"]]},"references":{"doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions":{"url":"/documentation/uikit/apple-pencil-interactions","type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions","abstract":[{"type":"text","text":"Handle user interactions like double tap and squeeze on Apple Pencil."}],"kind":"article","role":"collectionGroup","title":"Apple Pencil interactions"},"doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil":{"abstract":[{"text":"Learn how to detect and respond to touches from Apple Pencil.","type":"text"}],"identifier":"doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil","type":"topic","title":"Handling input from Apple Pencil","kind":"article","role":"collectionGroup","url":"/documentation/uikit/handling-input-from-apple-pencil"},"doc://com.apple.uikit/documentation/UIKit":{"kind":"symbol","role":"collection","title":"UIKit","identifier":"doc://com.apple.uikit/documentation/UIKit","url":"/documentation/uikit","abstract":[{"type":"text","text":"Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app."}],"type":"topic"},"doc://com.apple.uikit/documentation/UIKit/UITouch":{"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"UITouch"}],"type":"topic","title":"UITouch","url":"/documentation/uikit/uitouch","kind":"symbol","identifier":"doc://com.apple.uikit/documentation/UIKit/UITouch","navigatorTitle":[{"kind":"identifier","text":"UITouch"}],"abstract":[{"text":"An object representing the location, size, movement, and force of a touch occurring on the screen.","type":"text"}],"role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"role":"overview","url":"/documentation/technologies","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic"},"doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures":{"title":"Touches, presses, and gestures","type":"topic","kind":"article","identifier":"doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures","role":"collectionGroup","abstract":[{"text":"Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.","type":"text"}],"url":"/documentation/uikit/touches-presses-and-gestures"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"value":"occ","op":"replace","path":"/identifier/interfaceLanguage"},{"value":null,"op":"add","path":"/topicSections"},{"value":null,"op":"add","path":"/seeAlsoSections"},{"value":"UITouch","op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title"},{"value":[{"text":"UITouch","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments"},{"value":[{"kind":"identifier","text":"UITouch"}],"op":"replace","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Adjust the force values reported by Apple Pencil so that they’re consistent with 3D Touch force values.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/computing-the-perpendicular-force-of-apple-pencil"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Computing the perpendicular force of Apple Pencil"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On a 3D Touch device, force from a person’s fingers is measured perpendicular to the surface of the screen. However, force reported by Apple Pencil is measured along its long axis, which often isn’t perpendicular to the screen. Instead of using the Apple Pencil force values as is, you might want to compute only the perpendicular portion of the force so that you can use the same code for touches originating from a person’s fingers or from Apple Pencil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to add a ",
+              "type": "text"
+            },
+            {
+              "code": "perpendicularForce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to report the perpendicular force supplied by Apple Pencil. For touches involving Apple Pencil, this method divides the reported force value by the sine of the pencil’s altitude. For other touches, it reports the existing force value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension UITouch {",
+            "    var perpendicularForce: CGFloat {",
+            "        if type == .pencil {",
+            "            return force / sin(altitudeAngle)",
+            "        } else {",
+            "            return force",
+            "        }",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Learn how to detect and respond to touches from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling input from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-input-from-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/computing-the-perpendicular-force-of-apple-pencil"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/computing-the-perpendicular-force-of-apple-pencil"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

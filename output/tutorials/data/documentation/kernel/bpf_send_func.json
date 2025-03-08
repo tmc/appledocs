@@ -1,0 +1,261 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/bpf_send_func"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1589475,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@bpf_send_func",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "bpf_send_func"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/errno_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@errno_t",
+              "text": "errno_t"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "bpf_send_func"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ifnet_t",
+              "text": "ifnet_t"
+            },
+            {
+              "kind": "text",
+              "text": " interface, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/u_int32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@u_int32_t",
+              "text": "u_int32_t"
+            },
+            {
+              "kind": "text",
+              "text": " data_link_type, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/mbuf_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mbuf_t",
+              "text": "mbuf_t"
+            },
+            {
+              "kind": "text",
+              "text": " packet);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The interface the packet is being sent on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "interface"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The data link type the bpf device is attached to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dlt"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The packet to be sent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "packet"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "bpf_send_func is called when a bpf file descriptor is used to send a raw packet on the interface. The mbuf and data link type are specified. The callback is responsible for releasing the mbuf whether or not it returns an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/errno_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/errno_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errno_t",
+      "type": "topic",
+      "url": "/documentation/kernel/errno_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/mbuf_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/mbuf_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mbuf_t",
+      "type": "topic",
+      "url": "/documentation/kernel/mbuf_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/u_int32_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/u_int32_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "u_int32_t",
+      "type": "topic",
+      "url": "/documentation/kernel/u_int32_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/bpf_send_func"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

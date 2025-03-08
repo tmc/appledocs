@@ -1,0 +1,682 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieves the authorization reference passed by the AuthorizationExecuteWithPrivileges function.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use a ",
+          "type": "text"
+        },
+        {
+          "code": "launchd",
+          "type": "codeVoice"
+        },
+        {
+          "text": "-launched helper tool and/or the Service Management framework for this functionality.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@AuthorizationCopyPrivilegedReference",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "AuthorizationCopyPrivilegedReference"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AuthorizationCopyPrivilegedReference"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.1",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "AuthorizationCopyPrivilegedReference"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyPrivilegedReference"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AuthorizationRef",
+              "text": "AuthorizationRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "authorization"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@AuthorizationFlags",
+              "text": "AuthorizationFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an authorization reference. The Security Server allocates the authorization reference for you, so you do not need to call the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". On return, it points to a copy of the authorization reference used in the call to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "authorization"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reserved options. Pass the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " constant.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/authorization-services-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This function is deprecated.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use a ",
+                  "type": "text"
+                },
+                {
+                  "code": "launchd",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-launched helper tool and/or the Service Management framework for this functionality.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function retrieves the authorization reference you pass in the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The new process can use the authorization reference to verify authorizations obtained by the calling process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization reference passed by the AuthorizationExecuteWithPrivileges function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyPrivilegedReference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCopyPrivilegedReference",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyprivilegedreference"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new authorization reference and provides an option to authorize or preauthorize rights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationEnvironment",
+          "text": "AuthorizationEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCreate(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcreate(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges": {
+      "abstract": [
+        {
+          "text": "Runs an executable tool with root privileges.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationExecuteWithPrivileges"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationExecuteWithPrivileges",
+      "type": "topic",
+      "url": "/documentation/security/authorizationexecutewithprivileges"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFlags": {
+      "abstract": [
+        {
+          "text": "The flags used to specify authorization options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationFlags",
+      "type": "topic",
+      "url": "/documentation/security/authorizationflags"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults": {
+      "abstract": [
+        {
+          "text": "An empty flag set that you use as a placeholder when you don’t want any of the other flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationFlagDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags/kAuthorizationFlagDefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationFlagDefaults",
+      "type": "topic",
+      "url": "/documentation/security/authorizationflags/kauthorizationflagdefaults"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRef": {
+      "abstract": [
+        {
+          "text": "A pointer to an opaque authorization reference structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationref"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the authorization services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/authorization-services-result-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCreate(_:_:_:_:)/title",
+          "value": "AuthorizationCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCreate(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/title",
+          "value": "AuthorizationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/title",
+          "value": "AuthorizationFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationcopyprivilegedreference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

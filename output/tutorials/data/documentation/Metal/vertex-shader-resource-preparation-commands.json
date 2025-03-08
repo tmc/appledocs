@@ -1,0 +1,1860 @@
+{
+  "abstract": [
+    {
+      "text": "Assign resources to vertex shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Vertex Shader Resource Preparation Commands"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All vertex shaders share an argument table for each resource type, such as buffers, textures, and sampler states. These argument tables are separate from other shader types, each of which have their own argument tables, one for each resource type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAccelerationStructure(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Assigns an acceleration structure to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexAccelerationStructure"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLAccelerationStructure",
+          "text": "MTLAccelerationStructure"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAccelerationStructure(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexAccelerationStructure:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexAccelerationStructure(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexaccelerationstructure(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a buffer to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffer:offset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexBuffer(_:offset:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbuffer(_:offset:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(_:index:)": {
+      "abstract": [
+        {
+          "text": "Updates an entry in the vertex shader argument table with a new location within the entry’s current buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBufferOffset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexBufferOffset(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbufferoffset(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers(_:offsets:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple buffers to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers(_:offsets:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexBuffers(_:offsets:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbuffers(_:offsets:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers:offsets:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple buffers to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffers:offsets:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers:offsets:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffers:offsets:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexBuffers:offsets:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbuffers:offsets:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:index:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer from bytes and assigns it to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBytes:length:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexBytes(_:length:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbytes(_:length:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTable(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Assigns an intersection function table to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTable(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexIntersectionFunctionTable:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexIntersectionFunctionTable(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexintersectionfunctiontable(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTables(_:bufferRange:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple intersection function tables to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexIntersectionFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTables(_:bufferRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexIntersectionFunctionTables(_:bufferRange:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexintersectionfunctiontables(_:bufferrange:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTables:withBufferRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple intersection function tables to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexIntersectionFunctionTables:withBufferRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTables:withBufferRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexIntersectionFunctionTables:withBufferRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexIntersectionFunctionTables:withBufferRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexintersectionfunctiontables:withbufferrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a sampler state to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexSamplerState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexsamplerstate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a sampler state and clamp values to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexsamplerstate(_:lodminclamp:lodmaxclamp:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates(_:lodMinClamps:lodMaxClamps:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states and clamp values to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexsamplerstates(_:lodminclamps:lodmaxclamps:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexSamplerStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexsamplerstates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states and clamp values to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexsamplerstates:lodminclamps:lodmaxclamps:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexSamplerStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexSamplerStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexsamplerstates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTexture(_:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a texture to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexTexture"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTexture(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexTexture:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexTexture(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertextexture(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTextures(_:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple textures to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexTextures"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTextures(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexTextures(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertextextures(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTextures:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple textures to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexTextures:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTextures:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexTextures:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexTextures:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertextextures:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTable(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Assigns a visible function table to an entry in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTable(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexVisibleFunctionTable:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexVisibleFunctionTable(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexvisiblefunctiontable(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTables(_:bufferRange:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple visible function tables to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexVisibleFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTables(_:bufferRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexVisibleFunctionTables(_:bufferRange:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexvisiblefunctiontables(_:bufferrange:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTables:withBufferRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple visible function tables to a range of entries in the vertex shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexVisibleFunctionTables:withBufferRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTables:withBufferRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexVisibleFunctionTables:withBufferRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexVisibleFunctionTables:withBufferRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexvisiblefunctiontables:withbufferrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Load individual resources and multiple resources within a heap into GPU memory so that they’re available to shaders through argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Argument Buffer Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/argument-buffer-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to fragment shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fragment Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/fragment-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to mesh and object shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mesh and Object Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/mesh-and-object-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to tile shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tile Shaders Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/tile-shaders-resource-preparation-commands"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-Resource-Preparation-Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+      ],
+      "title": "Encoding Resource Preparation Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Assigning-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers(_:offsets:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(_:index:)"
+      ],
+      "title": "Assigning Buffers"
+    },
+    {
+      "anchor": "Assigning-Textures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTexture(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTextures(_:range:)"
+      ],
+      "title": "Assigning Textures"
+    },
+    {
+      "anchor": "Assigning-Sampler-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates(_:lodMinClamps:lodMaxClamps:range:)"
+      ],
+      "title": "Assigning Sampler States"
+    },
+    {
+      "anchor": "Assigning-Acceleration-Structures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAccelerationStructure(_:bufferIndex:)"
+      ],
+      "title": "Assigning Acceleration Structures"
+    },
+    {
+      "anchor": "Assigning-Visible-Function-Tables",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTable(_:bufferIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTables(_:bufferRange:)"
+      ],
+      "title": "Assigning Visible Function Tables"
+    },
+    {
+      "anchor": "Assigning-Intersection-Function-Tables",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTable(_:bufferIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTables(_:bufferRange:)"
+      ],
+      "title": "Assigning Intersection Function Tables"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Assigning-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers:offsets:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(_:index:)"
+              ],
+              "title": "Assigning Buffers"
+            },
+            {
+              "anchor": "Assigning-Textures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTexture(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexTextures:withRange:"
+              ],
+              "title": "Assigning Textures"
+            },
+            {
+              "anchor": "Assigning-Sampler-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+              ],
+              "title": "Assigning Sampler States"
+            },
+            {
+              "anchor": "Assigning-Acceleration-Structures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAccelerationStructure(_:bufferIndex:)"
+              ],
+              "title": "Assigning Acceleration Structures"
+            },
+            {
+              "anchor": "Assigning-Visible-Function-Tables",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTable(_:bufferIndex:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexVisibleFunctionTables:withBufferRange:"
+              ],
+              "title": "Assigning Visible Function Tables"
+            },
+            {
+              "anchor": "Assigning-Intersection-Function-Tables",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTable(_:bufferIndex:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexIntersectionFunctionTables:withBufferRange:"
+              ],
+              "title": "Assigning Intersection Function Tables"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-Resource-Preparation-Commands",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+              ],
+              "title": "Encoding Resource Preparation Commands"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexVisibleFunctionTable(_:bufferIndex:)/title",
+          "value": "setVertexVisibleFunctionTable:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexVisibleFunctionTable(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexVisibleFunctionTable:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBufferOffset(_:index:)/title",
+          "value": "setVertexBufferOffset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBufferOffset(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexBufferOffset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBuffer(_:offset:index:)/title",
+          "value": "setVertexBuffer:offset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBuffer(_:offset:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexBuffer:offset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexTexture(_:index:)/title",
+          "value": "setVertexTexture:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexTexture(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexTexture:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexIntersectionFunctionTable(_:bufferIndex:)/title",
+          "value": "setVertexIntersectionFunctionTable:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexIntersectionFunctionTable(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexIntersectionFunctionTable:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexSamplerState(_:index:)/title",
+          "value": "setVertexSamplerState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexSamplerState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexSamplerState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexAccelerationStructure(_:bufferIndex:)/title",
+          "value": "setVertexAccelerationStructure:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexAccelerationStructure(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexAccelerationStructure:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBytes(_:length:index:)/title",
+          "value": "setVertexBytes:length:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBytes(_:length:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexBytes:length:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)/title",
+          "value": "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexSamplerState(_:lodMinClamp:lodMaxClamp:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/vertex-shader-resource-preparation-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/vertex-shader-resource-preparation-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

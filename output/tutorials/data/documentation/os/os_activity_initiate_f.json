@@ -1,0 +1,453 @@
+{
+  "abstract": [
+    {
+      "text": "Synchronously executes a new activity using the provided function.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.os/documentation/os/os_activity_initiate_f"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@macro@os_activity_initiate_f",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "os_activity_initiate_f"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "os_activity_initiate_f"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Macro",
+    "symbolKind": "macro",
+    "title": "os_activity_initiate_f"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "#define"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_activity_initiate_f"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "internalParam",
+              "text": "description"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "internalParam",
+              "text": "function"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A C string that describes the activity. The description must be a constant string within the calling executable or library.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "description"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Flags that define how the activity should be created. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.os/documentation/os/os_activity_flag_t",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A context to pass to the function. This may be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A function to call within the context of the given activity. This function must match the signature defined by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.os/documentation/os/os_function_t",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "function"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function creates a new activity object implicitly as a child of the current activity object on the current thread. The object persists for the duration of the activity block’s execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_create": {
+      "abstract": [
+        {
+          "text": "Creates a new activity object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_create"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_create",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_create"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_flag_t": {
+      "abstract": [
+        {
+          "text": "Flags that adjust the behavior when you create an activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_flag_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_flag_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_flag_t",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_flag_t"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_initiate": {
+      "abstract": [
+        {
+          "text": "Synchronously executes a new activity using the provided block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_initiate"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_initiate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_initiate",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_initiate"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_initiate_f": {
+      "abstract": [
+        {
+          "text": "Synchronously executes a new activity using the provided function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_initiate_f"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_initiate_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_initiate_f",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_initiate_f"
+    },
+    "doc://com.apple.os/documentation/os/os_activity_label_useraction": {
+      "abstract": [
+        {
+          "text": "Label an activity that is auto-generated by AppKit or UIKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_activity_label_useraction"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_activity_label_useraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_activity_label_useraction",
+      "type": "topic",
+      "url": "/documentation/os/os_activity_label_useraction"
+    },
+    "doc://com.apple.os/documentation/os/os_function_t": {
+      "abstract": [
+        {
+          "text": "A pointer to a function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_function_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_function_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_function_t",
+      "type": "topic",
+      "url": "/documentation/os/os_function_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Activities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/os_activity_initiate",
+        "doc://com.apple.os/documentation/os/os_activity_create",
+        "doc://com.apple.os/documentation/os/os_activity_label_useraction",
+        "doc://com.apple.os/documentation/os/os_activity_flag_t"
+      ],
+      "title": "Creating Activities"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/os_activity_initiate_f"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

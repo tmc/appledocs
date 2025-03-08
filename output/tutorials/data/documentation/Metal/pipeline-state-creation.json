@@ -1,0 +1,2986 @@
+{
+  "abstract": [
+    {
+      "text": "Create pipeline states for render and compute passes, samplers, depth and stencil states, and indirect command buffers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/pipeline-state-creation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Pipeline State Creation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these methods to create instances of various state types for a render or compute pass (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", respectively).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create multiple ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances for a single render pass encoder (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that each apply to different types of render commands. For example, a single render pass can render primitives with vertices, then meshes, and finish with a tile shader command, each with a different pipeline. To create these pipelines, configure instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then pass those descriptors to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods (or a counterpart method), respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only create reflection (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineReflection",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") instances if you need them, because each one can require a significant amount of memory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a compute pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLComputePipelineDescriptor",
+          "text": "MTLComputePipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewComputePipelineStateWithReflectionCompletionHandler",
+          "text": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithDescriptor:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(descriptor:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(descriptor:options:completionhandler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:reflection:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a compute pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLComputePipelineDescriptor",
+          "text": "MTLComputePipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLAutoreleasedComputePipelineReflection",
+          "text": "MTLAutoreleasedComputePipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:reflection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithDescriptor:options:reflection:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(descriptor:options:reflection:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(descriptor:options:reflection:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a compute pipeline state with a function instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithFunction:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(function:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(function:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a compute pipeline state with a function instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewComputePipelineStateCompletionHandler",
+          "text": "MTLNewComputePipelineStateCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithFunction:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(function:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(function:completionhandler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a compute pipeline state and reflection with a function instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewComputePipelineStateWithReflectionCompletionHandler",
+          "text": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithFunction:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(function:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(function:options:completionhandler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:reflection:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a compute pipeline state and reflection with a function instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunction",
+          "text": "MTLFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLAutoreleasedComputePipelineReflection",
+          "text": "MTLAutoreleasedComputePipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:reflection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newComputePipelineStateWithFunction:options:reflection:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeComputePipelineState(function:options:reflection:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecomputepipelinestate(function:options:reflection:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDepthStencilState(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a depth-stencil state instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDepthStencilState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLDepthStencilDescriptor",
+          "text": "MTLDepthStencilDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDepthStencilState",
+          "text": "MTLDepthStencilState"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDepthStencilState(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newDepthStencilStateWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeDepthStencilState(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makedepthstencilstate(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineDescriptor",
+          "text": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithDescriptor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineDescriptor",
+          "text": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewRenderPipelineStateCompletionHandler",
+          "text": "MTLNewRenderPipelineStateCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithDescriptor:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:completionhandler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:)-89vxc": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a render pipeline state and reflection information in a tuple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineDescriptor",
+          "text": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineReflection",
+          "text": "MTLRenderPipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:)-89vxc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:)-89vxc"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:)-yrak": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a mesh render pipeline state and reflection information in a tuple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLMeshRenderPipelineDescriptor",
+          "text": "MTLMeshRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineReflection",
+          "text": "MTLRenderPipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:)-yrak",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:)-yrak"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a mesh render pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLMeshRenderPipelineDescriptor",
+          "text": "MTLMeshRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+          "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:completionhandler:)-1wvya"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-5gdww": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a render pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineDescriptor",
+          "text": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+          "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-5gdww",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithDescriptor:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:completionhandler:)-5gdww"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:reflection:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a render pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineDescriptor",
+          "text": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLAutoreleasedRenderPipelineReflection",
+          "text": "MTLAutoreleasedRenderPipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:reflection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithDescriptor:options:reflection:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(descriptor:options:reflection:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:reflection:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a tile shader’s render pipeline state and reflection information in a tuple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTileRenderPipelineDescriptor",
+          "text": "MTLTileRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPipelineReflection",
+          "text": "MTLRenderPipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeRenderPipelineState(tileDescriptor:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(tiledescriptor:options:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a tile shader’s render pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTileRenderPipelineDescriptor",
+          "text": "MTLTileRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+          "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithTileDescriptor:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(tileDescriptor:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(tiledescriptor:options:completionhandler:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:reflection:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a tile shader’s render pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTileRenderPipelineDescriptor",
+          "text": "MTLTileRenderPipelineDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLAutoreleasedRenderPipelineReflection",
+          "text": "MTLAutoreleasedRenderPipelineReflection"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:reflection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithTileDescriptor:options:reflection:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderPipelineState(tileDescriptor:options:reflection:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makerenderpipelinestate(tiledescriptor:options:reflection:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/newRenderPipelineStateWithMeshDescriptor:options:reflection:error:": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a mesh render pipeline state and reflection information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/newRenderPipelineStateWithMeshDescriptor:options:reflection:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/newrenderpipelinestatewithmeshdescriptor:options:reflection:error:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that configures new render pipeline state objects for mesh shading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMeshRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMeshRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMeshRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmeshrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A completion handler signature a method calls when it finishes creating a compute pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLNewComputePipelineStateCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLNewComputePipelineStateCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLNewComputePipelineStateCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtlnewcomputepipelinestatecompletionhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateWithReflectionCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A completion handler signature a method calls when it finishes creating a compute pipeline and reflection information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateWithReflectionCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLNewComputePipelineStateWithReflectionCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A completion handler signature a method calls when it finishes creating a render pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLNewRenderPipelineStateCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLNewRenderPipelineStateCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLNewRenderPipelineStateCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtlnewrenderpipelinestatecompletionhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateWithReflectionCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A completion handler signature a method calls when it finishes creating a render pipeline and reflection information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineReflection": {
+      "abstract": [
+        {
+          "text": "Information about the arguments of a graphics function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineReflection"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineReflection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineReflection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineReflection",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinereflection"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that configures new render pipeline state objects for tile shading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTileRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtltilerenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/compute-passes": {
+      "abstract": [
+        {
+          "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compute Passes",
+      "type": "topic",
+      "url": "/documentation/metal/compute-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/device-inspection": {
+      "abstract": [
+        {
+          "text": "Locate and identify a GPU and the features it supports, and sample its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/device-inspection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Device Inspection",
+      "type": "topic",
+      "url": "/documentation/metal/device-inspection"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-creation": {
+      "abstract": [
+        {
+          "text": "Load assets with input/output queues and make various resource instances, such as buffers, textures, acceleration structures, and memory heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Creation",
+      "type": "topic",
+      "url": "/documentation/metal/resource-creation"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation": {
+      "abstract": [
+        {
+          "text": "Create static and dynamic shader libraries, and binary shader archives.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Library and Archive Creation",
+      "type": "topic",
+      "url": "/documentation/metal/shader-library-and-archive-creation"
+    },
+    "doc://com.apple.metal/documentation/Metal/work-submission": {
+      "abstract": [
+        {
+          "text": "Create queues that submit work to the GPU or load assets into GPU resources, and indirect command buffers that group your frequent commands together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/work-submission"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-GPU-Devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/device-inspection",
+        "doc://com.apple.metal/documentation/Metal/work-submission",
+        "doc://com.apple.metal/documentation/Metal/resource-creation",
+        "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation"
+      ],
+      "title": "Working with GPU Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Render-Pipeline-States-with-Vertex-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:completionHandler:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:)-89vxc",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:reflection:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-5gdww"
+      ],
+      "title": "Creating Render Pipeline States with Vertex Shaders"
+    },
+    {
+      "anchor": "Creating-Render-Pipeline-States-with-Mesh-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:)-yrak",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya"
+      ],
+      "title": "Creating Render Pipeline States with Mesh Shaders"
+    },
+    {
+      "anchor": "Creating-Tile-Render-Pipeline-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:reflection:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:completionHandler:)"
+      ],
+      "title": "Creating Tile Render Pipeline States"
+    },
+    {
+      "anchor": "Creating-Compute-Pipeline-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:reflection:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:completionHandler:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:completionHandler:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:reflection:)",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:completionHandler:)"
+      ],
+      "title": "Creating Compute Pipeline States"
+    },
+    {
+      "anchor": "Creating-Depth-and-Stencil-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDepthStencilState(descriptor:)"
+      ],
+      "title": "Creating Depth and Stencil States"
+    },
+    {
+      "anchor": "Supporting-Types",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateCompletionHandler",
+        "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+        "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateCompletionHandler",
+        "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateWithReflectionCompletionHandler"
+      ],
+      "title": "Supporting Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Render-Pipeline-States-with-Vertex-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:completionHandler:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:reflection:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-5gdww"
+              ],
+              "title": "Creating Render Pipeline States with Vertex Shaders"
+            },
+            {
+              "anchor": "Creating-Render-Pipeline-States-with-Mesh-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/newRenderPipelineStateWithMeshDescriptor:options:reflection:error:",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya"
+              ],
+              "title": "Creating Render Pipeline States with Mesh Shaders"
+            },
+            {
+              "anchor": "Creating-Tile-Render-Pipeline-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:reflection:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeRenderPipelineState(tileDescriptor:options:completionHandler:)"
+              ],
+              "title": "Creating Tile Render Pipeline States"
+            },
+            {
+              "anchor": "Creating-Compute-Pipeline-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:reflection:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(descriptor:options:completionHandler:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:completionHandler:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:reflection:)",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeComputePipelineState(function:options:completionHandler:)"
+              ],
+              "title": "Creating Compute Pipeline States"
+            },
+            {
+              "anchor": "Creating-Depth-and-Stencil-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDepthStencilState(descriptor:)"
+              ],
+              "title": "Creating Depth and Stencil States"
+            },
+            {
+              "anchor": "Supporting-Types",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateCompletionHandler",
+                "doc://com.apple.metal/documentation/Metal/MTLNewRenderPipelineStateWithReflectionCompletionHandler",
+                "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateCompletionHandler",
+                "doc://com.apple.metal/documentation/Metal/MTLNewComputePipelineStateWithReflectionCompletionHandler"
+              ],
+              "title": "Supporting Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-GPU-Devices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/device-inspection",
+                "doc://com.apple.metal/documentation/Metal/work-submission",
+                "doc://com.apple.metal/documentation/Metal/resource-creation",
+                "doc://com.apple.metal/documentation/Metal/shader-library-and-archive-creation"
+              ],
+              "title": "Working with GPU Devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(tileDescriptor:options:reflection:)/title",
+          "value": "newRenderPipelineStateWithTileDescriptor:options:reflection:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(tileDescriptor:options:reflection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithTileDescriptor:options:reflection:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:completionHandler:)/title",
+          "value": "newRenderPipelineStateWithDescriptor:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithDescriptor:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:options:completionHandler:)-5gdww/title",
+          "value": "newRenderPipelineStateWithDescriptor:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:options:completionHandler:)-5gdww/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithDescriptor:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/title",
+          "value": "MTLRenderPipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya/title",
+          "value": "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:options:completionHandler:)-1wvya/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeDepthStencilState(descriptor:)/title",
+          "value": "newDepthStencilStateWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeDepthStencilState(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newDepthStencilStateWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(tileDescriptor:options:completionHandler:)/title",
+          "value": "newRenderPipelineStateWithTileDescriptor:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(tileDescriptor:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithTileDescriptor:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:)/title",
+          "value": "newComputePipelineStateWithFunction:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithFunction:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:)/title",
+          "value": "newRenderPipelineStateWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineReflection/title",
+          "value": "MTLRenderPipelineReflection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineReflection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineReflection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineReflection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineReflection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:options:completionHandler:)/title",
+          "value": "newComputePipelineStateWithFunction:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithFunction:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineDescriptor/title",
+          "value": "MTLTileRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(descriptor:options:completionHandler:)/title",
+          "value": "newComputePipelineStateWithDescriptor:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(descriptor:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithDescriptor:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:options:reflection:)/title",
+          "value": "newRenderPipelineStateWithDescriptor:options:reflection:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeRenderPipelineState(descriptor:options:reflection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRenderPipelineStateWithDescriptor:options:reflection:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:completionHandler:)/title",
+          "value": "newComputePipelineStateWithFunction:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithFunction:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMeshRenderPipelineDescriptor/title",
+          "value": "MTLMeshRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMeshRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMeshRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMeshRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMeshRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewRenderPipelineStateCompletionHandler/title",
+          "value": "MTLNewRenderPipelineStateCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewRenderPipelineStateCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewRenderPipelineStateCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewRenderPipelineStateCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewRenderPipelineStateCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(descriptor:options:reflection:)/title",
+          "value": "newComputePipelineStateWithDescriptor:options:reflection:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(descriptor:options:reflection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithDescriptor:options:reflection:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewComputePipelineStateWithReflectionCompletionHandler/title",
+          "value": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewComputePipelineStateWithReflectionCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewComputePipelineStateWithReflectionCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewComputePipelineStateWithReflectionCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:options:reflection:)/title",
+          "value": "newComputePipelineStateWithFunction:options:reflection:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeComputePipelineState(function:options:reflection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newComputePipelineStateWithFunction:options:reflection:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewRenderPipelineStateWithReflectionCompletionHandler/title",
+          "value": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewRenderPipelineStateWithReflectionCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewRenderPipelineStateWithReflectionCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewRenderPipelineStateWithReflectionCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewComputePipelineStateCompletionHandler/title",
+          "value": "MTLNewComputePipelineStateCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewComputePipelineStateCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewComputePipelineStateCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLNewComputePipelineStateCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLNewComputePipelineStateCompletionHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/pipeline-state-creation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/pipeline-state-creation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

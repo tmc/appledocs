@@ -1,0 +1,313 @@
+{
+  "abstract": [
+    {
+      "text": "A chapter list provides a set of named entry points into a movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Chapter lists"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A chapter list provides a set of named entry points into a movie, allowing the user to jump to a preselected point in the movie from a convenient pop-up list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The movie controller automatically recognizes a chapter list and will create a pop-up list from it. When the user makes a selection from the pop-up, the controller will jump to the appropriate point in the movie. Note that if the movie is sized so that the controller is too narrow to display the chapter names, the pop-up list will not appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a chapter list, you must create a text track with one sample for each chapter. The display time for each sample corresponds to the point in the movie that marks the beginning of that chapter. You must also create a track reference of type ",
+              "type": "text"
+            },
+            {
+              "code": "'chap'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from an enabled track of the movie to the text track. It is the ",
+              "type": "text"
+            },
+            {
+              "code": "'chap'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " track reference that makes the text track into a chapter list. The track containing the reference can be of any type (audio, video, MPEG, and so on), but it must be enabled for the chapter list to be recognized.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Given an enabled track ",
+              "type": "text"
+            },
+            {
+              "code": "myVideoTrack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for example, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "AddTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to create the chapter reference:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AddTrackReference( myVideoTrack, theTextTrack,",
+            "    kTrackReferenceChapterList,",
+            "    &addedIndex );"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "kTrackReferenceChapterList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is defined in ",
+              "type": "text"
+            },
+            {
+              "code": "Movies.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It has the value ",
+              "type": "text"
+            },
+            {
+              "code": "'chap'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The text track that constitutes the chapter list does not need to be enabled, and normally is not. If it is enabled, the text track will be displayed as part of the movie, just like any other text track, in addition to functioning as a chapter list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If more than one enabled track includes a ",
+              "type": "text"
+            },
+            {
+              "code": "'chap'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " track reference, QuickTime uses the first chapter list that it finds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks": {
+      "abstract": [
+        {
+          "text": "Send data to another media handler instead of presenting media directly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating movies with modifier tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_movies_with_modifier_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks": {
+      "abstract": [
+        {
+          "text": "Create dynamic movies with modifier tracks that send data to another track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifier tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/modifier_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media": {
+      "abstract": [
+        {
+          "text": "Store streaming data in a streaming media track for QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/streaming_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references": {
+      "abstract": [
+        {
+          "text": "Relate a movie’s tracks to one another with track references.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references",
+      "kind": "article",
+      "role": "article",
+      "title": "Track references",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_references"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Track-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media"
+      ],
+      "title": "Track features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/chapter_lists"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

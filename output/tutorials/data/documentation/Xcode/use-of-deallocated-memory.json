@@ -1,0 +1,387 @@
+{
+  "abstract": [
+    {
+      "text": "Detects the use of deallocated memory.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/use-of-deallocated-memory"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Use of deallocated memory"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this check to detect when your code accesses deallocated memory, which can lead to unpredictable behavior. Available in Xcode 7 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-of-deallocated-memory-in-Objective-C",
+          "level": 3,
+          "text": "Use of deallocated memory in Objective-C",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the ",
+              "type": "text"
+            },
+            {
+              "code": "unsafePointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable has ",
+              "type": "text"
+            },
+            {
+              "code": "__unsafe_unretained",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ownership. Because there are no other objects that have a strong reference to it, the autorelease pool deallocates the variable, causing it to point to invalid memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "__unsafe_unretained MyClass *unsafePointer;",
+            "@autoreleasepool {    ",
+            "    MyClass *object = [MyClass new];",
+            "    unsafePointer = object;",
+            "}",
+            "NSLog(@\"%d\", unsafePointer->instanceVariable); ",
+            "// Error: unsafePointer is deallocated in autorelease pool"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "__strong",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "__weak",
+              "type": "codeVoice"
+            },
+            {
+              "text": " reference instead of ",
+              "type": "text"
+            },
+            {
+              "code": "__unsafe_unretained",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Strong ownership ensures that you, or the system, can only deallocate an object when no strong references exist. Weak ownership has no effect on the life cycle of the object it refers to, but ensures that a variable is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you deallocate the object, or the system deallocates it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-of-deallocated-pointer-in-Objective-C",
+          "level": 3,
+          "text": "Use of deallocated pointer in Objective-C",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This issue exists when using pointers to nonobject types, as well. In the following example, the pointer to the instance variable invalidates when deallocating the object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int *unsafePointer;",
+            "@autoreleasepool {    ",
+            "    MyClass *object = [MyClass new];",
+            "    unsafePointer = &object->instanceVariable;",
+            "}",
+            "NSLog(@\"%d\", *unsafePointer);",
+            "// Error: unsafePointer is invalidated when object is deallocated in autorelease pool"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use property accessors rather than direct access to instance variables and pointers whenever possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-deallocated-memory": {
+      "abstract": [
+        {
+          "text": "Detects attempts to free deallocated memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-deallocated-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Deallocation of deallocated memory",
+      "type": "topic",
+      "url": "/documentation/xcode/deallocation-of-deallocated-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-nonallocated-memory": {
+      "abstract": [
+        {
+          "text": "Detects attempts to free nonallocated memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-nonallocated-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Deallocation of nonallocated memory",
+      "type": "topic",
+      "url": "/documentation/xcode/deallocation-of-nonallocated-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/overflow-and-underflow-of-buffers": {
+      "abstract": [
+        {
+          "text": "Detects when you access memory outside of a buffer’s boundaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/overflow-and-underflow-of-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Overflow and underflow of buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/overflow-and-underflow-of-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/overflow-of-c-containers": {
+      "abstract": [
+        {
+          "text": "Detects when you access a C++ container outside its bounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/overflow-of-c-containers",
+      "kind": "article",
+      "role": "article",
+      "title": "Overflow of C++ containers",
+      "type": "topic",
+      "url": "/documentation/xcode/overflow-of-c-containers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/use-of-out-of-scope-stack-memory": {
+      "abstract": [
+        {
+          "text": "Detects access to variables outside of their declared scope.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/use-of-out-of-scope-stack-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Use of out-of-scope stack memory",
+      "type": "topic",
+      "url": "/documentation/xcode/use-of-out-of-scope-stack-memory"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/use-of-stack-memory-after-function-return": {
+      "abstract": [
+        {
+          "text": "Detects when you access stack variable memory after its declaring function returns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/use-of-stack-memory-after-function-return",
+      "kind": "article",
+      "role": "article",
+      "title": "Use of stack memory after function return",
+      "type": "topic",
+      "url": "/documentation/xcode/use-of-stack-memory-after-function-return"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Address-Sanitizer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-deallocated-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/deallocation-of-nonallocated-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/use-of-stack-memory-after-function-return",
+        "doc://com.apple.Xcode/documentation/Xcode/use-of-out-of-scope-stack-memory",
+        "doc://com.apple.Xcode/documentation/Xcode/overflow-and-underflow-of-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/overflow-of-c-containers"
+      ],
+      "title": "Address Sanitizer"
+    }
+  ]
+}

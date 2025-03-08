@@ -1,0 +1,3554 @@
+{
+  "abstract": [
+    {
+      "text": "Add a range of visual effects to a RealityKit view by attaching a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "particle emitter component to an entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/physics-simulations-and-motion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/simulating-particles-in-your-visionos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "particles-main-poster.jpg",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Simulating particles in your visionOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define and tailor a particle system by creating and configuring a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "particle emitter component and then adding it to an entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A particle emitter component can simulate various effects including fire, smoke,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "confetti, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app presents sliders, toggles, buttons, and color pickers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that adjust the particle emitter’s settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You change the appearance and behavior of the particles it emits with these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls, including their size, shape, and speed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "particles-main",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s controls let you quickly try a variety of particle effects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that illustrate the range of possibilities for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add a particle emitter to your RealityKit scene in four steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a particle emitter component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add that component to the entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the entity to a scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-an-entity",
+          "level": 3,
+          "text": "Create an entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can turn any entity into a particle emitter, including one that’s already",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your app’s scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app creates a new entity with the default initializer ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let emitterEntity = Entity()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-particle-emitter-component",
+          "level": 3,
+          "text": "Create a particle emitter component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance by calling one of its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var emitterComponent = ParticleEmitterComponent()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create a particle emitter from a preset by accessing one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the properties of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/Presets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typealias Presets = ParticleEmitterComponent.Presets",
+            "",
+            "switch presetSelection {",
+            "    case .default:",
+            "        emitterComponent = ParticleEmitterComponent()",
+            "    case .fireworks:",
+            "        emitterComponent = Presets.fireworks",
+            "    case .impact:",
+            "        emitterComponent = Presets.impact",
+            "    case .magic:",
+            "        emitterComponent = Presets.magic",
+            "    case .rain:",
+            "        emitterComponent = Presets.rain",
+            "    case .snow:",
+            "        emitterComponent = Presets.snow",
+            "    case .sparks:",
+            "        emitterComponent = Presets.sparks",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each preset is an initial configuration that sets up a new particle emitter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-presets-fireworks",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Fireworks"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-presets-impact",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Impact"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-presets-magic",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Magic"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-presets-rain",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Rain"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-presets-snow",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Snow"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-presets-sparks",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Sparks"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a preset as a starting point and then alter the behavior and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appearance of the emitter and its particles by modifying the component’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This approach may be more convenient than configuring every property of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "particle emitter component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-particle-emitter-component-to-an-entity",
+          "level": 3,
+          "text": "Add a particle emitter component to an entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the particle emitter  component to an entity by calling the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet/set(_:)-8sii2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the particle component to the entity.",
+            "emitterEntity.components.set(emitterComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-the-entity-to-a-scene",
+          "level": 3,
+          "text": "Add the entity to a scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the entity with the particle emitter component to the scene by calling the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol/add(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the emitter entity to the scene.",
+            "content.add(emitterEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scene can now present the entity as a particle emitter because it has the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "component that defines the look and behavior of the emitter and the particles it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "particles-base",
+                  "type": "video"
+                }
+              ],
+              "size": 5
+            }
+          ],
+          "numberOfColumns": 5,
+          "type": "row"
+        },
+        {
+          "anchor": "Configure-the-behavior-of-the-emitters-particles",
+          "level": 3,
+          "text": "Configure the behavior of the emitter’s particles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can alter the behavior of a particle system by changing the values of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/speed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property adjusts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starting speed of the particles as the emitter creates them, and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/birthRate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property modifies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how many times per second the emitter creates a new particle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "emitterComponent.speed = 0.2",
+            "emitterComponent.mainEmitter.birthRate = 150",
+            "",
+            "emitterEntity.components.set(emitterComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example modifies the component’s ",
+              "type": "text"
+            },
+            {
+              "code": "speed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "birthrate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "0.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "150",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively, from their default values ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which creates more particles that move slower.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "particles-dense",
+                  "type": "video"
+                }
+              ],
+              "size": 5
+            }
+          ],
+          "numberOfColumns": 5,
+          "type": "row"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you adjust one or more particle component properties,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you need to replace the entity’s current particle component instance",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "by setting it again because component instances are from value types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-color-for-the-emitters-particles",
+          "level": 3,
+          "text": "Configure the color for the emitter’s particles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the color of the particles an emitter component creates by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/color-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property to one of the enumeration cases, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/constant(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/evolving(start:end:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A particle with a constant color maintains the same color throughout its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lifetime, but a particle with an evolving color gradually changes from one color",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to another over the duration of its lifetime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app has two methods that configure particles with a constant color.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "setConstantColor(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by passing the color a person selects in the app’s UI to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue/single(_:)-58m53",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration case, and then creates a constant color from that value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typealias ParticleEmitter = ParticleEmitterComponent.ParticleEmitter",
+            "typealias ParticleColor = ParticleEmitter.ParticleColor",
+            "typealias ParticleColorValue = ParticleColor.ColorValue",
+            "",
+            "// ...",
+            "",
+            "func setConstantColor(_ swiftUIColor: SwiftUI.Color) {",
+            "    // Create a single color value instance.",
+            "    let color1 = ParticleEmitter.Color(swiftUIColor)",
+            "    let singleColorValue = ParticleColorValue.single(color1)",
+            "",
+            "    // Create a constant color from the single color value.",
+            "    let constantColor = ParticleColor.constant(singleColorValue)",
+            "",
+            "    // Change the particle color for the emitter.",
+            "    emitterComponent.mainEmitter.color = constantColor",
+            "",
+            "    // Replace the entity's emitter component with the current configuration.",
+            "    emitterEntity.components.set(emitterComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "setRandomColor(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method also creates a constant color that’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "random by passing two colors from the app’s UI to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue/random(a:b:)-6g22v",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setRandomColor(_ swiftUIColor1: SwiftUI.Color,",
+            "                    _ swiftUIColor2: SwiftUI.Color) {",
+            "    // Create a random color value instance between two colors.",
+            "    let color1 = ParticleEmitter.Color(swiftUIColor1)",
+            "    let color2 = ParticleEmitter.Color(swiftUIColor2)",
+            "    let randomColor = ParticleColorValue.random(a: color1, b: color2)",
+            "",
+            "    // Create a constant color from the random color value.",
+            "    let constantColor = ParticleColor.constant(randomColor)",
+            "",
+            "    // Change the particle color for the emitter.",
+            "    emitterComponent.mainEmitter.color = constantColor",
+            "",
+            "    // Replace the entity's emitter component with the current configuration.",
+            "    emitterEntity.components.set(emitterComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The enumeration case creates a color value from the two input colors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by selecting a random interpolation value between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "setEvolvingColor(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method configures an emitter’s particles so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that they shift from one color to another over time by creating an evolving",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setEvolvingColor(_ swiftUIColor1: SwiftUI.Color,",
+            "                      _ swiftUIColor2: SwiftUI.Color) {",
+            "",
+            "    // Create two single color value instances.",
+            "    let color1 = ParticleEmitter.Color(swiftUIColor1)",
+            "    let color2 = ParticleEmitter.Color(swiftUIColor2)",
+            "    let singleColorValue1 = ParticleColorValue.single(color1)",
+            "    let singleColorValue2 = ParticleColorValue.single(color2)",
+            "",
+            "    // Create an evolving color that shifts from one color value to another.",
+            "    let evolvingColor = ParticleColor.evolving(start: singleColorValue1,",
+            "                                               end: singleColorValue2)",
+            "",
+            "    // Change the particle color for the emitter.",
+            "    emitterComponent.mainEmitter.color = evolvingColor",
+            "",
+            "    // Replace the entity's emitter component with the current configuration.",
+            "    emitterEntity.components.set(emitterComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method creates an evolving color by passing two single color value instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/evolving(start:end:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-color-one",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Constant single color"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-color-random",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Constant random color"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "identifier": "particles-color-evolve",
+                          "type": "video"
+                        }
+                      ],
+                      "size": 5
+                    }
+                  ],
+                  "numberOfColumns": 5,
+                  "type": "row"
+                }
+              ],
+              "title": "Evolving color"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Customize-the-appearance-of-the-emitters-particles-with-images",
+          "level": 3,
+          "text": "Customize the appearance of the emitter’s particles with images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app lets a person change the appearance of the emitter’s particles by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applying an image to each.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It does this by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance from an image and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assigning it to the emitter’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "emitterComponent.mainEmitter.image = textureResource"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a texture resource by loading an image from the app’s bundle with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/load(named:in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, or by passing a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/generate(from:withName:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " factory method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app generates a texture resource in its ",
+              "type": "text"
+            },
+            {
+              "code": "generateTextureFromSystemName(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method by taking these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve a symbol from SF Symbols using the symbol’s name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Draw the image as a template onto a white background in a graphics context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve the image from the context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass the final image to the texture resource type’s factory method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "func generateTextureFromSystemName( _ name: String) -> TextureResource? {",
+            "    let imageSize = CGSize(width: 128, height: 128)",
+            "    ",
+            "    // Create a UIImage from a symbol name.",
+            "    guard var symbolImage = UIImage(systemName: name) else {",
+            "        return nil",
+            "    }",
+            "",
+            "    // Create a new version that always uses the template rendering mode.",
+            "    symbolImage = symbolImage.withRenderingMode(.alwaysTemplate)",
+            "",
+            "    // Start the graphics context.",
+            "    UIGraphicsBeginImageContextWithOptions(imageSize, false, 0)",
+            "",
+            "    // Set the color's texture to white so that the app can apply a color",
+            "    // on top of the image.",
+            "    UIColor.white.set()",
+            "",
+            "    // Draw the image with the context.",
+            "    let rectangle = CGRect(origin: CGPoint.zero, size: imageSize)",
+            "    symbolImage.draw(in: rectangle, blendMode: .normal, alpha: 1.0)",
+            "",
+            "    // Retrieve the image from the context.",
+            "    let contextImage = UIGraphicsGetImageFromCurrentImageContext()",
+            "",
+            "    // End the graphics context.",
+            "    UIGraphicsEndImageContext()",
+            "",
+            "    // Retrieve the Core Graphics version of the image.",
+            "    guard let coreGraphicsImage = contextImage?.cgImage else {",
+            "        return nil",
+            "    }",
+            "",
+            "    // Generate the texture resource from the Core Graphics image.",
+            "    let creationOptions = TextureResource.CreateOptions(semantic: .raw)",
+            "    return try? TextureResource.generate(from: coreGraphicsImage,",
+            "                                         options: creationOptions)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method makes a texture resource that works with the emitter’s current color",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by starting with all white before drawing the image onto it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app presents a slider that changes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/angleVariation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the example below, the slider’s value is ",
+              "type": "text"
+            },
+            {
+              "code": ".pi / 6",
+              "type": "codeVoice"
+            },
+            {
+              "text": " radians,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which is equivalent to 30º.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "identifier": "particles-alert",
+                  "type": "video"
+                }
+              ],
+              "size": 5
+            }
+          ],
+          "numberOfColumns": 5,
+          "type": "row"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "24672e0aad03/SimulatingParticlesInYourVisionOSApp.zip": {
+      "checksum": "24672e0aad030170109ccbd09f55dffab2fc275e86abf5e35f1015ff942db2dac1682245324734931a7dcaa4c6b7b44b739912c04b2abb9b6a4913652e98cf6c",
+      "identifier": "24672e0aad03/SimulatingParticlesInYourVisionOSApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/24672e0aad03/SimulatingParticlesInYourVisionOSApp.zip"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet/set(_:)-8sii2": {
+      "abstract": [
+        {
+          "text": "Adds a new component to the set, or overrides an existing one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/ComponentSet/set(_:)-8sii2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/componentset/set(_:)-8sii2"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components": {
+      "abstract": [
+        {
+          "text": "All the components that an entity stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC12ComponentSetV",
+          "text": "ComponentSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/components"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent": {
+      "abstract": [
+        {
+          "text": "A component that emits particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitterComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitterComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParticleEmitterComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParticleEmitter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.ParticleEmitter",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue": {
+      "abstract": [
+        {
+          "text": "Options for specifying whether the particle color is a single color, or if the particle should take a random color in the given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColorValue"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColorValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.ParticleEmitter.ParticleColor.ColorValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/particlecolor/colorvalue"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue/random(a:b:)-6g22v": {
+      "abstract": [
+        {
+          "text": "The system will choose a random color for each particle between the given two Colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "random"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue/random(a:b:)-6g22v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.ParticleEmitter.ParticleColor.ColorValue.random(a:b:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/particlecolor/colorvalue/random(a:b:)-6g22v"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue/single(_:)-58m53": {
+      "abstract": [
+        {
+          "text": "The particle will be the given Color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "single"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/ColorValue/single(_:)-58m53",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.ParticleEmitter.ParticleColor.ColorValue.single(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/particlecolor/colorvalue/single(_:)-58m53"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/constant(_:)": {
+      "abstract": [
+        {
+          "text": "The particle will remain the given color throughout its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO",
+          "text": "ParticleColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO0G5ValueO",
+          "text": "ColorValue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/constant(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.ParticleEmitter.ParticleColor.constant(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/particlecolor/constant(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/evolving(start:end:)": {
+      "abstract": [
+        {
+          "text": "The particle’s color will start at the ",
+          "type": "text"
+        },
+        {
+          "code": "start",
+          "type": "codeVoice"
+        },
+        {
+          "text": " color and transition over its lifetime to the ",
+          "type": "text"
+        },
+        {
+          "code": "end",
+          "type": "codeVoice"
+        },
+        {
+          "text": " color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evolving"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO",
+          "text": "ParticleColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO0G5ValueO",
+          "text": "ColorValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO",
+          "text": "ParticleColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO0G5ValueO",
+          "text": "ColorValue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/ParticleColor/evolving(start:end:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.ParticleEmitter.ParticleColor.evolving(start:end:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/particlecolor/evolving(start:end:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/angleVariation": {
+      "abstract": [
+        {
+          "text": "Defines a plus/minus range (in radians) from which a value is randomly selected to offset ",
+          "type": "text"
+        },
+        {
+          "code": "angle",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "angleVariation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/angleVariation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "angleVariation",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/anglevariation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/birthRate": {
+      "abstract": [
+        {
+          "text": "The number of particles emitted over the emission duration. Defaults to 100.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "birthRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/birthRate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "birthRate",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/birthrate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/color-swift.property": {
+      "abstract": [
+        {
+          "text": "The color of particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV",
+          "text": "ParticleEmitterComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V",
+          "text": "ParticleEmitter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO",
+          "text": "ParticleColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/color-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/color-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/image": {
+      "abstract": [
+        {
+          "text": "The image that each particle will use (requires pre-multiplied RGB values). Defaults to a white circular texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter/image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/particleemitter/image"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/Presets": {
+      "abstract": [
+        {
+          "text": "Initial configurations that can be set when starting a new simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Presets"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/Presets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Presets"
+        }
+      ],
+      "role": "symbol",
+      "title": "ParticleEmitterComponent.Presets",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/presets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/speed": {
+      "abstract": [
+        {
+          "text": "The initial speed, in meters per second, for newly spawned particles. Defaults to 0.5.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/speed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/realitykit/particleemittercomponent/speed"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent": {
+      "abstract": [
+        {
+          "text": "The content of a visionOS reality view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityViewContent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityViewContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityViewContent",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcontent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol/add(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an entity to this content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol/add(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcontentprotocol/add(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource": {
+      "abstract": [
+        {
+          "text": "A representation of a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextureResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/generate(from:withName:options:)": {
+      "abstract": [
+        {
+          "text": "Synchronously creates a texture resource from an in-memory Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/generate(from:withName:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generate(from:withName:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/generate(from:withname:options:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/load(named:in:)": {
+      "abstract": [
+        {
+          "text": "Returns a texture resource by synchronously loading it from a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/load(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/load(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/physics-simulations-and-motion": {
+      "abstract": [
+        {
+          "text": "Simulate physical interactions between entities or systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/physics-simulations-and-motion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Simulations and motion",
+      "type": "topic",
+      "url": "/documentation/realitykit/physics-simulations-and-motion"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "particles-alert": {
+      "alt": "A screen recording of the app's particle emitter producing particles that have the shape of a yellow triangle with an exclamation mark in the center. Each particle has a random rotation between 30 degrees clockwise and 30 degrees counterclockwise because a person set the angle-variation slider in the app's UI to 30 degrees.",
+      "identifier": "particles-alert",
+      "poster": "particles-alert-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2cbf926f4c8c2d380e3cf487c7b1a42/particles-alert.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/862ee1acb446d1d4336faf7a2c5b63d0/particles-alert~dark.mp4"
+        }
+      ]
+    },
+    "particles-alert-poster": {
+      "alt": null,
+      "identifier": "particles-alert-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/53d255bdf500f3a188b227a6a3e53618/particles-alert-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47491f9932754c76eaf8c67481afbf47/particles-alert-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-base": {
+      "alt": "A large visionOS window with a blurred glass background, displaying pink particles flowing from the bottom to the top.",
+      "identifier": "particles-base",
+      "poster": "particles-base-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3ca6fff4532eb961bd8c1943fd6506f/particles-base.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/26551ae267d8fd5fbfa704727208e728/particles-base~dark.mp4"
+        }
+      ]
+    },
+    "particles-base-poster": {
+      "alt": null,
+      "identifier": "particles-base-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3302e1e0766e26b209533a5596c88db1/particles-base-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a4067fe4610864a01249e3589c26d5d9/particles-base-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-color-evolve": {
+      "alt": "A screen recording of the app's particle emitter producing particles that transition from one color to another as they flow upward from the bottom of the app's window in visionOS.",
+      "identifier": "particles-color-evolve",
+      "poster": "particles-color-evolve-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b95fdced7a49aa5478f3570cabe63a51/particles-color-evolve.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/343ad44563e7cc65d921a67f75ed0501/particles-color-evolve~dark.mp4"
+        }
+      ]
+    },
+    "particles-color-evolve-poster": {
+      "alt": null,
+      "identifier": "particles-color-evolve-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/870f3761ff20237dfc99e726d9b9ccee/particles-color-evolve-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70c035d8bef0cf3da7a669e2c1ab8290/particles-color-evolve-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-color-one": {
+      "alt": "A screen recording of the app's particle emitter producing red particles, which flow upward from the bottom of the app's window in visionOS.",
+      "identifier": "particles-color-one",
+      "poster": "particles-color-one-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33ba8f058c5cd97d51f2d3f809c90eb6/particles-color-one.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17e72d8e8108da401c8caeecb5f2d534/particles-color-one~dark.mp4"
+        }
+      ]
+    },
+    "particles-color-one-poster": {
+      "alt": null,
+      "identifier": "particles-color-one-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb69b1a925cebfc2e43960da38923bd2/particles-color-one-poster~dark.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18ccf3dd2e9d6e9e27077f31f9ef4f16/particles-color-one-poster.jpg"
+        }
+      ]
+    },
+    "particles-color-random": {
+      "alt": "A screen recording of the app's particle emitter producing particles, each of which is a random shade of purple because a person selected red and blue colors in the app's UI. The particles flow upward from the bottom of the app's window in visionOS.",
+      "identifier": "particles-color-random",
+      "poster": "particles-color-random-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/182e355908603a2fa2636bb9842a3685/particles-color-random.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e9b518efdb7939ba5dedd335efc0a8b/particles-color-random~dark.mp4"
+        }
+      ]
+    },
+    "particles-color-random-poster": {
+      "alt": null,
+      "identifier": "particles-color-random-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d5b7d3c256a4e721fd0cf5978d10c956/particles-color-random-poster~dark.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d3c6d448919be303fd945f1fbad6ab5/particles-color-random-poster.jpg"
+        }
+      ]
+    },
+    "particles-dense": {
+      "alt": "A screen capture of a particle emitter that's producing pink particles that flow from the bottom of a visionOS window to its center.",
+      "identifier": "particles-dense",
+      "poster": "particles-dense-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04bf36079c5ecfde7353c2d34c75b77c/particles-dense.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b73b540e4cc26e610f9d773d0a26bfee/particles-dense~dark.mp4"
+        }
+      ]
+    },
+    "particles-dense-poster": {
+      "alt": null,
+      "identifier": "particles-dense-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/035a666434f867da10ca5d7c35fb847d/particles-dense-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4d73d7f3a1b03e80a3a2866fc3a8a04/particles-dense-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-main": {
+      "alt": "A large visionOS window with a blurred glass background, displaying particles flowing from the bottom to the center. The particles are transitioning between pink and purple.",
+      "identifier": "particles-main",
+      "poster": "particles-main-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/391543d52faf80d0f015227ee9e82abb/particles-main.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/956f05e763cf435dcf2bde40bb7117cb/particles-main~dark.mp4"
+        }
+      ]
+    },
+    "particles-main-poster": {
+      "alt": null,
+      "identifier": "particles-main-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/410ba0c5e7b5553d6086842cf2f62af6/particles-main-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41210d6afc8ad004c1b6610f8051856f/particles-main-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-main-poster.jpg": {
+      "alt": null,
+      "identifier": "particles-main-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/410ba0c5e7b5553d6086842cf2f62af6/particles-main-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41210d6afc8ad004c1b6610f8051856f/particles-main-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-presets-fireworks": {
+      "alt": "A screen capture of a particle emitter with particles in the form of fireworks that project upward from the bottom of a visionOS window, and then explode near the top.",
+      "identifier": "particles-presets-fireworks",
+      "poster": "particles-presets-fireworks-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc92b7fee1dfa4ecebb573fa3f4f0211/particles-presets-fireworks.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba69625d8d626d33ba6cd133db5acc98/particles-presets-fireworks~dark.mp4"
+        }
+      ]
+    },
+    "particles-presets-fireworks-poster": {
+      "alt": null,
+      "identifier": "particles-presets-fireworks-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2cffc77c643e67f67d0654695269f66/particles-presets-fireworks-poster~dark.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59beea8f34943b92a6c26c3e2787b2c1/particles-presets-fireworks-poster.jpg"
+        }
+      ]
+    },
+    "particles-presets-impact": {
+      "alt": "A screen capture of a particle emitter with particles that emit in a radial pattern and simulate dust from an object hitting the ground.",
+      "identifier": "particles-presets-impact",
+      "poster": "particles-presets-impact-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f735fc31935d4c2afbd8b7f421b96ffd/particles-presets-impact.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba44462c7df8f482d2f926fbf1dfb653/particles-presets-impact~dark.mp4"
+        }
+      ]
+    },
+    "particles-presets-impact-poster": {
+      "alt": null,
+      "identifier": "particles-presets-impact-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/223be26dc9ae90e33b9738987986f41b/particles-presets-impact-poster~dark.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e6d99a857ebed4c894153f9e8bb41de/particles-presets-impact-poster.jpg"
+        }
+      ]
+    },
+    "particles-presets-magic": {
+      "alt": "A screen capture of a particle emitter with particles that twinkle and emit spawn particles.",
+      "identifier": "particles-presets-magic",
+      "poster": "particles-presets-magic-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89d5ad466aa909c8f083a132af7a7d54/particles-presets-magic.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de0300dfc1155080760753561fde4482/particles-presets-magic~dark.mp4"
+        }
+      ]
+    },
+    "particles-presets-magic-poster": {
+      "alt": null,
+      "identifier": "particles-presets-magic-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/452c48503567c76be4e5852a3256c54e/particles-presets-magic-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a3fe756677b6e45584f11d4bd39b9f06/particles-presets-magic-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-presets-rain": {
+      "alt": "A screen capture of a particle emitter with particles that move downwards fast, and are semi-opaque, rendered as streaks.",
+      "identifier": "particles-presets-rain",
+      "poster": "particles-presets-rain-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0f742a4c90c4ebec50789ce8eeb72c1/particles-presets-rain.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/92544ac45f42e5e906045fe8b4702acf/particles-presets-rain~dark.mp4"
+        }
+      ]
+    },
+    "particles-presets-rain-poster": {
+      "alt": null,
+      "identifier": "particles-presets-rain-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a69cedddb50092ff6b3b0896359e3d2a/particles-presets-rain-poster~dark.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7abc5040a3bf73931e7d53d0d16ec788/particles-presets-rain-poster.jpg"
+        }
+      ]
+    },
+    "particles-presets-snow": {
+      "alt": "A screen capture of a particle emitter with particles that softly fall, and incorporate motion from a noise pattern.",
+      "identifier": "particles-presets-snow",
+      "poster": "particles-presets-snow-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ac2c4a00d91f9d1edbf994a10b9e640/particles-presets-snow.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a2ab703f0d37beef894dfdd3dec257ae/particles-presets-snow~dark.mp4"
+        }
+      ]
+    },
+    "particles-presets-snow-poster": {
+      "alt": null,
+      "identifier": "particles-presets-snow-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c021af19d1290ab5129e6c25cf269bf/particles-presets-snow-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a38234eb1b1e29a17c76313efc00da2/particles-presets-snow-poster~dark.jpg"
+        }
+      ]
+    },
+    "particles-presets-sparks": {
+      "alt": "A screen capture of a particle emitter with particles projecting from the bottom left side. The particles are quick and short lived particles that accumulate color to simulate welding sparks.",
+      "identifier": "particles-presets-sparks",
+      "poster": "particles-presets-sparks-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f0328252591a9b320b9e3b9858907ba/particles-presets-sparks.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ff66ff5da65c5c057b41a14ae8f4ced/particles-presets-sparks~dark.mp4"
+        }
+      ]
+    },
+    "particles-presets-sparks-poster": {
+      "alt": null,
+      "identifier": "particles-presets-sparks-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f5279b3e7928e7e1b3033697ecb42bd/particles-presets-sparks-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3fcb70aa26d9a209f723ddc4ef502d98/particles-presets-sparks-poster~dark.jpg"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "24672e0aad03/SimulatingParticlesInYourVisionOSApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Particle-simulation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/ParticleEmitter",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ParticleEmitterComponent/Presets"
+      ],
+      "title": "Particle simulation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Particle-simulation",
+              "generated": true,
+              "identifiers": [],
+              "title": "Particle simulation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/simulating-particles-in-your-visionos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/realitykit/simulating-particles-in-your-visionos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "abstract": [
+    {
+      "text": "Specify an import preview file for the flattener with atoms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sample_atom_container_for_the_QTVR_flattener"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sample atom container for the QTVR flattener"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code in the following listing creates an atom container and adds atoms to indicate an import preview file for the flattener to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Boolean yes = true;",
+            "QTAtomContainer exportData;",
+            "QTAtom parent;",
+            "err = QTNewAtomContainer(&exportData);",
+            "// create a parent for the other settings atoms",
+            "err = QTInsertChild (exportData, kParentAtomIsContainer,",
+            "            QTVRFlattenerParentAtomType, 1, 0, 0, nil, &parent);",
+            "// Add child atom to indicate we want to import the preview from  a file",
+            "err = QTInsertChild (exportData, parent, QTVRImportPreviewAtomType,  1, 0,",
+            "            sizeof (yes), &yes, nil);",
+            "// Add child atom to tell which file to import",
+            "err = QTInsertChild (exportData, parent, QTVRImportSpecAtomType,  1, 0,",
+            "            sizeof (previewSpec), &previewSpec, nil);",
+            "// Tell the export component",
+            "MovieExportSetSettingsFromAtomContainer (qtvrExport, exportData);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Overriding the compression settings is a bit more complicated. You need to open a standard image compression dialog component and make calls to obtain an atom container that you can then pass to the QTVR Flattener component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ComponentInstance sc;",
+            "QTAtomContainer compressorData;",
+            "SCSpatialSettings ss;",
+            "sc = OpenDefaultComponent(StandardCompressionType,StandardCompressionSubType);",
+            "ss.codecType = kCinepakCodecType;",
+            "ss.codec = nil;",
+            "ss.depth = 0;",
+            "ss.spatialQuality = codecHighQuality",
+            "err = SCSetInfo(sc, scSpatialSettingsType, &ss);",
+            "err = SCGetSettingsAsAtomContainer(sc, &compressorData);",
+            "MovieExportSetSettingsFromAtomContainer (qtvrExport, compressorData);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback": {
+      "abstract": [
+        {
+          "text": "Prevent having to download an entire movie before starting playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Optimizing QuickTime VR movies for web playback",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/optimizing_quicktime_vr_movies_for_web_playback"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format": {
+      "abstract": [
+        {
+          "text": "A file format used to store a QuickTime VR movie on disk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QuickTime VR file format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_vr_file_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_QTVR_flattener": {
+      "abstract": [
+        {
+          "text": "Optimize a movie for delivery over the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_QTVR_flattener",
+      "kind": "article",
+      "role": "article",
+      "title": "The QTVR flattener",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/the_qtvr_flattener"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Optimizations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_QTVR_flattener"
+      ],
+      "title": "Optimizations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sample_atom_container_for_the_qtvr_flattener"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

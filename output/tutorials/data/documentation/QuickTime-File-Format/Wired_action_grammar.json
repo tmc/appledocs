@@ -1,0 +1,753 @@
+{
+  "abstract": [
+    {
+      "text": "Embed QT event handlers in their media samples.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Wired action grammar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The wired action grammar shown in this section allows QT event handlers to be expressed in a QuickTime movie. The sprite, text, VR, 3D, and Flash media handlers all support the embedding of QT event handlers in their media samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[(ActionListAtoms)] =",
+            "    kAction, (anyUniqueIDs), (1..numActions)",
+            "        kWhichAction    1, 1",
+            "            [long whichActionConstant]",
+            "        <kActionParameter>  (anyUniqueIDs), (1..numParameters)",
+            "            [(parameterData)] ( whichActionConstant, paramIndex  )",
+            "    // either leaf data or child atoms",
+            "        <kActionFlags>  parameterID,  (1..numParamsWithFlags)",
+            "            [long actionFlags]",
+            "        <kActionParameterMinValue>  parameterID,  (1.. numParamsWithMin)",
+            "            [data depends on param type]",
+            "        <kActionParameterMaxValue>  parameterID,  (1.. numParamsWithMax)",
+            "            [data depends on param type]",
+            "        [(ActionTargetAtoms)]",
+            " ",
+            "        <kCommentAtomType>, (anyUniqueIDs), (1..numComments)",
+            "            [CString]",
+            " ",
+            "[(ActionTargetAtoms)] =",
+            "    <kActionTarget>",
+            "        <kTargetMovie>",
+            "            [no data]",
+            "    <kTargetChildMovieTrackName>",
+            "        <PString childMovieTrackName>",
+            "    <kTargetChildMovieTrack>",
+            "        [IDlong childMovieTrackID]",
+            "    <kTargetChildMovieTrackIndex>",
+            "            [long childMovieTrackIndex]",
+            "        <kTargetChildMovieMovieName>",
+            "            [PString childMovieName]",
+            "        <kTargetChildMovieMovieID>",
+            "            [long childMovieID]",
+            "        <kTargetTrackName>",
+            "            [PString trackName]",
+            "        <kTargetTrackType>",
+            "            [OSType trackType]",
+            "        <kTargetTrackIndex>",
+            "            [long trackIndex]",
+            "            OR",
+            "            [(kExpressionAtoms)]",
+            "        <kTargetTrackID>",
+            "            [long trackID]",
+            "            OR",
+            "            [(kExpressionAtoms)]",
+            "        <kTargetSpriteName>",
+            "            [PString spriteName]",
+            "        <kTargetSpriteIndex>",
+            "            [short spriteIndex]",
+            "            OR",
+            "            [(kExpressionAtoms)]",
+            "        <kTargetSpriteID>",
+            "            [QTAtomID spriteIID]",
+            "            OR",
+            "            [(kExpressionAtoms)]",
+            "        <kTargetQD3DNamedObjectName>",
+            "            [CString objectName]",
+            " ",
+            "[(kExpressionAtoms)] =",
+            "    kExpressionContainerAtomType, 1, 1",
+            "        <kOperatorAtomType, theOperatorType, 1>",
+            "            kOperandAtomType, (anyUniqueIDs), (1..numOperands)",
+            "                [(OperandAtoms)]",
+            "        OR",
+            "        <kOperandAtomType, 1, 1>",
+            "            [(OperandAtoms)]",
+            "[(ActionTargetAtoms)] =",
+            "    <kActionTarget>",
+            " ",
+            "        <kTargetMovieName>",
+            "            [Pstring MovieName]",
+            "        OR",
+            "        <kTargetMovieID>",
+            "            [long MovieID]",
+            "            OR",
+            "            [(kExpressionAtoms)]",
+            " ",
+            "[(OperandAtoms)] =",
+            "    <kOperandExpression> 1, 1",
+            "        [(kExpressionAtoms)]        // allows for recursion",
+            "    OR",
+            "    <kOperandConstant> 1, 1",
+            "        [ float theConstant ]",
+            "    OR",
+            "    <kOperandSpriteTrackVariable> 1, 1",
+            "        [(ActionTargetAtoms)]",
+            "        kActionParameter, 1, 1",
+            "            [QTAtomID spriteVariableID]",
+            "    OR",
+            "    <kOperandKeyIsDown> 1, 1",
+            "        kActionParameter, 1, 1",
+            "            [UInt16 modifierKeys]",
+            "        kActionParameter, 2, 2",
+            "            [UInt8 asciiCharCode]",
+            "    OR",
+            "    <kOperandRandom> 1, 1",
+            "        kActionParameter, 1, 1",
+            "            [short minimum]",
+            "        kActionParameter, 2, 2",
+            "            [short maximum]",
+            "    OR",
+            "    <any other operand atom type>",
+            "        [(ActionTargetAtoms)]"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format for parameter data depends on the action and parameter index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, the ",
+              "type": "text"
+            },
+            {
+              "code": "kActionParameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom is a leaf atom containing data; for a few parameters, it contains child atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "whichAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " corresponds to the action type that is specified by the leaf data of a ",
+              "type": "text"
+            },
+            {
+              "code": "kWhichAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "paramIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the index of the parameter’s ",
+              "type": "text"
+            },
+            {
+              "code": "kActionParameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[(parameterData)] ( whichAction, paramIndex ) =",
+            "{",
+            "    kActionMovieSetVolume:",
+            "        param1:     short volume",
+            " ",
+            "    kActionMovieSetRate",
+            "        param1:     Fixed rate",
+            " ",
+            "    kActionMovieSetLoopingFlags",
+            "        param1:     long loopingFlags",
+            " ",
+            "    kActionMovieGoToTime",
+            "        param1:     TimeValue time",
+            " ",
+            "    kActionMovieGoToTimeByName",
+            "        param1:     Str255 timeName",
+            " ",
+            "    kActionMovieGoToBeginning",
+            "        no params",
+            " ",
+            "    kActionMovieGoToEnd",
+            "        no params",
+            " ",
+            "    kActionMovieStepForward",
+            "        no params",
+            " ",
+            "    kActionMovieStepBackward",
+            "        no params",
+            " ",
+            "    kActionMovieSetSelection",
+            "        param1:     TimeValue startTime",
+            "        param2:     TimeValue endTime",
+            " ",
+            "    kActionMovieSetSelectionByName",
+            "        param1:     Str255 startTimeName",
+            "        param2:     Str255 endTimeName",
+            " ",
+            "    kActionMoviePlaySelection",
+            "        param1:     Boolean selectionOnly",
+            " ",
+            "    kActionMovieSetLanguage",
+            "        param1:     long language",
+            " ",
+            "    kActionMovieChanged",
+            "        no params",
+            " ",
+            "    kActionTrackSetVolume",
+            "        param1:     short volume",
+            " ",
+            "    kActionTrackSetBalance",
+            "        param1:     short balance",
+            " ",
+            "    kActionTrackSetEnabled",
+            "        param1:     Boolean enabled",
+            " ",
+            "    kActionTrackSetMatrix",
+            "        param1:     MatrixRecord matrix",
+            " ",
+            "    kActionTrackSetLayer",
+            "        param1:     short layer",
+            " ",
+            "    kActionTrackSetClip",
+            "        param1:     RgnHandle clip",
+            " ",
+            "    kActionSpriteSetMatrix",
+            "        param1:     MatrixRecord matrix",
+            " ",
+            "    kActionSpriteSetImageIndex",
+            "        parm1:      short imageIndex",
+            " ",
+            "    kActionSpriteSetVisible",
+            "        param1:     short visible",
+            " ",
+            "    kActionSpriteSetLayer",
+            "        param1:     short layer",
+            " ",
+            "    kActionSpriteSetGraphicsMode",
+            "        param1:     ModifierTrackGraphicsModeRecord graphicsMode",
+            " ",
+            "    kActionSpritePassMouseToCodec",
+            "        no params",
+            " ",
+            "    kActionSpriteClickOnCodec",
+            "        param1:     Point localLoc",
+            " ",
+            "    kActionSpriteTranslate",
+            "        param1:     Fixed x",
+            "        param2:     Fixed y",
+            "        param3:     Boolean isRelative",
+            " ",
+            "    kActionSpriteScale",
+            "        param1:     Fixed xScale",
+            "        param2:     Fixed yScale",
+            " ",
+            "    kActionSpriteRotate",
+            "        param1:     Fixed degrees",
+            " ",
+            "    kActionSpriteStretch",
+            "        param1:     Fixed p1x",
+            "        param2:     Fixed p1y",
+            "        param3:     Fixed p2x",
+            "        param4:     Fixed p2y",
+            "        param5:     Fixed p3x",
+            "        param6:     Fixed p3y",
+            "        param7:     Fixed p4x",
+            "        param8:     Fixed p4y",
+            " ",
+            " ",
+            "    kActionQTVRSetPanAngle",
+            "        param1:     float panAngle",
+            " ",
+            "    kActionQTVRSetTiltAngle",
+            "        param1:     float tileAngle",
+            " ",
+            "    kActionQTVRSetFieldOfView",
+            "        param1:     float fieldOfView",
+            " ",
+            "    kActionQTVRShowDefaultView",
+            "        no params",
+            " ",
+            "    kActionQTVRGoToNodeID",
+            "        param1:     UInt32 nodeID",
+            " ",
+            "    kActionMusicPlayNote",
+            "        param1:     long sampleDescIndex",
+            "        param2:     long partNumber",
+            "        param3:     long delay",
+            "        param4:     long pitch",
+            "        param5:     long velocity",
+            "        param6:     long duration",
+            " ",
+            "    kActionMusicSetController",
+            "        param1:     long sampleDescIndex",
+            "        param2:     long partNumber",
+            "        param3:     long delay",
+            "        param4:     long controller",
+            "        param5:     long value",
+            " ",
+            "    kActionCase",
+            "        param1:     [(CaseStatementActionAtoms)]",
+            " ",
+            "    kActionWhile",
+            "        param1:     [(WhileStatementActionAtoms)]",
+            " ",
+            "    kActionGoToURL",
+            "        param1:     CString urlLink",
+            " ",
+            "    kActionSendQTEventToSprite",
+            "        param1:     [(SpriteTargetAtoms)]",
+            "        param2:     QTEventRecord theEvent",
+            " ",
+            "    kActionDebugStr",
+            "        param1:     Str255 theMessageString",
+            " ",
+            "    kActionPushCurrentTime",
+            "        no params",
+            " ",
+            "    kActionPushCurrentTimeWithLabel",
+            "        param1:     Str255 theLabel",
+            " ",
+            "    kActionPopAndGotoTopTime",
+            "        no params",
+            " ",
+            "    kActionPopAndGotoLabeledTime",
+            "        param1:     Str255 theLabel",
+            " ",
+            "    kActionSpriteTrackSetVariable",
+            "        param1:     QTAtomID variableID",
+            "        param2:     float value",
+            " ",
+            "    kActionApplicationNumberAndString",
+            "        param1:     long aNumber",
+            "        param2:     Str255 aString",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both [(CaseStatementActionAtoms)] and [(WhileStatementActionAtoms)] are child atoms of a ",
+              "type": "text"
+            },
+            {
+              "code": "kActionParameter 1, 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[(CaseStatementActionAtoms)] =",
+            "    kConditionalAtomType, (anyUniqueIDs), (1..numCases)",
+            "        [(kExpressionAtoms)]",
+            "        kActionListAtomType 1, 1",
+            "            [(ActionListAtoms)] // may contain nested conditional  actions",
+            " ",
+            "[(WhileStatementActionAtoms)] =",
+            "    kConditionalAtomType, 1, 1",
+            "        [(kExpressionAtoms)]",
+            "        kActionListAtomType 1, 1",
+            "            [(ActionListAtoms)] // may contain nested conditional  actions"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media": {
+      "abstract": [
+        {
+          "text": "Store 3D image data in a base media in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+      "kind": "article",
+      "role": "article",
+      "title": "3D media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/3d_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to replace the default cursors used by QuickTime VR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom cursor atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/custom_cursor_atom"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container": {
+      "abstract": [
+        {
+          "text": "An atom container that includes general information about the node such as the node’s type, ID, and name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Node information atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_information_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom": {
+      "abstract": [
+        {
+          "text": "An atom that is the parent of one or more node ID atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Node parent atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_parent_atom"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key": {
+      "abstract": [
+        {
+          "text": "Build QT atom container-based data structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key",
+      "kind": "article",
+      "role": "article",
+      "title": "QT atom container description key",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/qt_atom_container_description_key"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors": {
+      "abstract": [
+        {
+          "text": "Specify simple button behaviors for sprites in a sprite track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite button behaviors",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_button_behaviors"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media": {
+      "abstract": [
+        {
+          "text": "Sprite media is used to store character-based animation data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types": {
+      "abstract": [
+        {
+          "text": "Atoms that represent sprite media and data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media atom and data types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_atom_and_data_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats": {
+      "abstract": [
+        {
+          "text": "Set sprite media handlers in QT atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media handler sample QT atom container formats",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_handler_sample_qt_atom_container_formats"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format": {
+      "abstract": [
+        {
+          "text": "Set sprite media handler track properties in a QT atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media handler track properties QT atom container format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_handler_track_properties_qt_atom_container_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format": {
+      "abstract": [
+        {
+          "text": "A media format for that stores sprite track information in atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite track media format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_track_media_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties": {
+      "abstract": [
+        {
+          "text": "Define properties that apply to an entire sprite track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite track properties",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_track_properties"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media": {
+      "abstract": [
+        {
+          "text": "Store pairs of values to be interpolated between in QuickTime movies using tween media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tween media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media": {
+      "abstract": [
+        {
+          "text": "Atoms that describe the QuickTime VR world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VR media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/vr_media"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure": {
+      "abstract": [
+        {
+          "text": "An atom that describes the type of a node and its location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Node_location_atom_structure",
+          "text": "Node location atom structure ('nloc')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Node location atom structure ('nloc')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_location_atom_structure"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-data-atom-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container"
+      ],
+      "title": "Media data atom types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/wired_action_grammar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

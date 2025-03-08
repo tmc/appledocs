@@ -1,0 +1,559 @@
+{
+  "abstract": [
+    {
+      "text": "Apply the Core Image suite of filters to child nodes of an effect node.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/applying-special-effects-to-a-node-s-children"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying Special Effects to a Node’s Children"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example image below, the effect node’s children are two sprites that provide lighting information. The effect node accumulates the effects of these lights, applies a blur filter to soften the resulting image, and uses a multiply blend mode to apply this lighting to a texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Any Core Image filter that you use must be able to produce a single output image from a single input image.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3111373",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hereʼs how the scene generates this lighting effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The scene has two children. The first is a textured sprite that represents the ground. The second is an effect node to apply lighting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The effect nodeʼs children are sprite nodes rendered using an additive blend mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The effect node includes a filter effect to soften the lighting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The effect node uses a multiplication blend mode to apply its lighting effect to the sceneʼs framebuffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following Swift code demonstrates an implementation of this technique:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let lightingNode = SKEffectNode()",
+            "",
+            "let light = SKSpriteNode(texture: lightTexture)",
+            "light.blendMode = .add",
+            "...",
+            "lightingNode.addChild(light)",
+            "",
+            "let blurFilter = CIFilter(name: \"CIBoxBlur\",",
+            "withInputParameters: [\"inputRadius\": 20])",
+            "",
+            "lightingNode.filter = blurFilter",
+            "",
+            "lightingNode.blendMode = .multiply"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode": {
+      "abstract": [
+        {
+          "text": "A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEffectNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEffectNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEffectNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skeffectnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/filter": {
+      "abstract": [
+        {
+          "text": "The Core Image filter to apply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/filter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "filter"
+        }
+      ],
+      "role": "symbol",
+      "title": "filter",
+      "type": "topic",
+      "url": "/documentation/spritekit/skeffectnode/filter"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldCenterFilter": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the effect node automatically sets the filter’s image center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCenterFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldCenterFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldCenterFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldCenterFilter",
+      "type": "topic",
+      "url": "/documentation/spritekit/skeffectnode/shouldcenterfilter"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldEnableEffects": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the effect node applies the filter to its children as they are drawn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldEnableEffects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldEnableEffects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldEnableEffects"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldEnableEffects",
+      "type": "topic",
+      "url": "/documentation/spritekit/skeffectnode/shouldenableeffects"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "media-3111373": {
+      "alt": null,
+      "identifier": "media-3111373",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d38d07c6cf154b78e4a8e1ef1270a5c/media-3111373@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Applying-Core-Image-Filters-with-an-Effect-Node",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/filter",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldEnableEffects",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldCenterFilter"
+      ],
+      "title": "Applying Core Image Filters with an Effect Node"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Applying-Core-Image-Filters-with-an-Effect-Node",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/filter",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldEnableEffects",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEffectNode/shouldCenterFilter"
+              ],
+              "title": "Applying Core Image Filters with an Effect Node"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/title",
+          "value": "SKEffectNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEffectNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEffectNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode~1shouldEnableEffects/title",
+          "value": "shouldEnableEffects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode~1shouldEnableEffects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldEnableEffects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode~1shouldCenterFilter/title",
+          "value": "shouldCenterFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode~1shouldCenterFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldCenterFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode~1filter/title",
+          "value": "filter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEffectNode~1filter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "filter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/applying-special-effects-to-a-node-s-children"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/applying-special-effects-to-a-node-s-children"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

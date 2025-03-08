@@ -1,0 +1,928 @@
+{
+  "abstract": [
+    {
+      "text": "Control the transport behavior and input sources of capture hardware in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/macos-capture-features"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "macOS Capture Features"
+  },
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/InputSource": {
+      "abstract": [
+        {
+          "text": "A distinct input source on a capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputSource"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/InputSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InputSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.InputSource",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/inputsource"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsPlaybackMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the transport control’s current mode of playback, if it has one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransportControlsPlaybackMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsPlaybackMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransportControlsPlaybackMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.TransportControlsPlaybackMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/transportcontrolsplaybackmode-swift.enum"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsSpeed-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A constant that specifies speed of transport controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransportControlsSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsSpeed-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransportControlsSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.TransportControlsSpeed",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/transportcontrolsspeed-swift.typealias"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeInputSource": {
+      "abstract": [
+        {
+          "text": "The currently active input source of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeInputSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceInputSource",
+          "text": "InputSource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeInputSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeInputSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeInputSource",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activeinputsource"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/inputSources": {
+      "abstract": [
+        {
+          "text": "An array of input sources that the device supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputSources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceInputSource",
+          "text": "InputSource"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/inputSources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputSources"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputSources",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/inputsources"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/linkedDevices": {
+      "abstract": [
+        {
+          "text": "An array of capture devices that are physically linked to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkedDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/linkedDevices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "linkedDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "linkedDevices",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/linkeddevices"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setTransportControlsPlaybackMode(_:speed:)": {
+      "abstract": [
+        {
+          "text": "Sets the transport control’s playback mode and speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTransportControlsPlaybackMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureDeviceTransportControlsPlaybackMode",
+          "text": "TransportControlsPlaybackMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceTransportControlsSpeed",
+          "text": "TransportControlsSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setTransportControlsPlaybackMode(_:speed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTransportControlsPlaybackMode:speed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTransportControlsPlaybackMode(_:speed:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/settransportcontrolsplaybackmode(_:speed:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsPlaybackMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The current playback mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transportControlsPlaybackMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureDeviceTransportControlsPlaybackMode",
+          "text": "TransportControlsPlaybackMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsPlaybackMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transportControlsPlaybackMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "transportControlsPlaybackMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/transportcontrolsplaybackmode-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSpeed-swift.property": {
+      "abstract": [
+        {
+          "text": "The current playback speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transportControlsSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceTransportControlsSpeed",
+          "text": "TransportControlsSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSpeed-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transportControlsSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "transportControlsSpeed",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/transportcontrolsspeed-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports transport control commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transportControlsSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transportControlsSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "transportControlsSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/transportcontrolssupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup": {
+      "abstract": [
+        {
+          "text": "Configure built-in cameras and microphones, and external capture devices, for media capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capture setup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-setup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Controlling-Transport-Behavior",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsPlaybackMode-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setTransportControlsPlaybackMode(_:speed:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsPlaybackMode-swift.enum",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSpeed-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsSpeed-swift.typealias"
+      ],
+      "title": "Controlling Transport Behavior"
+    },
+    {
+      "anchor": "Configuring-Input-Sources",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/inputSources",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeInputSource",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/InputSource"
+      ],
+      "title": "Configuring Input Sources"
+    },
+    {
+      "anchor": "Accessing-Linked-Devices",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/linkedDevices"
+      ],
+      "title": "Accessing Linked Devices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Controlling-Transport-Behavior",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsPlaybackMode-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setTransportControlsPlaybackMode(_:speed:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsPlaybackMode-swift.enum",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/transportControlsSpeed-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/TransportControlsSpeed-swift.typealias"
+              ],
+              "title": "Controlling Transport Behavior"
+            },
+            {
+              "anchor": "Configuring-Input-Sources",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/inputSources",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeInputSource",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/InputSource"
+              ],
+              "title": "Configuring Input Sources"
+            },
+            {
+              "anchor": "Accessing-Linked-Devices",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/linkedDevices"
+              ],
+              "title": "Accessing Linked Devices"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1TransportControlsSpeed-swift.typealias/title",
+          "value": "AVCaptureDeviceTransportControlsSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1TransportControlsSpeed-swift.typealias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTransportControlsSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1TransportControlsSpeed-swift.typealias/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTransportControlsSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1setTransportControlsPlaybackMode(_:speed:)/title",
+          "value": "setTransportControlsPlaybackMode:speed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1setTransportControlsPlaybackMode(_:speed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTransportControlsPlaybackMode:speed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1TransportControlsPlaybackMode-swift.enum/title",
+          "value": "AVCaptureDeviceTransportControlsPlaybackMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1TransportControlsPlaybackMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTransportControlsPlaybackMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1TransportControlsPlaybackMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTransportControlsPlaybackMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportControlsPlaybackMode-swift.property/title",
+          "value": "transportControlsPlaybackMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportControlsPlaybackMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transportControlsPlaybackMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1inputSources/title",
+          "value": "inputSources"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1inputSources/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputSources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1linkedDevices/title",
+          "value": "linkedDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1linkedDevices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "linkedDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportControlsSupported/title",
+          "value": "transportControlsSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportControlsSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transportControlsSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportControlsSpeed-swift.property/title",
+          "value": "transportControlsSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1transportControlsSpeed-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transportControlsSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1InputSource/title",
+          "value": "AVCaptureDeviceInputSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1InputSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInputSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1InputSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInputSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeInputSource/title",
+          "value": "activeInputSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeInputSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeInputSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/macos-capture-features"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/macos-capture-features"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

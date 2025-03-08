@@ -1,0 +1,2826 @@
+{
+  "abstract": [
+    {
+      "text": "The nodes in the abstract, logical tree structure that represents an XML document. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/xmlnode"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409819,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSXMLNode",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "XMLNode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "XMLNode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XMLNode"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") represents an XML document in its entirety. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Among the XML family of classes (excluding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlparser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is the base class. Inheriting from it are the classes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlelement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmldtd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmldtdnode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1663408",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if you want nodes of kinds different from the supported ones, You can also create a subclass with more specialized attributes or behavior than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1663424",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " you need to override the primary initializer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409747-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "none",
+          "metadata": {
+            "anchor": "2555895",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1408882-kind",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409740-parent",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409770-name",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409811-child",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409770-name",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409808-childcount",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409756-objectvalue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409828-children",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409756-objectvalue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409806-detach",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409818-stringvalue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409734-localname",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409758-setstringvalue",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409797-prefix",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409743-index",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409774-uri",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " implements the ",
+              "type": "text"
+            },
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to perform a deep comparison: two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison looks at the node and its children, but does not include the node’s parent. If you want a different standard of comparison, override ",
+              "type": "text"
+            },
+            {
+              "code": "isEqual:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1663443",
+          "level": 4,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument/1409660-replacementclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return your custom class in place of an NSXML class. If your custom class has no direct NSXML counterpart—for example, it is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/xml_processing_and_modeling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XML Processing and Modeling",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/xml_processing_and_modeling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmldocument": {
+      "abstract": [
+        {
+          "text": "An XML document as internalized into a logical tree structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLDocument",
+      "type": "topic",
+      "url": "/documentation/foundation/xmldocument"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmldocument/1409660-replacementclass": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument/1409660-replacementclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacementClass(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmldocument/1409660-replacementclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmldtd": {
+      "abstract": [
+        {
+          "text": "A representation of a Document Type Definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLDTD"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmldtd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLDTD",
+      "type": "topic",
+      "url": "/documentation/foundation/xmldtd"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmldtdnode": {
+      "abstract": [
+        {
+          "text": "A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLDTDNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmldtdnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLDTDNode",
+      "type": "topic",
+      "url": "/documentation/foundation/xmldtdnode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlelement": {
+      "abstract": [
+        {
+          "text": "The element nodes in an XML tree structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLElement",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode": {
+      "abstract": [
+        {
+          "text": "The nodes in the abstract, logical tree structure that represents an XML document. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLNode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLNode",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode#2555895": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode#2555895",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/xmlnode#2555895"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1407393-prefix": {
+      "abstract": [
+        {
+          "text": "Returns the prefix from the specified qualified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1407393-prefix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefix(forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1407393-prefix"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1407508-level": {
+      "abstract": [
+        {
+          "text": "Returns the nesting level of the receiver within the tree hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1407508-level",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "level",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1407508-level"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1408882-kind": {
+      "abstract": [
+        {
+          "text": "Returns the kind of node the receiver is as a constant of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/kind",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kind"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode.Kind"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1408882-kind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kind",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1408882-kind"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409145-dtdnode": {
+      "abstract": [
+        {
+          "text": "Returns a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmldtdnode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object representing the DTD declaration for an element, attribute, entity, or notation based on a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dtdNode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withXMLString"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409145-dtdnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dtdNode(withXMLString:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409145-dtdnode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409299-element": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlelement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object with the given tag (name), attributes, and children. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": [XMLNode]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [XMLNode]?) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409299-element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "element(withName:children:attributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409299-element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409460-element": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlelement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object with a single text-node child containing the specified text. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409460-element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "element(withName:stringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409460-element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409646-localname": {
+      "abstract": [
+        {
+          "text": "Returns the local name from the specified qualified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409646-localname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localName(forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409646-localname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409734-localname": {
+      "abstract": [
+        {
+          "text": "Returns the local name of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409734-localname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localName",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409734-localname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409736-previous": {
+      "abstract": [
+        {
+          "text": "Returns the previous ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object in document order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "previous"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409736-previous",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previous",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409736-previous"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409738-namespace": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing a namespace with a specified name and URI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "namespace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409738-namespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "namespace(withName:stringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409738-namespace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409740-parent": {
+      "abstract": [
+        {
+          "text": "Returns the parent node of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409740-parent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409740-parent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409743-index": {
+      "abstract": [
+        {
+          "text": "Returns the index of the receiver identifying its position relative to its sibling nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409743-index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409743-index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409745-predefinednamespace": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing one of the predefined namespaces with the specified prefix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "predefinedNamespace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forPrefix"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409745-predefinednamespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predefinedNamespace(forPrefix:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409745-predefinednamespace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409747-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance initialized with the constant indicating node kind and one or more initialization options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "kind"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode.Kind, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409747-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(kind:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409747-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409750-nextsibling": {
+      "abstract": [
+        {
+          "text": "Returns the next ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that is a sibling node to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextSibling"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409750-nextsibling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextSibling",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409750-nextsibling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409752-element": {
+      "abstract": [
+        {
+          "text": "Returns an element whose fully qualified name is specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "uri"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409752-element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "element(withName:uri:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409752-element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409754-text": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing a text node with specified content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withStringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409754-text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text(withStringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409754-text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409756-objectvalue": {
+      "abstract": [
+        {
+          "text": "Returns the object value of the receiver. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409756-objectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectValue",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409756-objectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409758-setstringvalue": {
+      "abstract": [
+        {
+          "text": "Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStringValue"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvingEntities"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409758-setstringvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStringValue(_:resolvingEntities:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409758-setstringvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409760-element": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlelement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object with a given tag identifier, or name ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409760-element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "element(withName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409760-element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409764-previoussibling": {
+      "abstract": [
+        {
+          "text": "Returns the previous ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that is a sibling node to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "previousSibling"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409764-previoussibling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previousSibling",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409764-previoussibling"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409766-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance initialized with the constant indicating node kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "kind"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode.Kind)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409766-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(kind:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409766-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409768-objects": {
+      "abstract": [
+        {
+          "text": "Returns the objects resulting from executing an XQuery query upon the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forXQuery"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409768-objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects(forXQuery:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409768-objects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409770-name": {
+      "abstract": [
+        {
+          "text": "Returns the name of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409770-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409770-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409772-xmlstring": {
+      "abstract": [
+        {
+          "text": "Returns the string representation of the receiver as it would appear in an XML document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "xmlString"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409772-xmlstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xmlString",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409772-xmlstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409774-uri": {
+      "abstract": [
+        {
+          "text": "Returns the URI associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "uri"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409774-uri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uri",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409774-uri"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409778-xmlstring": {
+      "abstract": [
+        {
+          "text": "Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "xmlString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode.Options) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409778-xmlstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xmlString(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409778-xmlstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409780-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409780-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409780-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409784-processinginstruction": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing a processing instruction with a specified name and value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "processingInstruction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409784-processinginstruction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processingInstruction(withName:stringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409784-processinginstruction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409788-description": {
+      "abstract": [
+        {
+          "text": "Returns a description of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409788-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409788-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409792-objects": {
+      "abstract": [
+        {
+          "text": "Returns the objects resulting from executing an XQuery query upon the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forXQuery"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "constants"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409792-objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects(forXQuery:constants:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409792-objects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409795-attribute": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing an attribute node with a given name and string. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409795-attribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attribute(withName:stringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409795-attribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409797-prefix": {
+      "abstract": [
+        {
+          "text": "Returns the prefix of the receiver’s name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefix"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409797-prefix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefix",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409797-prefix"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409800-next": {
+      "abstract": [
+        {
+          "text": "Returns the next ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object in document order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "next"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409800-next",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "next",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409800-next"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409802-document": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object initialized with a given root element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withRootElement"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLElement) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409802-document",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "document(withRootElement:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409802-document"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409806-detach": {
+      "abstract": [
+        {
+          "text": "Detaches the receiver from its parent node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "detach"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409806-detach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detach()",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409806-detach"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409808-childcount": {
+      "abstract": [
+        {
+          "text": "Returns the number of child nodes the receiver has.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "childCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409808-childcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "childCount",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409808-childcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409811-child": {
+      "abstract": [
+        {
+          "text": "Returns the child node of the receiver at the specified location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "child"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> XMLNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409811-child",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "child(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409811-child"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409813-nodes": {
+      "abstract": [
+        {
+          "text": "Returns the nodes resulting from executing an XPath query upon the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nodes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forXPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [XMLNode]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409813-nodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nodes(forXPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409813-nodes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409815-attribute": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing an attribute node with a given qualified name and string. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "uri"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409815-attribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attribute(withName:uri:stringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409815-attribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409817-canonicalxmlstringpreservingcomm": {
+      "abstract": [
+        {
+          "text": "Returns a string object encapsulating the receiver’s XML in canonical form.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalXMLStringPreservingComments"
+        },
+        {
+          "kind": "text",
+          "text": "(Bool) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409817-canonicalxmlstringpreservingcomm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalXMLStringPreservingComments(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409817-canonicalxmlstringpreservingcomm"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409818-stringvalue": {
+      "abstract": [
+        {
+          "text": "Returns the content of the receiver as a string value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409818-stringvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409818-stringvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409821-document": {
+      "abstract": [
+        {
+          "text": "Returns an empty document node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409821-document",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "document()",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409821-document"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409826-xpath": {
+      "abstract": [
+        {
+          "text": "Returns the XPath expression identifying the receiver’s location in the document tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "xPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409826-xpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xPath",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409826-xpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409828-children": {
+      "abstract": [
+        {
+          "text": "Returns an immutable array containing the child nodes of the receiver (as ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": [XMLNode]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409828-children",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409828-children"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409830-rootdocument": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object containing the root element and representing the XML document as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": XMLDocument?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409830-rootdocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootDocument",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409830-rootdocument"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/1409831-comment": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " object representing a comment node containing given text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withStringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409831-comment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "comment(withStringValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/1409831-comment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/kind": {
+      "abstract": [
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " declares the following constants of type NSXMLNodeKind for specifying a node’s kind in the initializer methods ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409766-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409747-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ":",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLNode.Kind"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/kind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLNode.Kind",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/kind"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlnode/options": {
+      "abstract": [
+        {
+          "text": "These constants are input and output options for all ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects (unless otherwise indicated), including ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmldocument",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects. You can specify these options in the ",
+          "type": "text"
+        },
+        {
+          "code": "NSXMLNode",
+          "type": "codeVoice"
+        },
+        {
+          "text": " methods ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409747-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/1409778-xmlstring",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "XMLNode.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlnode/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLNode.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlnode/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlparser": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlparser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLParser",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlparser"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418795-isequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmldtd",
+        "doc://com.apple.documentation/documentation/foundation/xmldtdnode",
+        "doc://com.apple.documentation/documentation/foundation/xmldocument",
+        "doc://com.apple.documentation/documentation/foundation/xmlelement"
+      ],
+      "title": "Tree-Based Processing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1663472",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409766-init",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409747-init",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409821-document",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409802-document",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409760-element",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409299-element",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409460-element",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409752-element",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409795-attribute",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409815-attribute",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409754-text",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409831-comment",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409738-namespace",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409145-dtdnode",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409745-predefinednamespace",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409784-processinginstruction"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing Node Objects"
+    },
+    {
+      "anchor": "1663693",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409743-index",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1408882-kind",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1407508-level",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409770-name",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409756-objectvalue",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409818-stringvalue",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409758-setstringvalue",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409774-uri"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing XML Node Objects"
+    },
+    {
+      "anchor": "1663906",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409830-rootdocument",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409740-parent",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409811-child",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409808-childcount",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409828-children",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409800-next",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409750-nextsibling",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409736-previous",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409764-previoussibling",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409806-detach"
+      ],
+      "kind": "taskGroup",
+      "title": "Navigating the Tree of Nodes"
+    },
+    {
+      "anchor": "1664035",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409772-xmlstring",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409778-xmlstring",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409817-canonicalxmlstringpreservingcomm",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409788-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Emitting Node Content"
+    },
+    {
+      "anchor": "1664109",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409813-nodes",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409768-objects",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409792-objects",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409826-xpath"
+      ],
+      "kind": "taskGroup",
+      "title": "Executing Queries"
+    },
+    {
+      "anchor": "1664179",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409734-localname",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409646-localname",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409797-prefix",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1407393-prefix"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Namespaces"
+    },
+    {
+      "anchor": "1664244",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/kind",
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/options"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2855545",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/xmlnode/1409780-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsxmlnode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/xmlnode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

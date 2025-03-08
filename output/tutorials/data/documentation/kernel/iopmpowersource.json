@@ -1,0 +1,1504 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/driver_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iopmpowersource"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1543774,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOPMPowerSource",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOPMPowerSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOPMPowerSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See IOKit/pwr_mgt/IOPM.h for power source keys relevant to this class. These report-type keys are required for calls to IOPMPowerSource::setReportables(), and they define the IORegistry interface through which data is passed back up to the rest of the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A subclassing driver that doesn't want to do anything fancy should:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subclass IOPMPowerSource",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install its own battery change notifications or polling routine that can converse with actual battery hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When battery state changes, change the relevant member variables through setCurrentCapacity() style accessors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call updateStatus() on itself when all such settings have been updated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subclass driver should also initially populate its settings and call updateStatus() on launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            " ExternalConnected",
+            " Type: bool",
+            " IORegistry Key: kIOPMPSExternalConnectedKey",
+            " True if computer is drawing external power",
+            " ",
+            " ExternalChargeCapable",
+            " Type: bool",
+            " IORegistry Key: kIOPMPSExternalChargeCapableKey",
+            " True if external power is capable of charging internal battery",
+            " ",
+            " BatteryInstalled",
+            " Type: bool",
+            " IORegistry Key: kIOPMPSBatteryInstalledKey",
+            " True if a battery is present; false if removed",
+            " ",
+            " IsCharging",
+            " Type: bool",
+            " IORegistry Key: kIOPMPSIsChargingKey",
+            " True if battery is charging itself from external power",
+            " ",
+            " AtWarnLevel",
+            " Type: bool",
+            " IORegistry Key: kIOPMPSAtWarnLevelKey",
+            " True if draining battery capacity and past warn level",
+            " ",
+            " AtCriticalLevel",
+            " Type: bool",
+            " IORegistry Key: kIOPMPSAtCriticalLevelKey",
+            " True if draining battery capacity and past critical level",
+            " ",
+            " CurrentCapacity",
+            " MaxCapacity",
+            " Type: unsigned int",
+            " IORegistry Key: kIOPMPSCurrentCapacityKey, kIOPMPSMaxCapacityKey",
+            " Capacity measured in mAh",
+            " ",
+            " TimeRemaining",
+            " Type: int",
+            " IORegistry Key: kIOPMPSTimeRemainingKey",
+            " Time remaining measured in minutes",
+            " ",
+            " Amperage",
+            " Type: int",
+            " IORegistry Key: kIOPMPSAmperageKey",
+            " Current is measured in mA",
+            " ",
+            " Voltage",
+            " Type: unsigned int",
+            " IORegistry Key: kIOPMPSVoltageKey",
+            " Voltage measured in mV",
+            " ",
+            " CycleCount",
+            " Type: unsigned int",
+            " IORegistry Key: kIOPMPSCycleCountKey",
+            " Number of charge/discharge cycles",
+            " ",
+            " AdapterInfo",
+            " Type: int",
+            " IORegistry Key: kIOPMPSAdapterInfoKey",
+            " Power adapter information",
+            " ",
+            " Location",
+            " Type: int",
+            " IORegistry Key: kIOPMPSLocationKey",
+            " Clue about battery's location in machine - Left vs. Right",
+            " ",
+            " ErrorCondition",
+            " Type: OSSymbol",
+            " IORegistry Key: kIOPMPSErrorConditionKey",
+            " String describing error state of battery",
+            " ",
+            " Manufacturer",
+            " Type: OSSymbol",
+            " IORegistry Key: kIOPMPSManufacturerKey",
+            " String describing battery manufacturer",
+            " ",
+            " Manufactured Date",
+            " Type: unsigned 16-bit bitfield",
+            " IORegistry Key: kIOPMPSManufactureDateKey",
+            " Date is published in a bitfield per the Smart Battery Data spec rev 1.1",
+            " in section 5.1.26",
+            "   Bits 0...4 => day (value 1-31; 5 bits)",
+            "   Bits 5...8 => month (value 1-12; 4 bits)",
+            "   Bits 9...15 => years since 1980 (value 0-127; 7 bits)",
+            " ",
+            " Model",
+            " Type: OSSymbol",
+            " IORegistry Key: kIOPMPSModelKey",
+            " String describing model number",
+            " ",
+            " Serial",
+            " Type: OSSymbol",
+            " IORegistry Key: kIOPMPSSerialKey",
+            " String describing serial number or unique info",
+            " The serial number published hear bears no correspondence to the Apple serial",
+            " number printed on each battery. This is a manufacturer serial number with",
+            " no correlation to the printed serial number.",
+            " ",
+            " LegacyIOBatteryInfo",
+            " Type: OSDictionary",
+            " IORegistry Key: kIOPMPSLegacyBatteryInfoKey",
+            " Dictionary conforming to the OS X 10.0-10.4",
+            " "
+          ],
+          "metadata": {
+            "anchor": "2556620",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1579170-acknowledgesleepwakenotification": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1579170-acknowledgesleepwakenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acknowledgeSleepWakeNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/1579170-acknowledgesleepwakenotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/driver_support": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/driver_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Driver Support",
+      "type": "topic",
+      "url": "/documentation/kernel/driver_support"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gioacpiaddresskey": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gioacpiaddresskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gIOACPIAddressKey",
+      "type": "topic",
+      "url": "/documentation/kernel/gioacpiaddresskey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gioacpidevicestatuskey": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gioacpidevicestatuskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gIOACPIDeviceStatusKey",
+      "type": "topic",
+      "url": "/documentation/kernel/gioacpidevicestatuskey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gioacpihardwareidkey": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gioacpihardwareidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gIOACPIHardwareIDKey",
+      "type": "topic",
+      "url": "/documentation/kernel/gioacpihardwareidkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gioacpiplane": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gioacpiplane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gIOACPIPlane",
+      "type": "topic",
+      "url": "/documentation/kernel/gioacpiplane"
+    },
+    "doc://com.apple.documentation/documentation/kernel/gioacpiuniqueidkey": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/gioacpiuniqueidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gIOACPIUniqueIDKey",
+      "type": "topic",
+      "url": "/documentation/kernel/gioacpiuniqueidkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioacpiaddress": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioacpiaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOACPIAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/ioacpiaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspacedescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspacedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOACPIAddressSpaceDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioacpiaddressspacedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspacehandler": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspacehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOACPIAddressSpaceHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/ioacpiaddressspacehandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspaceid": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspaceid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOACPIAddressSpaceID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioacpiaddressspaceid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioacpiplatformdevice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioacpiplatformdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOACPIPlatformDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioacpiplatformdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioacpiplatformexpert": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioacpiplatformexpert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOACPIPlatformExpert",
+      "type": "topic",
+      "url": "/documentation/kernel/ioacpiplatformexpert"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPMPowerSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource#2556620": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource#2556620",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/iopmpowersource#2556620"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543706-setcurrentcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCurrentCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543706-setcurrentcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCurrentCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543706-setcurrentcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543708-externalchargecapable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalChargeCapable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543708-externalchargecapable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "externalChargeCapable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543708-externalchargecapable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543709-serial": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543709-serial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serial",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543709-serial"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543711-cyclecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cycleCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543711-cyclecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cycleCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543711-cyclecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543712-adapterinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "adapterInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543712-adapterinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adapterInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543712-adapterinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543714-setlegacyiobatteryinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLegacyIOBatteryInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543714-setlegacyiobatteryinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLegacyIOBatteryInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543714-setlegacyiobatteryinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543716-manufacturer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "manufacturer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543716-manufacturer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "manufacturer",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543716-manufacturer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543719-setmaxcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMaxCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543719-setmaxcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMaxCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543719-setmaxcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543720-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543720-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543720-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543722-setlocation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543722-setlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543722-setlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543724-maxcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543724-maxcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maxCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543724-maxcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543726-amperage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "amperage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543726-amperage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "amperage",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543726-amperage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543728-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543728-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543728-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543729-setmanufacturer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setManufacturer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543729-setmanufacturer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setManufacturer",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543729-setmanufacturer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543731-setatcriticallevel": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAtCriticalLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543731-setatcriticallevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAtCriticalLevel",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543731-setatcriticallevel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543733-setadapterinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAdapterInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543733-setadapterinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAdapterInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543733-setadapterinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543734-setischarging": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIsCharging"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543734-setischarging",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIsCharging",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543734-setischarging"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543735-legacyiobatteryinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "legacyIOBatteryInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543735-legacyiobatteryinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "legacyIOBatteryInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543735-legacyiobatteryinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543736-capacitypercentremaining": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacityPercentRemaining"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543736-capacitypercentremaining",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capacityPercentRemaining",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543736-capacitypercentremaining"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543738-timeremaining": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRemaining"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543738-timeremaining",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeRemaining",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543738-timeremaining"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543739-setamperage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAmperage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543739-setamperage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAmperage",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543739-setamperage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543743-setexternalchargecapable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setExternalChargeCapable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543743-setexternalchargecapable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setExternalChargeCapable",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543743-setexternalchargecapable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543745-updatestatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543745-updatestatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543745-updatestatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543747-setserial": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSerial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543747-setserial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSerial",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543747-setserial"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543748-seterrorcondition": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setErrorCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543748-seterrorcondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setErrorCondition",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543748-seterrorcondition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543749-externalconnected": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543749-externalconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "externalConnected",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543749-externalconnected"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543751-setvoltage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVoltage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543751-setvoltage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVoltage",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543751-setvoltage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543753-settimeremaining": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeRemaining"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543753-settimeremaining",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeRemaining",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543753-settimeremaining"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543755-setatwarnlevel": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAtWarnLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543755-setatwarnlevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAtWarnLevel",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543755-setatwarnlevel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543758-setcyclecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCycleCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543758-setcyclecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCycleCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543758-setcyclecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543759-location": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543759-location",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "location",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543759-location"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543760-errorcondition": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543760-errorcondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorCondition",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543760-errorcondition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543762-setbatteryinstalled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBatteryInstalled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543762-setbatteryinstalled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBatteryInstalled",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543762-setbatteryinstalled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543763-voltage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "voltage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543763-voltage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "voltage",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543763-voltage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543764-setexternalconnected": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setExternalConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543764-setexternalconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setExternalConnected",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543764-setexternalconnected"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543765-powersource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "powerSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543765-powersource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "powerSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543765-powersource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543766-model": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543766-model",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543766-model"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543767-setpsproperty": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPSProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543767-setpsproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPSProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543767-setpsproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543768-atcriticallevel": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "atCriticalLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543768-atcriticallevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atCriticalLevel",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543768-atcriticallevel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543769-ischarging": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCharging"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543769-ischarging",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCharging",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543769-ischarging"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543771-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543771-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543771-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543772-getpsproperty": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPSProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543772-getpsproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPSProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543772-getpsproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543773-setmodel": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setModel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543773-setmodel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setModel",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543773-setmodel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543775-batteryinstalled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryInstalled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543775-batteryinstalled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "batteryInstalled",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543775-batteryinstalled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543776-atwarnlevel": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "atWarnLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543776-atwarnlevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atWarnLevel",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543776-atwarnlevel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543777-currentcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543777-currentcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1543777-currentcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809904-powersource": {
+      "abstract": [
+        {
+          "text": "Creates a new IOPMPowerSource nub. Must be attached to IORegistry, and registered by provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809904-powersource",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1809904-powersource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809917-setpsproperty": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809917-setpsproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPSProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1809917-setpsproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809926-updatestatus": {
+      "abstract": [
+        {
+          "text": "Must be called by physical battery controller when battery state has changed significantly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809926-updatestatus",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "updateStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/1809926-updatestatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/properties": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/properties",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/properties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersource/settingschangedsinceupdate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersource/settingschangedsinceupdate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "settingsChangedSinceUpdate",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersource/settingschangedsinceupdate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowersourcelist": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowersourcelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPMPowerSourceList",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowersourcelist"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowerstate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPMPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmrootdomain": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmrootdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPMrootDomain",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmrootdomain"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopowerconnection": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopowerconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPowerConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/iopowerconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopwrcontroller": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopwrcontroller",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPwrController",
+      "type": "topic",
+      "url": "/documentation/kernel/iopwrcontroller"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioacpiplatformdevice",
+        "doc://com.apple.documentation/documentation/kernel/ioacpiplatformexpert",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersourcelist",
+        "doc://com.apple.documentation/documentation/kernel/iopmrootdomain",
+        "doc://com.apple.documentation/documentation/kernel/iopowerconnection",
+        "doc://com.apple.documentation/documentation/kernel/iopwrcontroller",
+        "doc://com.apple.documentation/documentation/kernel/ioacpiaddress",
+        "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspacedescriptor",
+        "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspacehandler",
+        "doc://com.apple.documentation/documentation/kernel/ioacpiaddressspaceid",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/1579170-acknowledgesleepwakenotification",
+        "doc://com.apple.documentation/documentation/kernel/gioacpiaddresskey",
+        "doc://com.apple.documentation/documentation/kernel/gioacpidevicestatuskey",
+        "doc://com.apple.documentation/documentation/kernel/gioacpihardwareidkey",
+        "doc://com.apple.documentation/documentation/kernel/gioacpiplane",
+        "doc://com.apple.documentation/documentation/kernel/gioacpiuniqueidkey"
+      ],
+      "title": "Power Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818664",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809904-powersource",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809917-setpsproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1809926-updatestatus"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818671",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/settingschangedsinceupdate",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/properties"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2857503",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543712-adapterinfo",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543726-amperage",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543768-atcriticallevel",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543776-atwarnlevel",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543775-batteryinstalled",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543736-capacitypercentremaining",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543777-currentcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543711-cyclecount",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543760-errorcondition",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543708-externalchargecapable",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543749-externalconnected",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543728-free",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543720-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543772-getpsproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543771-init",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543769-ischarging",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543735-legacyiobatteryinfo",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543759-location",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543716-manufacturer",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543724-maxcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543766-model",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543709-serial",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543733-setadapterinfo",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543739-setamperage",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543731-setatcriticallevel",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543755-setatwarnlevel",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543762-setbatteryinstalled",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543706-setcurrentcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543758-setcyclecount",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543748-seterrorcondition",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543743-setexternalchargecapable",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543764-setexternalconnected",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543734-setischarging",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543714-setlegacyiobatteryinfo",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543722-setlocation",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543729-setmanufacturer",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543719-setmaxcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543773-setmodel",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543767-setpsproperty",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543747-setserial",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543753-settimeremaining",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543751-setvoltage",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543738-timeremaining",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543745-updatestatus",
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543763-voltage"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857504",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopmpowersource/1543765-powersource"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iopmpowersource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

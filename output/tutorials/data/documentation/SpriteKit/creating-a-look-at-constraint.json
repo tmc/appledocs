@@ -1,0 +1,763 @@
+{
+  "abstract": [
+    {
+      "text": "Make a node automatically rotate itself based on the changing position of another node, by using orientation constraints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-look-at-constraint"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Look-At Constraint"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common use for orientation constraints is to make a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "look-at constraint",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For example, you may create a look-at constraint to make a pair of eyes follow a moving object or to have a rocket point in the direction of its target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to create a constraint to make a sprite node named ",
+              "type": "text"
+            },
+            {
+              "code": "pointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " always point toward a circular-shape node named ",
+              "type": "text"
+            },
+            {
+              "code": "target",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The texture assigned to ",
+              "type": "text"
+            },
+            {
+              "code": "pointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an upward-pointing arrow and, because SpriteKit’s angular coordinates have their origin at the three o’clock position, the orient constraint has an offset of 90° (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": "/2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " radians) so that the arrow is correctly oriented toward the target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let target = SKShapeNode(circleOfRadius: 10)",
+            "target.position = CGPoint(x: 100, y: 100)",
+            "scene.addChild(target)",
+            "    ",
+            "let pointer = SKSpriteNode(imageNamed: \"arrowUp.png\")",
+            "pointer.position = CGPoint(x: 200, y: 200)",
+            "scene.addChild(pointer)",
+            "    ",
+            "let lookAtConstraint = SKConstraint.orient(to: target,",
+            "                                           offset: SKRange(constantValue: -CGFloat.pi / 2))",
+            "pointer.constraints = [ lookAtConstraint ]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A further orientation constraint, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", can be used in combination with the look-at constraint shown above to limit rotation. When you add the code above, the arrow’s rotation is limited so that it never points downward:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let limitLookAt = SKConstraint.zRotation(SKRange(lowerLimit: -CGFloat.pi / 2,",
+            "                                                 upperLimit: CGFloat.pi / 2))",
+            "      ",
+            "pointer.constraints = [ lookAtConstraint, limitLookAt ]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi": {
+      "abstract": [
+        {
+          "text": "The mathematical constant π (3.14159…).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pi"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pi",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat/1845230-pi"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint": {
+      "abstract": [
+        {
+          "text": "A specification for constraining a node’s position or rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKConstraint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that forces a node to rotate to face a point in another node’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientToPoint:inNode:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orient(to:in:offset:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/orient(to:in:offset:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that forces a node to rotate to face another node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientToNode:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orient(to:offset:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/orient(to:offset:)-1h1tw"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that forces a node to rotate to face a fixed point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientToPoint:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orient(to:offset:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/orient(to:offset:)-9lq3h"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that limits the orientation of a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zRotation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zRotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zRotation(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/zrotation(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Orientation-Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)"
+      ],
+      "title": "Creating Orientation Constraints"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-Orientation-Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)"
+              ],
+              "title": "Creating Orientation Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:in:offset:)/title",
+          "value": "orientToPoint:inNode:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:in:offset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientToPoint:inNode:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/title",
+          "value": "SKConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-1h1tw/title",
+          "value": "orientToNode:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-1h1tw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientToNode:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1zRotation(_:)/title",
+          "value": "zRotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1zRotation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "zRotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-9lq3h/title",
+          "value": "orientToPoint:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-9lq3h/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientToPoint:offset:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/creating-a-look-at-constraint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/creating-a-look-at-constraint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

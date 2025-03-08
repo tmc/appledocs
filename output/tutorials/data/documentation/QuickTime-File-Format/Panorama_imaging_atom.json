@@ -1,0 +1,684 @@
+{
+  "abstract": [
+    {
+      "text": "An atom describes the default imaging characteristics for all the panoramic nodes in a scene.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "VR Media is deprecated in the QuickTime file format. The information that follows documents existing content containing VR Media and should not be used for new development.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Panorama_imaging_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom",
+        "text": "Panorama imaging atom"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom",
+        "text": "Panorama imaging atom"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Panorama imaging atom"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A panorama-imaging atom describes the default imaging characteristics for all the panoramic nodes in a scene. This atom overrides QuickTime VR’s own defaults.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The panorama-imaging atom has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "kQTVRPanoImagingAtomType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "'impn'",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Generally, there is one panorama-imaging atom for each imaging mode, so the atom ID, while it must be unique for each atom, is ignored. QuickTime VR iterates through all the panorama-imaging atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure of a panorama-imaging atom is defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "QTVRPanoImagingAtom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct QTVRPanoImagingAtom {",
+            "    UInt16                              majorVersion;",
+            "    UInt16                              minorVersion;",
+            "    UInt32                              imagingMode;",
+            "    UInt32                              imagingValidFlags;",
+            "    UInt32                              correction;",
+            "    UInt32                              quality;",
+            "    UInt32                              directDraw;",
+            "    UInt32                              imagingProperties[6];",
+            "    UInt32                              reserved1;",
+            "    UInt32                              reserved2;",
+            "} QTVRPanoImagingAtom, *VRPanoImagingAtomPtr;"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The imagingValidFlags field in the panorama-imaging atom structure specifies which imaging property fields in that structure are valid. You can use these bit flags to specify a value for that field:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum {",
+            "    kQTVRValidCorrection                        = 1 << 0,",
+            "    kQTVRValidQuality                           = 1 << 1,",
+            "    kQTVRValidDirectDraw                        = 1 << 2,",
+            "    kQTVRValidFirstExtraProperty                = 1 << 3",
+            "};"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Constant descriptions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The default correction mode for panorama-imaging properties. If this bit is set, the correction field holds a default correction mode.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kQTVRValidCorrection",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The default imaging quality for panorama-imaging properties. If this bit is set, the quality field holds a default imaging quality.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kQTVRValidQuality",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The default direct-draw quality for panorama-imaging properties. If this bit is set, the directDraw field holds a default direct-drawing property.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kQTVRValidDirectDraw",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The default imaging property for panorama-imaging properties. If this bit is set, the first element in the array in the imagingProperties field holds a default imaging property. As new imaging properties are added, they will be stored in this array.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kQTVRValidFirstExtraProperty",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Imaging_parent_atom": {
+      "abstract": [
+        {
+          "text": "An atom that is the parent atom of one or more node-specific imaging atoms.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Imaging_parent_atom",
+          "text": "Imaging parent atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Imaging_parent_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Imaging parent atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/imaging_parent_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom": {
+      "abstract": [
+        {
+          "text": "An atom describes the default imaging characteristics for all the panoramic nodes in a scene.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom",
+          "text": "Panorama imaging atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Panorama imaging atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/correction": {
+      "abstract": [
+        {
+          "text": "The default correction mode for panoramic nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_correction",
+          "text": "correction"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/correction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "correction",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/correction"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/directDraw": {
+      "abstract": [
+        {
+          "text": "The default direct-drawing property for panoramic nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_directDraw",
+          "text": "directDraw"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/directDraw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "directDraw",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/directdraw"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingMode": {
+      "abstract": [
+        {
+          "text": "The imaging mode to which the default values apply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_imagingMode",
+          "text": "imagingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imagingMode",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/imagingmode"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingProperties": {
+      "abstract": [
+        {
+          "text": "Reserved for future panorama-imaging properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_imagingProperties",
+          "text": "imagingProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imagingProperties",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/imagingproperties"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingValidFlags": {
+      "abstract": [
+        {
+          "text": "A set of flags that indicate which imaging property fields in this structure are valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_imagingValidFlags",
+          "text": "imagingValidFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingValidFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imagingValidFlags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/imagingvalidflags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/majorVersion": {
+      "abstract": [
+        {
+          "text": "The major version number of the file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_majorVersion",
+          "text": "majorVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/majorVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "majorVersion",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/majorversion"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/minorVersion": {
+      "abstract": [
+        {
+          "text": "The minor version number of the file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_minorVersion",
+          "text": "minorVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/minorVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minorVersion",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/minorversion"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/quality": {
+      "abstract": [
+        {
+          "text": "The default imaging quality for panoramic nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_quality",
+          "text": "quality"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/quality",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quality",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/quality"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/reserved1": {
+      "abstract": [
+        {
+          "text": "Reserved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_reserved1",
+          "text": "reserved1"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/reserved1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reserved1",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/reserved1"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/reserved2": {
+      "abstract": [
+        {
+          "text": "Reserved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_imaging_atom_reserved2",
+          "text": "reserved2"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/reserved2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reserved2",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_imaging_atom/reserved2"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/QTVR_string_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains a string for QuickTime VR.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$QTVR_string_atom",
+          "text": "QTVR string atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/QTVR_string_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QTVR string atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/qtvr_string_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/VR_world_atom_container": {
+      "abstract": [
+        {
+          "text": "An atom that contains name for the entire scene, the default node ID, and default imaging properties, as well as a list of the nodes contained in the QTVR track.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$VR_world_atom_container",
+          "text": "VR world atom container"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/VR_world_atom_container",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VR world atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/vr_world_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/VR_world_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom contains the name of the scene and the default node ID to be used when the file is first opened.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$VR_world_header_atom",
+          "text": "VR world header atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/VR_world_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VR world header atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/vr_world_header_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Describing-VR-worlds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/QTVR_string_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/VR_world_atom_container",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/VR_world_header_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Imaging_parent_atom"
+      ],
+      "title": "Describing VR worlds"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/majorVersion",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/minorVersion",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingMode",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingValidFlags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/correction",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/quality",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/directDraw",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/imagingProperties",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/reserved1",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_imaging_atom/reserved2"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/panorama_imaging_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

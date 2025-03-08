@@ -1,0 +1,558 @@
+{
+  "abstract": [
+    {
+      "text": "Describe and name sources with an input map.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an input map"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The input map is another QT atom container that you attach to the effects track. It describes the sources used in the effect and gives a name to each source. This name is used to refer to the source in the effects description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An input map works in concert with track reference atoms in the source tracks. A track reference atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is added to each source track, which causes that source track’s output to be redirected to the effects track. An input map is added to the effects track to identify the source tracks and give a name to each source, such as ",
+              "type": "text"
+            },
+            {
+              "code": "'srcA'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "'srcB'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The effect can then refer to the sources by name, specifying that ",
+              "type": "text"
+            },
+            {
+              "code": "'srcB'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should slide in over ",
+              "type": "text"
+            },
+            {
+              "code": "'srcA'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Structure-of-an-input-map",
+          "level": 2,
+          "text": "Structure of an input map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The input map contains a set of atoms that refer to the tracks used as sources for the effect. Each source track is represented by one track reference atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each modifier input atom contains two children, one of type ",
+              "type": "text"
+            },
+            {
+              "code": "kEffectDataSourceType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and one of type ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which hold the name and type of the source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The name of the source is a unique identifier that you create, which is used in the effect description to reference the track. Any four-character name is valid, as long as it is unique in the set of source names.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple recommends you adopt the standard naming convention ",
+                  "type": "text"
+                },
+                {
+                  "code": "'srcX'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", where X is a letter of the alphabet. Thus, your first source would be named ",
+                  "type": "text"
+                },
+                {
+                  "code": "'srcA'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the second ’",
+                  "type": "text"
+                },
+                {
+                  "code": "srcB'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and so forth.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The child atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the type of the track being referenced. For a video track the type is ",
+              "type": "text"
+            },
+            {
+              "code": "VideoMediaType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for a sprite track it is ",
+              "type": "text"
+            },
+            {
+              "code": "SpriteMediaType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so forth. Video tracks are the most common track type used as sources for effects. Only tracks that have a visible output, such as video and sprite tracks, can be used as sources for an effect. This means, for example, that sound tracks cannot be sources for an effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You refer to a ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom by its index number, which is returned by the ",
+              "type": "text"
+            },
+            {
+              "code": "AddTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function when you create the atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Building-input-maps",
+          "level": 2,
+          "text": "Building input maps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in creating an input map is to create a new ",
+              "type": "text"
+            },
+            {
+              "code": "QTAtomContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to hold the map. You use the standard QuickTime container creation function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "QTNewAtomContainer(&inputMap);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each source you are creating, call the ",
+              "type": "text"
+            },
+            {
+              "code": "AddTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. The track IDs of the effects track and the source track are passed as parameters to ",
+              "type": "text"
+            },
+            {
+              "code": "AddTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which creates an atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and returns an index number. You use this index as the ID of the atom when you need to refer to it. You then insert the reference into the input map as an atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "kTrackModifierInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in following listing creates a reference to the track ",
+              "type": "text"
+            },
+            {
+              "code": "firstSourceTrack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and adds it to the input map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AddTrackReference(theEffectsTrack, firstSourceTrack,",
+            "                 kTrackModifierReference, &referenceIndex);",
+            " ",
+            "QTInsertChild(inputMap, kParentAtomIsContainer,",
+            "            kTrackModifierInput, referenceIndex, 0, 0, nil, &inputAtom);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns the offset of the new modifier input atom in the ",
+              "type": "text"
+            },
+            {
+              "code": "inputAtom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the name and type of the source track to the modifier input atom. Again, calling the ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function does this, as shown in the following code snippet:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "inputType = VideoMediaType;",
+            "QTInsertChild(inputMap, inputAtom,",
+            "                kTrackModifierType, 1, 0, sizeof(inputType), &inputType,",
+            "                nil);",
+            " ",
+            "aType = 'srcA';",
+            "QTInsertChild(inputMap, inputAtom, kEffectDataSourceType, 1, 0,",
+            "            sizeof(aType), &aType, nil);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This process is repeated for each source for the effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description": {
+      "abstract": [
+        {
+          "text": "Tell QuickTime which effect to execute and control how the effect behaves at runtime with an effect description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an effect description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_an_effect_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description": {
+      "abstract": [
+        {
+          "text": "Customize your effect with parameter atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Parameter atoms of an effects description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/parameter_atoms_of_an_effects_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description": {
+      "abstract": [
+        {
+          "text": "Specify the required atoms for your effects description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Required atoms of an effects description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/required_atoms_of_an_effects_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description": {
+      "abstract": [
+        {
+          "text": "An effect description is the sole media sample for an effect track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Structure of an effect description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structure_of_an_effect_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Effect-descriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description"
+      ],
+      "title": "Effect descriptions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/creating_an_input_map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

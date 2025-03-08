@@ -1,0 +1,650 @@
+{
+  "abstract": [
+    {
+      "text": "Downloads the container’s schema.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cktooljs/documentation/CKToolJS",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/exportSchema"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instm/PromisesApi/exportSchema",
+    "modules": [
+      {
+        "name": "CKTool JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2.15",
+        "name": "CKTool JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "exportSchema"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: CKTool JS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CancellablePromise",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "cl/CancellablePromise",
+              "text": "CancellablePromise"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "exportSchema"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "\t"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ExportSchemaParams"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "params"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary as described in the Discussion section.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "params"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CancellablePromise",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the following resolutions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the promise is successful, it will resolve with one of the following dictionaries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "{ statusCode: 200; result: Blob }",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The promise may reject and throw the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DocumentedResponseError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", if the HTTP status code is 421. The result member will be a dictionary conforming to AuthenticationRequiredError.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DocumentedResponseError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", if the HTTP status code is none of the above and in the range 400 to 599. The result member will be a dictionary conforming to RequestError.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ValidationError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", if the parameters to the method are incorrect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FetchError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " descendant, if there is a problem with the network request. A reference to the request object can be used to examine the underlying cause.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "params",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary has the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dictionary ExportSchemaParams {",
+            "  string teamId;",
+            "  string containerId;",
+            "  CKEnvironment environment;",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "teamId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The team identifier. You can find your team identifier in the Membership tab of the Apple Developer portal at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://developer.apple.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "containerId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The container identifier. See ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Container",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "environment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The container environment. For valid values, see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CKEnvironment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Downloads a schema file for the environment specified. If the operation completes successfully, the returned response contains the textual representation of the container’s schema for the given environment. The text obtained this way is in CloudKit Schema Language. To learn more about CloudKit Schema Language, see ",
+              "type": "text"
+            },
+            {
+              "code": "https://developer.apple.com/documentation/cloudkit/integrating_a_text-based_schema_into_your_workflow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Related: ",
+              "type": "text"
+            },
+            {
+              "code": "importSchema",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "validateSchema",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Node.js example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "import { CKEnvironment, PromisesApi } from \"@apple/cktool.database\";",
+            "import { createConfiguration } from \"@apple/cktool.target.nodejs\";",
+            "import fs from \"fs/promises\";",
+            "import path from \"path\";",
+            "",
+            "try {",
+            "  const api = new PromisesApi({",
+            "    configuration: createConfiguration(),",
+            "    security: {",
+            "      // You can obtain a management token from the",
+            "      // Database section of CloudKit Console.",
+            "      \"ManagementTokenAuth\": \"YOUR_MANAGEMENT_TOKEN\"",
+            "    },",
+            "  });",
+            "",
+            "  console.log(`Downloading schema...`);",
+            "  const response = await api.exportSchema({",
+            "    teamId: \"YOUR_TEAM_ID\",",
+            "    containerId: \"YOUR_CONTAINER_ID\",",
+            "    environment: CKEnvironment.DEVELOPMENT",
+            "  });",
+            "  const destPath = path.default.join(__dirname, \"sample.CKDB\");",
+            "  const arrayBuffer = await response.result.arrayBuffer();",
+            "  const buffer = Buffer.from(arrayBuffer);",
+            "  await fs.default.writeFile(destPath, buffer);",
+            "  console.log(`Schema downloaded to ${destPath}`);",
+            "} catch (ex) {",
+            "  console.error(configuration.jsonStringify(ex));",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cktooljs/documentation/CKToolJS": {
+      "abstract": [
+        {
+          "text": "Manage your CloudKit containers and databases from JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CKTool JS",
+      "type": "topic",
+      "url": "/documentation/cktooljs"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/CancellablePromise": {
+      "abstract": [
+        {
+          "text": "A promise that has a function to cancel its operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/CancellablePromise",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CancellablePromise",
+      "type": "topic",
+      "url": "/documentation/cktooljs/cancellablepromise"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi": {
+      "abstract": [
+        {
+          "text": "A class that exposes promise-based functions for interacting with the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PromisesApi",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/exportSchema": {
+      "abstract": [
+        {
+          "text": "Downloads the container’s schema.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/exportSchema",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportSchema",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi/exportschema"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/getContainers": {
+      "abstract": [
+        {
+          "text": "Fetches containers for a team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/getContainers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getContainers",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi/getcontainers"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/importSchema": {
+      "abstract": [
+        {
+          "text": "Uploads a file that defines the new schema for the container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/importSchema",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "importSchema",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi/importschema"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/resetConfigToProduction": {
+      "abstract": [
+        {
+          "text": "Resets the container configuration to production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/resetConfigToProduction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetConfigToProduction",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi/resetconfigtoproduction"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/resetToProduction": {
+      "abstract": [
+        {
+          "text": "Resets the schema of the environment to production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/resetToProduction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetToProduction",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi/resettoproduction"
+    },
+    "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/validateSchema": {
+      "abstract": [
+        {
+          "text": "Validates the uploaded schema file for the container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/validateSchema",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateSchema",
+      "type": "topic",
+      "url": "/documentation/cktooljs/promisesapi/validateschema"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Database-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/getContainers",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/importSchema",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/resetConfigToProduction",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/resetToProduction",
+        "doc://com.apple.cktooljs/documentation/CKToolJS/PromisesApi/validateSchema"
+      ],
+      "title": "Database Management"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cktooljs/promisesapi/exportschema"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

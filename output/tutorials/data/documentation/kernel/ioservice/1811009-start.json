@@ -1,0 +1,2201 @@
+{
+  "abstract": [
+    {
+      "text": "During an IOService object's instantiation, starts the IOService object that has been selected to run on the provider.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioservice/1811009-start"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1811009,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOService"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "start"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual bool start("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOService *provider ); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the start was successful; ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise (which will cause the instance to be detached and usually freed).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of an IOService instance is called by its provider when it has been selected (due to its probe score and match category) as the winning client. The client is already attached to the provider when ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is called.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementations of ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must call ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on their superclass at an appropriate point. If an implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has already called ",
+              "type": "text"
+            },
+            {
+              "code": "super::start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " but subsequently determines that it will fail, it must call ",
+              "type": "text"
+            },
+            {
+              "code": "super::stop",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to balance the prior call to ",
+              "type": "text"
+            },
+            {
+              "code": "super::start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and prevent reference leaks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1532596-acknowledgesetpowerstate": {
+      "abstract": [
+        {
+          "text": "Acknowledges the belated completion of a driver’s setPowerState power state change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "acknowledgeSetPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532596-acknowledgesetpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acknowledgeSetPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1532596-acknowledgesetpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1532866-setpowerstate": {
+      "abstract": [
+        {
+          "text": "Requests a power managed driver to change the power state of its device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532866-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1532866-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809710-acknowledgepowerchange": {
+      "abstract": [
+        {
+          "text": "Acknowledges an in-progress power state change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809710-acknowledgepowerchange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "acknowledgePowerChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809710-acknowledgepowerchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809731-activitytickle": {
+      "abstract": [
+        {
+          "text": "Informs power management when a power-managed device is in use, so that power management can track when it is idle and adjust its power state accordingly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809731-activitytickle",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "activityTickle",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809731-activitytickle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809740-addlocation": {
+      "abstract": [
+        {
+          "text": "Adds a location matching property to an existing dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809740-addlocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809740-addlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809749-addmatchingnotification": {
+      "abstract": [
+        {
+          "text": "Adds a persistant notification handler to be notified of IOService events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809749-addmatchingnotification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addMatchingNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809749-addmatchingnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809760-addnotification": {
+      "abstract": [
+        {
+          "text": "Deprecated use addMatchingNotification(). Adds a persistant notification handler to be notified of IOService events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809760-addnotification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809760-addnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809766-addpowerchild": {
+      "abstract": [
+        {
+          "text": "Informs a driver that it has a new child.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809766-addpowerchild",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addPowerChild",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809766-addpowerchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809776-adjustbusy": {
+      "abstract": [
+        {
+          "text": "Adjusts the ",
+          "type": "text"
+        },
+        {
+          "code": "busyState",
+          "type": "codeVoice"
+        },
+        {
+          "text": " of an IOService object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809776-adjustbusy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "adjustBusy",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809776-adjustbusy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809786-attach": {
+      "abstract": [
+        {
+          "text": "Attaches an IOService client to a provider in the I/O Registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809786-attach",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attach",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809786-attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809795-callplatformfunction": {
+      "abstract": [
+        {
+          "text": "Calls the platform function with the given name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809795-callplatformfunction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "callPlatformFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809795-callplatformfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809803-causeinterrupt": {
+      "abstract": [
+        {
+          "text": "Causes a device interrupt to occur.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809803-causeinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "causeInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809803-causeinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809809-changepowerstateto": {
+      "abstract": [
+        {
+          "text": "Sets a driver's power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809809-changepowerstateto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "changePowerStateTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809809-changepowerstateto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809819-changepowerstatetopriv": {
+      "abstract": [
+        {
+          "text": "Tells a driver's superclass to change the power state of its device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809819-changepowerstatetopriv",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "changePowerStateToPriv",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809819-changepowerstatetopriv"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809824-clamppoweron": {
+      "abstract": [
+        {
+          "text": "Deprecated. Do not use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809824-clamppoweron",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clampPowerOn",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809824-clamppoweron"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809831-close": {
+      "abstract": [
+        {
+          "text": "Releases active access to a provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809831-close",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "close",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809831-close"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809840-command_received": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809840-command_received",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "command_received",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809840-command_received"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809848-compareproperties": {
+      "abstract": [
+        {
+          "text": "Compares a set of properties in a matching dictionary with an IOService object's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809848-compareproperties",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "compareProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809848-compareproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809855-compareproperty": {
+      "abstract": [
+        {
+          "text": "Compares a property in a matching dictionary with an IOService object's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809855-compareproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "compareProperty(OSDictionary *, const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809855-compareproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809861-compareproperty": {
+      "abstract": [
+        {
+          "text": "Compares a property in a matching dictionary with an IOService object's property table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809861-compareproperty",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "compareProperty(OSDictionary *, const OSString *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809861-compareproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809870-configurereport": {
+      "abstract": [
+        {
+          "text": "configure IOReporting channels",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809870-configurereport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configureReport",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809870-configurereport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809878-copyclientwithcategory": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809878-copyclientwithcategory",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyClientWithCategory",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809878-copyclientwithcategory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809887-copymatchingservice": {
+      "abstract": [
+        {
+          "text": "Finds one of the current published IOService objects matching a matching dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809887-copymatchingservice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyMatchingService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809887-copymatchingservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809891-currentcapability": {
+      "abstract": [
+        {
+          "text": "Finds out the capability of a device's current power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809891-currentcapability",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "currentCapability",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809891-currentcapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809899-currentpowerconsumption": {
+      "abstract": [
+        {
+          "text": "Finds out the current power consumption of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809899-currentpowerconsumption",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "currentPowerConsumption",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809899-currentpowerconsumption"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809905-deregisterinteresteddriver": {
+      "abstract": [
+        {
+          "text": "De-registers power state interest from a previous call to ",
+          "type": "text"
+        },
+        {
+          "code": "registerInterestedDriver",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809905-deregisterinteresteddriver",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deRegisterInterestedDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809905-deregisterinteresteddriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809913-detach": {
+      "abstract": [
+        {
+          "text": "Detaches an IOService client from a provider in the I/O Registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809913-detach",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detach",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809913-detach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809918-didterminate": {
+      "abstract": [
+        {
+          "text": "Passes a termination up the stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809918-didterminate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "didTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809918-didterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809924-didyouwakesystem": {
+      "abstract": [
+        {
+          "text": "Asks a driver if its device is the one that just woke the system from sleep.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809924-didyouwakesystem",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "didYouWakeSystem",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809924-didyouwakesystem"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809929-disableinterrupt": {
+      "abstract": [
+        {
+          "text": "Synchronously disables a device interrupt.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809929-disableinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "disableInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809929-disableinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809937-enableinterrupt": {
+      "abstract": [
+        {
+          "text": "Enables a device interrupt.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809937-enableinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enableInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809937-enableinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809942-errnofromreturn": {
+      "abstract": [
+        {
+          "text": "Translates an IOReturn code to a BSD ",
+          "type": "text"
+        },
+        {
+          "code": "errno",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809942-errnofromreturn",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "errnoFromReturn",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809942-errnofromreturn"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809948-finalize": {
+      "abstract": [
+        {
+          "text": "Finalizes the destruction of an IOService object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809948-finalize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "finalize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809948-finalize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809960-free": {
+      "abstract": [
+        {
+          "text": "Frees data structures that were allocated when power management was initialized on this service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809960-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809960-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809962-getaggressiveness": {
+      "abstract": [
+        {
+          "text": "Returns the current aggressiveness value for the given type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809962-getaggressiveness",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAggressiveness",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809962-getaggressiveness"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809968-getbusystate": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "busyState",
+          "type": "codeVoice"
+        },
+        {
+          "text": " of an IOService object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809968-getbusystate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBusyState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809968-getbusystate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809973-getclient": {
+      "abstract": [
+        {
+          "text": "Returns an IOService object's primary client.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809973-getclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809973-getclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809979-getclientiterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over an IOService object's clients.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809979-getclientiterator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getClientIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809979-getclientiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809984-getdevicememory": {
+      "abstract": [
+        {
+          "text": "Returns the array of IODeviceMemory objects representing a device's memory mapped ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809984-getdevicememory",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceMemory",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809984-getdevicememory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809990-getdevicememorycount": {
+      "abstract": [
+        {
+          "text": "Returns a count of the physical memory ranges available for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809990-getdevicememorycount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceMemoryCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809990-getdevicememorycount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1809999-getdevicememorywithindex": {
+      "abstract": [
+        {
+          "text": "Returns an instance of IODeviceMemory representing one of a device's memory mapped ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1809999-getdevicememorywithindex",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceMemoryWithIndex",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1809999-getdevicememorywithindex"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810004-getinterrupttype": {
+      "abstract": [
+        {
+          "text": "Returns the type of interrupt used for a device supplying hardware interrupts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810004-getinterrupttype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getInterruptType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810004-getinterrupttype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810011-getmatchingservices": {
+      "abstract": [
+        {
+          "text": "Finds the set of current published IOService objects matching a matching dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810011-getmatchingservices",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMatchingServices",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810011-getmatchingservices"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810018-getopenclientiterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over a provider's clients that currently have opened the provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810018-getopenclientiterator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOpenClientIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810018-getopenclientiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810027-getopenprovideriterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over an client's providers that are currently opened by the client.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810027-getopenprovideriterator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOpenProviderIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810027-getopenprovideriterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810033-getplatform": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the platform expert instance for the computer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810033-getplatform",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPlatform",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810033-getplatform"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810046-getpmrootdomain": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the power management root domain instance for the computer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810046-getpmrootdomain",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPMRootDomain",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810046-getpmrootdomain"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810059-getpmworkloop": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the system-wide power management work loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810059-getpmworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPMworkloop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810059-getpmworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810074-getpowerstate": {
+      "abstract": [
+        {
+          "text": "Determines a device's power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810074-getpowerstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810074-getpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810088-getprovider": {
+      "abstract": [
+        {
+          "text": "Returns an IOService object's primary provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810088-getprovider",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProvider",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810088-getprovider"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810097-getprovideriterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over an IOService object's providers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810097-getprovideriterator",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProviderIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810097-getprovideriterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810107-getresources": {
+      "abstract": [
+        {
+          "text": "Allocates any needed resources for a published IOService object before clients attach.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810107-getresources",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getResources",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810107-getresources"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810116-getresourceservice": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the IOResources service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810116-getresourceservice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getResourceService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810116-getresourceservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810122-getserviceroot": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the root of the service plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810122-getserviceroot",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getServiceRoot",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810122-getserviceroot"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810137-getstate": {
+      "abstract": [
+        {
+          "text": "Accessor for IOService state bits, not normally needed or used outside IOService.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810137-getstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810137-getstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810145-getworkloop": {
+      "abstract": [
+        {
+          "text": "Returns the current work loop or ",
+          "type": "text"
+        },
+        {
+          "code": "provider->getWorkLoop",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810145-getworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810145-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810153-handleclose": {
+      "abstract": [
+        {
+          "text": "Controls the open / close behavior of an IOService object (overrideable by subclasses).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810153-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810153-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810164-handleisopen": {
+      "abstract": [
+        {
+          "text": "Controls the open / close behavior of an IOService object (overrideable by subclasses).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810164-handleisopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleIsOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810164-handleisopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810174-handleopen": {
+      "abstract": [
+        {
+          "text": "Controls the open / close behavior of an IOService object (overrideable by subclasses).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810174-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810174-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810182-initialpowerstatefordomainstate": {
+      "abstract": [
+        {
+          "text": "Determines which power state a device is in, given the current power domain state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810182-initialpowerstatefordomainstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initialPowerStateForDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810182-initialpowerstatefordomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810198-isinactive": {
+      "abstract": [
+        {
+          "text": "Checks if the IOService object has been terminated, and is in the process of being destroyed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810198-isinactive",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isInactive",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810198-isinactive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810209-isopen": {
+      "abstract": [
+        {
+          "text": "Determines whether a specific, or any, client has an IOService object open.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810209-isopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810209-isopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810216-joinpmtree": {
+      "abstract": [
+        {
+          "text": "Joins the driver into the power plane of the I/O Registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810216-joinpmtree",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "joinPMtree",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810216-joinpmtree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810228-lockforarbitration": {
+      "abstract": [
+        {
+          "text": "Locks an IOService object against changes in state or ownership.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810228-lockforarbitration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockForArbitration",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810228-lockforarbitration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810246-makeusable": {
+      "abstract": [
+        {
+          "text": "Requests that a device become usable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810246-makeusable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "makeUsable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810246-makeusable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810261-mapdevicememorywithindex": {
+      "abstract": [
+        {
+          "text": "Maps a physical range of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810261-mapdevicememorywithindex",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "mapDeviceMemoryWithIndex",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810261-mapdevicememorywithindex"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810275-matchlocation": {
+      "abstract": [
+        {
+          "text": "Allows a registered IOService object to direct location matching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810275-matchlocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "matchLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810275-matchlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810286-matchpropertytable": {
+      "abstract": [
+        {
+          "text": "Allows a registered IOService object to implement family specific matching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810286-matchpropertytable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810286-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810302-maxcapabilityfordomainstate": {
+      "abstract": [
+        {
+          "text": "Determines a driver's highest power state possible for a given power domain state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810302-maxcapabilityfordomainstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "maxCapabilityForDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810302-maxcapabilityfordomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810323-message": {
+      "abstract": [
+        {
+          "text": "Receives a generic message delivered from an attached provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810323-message",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810323-message"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810334-messageclient": {
+      "abstract": [
+        {
+          "text": "Sends a generic message to an attached client.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810334-messageclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "messageClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810334-messageclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810353-messageclients": {
+      "abstract": [
+        {
+          "text": "Sends a generic message to all attached clients.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810353-messageclients",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "messageClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810353-messageclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810365-namematching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify an IOService name match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810365-namematching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nameMatching(const char *, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810365-namematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810383-namematching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify an IOService name match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810383-namematching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nameMatching(const OSString *, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810383-namematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810402-newtemperature": {
+      "abstract": [
+        {
+          "text": "Tells a power managed driver that the temperature in the thermal zone has changed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810402-newtemperature",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "newTemperature",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810402-newtemperature"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810417-newuserclient": {
+      "abstract": [
+        {
+          "text": "Creates a connection for a non kernel client.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810417-newuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810417-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810435-nextidletimeout": {
+      "abstract": [
+        {
+          "text": "Allows subclasses to customize idle power management behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810435-nextidletimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "nextIdleTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810435-nextidletimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810450-open": {
+      "abstract": [
+        {
+          "text": "Requests active access to a provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810450-open",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "open",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810450-open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810463-pm_clamp_timer_expired": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810463-pm_clamp_timer_expired",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PM_Clamp_Timer_Expired",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810463-pm_clamp_timer_expired"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810474-pm_idle_timer_expiration": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810474-pm_idle_timer_expiration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PM_idle_timer_expiration",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810474-pm_idle_timer_expiration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810486-pminit": {
+      "abstract": [
+        {
+          "text": "Initializes power management for a driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810486-pminit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMinit",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810486-pminit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810502-pmstop": {
+      "abstract": [
+        {
+          "text": "Stop power managing the driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810502-pmstop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMstop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810502-pmstop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810518-powerchangedone": {
+      "abstract": [
+        {
+          "text": "Tells a driver when a power state change is complete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810518-powerchangedone",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerChangeDone",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810518-powerchangedone"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810533-poweroverrideoffpriv": {
+      "abstract": [
+        {
+          "text": "Allows a driver to disable a power override.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810533-poweroverrideoffpriv",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerOverrideOffPriv",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810533-poweroverrideoffpriv"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810549-poweroverrideonpriv": {
+      "abstract": [
+        {
+          "text": "Allows a driver to ignore its children's power management requests and only use changePowerStateToPriv to define its own power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810549-poweroverrideonpriv",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerOverrideOnPriv",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810549-poweroverrideonpriv"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810564-powerstatedidchangeto": {
+      "abstract": [
+        {
+          "text": "Informs interested parties that a device has changed to a different power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810564-powerstatedidchangeto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateDidChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810564-powerstatedidchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810576-powerstatefordomainstate": {
+      "abstract": [
+        {
+          "text": "Determines what power state the device would be in for a given power domain state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810576-powerstatefordomainstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateForDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810576-powerstatefordomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810597-powerstatewillchangeto": {
+      "abstract": [
+        {
+          "text": "Informs interested parties that a device is about to change its power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810597-powerstatewillchangeto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "powerStateWillChangeTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810597-powerstatewillchangeto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810605-probe": {
+      "abstract": [
+        {
+          "text": "During an IOService object's instantiation, probes a matched service to see if it can be used.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810605-probe",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "probe",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810605-probe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810622-propertymatching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify an IOService phandle match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810622-propertymatching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "propertyMatching",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810622-propertymatching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810642-publishresource": {
+      "abstract": [
+        {
+          "text": "Uses the resource service to publish a property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810642-publishresource",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "publishResource(const char *, OSObject *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810642-publishresource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810661-publishresource": {
+      "abstract": [
+        {
+          "text": "Uses the resource service to publish a property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810661-publishresource",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "publishResource(const OSSymbol *, OSObject *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810661-publishresource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810675-registerinteresteddriver": {
+      "abstract": [
+        {
+          "text": "Allows an IOService object to register interest in the changing power state of a power-managed IOService object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810675-registerinteresteddriver",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerInterestedDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810675-registerinteresteddriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810691-registerinterrupt": {
+      "abstract": [
+        {
+          "text": "Registers a C function interrupt handler for a device supplying interrupts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810691-registerinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810691-registerinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810706-registerpowerdriver": {
+      "abstract": [
+        {
+          "text": "Registers a set of power states that the driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810706-registerpowerdriver",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerPowerDriver",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810706-registerpowerdriver"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810726-registerservice": {
+      "abstract": [
+        {
+          "text": "Starts the registration process for a newly discovered IOService object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810726-registerservice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810726-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810750-registryentryidmatching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify a IORegistryEntryID match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810750-registryentryidmatching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registryEntryIDMatching",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810750-registryentryidmatching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810770-removepowerchild": {
+      "abstract": [
+        {
+          "text": "Informs a power managed driver that one of its power plane childen is disappearing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810770-removepowerchild",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removePowerChild",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810770-removepowerchild"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810786-requestpowerdomainstate": {
+      "abstract": [
+        {
+          "text": "Tells a driver to adjust its power state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810786-requestpowerdomainstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "requestPowerDomainState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810786-requestpowerdomainstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810804-requestprobe": {
+      "abstract": [
+        {
+          "text": "Requests that hardware be re-scanned for devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810804-requestprobe",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "requestProbe",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810804-requestprobe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810819-requestterminate": {
+      "abstract": [
+        {
+          "text": "Passes a termination up the stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810819-requestterminate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "requestTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810819-requestterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810840-resourcematching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify a resource service match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810840-resourcematching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "resourceMatching(const char *, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810840-resourcematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810857-resourcematching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify a resource service match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810857-resourcematching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "resourceMatching(const OSString *, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810857-resourcematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810880-servicematching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify an IOService class match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810880-servicematching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serviceMatching(const char *, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810880-servicematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810901-servicematching": {
+      "abstract": [
+        {
+          "text": "Creates a matching dictionary, or adds matching properties to an existing dictionary, that specify an IOService class match.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810901-servicematching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serviceMatching(const OSString *, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810901-servicematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810925-setaggressiveness": {
+      "abstract": [
+        {
+          "text": "Broadcasts an aggressiveness factor from the parent of a driver to the driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810925-setaggressiveness",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAggressiveness",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810925-setaggressiveness"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810946-setdevicememory": {
+      "abstract": [
+        {
+          "text": "Sets the array of IODeviceMemory objects representing a device's memory mapped ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810946-setdevicememory",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDeviceMemory",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810946-setdevicememory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810962-setidletimerperiod": {
+      "abstract": [
+        {
+          "text": "Sets or changes the idle timer period.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810962-setidletimerperiod",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setIdleTimerPeriod",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810962-setidletimerperiod"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1810987-setpowerparent": {
+      "abstract": [
+        {
+          "text": "This call is handled internally by power management. It is not intended to be overridden or called by drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1810987-setpowerparent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPowerParent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1810987-setpowerparent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811009-start": {
+      "abstract": [
+        {
+          "text": "During an IOService object's instantiation, starts the IOService object that has been selected to run on the provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811009-start",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811009-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811024-start_pm_idle_timer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811024-start_pm_idle_timer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "start_PM_idle_timer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811024-start_pm_idle_timer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811034-stop": {
+      "abstract": [
+        {
+          "text": "During an IOService termination, the stop method is called in its clients before they are detached & it is destroyed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811034-stop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811034-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811046-stringfromreturn": {
+      "abstract": [
+        {
+          "text": "Supplies a programmer-friendly string from an IOReturn code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811046-stringfromreturn",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stringFromReturn",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811046-stringfromreturn"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811056-systemwake": {
+      "abstract": [
+        {
+          "text": "Tells every driver in the power plane that the system is waking up.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811056-systemwake",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "systemWake",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811056-systemwake"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811071-systemwillshutdown": {
+      "abstract": [
+        {
+          "text": "Notifies members of the power plane of system shutdown and restart.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811071-systemwillshutdown",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "systemWillShutdown",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811071-systemwillshutdown"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811087-temperaturecriticalforzone": {
+      "abstract": [
+        {
+          "text": "Alerts a driver to a critical temperature in some thermal zone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811087-temperaturecriticalforzone",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "temperatureCriticalForZone",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811087-temperaturecriticalforzone"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811099-temporarypowerclampon": {
+      "abstract": [
+        {
+          "text": "A driver calls this method to hold itself in the highest power state until it has children.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811099-temporarypowerclampon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "temporaryPowerClampOn",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811099-temporarypowerclampon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811110-terminate": {
+      "abstract": [
+        {
+          "text": "Makes an IOService object inactive and begins its destruction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811110-terminate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "terminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811110-terminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811121-terminateclient": {
+      "abstract": [
+        {
+          "text": "Passes a termination up the stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811121-terminateclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "terminateClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811121-terminateclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811130-unlockforarbitration": {
+      "abstract": [
+        {
+          "text": "Unlocks an IOService obkect after a successful lockForArbitration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811130-unlockforarbitration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unlockForArbitration",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811130-unlockforarbitration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811142-unregisterinterrupt": {
+      "abstract": [
+        {
+          "text": "Removes a C function interrupt handler for a device supplying hardware interrupts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811142-unregisterinterrupt",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unregisterInterrupt",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811142-unregisterinterrupt"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811152-updatereport": {
+      "abstract": [
+        {
+          "text": "request current data for the specified channels",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811152-updatereport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "updateReport",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811152-updatereport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811164-waitformatchingservice": {
+      "abstract": [
+        {
+          "text": "Waits for a matching to service to be published.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811164-waitformatchingservice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "waitForMatchingService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811164-waitformatchingservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811172-waitforservice": {
+      "abstract": [
+        {
+          "text": "Deprecated use waitForMatchingService(). Waits for a matching to service to be published.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811172-waitforservice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "waitForService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811172-waitforservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811184-waitquiet": {
+      "abstract": [
+        {
+          "text": "Waits for an IOService object's ",
+          "type": "text"
+        },
+        {
+          "code": "busyState",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to be zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811184-waitquiet",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "waitQuiet",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811184-waitquiet"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811202-willterminate": {
+      "abstract": [
+        {
+          "text": "Passes a termination up the stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811202-willterminate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "willTerminate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811202-willterminate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1811214-youareroot": {
+      "abstract": [
+        {
+          "text": "Informs power management which IOService object is the power plane root.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1811214-youareroot",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "youAreRoot",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1811214-youareroot"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809710-acknowledgepowerchange",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1532596-acknowledgesetpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809731-activitytickle",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809740-addlocation",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809749-addmatchingnotification",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809760-addnotification",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809766-addpowerchild",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809776-adjustbusy",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809786-attach",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809795-callplatformfunction",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809803-causeinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809809-changepowerstateto",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809819-changepowerstatetopriv",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809824-clamppoweron",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809831-close",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809840-command_received",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809848-compareproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809855-compareproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809861-compareproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809870-configurereport",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809878-copyclientwithcategory",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809887-copymatchingservice",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809891-currentcapability",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809899-currentpowerconsumption",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809905-deregisterinteresteddriver",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809913-detach",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809918-didterminate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809924-didyouwakesystem",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809929-disableinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809937-enableinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809942-errnofromreturn",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809948-finalize",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809960-free",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809962-getaggressiveness",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809968-getbusystate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809973-getclient",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809979-getclientiterator",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809984-getdevicememory",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809990-getdevicememorycount",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1809999-getdevicememorywithindex",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810004-getinterrupttype",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810011-getmatchingservices",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810018-getopenclientiterator",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810027-getopenprovideriterator",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810033-getplatform",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810046-getpmrootdomain",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810059-getpmworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810074-getpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810088-getprovider",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810097-getprovideriterator",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810107-getresources",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810116-getresourceservice",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810122-getserviceroot",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810137-getstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810145-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810153-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810164-handleisopen",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810174-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810182-initialpowerstatefordomainstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810198-isinactive",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810209-isopen",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810216-joinpmtree",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810228-lockforarbitration",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810246-makeusable",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810261-mapdevicememorywithindex",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810275-matchlocation",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810286-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810302-maxcapabilityfordomainstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810323-message",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810334-messageclient",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810353-messageclients",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810365-namematching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810383-namematching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810402-newtemperature",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810417-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810435-nextidletimeout",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810450-open",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810463-pm_clamp_timer_expired",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810474-pm_idle_timer_expiration",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810486-pminit",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810502-pmstop",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810518-powerchangedone",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810533-poweroverrideoffpriv",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810549-poweroverrideonpriv",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810564-powerstatedidchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810576-powerstatefordomainstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810597-powerstatewillchangeto",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810605-probe",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810622-propertymatching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810642-publishresource",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810661-publishresource",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810675-registerinteresteddriver",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810691-registerinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810706-registerpowerdriver",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810726-registerservice",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810750-registryentryidmatching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810770-removepowerchild",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810786-requestpowerdomainstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810804-requestprobe",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810819-requestterminate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810840-resourcematching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810857-resourcematching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810880-servicematching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810901-servicematching",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810925-setaggressiveness",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810946-setdevicememory",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810962-setidletimerperiod",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1810987-setpowerparent",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1532866-setpowerstate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811024-start_pm_idle_timer",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811034-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811046-stringfromreturn",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811056-systemwake",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811071-systemwillshutdown",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811087-temperaturecriticalforzone",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811099-temporarypowerclampon",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811110-terminate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811121-terminateclient",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811130-unlockforarbitration",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811142-unregisterinterrupt",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811152-updatereport",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811164-waitformatchingservice",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811172-waitforservice",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811184-waitquiet",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811202-willterminate",
+        "doc://com.apple.documentation/documentation/kernel/ioservice/1811214-youareroot"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioservice/1811009-start"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

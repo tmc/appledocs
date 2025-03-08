@@ -1,0 +1,1554 @@
+{
+  "abstract": [
+    {
+      "text": "Structure your nodes for maximum performance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Maximizing Node Drawing Performance"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a high-level graphics framework, you configure your scene by laying out nodes, and ",
+              "type": "text"
+            },
+            {
+              "code": "SpriteKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " builds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS10.html#//apple_ref/doc/uid/TP40017084-SW36",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " draw calls for you that actually render the content. Thus, you have little control over the amount of low-level graphics work that SpriteKit does, but this article gives you hints that can speed up SpriteKit’s efforts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Show-Draw-Count",
+          "level": 3,
+          "text": "Show Draw Count",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each draw call is an expensive operation; the more graphical elements you can pack into a single draw, the faster your scene can be rendered, and thus the higher frames per second it can achieve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can see the number of draw calls it’s taking to render your scene live on the ",
+              "type": "text"
+            },
+            {
+              "code": "SKView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by enabling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsDrawCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, all scene nodes can be rendered in a single draw call that came from the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sprite nodes that use the same ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SKTexture",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sprite nodes whose texture specifies a subrectangle of the same texture through the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SKTexture",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, all nodes can be rendered in a single draw call that came from the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Node ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " impacts draw call count because, generally, nodes at different ",
+                  "type": "text"
+                },
+                {
+                  "code": "zPositions",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must be rendered on a subsequent pass. For example, nodes that overlap each other must be done in separate draw calls. Overlapping nodes at the same ",
+                  "type": "text"
+                },
+                {
+                  "code": "zPosition",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " can be rendered in the same draw call if you enable the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SKView",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/ignoresSiblingOrder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For all other SpriteKit nodes that draw, pay attention to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsDrawCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " statistic  as you develop your app to gain an understanding of which configurations affect draw count.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Show-Node-Count",
+          "level": 3,
+          "text": "Show Node Count",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of nodes in your scene relates to the number of draw calls. Therefore, minimizing the number of nodes in your scene is a good practice to keep the draw call count down. Showing the node count in your scene is done through the ",
+              "type": "text"
+            },
+            {
+              "code": "SKView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsNodeCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of nodes in your scene can also affect performance if you enumerate all of your nodes within the update life cycle. While the ",
+              "type": "text"
+            },
+            {
+              "code": "SKView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/shouldCullNonVisibleNodes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property can prune offscreen nodes out of an issued draw call, SpriteKit must still enumerate all nodes in your scene to figure out which ones are offscreen, and this is an expensive operation. As a result, eliminating offscreen nodes yourself by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the fastest way to cull nonvisible nodes. Once a node is removed from the node tree, ",
+              "type": "text"
+            },
+            {
+              "code": "SpriteKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " no longer needs to consider whether it’s onscreen or offscreen every frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode": {
+      "abstract": [
+        {
+          "text": "3D SceneKit content drawn as a flattened sprite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SK3DNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SK3DNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SK3DNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sk3dnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode": {
+      "abstract": [
+        {
+          "text": "A source of various particle effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEmitterNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode": {
+      "abstract": [
+        {
+          "text": "A graphical element that draws text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKLabelNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKLabelNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKLabelNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sklabelnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()": {
+      "abstract": [
+        {
+          "text": "Removes the receiving node from its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFromParent()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/removefromparent()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition": {
+      "abstract": [
+        {
+          "text": "The height of the node relative to its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "zPosition",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/zposition"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode": {
+      "abstract": [
+        {
+          "text": "A mathematical shape that can be stroked or filled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKShapeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKShapeNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKShapeNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshapenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture": {
+      "abstract": [
+        {
+          "text": "An image, decoded on the GPU, that can be used to render various SpriteKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTexture",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture from a sub-rectangle of an existing texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithRect:inTexture:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(rect:in:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(rect:in:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas": {
+      "abstract": [
+        {
+          "text": "A collection of textures optimized for storage and drawing performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTextureAtlas",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture from data stored in the texture atlas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/texturenamed(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode": {
+      "abstract": [
+        {
+          "text": "A two-dimensional array of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTileMapNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTileMapNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTileMapNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilemapnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode": {
+      "abstract": [
+        {
+          "text": "A graphical element that plays video content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKVideoNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKVideoNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKVideoNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skvideonode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/ignoresSiblingOrder": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether parent-child and sibling relationships affect the rendering order of nodes in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresSiblingOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/ignoresSiblingOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ignoresSiblingOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ignoresSiblingOrder",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/ignoressiblingorder"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/shouldCullNonVisibleNodes": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the view automatically culls non-visible nodes from the rendering tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCullNonVisibleNodes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/shouldCullNonVisibleNodes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldCullNonVisibleNodes"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldCullNonVisibleNodes",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/shouldcullnonvisiblenodes"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsDrawCount": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the view displays the number of drawing passes it needed to render the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsDrawCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsDrawCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsDrawCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsDrawCount",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/showsdrawcount"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsNodeCount": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the view displays an overlay that shows physics bodies that are visible in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsNodeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/showsNodeCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsNodeCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsNodeCount",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/showsnodecount"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS10.html#//apple_ref/doc/uid/TP40017084-SW36": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS10.html#//apple_ref/doc/uid/TP40017084-SW36",
+      "title": "Metal",
+      "titleInlineContent": [
+        {
+          "text": "Metal",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS10.html#//apple_ref/doc/uid/TP40017084-SW36"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes-that-Draw",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode"
+      ],
+      "title": "Nodes that Draw"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Nodes-that-Draw",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode"
+              ],
+              "title": "Nodes that Draw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/title",
+          "value": "SKVideoNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKVideoNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKVideoNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/title",
+          "value": "SKLabelNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLabelNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLabelNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(rect:in:)/title",
+          "value": "textureWithRect:inTexture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(rect:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithRect:inTexture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1showsNodeCount/title",
+          "value": "showsNodeCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1showsNodeCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsNodeCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/title",
+          "value": "textureNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1ignoresSiblingOrder/title",
+          "value": "ignoresSiblingOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1ignoresSiblingOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ignoresSiblingOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zPosition/title",
+          "value": "zPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SK3DNode/title",
+          "value": "SK3DNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SK3DNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SK3DNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SK3DNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SK3DNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1showsDrawCount/title",
+          "value": "showsDrawCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1showsDrawCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsDrawCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/title",
+          "value": "SKTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/title",
+          "value": "SKShapeNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShapeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShapeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeFromParent()/title",
+          "value": "removeFromParent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeFromParent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromParent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1shouldCullNonVisibleNodes/title",
+          "value": "shouldCullNonVisibleNodes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1shouldCullNonVisibleNodes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldCullNonVisibleNodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/title",
+          "value": "SKTextureAtlas"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode/title",
+          "value": "SKTileMapNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTileMapNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTileMapNode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/maximizing-node-drawing-performance"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/maximizing-node-drawing-performance"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

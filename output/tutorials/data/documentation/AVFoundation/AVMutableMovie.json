@@ -1,0 +1,5195 @@
+{
+  "abstract": [
+    {
+      "text": "A mutable object that represents an audiovisual container that conforms to the QuickTime movie file format or a related format like MPEG-4.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVMutableMovie",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVMutableMovie"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVMutableMovie"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVMutableMovie"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovie"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class is a mutable subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that provides methods that support movie editing. For example, you can use a mutable movie to copy media data from one track and paste it into another. You can also use this object to create track references from one track to another (for example, to set one track as a chapter track of another track). To perform editing operations on individual tracks, use the associated classes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovieTrack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovieTrack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use movie objects only when operating on format-specific features of a QuickTime or ISO base media file. You typically don’t use these classes to open and play QuickTime movie files or ISO base media files. Instead, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVURLAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When performing media insertions, a movie interleaves media data from tracks in the source asset to optimize the movie file for playback. However, performing a series of media insertions may result in a movie file that’s not optimally interleaved. You can optimize a movie file for playback by exporting it with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the export preset ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportPresetPassthrough",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession/shouldOptimizeForNetworkUse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportPresetPassthrough": {
+      "abstract": [
+        {
+          "text": "A preset to export the asset in its current format, unless otherwise prohibited.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportPresetPassthrough"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportPresetPassthrough",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportPresetPassthrough"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetExportPresetPassthrough",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetexportpresetpassthrough"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession": {
+      "abstract": [
+        {
+          "text": "An object that exports assets in a format that you specify using an export preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetExportSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetexportsession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession/shouldOptimizeForNetworkUse": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to optimize the movie for network use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldOptimizeForNetworkUse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession/shouldOptimizeForNetworkUse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldOptimizeForNetworkUse"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldOptimizeForNetworkUse",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetexportsession/shouldoptimizefornetworkuse"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface to load media data asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousKeyValueLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousKeyValueLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsynchronousKeyValueLoading",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronouskeyvalueloading"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie": {
+      "abstract": [
+        {
+          "text": "An object that represents an audiovisual container that conforms to the QuickTime movie file format or a related format like MPEG-4.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMovie"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMovie",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmovie"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovieTrack": {
+      "abstract": [
+        {
+          "text": "A track in a movie that conforms to the QuickTime or ISO base media file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMovieTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovieTrack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMovieTrack"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMovieTrack",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmovietrack"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie": {
+      "abstract": [
+        {
+          "text": "A mutable object that represents an audiovisual container that conforms to the QuickTime movie file format or a related format like MPEG-4.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableMovie"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableMovie",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTrack(withMediaType:copySettingsFrom:options:)": {
+      "abstract": [
+        {
+          "text": "Adds an empty track to the target movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addMutableTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "copySettingsFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTrack(withMediaType:copySettingsFrom:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addMutableTrackWithMediaType:copySettingsFromTrack:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addMutableTrack(withMediaType:copySettingsFrom:options:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/addmutabletrack(withmediatype:copysettingsfrom:options:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTracksCopyingSettings(from:options:)": {
+      "abstract": [
+        {
+          "text": "Adds one or more empty tracks to the target movie and copies the track settings from the source tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addMutableTracksCopyingSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTracksCopyingSettings(from:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addMutableTracksCopyingSettingsFromTracks:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addMutableTracksCopyingSettings(from:options:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/addmutabletrackscopyingsettings(from:options:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/allMediaSelections": {
+      "abstract": [
+        {
+          "text": "The array of available media selections for this asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allMediaSelections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMediaSelection",
+          "text": "AVMediaSelection"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/allMediaSelections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allMediaSelections",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/allmediaselections"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableChapterLocales": {
+      "abstract": [
+        {
+          "text": "The locales of the asset’s chapter metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableChapterLocales"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableChapterLocales",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableChapterLocales",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/availablechapterlocales"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableMediaCharacteristicsWithMediaSelectionOptions": {
+      "abstract": [
+        {
+          "text": "An array of media characteristics for which a media selection option is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableMediaCharacteristicsWithMediaSelectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableMediaCharacteristicsWithMediaSelectionOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableMediaCharacteristicsWithMediaSelectionOptions",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/availablemediacharacteristicswithmediaselectionoptions"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableMetadataFormats": {
+      "abstract": [
+        {
+          "text": "The metadata formats this asset contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableMetadataFormats"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataFormat",
+          "text": "AVMetadataFormat"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableMetadataFormats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableMetadataFormats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/availablemetadataformats"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/canContainFragments": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can extend the asset by fragments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canContainFragments"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/canContainFragments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canContainFragments",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/cancontainfragments"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(bestMatchingPreferredLanguages:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of chapters with a locale that best matches the list of preferred languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bestMatchingPreferredLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVTimedMetadataGroup",
+          "text": "AVTimedMetadataGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroupsBestMatchingPreferredLanguages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/chaptermetadatagroups(bestmatchingpreferredlanguages:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of chapters that contain the specified title locale and common keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTitleLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "containingItemsWithCommonKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataKey",
+          "text": "AVMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVTimedMetadataGroup",
+          "text": "AVTimedMetadataGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/chaptermetadatagroups(withtitlelocale:containingitemswithcommonkeys:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/commonMetadata": {
+      "abstract": [
+        {
+          "text": "The metadata items an asset contains for common metadata identifiers that provide a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/commonMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commonMetadata",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/commonmetadata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/containsFragments": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether at least one movie fragment extends the asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsFragments"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/containsFragments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containsFragments",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/containsfragments"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/creationDate": {
+      "abstract": [
+        {
+          "text": "A metadata item that indicates the asset’s creation date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/creationDate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "creationDate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/creationdate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/defaultMediaDataStorage": {
+      "abstract": [
+        {
+          "text": "The default storage container for media data that you add to a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultMediaDataStorage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMediaDataStorage",
+          "text": "AVMediaDataStorage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/defaultMediaDataStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultMediaDataStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultMediaDataStorage",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/defaultmediadatastorage"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/duration": {
+      "abstract": [
+        {
+          "text": "A time value that indicates the asset’s duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/duration"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/hasProtectedContent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the asset contains protected content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasProtectedContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/hasProtectedContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasProtectedContent",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/hasprotectedcontent"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(data:options:error:)": {
+      "abstract": [
+        {
+          "text": "Creates a mutable movie object from a movie stored in a data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": ()) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(data:options:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithData:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:options:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/init(data:options:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(settingsFrom:options:)": {
+      "abstract": [
+        {
+          "text": "Creates a mutable movie object without tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "settingsFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMovie",
+          "text": "AVMovie"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(settingsFrom:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSettingsFromMovie:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(settingsFrom:options:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/init(settingsfrom:options:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(url:options:error:)": {
+      "abstract": [
+        {
+          "text": "Creates a mutable movie object from a movie header stored in a QuickTime movie file of ISO base media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": ()) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(url:options:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:options:error:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/init(url:options:error:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertEmptyTimeRange(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an empty time range to a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertEmptyTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertEmptyTimeRange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertEmptyTimeRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertEmptyTimeRange(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/insertemptytimerange(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertTimeRange(_:of:at:copySampleData:)": {
+      "abstract": [
+        {
+          "text": "Inserts all of the tracks in a specified time range of an asset into a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "copySampleData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertTimeRange(_:of:at:copySampleData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange:ofAsset:atTime:copySampleData:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertTimeRange(_:of:at:copySampleData:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/inserttimerange(_:of:at:copysampledata:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/interleavingPeriod": {
+      "abstract": [
+        {
+          "text": "A time period indicating the duration for interleaving runs of samples for each track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleavingPeriod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/interleavingPeriod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interleavingPeriod"
+        }
+      ],
+      "role": "symbol",
+      "title": "interleavingPeriod",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/interleavingperiod"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isCompatibleWithAirPlayVideo": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the asset is compatible with AirPlay Video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCompatibleWithAirPlayVideo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isCompatibleWithAirPlayVideo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCompatibleWithAirPlayVideo",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/iscompatiblewithairplayvideo"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isCompatibleWithSavedPhotosAlbum": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can write the composition to the Saved Photos album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCompatibleWithSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isCompatibleWithSavedPhotosAlbum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCompatibleWithSavedPhotosAlbum",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/iscompatiblewithsavedphotosalbum"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isComposable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can use the asset as a segment of a composition track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isComposable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isComposable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isComposable",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/iscomposable"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isExportable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can export this asset using an export session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExportable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isExportable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExportable",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/isexportable"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isModified": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the movie is in a modified state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isModified"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isModified",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modified"
+        }
+      ],
+      "role": "symbol",
+      "title": "isModified",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/ismodified"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isPlayable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the asset has playable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPlayable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isPlayable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPlayable",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/isplayable"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isReadable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can extract the asset’s media data using an asset reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isReadable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReadable",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/isreadable"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTrack(withTrackID:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads a track that contains the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTrack(withTrackID:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTrackWithTrackID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTrack(withTrackID:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/loadtrack(withtrackid:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaCharacteristic:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads tracks that contain media of a specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaCharacteristic:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTracks(withMediaCharacteristic:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/loadtracks(withmediacharacteristic:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaType:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads tracks that contain media of a specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaType:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTracksWithMediaType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTracks(withMediaType:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/loadtracks(withmediatype:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/lyrics": {
+      "abstract": [
+        {
+          "text": "The lyrics of the asset in a language suitable for the current locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lyrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/lyrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lyrics",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/lyrics"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mediaSelectionGroup(forMediaCharacteristic:)": {
+      "abstract": [
+        {
+          "text": "Returns a media selection group that contains one or more options with the specified media characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaSelectionGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMediaSelectionGroup",
+          "text": "AVMediaSelectionGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mediaSelectionGroup(forMediaCharacteristic:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaSelectionGroupForMediaCharacteristic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaSelectionGroup(forMediaCharacteristic:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/mediaselectiongroup(formediacharacteristic:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata": {
+      "abstract": [
+        {
+          "text": "An array of metadata items for all metadata identifiers for which a value is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadata",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/metadata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata(forFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of metadata items from the container with the specified format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMetadataFormat",
+          "text": "AVMetadataFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataItem",
+          "text": "AVMetadataItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata(forFormat:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "metadataForFormat:"
+        }
+      ],
+      "role": "symbol",
+      "title": "metadata(forFormat:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/metadata(forformat:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/minimumTimeOffsetFromLive": {
+      "abstract": [
+        {
+          "text": "A time value that indicates how closely playback follows the latest live stream content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumTimeOffsetFromLive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/minimumTimeOffsetFromLive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumTimeOffsetFromLive",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/minimumtimeoffsetfromlive"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithData:options:error:": {
+      "abstract": [
+        {
+          "text": "Returns a new mutable movie object from a movie stored in a data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "movieWithData:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithData:options:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movieWithData:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "movieWithData:options:error:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/moviewithdata:options:error:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithSettingsFromMovie:options:error:": {
+      "abstract": [
+        {
+          "text": "Returns a new mutable movie object without tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "movieWithSettingsFromMovie:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithSettingsFromMovie:options:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movieWithSettingsFromMovie:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "movieWithSettingsFromMovie:options:error:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/moviewithsettingsfrommovie:options:error:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithURL:options:error:": {
+      "abstract": [
+        {
+          "text": "Returns a new mutable movie object from a movie header stored in a QuickTime movie file of ISO base media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "movieWithURL:options:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithURL:options:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movieWithURL:options:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "movieWithURL:options:error:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/moviewithurl:options:error:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mutableTrack(compatibleWith:)": {
+      "abstract": [
+        {
+          "text": "Provides a reference to a track from a mutable movie into which you can insert any time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mutableTrack(compatibleWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mutableTrackCompatibleWithTrack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mutableTrack(compatibleWith:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/mutabletrack(compatiblewith:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/overallDurationHint": {
+      "abstract": [
+        {
+          "text": "The total duration of fragments that currently exist, or may exist in the future.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overallDurationHint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/overallDurationHint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overallDurationHint",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/overalldurationhint"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredMediaSelection": {
+      "abstract": [
+        {
+          "text": "The default media selections for this asset’s media selection groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredMediaSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMediaSelection",
+          "text": "AVMediaSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredMediaSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredMediaSelection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/preferredmediaselection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredRate": {
+      "abstract": [
+        {
+          "text": "The asset’s rate preference for playing its media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredRate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/preferredrate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredTransform": {
+      "abstract": [
+        {
+          "text": "The asset’s transform preference to apply to its visual content during presentation or processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredTransform",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/preferredtransform"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredVolume": {
+      "abstract": [
+        {
+          "text": "The asset’s volume preference for playing its audible media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredVolume"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredVolume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredVolume"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredVolume",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/preferredvolume"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/providesPreciseDurationAndTiming": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the asset provides precise duration and timing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providesPreciseDurationAndTiming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/providesPreciseDurationAndTiming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "providesPreciseDurationAndTiming",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/providesprecisedurationandtiming"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTimeRange(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified time range from a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTimeRange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTimeRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTimeRange(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/removetimerange(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTrack(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified track from the target movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMovieTrack",
+          "text": "AVMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTrack(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTrack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTrack(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/removetrack(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/scale(_:toDuration:)": {
+      "abstract": [
+        {
+          "text": "Changes the duration of a time range in a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/scale(_:toDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scaleTimeRange:toDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scale(_:toDuration:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/scale(_:toduration:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/timescale": {
+      "abstract": [
+        {
+          "text": "The time scale of the movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timescale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimeScale",
+          "text": "CMTimeScale"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/timescale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timescale"
+        }
+      ],
+      "role": "symbol",
+      "title": "timescale",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/timescale"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/track(withTrackID:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a track in the movie that contains the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/track(withTrackID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trackWithTrackID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "track(withTrackID:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/track(withtrackid:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/trackGroups": {
+      "abstract": [
+        {
+          "text": "The track groups an asset contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrackGroup",
+          "text": "AVAssetTrackGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/trackGroups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackGroups",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/trackgroups"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks": {
+      "abstract": [
+        {
+          "text": "The tracks that a movie contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        }
+      ],
+      "role": "symbol",
+      "title": "tracks",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/tracks"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaCharacteristic:)": {
+      "abstract": [
+        {
+          "text": "Retrieve tracks in the movie that present media of the specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaCharacteristic:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tracksWithMediaCharacteristic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tracks(withMediaCharacteristic:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/tracks(withmediacharacteristic:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaType:)": {
+      "abstract": [
+        {
+          "text": "Retrieves tracks in the movie that present media of the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tracksWithMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tracks(withMediaType:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/tracks(withmediatype:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/unusedTrackID()": {
+      "abstract": [
+        {
+          "text": "Returns an identifier that no other tracks in the asset use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unusedTrackID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/unusedTrackID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unusedTrackID"
+        }
+      ],
+      "role": "symbol",
+      "title": "unusedTrackID()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovie/unusedtrackid()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovieTrack": {
+      "abstract": [
+        {
+          "text": "A mutable track that conforms to the QuickTime or ISO base media file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableMovieTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovieTrack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableMovieTrack"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableMovieTrack",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablemovietrack"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/tracks-2lj40": {
+      "abstract": [
+        {
+          "text": "The tracks that a movie contains.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMutableMovie",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableMovieTrack",
+          "text": "AVMutableMovieTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/tracks-2lj40",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tracks",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/tracks-2lj40"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVURLAsset": {
+      "abstract": [
+        {
+          "text": "An asset that represents media at a local or remote URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVURLAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVURLAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVURLAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVURLAsset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avurlasset"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Mutable-movies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovieTrack"
+      ],
+      "title": "Mutable movies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Movie",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(url:options:error:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(data:options:error:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(settingsFrom:options:)"
+      ],
+      "title": "Creating a Movie"
+    },
+    {
+      "anchor": "Configuring-a-Movie",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isModified",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/timescale",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/interleavingPeriod",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/defaultMediaDataStorage"
+      ],
+      "title": "Configuring a Movie"
+    },
+    {
+      "anchor": "Loading-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/tracks-2lj40",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTrack(withTrackID:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaType:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaCharacteristic:completionHandler:)"
+      ],
+      "title": "Loading Tracks"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Prefer loading tracks asynchronously using the methods in Loading Tracks.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/track(withTrackID:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaType:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaCharacteristic:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/unusedTrackID()"
+      ],
+      "title": "Accessing Tracks"
+    },
+    {
+      "anchor": "Accessing-Track-Groups",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/trackGroups"
+      ],
+      "title": "Accessing Track Groups"
+    },
+    {
+      "anchor": "Managing-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mutableTrack(compatibleWith:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTrack(withMediaType:copySettingsFrom:options:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTracksCopyingSettings(from:options:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTrack(_:)"
+      ],
+      "title": "Managing Tracks"
+    },
+    {
+      "anchor": "Managing-Time-Ranges",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertEmptyTimeRange(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertTimeRange(_:of:at:copySampleData:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/scale(_:toDuration:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTimeRange(_:)"
+      ],
+      "title": "Managing Time Ranges"
+    },
+    {
+      "anchor": "Accessing-Duration-and-Timing",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/duration",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/providesPreciseDurationAndTiming",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/minimumTimeOffsetFromLive"
+      ],
+      "title": "Accessing Duration and Timing"
+    },
+    {
+      "anchor": "Accessing-Metadata",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/commonMetadata",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableMetadataFormats",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata(forFormat:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/creationDate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/lyrics"
+      ],
+      "title": "Accessing Metadata"
+    },
+    {
+      "anchor": "Determining-Suitability",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isPlayable",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isReadable",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isExportable",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isComposable",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isCompatibleWithAirPlayVideo",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isCompatibleWithSavedPhotosAlbum"
+      ],
+      "title": "Determining Suitability"
+    },
+    {
+      "anchor": "Inspecting-Preferences",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredRate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredVolume",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredTransform",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredMediaSelection"
+      ],
+      "title": "Inspecting Preferences"
+    },
+    {
+      "anchor": "Accessing-Media-Selections",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/allMediaSelections",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableMediaCharacteristicsWithMediaSelectionOptions",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mediaSelectionGroup(forMediaCharacteristic:)"
+      ],
+      "title": "Accessing Media Selections"
+    },
+    {
+      "anchor": "Accessing-Chapter-Metadata",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/availableChapterLocales",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)"
+      ],
+      "title": "Accessing Chapter Metadata"
+    },
+    {
+      "anchor": "Determining-Content-Protections",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/hasProtectedContent"
+      ],
+      "title": "Determining Content Protections"
+    },
+    {
+      "anchor": "Determining-Fragment-Support",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/canContainFragments",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/containsFragments",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/overallDurationHint"
+      ],
+      "title": "Determining Fragment Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVMutableMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Movie",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithURL:options:error:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(url:options:error:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithData:options:error:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(data:options:error:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/movieWithSettingsFromMovie:options:error:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/init(settingsFrom:options:)"
+              ],
+              "title": "Creating a Movie"
+            },
+            {
+              "anchor": "Configuring-a-Movie",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/isModified",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/timescale",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/interleavingPeriod",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/defaultMediaDataStorage"
+              ],
+              "title": "Configuring a Movie"
+            },
+            {
+              "anchor": "Loading-Tracks",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTrack(withTrackID:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaType:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/loadTracks(withMediaCharacteristic:completionHandler:)"
+              ],
+              "title": "Loading Tracks"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Prefer loading tracks asynchronously using the methods in Loading Tracks.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Accessing-Tracks",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/track(withTrackID:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaType:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/tracks(withMediaCharacteristic:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/unusedTrackID()"
+              ],
+              "title": "Accessing Tracks"
+            },
+            {
+              "anchor": "Managing-Tracks",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mutableTrack(compatibleWith:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTrack(withMediaType:copySettingsFrom:options:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/addMutableTracksCopyingSettings(from:options:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTrack(_:)"
+              ],
+              "title": "Managing Tracks"
+            },
+            {
+              "anchor": "Managing-Time-Ranges",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertEmptyTimeRange(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/insertTimeRange(_:of:at:copySampleData:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/scale(_:toDuration:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/removeTimeRange(_:)"
+              ],
+              "title": "Managing Time Ranges"
+            },
+            {
+              "anchor": "Accessing-Metadata",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/metadata(forFormat:)"
+              ],
+              "title": "Accessing Metadata"
+            },
+            {
+              "anchor": "Inspecting-Preferences",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredRate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredVolume",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/preferredTransform"
+              ],
+              "title": "Inspecting Preferences"
+            },
+            {
+              "anchor": "Accessing-Media-Selections",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/mediaSelectionGroup(forMediaCharacteristic:)"
+              ],
+              "title": "Accessing Media Selections"
+            },
+            {
+              "anchor": "Accessing-Chapter-Metadata",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(bestMatchingPreferredLanguages:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovie/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)"
+              ],
+              "title": "Accessing Chapter Metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Mutable-movies",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableMovieTrack"
+              ],
+              "title": "Mutable movies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVMutableMovie"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMovie",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVMovie",
+                    "text": "AVMovie"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1metadata(forFormat:)/title",
+          "value": "metadataForFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1metadata(forFormat:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "metadataForFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1preferredTransform/title",
+          "value": "preferredTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1preferredTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1scale(_:toDuration:)/title",
+          "value": "scaleTimeRange:toDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1scale(_:toDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scaleTimeRange:toDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1unusedTrackID()/title",
+          "value": "unusedTrackID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1unusedTrackID()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unusedTrackID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1tracks/title",
+          "value": "tracks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1tracks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tracks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1init(url:options:error:)/title",
+          "value": "initWithURL:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1init(url:options:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:options:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1insertEmptyTimeRange(_:)/title",
+          "value": "insertEmptyTimeRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1insertEmptyTimeRange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertEmptyTimeRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/title",
+          "value": "AVAsynchronousKeyValueLoading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousKeyValueLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousKeyValueLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1insertTimeRange(_:of:at:copySampleData:)/title",
+          "value": "insertTimeRange:ofAsset:atTime:copySampleData:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1insertTimeRange(_:of:at:copySampleData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertTimeRange:ofAsset:atTime:copySampleData:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVURLAsset/title",
+          "value": "AVURLAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVURLAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVURLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVURLAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVURLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovieTrack/title",
+          "value": "AVMutableMovieTrack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovieTrack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovieTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovieTrack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovieTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1preferredVolume/title",
+          "value": "preferredVolume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1preferredVolume/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredVolume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie/title",
+          "value": "AVMutableMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession~1shouldOptimizeForNetworkUse/title",
+          "value": "shouldOptimizeForNetworkUse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession~1shouldOptimizeForNetworkUse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldOptimizeForNetworkUse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1addMutableTracksCopyingSettings(from:options:)/title",
+          "value": "addMutableTracksCopyingSettingsFromTracks:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1addMutableTracksCopyingSettings(from:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addMutableTracksCopyingSettingsFromTracks:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1tracks(withMediaCharacteristic:)/title",
+          "value": "tracksWithMediaCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1tracks(withMediaCharacteristic:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tracksWithMediaCharacteristic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1addMutableTrack(withMediaType:copySettingsFrom:options:)/title",
+          "value": "addMutableTrackWithMediaType:copySettingsFromTrack:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1addMutableTrack(withMediaType:copySettingsFrom:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addMutableTrackWithMediaType:copySettingsFromTrack:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1preferredRate/title",
+          "value": "preferredRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1preferredRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1removeTimeRange(_:)/title",
+          "value": "removeTimeRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1removeTimeRange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTimeRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1defaultMediaDataStorage/title",
+          "value": "defaultMediaDataStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1defaultMediaDataStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultMediaDataStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1loadTrack(withTrackID:completionHandler:)/title",
+          "value": "loadTrackWithTrackID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1loadTrack(withTrackID:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTrackWithTrackID:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMovieTrack/title",
+          "value": "AVMovieTrack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMovieTrack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMovieTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMovieTrack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMovieTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1isModified/title",
+          "value": "modified"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1isModified/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modified"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1interleavingPeriod/title",
+          "value": "interleavingPeriod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1interleavingPeriod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interleavingPeriod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1mutableTrack(compatibleWith:)/title",
+          "value": "mutableTrackCompatibleWithTrack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1mutableTrack(compatibleWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mutableTrackCompatibleWithTrack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1track(withTrackID:)/title",
+          "value": "trackWithTrackID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1track(withTrackID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "trackWithTrackID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1timescale/title",
+          "value": "timescale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1timescale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timescale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportPresetPassthrough/title",
+          "value": "AVAssetExportPresetPassthrough"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportPresetPassthrough/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportPresetPassthrough"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1metadata/title",
+          "value": "metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1removeTrack(_:)/title",
+          "value": "removeTrack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1removeTrack(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTrack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMovie/title",
+          "value": "AVMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMovie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMovie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1init(data:options:error:)/title",
+          "value": "initWithData:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1init(data:options:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithData:options:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)/title",
+          "value": "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1mediaSelectionGroup(forMediaCharacteristic:)/title",
+          "value": "mediaSelectionGroupForMediaCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1mediaSelectionGroup(forMediaCharacteristic:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mediaSelectionGroupForMediaCharacteristic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1chapterMetadataGroups(bestMatchingPreferredLanguages:)/title",
+          "value": "chapterMetadataGroupsBestMatchingPreferredLanguages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1chapterMetadataGroups(bestMatchingPreferredLanguages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chapterMetadataGroupsBestMatchingPreferredLanguages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1loadTracks(withMediaCharacteristic:completionHandler:)/title",
+          "value": "loadTracksWithMediaCharacteristic:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1loadTracks(withMediaCharacteristic:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1init(settingsFrom:options:)/title",
+          "value": "initWithSettingsFromMovie:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1init(settingsFrom:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSettingsFromMovie:options:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/title",
+          "value": "AVAssetExportSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1tracks(withMediaType:)/title",
+          "value": "tracksWithMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1tracks(withMediaType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tracksWithMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1loadTracks(withMediaType:completionHandler:)/title",
+          "value": "loadTracksWithMediaType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableMovie~1loadTracks(withMediaType:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTracksWithMediaType:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avmutablemovie"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avmutablemovie"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,722 @@
+{
+  "abstract": [
+    {
+      "text": "Check-in protocol get-token data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Token"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:put:checkin#GetTokenRequest",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Token"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Token"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PUT"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourmdmhost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "checkin#GetTokenRequest"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-commands:GetTokenRequest",
+          "text": "GetTokenRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "Check-in protocol get-token request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/x-apple-aspen-mdm-checkin",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Check-in protocol get-token response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/xml",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:GetTokenResponse",
+              "text": "GetTokenResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A server that supports this request needs to include a ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.mdm.token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in the ",
+              "type": "text"
+            },
+            {
+              "code": "ServerCapabilities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of the MDM profile payload to enroll the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This request allows devices to fetch security-related tokens from the server and to retrieve different types of tokens for the different services that need them. Each service has a unique identifier, and can pass a specific set of parameters for the server to use when generating the token. If the server doesn’t recognize the service type, it needs to return a ",
+              "type": "text"
+            },
+            {
+              "code": "400",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP response status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "GetBootstrapToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " request is a separate request specifically for the bootstrap token.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Support-access-management-for-Managed-Apple-IDs",
+          "level": 3,
+          "text": "Support access management for Managed Apple IDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the service ",
+              "type": "text"
+            },
+            {
+              "code": "type com.apple.maid",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the Apple Identity Service requests this token when a Managed Apple ID is signing in. It’s used to verify that the Managed Apple ID belongs to the same organization as the MDM server that enrolled the device. The token is a JSON Web Token (JWT) per RFC7519 with the following claims:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A String, per RFC7519 Section 4.1.1, that the server sets to the system-generated server identifier (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "server_uuid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountDetail",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " returns.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A NumericDate, per RFC7519 Section 4.1.6, that the server sets to the timestamp for when it generated the token. The system uses this value to limit the time period that the token is valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "jti",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A String, per RFC7519 Section 4.1.7, that the server sets to a unique identifier (a random UUID) for the JWT. The system uses this value to ensure that a token is only used once.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "service_type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A String that the server sets to the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TokenServiceType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key included in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CheckIn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " request, which needs to be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.maid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign the JWT using the server’s private key that corresponds to the IETF RFC 3280 compliant public key certificate that’s registered with Apple Business or School Manager.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-Apple-Watch-pairing",
+          "level": 3,
+          "text": "Support Apple Watch pairing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the service type ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.watch.pairing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the MDM server requests this token to enroll a watch, with the request coming from the phone that’s paired to the watch. The format of the token is implementation-defined, but the phone and watch MDM servers need to use the same format. The purpose of this token is to confirm the pairing relationship of the watch to the phone, and that the phone is already enrolled in an MDM server that belongs to the same organization as the watch MDM server. Ensure that the token is cryptographically protected against tampering, spoofing, and replay attacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountDetail": {
+      "abstract": [
+        {
+          "text": "The response that contains the details for an account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountDetail"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountDetail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountDetail"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountDetail",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountdetail"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Authenticate": {
+      "abstract": [
+        {
+          "text": "Authenticates a user during MDM payload installation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Authenticate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Authenticate"
+        }
+      ],
+      "role": "symbol",
+      "title": "Authenticate",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/authenticate"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Check-Out": {
+      "abstract": [
+        {
+          "text": "Responds to the removal of the MDM enrollment profile from a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Check-Out",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Check Out"
+        }
+      ],
+      "role": "symbol",
+      "title": "Check Out",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/check-out"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Bootstrap-Token": {
+      "abstract": [
+        {
+          "text": "Gets the bootstrap token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Bootstrap-Token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Bootstrap Token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Bootstrap Token",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-bootstrap-token"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Token": {
+      "abstract": [
+        {
+          "text": "Check-in protocol get-token data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Token",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-token"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenRequest": {
+      "abstract": [
+        {
+          "text": "Check-in protocol get-token request data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetTokenRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetTokenRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetTokenRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/gettokenrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenResponse": {
+      "abstract": [
+        {
+          "text": "Check-in protocol get-token response data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetTokenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GetTokenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GetTokenResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/gettokenresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Bootstrap-Token": {
+      "abstract": [
+        {
+          "text": "Sets the bootstrap token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Bootstrap-Token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Set Bootstrap Token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Set Bootstrap Token",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/set-bootstrap-token"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Token-Update": {
+      "abstract": [
+        {
+          "text": "Updates the token for a device on the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Token-Update",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Token Update"
+        }
+      ],
+      "role": "symbol",
+      "title": "Token Update",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/token-update"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/UserAuthenticate": {
+      "abstract": [
+        {
+          "text": "Authenticates a user with a two-step authentication protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/UserAuthenticate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserAuthenticate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserAuthenticate",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/userauthenticate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Authenticate",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/UserAuthenticate",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Check-Out",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Token-Update",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Bootstrap-Token",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Bootstrap-Token"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Request-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenRequest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/GetTokenResponse"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/get-token"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

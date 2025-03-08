@@ -1,0 +1,555 @@
+{
+  "abstract": [
+    {
+      "text": "Activates an inactive listener.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.xpc/documentation/XPC/xpc_listener_activate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@xpc_listener_activate",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "xpc_listener_activate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "xpc_listener_activate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "xpc_listener_activate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_activate"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_listener_t",
+              "text": "xpc_listener_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "listener"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@xpc_rich_error_t",
+              "text": "xpc_rich_error_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error_out"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The inactive listener to activate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "listener"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If provided, a pointer that receives an error if activation fails.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error_out"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the listener was activated; otherwise ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_activate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with a listener that’s already active.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create an inactive listener using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_create_flags_t/XPC_LISTENER_CREATE_INACTIVE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " flag, be sure to activate it before releasing the last reference to the listener. Releasing the last reference to an inactive listener crashes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If activation fails, the system automatically cancels the listener.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_activate": {
+      "abstract": [
+        {
+          "text": "Activates an inactive listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_activate"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_activate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_listener_activate",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_activate"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_cancel": {
+      "abstract": [
+        {
+          "text": "Cancels a listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_listener_cancel",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_cancel"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_create_flags_t/XPC_LISTENER_CREATE_INACTIVE": {
+      "abstract": [
+        {
+          "text": "Prevents the system from automatically activating the listener after creation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_LISTENER_CREATE_INACTIVE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_create_flags_t/XPC_LISTENER_CREATE_INACTIVE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_LISTENER_CREATE_INACTIVE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_create_flags_t/xpc_listener_create_inactive"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_reject_peer": {
+      "abstract": [
+        {
+          "text": "Rejects an incoming peer session request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_reject_peer"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_reject_peer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "xpc_listener_reject_peer",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_reject_peer"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_t": {
+      "abstract": [
+        {
+          "text": "A C type that performs tasks for clients across process boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_listener_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t": {
+      "abstract": [
+        {
+          "text": "A type that describes an error, and whether you can retry the operation that experienced the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_rich_error_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_rich_error_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_rich_error_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_rich_error_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc_listener_cancel",
+        "doc://com.apple.xpc/documentation/XPC/xpc_listener_reject_peer"
+      ],
+      "title": "Managing the life cycle"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/title",
+          "value": "xpc_rich_error_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_rich_error_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_rich_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/title",
+          "value": "xpc_listener_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/xpc_listener_activate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,451 @@
+{
+  "abstract": [
+    {
+      "text": "An array of sample descriptions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Sample_description_table"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Sample_description_atom_Sample_description_table",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Sample_description_table",
+        "text": "Sample description table"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Sample_description_table",
+        "text": "Sample description table"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Data field",
+    "symbolKind": "property",
+    "title": "Sample description table"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the exact format of the sample description varies by media type, the first four fields of every sample description are the same.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer indicating the number of bytes in the sample description.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Sample description size",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When parsing sample descriptions in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "‘stsd’",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " atom, be aware of the sample description size value in order to read each table entry correctly. Some sample descriptions terminate with four zero bytes that are not otherwise indicated.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer indicating the format of the stored data. This depends on the media type, but is usually either the compression format or the media type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Data format",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Six bytes that must be set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Reserved",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 16-bit integer that contains the index of the data reference to use to retrieve data associated with samples that use this sample description. Data references are stored in data reference atoms.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Data reference index",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These four fields may be followed by additional data specific to the media type and data format. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for additional details regarding specific media types and media formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores information that allows you to decode samples in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom",
+          "text": "Sample description atom ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample description atom ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Flags": {
+      "abstract": [
+        {
+          "text": "A 3-byte space for sample description flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Flags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Flags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom/flags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Number_of_entries": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer containing the number of sample descriptions that follow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Number_of_entries",
+          "text": "Number of entries"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Number_of_entries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Number of entries",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom/number_of_entries"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Sample_description_table": {
+      "abstract": [
+        {
+          "text": "An array of sample descriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Sample_description_table",
+          "text": "Sample description table"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Sample_description_table",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample description table",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom/sample_description_table"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that specifies the number of bytes in this sample description atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that identifies the atom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Version": {
+      "abstract": [
+        {
+          "text": "A 1-byte specification of the version of this sample description atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom_Version",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom/version"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-fields",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Version",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Flags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom/Number_of_entries"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sample_description_atom/sample_description_table"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

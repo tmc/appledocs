@@ -1,0 +1,2971 @@
+{
+  "abstract": [
+    {
+      "text": "An action that starts, stops, or increments by a specific value.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation14FromToByActionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FromToByAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FromToByAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "FromToByAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FromToByAction"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:17RealityFoundation14AnimatableDataP",
+              "text": "AnimatableData"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This action animates a bound parameters value over time. Specifying a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/from",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value represents the animated properties’ initial value at the start of the animation. Specifying a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/to",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determines the value of the property at the end of the animation. Specifying a",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/by",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adds a value to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties initial state, which calculates the value at the end of the animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This action exposes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which is used when animating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this mode to determine the reference space the property is relative to. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode/local",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " means",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the provided transforms are relative to the transform of the bound entity. The only exception is when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/by",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specified, this is relative to the space of the starting transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "FromToByAction",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " doesn’t support ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeights",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " types.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to animate these types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Creating-a-from-to-by-action-to-animate-an-entitys-opacity",
+          "level": 3,
+          "text": "Creating a from, to, by action to animate an entity’s opacity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates an animation which gradually animates the bound  entity’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opacity property for five seconds with a linear transition.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this example, the entity starts with opacity at ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an action that gradually animates a float value",
+            "// towards `0.0`, with a linear transition.",
+            "//",
+            "// This action does not have a `from` value supplied, ",
+            "// meaning this starts from the default source value.",
+            "let opacityAction = FromToByAction<Float>(to: 0.0,",
+            "                                          timing: .linear,",
+            "                                          isAdditive: false)",
+            "",
+            "// A five second animation that plays an animation causing the entity to",
+            "// gradually animate the `.opacity` property towards `0.0`.",
+            "//",
+            "// This makes the entity fade-out.",
+            "let opacityAnimation = try AnimationResource",
+            "    .makeActionAnimation(for: opacityAction,",
+            "                         duration: 5.0,",
+            "                         bindTarget: .opacity)",
+            "",
+            "// Play the five second animation on the entity that will fade-out.",
+            "entity.playAnimation(opacityAnimation)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-from-to-by-action-to-animate-an-entitys-transform-property",
+          "level": 3,
+          "text": "Create a from, to, by action to animate an entity’s transform property",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates an animation which gradually animates the bound entities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transform property for five seconds with a linear transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a transform to start animating from.",
+            "let startTransform = Transform(translation: [0.0, 2.0, 0.0])",
+            "",
+            "// Create a transform to animate towards.",
+            "let endTransform = Transform(translation: [0.0, -2.0, 0.0])",
+            "",
+            "// Create an action that gradually animates a transform value.",
+            "//",
+            "// This starts `from` a specified value, and animates towards",
+            "// a specified `to` value.",
+            "//",
+            "// The bound entity will move in the space relative to its parent.",
+            "let transformAction = FromToByAction<Transform>(from: startTransform,",
+            "                                                to: endTransform,",
+            "                                                mode: .parent,",
+            "                                                timing: .linear,",
+            "                                                isAdditive: false)",
+            "",
+            "// A five second animation that plays an animation causing ",
+            "// the entity to gradually move from a specific start, and end transform",
+            "let transformAnimation = try AnimationResource",
+            "    .makeActionAnimation(for: transformAction,",
+            "                         duration: 5.0,",
+            "                         bindTarget: .transform)",
+            "",
+            "// Play the five second animation on the entity that will cause it to move.",
+            "entity.playAnimation(transformAnimation)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The default source value is the base value of the of animated property. If",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "multiple animations target the property, then the framework observes the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "output of the previous animation as the subsequent animation’s default",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "source value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This action animates various bound properties, for example ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on the bound entity.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Ensure a correct bind target is supplied when creating the animation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information on the combination of inputs this action supports see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you do not provide values for any of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "from",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "to",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "by",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameters,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the animation stays at the default source value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData": {
+      "abstract": [
+        {
+          "text": "A functionality specification that animatable data types adopt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimatableData"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimatableData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimatableData",
+      "type": "topic",
+      "url": "/documentation/realitykit/animatabledata"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction": {
+      "abstract": [
+        {
+          "text": "An action that animates the blend factor of an entity’s billboard component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BillboardAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BillboardAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BillboardAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/billboardaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform": {
+      "abstract": [
+        {
+          "text": "A option that specifies that the target entity’s transform animates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BindTarget/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BindTarget.transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/bindtarget/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeights": {
+      "abstract": [
+        {
+          "text": "A set of animatable weight values that collectively represent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the blending amounts for all the blend shapes’ blend targets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeights"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendShapeWeights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeights"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendShapeWeights",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendshapeweights"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction": {
+      "abstract": [
+        {
+          "text": "An action that performs an animation to call attention to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmphasizeAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmphasizeAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmphasizeAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/emphasizeaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an action for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/entityaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction": {
+      "abstract": [
+        {
+          "text": "An action that starts, stops, or increments by a specific value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FromToByAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FromToByAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/decodable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/DecodingErrors": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AnimatableData",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DecodingErrors"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/DecodingErrors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DecodingErrors"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAction.DecodingErrors",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/decodingerrors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/encodable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/EntityAction-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/EntityAction-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "EntityAction Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/entityaction-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/EventParameterType": {
+      "abstract": [
+        {
+          "text": "The associated event parameter type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventParameterType"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/EventParameterType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventParameterType"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAction.EventParameterType",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/eventparametertype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode": {
+      "abstract": [
+        {
+          "text": "Options available to determine the space the bound entity should be relative to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransformMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransformMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAction.TransformMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/transformmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode/local": {
+      "abstract": [
+        {
+          "text": "The provided transforms are relative to the transform of the bound entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "local"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode/local",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FromToByAction.TransformMode.local",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/transformmode/local"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/animatedValueType": {
+      "abstract": [
+        {
+          "text": "The type for the value that the action modifies over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animatedValueType"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14AnimatableDataP",
+          "text": "AnimatableData"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/animatedValueType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animatedValueType",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/animatedvaluetype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/by": {
+      "abstract": [
+        {
+          "text": "The amount that the animated property changes during the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/by",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "by",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/by"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/from": {
+      "abstract": [
+        {
+          "text": "The state of the animated property before the animation starts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/from",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "from",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/from"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(by:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new action to animate from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the deaultSource by a transform relative to the starting transform.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transform",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(by:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(by:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(by:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:by:mode:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new action that interpolates from a specified starting transform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "towards a specified transform, which is relative to the start. Alternatively, interpolates",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "towards the default source if ",
+          "type": "text"
+        },
+        {
+          "code": "by",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is not supplied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transform",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV",
+          "text": "FromToByAction"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV13TransformModeO",
+          "text": "TransformMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:by:mode:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:by:mode:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(from:by:mode:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:by:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new action that interpolates towards a specified value, which",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is relative to the starting value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:by:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:by:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(from:by:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new from to by action to animate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from a specified value, towards the defaultSource value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(from:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:to:mode:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new action that interpolates towards a specified final transform.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transform",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV",
+          "text": "FromToByAction"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV13TransformModeO",
+          "text": "TransformMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:to:mode:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:to:mode:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(from:to:mode:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:to:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new action that interpolates towards a specified final value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:to:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:to:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(from:to:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(to:by:mode:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a action to animate towards a final value.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The starting value is determined by adding the inverse of ",
+          "type": "text"
+        },
+        {
+          "code": "by",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified final value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transform",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV",
+          "text": "FromToByAction"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV13TransformModeO",
+          "text": "TransformMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(to:by:mode:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(to:by:mode:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(to:by:mode:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(to:by:timing:isAdditive:)": {
+      "abstract": [
+        {
+          "text": "Creates a new from to by action to animate towards a final value.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The starting value is determined by adding the inverse of ",
+          "type": "text"
+        },
+        {
+          "code": "by",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified final value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(to:by:timing:isAdditive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(to:by:timing:isAdditive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/init(to:by:timing:isadditive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/isAdditive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation system additively blends the action’s output with the base value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/isAdditive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAdditive",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/isadditive"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/isReversible": {
+      "abstract": [
+        {
+          "text": "Specifies whether you can play this action in reverse in order to undo prior operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReversible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/isReversible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReversible",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/isreversible"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/mode": {
+      "abstract": [
+        {
+          "text": "Determines the entities transform ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/from",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/to",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " are relative to.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transform",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV",
+          "text": "FromToByAction"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14FromToByActionV13TransformModeO",
+          "text": "TransformMode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/mode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mode",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/mode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/timingFunction": {
+      "abstract": [
+        {
+          "text": "A timing function that controls the progress of the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23AnimationTimingFunctionV",
+          "text": "AnimationTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/timingFunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timingFunction",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/timingfunction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/to": {
+      "abstract": [
+        {
+          "text": "The state of the animated property after the animation ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/to",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "to",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyaction/to"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation": {
+      "abstract": [
+        {
+          "text": "An animation that starts, stops, or increments by a specific value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FromToByAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FromToByAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction": {
+      "abstract": [
+        {
+          "text": "An action that applies an impulse to the physics body at its center of mass when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "played as an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImpulseAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImpulseAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImpulseAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/impulseaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms": {
+      "abstract": [
+        {
+          "text": "A set of animatable transform values for joints that collectively represent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a single skeletal pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointTransforms"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JointTransforms"
+        }
+      ],
+      "role": "symbol",
+      "title": "JointTransforms",
+      "type": "topic",
+      "url": "/documentation/realitykit/jointtransforms"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction": {
+      "abstract": [
+        {
+          "text": "An action which animates the transform of an entity to revolve around a specified pivot entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrbitEntityAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrbitEntityAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrbitEntityAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitentityaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction": {
+      "abstract": [
+        {
+          "text": "An action that plays an animation on the given target entity with a range of playback options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayAnimationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayAnimationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayAnimationAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/playanimationaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction": {
+      "abstract": [
+        {
+          "text": "An action which plays an audio resource on the given target entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayAudioAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/playaudioaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction": {
+      "abstract": [
+        {
+          "text": "An action that enables or disables the targeted entity and its descendants when played as an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetEntityEnabledAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetEntityEnabledAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetEntityEnabledAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/setentityenabledaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpinAction": {
+      "abstract": [
+        {
+          "text": "An action which animates the transform of an entity to rotate around a specified local axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpinAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpinAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpinAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpinAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/spinaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform": {
+      "abstract": [
+        {
+          "text": "A component that defines the scale, rotation, and translation of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Built-in-actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BillboardAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EmphasizeAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImpulseAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitEntityAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PlayAnimationAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SetEntityEnabledAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpinAction"
+      ],
+      "title": "Built-in actions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(by:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:by:mode:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:by:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:to:mode:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(from:to:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(to:by:mode:timing:isAdditive:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/init(to:by:timing:isAdditive:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/animatedValueType",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/by",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/from",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/isAdditive",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/isReversible",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/mode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/timingFunction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/to"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/EventParameterType"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/DecodingErrors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/TransformMode"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/Decodable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/Encodable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAction/EntityAction-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/fromtobyaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

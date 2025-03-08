@@ -1,0 +1,716 @@
+{
+  "abstract": [
+    {
+      "text": "Use a linguistic tagger to perform named entity recognition on a string.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations"
+  },
+  "kind": "article",
+  "legacy_identifier": 2922148,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying People, Places, and Organizations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identifying named entities in natural language text can help make your app more intelligent. For example, a messaging app might look for names of people and places in text in order to display related information like contact information or directions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to enumerate over natural language text and identify any named person, place, or organization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let text = \"The American Red Cross was established in Washington, D.C., by Clara Barton.\"",
+            "let tagger = NSLinguisticTagger(tagSchemes: [.nameType], options: 0)",
+            "tagger.string = text",
+            "let range = NSRange(location:0, length: text.utf16.count)",
+            "let options: NSLinguisticTagger.Options = [.omitPunctuation, .omitWhitespace, .joinNames]",
+            "let tags: [NSLinguisticTag] = [.personalName, .placeName, .organizationName]",
+            "tagger.enumerateTags(in: range, unit: .word, scheme: .nameType, options: options) { tag, tokenRange, stop in",
+            "    if let tag = tag, tags.contains(tag) {",
+            "        let name = (text as NSString).substring(with: tokenRange)",
+            "        print(\"\\(name): \\(tag)\")",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2922149",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is created, specifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the tag scheme to be used. Next, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the linguistic tagger is set to the natural language text. Finally, the linguistic tagger enumerates over the entire range of the string, specifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the tag unit and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the tag scheme, omitting any punctuation or whitespace, and joining words that are part of a single name into the same token. In the enumeration block, the name type is provided by ",
+              "type": "text"
+            },
+            {
+              "code": "tag",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and each word is obtained by taking a substring of the original text at ",
+              "type": "text"
+            },
+            {
+              "code": "tokenRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When run, this code prints out each name and its type on a new line, as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2922150",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The American Red Cross",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1416034-organizationname",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Washington, D.C.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1413568-placename",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clara Barton",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1417476-personalname",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1413568-placename": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1413568-placename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "placeName",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag/1413568-placename"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1416034-organizationname": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1416034-organizationname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "organizationName",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag/1416034-organizationname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1417476-personalname": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1417476-personalname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "personalName",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag/1417476-personalname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagger",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1407750-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1407750-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1410036-enumeratetags": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given range of the string and calls the specified block for each tag.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1410036-enumeratetags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(in:scheme:options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1410036-enumeratetags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875121-enumeratetags": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given string and calls the specified block for each tag.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orthography"
+        },
+        {
+          "kind": "text",
+          "text": ": NSOrthography?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875121-enumeratetags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(for:range:unit:scheme:options:orthography:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875121-enumeratetags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875124-enumeratetags": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given range of the string for a particular unit and calls the specified block for each tag.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTaggerUnit, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagger.Options, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875124-enumeratetags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(in:unit:scheme:options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875124-enumeratetags"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_parts_of_speech": {
+      "abstract": [
+        {
+          "text": "Classify nouns, verbs, adjectives, and other parts of speech in a string. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_parts_of_speech",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying Parts of Speech",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/identifying_parts_of_speech"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations": {
+      "abstract": [
+        {
+          "text": "Use a linguistic tagger to perform named entity recognition on a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying People, Places, and Organizations",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations#2922149": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations#2922149",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations#2922149"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations#2922150": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations#2922150",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations#2922150"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/options": {
+      "abstract": [
+        {
+          "text": "Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTagger.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagger.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text": {
+      "abstract": [
+        {
+          "text": "Enumerate the words in a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text",
+      "kind": "article",
+      "role": "article",
+      "title": "Tokenizing Natural Language Text",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit.word",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit/word"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nameType",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1415135-nametype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/identifying_parts_of_speech",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875124-enumeratetags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1410036-enumeratetags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875121-enumeratetags",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/options"
+      ],
+      "title": "Enumerating Linguistic Tags"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/tokenizing_natural_language_text"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nslinguistictagger/identifying_people_places_and_organizations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

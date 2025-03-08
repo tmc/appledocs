@@ -1,0 +1,772 @@
+{
+  "abstract": [
+    {
+      "text": "Pin a node so it’s free to rotate about a certain point on its parent node.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/pinning-and-rotating-physics-bodies"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Pinning and Rotating Physics Bodies"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common task in a physics simulation is to pin bodies together. Pinning locks the position of an object but allows it to rotate—for example, to fix a wheel to a vehicle. SpriteKit offers two options for pinning physics bodies—either using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property or creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " joint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property offers convenience because it requires less code. If you wish to simulate friction, the physics body’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is analogous to the joint’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/frictionTorque",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You must use a joint, however, if you want to control the rotation speed. In addition, use a joint to control the anchor point or limit the rotation angles—you do that by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/lowerAngleLimit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/upperAngleLimit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pin-a-Node-Using-the-Pinned-Property",
+          "level": 3,
+          "text": "Pin a Node Using the Pinned Property",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The code creates a sprite node with an image of a pendulum (two circles of different sizes joined by a center rod). A physics body is created based on the generated texture, has its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and is assigned to the node. The node is rotated 90 degrees—to align horizontally—so that gravity pulls the heavier end toward the ground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pinned = SKSpriteNode(imageNamed: \"pendulum\")",
+            "  ",
+            "pinned.physicsBody = SKPhysicsBody(texture: pinned.texture!,",
+            "                                   size: pinned.size)",
+            "pinned.position = CGPoint(x: 320,",
+            "                          y: 320)",
+            "pinned.zRotation = CGFloat.pi / 2",
+            "pinned.physicsBody?.pinned = true",
+            "  ",
+            "scene.addChild(pinned)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the node’s physics body is pinned, it stays in position but rotates around its center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pin-a-Node-Using-a-Joint",
+          "level": 3,
+          "text": "Pin a Node Using a Joint",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates using a physics joint pin. In this example, a static anchor is created and added to the scene. The sprite node is added as a child of the anchor node and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " joins the two together.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let anchor = SKNode()",
+            "  ",
+            "anchor.position = CGPoint(x: 320,",
+            "                          y: 320)",
+            "anchor.zRotation = CGFloat.pi / 2",
+            "anchor.physicsBody = SKPhysicsBody()",
+            "anchor.physicsBody?.isDynamic = false",
+            "  ",
+            "let jointed = SKSpriteNode(imageNamed: \"pendulum\")",
+            "jointed.physicsBody = SKPhysicsBody(texture: pinned.texture!,",
+            "                                    size: pinned.size)",
+            "  ",
+            "scene.addChild(anchor)",
+            "anchor.addChild(jointed)",
+            "  ",
+            "let pinJoint = SKPhysicsJointPin.joint(withBodyA: anchor.physicsBody!,",
+            "                                       bodyB: jointed.physicsBody!,",
+            "                                       anchor: anchor.position)",
+            "scene.physicsWorld.add(pinJoint)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody": {
+      "abstract": [
+        {
+          "text": "An object that adds physics simulation to a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsBody",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping": {
+      "abstract": [
+        {
+          "text": "A property that reduces the body’s rotational velocity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "angularDamping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/angularDamping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "angularDamping"
+        }
+      ],
+      "role": "symbol",
+      "title": "angularDamping",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/angulardamping"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the physics body’s node is pinned to its parent node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pinned"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pinned"
+        }
+      ],
+      "role": "symbol",
+      "title": "pinned",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/pinned"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin": {
+      "abstract": [
+        {
+          "text": "A joint that pins together two physics bodies, allowing independent rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointPin"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointPin"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointPin",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointpin"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/frictionTorque": {
+      "abstract": [
+        {
+          "text": "The resistance applied by the pin joint to spinning around the anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frictionTorque"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/frictionTorque",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frictionTorque"
+        }
+      ],
+      "role": "symbol",
+      "title": "frictionTorque",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointpin/frictiontorque"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/lowerAngleLimit": {
+      "abstract": [
+        {
+          "text": "The smallest angle allowed for the pin joint, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowerAngleLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/lowerAngleLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lowerAngleLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "lowerAngleLimit",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointpin/loweranglelimit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/upperAngleLimit": {
+      "abstract": [
+        {
+          "text": "The largest angle allowed for the pin joint, in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "upperAngleLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin/upperAngleLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "upperAngleLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "upperAngleLimit",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointpin/upperanglelimit"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pinning-a-Physics-Body-to-a-Nodes-Parent",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned"
+      ],
+      "title": "Pinning a Physics Body to a Node’s Parent"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Pinning-a-Physics-Body-to-a-Nodes-Parent",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/pinned"
+              ],
+              "title": "Pinning a Physics Body to a Node’s Parent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/title",
+          "value": "SKPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin~1upperAngleLimit/title",
+          "value": "upperAngleLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin~1upperAngleLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "upperAngleLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1pinned/title",
+          "value": "pinned"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1pinned/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pinned"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin~1lowerAngleLimit/title",
+          "value": "lowerAngleLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin~1lowerAngleLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lowerAngleLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/title",
+          "value": "SKPhysicsJointPin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointPin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointPin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1angularDamping/title",
+          "value": "angularDamping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1angularDamping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "angularDamping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin~1frictionTorque/title",
+          "value": "frictionTorque"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin~1frictionTorque/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frictionTorque"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/pinning-and-rotating-physics-bodies"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/pinning-and-rotating-physics-bodies"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

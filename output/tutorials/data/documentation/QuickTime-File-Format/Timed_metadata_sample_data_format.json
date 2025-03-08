@@ -1,0 +1,522 @@
+{
+  "abstract": [
+    {
+      "text": "A concatenation of one or more atoms that structure a timed metadata media sample.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_data_format"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Timed metadata sample data format"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A timed metadata media sample is structured as a concatenation of one or more atoms. Typically each atom will contain a metadata value corresponding to a key signaled in the timed metadata sample description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no value for a particular key is present in the timed metadata media sample at a given time, the interpretation should be that there is no metadata of that type at the specified time. Timed metadata values for that key for other times (such as from a previous timed metadata media sample) should not be interpreted as applying to the given time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All metadata samples are marked as sync samples.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no values for any key are present for a time range, one approach is to include a ",
+              "type": "text"
+            },
+            {
+              "code": "“NULL”",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or unreferenced metadata media sample (see Unreferenced or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " timed metadata sample data in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") for the time range. A zero-byte timed metadata media sample cannot be used because all sample sizes must be one or more bytes. Alternatively, “empty edit” track edit list entries could be used to indicate there is no metadata for a range of movie time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, however, it is preferable to include a NULL metadata media sample data instead of using a track edit with an empty edit list to indicate the absence of metadata. Some readers may be unprepared for complex edits (more than one edit list entry and/or a non-contiguous presentation media time).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Timed-metadata-media-sample-structure",
+          "level": 2,
+          "text": "Timed metadata media sample structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The timed metadata media sample data consists of some number of concatenated atoms. A ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value defines the atom type for each of the atoms. The ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value corresponds to a ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defined for a metadata key atom in the metadata key table atom for the timed metadata sample. No special interpretation is made regarding the 32-bit value of ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Its interpretation is based solely on what is defined in the corresponding metadata key of the associated metadata sample description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is reserved and can be used as a placeholder atom in the media sample. Such an atom has no prescribed contents. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value ",
+              "type": "text"
+            },
+            {
+              "code": "0xFFFFFFFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is also reserved. In the future, this may be documented to hold a particular payload. This ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should not be used or interpreted otherwise. If a reader finds an atom with ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "0xFFFFFFFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and does not understand its format, the atom should be ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A timed metadata media sample may contain atoms with types other than those defined in the metadata key table atom and other than the two reserved values ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "0xFFFFFFFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Although this practice is discouraged, any instances of such atoms may be interpreted according to their conventional meaning (such as ",
+              "type": "text"
+            },
+            {
+              "code": "‘free’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") or in a private way so long as they are not advertised as keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the metadata format for a geographic point location using coordinates as defined in ISO-6709. The timed metadata media sample created for this data might have a ",
+              "type": "text"
+            },
+            {
+              "code": "local_key_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "‘wher’",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the resulting metadata sample would contain the information (such as “+27.5916+086.5640+8850/”) in a corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "‘wher’",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom. There is no interpretation of this atom type or a requirement that it be ",
+              "type": "text"
+            },
+            {
+              "code": "‘wher’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Combining_multiple_streams_of_metadata_into_the_same_track": {
+      "abstract": [
+        {
+          "text": "Introduce new metadata samples with the union of all metadata values from combined tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Combining_multiple_streams_of_metadata_into_the_same_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining multiple streams of metadata into the same track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/combining_multiple_streams_of_metadata_into_the_same_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data": {
+      "abstract": [
+        {
+          "text": "Create metadata tracks with samples that have the same size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Constant-size timed metadata sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/constant-size_timed_metadata_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie-level_relationships_among_tracks": {
+      "abstract": [
+        {
+          "text": "Handling tracks with more than one associated metadata track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie-level_relationships_among_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Movie-level relationships among tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie-level_relationships_among_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Overview_of_timed_metadata": {
+      "abstract": [
+        {
+          "text": "Synchronize metadata references to media tracks for particular media time periods with timed metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Overview_of_timed_metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Overview of timed metadata",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/overview_of_timed_metadata"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_media": {
+      "abstract": [
+        {
+          "text": "Store timed metadata in QuickTime movies with a track structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timed metadata media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timed_metadata_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_descriptions": {
+      "abstract": [
+        {
+          "text": "An atom that defines how to interpret timed metadata media samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_descriptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timed metadata sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timed_metadata_sample_descriptions"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains a key that corresponds to the timed metadata track containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_atom",
+          "text": "Metadata key atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata key atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-timed-metadata-media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Overview_of_timed_metadata",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_descriptions",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Combining_multiple_streams_of_metadata_into_the_same_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie-level_relationships_among_tracks"
+      ],
+      "title": "Storing timed metadata media"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/timed_metadata_sample_data_format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

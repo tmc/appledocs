@@ -1,0 +1,652 @@
+{
+  "abstract": [
+    {
+      "text": "Repeat a segment of a movie without copying media with edit lists.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Playing with edit lists"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A segment of a movie can be repeated without duplicating media data by using edit lists. Suppose you have a single-track movie whose media time scale is ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and track duration is ",
+              "type": "text"
+            },
+            {
+              "code": "1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (10 seconds). For this example the movie’s time scale is ",
+              "type": "text"
+            },
+            {
+              "code": "600",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If there are no edits in the movie, the edit atom would contain the data values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Edit list atom",
+            "├── Atom size: 36",
+            "├── Atom type: 'edts'",
+            "└── Edit list table atom",
+            "    ├── Atom size: 28",
+            "    ├── Atom type: 'elst'",
+            "    ├── Version/Flags: 0",
+            "    ├── Number of entries: 2",
+            "    ├── Track duration: 6000 (10 seconds)",
+            "    ├── Media time: 0",
+            "    └── Media rate: 1.0"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this is a single-track move, the track’s duration in the track header atom is ",
+              "type": "text"
+            },
+            {
+              "code": "6000",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the movie’s duration in the movie header atom is ",
+              "type": "text"
+            },
+            {
+              "code": "6000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you change the track to play the media from time ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to time ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " seconds, and then play the media from time ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to time ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " seconds, the edit atom would now contain these data values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Edit list atom",
+            "├── Atom size: 48",
+            "├── Atom type: 'edts'",
+            "└── Edit list table atom",
+            "    ├── Atom size: 40",
+            "    ├── Atom type: 'elst'",
+            "    ├── Version/Flags: 0",
+            "    ├── Number of entries: 2",
+            "    ├── Track duration[1]: 1200 (2 seconds)",
+            "    ├── Media time[1]: 0",
+            "    ├── Media rate[1]: 1.0",
+            "    ├── Track duration[2]: 6000 (10 seconds)",
+            "    ├── Media time[2]: 0",
+            "    └── Media rate[2]: 1.0"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the track is now 2 seconds longer, the track’s duration in the track header atom must now be ",
+              "type": "text"
+            },
+            {
+              "code": "7200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the movie’s duration in the movie header atom must also be ",
+              "type": "text"
+            },
+            {
+              "code": "7200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Currently, the media plays from time ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to time ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then plays from time ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to time ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you take that repeated segment at the beginning (time ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to time ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and play it at double speed to maintain the original duration, the edit atom would now contain the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Edit list atom",
+            "├── Atom size: 60",
+            "├── Atom type: 'edts'",
+            "└── Edit list table atom",
+            "    ├── Atom size: 52",
+            "    ├── Atom type: 'elst'",
+            "    ├── Version/Flags: 0",
+            "    ├── Number of entries: 3",
+            "    ├── Track duration[1]: 600 (1 second)",
+            "    ├── Media time[1]: 0",
+            "    ├── Media rate[1]: 2.0",
+            "    ├── Track duration[2]: 600 (1 second)",
+            "    ├── Media time[2]: 0",
+            "    ├── Media rate[2]: 2.0",
+            "    ├── Track duration[3]: 4800 (8 seconds)",
+            "    ├── Media time[3]: 200",
+            "    └── Media rate[3]: 1.0"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the track is now back to its original duration of 10 seconds, its duration in the track header atom is ",
+              "type": "text"
+            },
+            {
+              "code": "6000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the movie’s duration in the movie header atom is ",
+              "type": "text"
+            },
+            {
+              "code": "6000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that store information for each of the track aperture presentation modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track aperture mode dimension atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_aperture_mode_dimension_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that define a single track of a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that define how data being sent to this track from its nonprimary sources is to be interpreted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track input map atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_input_map_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that defines relationships between tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track reference atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atoms"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the clipping regions for movies and for tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clipping_atom",
+          "text": "Clipping atom ('clip')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clipping atom ('clip')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clipping_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the clipping region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clipping_region_atom",
+          "text": "Clipping region atom ('crgn')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clipping region atom ('crgn')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clipping_region_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the image description structure and the matte data associated with a particular matte atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Compressed_matte_atom",
+          "text": "Compressed matte atom ('kmat')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Compressed matte atom ('kmat')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/compressed_matte_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines the portions of the media that are to be used to build up a track for a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_atom",
+          "text": "Edit atom ('edts')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit atom ('edts')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that maps from a time in a movie to a time in a media, and ultimately to media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_list_atom",
+          "text": "Edit list atom ('elst')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit list atom ('elst')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines a single track of a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_atom",
+          "text": "Track atom ('trak')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track atom ('trak')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates not to automatically select this track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_exclude_from_autoselection_atom",
+          "text": "Track exclude from autoselection atom ('txas')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track exclude from autoselection atom ('txas')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_exclude_from_autoselection_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the characteristics of a single track within a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_header_atom",
+          "text": "Track header atom ('tkhd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track header atom ('tkhd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_header_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates how the track is to be used in its movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_load_settings_atom",
+          "text": "Track load settings atom ('load')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track load settings atom ('load')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_load_settings_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to visually blend the track’s image when it is displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_matte_atom",
+          "text": "Track matte atom ('matt')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track matte atom ('matt')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_matte_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Describing-tracks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms"
+      ],
+      "title": "Describing tracks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/playing_with_edit_lists"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

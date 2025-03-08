@@ -1,0 +1,486 @@
+{
+  "abstract": [
+    {
+      "text": "A string that uniquely identifies the file access that was performed by this file coordinator.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1411868-purposeidentifier"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411868,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileCoordinator(py)purposeIdentifier",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "purposeIdentifier"
+      },
+      {
+        "kind": "text",
+        "text": ": String"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSFileCoordinator"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "purposeIdentifier"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "purposeIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coordinated reads and writes performed using the same purpose identifier never block each other, even if they occur in different processes. If you are coordinating file access on behalf of a file presenter, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1416795-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and do not attempt to set a custom purpose identifier. Every file coordinator instance initialized with the same file presenter has the same purpose identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may need to set a custom purpose identifier for the following reasons:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your application has a File Provider extension. Any file coordination done on behalf of the File Provider needs to be done using the File Provider’s purpose identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You have two separate subsystems that need to work together to perform a single high-level operation, and both subsystems perform their own coordinated reads or writes. Using the same purpose identifier in both subsystems prevents possible deadlocks between the two subsystems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating custom purpose identifiers, you can use a reverse DNS style string, such as ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.MyApplication.MyPurpose",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or a UUID string. You cannot use ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or zero-length strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can set a purpose identifier only once, either implicitly by calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1416795-init",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or explicitly using this property. Attempting to set the purpose identifier a second time throws an exception.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the reading and writing of files and directories among file presenters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileCoordinator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1407685-filepresenters": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the currently registered file presenter objects. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "filePresenters"
+        },
+        {
+          "kind": "text",
+          "text": ": [any NSFilePresenter]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1407685-filepresenters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filePresenters",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1407685-filepresenters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1411868-purposeidentifier": {
+      "abstract": [
+        {
+          "text": "A string that uniquely identifies the file access that was performed by this file coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "purposeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1411868-purposeidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "purposeIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1411868-purposeidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter": {
+      "abstract": [
+        {
+          "text": "Unregisters the specified file presenter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFilePresenter"
+        },
+        {
+          "kind": "text",
+          "text": "(any NSFilePresenter)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeFilePresenter(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1416795-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1416795-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(filePresenter:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1416795-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter": {
+      "abstract": [
+        {
+          "text": "Registers the specified file presenter object so that it can receive notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addFilePresenter"
+        },
+        {
+          "kind": "text",
+          "text": "(any NSFilePresenter)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addFilePresenter(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter",
+        "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter",
+        "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1407685-filepresenters"
+      ],
+      "title": "Managing File Presenters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilecoordinator/1411868-purposeidentifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsfilecoordinator/1411868-purposeidentifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,736 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to set up nodes for collision detection.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/about-collisions-and-contacts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About Collisions and Contacts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit supports two kinds of interaction between physics bodies that come into contact or attempt to occupy the same space:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "contact",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is used when you need to know that two bodies are touching each other. In most cases, you use contacts when you need to make gameplay changes when a collision occurs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "collision",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is used to prevent two objects from interpenetrating each other. When one body strikes another body, SpriteKit automatically computes the results of the collision and applies impulse to the bodies in the collision.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Interaction-Limits",
+          "level": 3,
+          "text": "Interaction Limits",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your game configures the physics bodies in the scene to determine when collisions should occur and when interactions between physics bodies require additional game logic to be performed. Limiting these interactions is not only important for defining your game’s logic, it is also necessary in order to get good performance from SpriteKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit uses two mechanisms to limit the number of interactions in each frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Edge-based physics bodies never interact with other edge-based physics bodies. This means that even if you move them by repositioning the nodes, edge-based physics bodies never collide or contact each other.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Every physics body is categorized. Categories are defined by your app; each scene can have up to 32 categories. When you configure a physics body, you define which categories it belongs to and which categories of bodies it should interact with. You define contacts and collisions separately.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a red and a blue ball, and a ground object constructed from a series of points. By giving the red ball a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that matches the ground’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you make the red ball bounce off the ground. However, the blue ball’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is set to a different value and doesn’t interact with the ground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let ballRadius: CGFloat = 20",
+            "let redBall = SKShapeNode(circleOfRadius: ballRadius)",
+            "redBall.fillColor = .red",
+            "redBall.position = CGPoint(x: 280, y: 320)",
+            "redBall.physicsBody = SKPhysicsBody(circleOfRadius: ballRadius)",
+            "",
+            "let blueBall = SKShapeNode(circleOfRadius: ballRadius)",
+            "blueBall.fillColor = .blue",
+            "blueBall.position = CGPoint(x: 360, y: 320)",
+            "blueBall.physicsBody = SKPhysicsBody(circleOfRadius: ballRadius)",
+            "",
+            "var splinePoints = [CGPoint(x: 0, y: 300),",
+            "                    CGPoint(x: 100, y: 50),",
+            "                    CGPoint(x: 400, y: 110),",
+            "                    CGPoint(x: 640, y: 20)]",
+            "let ground = SKShapeNode(splinePoints: &splinePoints,",
+            "                         count: splinePoints.count)",
+            "ground.physicsBody = SKPhysicsBody(edgeChainFrom: ground.path!)",
+            "ground.physicsBody?.restitution = 0.75",
+            "",
+            "redBall.physicsBody?.collisionBitMask = 0b0001",
+            "blueBall.physicsBody?.collisionBitMask = 0b0010",
+            "ground.physicsBody?.categoryBitMask = 0b0001"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the paths taken by both balls when the code above is executed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3109124",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody": {
+      "abstract": [
+        {
+          "text": "An object that adds physics simulation to a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsBody",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()": {
+      "abstract": [
+        {
+          "text": "The physics bodies that this physics body is in contact with.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allContactedBodies"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPhysicsBody",
+          "text": "SKPhysicsBody"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allContactedBodies"
+        }
+      ],
+      "role": "symbol",
+      "title": "allContactedBodies()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/allcontactedbodies()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories this physics body belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "categoryBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "categoryBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/categorybitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories of physics bodies can collide with this physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collisionBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collisionBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "collisionBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/collisionbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories of physics bodies cause intersection notifications with this physics body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contactTestBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contactTestBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "contactTestBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/contacttestbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the physics world uses an iterative collision detection algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesPreciseCollisionDetection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usesPreciseCollisionDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "usesPreciseCollisionDetection",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsbody/usesprecisecollisiondetection"
+    },
+    "media-3109124": {
+      "alt": "Paths taken by nodes with different collision bit masks",
+      "identifier": "media-3109124",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a9c55c9c254126f23b7d3b1e85bdce3/media-3109124@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Collisions-and-Contacts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()"
+      ],
+      "title": "Working with Collisions and Contacts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Collisions-and-Contacts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/categoryBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/collisionBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/usesPreciseCollisionDetection",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/contactTestBitMask",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsBody/allContactedBodies()"
+              ],
+              "title": "Working with Collisions and Contacts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/title",
+          "value": "SKPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1usesPreciseCollisionDetection/title",
+          "value": "usesPreciseCollisionDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1usesPreciseCollisionDetection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usesPreciseCollisionDetection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1allContactedBodies()/title",
+          "value": "allContactedBodies"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1allContactedBodies()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allContactedBodies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1collisionBitMask/title",
+          "value": "collisionBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1collisionBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collisionBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1contactTestBitMask/title",
+          "value": "contactTestBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1contactTestBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contactTestBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1categoryBitMask/title",
+          "value": "categoryBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsBody~1categoryBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "categoryBitMask"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/about-collisions-and-contacts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/about-collisions-and-contacts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

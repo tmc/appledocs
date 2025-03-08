@@ -1,0 +1,722 @@
+{
+  "abstract": [
+    {
+      "text": "The frame of the accessibility element in screen coordinates.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/uikit",
+        "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/accessibility"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615111-accessibilityframe"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1615111,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(py)accessibilityFrame",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "accessibilityFrame"
+      },
+      {
+        "kind": "text",
+        "text": ": CGRect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "accessibilityFrame"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityFrame"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value for this property is ",
+              "type": "text"
+            },
+            {
+              "code": "CGRectZero",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unless the receiver is a ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object or is a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in which case the value is the frame of the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must set this property for an accessibility element that represents an object that is not a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", because the screen coordinates of such an object are not already known. (You do not have to set this property for an accessibility element that represents a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", because such an object’s screen coordinates are already known.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/MainActor": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/MainActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/swift/mainactor"
+    },
+    "doc://com.apple.documentation/documentation/accessibility": {
+      "identifier": "doc://com.apple.documentation/documentation/accessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement": {
+      "abstract": [
+        {
+          "text": "The deepest descendant of the accessibility hierarchy that has the focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityFocusedUIElement"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityFocusedUIElement",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1526136-accessibilityhittest": {
+      "abstract": [
+        {
+          "text": "Returns the deepest descendant of the accessibility hierarchy that contains the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHitTest"
+        },
+        {
+          "kind": "text",
+          "text": "(NSPoint) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1526136-accessibilityhittest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHitTest(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1526136-accessibilityhittest"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615111-accessibilityframe": {
+      "abstract": [
+        {
+          "text": "The frame of the accessibility element in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615111-accessibilityframe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityFrame",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615111-accessibilityframe"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615159-accessibilitypath": {
+      "abstract": [
+        {
+          "text": "The path of the element in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityPath"
+        },
+        {
+          "kind": "text",
+          "text": ": UIBezierPath?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615159-accessibilitypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityPath",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615159-accessibilitypath"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615179-accessibilityactivationpoint": {
+      "abstract": [
+        {
+          "text": "The activation point for the accessibility element in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityActivationPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615179-accessibilityactivationpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityActivationPoint",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615179-accessibilityactivationpoint"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615200-accessibilitynavigationstyle": {
+      "abstract": [
+        {
+          "text": "The navigation style to apply to the object and its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityNavigationStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": UIAccessibilityNavigationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615200-accessibilitynavigationstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityNavigationStyle",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615200-accessibilitynavigationstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol": {
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibility-protocol",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibility",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility-protocol"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)": {
+      "abstract": [
+        {
+          "text": "Notifies the system when the app’s focus changes to a new location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomFocusChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomType"
+        },
+        {
+          "kind": "text",
+          "text": ": UIAccessibility.ZoomType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": UIView)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zoomFocusChanged(zoomType:toFrame:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibility/zoomtype": {
+      "abstract": [
+        {
+          "text": "The types of system Zoom that can be in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibility.ZoomType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibility/zoomtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibility.ZoomType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/zoomtype"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiaccessibilitynavigationstyle": {
+      "abstract": [
+        {
+          "text": "Constants that describe how to navigate an object’s elements with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityNavigationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiaccessibilitynavigationstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityNavigationStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitynavigationstyle"
+    },
+    "doc://com.apple.documentation/documentation/uikit/uiguidedaccessaccessibilityfeature/assistivetouch": {
+      "abstract": [
+        {
+          "text": "The AssistiveTouch accessibility feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "assistiveTouch"
+        },
+        {
+          "kind": "text",
+          "text": ": UIGuidedAccessAccessibilityFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/uiguidedaccessaccessibilityfeature/assistivetouch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assistiveTouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessaccessibilityfeature/assistivetouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu": {
+      "abstract": [
+        {
+          "text": "Converts the specified rectangle from view coordinates to screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertToScreenCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "(CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": UIView) -> CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertToScreenCoordinates(_:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-9ziiu"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibilitynavigationstyle",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)",
+        "doc://com.apple.documentation/documentation/uikit/uiaccessibility/zoomtype",
+        "doc://com.apple.documentation/documentation/uikit/uiguidedaccessaccessibilityfeature/assistivetouch",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615179-accessibilityactivationpoint",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1526136-accessibilityhittest",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615200-accessibilitynavigationstyle",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1615159-accessibilitypath"
+      ],
+      "title": "Navigating elements"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1615111-accessibilityframe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1615111-accessibilityframe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

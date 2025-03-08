@@ -1,0 +1,653 @@
+{
+  "abstract": [
+    {
+      "text": "A key decoding strategy that converts snake-case keys to camel-case keys.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+        "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2949105,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation11JSONDecoderC19KeyDecodingStrategyO20convertFromSnakeCaseyA2EmF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "case "
+      },
+      {
+        "kind": "identifier",
+        "text": "convertFromSnakeCase"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "JSONDecoder.KeyDecodingStrategy"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "9.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "enumelt",
+    "title": "JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertFromSnakeCase"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Snake-case and camel-case are two common approaches for combining words when naming parts of an API. The Swift ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2952417",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " recommend using camel-case names. Some JSON APIs adopt snake-case; use this strategy when you encounter such an API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This strategy uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779880-uppercaseletters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779790-lowercaseletters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the boundaries between words, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/1407691-system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " locale when capitalizing letters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This strategy follows these steps to convert JSON keys to camel-case:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capitalize each word that follows an underscore.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove all underscores that aren’t at the very start or end of the string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Combine the words into a single string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples show the result of applying this strategy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Converts to: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "feeFiFoFum",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "fee_fi_fo_fum",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Converts to: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "feeFiFoFum",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "feeFiFoFum",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Converts to: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "baseUri",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "base_uri",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " strategy can’t infer capitalization for acronyms or initialisms such as WYSIWYG or URI. The example above shows how the automatic conversion differs from the conversion you might expect: ",
+                  "type": "text"
+                },
+                {
+                  "code": "baseURI",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". To decode such a key with the correct capitalization, define a custom ",
+                  "type": "text"
+                },
+                {
+                  "code": "CodingKeys",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " enumeration, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how properties on the ",
+              "type": "text"
+            },
+            {
+              "code": "OlympicEventResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure convert from snake-case when decoded as keys in a JSON object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct OlympicEventResult: Codable {",
+            "    var goldWinner: String",
+            "    var silverWinner: String",
+            "    var bronzeWinner: String",
+            "}",
+            "",
+            "let json = \"\"\"",
+            "{",
+            "    \"silver_winner\": \"Sound\",",
+            "    \"gold_winner\": \"Light\",",
+            "    \"bronze_winner\": \"Unladen Swallow\"",
+            "}",
+            "\"\"\".data(using: .utf8)!",
+            "",
+            "let decoder = JSONDecoder()",
+            "let decodeAndPrint = { print(try! decoder.decode(OlympicEventResult.self, from: json)) }",
+            "",
+            "decoder.keyDecodingStrategy = .convertFromSnakeCase",
+            "decodeAndPrint()",
+            "",
+            "// Prints: \"OlympicEventResult(goldWinner: \"Light\", silverWinner: \"Sound\", bronzeWinner: \"Unladen Swallow\")\""
+          ],
+          "metadata": {
+            "anchor": "2952419",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Encoding and Decoding Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779790-lowercaseletters": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779790-lowercaseletters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowercaseLetters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779790-lowercaseletters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/1779880-uppercaseletters": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/1779880-uppercaseletters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uppercaseLetters",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/1779880-uppercaseletters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy": {
+      "abstract": [
+        {
+          "text": "The values that determine how to decode a type’s coding keys from JSON keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder.KeyDecodingStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase": {
+      "abstract": [
+        {
+          "text": "A key decoding strategy that converts snake-case keys to camel-case keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertFromSnakeCase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase#2952419": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase#2952419",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase#2952419"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/usedefaultkeys": {
+      "abstract": [
+        {
+          "text": "A key decoding strategy that doesn’t change key names during decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "useDefaultKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/usedefaultkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder.KeyDecodingStrategy.useDefaultKeys",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy/usedefaultkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsonencoder/keyencodingstrategy/converttosnakecase": {
+      "abstract": [
+        {
+          "text": "A key encoding strategy that converts camel-case keys to snake-case keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertToSnakeCase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder/keyencodingstrategy/converttosnakecase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONEncoder.KeyEncodingStrategy.convertToSnakeCase",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonencoder/keyencodingstrategy/converttosnakecase"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocale/1407691-system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/1407691-system",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "system",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocale/1407691-system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-2952417": {
+      "identifier": "link-2952417",
+      "kind": "article",
+      "role": "link",
+      "title": "API Design Guidelines",
+      "type": "section",
+      "url": "https://swift.org/documentation/api-design-guidelines/#general-conventions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/usedefaultkeys"
+      ],
+      "title": "Built-in Decoding"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/jsonencoder/keyencodingstrategy/converttosnakecase"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/jsondecoder/keydecodingstrategy/convertfromsnakecase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

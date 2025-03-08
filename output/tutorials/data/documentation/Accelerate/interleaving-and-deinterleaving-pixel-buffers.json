@@ -1,0 +1,3879 @@
+{
+  "abstract": [
+    {
+      "text": "Convert pixel buffer data between interleaved and planar formats.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/interleaving-and-deinterleaving-pixel-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Interleaving and deinterleaving pixel buffers"
+  },
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-arithmetic-operations": {
+      "abstract": [
+        {
+          "text": "Multiply the pixel values of a buffer by scalar values or matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-arithmetic-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Applying arithmetic operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-arithmetic-operations"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-channel-operations": {
+      "abstract": [
+        {
+          "text": "Extract, flatten, permute, and overwrite the individual color channels of a pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-channel-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Applying channel operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-channel-operations"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-pixel-buffers": {
+      "abstract": [
+        {
+          "text": "Adjust the colors of an image by applying gamma, polynomials, or multidimensional lookup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-pixel-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Applying color transforms to pixel buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-color-transforms-to-pixel-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-operations-to-pixel-buffers": {
+      "abstract": [
+        {
+          "text": "Reflect, shear, rotate, scale, and apply affine transforms to image data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-operations-to-pixel-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Applying geometric operations to pixel buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-geometric-operations-to-pixel-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/blending-and-compositing-pixel-buffers": {
+      "abstract": [
+        {
+          "text": "Composite two pixel buffers to create a single image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blending-and-compositing-pixel-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blending and compositing pixel buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/blending-and-compositing-pixel-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/calculating-and-transforming-histograms": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization, contrast stretching, and specification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/calculating-and-transforming-histograms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calculating and transforming histograms",
+      "type": "topic",
+      "url": "/documentation/accelerate/calculating-and-transforming-histograms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-pixel-buffers": {
+      "abstract": [
+        {
+          "text": "Convert pixel buffer data between different bit-depths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-pixel-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Converting pixel buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-pixel-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/convolving-and-applying-morphology": {
+      "abstract": [
+        {
+          "text": "Apply convolution, dilation, or erosion to a pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/convolving-and-applying-morphology",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolving and applying morphology",
+      "type": "topic",
+      "url": "/documentation/accelerate/convolving-and-applying-morphology"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/cropping-and-working-with-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Crop images and apply operations to regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/cropping-and-working-with-regions-of-interest",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cropping and working with regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/cropping-and-working-with-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/thresholding-and-clipping-pixel-buffer-values": {
+      "abstract": [
+        {
+          "text": "Limit the values in a pixel buffer to a threshold or a range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/thresholding-and-clipping-pixel-buffer-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Thresholding and clipping pixel buffer values",
+      "type": "topic",
+      "url": "/documentation/accelerate/thresholding-and-clipping-pixel-buffer-values"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vImage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-1jtfh": {
+      "abstract": [
+        {
+          "text": "Converts the contents of an 8-bit, four-plane pixel buffer to a four-channel interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14Interleaved8x4V",
+          "text": "Interleaved8x4"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-1jtfh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/convert(to:)-1jtfh"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-26s6v": {
+      "abstract": [
+        {
+          "text": "Converts the contents of a 32-bit, four-plane pixel buffer to a four-channel interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.PlanarFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14InterleavedFx4V",
+          "text": "InterleavedFx4"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-26s6v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/convert(to:)-26s6v"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-7xv7": {
+      "abstract": [
+        {
+          "text": "Converts the contents of an 8-bit, three-plane pixel buffer to a three-channel interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14Interleaved8x3V",
+          "text": "Interleaved8x3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-7xv7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/convert(to:)-7xv7"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-8bqjc": {
+      "abstract": [
+        {
+          "text": "Converts the contents of a 32-bit, three-plane pixel buffer to a three-channel interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.PlanarFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14InterleavedFx3V",
+          "text": "InterleavedFx3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-8bqjc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convert(to:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/convert(to:)-8bqjc"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-4bj4f": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 8-bit-per-channel, four-channel interleaved buffer and writes the result to a multiple-plane pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar8x4V",
+          "text": "Planar8x4"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-4bj4f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(destination:)-4bj4f"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-7hep3": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 32-bit-per-channel, four-channel interleaved buffer and writes the result to a multiple-plane pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9PlanarFx4V",
+          "text": "PlanarFx4"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-7hep3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(destination:)-7hep3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-9gkke": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 32-bit-per-channel, three-channel interleaved buffer and writes the result to a multiple-plane pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9PlanarFx3V",
+          "text": "PlanarFx3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-9gkke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(destination:)-9gkke"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-hrhz": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 8-bit-per-channel, three-channel interleaved buffer and writes the result to a multiple-plane pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar8x3V",
+          "text": "Planar8x3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-hrhz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(destination:)-hrhz"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-2gt2g": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 32-bit-per-channel, three-channel interleaved buffer and writes the result to an array that contains three planar buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarDestinationBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-2gt2g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(planarDestinationBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(planardestinationbuffers:)-2gt2g"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-3irjf": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the unsigned 16-bit-per-channel, four-channel interleaved buffer and writes the result to an array that contains four planar buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved16Ux4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarDestinationBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar16UV",
+          "text": "Planar16U"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-3irjf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(planarDestinationBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(planardestinationbuffers:)-3irjf"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-3u4kn": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 8-bit-per-channel, four-channel interleaved buffer and writes the result to an array that contains four planar buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarDestinationBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-3u4kn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(planarDestinationBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(planardestinationbuffers:)-3u4kn"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-72108": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 8-bit-per-channel, three-channel interleaved buffer and writes the result to an array that contains three planar buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarDestinationBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-72108",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(planarDestinationBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(planardestinationbuffers:)-72108"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-75uki": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 16-bit-per-channel, four-channel interleaved buffer and writes the result to an array that contains four planar buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved16Fx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarDestinationBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar16FV",
+          "text": "Planar16F"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-75uki",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(planarDestinationBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(planardestinationbuffers:)-75uki"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-iag8": {
+      "abstract": [
+        {
+          "text": "Deinterleaves the 32-bit-per-channel, four-channel interleaved buffer and writes the result to an array that contains four planar buffers.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deinterleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarDestinationBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-iag8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deinterleave(planarDestinationBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/deinterleave(planardestinationbuffers:)-iag8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-46cgi": {
+      "abstract": [
+        {
+          "text": "Interleaves the 8-bit-per-channel, three-channel multiple-plane buffer and writes the result to an interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14Interleaved8x3V",
+          "text": "Interleaved8x3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-46cgi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(destination:)-46cgi"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-5ewup": {
+      "abstract": [
+        {
+          "text": "Interleaves the 32-bit-per-channel, three-channel multiple-plane buffer and writes the result to an interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.PlanarFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14InterleavedFx3V",
+          "text": "InterleavedFx3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-5ewup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(destination:)-5ewup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-6ib0t": {
+      "abstract": [
+        {
+          "text": "Interleaves the 32-bit-per-channel, four-channel multiple-plane buffer and writes the result to an interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.PlanarFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14InterleavedFx4V",
+          "text": "InterleavedFx4"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-6ib0t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(destination:)-6ib0t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-6r7se": {
+      "abstract": [
+        {
+          "text": "Interleaves the 8-bit-per-channel, four-channel multiple-plane buffer and writes the result to an interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14Interleaved8x4V",
+          "text": "Interleaved8x4"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-6r7se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(destination:)-6r7se"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-10yj5": {
+      "abstract": [
+        {
+          "text": "Interleaves the specified planar source buffers and writes the result to the 8-bit-per-channel, three-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarSourceBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-10yj5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(planarSourceBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(planarsourcebuffers:)-10yj5"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-1i8we": {
+      "abstract": [
+        {
+          "text": "Interleaves the specified planar source buffers and writes the result to the unsigned 16-bit-per-channel, four-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved16Ux4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarSourceBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar16UV",
+          "text": "Planar16U"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-1i8we",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(planarSourceBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(planarsourcebuffers:)-1i8we"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-4qotd": {
+      "abstract": [
+        {
+          "text": "Interleaves the specified planar source buffers and writes the result to the 32-bit-per-channel, three-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarSourceBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-4qotd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(planarSourceBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(planarsourcebuffers:)-4qotd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-67l5": {
+      "abstract": [
+        {
+          "text": "Interleaves the specified planar source buffers and writes the result to the 8-bit-per-channel, four-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarSourceBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-67l5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(planarSourceBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(planarsourcebuffers:)-67l5"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-7e6cy": {
+      "abstract": [
+        {
+          "text": "Interleaves the specified planar source buffers and writes the result to the 32-bit-per-channel, four-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarSourceBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-7e6cy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(planarSourceBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(planarsourcebuffers:)-7e6cy"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-7qcri": {
+      "abstract": [
+        {
+          "text": "Interleaves the specified planar source buffers and writes the result to the 16-bit-per-channel, four-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved16Fx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "planarSourceBuffers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar16FV",
+          "text": "Planar16F"
+        },
+        {
+          "kind": "text",
+          "text": ">])"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-7qcri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(planarSourceBuffers:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(planarsourcebuffers:)-7qcri"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-1rj01": {
+      "abstract": [
+        {
+          "text": "Returns two 32-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx2",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-1rj01",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-1rj01"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-35dnv": {
+      "abstract": [
+        {
+          "text": "Returns four 32-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-35dnv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-35dnv"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-462ja": {
+      "abstract": [
+        {
+          "text": "Returns two 8-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x2",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-462ja",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-462ja"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-49gf9": {
+      "abstract": [
+        {
+          "text": "Returns four unsigned 16-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved16Ux4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO9Planar16UV",
+          "text": "Planar16U"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-49gf9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-49gf9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-4qws5": {
+      "abstract": [
+        {
+          "text": "Returns four 32-bit planar pixel buffers that contain the deinterleaved channels of the 8-bit buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-4qws5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-4qws5"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-5r3ds": {
+      "abstract": [
+        {
+          "text": "Returns three 8-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-5r3ds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-5r3ds"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-5rx2w": {
+      "abstract": [
+        {
+          "text": "Returns four 8-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Interleaved8x4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-5rx2w",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-5rx2w"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-82ook": {
+      "abstract": [
+        {
+          "text": "Returns three 32-bit planar pixel buffers that contain the deinterleaved channels of the buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7PlanarFV",
+          "text": "PlanarF"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-82ook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-82ook"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-l33r": {
+      "abstract": [
+        {
+          "text": "Returns four 8-bit planar pixel buffers that contain the deinterleaved channels of the 32-bit buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planarBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7Planar8V",
+          "text": "Planar8"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-l33r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "planarBuffers()",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/planarbuffers()-l33r"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pixel-buffer-operations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-operations-to-pixel-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-color-transforms-to-pixel-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/blending-and-compositing-pixel-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/convolving-and-applying-morphology",
+        "doc://com.apple.accelerate/documentation/Accelerate/thresholding-and-clipping-pixel-buffer-values",
+        "doc://com.apple.accelerate/documentation/Accelerate/calculating-and-transforming-histograms",
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-pixel-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/cropping-and-working-with-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-channel-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-arithmetic-operations"
+      ],
+      "title": "Pixel buffer operations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Deinterleaving-pixel-buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-hrhz",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-4bj4f",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-9gkke",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(destination:)-7hep3",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-72108",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-3u4kn",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-75uki",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-3irjf",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-2gt2g",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/deinterleave(planarDestinationBuffers:)-iag8"
+      ],
+      "title": "Deinterleaving pixel buffers"
+    },
+    {
+      "anchor": "Interleaving-pixel-buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-46cgi",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-6r7se",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-5ewup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-6ib0t",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-10yj5",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-67l5",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-7qcri",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-1i8we",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-4qotd",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(planarSourceBuffers:)-7e6cy"
+      ],
+      "title": "Interleaving pixel buffers"
+    },
+    {
+      "anchor": "Generating-planar-buffers-from-interleaved-buffers",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-462ja",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-5r3ds",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-5rx2w",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-4qws5",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-49gf9",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-1rj01",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-82ook",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-l33r",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/planarBuffers()-35dnv"
+      ],
+      "title": "Generating planar buffers from interleaved buffers"
+    },
+    {
+      "anchor": "Converting-from-8-bit-multiple-plane-to-8-bit-interleaved",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-7xv7",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-1jtfh"
+      ],
+      "title": "Converting from 8-bit multiple plane to 8-bit interleaved"
+    },
+    {
+      "anchor": "Converting-from-32-bit-multiple-plane-to-32-bit-interleaved",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-8bqjc",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/convert(to:)-26s6v"
+      ],
+      "title": "Converting from 32-bit multiple plane to 32-bit interleaved"
+    }
+  ]
+}

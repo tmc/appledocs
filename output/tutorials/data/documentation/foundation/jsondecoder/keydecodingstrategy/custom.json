@@ -1,0 +1,536 @@
+{
+  "abstract": [
+    {
+      "text": "A key decoding strategy defined by the closure you supply.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+        "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2949118,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation11JSONDecoderC19KeyDecodingStrategyO6customyAEs06CodingC0_pSaysAG_pGccAEmF",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "case "
+      },
+      {
+        "kind": "identifier",
+        "text": "custom"
+      },
+      {
+        "kind": "text",
+        "text": "(([any CodingKey]) -> any CodingKey)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "JSONDecoder.KeyDecodingStrategy"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "9.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "enumelt",
+    "title": "JSONDecoder.KeyDecodingStrategy.custom(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "custom"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "attribute",
+              "text": "@Sendable"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "text",
+              "text": "_ "
+            },
+            {
+              "kind": "internalParam",
+              "text": "codingPath"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "[any "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/CodingKey",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s9CodingKeyP",
+              "text": "CodingKey"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/CodingKey",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s9CodingKeyP",
+              "text": "CodingKey"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A closure that receives as a parameter an array of CodingKey instances representing the sequence of keys needed to reach the value the decoder is currently decoding.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "custom"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value associated with this case is a closure you use to map names of keys from the decoded JSON object to the names of your type’s coding keys. During decoding, the closure executes once for each key in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. When called, the closure receives an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/CodingKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances representing the sequence of keys needed to reach the value the decoder is currently decoding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to decode the properties of the nested ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures with custom logic that you specify in the closure value associated with the custom case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct A: Codable {",
+            "    var value: Int",
+            "    var b: B",
+            "    ",
+            "    struct B: Codable {",
+            "        var value: Int",
+            "        var c: C",
+            "        ",
+            "        struct C: Codable {",
+            "            var value: Int",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "let json = \"\"\"",
+            "{",
+            "    \"a.value\": 1,",
+            "    \"b\": {",
+            "        \"a.b.value\": 2,",
+            "        \"c\": {",
+            "            \"a.b.c.value\": 3",
+            "        }",
+            "    }",
+            "}",
+            "\"\"\".data(using: .utf8)!",
+            "",
+            "let decoder = JSONDecoder()",
+            "",
+            "/// An implementation of CodingKey that's useful for combining and transforming keys as strings.",
+            "struct AnyKey: CodingKey {",
+            "    var stringValue: String",
+            "    var intValue: Int?",
+            "    ",
+            "    init?(stringValue: String) {",
+            "        self.stringValue = stringValue",
+            "        self.intValue = nil",
+            "    }",
+            "    ",
+            "    init?(intValue: Int) {",
+            "        self.stringValue = String(intValue)",
+            "        self.intValue = intValue",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2952421",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the next example you use the ",
+              "type": "text"
+            },
+            {
+              "code": "AnyKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure defined above to customize the decoding of the ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Customize each key to remove any preceding, dot-syntax paths.",
+            "decoder.keyDecodingStrategy = .custom { keys in",
+            "    let lastComponent = keys.last!.stringValue.split(separator: \".\").last!",
+            "    return AnyKey(stringValue: String(lastComponent))!",
+            "}",
+            "",
+            "let a = try decoder.decode(A.self, from: json)",
+            "",
+            "print(a.b.c.value) // Prints \"3\""
+          ],
+          "metadata": {
+            "anchor": "2952420",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CodingKey": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CodingKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CodingKey",
+      "type": "topic",
+      "url": "/documentation/swift/codingkey"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy": {
+      "abstract": [
+        {
+          "text": "The values that determine how to decode a type’s coding keys from JSON keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder.KeyDecodingStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom": {
+      "abstract": [
+        {
+          "text": "A key decoding strategy defined by the closure you supply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "(([any CodingKey]) -> any CodingKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder.KeyDecodingStrategy.custom(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy/custom"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom#2952420": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom#2952420",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy/custom#2952420"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom#2952421": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder/keydecodingstrategy/custom#2952421",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/jsondecoder/keydecodingstrategy/custom#2952421"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/jsondecoder/keydecodingstrategy/custom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

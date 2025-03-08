@@ -1,0 +1,1952 @@
+{
+  "abstract": [
+    {
+      "text": "Render only the necessary tiles of an image in your FxPlug plug-in to improve efficiency.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "FxPlug",
+      "versions": [
+        "4.0",
+        "4.2.9"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/working-with-tiled-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Working with tiled images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Renders in FxPlug 4 are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tileable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which means that the input image can be divided into smaller tiles for rendering. This improves the efficiency of your plug-in because the host app only asks for exactly what pixels your plug-in needs to render for each tile, and the plug-in tells the host exactly what pixels your plug-in needs to sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two methods, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", help define the expected bounds for source and destination textures. These two sets of pixel bounds are ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". They’re also known as region of interest (ROI) and domain of definition (DOD), respectively, in other rendering technologies like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-tiles-for-rendering",
+          "level": 3,
+          "text": "Define tiles for rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the host app can determine if it should tile its rendering, it must first know how a plug-in may transform the bounds of the input. For example, a glow filter expands the source image’s ",
+              "type": "text"
+            },
+            {
+              "code": "imagePixelBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the new bounds need to be calculated and returned as the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, a color filter doesn’t require a change in bounds and instead simply returns the source image’s bounds as the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For generators that aren’t required to conform to any bounds, you’ll likely set the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "kFxRect_Infinite",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the hardware capabilities, the host app may choose to divide the source image into multiple tiles and request separate renders of each tile on individual threads. This is why most filters require well-defined bounds for ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The host provides the requested ",
+              "type": "text"
+            },
+            {
+              "code": "destinationTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and expects the plug-in to calculate and return a ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If a filter only adjusts the color of pixels and outputs the new pixels with a 1:1 correspondence, each ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " equals the provided ",
+              "type": "text"
+            },
+            {
+              "code": "destinationTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as in this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3666155",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calculating the pixel values for a destination tile may require sampling a larger or smaller area of the source image, such as when blurring an image. In those cases, each ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must expand to cover the appropriate sample area. In most cases, the ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calculation mimics the filter’s fragment shader, but only the lower-left and upper-right coordinates of the rectangle need to be calculated. If the image should remain cropped to the source image’s bounds when blurred, then the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be equal to the source image’s ",
+              "type": "text"
+            },
+            {
+              "code": "imagePixelBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as in this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3666148",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the filter distorts or convolutes the pixels in the image, it may require a larger or smaller ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calculation is typically the inverse of the plug-in’s fragment shader. The following example shows a filter that increases scale on just the x-axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3666154",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-destination-rectangle-bounds",
+          "level": 3,
+          "text": "Set the destination rectangle bounds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in needs to return one of three types of destination rectangle bounds: infinite bounds (a generator that repeats infinitely), the original bounds (color filter), or bounds that are different from the original bounds (a filter that expands or shrinks the input).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method gives you your sources, plug-in state, and the render time. From these parameters, you can calculate what the destination rectangle should be. For example, the code below comes from the FxGradientCheckerboard generator example plug-in. For that generator, you return an infinite rectangle (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") because the checkerboard can be produced at any position, with no natural bounds to conform to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func destinationImageRect(_ destinationImageRect: UnsafeMutablePointer<FxRect>, sourceImages: [FxImageTile], destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime) throws {",
+                    "    destinationImageRect.pointee = kFxRect_Infinite",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)destinationImageRect:(FxRect *)destinationImageRect",
+                    "                sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "            destinationImage:(nonnull FxImageTile *)destinationImage",
+                    "                 pluginState:(NSData *)pluginState",
+                    "                      atTime:(CMTime)renderTime",
+                    "                       error:(NSError * _Nullable *)outError",
+                    "{",
+                    "    *destinationImageRect = kFxRect_Infinite;",
+                    "",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the filter doesn’t change the overall dimensions of the source image, then simply return the original bounds of the source image. The example below is from the FxSimpleColorCorrector example plug-in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func destinationImageRect(_ destinationImageRect: UnsafeMutablePointer<FxRect>, sourceImages: [FxImageTile], destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime) throws {",
+                    "    destinationImageRect.pointee = sourceImages[0].imagePixelBounds",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)destinationImageRect:(FxRect *)destinationImageRect",
+                    "                sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "            destinationImage:(FxImageTile *)destinationImage",
+                    "                 pluginState:(NSData *)pluginState",
+                    "                      atTime:(CMTime)renderTime",
+                    "                       error:(NSError * _Nullable *)outError",
+                    "{",
+                    "    *destinationImageRect = sourceImages [ 0 ].imagePixelBounds;",
+                    "",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a more complicated filter that distorts or transforms the bounds, more has to be done to calculate the destination bounds. In this example from the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, found in the same sample project as FxDynamicRegistration, you first use the inverse pixel transform to convert the source image pixel bounds to document space. Then you calculate the new positions of the lower-left and upper-right corners of the image after processing, convert back to pixel space using the pixel transform, and then return the ",
+              "type": "text"
+            },
+            {
+              "code": "destinationImageRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func destinationImageRect(_ destinationImageRect: UnsafeMutablePointer<FxRect>, sourceImages: [FxImageTile], destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime) throws {",
+                    "",
+                    "    let scale  = pluginState!.withUnsafeBytes { (ptr: UnsafePointer<Double>) -> Double in",
+                    "        return ptr.pointee",
+                    "    }",
+                    "    ",
+                    "    var ll = FxPoint2D(x: Double(sourceImages[0].imagePixelBounds.left), y: Double(sourceImages[0].imagePixelBounds.bottom))",
+                    "    var ur = FxPoint2D(x: Double(sourceImages[0].imagePixelBounds.right), y: Double(sourceImages[0].imagePixelBounds.top))",
+                    "    ",
+                    "    // Convert from input pixel space to document space.",
+                    "    ll = sourceImages[0].inversePixelTransform.transform2DPoint(ll)",
+                    "    ur = sourceImages[0].inversePixelTransform.transform2DPoint(ur)",
+                    "    ",
+                    "    // Subtract off the center.",
+                    "    let imageCenter = FxPoint2D(x: (ll.x + ur.x) / 2.0, y: (ll.y + ur.y) / 2.0)",
+                    "    ll = SubtractPoints(ll, imageCenter)",
+                    "    ur = SubtractPoints(ur, imageCenter)",
+                    "    ",
+                    "    // Perform the scaling.",
+                    "    ll = MultiplyPointsByScalar(ll, scale)",
+                    "    ur = MultiplyPointsByScalar(ur, scale)",
+                    "    ",
+                    "    // Add back in the center.",
+                    "    ll = AddPoints(ll, imageCenter)",
+                    "    ur = AddPoints(ur, imageCenter)",
+                    "",
+                    "    // Convert back to output pixel space.",
+                    "    ll = destinationImage.pixelTransform.transform2DPoint(ll)",
+                    "    ur = destinationImage.pixelTransform.transform2DPoint(ur)",
+                    "    ",
+                    "    // Save to the output rectangle.",
+                    "    destinationImageRect.pointee.left = Int32(floor(ll.x))",
+                    "    destinationImageRect.pointee.right = Int32(ceil(ur.x))",
+                    "    destinationImageRect.pointee.bottom = Int32(floor(ll.y))",
+                    "    destinationImageRect.pointee.top = Int32(ceil(ur.y))",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)destinationImageRect:(FxRect *)destinationImageRect",
+                    "                sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "            destinationImage:(nonnull FxImageTile *)destinationImage",
+                    "                 pluginState:(NSData *)pluginState",
+                    "                      atTime:(CMTime)renderTime",
+                    "                       error:(NSError * _Nullable *)outError",
+                    "{",
+                    "    double scale = 1.5;",
+                    "    [pluginState getBytes:&scale",
+                    "                   length:sizeof(scale)];",
+                    "    ",
+                    "    FxPoint2D   ll  = { sourceImages [ 0 ].imagePixelBounds.left, sourceImages [ 0 ].imagePixelBounds.bottom };",
+                    "    FxPoint2D   ur  = { sourceImages [ 0 ].imagePixelBounds.right, sourceImages [ 0 ].imagePixelBounds.top };",
+                    "    ",
+                    "    // Convert from input pixel space to document space.",
+                    "    ll = [sourceImages [ 0 ].inversePixelTransform transform2DPoint:ll];",
+                    "    ur = [sourceImages [ 0 ].inversePixelTransform transform2DPoint:ur];",
+                    "    ",
+                    "    // Subtract off the center.",
+                    "    FxPoint2D   imageCenter = { (ll.x + ur.x) / 2.0, (ll.y + ur.y) / 2.0 };",
+                    "    ll = SubtractPoints(ll, imageCenter);",
+                    "    ur = SubtractPoints(ur, imageCenter);",
+                    "    ",
+                    "    // Perform the scaling.",
+                    "    ll = MultiplyPointsByScalar(ll, scale);",
+                    "    ur = MultiplyPointsByScalar(ur, scale);",
+                    "    ",
+                    "    // Add back in the center.",
+                    "    ll = AddPoints(ll, imageCenter);",
+                    "    ur = AddPoints(ur, imageCenter);",
+                    "    ",
+                    "    // Convert back to output pixel space.",
+                    "    ll = [destinationImage.pixelTransform transform2DPoint:ll];",
+                    "    ur = [destinationImage.pixelTransform transform2DPoint:ur];",
+                    "",
+                    "    // Save to the output rectangle.",
+                    "    destinationImageRect->left = (SInt32)(floor(ll.x));",
+                    "    destinationImageRect->right = (SInt32)(ceil(ur.x));",
+                    "    destinationImageRect->bottom = (SInt32)(floor(ll.y));",
+                    "    destinationImageRect->top = (SInt32)(ceil(ur.y));",
+                    "    ",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Determine-the-source-tile-area-required-to-render",
+          "level": 3,
+          "text": "Determine the source tile area required to render",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to specify how much of the source image you require, given a known destination rectangle to render.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in has one of the following three source rectangle requirements: no source rectangle definition necessary (a generator), a source rectangle that’s equal to the destination tile (a color filter), or a well-defined source rectangle (a distortion or convolution filter).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this first example, ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " because generators typically don’t sample pixels from a source. This example comes from the FxGradientCheckerboard generator example plugin-in, where you don’t need any source to produce the checkerboard because you don’t need to sample or process any source pixels. This is the easiest case to handle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func sourceTileRect(_ sourceTileRect: UnsafeMutablePointer<FxRect>, sourceImageIndex: UInt, sourceImages: [FxImageTile], destinationTileRect: FxRect, destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime) throws {",
+                    "    sourceTileRect.pointee = kFxRect_Empty;",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)sourceTileRect:(FxRect *)sourceTileRect",
+                    "      sourceImageIndex:(NSUInteger)sourceImageIndex",
+                    "          sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "   destinationTileRect:(FxRect)destinationTileRect",
+                    "      destinationImage:(FxImageTile *)destinationImage",
+                    "           pluginState:(NSData *)pluginState",
+                    "                atTime:(CMTime)renderTime",
+                    "                 error:(NSError * _Nullable *)outError",
+                    "{",
+                    "    *sourceTileRect = kFxRect_Empty;",
+                    "",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This second example is from the DynamicRegBrightness filter in the FxDynamicRegistration example plug-in. In this case, the plug-in is simply filtering the color values of the source pixels and passing them back out, with a 1:1 pixel correspondence. Thus, the source pixels required are all contained within the destination tile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func sourceTileRect(_ sourceTileRect: UnsafeMutablePointer<FxRect>, sourceImageIndex: UInt, sourceImages: [FxImageTile], destinationTileRect: FxRect, destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime) throws {",
+                    "    sourceTileRect.pointee = destinationTileRect;",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)sourceTileRect:(FxRect *)sourceTileRect",
+                    "      sourceImageIndex:(NSUInteger)sourceImageIndex",
+                    "          sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "   destinationTileRect:(FxRect)destinationTileRect",
+                    "      destinationImage:(FxImageTile *)destinationImage",
+                    "           pluginState:(NSData *)pluginState",
+                    "                atTime:(CMTime)renderTime",
+                    "                 error:(NSError * _Nullable *)outError",
+                    "{",
+                    "    *sourceTileRect = destinationTileRect;",
+                    "",
+                    "    return YES;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the final example of this method, look at the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, found in the same sample project as FxDynamicRegistration. The input method is far more complicated because it requires a well-defined source rectangle, and it’s using pixel transforms and a scale operation to show what it would look like to return a non-trivial ",
+              "type": "text"
+            },
+            {
+              "code": "sourceTileRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each step is commented and shows how the final bounds are determined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func sourceTileRect(_ sourceTileRect: UnsafeMutablePointer<FxRect>, sourceImageIndex: UInt, sourceImages: [FxImageTile], destinationTileRect: FxRect, destinationImage: FxImageTile, pluginState: Data?, at renderTime: CMTime) throws {",
+                    "    let scale  = pluginState!.withUnsafeBytes { (ptr: UnsafePointer<Double>) -> Double in",
+                    "        return ptr.pointee",
+                    "    }",
+                    "    ",
+                    "    // Get output pixel space coordinates.",
+                    "    var ll = FxPoint2D(x: Double(destinationTileRect.left), y: Double(destinationTileRect.bottom))",
+                    "    var ur = FxPoint2D(x: Double(destinationTileRect.right), y: Double(destinationTileRect.top))",
+                    "    ",
+                    "    // Convert to document space.",
+                    "    ll = destinationImage.inversePixelTransform.transform2DPoint(ll)",
+                    "    ur = destinationImage.inversePixelTransform.transform2DPoint(ur)",
+                    "    ",
+                    "    // Convert the whole output rectangle to document space.",
+                    "    var oll = FxPoint2D(x: Double(destinationImage.imagePixelBounds.left), y: Double(destinationImage.imagePixelBounds.bottom))",
+                    "    var our = FxPoint2D(x: Double(destinationImage.imagePixelBounds.right), y: Double(destinationImage.imagePixelBounds.top))",
+                    "    oll = destinationImage.inversePixelTransform.transform2DPoint(oll)",
+                    "    our = destinationImage.inversePixelTransform.transform2DPoint(our)",
+                    "",
+                    "    // Subtract off the document space center.",
+                    "    let documentSpaceCenter = FxPoint2D(x: (oll.x + our.x) / 2.0, y: (oll.y + our.y) / 2.0)",
+                    "    ll = SubtractPoints(ll, documentSpaceCenter)",
+                    "    ur = SubtractPoints(ur, documentSpaceCenter)",
+                    "    ",
+                    "    // Scale appropriately.",
+                    "    ll = MultiplyPointsByScalar(ll, 1.0 / scale)",
+                    "    ur = MultiplyPointsByScalar(ur, 1.0 / scale)",
+                    "    ",
+                    "    // Add in the document space center.",
+                    "    ll = AddPoints(ll, documentSpaceCenter)",
+                    "    ur = AddPoints(ur, documentSpaceCenter)",
+                    "    ",
+                    "    // Convert to input pixel space.",
+                    "    ll = sourceImages[0].pixelTransform.transform2DPoint(ll)",
+                    "    ur = sourceImages[0].pixelTransform.transform2DPoint(ur)",
+                    "    ",
+                    "    // Save it in the input tile rectangle.",
+                    "    sourceTileRect.pointee.left = Int32(floor(ll.x))",
+                    "    sourceTileRect.pointee.right = Int32(ceil(ur.x))",
+                    "    sourceTileRect.pointee.bottom = Int32(floor(ll.y))",
+                    "    sourceTileRect.pointee.top = Int32(ceil(ur.y))",
+                    "}",
+                    "",
+                    "private func AddPoints(_ a: FxPoint2D, _ b: FxPoint2D) -> FxPoint2D {",
+                    "    let result = FxPoint2D(x: a.x + b.x, y: a.y + b.y)",
+                    "    return result",
+                    "}",
+                    "",
+                    "private func SubtractPoints(_ a: FxPoint2D, _ b: FxPoint2D) -> FxPoint2D {",
+                    "    let result = FxPoint2D(x: a.x - b.x, y: a.y - b.y)",
+                    "    return result",
+                    "}",
+                    "",
+                    "private func MultiplyPointsByScalar(_ a: FxPoint2D, _ scalar: Double) -> FxPoint2D {",
+                    "    let result = FxPoint2D(x: Double(a.x) * scalar, y: Double(a.y) * scalar)",
+                    "    return result",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (BOOL)sourceTileRect:(FxRect *)sourceTileRect",
+                    "      sourceImageIndex:(NSUInteger)sourceImageIndex",
+                    "          sourceImages:(NSArray<FxImageTile *> *)sourceImages",
+                    "   destinationTileRect:(FxRect)destinationTileRect",
+                    "      destinationImage:(FxImageTile *)destinationImage",
+                    "           pluginState:(NSData *)pluginState",
+                    "                atTime:(CMTime)renderTime",
+                    "                 error:(NSError * _Nullable *)outError",
+                    "{",
+                    "    double scale = 1.5;",
+                    "    [pluginState getBytes:&scale",
+                    "                   length:sizeof(scale)];",
+                    "    ",
+                    "    // Get output pixel space coordinates.",
+                    "    FxPoint2D   ll = { destinationTileRect.left, destinationTileRect.bottom };",
+                    "    FxPoint2D   ur = { destinationTileRect.right, destinationTileRect.top };",
+                    "    ",
+                    "    // Convert to document space.",
+                    "    ll = [destinationImage.inversePixelTransform transform2DPoint:ll];",
+                    "    ur = [destinationImage.inversePixelTransform transform2DPoint:ur];",
+                    "    ",
+                    "    // Convert the whole output rectangle to document space.",
+                    "    FxPoint2D   oll = { destinationImage.imagePixelBounds.left, destinationImage.imagePixelBounds.bottom };",
+                    "    FxPoint2D   our = { destinationImage.imagePixelBounds.right, destinationImage.imagePixelBounds.top };",
+                    "    oll = [destinationImage.inversePixelTransform transform2DPoint:oll];",
+                    "    our = [destinationImage.inversePixelTransform transform2DPoint:our];",
+                    "    ",
+                    "    // Subtract off the document space center.",
+                    "    FxPoint2D   documentSpaceCenter    = { (oll.x + our.x) / 2.0, (oll.y + our.y) / 2.0 };",
+                    "    ll = SubtractPoints(ll, documentSpaceCenter);",
+                    "    ur = SubtractPoints(ur, documentSpaceCenter);",
+                    "    ",
+                    "    // Scale appropriately.",
+                    "    ll = MultiplyPointsByScalar(ll, 1.0 / scale);",
+                    "    ur = MultiplyPointsByScalar(ur, 1.0 / scale);",
+                    "    ",
+                    "    // Add in the document space center.",
+                    "    ll = AddPoints(ll, documentSpaceCenter);",
+                    "    ur = AddPoints(ur, documentSpaceCenter);",
+                    "    ",
+                    "    // Convert to input pixel space.",
+                    "    ll = [sourceImages [ 0 ].pixelTransform transform2DPoint:ll];",
+                    "    ur = [sourceImages [ 0 ].pixelTransform transform2DPoint:ur];",
+                    "    ",
+                    "    // Save it in the input tile rectangle.",
+                    "    sourceTileRect->left = floor(ll.x);",
+                    "    sourceTileRect->right = ceil(ur.x);",
+                    "    sourceTileRect->bottom = floor(ll.y);",
+                    "    sourceTileRect->top = ceil(ur.y);",
+                    "    ",
+                    "    return YES;",
+                    "}",
+                    "",
+                    "static FxPoint2D AddPoints(const FxPoint2D a, const FxPoint2D b)",
+                    "{",
+                    "    FxPoint2D   result = { a.x + b.x, a.y + b.y };",
+                    "    return result;",
+                    "}",
+                    "",
+                    "static FxPoint2D SubtractPoints(const FxPoint2D a, const FxPoint2D b)",
+                    "{",
+                    "    FxPoint2D   result = { a.x - b.x, a.y - b.y };",
+                    "    return result;",
+                    "}",
+                    "",
+                    "static FxPoint2D MultiplyPointsByScalar(const FxPoint2D a, const double scalar)",
+                    "{",
+                    "    FxPoint2D   result = { a.x * scalar, a.y * scalar };",
+                    "    return result;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a more sophisticated example of how to handle transformations, see the ",
+              "type": "text"
+            },
+            {
+              "code": "SimpleScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code sample in the ",
+              "type": "text"
+            },
+            {
+              "code": "FxDynamicRegistration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sample project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Setting the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_NeedsFullBuffer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property key to ",
+                  "type": "text"
+                },
+                {
+                  "code": "YES",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates to the host that the plug-in requires the entire image to do its processing, and therefore the host won’t tile the input. Your plug-in may be unable to render large image inputs if tiling is not implemented.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "abstract": [
+        {
+          "text": "Use built-in or custom filters to process still and video images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state": {
+      "abstract": [
+        {
+          "text": "Prepare the necessary information, such as parameter values, for your FxPlug plug-in to render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with the plug-in state",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/communicating-with-the-plug-in-state"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins": {
+      "abstract": [
+        {
+          "text": "Maintain consistent rendering at all resolutions and aspect ratios by using pixel transforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing FxPlug plug-ins",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/optimizing-fxplug-plug-ins"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug": {
+      "abstract": [
+        {
+          "text": "Use Metal or other frameworks to render images with your FxPlug plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering in FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/rendering-in-fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile": {
+      "abstract": [
+        {
+          "text": "An image tile object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTile"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTile",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetile"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest": {
+      "abstract": [
+        {
+          "text": "An image tile request object that is passed between an out-of-process FxPlug plug-in and a host application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxImageTileRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxImageTileRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxImageTileRequest",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fximagetilerequest"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect": {
+      "abstract": [
+        {
+          "text": "The designated initializer for your plug-in for rendering only certain portions of the plug-in’s output, referred to as tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxTileableEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxTileableEffect",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Calculates the bounds of the output image determined by the various inputs and plug-in state at the given render time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationImageRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "destinationImageRect:sourceImages:destinationImage:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/destinationimagerect(_:sourceimages:destinationimage:pluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)": {
+      "abstract": [
+        {
+          "text": "Calculate the input rectangle needed for the given image input and the output tile to be rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceTileRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationTileRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxImageTile",
+          "text": "FxImageTile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pluginState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect/sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceTileRect:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:atTime:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxtileableeffect/sourcetilerect(_:sourceimageindex:sourceimages:destinationtilerect:destinationimage:pluginstate:at:)"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_NeedsFullBuffer": {
+      "abstract": [
+        {
+          "text": "A key that determines whether the plug-in needs the entire image to do its processing, and can’t tile its rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_NeedsFullBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_NeedsFullBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_NeedsFullBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxPropertyKey_NeedsFullBuffer",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxpropertykey_needsfullbuffer"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty": {
+      "abstract": [
+        {
+          "text": "An empty rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Empty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Empty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Empty"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxRect_Empty",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxrect_empty"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite": {
+      "abstract": [
+        {
+          "text": "An infinite rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Infinite"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@FxRect",
+          "text": "FxRect"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxRect_Infinite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxRect_Infinite"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxRect_Infinite",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxrect_infinite"
+    },
+    "media-3666148": {
+      "alt": "An illustration of an input image next to an output image, with the pixels blurred on the output image. Each image is divided into a grid of tiles. A highlighted rectangle that represents one example destinationTileRect is drawn on the output image. A corresponding rectangle representing the sourceTileRect is drawn on the input image in the same relative position, but with a larger size, to represent the pixels required to sample the output tile. An arrow is drawn between the two rectangles from destinationTileRect to sourceTileRect. The outside bounds of both the input image and output image are the same size, and an arrow is drawn between them from the input image to the output image.",
+      "identifier": "media-3666148",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36f67bce504e55d65156d8e93e504605/media-3666148@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63c6e2008df095c2c640a963f8231b15/media-3666148~dark@2x.png"
+        }
+      ]
+    },
+    "media-3666154": {
+      "alt": "An illustration of an input image next to an output image, with the pixels scaled larger on the x-axis of the output image. Each image is divided into a grid of tiles. A highlighted rectangle that represents one example destinationTileRect is drawn on the output image. A corresponding rectangle representing the sourceTileRect is drawn on the input image in the same relative position, but with a smaller size, to represent the pixels required to sample the output tile. An arrow is drawn between the two rectangles from destinationTileRect to sourceTileRect. The outside bounds of the output image are larger than the input image, and an arrow is drawn between them from the input image to the output image.",
+      "identifier": "media-3666154",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38974c60d12cfa06661b9dd1a33d72c8/media-3666154@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da4a475d6ba84fd2353e26e42071f7de/media-3666154~dark@2x.png"
+        }
+      ]
+    },
+    "media-3666155": {
+      "alt": "An illustration of an input image next to an output image, with the colors inverted on the output image. Each image is divided into a grid of tiles. A highlighted rectangle that represents one example destinationTileRect is drawn on the output image. A corresponding rectangle representing the sourceTileRect is drawn on the input image in the same relative position and size to represent the pixels required to sample the output tile. An arrow is drawn between the two rectangles from destinationTileRect to sourceTileRect. The outside bounds of both the input image and output image are the same size, and an arrow is drawn between them from the input image to the output image.",
+      "identifier": "media-3666155",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4701127b07c4e3bfd3f3ca0a12efd008/media-3666155@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ea2548b27777e194323a06205c4706a5/media-3666155~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rendering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+      ],
+      "title": "Rendering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Exchanging-Image-Tiles-Between-Host-and-Plug-in",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest"
+      ],
+      "title": "Exchanging Image Tiles Between Host and Plug-in"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Exchanging-Image-Tiles-Between-Host-and-Plug-in",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTile",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxImageTileRequest"
+              ],
+              "title": "Exchanging Image Tiles Between Host and Plug-in"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rendering",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/rendering-in-fxplug",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/communicating-with-the-plug-in-state",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/optimizing-fxplug-plug-ins",
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxTileableEffect"
+              ],
+              "title": "Rendering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Empty/title",
+          "value": "kFxRect_Empty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Empty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxRect_Empty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Infinite/title",
+          "value": "kFxRect_Infinite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxRect_Infinite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxRect_Infinite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_NeedsFullBuffer/title",
+          "value": "kFxPropertyKey_NeedsFullBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_NeedsFullBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxPropertyKey_NeedsFullBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/title",
+          "value": "FxTileableEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxTileableEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequest/title",
+          "value": "FxImageTileRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTileRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTileRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTileRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)/title",
+          "value": "sourceTileRect:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1sourceTileRect(_:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sourceTileRect:sourceImageIndex:sourceImages:destinationTileRect:destinationImage:pluginState:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/title",
+          "value": "FxImageTile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxImageTile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxImageTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)/title",
+          "value": "destinationImageRect:sourceImages:destinationImage:pluginState:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxTileableEffect~1destinationImageRect(_:sourceImages:destinationImage:pluginState:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "destinationImageRect:sourceImages:destinationImage:pluginState:atTime:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/working-with-tiled-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/working-with-tiled-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

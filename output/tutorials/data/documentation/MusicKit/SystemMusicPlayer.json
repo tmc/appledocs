@@ -1,0 +1,709 @@
+{
+  "abstract": [
+    {
+      "text": "An object your app uses to play music by controlling the Music app’s state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MusicKit/documentation/MusicKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8MusicKit06SystemA6PlayerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SystemMusicPlayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MusicKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SystemMusicPlayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SystemMusicPlayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SystemMusicPlayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system music player employs the Music app on your behalf.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When your app accesses the system music player for the first time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it assumes the current Music app state and controls it as your app runs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The shared state includes the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat mode (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer/RepeatMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shuffle mode (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer/ShuffleMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Playback status (see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MusicPlayer/PlaybackStatus\u0004",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system music player doesn’t share other aspects of the Music app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state. Music that’s playing continues to play when your app moves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MusicKit/documentation/MusicKit": {
+      "abstract": [
+        {
+          "text": "Integrate your app with Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MusicKit",
+      "type": "topic",
+      "url": "/documentation/musickit"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ApplicationMusicPlayer": {
+      "abstract": [
+        {
+          "text": "An object your app uses to play music in a way that doesn’t affect",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the Music app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplicationMusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ApplicationMusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplicationMusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplicationMusicPlayer",
+      "type": "topic",
+      "url": "/documentation/musickit/applicationmusicplayer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer": {
+      "abstract": [
+        {
+          "text": "An object your app uses to play music.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPlayer",
+      "type": "topic",
+      "url": "/documentation/musickit/musicplayer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer/RepeatMode": {
+      "abstract": [
+        {
+          "text": "The repeat modes for the music player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer/RepeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RepeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPlayer.RepeatMode",
+      "type": "topic",
+      "url": "/documentation/musickit/musicplayer/repeatmode"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer/ShuffleMode": {
+      "abstract": [
+        {
+          "text": "The shuffle modes for the music player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShuffleMode"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer/ShuffleMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShuffleMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPlayer.ShuffleMode",
+      "type": "topic",
+      "url": "/documentation/musickit/musicplayer/shufflemode"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PlayParameters": {
+      "abstract": [
+        {
+          "text": "An opaque object that represents parameters to initiate playback",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a playable music item using a music player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PlayParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayParameters",
+      "type": "topic",
+      "url": "/documentation/musickit/playparameters"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PlayableMusicItem": {
+      "abstract": [
+        {
+          "text": "A set of properties that a music player uses to initiate playback",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a music item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayableMusicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PlayableMusicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayableMusicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayableMusicItem",
+      "type": "topic",
+      "url": "/documentation/musickit/playablemusicitem"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer": {
+      "abstract": [
+        {
+          "text": "An object your app uses to play music by controlling the Music app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemMusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemMusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemMusicPlayer",
+      "type": "topic",
+      "url": "/documentation/musickit/systemmusicplayer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer/queue": {
+      "abstract": [
+        {
+          "text": "The playback queue for the system music player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8MusicKit0A6PlayerC",
+          "text": "MusicPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8MusicKit0A6PlayerC5QueueC",
+          "text": "Queue"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer/queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queue",
+      "type": "topic",
+      "url": "/documentation/musickit/systemmusicplayer/queue"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer/shared": {
+      "abstract": [
+        {
+          "text": "The shared system music player, which controls the Music app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8MusicKit06SystemA6PlayerC",
+          "text": "SystemMusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer/shared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/musickit/systemmusicplayer/shared"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/ApplicationMusicPlayer",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PlayableMusicItem",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PlayParameters"
+      ],
+      "title": "Playback"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer/queue"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer/shared"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/musickit/systemmusicplayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+{
+  "abstract": [
+    {
+      "text": "Blocks the process until the receiver is finished.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+        "doc://com.apple.documentation/documentation/foundation/process"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/process"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415808,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTask(im)waitUntilExit",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "waitUntilExit"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Process"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "waitUntilExit()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "waitUntilExit"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method first checks to see if the receiver is still running using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/process/1415788-isrunning",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then it polls the current run loop using ",
+              "type": "text"
+            },
+            {
+              "code": "NSDefaultRunLoopMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " until the task completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let task: NSTask = // Create and initialize a task",
+            "    task.launch()",
+            "task.waitUntilExit()",
+            "let status = task.terminationStatus",
+            " ",
+            "if status == 0 {",
+            "    print(\"Task succeeded.\")",
+            "} else {",
+            "    print(\"Task failed.\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555821",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " does not guarantee that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/process/1408746-terminationhandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " block has been fully executed before ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process": {
+      "abstract": [
+        {
+          "text": "An object that represents a subprocess of the current process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Process",
+      "type": "topic",
+      "url": "/documentation/foundation/process"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1407819-resume": {
+      "abstract": [
+        {
+          "text": "Resumes execution of a suspended task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1407819-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1407819-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1408746-terminationhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1408746-terminationhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminationHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1408746-terminationhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1409620-terminate": {
+      "abstract": [
+        {
+          "text": "Sends a terminate signal to the receiver and all of its subtasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1409620-terminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminate()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1409620-terminate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1410874-interrupt": {
+      "abstract": [
+        {
+          "text": "Sends an interrupt signal to the receiver and all of its subtasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "interrupt"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1410874-interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interrupt()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1410874-interrupt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1411590-suspend": {
+      "abstract": [
+        {
+          "text": "Suspends execution of the receiver task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspend"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1411590-suspend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspend()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1411590-suspend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1414189-launch": {
+      "abstract": [
+        {
+          "text": "Launches the task represented by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "launch"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1414189-launch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launch()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1414189-launch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1415788-isrunning": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1415788-isrunning",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isRunning",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1415788-isrunning"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit": {
+      "abstract": [
+        {
+          "text": "Blocks the process until the receiver is finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitUntilExit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitUntilExit()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/1415808-waituntilexit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit#2555821": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/1415808-waituntilexit#2555821",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/process/1415808-waituntilexit#2555821"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/2890105-run": {
+      "abstract": [
+        {
+          "text": "Runs the process with the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/2890105-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run()",
+      "type": "topic",
+      "url": "/documentation/foundation/process/2890105-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/process/2890105-run",
+        "doc://com.apple.documentation/documentation/foundation/process/1410874-interrupt",
+        "doc://com.apple.documentation/documentation/foundation/process/1407819-resume",
+        "doc://com.apple.documentation/documentation/foundation/process/1411590-suspend",
+        "doc://com.apple.documentation/documentation/foundation/process/1409620-terminate"
+      ],
+      "title": "Running and Stopping a Process"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/process/1414189-launch"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstask/1415808-waituntilexit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/process/1415808-waituntilexit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

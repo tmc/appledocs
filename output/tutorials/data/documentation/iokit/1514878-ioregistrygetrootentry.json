@@ -1,0 +1,2332 @@
+{
+  "abstract": [
+    {
+      "text": "Return a handle to the registry root.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit",
+        "doc://com.apple.documentation/documentation/iokit/iokitlib_h"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/iokit/1514878-ioregistrygetrootentry"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1514878,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@IORegistryGetRootEntry",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "IORegistryGetRootEntry"
+      },
+      {
+        "kind": "text",
+        "text": "(mach_port_t) -> io_registry_entry_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "IORegistryGetRootEntry(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IORegistryGetRootEntry"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mainPort"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@mach_port_t",
+              "text": "mach_port_t"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/io_registry_entry_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@io_registry_entry_t",
+              "text": "io_registry_entry_t"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The primary port obtained from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/iokit/1514652-iomasterport",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/iokit/kiomasterportdefault",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to look up the default primary port.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "masterPort"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A handle to the IORegistryEntry root instance, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method provides an accessor to the root of the registry for the machine. The root may be passed to a registry iterator when iterating a plane, and contains properties that describe the available planes, and diagnostic information for IOKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514229-ioregistryentrygetpath": {
+      "abstract": [
+        {
+          "text": "Create a path for a registry entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetPath"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<CChar>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514229-ioregistryentrygetpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetPath(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514229-ioregistryentrygetpath"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514238-ioregistrycreateiterator": {
+      "abstract": [
+        {
+          "text": "Create an iterator rooted at the registry root.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryCreateIterator"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, UnsafePointer<CChar>!, IOOptionBits, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514238-ioregistrycreateiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryCreateIterator(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514238-ioregistrycreateiterator"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514293-ioregistryentrycreatecfproperty": {
+      "abstract": [
+        {
+          "text": "Create a CF representation of a registry entry's property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryCreateCFProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, CFString!, CFAllocator!, IOOptionBits) -> Unmanaged<CFTypeRef>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514293-ioregistryentrycreatecfproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryCreateCFProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514293-ioregistryentrycreatecfproperty"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514310-ioregistryentrycreatecfpropertie": {
+      "abstract": [
+        {
+          "text": "Create a CF dictionary representation of a registry entry's property table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryCreateCFProperties"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafeMutablePointer<Unmanaged<CFMutableDictionary>?>!, CFAllocator!, IOOptionBits) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514310-ioregistryentrycreatecfpropertie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryCreateCFProperties(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514310-ioregistryentrycreatecfpropertie"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514318-ioregistryentrycreateiterator": {
+      "abstract": [
+        {
+          "text": "Create an iterator rooted at a given registry entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryCreateIterator"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, IOOptionBits, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514318-ioregistryentrycreateiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryCreateIterator(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514318-ioregistryentrycreateiterator"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514323-ioregistryentrygetname": {
+      "abstract": [
+        {
+          "text": "Returns a C-string name assigned to a registry entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetName"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafeMutablePointer<CChar>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514323-ioregistryentrygetname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514323-ioregistryentrygetname"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514325-ioobjectgetkernelretaincount": {
+      "abstract": [
+        {
+          "text": "Returns kernel retain count of an IOKit object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectGetKernelRetainCount"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t) -> UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514325-ioobjectgetkernelretaincount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectGetKernelRetainCount(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514325-ioobjectgetkernelretaincount"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514334-ioregistryiteratorexitentry": {
+      "abstract": [
+        {
+          "text": "Exits a level of recursion, restoring the current entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryIteratorExitEntry"
+        },
+        {
+          "kind": "text",
+          "text": "(io_iterator_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514334-ioregistryiteratorexitentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryIteratorExitEntry(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514334-ioregistryiteratorexitentry"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514340-ioregistryentrygetlocationinplan": {
+      "abstract": [
+        {
+          "text": "Returns a C-string location assigned to a registry entry, in a specified plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetLocationInPlane"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<CChar>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514340-ioregistryentrygetlocationinplan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetLocationInPlane(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514340-ioregistryentrygetlocationinplan"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514362-ioserviceaddmatchingnotification": {
+      "abstract": [
+        {
+          "text": "Look up registered IOService objects that match a matching dictionary, and install a notification request of new IOServices that match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceAddMatchingNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(IONotificationPortRef!, UnsafePointer<CChar>!, CFDictionary!, IOServiceMatchingCallback!, UnsafeMutableRawPointer!, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514362-ioserviceaddmatchingnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceAddMatchingNotification(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514362-ioserviceaddmatchingnotification"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514364-ioservicerequestprobe": {
+      "abstract": [
+        {
+          "text": "A request to rescan a bus for device changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceRequestProbe"
+        },
+        {
+          "kind": "text",
+          "text": "(io_service_t, UInt32) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514364-ioservicerequestprobe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceRequestProbe(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514364-ioservicerequestprobe"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514366-ioregistryentrygetparentiterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over a registry entry’s parent entries in a plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetParentIterator"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514366-ioregistryentrygetparentiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetParentIterator(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514366-ioregistryentrygetparentiterator"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514375-ioobjectcopybundleidentifierforc": {
+      "abstract": [
+        {
+          "text": "Return the bundle identifier of the given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectCopyBundleIdentifierForClass"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514375-ioobjectcopybundleidentifierforc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectCopyBundleIdentifierForClass(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514375-ioobjectcopybundleidentifierforc"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514377-ioconnectmapmemory": {
+      "abstract": [
+        {
+          "text": "Map hardware or shared memory into the caller's task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectMapMemory"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, UInt32, task_port_t, UnsafeMutablePointer<mach_vm_address_t>!, UnsafeMutablePointer<mach_vm_size_t>!, IOOptionBits) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514377-ioconnectmapmemory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectMapMemory(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514377-ioconnectmapmemory"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514379-ioiteratorreset": {
+      "abstract": [
+        {
+          "text": "Resets an iteration back to the beginning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOIteratorReset"
+        },
+        {
+          "kind": "text",
+          "text": "(io_iterator_t)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514379-ioiteratorreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOIteratorReset(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514379-ioiteratorreset"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514414-ioregistryentrysetcfproperties": {
+      "abstract": [
+        {
+          "text": "Set CF container based properties in a registry entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntrySetCFProperties"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, CFTypeRef!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514414-ioregistryentrysetcfproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntrySetCFProperties(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514414-ioregistryentrysetcfproperties"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514416-ioservicenamematching": {
+      "abstract": [
+        {
+          "text": "Create a matching dictionary that specifies an IOService name match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceNameMatching"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>!) -> CFMutableDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514416-ioservicenamematching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceNameMatching(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514416-ioservicenamematching"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514438-ioconnectgetservice": {
+      "abstract": [
+        {
+          "text": "Returns the IOService a connect handle was opened on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectGetService"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, UnsafeMutablePointer<io_service_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514438-ioconnectgetservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectGetService(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514438-ioconnectgetservice"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514440-iokitwaitquiet": {
+      "abstract": [
+        {
+          "text": "Wait for a all IOServices' busyState to be zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOKitWaitQuiet"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, UnsafeMutablePointer<mach_timespec_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514440-iokitwaitquiet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitWaitQuiet(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514440-iokitwaitquiet"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514454-ioregistryentrygetparententry": {
+      "abstract": [
+        {
+          "text": "Returns the first parent of a registry entry in a plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetParentEntry"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<io_registry_entry_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514454-ioregistryentrygetparententry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetParentEntry(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514454-ioregistryentrygetparententry"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514460-iokitgetbusystate": {
+      "abstract": [
+        {
+          "text": "Returns the busyState of all IOServices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOKitGetBusyState"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, UnsafeMutablePointer<UInt32>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514460-iokitgetbusystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOKitGetBusyState(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514460-iokitgetbusystate"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514464-ioobjectgetuserretaincount": {
+      "abstract": [
+        {
+          "text": "Returns the retain count for the current process of an IOKit object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectGetUserRetainCount"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t) -> UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514464-ioobjectgetuserretaincount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectGetUserRetainCount(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514464-ioobjectgetuserretaincount"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514475-ioregistryentrygetnameinplane": {
+      "abstract": [
+        {
+          "text": "Returns a C-string name assigned to a registry entry, in a specified plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetNameInPlane"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<CChar>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514475-ioregistryentrygetnameinplane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetNameInPlane(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514475-ioregistryentrygetnameinplane"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514480-ionotificationportcreate": {
+      "abstract": [
+        {
+          "text": "Creates and returns a notification object for receiving IOKit notifications of new devices or state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IONotificationPortCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t) -> IONotificationPortRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514480-ionotificationportcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONotificationPortCreate(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514480-ionotificationportcreate"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514486-iobsdnamematching": {
+      "abstract": [
+        {
+          "text": "Create a matching dictionary that specifies an IOService match based on BSD device name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBSDNameMatching"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, UInt32, UnsafePointer<CChar>!) -> CFMutableDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514486-iobsdnamematching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBSDNameMatching(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514486-iobsdnamematching"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514494-ioservicegetmatchingservices": {
+      "abstract": [
+        {
+          "text": "Look up registered IOService objects that match a matching dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceGetMatchingServices"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, CFDictionary!, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514494-ioservicegetmatchingservices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceGetMatchingServices(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514494-ioservicegetmatchingservices"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514496-ioregistryentrygetchildentry": {
+      "abstract": [
+        {
+          "text": "Returns the first child of a registry entry in a plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetChildEntry"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<io_registry_entry_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514496-ioregistryentrygetchildentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetChildEntry(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514496-ioregistryentrygetchildentry"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514505-ioobjectconformsto": {
+      "abstract": [
+        {
+          "text": "Performs an OSDynamicCast operation on an IOKit object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectConformsTo"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t, UnsafePointer<CChar>!) -> boolean_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514505-ioobjectconformsto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectConformsTo(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514505-ioobjectconformsto"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514511-ioconnectrelease": {
+      "abstract": [
+        {
+          "text": "Remove a reference to the connect handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectRelease"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514511-ioconnectrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectRelease(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514511-ioconnectrelease"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514515-ioserviceopen": {
+      "abstract": [
+        {
+          "text": "A request to create a connection to an IOService.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceOpen"
+        },
+        {
+          "kind": "text",
+          "text": "(io_service_t, task_port_t, UInt32, UnsafeMutablePointer<io_connect_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514515-ioserviceopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceOpen(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514515-ioserviceopen"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514527-ioconnectunmapmemory": {
+      "abstract": [
+        {
+          "text": "Remove a mapping made with IOConnectMapMemory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectUnmapMemory"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, UInt32, task_port_t, mach_vm_address_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514527-ioconnectunmapmemory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectUnmapMemory(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514527-ioconnectunmapmemory"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514535-ioservicegetmatchingservice": {
+      "abstract": [
+        {
+          "text": "Look up a registered IOService object that matches a matching dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceGetMatchingService"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, CFDictionary!) -> io_service_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514535-ioservicegetmatchingservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceGetMatchingService(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514535-ioservicegetmatchingservice"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514537-ioregistryentrysearchcfproperty": {
+      "abstract": [
+        {
+          "text": "Create a CF representation of a registry entry's property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntrySearchCFProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, CFString!, CFAllocator!, IOOptionBits) -> CFTypeRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514537-ioregistryentrysearchcfproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntrySearchCFProperty(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514537-ioregistryentrysearchcfproperty"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514541-ioconnectsetnotificationport": {
+      "abstract": [
+        {
+          "text": "Set a port to receive family specific notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectSetNotificationPort"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, UInt32, mach_port_t, UInt) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514541-ioconnectsetnotificationport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectSetNotificationPort(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514541-ioconnectsetnotificationport"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514556-ioiteratorisvalid": {
+      "abstract": [
+        {
+          "text": "Checks an iterator is still valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOIteratorIsValid"
+        },
+        {
+          "kind": "text",
+          "text": "(io_iterator_t) -> boolean_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514556-ioiteratorisvalid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOIteratorIsValid(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514556-ioiteratorisvalid"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514563-ioobjectisequalto": {
+      "abstract": [
+        {
+          "text": "Checks two object handles to see if they represent the same kernel object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectIsEqualTo"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t, io_object_t) -> boolean_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514563-ioobjectisequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectIsEqualTo(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514563-ioobjectisequalto"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514573-ioservicewaitquiet": {
+      "abstract": [
+        {
+          "text": "Wait for an IOService's busyState to be zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceWaitQuiet"
+        },
+        {
+          "kind": "text",
+          "text": "(io_service_t, UnsafeMutablePointer<mach_timespec_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514573-ioservicewaitquiet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceWaitQuiet(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514573-ioservicewaitquiet"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514596-ionotificationportsetdispatchque": {
+      "abstract": [
+        {
+          "text": "Sets a dispatch queue to be used to listen for notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IONotificationPortSetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "(IONotificationPortRef!, dispatch_queue_t!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514596-ionotificationportsetdispatchque",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONotificationPortSetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514596-ionotificationportsetdispatchque"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514599-ionotificationportgetrunloopsour": {
+      "abstract": [
+        {
+          "text": "Returns a CFRunLoopSource to be used to listen for notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IONotificationPortGetRunLoopSource"
+        },
+        {
+          "kind": "text",
+          "text": "(IONotificationPortRef!) -> Unmanaged<CFRunLoopSource>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514599-ionotificationportgetrunloopsour",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONotificationPortGetRunLoopSource(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514599-ionotificationportgetrunloopsour"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514607-ioservicegetbusystate": {
+      "abstract": [
+        {
+          "text": "Returns the busyState of an IOService.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceGetBusyState"
+        },
+        {
+          "kind": "text",
+          "text": "(io_service_t, UnsafeMutablePointer<UInt32>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514607-ioservicegetbusystate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceGetBusyState(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514607-ioservicegetbusystate"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514609-ioconnectaddclient": {
+      "abstract": [
+        {
+          "text": "Inform a connection of a second connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectAddClient"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, io_connect_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514609-ioconnectaddclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectAddClient(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514609-ioconnectaddclient"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514627-ioobjectrelease": {
+      "abstract": [
+        {
+          "text": "Releases an object handle previously returned by IOKitLib.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectRelease"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514627-ioobjectrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectRelease(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514627-ioobjectrelease"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514635-ioobjectcopysuperclassforclass": {
+      "abstract": [
+        {
+          "text": "Return the superclass name of the given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectCopySuperclassForClass"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514635-ioobjectcopysuperclassforclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectCopySuperclassForClass(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514635-ioobjectcopysuperclassforclass"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514646-ioserviceclose": {
+      "abstract": [
+        {
+          "text": "Close a connection to an IOService and destroy the connect handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceClose"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514646-ioserviceclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceClose(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514646-ioserviceclose"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514652-iomasterport": {
+      "abstract": [
+        {
+          "text": "Returns the mach port used to initiate communication with IOKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOMasterPort"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, UnsafeMutablePointer<mach_port_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514652-iomasterport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMasterPort(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514652-iomasterport"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514668-ioregistryentryinplane": {
+      "abstract": [
+        {
+          "text": "Determines if the registry entry is attached in a plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryInPlane"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!) -> boolean_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514668-ioregistryentryinplane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryInPlane(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514668-ioregistryentryinplane"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514685-ioservicematchpropertytable": {
+      "abstract": [
+        {
+          "text": "Match an IOService objects with matching dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceMatchPropertyTable"
+        },
+        {
+          "kind": "text",
+          "text": "(io_service_t, CFDictionary!, UnsafeMutablePointer<boolean_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514685-ioservicematchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceMatchPropertyTable(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514685-ioservicematchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514687-ioservicematching": {
+      "abstract": [
+        {
+          "text": "Create a matching dictionary that specifies an IOService class match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceMatching"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<CChar>!) -> CFMutableDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514687-ioservicematching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceMatching(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514687-ioservicematching"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514698-iocreatereceiveport": {
+      "abstract": [
+        {
+          "text": "Creates and returns a mach port suitable for receiving IOKit messages of the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOCreateReceivePort"
+        },
+        {
+          "kind": "text",
+          "text": "(UInt32, UnsafeMutablePointer<mach_port_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514698-iocreatereceiveport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCreateReceivePort(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514698-iocreatereceiveport"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514703-ioregistryentrygetchilditerator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over a registry entry’s child entries in a plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetChildIterator"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafePointer<CChar>!, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514703-ioregistryentrygetchilditerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetChildIterator(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514703-ioregistryentrygetchilditerator"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514713-ioconnectsetcfproperties": {
+      "abstract": [
+        {
+          "text": "Set CF container based properties on a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectSetCFProperties"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, CFTypeRef!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514713-ioconnectsetcfproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectSetCFProperties(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514713-ioconnectsetcfproperties"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514719-ioregistryentrygetregistryentryi": {
+      "abstract": [
+        {
+          "text": "Returns an ID for the registry entry that is global to all tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryGetRegistryEntryID"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, UnsafeMutablePointer<UInt64>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514719-ioregistryentrygetregistryentryi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryGetRegistryEntryID(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514719-ioregistryentrygetregistryentryi"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514739-ioconnectaddref": {
+      "abstract": [
+        {
+          "text": "Adds a reference to the connect handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectAddRef"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514739-ioconnectaddref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectAddRef(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514739-ioconnectaddref"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514741-ioiteratornext": {
+      "abstract": [
+        {
+          "text": "Returns the next object in an iteration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOIteratorNext"
+        },
+        {
+          "kind": "text",
+          "text": "(io_iterator_t) -> io_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514741-ioiteratornext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOIteratorNext(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514741-ioiteratornext"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514751-ionotificationportdestroy": {
+      "abstract": [
+        {
+          "text": "Destroys a notification object created with IONotificationPortCreate. Also destroys any mach_port's or CFRunLoopSources obatined from ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/iokit/1514599-ionotificationportgetrunloopsour",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/iokit/1514875-ionotificationportgetmachport",
+          "isActive": true,
+          "type": "reference"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IONotificationPortDestroy"
+        },
+        {
+          "kind": "text",
+          "text": "(IONotificationPortRef!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514751-ionotificationportdestroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONotificationPortDestroy(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514751-ionotificationportdestroy"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514756-ioobjectgetclass": {
+      "abstract": [
+        {
+          "text": "Return the class name of an IOKit object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectGetClass"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t, UnsafeMutablePointer<CChar>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514756-ioobjectgetclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectGetClass(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514756-ioobjectgetclass"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514760-ioconnectunmapmemory64": {
+      "abstract": [
+        {
+          "text": "Remove a mapping made with IOConnectMapMemory64.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectUnmapMemory64"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, UInt32, task_port_t, mach_vm_address_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514760-ioconnectunmapmemory64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectUnmapMemory64(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514760-ioconnectunmapmemory64"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514769-ioobjectretain": {
+      "abstract": [
+        {
+          "text": "Retains an object handle previously returned by IOKitLib.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectRetain"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514769-ioobjectretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectRetain(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514769-ioobjectretain"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514775-iodispatchcalloutfrommessage": {
+      "abstract": [
+        {
+          "text": "Dispatches callback notifications from a mach message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IODispatchCalloutFromMessage"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer!, UnsafeMutablePointer<mach_msg_header_t>!, UnsafeMutableRawPointer!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514775-iodispatchcalloutfrommessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchCalloutFromMessage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514775-iodispatchcalloutfrommessage"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514781-ioobjectcopyclass": {
+      "abstract": [
+        {
+          "text": "Return the class name of an IOKit object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectCopyClass"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514781-ioobjectcopyclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectCopyClass(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514781-ioobjectcopyclass"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514796-ioconnectsetcfproperty": {
+      "abstract": [
+        {
+          "text": "Set a CF container based property on a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectSetCFProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, CFString!, CFTypeRef!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514796-ioconnectsetcfproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectSetCFProperty(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514796-ioconnectsetcfproperty"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514802-ioregistryentryfrompath": {
+      "abstract": [
+        {
+          "text": "Looks up a registry entry by path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryFromPath"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, UnsafePointer<CChar>!) -> io_registry_entry_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514802-ioregistryentryfrompath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryFromPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514802-ioregistryentryfrompath"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514822-ioregistryiteratorenterentry": {
+      "abstract": [
+        {
+          "text": "Recurse into the current entry in the registry iteration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryIteratorEnterEntry"
+        },
+        {
+          "kind": "text",
+          "text": "(io_iterator_t) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514822-ioregistryiteratorenterentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryIteratorEnterEntry(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514822-ioregistryiteratorenterentry"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514824-ioobjectgetretaincount": {
+      "abstract": [
+        {
+          "text": "Returns kernel retain count of an IOKit object. Identical to IOObjectGetKernelRetainCount() but available prior to Mac OS 10.6.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOObjectGetRetainCount"
+        },
+        {
+          "kind": "text",
+          "text": "(io_object_t) -> UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514824-ioobjectgetretaincount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOObjectGetRetainCount(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514824-ioobjectgetretaincount"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514862-ioconnectmapmemory64": {
+      "abstract": [
+        {
+          "text": "Map hardware or shared memory into the caller's task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOConnectMapMemory64"
+        },
+        {
+          "kind": "text",
+          "text": "(io_connect_t, UInt32, task_port_t, UnsafeMutablePointer<mach_vm_address_t>!, UnsafeMutablePointer<mach_vm_size_t>!, IOOptionBits) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514862-ioconnectmapmemory64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOConnectMapMemory64(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514862-ioconnectmapmemory64"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514866-ioserviceaddinterestnotification": {
+      "abstract": [
+        {
+          "text": "Register for notification of state changes in an IOService.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceAddInterestNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(IONotificationPortRef!, io_service_t, UnsafePointer<CChar>!, IOServiceInterestCallback!, UnsafeMutableRawPointer!, UnsafeMutablePointer<io_object_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514866-ioserviceaddinterestnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceAddInterestNotification(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514866-ioserviceaddinterestnotification"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514875-ionotificationportgetmachport": {
+      "abstract": [
+        {
+          "text": "Returns a mach_port to be used to listen for notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IONotificationPortGetMachPort"
+        },
+        {
+          "kind": "text",
+          "text": "(IONotificationPortRef!) -> mach_port_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514875-ionotificationportgetmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONotificationPortGetMachPort(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514875-ionotificationportgetmachport"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514878-ioregistrygetrootentry": {
+      "abstract": [
+        {
+          "text": "Return a handle to the registry root.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryGetRootEntry"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t) -> io_registry_entry_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514878-ioregistrygetrootentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryGetRootEntry(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514878-ioregistrygetrootentry"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514880-ioregistryentryidmatching": {
+      "abstract": [
+        {
+          "text": "Create a matching dictionary that specifies an IOService match based on a registry entry ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntryIDMatching"
+        },
+        {
+          "kind": "text",
+          "text": "(UInt64) -> CFMutableDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514880-ioregistryentryidmatching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntryIDMatching(_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514880-ioregistryentryidmatching"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514882-ioregistryentrysetcfproperty": {
+      "abstract": [
+        {
+          "text": "Set a CF container based property in a registry entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IORegistryEntrySetCFProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(io_registry_entry_t, CFString!, CFTypeRef!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514882-ioregistryentrysetcfproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntrySetCFProperty(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514882-ioregistryentrysetcfproperty"
+    },
+    "doc://com.apple.documentation/documentation/iokit/io_registry_entry_t": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/io_registry_entry_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "io_registry_entry_t",
+      "type": "topic",
+      "url": "/documentation/iokit/io_registry_entry_t"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iokitlib_h": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iokitlib_h",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKitLib.h",
+      "type": "topic",
+      "url": "/documentation/iokit/iokitlib_h"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiomasterportdefault": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiomasterportdefault",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOMasterPortDefault",
+      "type": "topic",
+      "url": "/documentation/iokit/kiomasterportdefault"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/iokit/1514486-iobsdnamematching",
+        "doc://com.apple.documentation/documentation/iokit/1514609-ioconnectaddclient",
+        "doc://com.apple.documentation/documentation/iokit/1514739-ioconnectaddref",
+        "doc://com.apple.documentation/documentation/iokit/1514438-ioconnectgetservice",
+        "doc://com.apple.documentation/documentation/iokit/1514377-ioconnectmapmemory",
+        "doc://com.apple.documentation/documentation/iokit/1514862-ioconnectmapmemory64",
+        "doc://com.apple.documentation/documentation/iokit/1514511-ioconnectrelease",
+        "doc://com.apple.documentation/documentation/iokit/1514713-ioconnectsetcfproperties",
+        "doc://com.apple.documentation/documentation/iokit/1514796-ioconnectsetcfproperty",
+        "doc://com.apple.documentation/documentation/iokit/1514541-ioconnectsetnotificationport",
+        "doc://com.apple.documentation/documentation/iokit/1514527-ioconnectunmapmemory",
+        "doc://com.apple.documentation/documentation/iokit/1514760-ioconnectunmapmemory64",
+        "doc://com.apple.documentation/documentation/iokit/1514698-iocreatereceiveport",
+        "doc://com.apple.documentation/documentation/iokit/1514775-iodispatchcalloutfrommessage",
+        "doc://com.apple.documentation/documentation/iokit/1514556-ioiteratorisvalid",
+        "doc://com.apple.documentation/documentation/iokit/1514741-ioiteratornext",
+        "doc://com.apple.documentation/documentation/iokit/1514379-ioiteratorreset",
+        "doc://com.apple.documentation/documentation/iokit/1514460-iokitgetbusystate",
+        "doc://com.apple.documentation/documentation/iokit/1514440-iokitwaitquiet",
+        "doc://com.apple.documentation/documentation/iokit/1514652-iomasterport",
+        "doc://com.apple.documentation/documentation/iokit/1514480-ionotificationportcreate",
+        "doc://com.apple.documentation/documentation/iokit/1514751-ionotificationportdestroy",
+        "doc://com.apple.documentation/documentation/iokit/1514875-ionotificationportgetmachport",
+        "doc://com.apple.documentation/documentation/iokit/1514599-ionotificationportgetrunloopsour",
+        "doc://com.apple.documentation/documentation/iokit/1514596-ionotificationportsetdispatchque",
+        "doc://com.apple.documentation/documentation/iokit/1514505-ioobjectconformsto",
+        "doc://com.apple.documentation/documentation/iokit/1514375-ioobjectcopybundleidentifierforc",
+        "doc://com.apple.documentation/documentation/iokit/1514781-ioobjectcopyclass",
+        "doc://com.apple.documentation/documentation/iokit/1514635-ioobjectcopysuperclassforclass",
+        "doc://com.apple.documentation/documentation/iokit/1514756-ioobjectgetclass",
+        "doc://com.apple.documentation/documentation/iokit/1514325-ioobjectgetkernelretaincount",
+        "doc://com.apple.documentation/documentation/iokit/1514824-ioobjectgetretaincount",
+        "doc://com.apple.documentation/documentation/iokit/1514464-ioobjectgetuserretaincount",
+        "doc://com.apple.documentation/documentation/iokit/1514563-ioobjectisequalto",
+        "doc://com.apple.documentation/documentation/iokit/1514627-ioobjectrelease",
+        "doc://com.apple.documentation/documentation/iokit/1514769-ioobjectretain",
+        "doc://com.apple.documentation/documentation/iokit/1514238-ioregistrycreateiterator",
+        "doc://com.apple.documentation/documentation/iokit/1514310-ioregistryentrycreatecfpropertie",
+        "doc://com.apple.documentation/documentation/iokit/1514293-ioregistryentrycreatecfproperty",
+        "doc://com.apple.documentation/documentation/iokit/1514318-ioregistryentrycreateiterator",
+        "doc://com.apple.documentation/documentation/iokit/1514802-ioregistryentryfrompath",
+        "doc://com.apple.documentation/documentation/iokit/1514496-ioregistryentrygetchildentry",
+        "doc://com.apple.documentation/documentation/iokit/1514703-ioregistryentrygetchilditerator",
+        "doc://com.apple.documentation/documentation/iokit/1514340-ioregistryentrygetlocationinplan",
+        "doc://com.apple.documentation/documentation/iokit/1514323-ioregistryentrygetname",
+        "doc://com.apple.documentation/documentation/iokit/1514475-ioregistryentrygetnameinplane",
+        "doc://com.apple.documentation/documentation/iokit/1514454-ioregistryentrygetparententry",
+        "doc://com.apple.documentation/documentation/iokit/1514366-ioregistryentrygetparentiterator",
+        "doc://com.apple.documentation/documentation/iokit/1514229-ioregistryentrygetpath",
+        "doc://com.apple.documentation/documentation/iokit/1514719-ioregistryentrygetregistryentryi",
+        "doc://com.apple.documentation/documentation/iokit/1514880-ioregistryentryidmatching",
+        "doc://com.apple.documentation/documentation/iokit/1514668-ioregistryentryinplane",
+        "doc://com.apple.documentation/documentation/iokit/1514537-ioregistryentrysearchcfproperty",
+        "doc://com.apple.documentation/documentation/iokit/1514414-ioregistryentrysetcfproperties",
+        "doc://com.apple.documentation/documentation/iokit/1514882-ioregistryentrysetcfproperty",
+        "doc://com.apple.documentation/documentation/iokit/1514822-ioregistryiteratorenterentry",
+        "doc://com.apple.documentation/documentation/iokit/1514334-ioregistryiteratorexitentry",
+        "doc://com.apple.documentation/documentation/iokit/1514866-ioserviceaddinterestnotification",
+        "doc://com.apple.documentation/documentation/iokit/1514362-ioserviceaddmatchingnotification",
+        "doc://com.apple.documentation/documentation/iokit/1514646-ioserviceclose",
+        "doc://com.apple.documentation/documentation/iokit/1514607-ioservicegetbusystate",
+        "doc://com.apple.documentation/documentation/iokit/1514535-ioservicegetmatchingservice",
+        "doc://com.apple.documentation/documentation/iokit/1514494-ioservicegetmatchingservices",
+        "doc://com.apple.documentation/documentation/iokit/1514687-ioservicematching",
+        "doc://com.apple.documentation/documentation/iokit/1514685-ioservicematchpropertytable",
+        "doc://com.apple.documentation/documentation/iokit/1514416-ioservicenamematching",
+        "doc://com.apple.documentation/documentation/iokit/1514515-ioserviceopen",
+        "doc://com.apple.documentation/documentation/iokit/1514364-ioservicerequestprobe",
+        "doc://com.apple.documentation/documentation/iokit/1514573-ioservicewaitquiet"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/iokit/1514878-ioregistrygetrootentry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/iokit/1514878-ioregistrygetrootentry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

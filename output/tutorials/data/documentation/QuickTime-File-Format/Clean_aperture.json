@@ -1,0 +1,524 @@
+{
+  "abstract": [
+    {
+      "text": "An extension that defines the relationship between the pixels in a stored image and a canonical rectangular region of a video system from which it was captured or to which it will be displayed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Clean_aperture",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture",
+        "text": "Clean aperture ('clap')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture",
+        "text": "Clean aperture ('clap')"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Clean aperture ('clap')"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The clean aperture extension defines the relationship between the pixels in a stored image and a canonical rectangular region of a video system from which it was captured or to which it will be displayed. This can be used to correlate pixel locations in two or more images — possibly recorded using different systems — for accurate compositing. This is necessary because different video digitizer devices can digitize different regions of the incoming video signal, causing pixel misalignment between images. In particular, a stored image may contain “edge” data outside the canonical display area for a given system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The clean aperture is either coincident with the stored image or a subset of the stored image; if it is a subset, it may be centered on the stored image, or it may be offset positively or negatively from the stored image center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The clean aperture extension contains a width in pixels, a height in picture lines, and a horizontal and vertical offset between the stored image center and a canonical image center for the given video system. The width is typically the width of the canonical clean aperture for a video system divided by the pixel aspect ratio of the stored data. The offsets also take into account any “overscan” in the stored image. The height and width must be positive values, but the offsets may be positive, negative, or zero.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These values are given as ratios of two 32-bit numbers, so that applications can calculate precise values with minimum roundoff error. For whole values, the value should be stored in the numerator field while the denominator field is set to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history": {
+      "abstract": [
+        {
+          "text": "Changes to the QuickTime File Format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime File Format change log",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/revision_history"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom": {
+      "abstract": [
+        {
+          "text": "A required extension to the video sample description for H.264 video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$AVC_decoder_configuration_atom",
+          "text": "AVC decoder configuration atom ('avcC')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVC decoder configuration atom ('avcC')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/avc_decoder_configuration_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture": {
+      "abstract": [
+        {
+          "text": "An extension that defines the relationship between the pixels in a stored image and a canonical rectangular region of a video system from which it was captured or to which it will be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture",
+          "text": "Clean aperture ('clap')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clean aperture ('clap')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureHeight_D": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the denominator portion of a fractional height or the number 1.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_apertureHeight_D",
+          "text": "apertureHeight_D"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureHeight_D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apertureHeight_D",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/apertureheight_d"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureHeight_N": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the height of the clean aperture in picture lines or the numerator portion of a fractional height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_apertureHeight_N",
+          "text": "apertureHeight_N"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureHeight_N",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apertureHeight_N",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/apertureheight_n"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureWidth_D": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the denominator portion of a fractional width or the number 1.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_apertureWidth_D",
+          "text": "apertureWidth_D"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureWidth_D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apertureWidth_D",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/aperturewidth_d"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureWidth_N": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the width of the clean aperture in pixels or the numerator portion of a fractional width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_apertureWidth_N",
+          "text": "apertureWidth_N"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureWidth_N",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apertureWidth_N",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/aperturewidth_n"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/horizOff_D": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the denominator portion of the horizontal offset or the number 1.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_horizOff_D",
+          "text": "horizOff_D"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/horizOff_D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizOff_D",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/horizoff_d"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/horizOff_N": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the horizontal offset of the clean aperture center minus (width–1)/2 or the numerator portion of a fractional offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_horizOff_N",
+          "text": "horizOff_N"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/horizOff_N",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizOff_N",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/horizoff_n"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/vertOff_D": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the denominator portion of the vertical offset or the number 1.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_vertOff_D",
+          "text": "vertOff_D"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/vertOff_D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vertOff_D",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/vertoff_d"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/vertOff_N": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer containing either the vertical offset of the clean aperture center minus (height–1)/2 or the numerator portion of a fractional offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture_vertOff_N",
+          "text": "vertOff_N"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/vertOff_N",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vertOff_N",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture/vertoff_n"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom": {
+      "abstract": [
+        {
+          "text": "A required extension for uncompressed Y´CbCr data formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Color_parameter_atom",
+          "text": "Color parameter atom ('colr')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color parameter atom ('colr')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/color_parameter_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom": {
+      "abstract": [
+        {
+          "text": "A required extension to the video sample description for MPEG-4 video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$MPEG-4_elementary_stream_descriptor_atom",
+          "text": "MPEG-4 elementary stream descriptor atom ('esds')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPEG-4 elementary stream descriptor atom ('esds')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_elementary_stream_descriptor_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio": {
+      "abstract": [
+        {
+          "text": "An extension that specifies the height-to-width ratio of pixels found in the video sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Pixel_aspect_ratio",
+          "text": "Pixel aspect ratio ('pasp')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Pixel aspect ratio ('pasp')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/pixel_aspect_ratio"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extending-video-sample-descriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom"
+      ],
+      "title": "Extending video sample descriptions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureWidth_N",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureWidth_D",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureHeight_N",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/apertureHeight_D",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/horizOff_N",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/horizOff_D",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/vertOff_N",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture/vertOff_D"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/clean_aperture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

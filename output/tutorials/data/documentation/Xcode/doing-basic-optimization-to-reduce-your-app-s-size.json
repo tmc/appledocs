@@ -1,0 +1,802 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust your project’s build settings, and use technologies like asset",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "catalogs early in your app’s development life cycle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/doing-basic-optimization-to-reduce-your-app-s-size"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Doing basic optimization to reduce your app’s size"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve measured your app’s size, you can do some basic optimizations to make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it smaller. If you’re starting a new app project, create a solid foundation for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app by adopting technologies like asset catalogs. By adopting these technologies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "early, you may reduce the possibility of needing costly optimizations later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doing-basic-optimization-to-reduce-your-app-s-size-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-your-targets-build-settings-for-release-builds",
+          "level": 3,
+          "text": "Check your target’s build settings for release builds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve measured your app’s size, you may discover that it’s larger than you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expected. This can happen if you’ve unintentionally changed the project’s settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The default optimization level for the ",
+              "type": "text"
+            },
+            {
+              "code": "Release",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration is ",
+              "type": "text"
+            },
+            {
+              "code": "Fastest, Smallest [-Os]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which can make your compiled binary very small. Check your target’s build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "settings, and be sure you’re using this optimization level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-and-remove-unused-assets",
+          "level": 3,
+          "text": "Identify and remove unused assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, look inside your app’s IPA file to find out if your app contains unused assets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or unnecessary files. First follow the steps described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "thinned",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " IPA file for each of your app’s variants. Then do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Finder and navigate to the IPA file that you want to inspect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the extension of the IPA file to ZIP. (An IPA file is just a ZIP archive",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that has a particular structure when unzipped.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unzip the file to show the app bundle inside the Payloads directory. You can either",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "open the ZIP file in Finder, or run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unzip -lv /path/to/your/app.zip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Terminal",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Right-click the app bundle, and choose Show Package Contents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Where appropriate, remove any unused files from your Xcode project or targets. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, make sure you’re not adding your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "README",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to a target, remove",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any unused image assets and header files, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adopt-asset-catalogs-for-your-apps-resources",
+          "level": 3,
+          "text": "Adopt asset catalogs for your app’s resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Asset catalogs allow Xcode and the App Store to optimize your app’s assets, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can significantly reduce the size of your app. Use asset catalogs instead of putting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your assets in your app bundle directly; then do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tag each asset—for example images, textures, or data assets—with relevant metadata",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to indicate which devices the asset is for. Doing so maximizes the size reduction",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that app thinning provides, which can be significant for apps with assets that aren’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "required by every device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define a resizable center area of an image with optional end caps to reduce its",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "size. To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/deve65bd8d0d",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the level of compression for each asset type. In particular, for apps using",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "wide color images or textures with Metal, consider the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ASTC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compression options.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information on compressing wide color images or textures, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2016/712/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about asset catalogs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-images-to-your-xcode-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-assets-with-asset-catalogs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and watch ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2015/404/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-asset-files-for-data-that-ships-with-your-app",
+          "level": 3,
+          "text": "Use asset files for data that ships with your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you inspect your app’s IPA file, you may find that your app’s binaries take up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a lot of space. If you ship your app with data, consider using asset files instead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of putting the data into your code. For example, use a property list for bundling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any data with your app instead of using strings in code. Also, some developers use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source code to ship other resources; for example, images. Consider using asset files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead, and put them in an asset catalog. Moving data and assets out of your source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code and into asset files significantly reduces the size of your app’s binary. It",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also allows App Store Connect to more efficiently compress your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-images-to-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Import images into your project, manage their appearances and variations, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "load them at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-images-to-your-xcode-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding images to your Xcode project",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-images-to-your-xcode-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/doing-advanced-optimization-to-further-reduce-your-app-s-size": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s asset files, adopt on-demand resources, and reduce the size of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/doing-advanced-optimization-to-further-reduce-your-app-s-size",
+      "kind": "article",
+      "role": "article",
+      "title": "Doing advanced optimization to further reduce your app’s size",
+      "type": "topic",
+      "url": "/documentation/xcode/doing-advanced-optimization-to-further-reduce-your-app-s-size"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/managing-assets-with-asset-catalogs": {
+      "abstract": [
+        {
+          "text": "Add, organize, and edit sets of assets in your Xcode project using asset catalogs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-assets-with-asset-catalogs",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing assets with asset catalogs",
+      "type": "topic",
+      "url": "/documentation/xcode/managing-assets-with-asset-catalogs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size": {
+      "abstract": [
+        {
+          "text": "Measure your app’s size, optimize its assets and settings, and adopt technologies",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that help streamline installation over a mobile internet connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-size",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s size",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-size"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doing-basic-optimization-to-reduce-your-app-s-size-1": {
+      "alt": "Flow chart that shows how to optimize the size of your app. First measure the app’s size, then do basic, and, optionally, advanced optimizations. Basic optimizations include checking your build settings, removing unused assets, adopting asset catalogs, and using file assets for data.",
+      "identifier": "doing-basic-optimization-to-reduce-your-app-s-size-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1076c8fcf1463c837b100bbb0c96219d/doing-basic-optimization-to-reduce-your-app-s-size-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd9a5579d058ebc4c6dc632246ee85fb/doing-basic-optimization-to-reduce-your-app-s-size-1~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2015/404/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2015/404/",
+      "title": "App Thinning in Xcode",
+      "titleInlineContent": [
+        {
+          "text": "App Thinning in Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2015/404/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2016/712/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2016/712/",
+      "title": "Working With Wide Color",
+      "titleInlineContent": [
+        {
+          "text": "Working With Wide Color",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2016/712/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/deve65bd8d0d": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/deve65bd8d0d",
+      "title": "Add a resizable area to an image",
+      "titleInlineContent": [
+        {
+          "text": "Add a resizable area to an image",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/deve65bd8d0d"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Size-optimization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/doing-advanced-optimization-to-further-reduce-your-app-s-size"
+      ],
+      "title": "Size optimization"
+    }
+  ]
+}

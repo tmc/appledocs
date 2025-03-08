@@ -1,0 +1,777 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a secure download object for use during the download process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecureDownloadCreateWithTicket"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecureDownloadCreateWithTicket",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecureDownloadCreateWithTicket"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecureDownloadCreateWithTicket"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecureDownloadCreateWithTicket"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecureDownloadCreateWithTicket"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDataRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDataRef",
+              "text": "CFDataRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ticket"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustSetupCallback",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecureDownloadTrustSetupCallback",
+              "text": "SecureDownloadTrustSetupCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "setup"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "setupContext"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustEvaluateCallback",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecureDownloadTrustEvaluateCallback",
+              "text": "SecureDownloadTrustEvaluateCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "evaluate"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "evaluateContext"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecureDownloadRef",
+              "text": "SecureDownloadRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "downloadRef"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The download ticket.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ticket"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a function that Secure Download calls before trust is verified for each signer of the ticket. This allows you to modify the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if needed.  The callback returns a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustCallbackResult",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "setup"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An arbitrary context passed to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "setup",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " callback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "setupContext"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a function that Secure Download calls after calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for a signer if the result was not trusted. This allows you to query the user as to whether or not to trust the signer by returning a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "evaluate"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An arbitrary context passed to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "evaluate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " callback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "evaluateContext"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer that is set to the new download reference.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "downloadRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/secure-download-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrust": {
+      "abstract": [
+        {
+          "text": "An object used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrust",
+      "type": "topic",
+      "url": "/documentation/security/sectrust"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Evaluates trust for the specified certificate and policies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTrustResultType",
+          "text": "SecTrustResultType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustEvaluate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustevaluate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustResultType": {
+      "abstract": [
+        {
+          "text": "Trust evaluation result codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustResultType",
+      "type": "topic",
+      "url": "/documentation/security/sectrustresulttype"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadCreateWithTicket": {
+      "abstract": [
+        {
+          "text": "Creates a secure download object for use during the download process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadCreateWithTicket"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadCreateWithTicket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadCreateWithTicket",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadcreatewithticket"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadRef": {
+      "abstract": [
+        {
+          "text": "An opaque type representing a secure download object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadRef",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadref"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadTrustCallbackResult": {
+      "abstract": [
+        {
+          "text": "A flag used to indicate whether or not a signer should be evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadTrustCallbackResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustCallbackResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadTrustCallbackResult",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadtrustcallbackresult"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadTrustEvaluateCallback": {
+      "abstract": [
+        {
+          "text": "Optionally queries the user how to handle a failed trust evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadTrustEvaluateCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustEvaluateCallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadTrustEvaluateCallback",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadtrustevaluatecallback"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadTrustSetupCallback": {
+      "abstract": [
+        {
+          "text": "Determines whether trust for a particular signer should be evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadTrustSetupCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustSetupCallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadTrustSetupCallback",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadtrustsetupcallback"
+    },
+    "doc://com.apple.security/documentation/Security/secure-download-result-codes": {
+      "abstract": [
+        {
+          "text": "Result codes specific to the secure download API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-download-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Download Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/secure-download-result-codes"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDataRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable CFData object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFData"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDataRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/title",
+          "value": "SecTrustRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDataRef/title",
+          "value": "CFDataRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/title",
+          "value": "SecTrustEvaluate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustEvaluate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType/title",
+          "value": "SecTrustResultType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustResultType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/securedownloadcreatewithticket"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

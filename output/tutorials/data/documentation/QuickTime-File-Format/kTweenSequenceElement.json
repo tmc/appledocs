@@ -1,0 +1,430 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that specifies an entry in a tween sequence.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Tween media is deprecated in the QuickTime file format. The information that follows documents existing content containing tween media and should not be used for new development.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenSequenceElement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$kTweenSequenceElement",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$kTweenSequenceElement",
+        "text": "kTweenSequenceElement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$kTweenSequenceElement",
+        "text": "kTweenSequenceElement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "kTweenSequenceElement"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Its parent is the tween QT atom container (which you specify with the constant ",
+              "type": "text"
+            },
+            {
+              "code": "kParentAtomIsContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ID of a ",
+              "type": "text"
+            },
+            {
+              "code": "kTweenSequenceElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom must be unique among the ",
+              "type": "text"
+            },
+            {
+              "code": "kTweenSequenceElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms in the same QT atom container. The index of a ",
+              "type": "text"
+            },
+            {
+              "code": "kTweenSequenceElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom specifies its order in the sequence; the first entry in the sequence has the index ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the second ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This atom is a leaf atom. The data type of its data is ",
+              "type": "text"
+            },
+            {
+              "code": "TweenSequenceEntryRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a data structure that contains the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A value of type Fixed that specifies the point in the duration of the tween media sample at which the sequence entry ends. This is expressed as a percentage; for example, if the value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "75.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", the sequence entry ends after three-quarters of the total duration of the tween media sample have elapsed. The sequence entry begins after the end of the previous sequence entry or, for the first entry in the sequence, at the beginning of the tween media sample.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "endPercent",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A value of type ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "QTAtomID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " that specifies the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "kTweenEntry",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " atom containing the tween for the sequence element. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "kTweenEntry",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " atom and the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "kTweenSequenceElement",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " atom must both be a child atoms of the same tween QT atom container.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "tweenAtomID",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A value of type ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "QTAtomID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " that specifies the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "kTweenData",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " atom containing the data for the tween. This atom must be a child atom of the atom specified by the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "tweenAtomID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "dataAtomID",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenPictureData": {
+      "abstract": [
+        {
+          "text": "An atom that contains the data for a QuickDraw picture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$kTweenPictureData",
+          "text": "kTweenPictureData"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenPictureData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kTweenPictureData",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/ktweenpicturedata"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenRegionData": {
+      "abstract": [
+        {
+          "text": "An atom that contains the data for a QuickDraw region.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$kTweenRegionData",
+          "text": "kTweenRegionData"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenRegionData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kTweenRegionData",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/ktweenregiondata"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenSequenceElement": {
+      "abstract": [
+        {
+          "text": "An atom that specifies an entry in a tween sequence.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$kTweenSequenceElement",
+          "text": "kTweenSequenceElement"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenSequenceElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kTweenSequenceElement",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/ktweensequenceelement"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Region-Tween-Atoms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenPictureData",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/kTweenRegionData"
+      ],
+      "title": "Region Tween Atoms"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/ktweensequenceelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

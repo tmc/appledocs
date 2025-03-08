@@ -1,0 +1,1823 @@
+{
+  "abstract": [
+    {
+      "text": "Configure the state of system video effects like Center Stage, and inspect enhancements the system applies to microphone audio.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/system-video-effects-and-microphone-modes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "System Video Effects and Microphone Modes"
+  },
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/CenterStageControlMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the current Center Stage control mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CenterStageControlMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/CenterStageControlMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CenterStageControlMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.CenterStageControlMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/centerstagecontrolmode-swift.enum"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/MicrophoneMode": {
+      "abstract": [
+        {
+          "text": "Constants that define the available microphone modes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MicrophoneMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/MicrophoneMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MicrophoneMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.MicrophoneMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/microphonemode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemUserInterface": {
+      "abstract": [
+        {
+          "text": "Constants that describe the capture device configuration user interfaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemUserInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemUserInterface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemUserInterface"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.SystemUserInterface",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/systemuserinterface"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode": {
+      "abstract": [
+        {
+          "text": "The device’s active microphone mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeMicrophoneMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureMicrophoneMode",
+          "text": "MicrophoneMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeMicrophoneMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeMicrophoneMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/activemicrophonemode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/availableReactionTypes": {
+      "abstract": [
+        {
+          "text": "A set of reactions types that a device supports performing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableReactionTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureReactionType",
+          "text": "AVCaptureReactionType"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/availableReactionTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableReactionTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableReactionTypes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/availablereactiontypes"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/canPerformReactionEffects": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether you can perform reaction effects on a capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerformReactionEffects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/canPerformReactionEffects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformReactionEffects"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPerformReactionEffects",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/canperformreactioneffects"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageControlMode-swift.type.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates the current mode of Center Stage control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "centerStageControlMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureCenterStageControlMode",
+          "text": "CenterStageControlMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageControlMode-swift.type.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "centerStageControlMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "centerStageControlMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/centerstagecontrolmode-swift.type.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterest": {
+      "abstract": [
+        {
+          "text": "The effective region within the output pixel buffer to perform Center Stage framing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "centerStageRectOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "centerStageRectOfInterest"
+        }
+      ],
+      "role": "symbol",
+      "title": "centerStageRectOfInterest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/centerstagerectofinterest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Background Replacement is currently active on a capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBackgroundReplacementActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundReplacementActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBackgroundReplacementActive",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isbackgroundreplacementactive"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled": {
+      "abstract": [
+        {
+          "text": "A class property that indicates whether a person enables the Background Replacement feature for this app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBackgroundReplacementEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundReplacementEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBackgroundReplacementEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isbackgroundreplacementenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Center Stage is active on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCenterStageActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "centerStageActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCenterStageActive",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/iscenterstageactive"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a user or an app enabled Center Stage on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCenterStageEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "centerStageEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCenterStageEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/iscenterstageenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Portrait video effect is active on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPortraitEffectActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "portraitEffectActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPortraitEffectActive",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isportraiteffectactive"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user enabled the Portrait video effect in Control Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPortraitEffectEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "portraitEffectEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPortraitEffectEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isportraiteffectenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Studio Light is active on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStudioLightActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "studioLightActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStudioLightActive",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isstudiolightactive"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a user enabled Studio Light on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStudioLightEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "studioLightEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStudioLightEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isstudiolightenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/performEffect(for:)": {
+      "abstract": [
+        {
+          "text": "Performs the specified reaction type on the video stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureReactionType",
+          "text": "AVCaptureReactionType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/performEffect(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performEffectForReaction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performEffect(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/performeffect(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/preferredMicrophoneMode": {
+      "abstract": [
+        {
+          "text": "The microphone mode that the user selects in Control Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredMicrophoneMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureMicrophoneMode",
+          "text": "MicrophoneMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/preferredMicrophoneMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredMicrophoneMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredMicrophoneMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/preferredmicrophonemode"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectGesturesEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether gesture detection triggers reaction effects on the video stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reactionEffectGesturesEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectGesturesEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reactionEffectGesturesEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "reactionEffectGesturesEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/reactioneffectgesturesenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app supports performing reaction effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reactionEffectsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reactionEffectsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "reactionEffectsEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/reactioneffectsenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsInProgress": {
+      "abstract": [
+        {
+          "text": "An array of reaction effects that the device is currently performing, sorted by timestamp.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reactionEffectsInProgress"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureReactionEffectState",
+          "text": "AVCaptureReactionEffectState"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsInProgress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reactionEffectsInProgress"
+        }
+      ],
+      "role": "symbol",
+      "title": "reactionEffectsInProgress",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/reactioneffectsinprogress"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/showSystemUserInterface(_:)": {
+      "abstract": [
+        {
+          "text": "Displays the system’s user interface to configure video effects or microphone modes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showSystemUserInterface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureSystemUserInterface",
+          "text": "SystemUserInterface"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/showSystemUserInterface(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showSystemUserInterface:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showSystemUserInterface(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/showsystemuserinterface(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureReactionEffectState": {
+      "abstract": [
+        {
+          "text": "An object that reports the state of a reaction effect performed on a capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureReactionEffectState"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureReactionEffectState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureReactionEffectState"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureReactionEffectState",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturereactioneffectstate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup": {
+      "abstract": [
+        {
+          "text": "Configure built-in cameras and microphones, and external capture devices, for media capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capture setup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-setup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Performing-Reaction-Effects",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/canPerformReactionEffects",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/availableReactionTypes",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectGesturesEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/performEffect(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsInProgress",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureReactionEffectState"
+      ],
+      "title": "Performing Reaction Effects"
+    },
+    {
+      "anchor": "Configuring-Center-Stage",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageActive",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterest",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageControlMode-swift.type.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/CenterStageControlMode-swift.enum"
+      ],
+      "title": "Configuring Center Stage"
+    },
+    {
+      "anchor": "Configuring-Studio-Light",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightActive",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightEnabled"
+      ],
+      "title": "Configuring Studio Light"
+    },
+    {
+      "anchor": "Inspecting-the-Portrait-Effect-Settings",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectActive",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectEnabled"
+      ],
+      "title": "Inspecting the Portrait Effect Settings"
+    },
+    {
+      "anchor": "Inspecting-the-Microphone-Mode",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/preferredMicrophoneMode",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/MicrophoneMode"
+      ],
+      "title": "Inspecting the Microphone Mode"
+    },
+    {
+      "anchor": "Presenting-the-Configuration-User-Interface",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/showSystemUserInterface(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemUserInterface"
+      ],
+      "title": "Presenting the Configuration User Interface"
+    },
+    {
+      "anchor": "Configuring-Background-Replacement",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementActive",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled"
+      ],
+      "title": "Configuring Background Replacement"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Performing-Reaction-Effects",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/canPerformReactionEffects",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/availableReactionTypes",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectGesturesEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/performEffect(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/reactionEffectsInProgress",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureReactionEffectState"
+              ],
+              "title": "Performing Reaction Effects"
+            },
+            {
+              "anchor": "Configuring-Center-Stage",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageActive",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isCenterStageEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageRectOfInterest",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/centerStageControlMode-swift.type.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/CenterStageControlMode-swift.enum"
+              ],
+              "title": "Configuring Center Stage"
+            },
+            {
+              "anchor": "Configuring-Studio-Light",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightActive",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isStudioLightEnabled"
+              ],
+              "title": "Configuring Studio Light"
+            },
+            {
+              "anchor": "Inspecting-the-Portrait-Effect-Settings",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectActive",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isPortraitEffectEnabled"
+              ],
+              "title": "Inspecting the Portrait Effect Settings"
+            },
+            {
+              "anchor": "Inspecting-the-Microphone-Mode",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/activeMicrophoneMode",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/preferredMicrophoneMode",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/MicrophoneMode"
+              ],
+              "title": "Inspecting the Microphone Mode"
+            },
+            {
+              "anchor": "Presenting-the-Configuration-User-Interface",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/showSystemUserInterface(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/SystemUserInterface"
+              ],
+              "title": "Presenting the Configuration User Interface"
+            },
+            {
+              "anchor": "Configuring-Background-Replacement",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementActive",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isBackgroundReplacementEnabled"
+              ],
+              "title": "Configuring Background Replacement"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureReactionEffectState/title",
+          "value": "AVCaptureReactionEffectState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureReactionEffectState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureReactionEffectState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureReactionEffectState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureReactionEffectState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isPortraitEffectEnabled/title",
+          "value": "portraitEffectEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isPortraitEffectEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "portraitEffectEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isCenterStageEnabled/title",
+          "value": "centerStageEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isCenterStageEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "centerStageEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1CenterStageControlMode-swift.enum/title",
+          "value": "AVCaptureCenterStageControlMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1CenterStageControlMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureCenterStageControlMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1CenterStageControlMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureCenterStageControlMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1SystemUserInterface/title",
+          "value": "AVCaptureSystemUserInterface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1SystemUserInterface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSystemUserInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1SystemUserInterface/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSystemUserInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1availableReactionTypes/title",
+          "value": "availableReactionTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1availableReactionTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableReactionTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeMicrophoneMode/title",
+          "value": "activeMicrophoneMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1activeMicrophoneMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeMicrophoneMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1showSystemUserInterface(_:)/title",
+          "value": "showSystemUserInterface:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1showSystemUserInterface(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "showSystemUserInterface:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isBackgroundReplacementActive/title",
+          "value": "backgroundReplacementActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isBackgroundReplacementActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundReplacementActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1reactionEffectsInProgress/title",
+          "value": "reactionEffectsInProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1reactionEffectsInProgress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reactionEffectsInProgress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1centerStageRectOfInterest/title",
+          "value": "centerStageRectOfInterest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1centerStageRectOfInterest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "centerStageRectOfInterest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1canPerformReactionEffects/title",
+          "value": "canPerformReactionEffects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1canPerformReactionEffects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canPerformReactionEffects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1preferredMicrophoneMode/title",
+          "value": "preferredMicrophoneMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1preferredMicrophoneMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredMicrophoneMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1performEffect(for:)/title",
+          "value": "performEffectForReaction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1performEffect(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performEffectForReaction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isCenterStageActive/title",
+          "value": "centerStageActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isCenterStageActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "centerStageActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1MicrophoneMode/title",
+          "value": "AVCaptureMicrophoneMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1MicrophoneMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMicrophoneMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1MicrophoneMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMicrophoneMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isStudioLightActive/title",
+          "value": "studioLightActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isStudioLightActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "studioLightActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isBackgroundReplacementEnabled/title",
+          "value": "backgroundReplacementEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isBackgroundReplacementEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundReplacementEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1centerStageControlMode-swift.type.property/title",
+          "value": "centerStageControlMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1centerStageControlMode-swift.type.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "centerStageControlMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1reactionEffectGesturesEnabled/title",
+          "value": "reactionEffectGesturesEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1reactionEffectGesturesEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reactionEffectGesturesEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1reactionEffectsEnabled/title",
+          "value": "reactionEffectsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1reactionEffectsEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reactionEffectsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isPortraitEffectActive/title",
+          "value": "portraitEffectActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isPortraitEffectActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "portraitEffectActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isStudioLightEnabled/title",
+          "value": "studioLightEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isStudioLightEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "studioLightEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/system-video-effects-and-microphone-modes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/system-video-effects-and-microphone-modes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

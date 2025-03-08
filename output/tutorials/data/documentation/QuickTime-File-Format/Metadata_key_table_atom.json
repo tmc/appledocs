@@ -1,0 +1,528 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that contains a table of keys and mappings to payload data in the corresponding timed metadata media samples.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Metadata_key_table_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_table_atom",
+        "text": "Metadata key table atom ('keys')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_table_atom",
+        "text": "Metadata key table atom ('keys')"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Metadata key table atom ('keys')"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The metadata key table atom contains a table of keys and mappings to payload data in the corresponding timed metadata media samples. The type of the metadata key table atom is set to ",
+              "type": "text"
+            },
+            {
+              "code": "‘keys’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The metadata key table atom contains one or more instances of metadata key atoms, one for each configuration of a key that may occur in the sample units of the track. For example, if there are two keys, there will be two metadata key atoms in the metadata key table atom—one for each key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the metadata key table atom does not contain a key for which a client is searching, no timed metadata media samples associated with this sample description contain values with that key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the metadata key table atom does contain a particular key, this does not guarantee that timed metadata media samples containing a value for the key were written. So, clients finding a key in the metadata key table atom may still need to look through the track’s timed metadata media samples for values to determine if the track has the particular metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Having the ability for the metadata key table atom to contain keys that are not associated with any instances of timed metadata media samples allows a metadata sample description to be populated with keys that might be discovered (say during a capture process) and then samples to be written with a binding only for the keys found. If a key is never used, there’s no requirement that the timed metadata sample description be rewritten to exclude the key that isn’t needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it is possible to remove unused entries and rewrite the metadata sample description efficiently, this is preferred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a timed metadata track includes a key in the metadata sample description but has values using the key in associated media samples, the metadata sample description can still be rewritten to eliminate the key from the metadata key table atom. While the metadata values remain in associated media samples, the data is no longer reachable because the key is now gone. Care should be exercised if the values should themselves be removed from the movie file. Although not a requirement, the remaining but now unreachable data can be removed by copying only referenced metadata values when copying media samples to a new track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The layout of a metadata key table atom is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Size",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'keys'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Metadata_key_table",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Bit_rate_atom": {
+      "abstract": [
+        {
+          "text": "An atom that signals the bit rate information of a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Bit_rate_atom",
+          "text": "Bit rate atom ('btrt')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Bit_rate_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bit rate atom ('btrt')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/bit_rate_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_datatype_definition_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to specify the data type of the metadata key atom’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_datatype_definition_atom",
+          "text": "Metadata datatype definition atom ('dtyp')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_datatype_definition_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata datatype definition atom ('dtyp')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_datatype_definition_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains a key that corresponds to the timed metadata track containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_atom",
+          "text": "Metadata key atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata key atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_declaration_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds the key namespace and key value of that namespace for the given values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_declaration_atom",
+          "text": "Metadata key declaration atom ('keyd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_declaration_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata key declaration atom ('keyd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_declaration_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains a table of keys and mappings to payload data in the corresponding timed metadata media samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_table_atom",
+          "text": "Metadata key table atom ('keys')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata key table atom ('keys')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_table_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Metadata_key_table": {
+      "abstract": [
+        {
+          "text": "An array of metadata key atoms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_table_atom_Metadata_key_table",
+          "text": "Metadata key table"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Metadata_key_table",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata key table",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_table_atom/metadata_key_table"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer that indicates the size in bytes of the atom structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_table_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_table_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_key_table_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_key_table_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_locale_atom": {
+      "abstract": [
+        {
+          "text": "An atom that tags a metadata value with a locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_locale_atom",
+          "text": "Metadata locale atom ('loca')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_locale_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata locale atom ('loca')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_locale_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Describing-timed-metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Bit_rate_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_declaration_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_datatype_definition_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_locale_atom"
+      ],
+      "title": "Describing timed metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_key_table_atom/Metadata_key_table"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/metadata_key_table_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

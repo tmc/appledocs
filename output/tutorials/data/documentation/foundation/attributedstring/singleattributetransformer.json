@@ -1,0 +1,829 @@
+{
+  "abstract": [
+    {
+      "text": "A type that transforms an attribute by altering its range or value, or by replacing it entirely.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3765643,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation16AttributedStringV26SingleAttributeTransformerV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "AttributedString.SingleAttributeTransformer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "AttributedString"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Structure",
+    "symbolKind": "struct",
+    "title": "AttributedString.SingleAttributeTransformer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SingleAttributeTransformer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation16AttributedStringV26SingleAttributeTransformerV1Txmfp",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation16AttributedStringV26SingleAttributeTransformerV1Txmfp",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstringkey",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation19AttributedStringKeyP",
+              "text": "AttributedStringKey"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation16AttributedStringV26SingleAttributeTransformerV1Txmfp",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstringkey/3765878-value",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation19AttributedStringKeyP5ValueQa",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For simple transformations, the closure you provide to the ",
+              "type": "text"
+            },
+            {
+              "code": "transformingAttributes(…)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can use this instance to change the attribute’s value. You can also use this instance to change the range of the string that the attribute applies to. To completely replace the attribute with an attribute of a different type, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765645-replace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3765867-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by calling a closure that transforms one attribute, which a key path identifies, of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K>(KeyPath<AttributeDynamicLookup, K>, (inout AttributedString.SingleAttributeTransformer<K>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765867-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3765867-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3765868-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string created by calling a closure that transforms two attributes, which key paths identify, of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2>(KeyPath<AttributeDynamicLookup, K1>, KeyPath<AttributeDynamicLookup, K2>, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765868-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3765868-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3765869-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by calling a closure that transforms three attributes, which key paths identify, of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2, K3>(KeyPath<AttributeDynamicLookup, K1>, KeyPath<AttributeDynamicLookup, K2>, KeyPath<AttributeDynamicLookup, K3>, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>, inout AttributedString.SingleAttributeTransformer<K3>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765869-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3765869-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3765870-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string created by calling a closure that transforms four attributes, which key paths identify, of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2, K3, K4>(KeyPath<AttributeDynamicLookup, K1>, KeyPath<AttributeDynamicLookup, K2>, KeyPath<AttributeDynamicLookup, K3>, KeyPath<AttributeDynamicLookup, K4>, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>, inout AttributedString.SingleAttributeTransformer<K3>, inout AttributedString.SingleAttributeTransformer<K4>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765870-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3765870-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3765871-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string created by calling a closure that transforms five attributes, which key paths identify, of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2, K3, K4, K5>(KeyPath<AttributeDynamicLookup, K1>, KeyPath<AttributeDynamicLookup, K2>, KeyPath<AttributeDynamicLookup, K3>, KeyPath<AttributeDynamicLookup, K4>, KeyPath<AttributeDynamicLookup, K5>, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>, inout AttributedString.SingleAttributeTransformer<K3>, inout AttributedString.SingleAttributeTransformer<K4>, inout AttributedString.SingleAttributeTransformer<K5>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765871-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3765871-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3813129-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by calling a closure that transforms one attribute of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K>(K.Type, (inout AttributedString.SingleAttributeTransformer<K>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3813129-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3813129-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3813130-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by calling a closure that transforms two attributes of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2>(K1.Type, K2.Type, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3813130-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3813130-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3813131-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by calling a closure that transforms three attributes of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2, K3>(K1.Type, K2.Type, K3.Type, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>, inout AttributedString.SingleAttributeTransformer<K3>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3813131-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3813131-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3813132-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by calling a closure that transforms four attributes of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2, K3, K4>(K1.Type, K2.Type, K3.Type, K4.Type, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>, inout AttributedString.SingleAttributeTransformer<K3>, inout AttributedString.SingleAttributeTransformer<K4>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3813132-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3813132-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3813133-transformingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string created by calling a closure that transforms five attributes of a source attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "<K1, K2, K3, K4, K5>(K1.Type, K2.Type, K3.Type, K4.Type, K5.Type, (inout AttributedString.SingleAttributeTransformer<K1>, inout AttributedString.SingleAttributeTransformer<K2>, inout AttributedString.SingleAttributeTransformer<K3>, inout AttributedString.SingleAttributeTransformer<K4>, inout AttributedString.SingleAttributeTransformer<K5>) -> Void) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3813133-transformingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformingAttributes(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3813133-transformingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer": {
+      "abstract": [
+        {
+          "text": "A type that transforms an attribute by altering its range or value, or by replacing it entirely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString.SingleAttributeTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString.SingleAttributeTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/singleattributetransformer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765644-range": {
+      "abstract": [
+        {
+          "text": "The range of the attribute in the attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<AttributedString.Index>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765644-range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "range",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/singleattributetransformer/3765644-range"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765645-replace": {
+      "abstract": [
+        {
+          "text": "Replaces an attribute with a different attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<U>("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": U.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": U.Value)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765645-replace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(with:value:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/singleattributetransformer/3765645-replace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765646-value": {
+      "abstract": [
+        {
+          "text": "The value of the attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Value?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765646-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/singleattributetransformer/3765646-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3813125-replace": {
+      "abstract": [
+        {
+          "text": "Replaces an attribute with a different attribute that a key path identifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "<U>("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyPath<AttributeDynamicLookup, U>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": U.Value)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3813125-replace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(with:value:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/singleattributetransformer/3813125-replace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstringkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstringkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedStringKey",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstringkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstringkey/3765878-value": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstringkey/3765878-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Value",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstringkey/3765878-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3813129-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3765867-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3813130-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3765868-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3813131-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3765869-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3813132-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3765870-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3813133-transformingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/3765871-transformingattributes"
+      ],
+      "title": "Transforming Attributes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3820574",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765644-range"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Attribute’s Range"
+    },
+    {
+      "anchor": "3820586",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765646-value"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Attribute’s Value"
+    },
+    {
+      "anchor": "3820585",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3765645-replace",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/singleattributetransformer/3813125-replace"
+      ],
+      "kind": "taskGroup",
+      "title": "Replacing Attributes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/attributedstring/singleattributetransformer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

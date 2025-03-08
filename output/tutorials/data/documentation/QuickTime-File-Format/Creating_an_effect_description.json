@@ -1,0 +1,253 @@
+{
+  "abstract": [
+    {
+      "text": "Tell QuickTime which effect to execute and control how the effect behaves at runtime with an effect description.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Creating an effect description"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An effect description tells QuickTime which effect to execute and contains the parameters that control how the effect behaves at runtime. You create an effect description by creating an atom container, inserting a QT atom that specifies the effect, and inserting a set of QT atoms that set its parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are support functions you can call to assist you in this process. ",
+              "type": "text"
+            },
+            {
+              "code": "QTCreateStandardParameterDialog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns a complete effect description that you can use, including user-selected settings; you only need to add ",
+              "type": "text"
+            },
+            {
+              "code": "kEffectSourceName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms to the description for effects that require sources. At a lower level, ",
+              "type": "text"
+            },
+            {
+              "code": "QTGetEffectsList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns a list of the available effects and ",
+              "type": "text"
+            },
+            {
+              "code": "ImageCodecGetParameterList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will return a description of the parameters for an effect, including the default value for each parameter in the form of a QT atom that can be inserted directly into an effect description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map": {
+      "abstract": [
+        {
+          "text": "Describe and name sources with an input map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an input map",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_an_input_map"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description": {
+      "abstract": [
+        {
+          "text": "Customize your effect with parameter atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Parameter atoms of an effects description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/parameter_atoms_of_an_effects_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices": {
+      "abstract": [
+        {
+          "text": "Create collections of tracks that all serve the same purpose, where any track in the group can be substituted for another in a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing sound and subtitle alternate groups for use with Apple devices",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/preparing_sound_and_subtitle_alternate_groups_for_use_with_apple_devices"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description": {
+      "abstract": [
+        {
+          "text": "Specify the required atoms for your effects description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Required atoms of an effects description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/required_atoms_of_an_effects_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description": {
+      "abstract": [
+        {
+          "text": "An effect description is the sole media sample for an effect track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Structure of an effect description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structure_of_an_effect_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movie-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices"
+      ],
+      "title": "Movie features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Effect-descriptions",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map"
+      ],
+      "title": "Effect descriptions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/creating_an_effect_description"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

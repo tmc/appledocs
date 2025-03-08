@@ -1,0 +1,676 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve information about the types of a parent atom’s children, search for a specific atom, and retrieve a leaf atom’s data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Retrieving atoms from an atom container"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime provides functions you can use to retrieve information about the types of a parent atom’s children, to search for a specific atom, and to retrieve a leaf atom’s data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "QTCountChildrenOfType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "QTGetNextChildType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions to retrieve information about the types of an atom’s children. The ",
+              "type": "text"
+            },
+            {
+              "code": "QTCountChildrenOfType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns the number of children of a given atom type for a parent atom. The ",
+              "type": "text"
+            },
+            {
+              "code": "QTGetNextChildType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns the next atom type in the child list of a parent atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "QTNextChildAnyType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions to retrieve an atom. You call the ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to search for and retrieve a parent atom’s child by its type and index within that type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows the sample code function ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpriteData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which updates an atom container that describes a sprite. For each property of the sprite that needs to be updated, ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpriteData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to retrieve the appropriate atom from the atom container. If the atom is found, ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpriteData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTSetAtomData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to replace the atom’s data with the new value of the property. If the atom is not found, ",
+              "type": "text"
+            },
+            {
+              "code": "SetSpriteData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add a new atom for the property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OSErr SetSpriteData (QTAtomContainer sprite, Point *location,",
+            "    short *visible, short *layer, short *imageIndex)",
+            "{",
+            "    OSErr err = noErr;",
+            "    QTAtom propertyAtom;",
+            " ",
+            "    // Check if the sprite’s visible property has a new value.",
+            "    if (visible)",
+            "    {",
+            "        // Retrieve the atom for the visible property.",
+            "        // If none exists, insert one.",
+            "        if ((propertyAtom = QTFindChildByIndex (sprite,",
+            "            kParentAtomIsContainer, kSpritePropertyVisible, 1,",
+            "            nil)) == 0)",
+            "            FailOSErr (QTInsertChild (sprite, kParentAtomIsContainer,",
+            "                kSpritePropertyVisible, 1, 1, sizeof(short), visible,",
+            "                nil))",
+            " ",
+            "        // If an atom does exist, update its data.",
+            "        else",
+            "            FailOSErr (QTSetAtomData (sprite, propertyAtom,",
+            "                sizeof(short), visible));",
+            "    }",
+            " ",
+            "    // ...",
+            "    // Handle other sprite properties.",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call the ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to search for and retrieve a parent atom’s child by its type and ID. The sample code function ",
+              "type": "text"
+            },
+            {
+              "code": "AddSpriteToSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", shown in the following listing, adds a sprite, represented by an atom container, to a key sample, represented by another atom container. ",
+              "type": "text"
+            },
+            {
+              "code": "AddSpriteToSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine whether the atom container ",
+              "type": "text"
+            },
+            {
+              "code": "theSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains an atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "kSpriteAtomType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ID ",
+              "type": "text"
+            },
+            {
+              "code": "spriteID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If not, ",
+              "type": "text"
+            },
+            {
+              "code": "AddSpriteToSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to insert an atom with that type and ID. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is passed for the index parameter to indicate that the atom should be inserted at the end of the child list. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is passed for the ",
+              "type": "text"
+            },
+            {
+              "code": "dataSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to indicate that the atom does not have any data. Then, ",
+              "type": "text"
+            },
+            {
+              "code": "AddSpriteToSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChildren",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to insert the atoms in the container ",
+              "type": "text"
+            },
+            {
+              "code": "theSprite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as children of the new atom. ",
+              "type": "text"
+            },
+            {
+              "code": "FailIf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "FailOSErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are macros that exit the current function when an error occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OSErr AddSpriteToSample (QTAtomContainer theSample,",
+            "    QTAtomContainer theSprite, short spriteID)",
+            "{",
+            "    OSErr err = noErr;",
+            "    QTAtom newSpriteAtom;",
+            " ",
+            "    FailIf (QTFindChildByID (theSample, kParentAtomIsContainer,",
+            "        kSpriteAtomType, spriteID, nil), paramErr);",
+            " ",
+            "    FailOSErr (QTInsertChild (theSample, kParentAtomIsContainer,",
+            "        kSpriteAtomType, spriteID, 0, 0, nil, &newSpriteAtom));",
+            "    FailOSErr (QTInsertChildren (theSample, newSpriteAtom, theSprite));",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have retrieved a child atom, you can call ",
+              "type": "text"
+            },
+            {
+              "code": "QTNextChildAnyType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to retrieve subsequent children of a parent atom. ",
+              "type": "text"
+            },
+            {
+              "code": "QTNextChildAnyType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns an offset to the next atom of any type in a parent atom’s child list. This function is useful for iterating through a parent atom’s children quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime also provides functions for retrieving an atom’s type, ID, and data. You can call ",
+              "type": "text"
+            },
+            {
+              "code": "QTGetAtomTypeAndID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to retrieve an atom’s type and ID. You can access an atom’s data in one of three ways.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To copy an atom’s data to a handle, you can use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTCopyAtomDataToHandle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To copy an atom’s data to a pointer, you can use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTCopyAtomDataToPtr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To access an atom’s data directly, lock the atom container in memory by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTLockContainer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Once the container is locked, you can call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTGetAtomDataPtr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to retrieve a pointer to an atom’s data. When you have finished accessing the atom’s data, call the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QTUnlockContainer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function to unlock the container in memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms": {
+      "abstract": [
+        {
+          "text": "Copy existing atoms within an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying existing atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/copying_existing_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers": {
+      "abstract": [
+        {
+          "text": "Manage atoms in atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating, copying, and disposing of atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_copying_and_disposing_of_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms": {
+      "abstract": [
+        {
+          "text": "Create new atoms and insert them in a QT atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating new atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_new_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms": {
+      "abstract": [
+        {
+          "text": "Modify attributes or data associated with an atom in an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/modifying_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container": {
+      "abstract": [
+        {
+          "text": "Remove atoms from an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing atoms from an atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/removing_atoms_from_an_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files": {
+      "abstract": [
+        {
+          "text": "Build QuickTime files with atoms, QT atoms, and atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storing and sharing media with QuickTime files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/storing_and_sharing_media_with_quicktime_files"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-atoms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container"
+      ],
+      "title": "Managing atoms"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/retrieving_atoms_from_an_atom_container"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

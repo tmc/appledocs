@@ -1,0 +1,985 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing the span of time between two dates that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/dateinterval"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdateinterval"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1641644,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDateInterval",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDateInterval"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDateInterval"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDateInterval"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object represents a closed interval between two dates. The ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides a programmatic interface for calculating the duration of a time interval and determining whether a date falls within it, as well as comparing date intervals and checking to see whether they intersect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object consists of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641656-startdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641651-enddate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641656-startdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641651-enddate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " of a date interval can be equal, in which case its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641643-duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641651-enddate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " cannot occur earlier than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641656-startdate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to create string representations of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDateInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects that are suitable for display in the current locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSDateInterval",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateinterval": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/dateinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateinterval/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateInterval.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateInterval.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/dateinterval/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateintervalformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateintervalformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateIntervalFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateintervalformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval": {
+      "abstract": [
+        {
+          "text": "An object representing the span of time between two dates that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/dateinterval",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDateInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDateInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641636-compare": {
+      "abstract": [
+        {
+          "text": "Compares the receiver with the specified date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compare"
+        },
+        {
+          "kind": "text",
+          "text": "(DateInterval) -> ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641636-compare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compare(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641636-compare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641637-init": {
+      "abstract": [
+        {
+          "text": "Initializes a date interval by setting the start and end date to the current date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641637-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641637-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641639-init": {
+      "abstract": [
+        {
+          "text": "Initializes a date interval from a given start date and end date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641639-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(start:end:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641639-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641642-init": {
+      "abstract": [
+        {
+          "text": "Returns a date interval initialized from data in the given unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641642-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641642-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641643-duration": {
+      "abstract": [
+        {
+          "text": "The duration of the date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641643-duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641643-duration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641645-intersection": {
+      "abstract": [
+        {
+          "text": "Returns the intersection between the receiver and the specified date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": DateInterval) -> DateInterval?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641645-intersection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersection(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641645-intersection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641647-contains": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver contains the specified date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "(Date) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641647-contains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641647-contains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641650-isequal": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver is equal to the specified date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": DateInterval) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641650-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641650-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641651-enddate": {
+      "abstract": [
+        {
+          "text": "The end date of the date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641651-enddate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641651-enddate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641653-init": {
+      "abstract": [
+        {
+          "text": "Initializes a date interval with a given start date and duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": Date, "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641653-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(start:duration:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641653-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641654-intersects": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver intersects with the specified date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersects"
+        },
+        {
+          "kind": "text",
+          "text": "(DateInterval) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641654-intersects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersects(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641654-intersects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641656-startdate": {
+      "abstract": [
+        {
+          "text": "The start date of the date interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641656-startdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdateinterval/1641656-startdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/dateinterval/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1844472",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641637-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641653-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641639-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641642-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Date Intervals"
+    },
+    {
+      "anchor": "1844469",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641656-startdate",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641651-enddate",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641643-duration"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Start Date, End Date, and Duration"
+    },
+    {
+      "anchor": "1844476",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641636-compare",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641650-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Date Intervals"
+    },
+    {
+      "anchor": "1844478",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641654-intersects",
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641645-intersection"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Intersections"
+    },
+    {
+      "anchor": "1844482",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdateinterval/1641647-contains"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Whether a Date Occurs Within a Date Interval"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdateinterval"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdateinterval"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,779 @@
+{
+  "abstract": [
+    {
+      "text": "Create effects that interact with your scene’s physics bodies, such as magnetism, repulsion, friction, or a vortex.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/adding-physics-fields-to-a-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Physics Fields to a Scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is possible to implement a game using only physics bodies, collisions, and applied forces, but sometimes this can be a lot of work. For example, if you wanted two objects to be attracted to each other, you would have to perform gravity calculations and apply those forces every time a new frame is calculated. When you want to apply generalized effects to a scene, you can do this more easily by using physics fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A physics field is a node that is placed inside your scene’s node tree. When the scene simulates physics, the physics field affects physics bodies that are configured to interact with it. There are many different kinds of field effects, all of which are defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows one of these fields, a linear gravity field. In this example, a field node replaces the default gravity provided by the scene’s physics world. First, the scene’s default gravity is disabled. Then, the scene creates a linear gravity field with a vector pointing toward the bottom of the screen and gives the node a strength equal to Earth’s gravity. Finally, it adds the node to itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "physicsWorld.gravity = CGVector(dx:0, dy: 0);",
+                    "",
+                    "",
+                    "let gravityVector = vector_float3(0,-1,0);",
+                    "",
+                    "",
+                    "let gravityNode = SKFieldNode.linearGravityField(withVector: gravityVector)",
+                    "",
+                    "",
+                    "gravityNode.strength = 9.8",
+                    "",
+                    "",
+                    "addChild(gravityNode)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "self.physicsWorld.gravity = CGVectorMake(0,0);",
+                    "",
+                    "",
+                    "vector_float3 gravityVector = {0,-1,0};",
+                    "",
+                    "",
+                    "SKFieldNode *gravityNode = [SKFieldNode linearGravityFieldWithVector: gravityVector];",
+                    "",
+                    "",
+                    "gravityNode.strength = 9.8;",
+                    "",
+                    "",
+                    "[self addChild:gravityNode];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are some reasons you might use a field node rather than the default gravity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To vary the strength and direction of gravity independently of each other.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To vary the strength of the field using actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To change the direction of gravity by rotating the field node.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "gravityNode.zRotation = CGFloat.pi // Flip gravity."
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "gravityNode.zRotation = M_PI; // Flip gravity."
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To enable and disable gravity using the field node’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/isEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, without changing the field node’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/strength",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or direction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Limit-the-Effect-of-Field-Nodes-Through-Categories-and-Regions",
+          "level": 3,
+          "text": "Limit the Effect of Field Nodes Through Categories and Regions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a field node affects all physics bodies in the scene. However, it doesn’t have to be this way. By carefully controlling which physics bodies are affected by a field node, you can create some interesting effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Field nodes are categorized just like physics bodies. Similarly, physics bodies declare which field categories affect them. Combining these two properties, you can decide which kinds of fields are implemented by your game and which physics bodies are affected by each of those fields. Typically, you do this by using the field categories to define general effects that you can drop into a game. For example, assume for the moment that you are implementing a game where you want to add gravity to a planet. Gravity should pull objects such as ships and asteroids toward the planet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a category for gravity effects. When a planet is created, a separate radial gravity field node is added to it as a child, and is configured to use the gravity category. Whenever a new physics body is created, the body’s mask is configured to determine which fields should affect it. Ships are affected by gravity, and missiles are affected by force fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let gravityCategory: UInt32 = 0x1 << 0",
+                    "let shieldCategory: UInt32 = 0x1 << 1",
+                    "...",
+                    "let gravity = SKFieldNode.radialGravityField()",
+                    "gravity.strength = 3",
+                    "gravity.categoryBitMask = gravityCategory",
+                    "planet.addChild(gravity)",
+                    "...",
+                    "ship.physicsBody?.fieldBitMask = gravityCategory",
+                    "...",
+                    "missile.physicsBody?.fieldBitMask = shieldCategory"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "static const uint32_t gravityCategory     =  0x1 << 0;",
+                    "static const uint32_t shieldCategory      =  0x1 << 1;",
+                    "...",
+                    "SKFieldNode *gravity = [SKFieldNode radialGravityField];",
+                    "gravity.strength = 3;",
+                    "gravity.categoryBitMask = gravityCategory;",
+                    "[planet addChild:gravity];",
+                    "...",
+                    "ship.physicsBody.fieldBitMask = gravityCategory;",
+                    "...",
+                    "missile.physicsBody.fieldBitMask = shieldCategory;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the force field is a shield object that deflects incoming missiles. You could implement the shield by creating another radial gravity field, but physics bodies are repelled by negative field strength. You probably wouldn’t want the field to affect the whole scene, either—only nearby missiles. In this case, you would define the area that a field affects by using these properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A field node’s region property determines the area where the field can affect things. By default, this region covers the entire scene. However, you can choose to give the region a finite shape instead. For the forcefield, a circular area is fine, but other shapes are possible. You can even construct them using constructive set geometry (CSG).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A field node’s falloff property determines how fast the field loses its strength. You can choose to have the field not lose strength at all or you can choose to have it fall off more quickly than the default. For a radial gravity field, the default is to have it drop off based on the square of the distance to the other body’s center. Not all field types are affected by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/falloff",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code adds a temporary force field to the rocket ship. The field node is created and configured to repel missiles. Then a circular region is added to limit the area affected by the node, and the field is configured so that its strength drops off more quickly as a function of distance. Finally, the field should weaken and disappear so that the ship is not invulnerable. The field is weakened using an action that first animates a drop in strength to nothing, and then removes the shield node. In an actual game, the shield effect might be embellished with a graphical effect rendered on top of the ship.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let shield = SKFieldNode.radialGravityField()",
+                    "shield.strength = -5",
+                    "shield.categoryBitMask = shieldCategory",
+                    "shield.region = SKRegion(radius: 100)",
+                    "shield.falloff = 4",
+                    "shield.run(SKAction.sequence([",
+                    "    SKAction.strength(to: 0, duration: 2.0),",
+                    "    SKAction.removeFromParent()",
+                    "    ]))",
+                    "ship.addChild(shield)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKFieldNode *shield = [SKFieldNode radialGravityField];",
+                    "shield.strength = -5;",
+                    "shield.categoryBitMask = shieldCategory;",
+                    "shield.region = [[SKRegion alloc] initWithRadius:100];",
+                    "shield.falloff = 4;",
+                    "[shield runAction:[SKAction sequence:@[",
+                    "    [SKAction strengthTo:0 duration:2.0],      [SKAction removeFromParent]]]];",
+                    "[ship addChild:shield];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode": {
+      "abstract": [
+        {
+          "text": "A node that applies physics effects to nearby nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKFieldNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKFieldNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKFieldNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skfieldnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/falloff": {
+      "abstract": [
+        {
+          "text": "The exponent that defines the rate of decay for the strength of the field as the distance increases between the node and the physics body being affected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "falloff"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/falloff",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "falloff"
+        }
+      ],
+      "role": "symbol",
+      "title": "falloff",
+      "type": "topic",
+      "url": "/documentation/spritekit/skfieldnode/falloff"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the field is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/spritekit/skfieldnode/isenabled"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/strength": {
+      "abstract": [
+        {
+          "text": "The strength of the field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKFieldNode/strength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "strength"
+        }
+      ],
+      "role": "symbol",
+      "title": "strength",
+      "type": "topic",
+      "url": "/documentation/spritekit/skfieldnode/strength"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode~1falloff/title",
+          "value": "falloff"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode~1falloff/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "falloff"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/title",
+          "value": "SKFieldNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKFieldNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKFieldNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode~1strength/title",
+          "value": "strength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKFieldNode~1strength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "strength"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/adding-physics-fields-to-a-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/adding-physics-fields-to-a-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

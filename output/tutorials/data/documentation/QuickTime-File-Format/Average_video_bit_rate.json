@@ -1,0 +1,506 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_bit_rate"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Average video bit rate"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Track (video), movie",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Containing profile atom",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "0x20202020",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (universal feature)",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "part-ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "'avvb'",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "feature-code",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Unsigned ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "int(32)",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " indicating average video bit rate in bits per second",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "feature-value",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Feature-Values",
+          "level": 2,
+          "text": "Feature Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value is an unsigned 32-bit integer indicating the average video bit rate in bits per second.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Example: 1 Mbps = 1000000.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Writer-Responsibilities",
+          "level": 2,
+          "text": "Writer Responsibilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A writer of the average video bit rate feature should record a value that is equal to or greater than the average bit rate for the video track, measured across all media samples. A writer (such as a CE device) may choose to record a constant value so long as that value is greater than or equal to the average bit rate that may be encoded. It is also permitted to record a value set by the video encoder during initialization so long as the value equals or exceeds the average calculated from the resulting file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Feature-Value-Algorithm",
+          "level": 2,
+          "text": "Feature Value Algorithm",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ideally, the long-term average: total sample sizes divided by total sample durations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the feature is written for a newly encoded track (as by a CE device), it is permitted to record a value used to initialize the video encoder. If the video track is edited and the average video bit rate recalculated, it may be calculated as an overall average based on the sample table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reader-Responsibilities",
+          "level": 2,
+          "text": "Reader Responsibilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reader of the average video bit rate feature value should compare the recorded value with its own limits to determine if the content can be played. The reader should not perform an equality comparison (=) but instead a relative comparison (<, <=, >, or >=).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a writer may record a larger value than the actual video bit rate, a reader should not interpret this as the actual video bit rate. To determine the current or actual bit rate, the reader may need to perform an inspection of the video track’s sample table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Comments",
+          "level": 2,
+          "text": "Comments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of this feature should be deducible from information found in the sample table. Track edits must be considered in its calculation. Note that for highly variable bit rate video, the average rate may not be a typical rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines": {
+      "abstract": [
+        {
+          "text": "Summarize profile information about a QuickTime movie so readers can easily determine features and complexity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appendix F: Profile atom guidelines",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_f_profile_atom_guidelines"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_audio_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_audio_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Average audio bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/average_audio_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_frame_rate_in_a_single_track": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_frame_rate_in_a_single_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Average video frame rate in a single track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/average_video_frame_rate_in_a_single_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_audio_codec": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_audio_codec",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 audio codec",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_audio_codec"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_codec": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_codec",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 video codec",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_video_codec"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_object_type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_object_type",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 video object type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_video_object_type"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_profile": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_profile",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 video profile",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_video_profile"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_audio_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_audio_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum audio bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_audio_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_frame_rate_in_a_single_track": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_frame_rate_in_a_single_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video frame rate in a single track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_frame_rate_in_a_single_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_movie": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_movie",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video size in a movie",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_size_in_a_movie"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_track": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video size in a track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_size_in_a_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_audio_codec_type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_audio_codec_type",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime audio codec type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_audio_codec_type"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_video_codec_type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_video_codec_type",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime video codec type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_video_codec_type"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Table_of_features": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Table_of_features",
+      "kind": "article",
+      "role": "article",
+      "title": "Table of features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/table_of_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features": {
+      "abstract": [
+        {
+          "text": "Features that you include in any file that includes a profile atom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Universal features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/universal_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_variable_frame_rate_indication": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_variable_frame_rate_indication",
+      "kind": "article",
+      "role": "article",
+      "title": "Video variable frame rate indication",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/video_variable_frame_rate_indication"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Table_of_features",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_audio_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_audio_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_video_codec_type",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_audio_codec_type",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_profile",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_codec",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_object_type",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_audio_codec",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_movie",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_frame_rate_in_a_single_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_frame_rate_in_a_single_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_variable_frame_rate_indication"
+      ],
+      "title": "Setting features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/average_video_bit_rate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

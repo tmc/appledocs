@@ -1,0 +1,1695 @@
+{
+  "abstract": [
+    {
+      "text": "The handler interface for adding tasks to a task list.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)INAddTasksIntentHandling",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INAddTasksIntentHandling"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INAddTasksIntentHandling"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "INAddTasksIntentHandling"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to resolve, confirm, and handle requests to add tasks to a task list. Adopt this protocol in an object of your Intents extension that’s capable of handling the request directly or forwarding the request to your app or task management service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Siri delivers an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to your handler when the user asks to add tasks to a task list in your app. The provided intent object contains descriptions of the tasks and any triggers to associate with each task. Use the methods of this protocol to resolve the parameters and add the tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent": {
+      "abstract": [
+        {
+          "text": "A request to add tasks to an existing task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for adding tasks to a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/confirm(intent:completion:)": {
+      "abstract": [
+        {
+          "text": "Confirms whether you can add the tasks to the task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntentResponse",
+          "text": "INAddTasksIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/confirm(intent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confirmAddTasks:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "confirm(intent:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/confirm(intent:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/handle(intent:completion:)": {
+      "abstract": [
+        {
+          "text": "Handles the creation of a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntentResponse",
+          "text": "INAddTasksIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/handle(intent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleAddTasks:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "handle(intent:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/handle(intent:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolvePriority(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the priority associated with the new tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvePriority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INTaskPriorityResolutionResult",
+          "text": "INTaskPriorityResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolvePriority(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolvePriorityForAddTasks:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolvePriority(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvepriority(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveSpatialEventTrigger(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the location-based trigger associated with the new tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveSpatialEventTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpatialEventTriggerResolutionResult",
+          "text": "INSpatialEventTriggerResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveSpatialEventTrigger(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveSpatialEventTriggerForAddTasks:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveSpatialEventTrigger(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvespatialeventtrigger(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2er0u": {
+      "abstract": [
+        {
+          "text": "Resolves the task list to receive the new tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveTargetTaskList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksTargetTaskListResolutionResult",
+          "text": "INAddTasksTargetTaskListResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2er0u",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveTargetTaskListForAddTasks:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveTargetTaskList(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvetargettasklist(for:with:)-2er0u"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2uevx": {
+      "abstract": [
+        {
+          "text": "Called when it is time for you to resolve the task list to receive the new tasks.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveTargetTaskList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INTaskListResolutionResult",
+          "text": "INTaskListResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2uevx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveTargetTaskListForAddTasks:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveTargetTaskList(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvetargettasklist(for:with:)-2uevx"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTaskTitles(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the titles for the tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveTaskTitles"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpeakableStringResolutionResult",
+          "text": "INSpeakableStringResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTaskTitles(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveTaskTitlesForAddTasks:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveTaskTitles(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvetasktitles(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-2h9ff": {
+      "abstract": [
+        {
+          "text": "Resolves the time-based trigger associated with the new tasks.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveTemporalEventTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INTemporalEventTriggerResolutionResult",
+          "text": "INTemporalEventTriggerResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-2h9ff",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveTemporalEventTriggerForAddTasks:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveTemporalEventTrigger(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvetemporaleventtrigger(for:with:)-2h9ff"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-7yrz3": {
+      "abstract": [
+        {
+          "text": "Resolves the time-based trigger associated with the new tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveTemporalEventTrigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksIntent",
+          "text": "INAddTasksIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INAddTasksTemporalEventTriggerResolutionResult",
+          "text": "INAddTasksTemporalEventTriggerResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-7yrz3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveTemporalEventTriggerForAddTasks:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveTemporalEventTrigger(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling/resolvetemporaleventtrigger(for:with:)-7yrz3"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your response to a request to add tasks to a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNotebookDomainHandling": {
+      "abstract": [
+        {
+          "text": "An interface for adopting all of the protocols in the lists and notes domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNotebookDomainHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNotebookDomainHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNotebookDomainHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNotebookDomainHandling",
+      "type": "topic",
+      "url": "/documentation/intents/innotebookdomainhandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INNotebookDomainHandling"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Task-Addition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse"
+      ],
+      "title": "Task Addition"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Resolving-the-Intent-Parameters",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2er0u",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTaskTitles(for:with:)",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveSpatialEventTrigger(for:with:)",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-7yrz3",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolvePriority(for:with:)",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2uevx",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-2h9ff"
+      ],
+      "title": "Resolving the Intent Parameters"
+    },
+    {
+      "anchor": "Confirming-the-Response",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/confirm(intent:completion:)"
+      ],
+      "title": "Confirming the Response"
+    },
+    {
+      "anchor": "Handling-the-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/handle(intent:completion:)"
+      ],
+      "title": "Handling the Intent"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INAddTasksIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Resolving-the-Intent-Parameters",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2er0u",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTaskTitles(for:with:)",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveSpatialEventTrigger(for:with:)",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-7yrz3",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolvePriority(for:with:)",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTargetTaskList(for:with:)-2uevx",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/resolveTemporalEventTrigger(for:with:)-2h9ff"
+              ],
+              "title": "Resolving the Intent Parameters"
+            },
+            {
+              "anchor": "Confirming-the-Response",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/confirm(intent:completion:)"
+              ],
+              "title": "Confirming the Response"
+            },
+            {
+              "anchor": "Handling-the-Intent",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling/handle(intent:completion:)"
+              ],
+              "title": "Handling the Intent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INNotebookDomainHandling"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Task-Addition",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent",
+                "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse"
+              ],
+              "title": "Task Addition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INAddTasksIntentHandling"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTargetTaskList(for:with:)-2er0u/title",
+          "value": "resolveTargetTaskListForAddTasks:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTargetTaskList(for:with:)-2er0u/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveTargetTaskListForAddTasks:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveSpatialEventTrigger(for:with:)/title",
+          "value": "resolveSpatialEventTriggerForAddTasks:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveSpatialEventTrigger(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveSpatialEventTriggerForAddTasks:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentResponse/title",
+          "value": "INAddTasksIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1confirm(intent:completion:)/title",
+          "value": "confirmAddTasks:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1confirm(intent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "confirmAddTasks:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTaskTitles(for:with:)/title",
+          "value": "resolveTaskTitlesForAddTasks:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTaskTitles(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveTaskTitlesForAddTasks:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTemporalEventTrigger(for:with:)-7yrz3/title",
+          "value": "resolveTemporalEventTriggerForAddTasks:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTemporalEventTrigger(for:with:)-7yrz3/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveTemporalEventTriggerForAddTasks:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1handle(intent:completion:)/title",
+          "value": "handleAddTasks:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1handle(intent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleAddTasks:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTargetTaskList(for:with:)-2uevx/title",
+          "value": "resolveTargetTaskListForAddTasks:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTargetTaskList(for:with:)-2uevx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveTargetTaskListForAddTasks:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolvePriority(for:with:)/title",
+          "value": "resolvePriorityForAddTasks:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolvePriority(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolvePriorityForAddTasks:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookDomainHandling/title",
+          "value": "INNotebookDomainHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookDomainHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNotebookDomainHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookDomainHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNotebookDomainHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntent/title",
+          "value": "INAddTasksIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling/title",
+          "value": "INAddTasksIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTemporalEventTrigger(for:with:)-2h9ff/title",
+          "value": "resolveTemporalEventTriggerForAddTasks:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling~1resolveTemporalEventTrigger(for:with:)-2h9ff/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveTemporalEventTriggerForAddTasks:withCompletion:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/inaddtasksintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/inaddtasksintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

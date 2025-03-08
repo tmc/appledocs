@@ -1,0 +1,276 @@
+{
+  "abstract": [
+    {
+      "text": "Modify attributes or data associated with an atom in an atom container.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Modifying atoms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "TextQuickTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides functions that you can call to modify attributes or data associated with an atom in an atom container. To modify an atom’s ID, you call the function ",
+              "type": "text"
+            },
+            {
+              "code": "QTSetAtomID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "code": "QTSetAtomData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to update the data associated with a leaf atom in an atom container. The ",
+              "type": "text"
+            },
+            {
+              "code": "QTSetAtomData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function replaces a leaf atom’s data with new data. The code sample in the following listing calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine whether an atom container contains a sprite’s visible property. If so, the sample calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTSetAtomData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to replace the atom’s data with a new visible property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "QTAtom propertyAtom;",
+            " ",
+            "// if the atom isn’t in the container, add it",
+            "if ((propertyAtom = QTFindChildByIndex (sprite, kParentAtomIsContainer,",
+            "    kSpritePropertyVisible, 1, nil)) == 0)",
+            "    FailOSErr (QTInsertChild (sprite, kParentAtomIsContainer,",
+            "        kSpritePropertyVisible, 1, 0, sizeof(short), visible, nil))",
+            " ",
+            "// if the atom is in the container, replace its data",
+            "else",
+            "    FailOSErr (QTSetAtomData (sprite, propertyAtom, sizeof(short),",
+            "        visible));"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms": {
+      "abstract": [
+        {
+          "text": "Copy existing atoms within an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying existing atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/copying_existing_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers": {
+      "abstract": [
+        {
+          "text": "Manage atoms in atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating, copying, and disposing of atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_copying_and_disposing_of_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms": {
+      "abstract": [
+        {
+          "text": "Create new atoms and insert them in a QT atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating new atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_new_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container": {
+      "abstract": [
+        {
+          "text": "Remove atoms from an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing atoms from an atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/removing_atoms_from_an_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container": {
+      "abstract": [
+        {
+          "text": "Retrieve information about the types of a parent atom’s children, search for a specific atom, and retrieve a leaf atom’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieving atoms from an atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/retrieving_atoms_from_an_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files": {
+      "abstract": [
+        {
+          "text": "Build QuickTime files with atoms, QT atoms, and atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storing and sharing media with QuickTime files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/storing_and_sharing_media_with_quicktime_files"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-atoms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container"
+      ],
+      "title": "Managing atoms"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/modifying_atoms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

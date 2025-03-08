@@ -1,0 +1,1603 @@
+{
+  "abstract": [
+    {
+      "text": "Create custom titles, prompts, and buttons in your app’s navigation bar.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/uinavigationbar-legacy-customizations"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/uinavigationbar-legacy-customizations"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/customizing-your-app-s-navigation-bar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Customizing your app’s navigation bar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display your app’s navigational controls in a bar along the top of the iOS device’s screen. You can also design a distinctive navigation bar that matches your app’s design and creates intuitive interaction for your users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to use ",
+              "type": "text"
+            },
+            {
+              "code": "UINavigationController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " classes as building blocks in your application’s user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project walks you through a set of examples that customize  the look and behavior of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", including views, prompts, buttons and titles of your application’s navigation bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample demonstrates different ways to modify the navigation bar directly using the appearance proxy, and indirectly by modifying the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The levels of customization include varying bar styles and applying custom left and right buttons known as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-bar-style",
+          "level": 3,
+          "text": "Change the bar style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample demonstrates changing the bar style to match the overall appearance of an app’s design.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user changes the navigation bar’s style, or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", by tapping the “Style” button to the left of the main page. This button opens an action sheet where users can change the background’s appearance to default, black-opaque, or black- translucent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the bar style to black-translucent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.navigationController!.navigationBar.barStyle = .black",
+            "self.navigationController!.navigationBar.isTranslucent = false",
+            "self.navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A navigation controller determines its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/preferredStatusBarStyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " based on the navigation bar style. As a result, the status bar matches the bar style, without any extra code required.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Customize-the-right-view",
+          "level": 3,
+          "text": "Customize the right view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The right side of the navigation bar options for customization include applying a custom ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or using a ",
+              "type": "text"
+            },
+            {
+              "code": "UIBarButtonItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample demonstrates placing three kinds of ",
+              "type": "text"
+            },
+            {
+              "code": "UIBarButtonItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the right side of the navigation bar: a button with a title, a button with an image, and a button with a ",
+              "type": "text"
+            },
+            {
+              "code": "UISegmentedControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". An additional segmented control allows the user to toggle between the three buttons. The initial bar button is defined in the storyboard, by dragging a ",
+              "type": "text"
+            },
+            {
+              "code": "UIBarButtonItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " out of the object library and into the navigation bar. The sample also shows how to create and add each button type using code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to set a segmented control as the right bar button item:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let segmentBarItem = UIBarButtonItem(customView: segmentedControl)",
+            "navigationItem.rightBarButtonItem = segmentBarItem"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-the-title-view",
+          "level": 3,
+          "text": "Customize the title view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another option is configuring the navigation bar to use a ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the title, using ",
+              "type": "text"
+            },
+            {
+              "code": "UISegmentedControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the center custom title view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to set a segmented control as the title view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.navigationItem.titleView = segmentedControl"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Modify-the-navigation-prompt",
+          "level": 3,
+          "text": "Modify the navigation prompt",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The navigation bar can also include a prompt or single line of text at the top.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample demonstrates how to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a ",
+              "type": "text"
+            },
+            {
+              "code": "UINavigationItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display a custom line of text above the navigation bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s how to set the navigation item’s prompt:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "navigationItem.prompt = NSLocalizedString(\"Navigation prompts appear at the top.\", comment: \"\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-the-navigation-bar-appearance",
+          "level": 3,
+          "text": "Customize the navigation bar appearance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apply a custom background to a ",
+              "type": "text"
+            },
+            {
+              "code": "UINavigationBar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by adding a bar tint color or background image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sets the background image of a navigation bar like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let navBar = self.navigationController!.navigationBar",
+            "",
+            "let standardAppearance = UINavigationBarAppearance()",
+            "standardAppearance.configureWithOpaqueBackground()",
+            "standardAppearance.backgroundImage = backImageForDefaultBarMetrics",
+            "",
+            "let compactAppearance = standardAppearance.copy()",
+            "compactAppearance.backgroundImage = backImageForLandscapePhoneBarMetrics",
+            "",
+            "navBar.standardAppearance = standardAppearance",
+            "navBar.scrollEdgeAppearance = standardAppearance",
+            "navBar.compactAppearance = compactAppearance",
+            "if #available(iOS 15.0, *) { // For compatibility with earlier iOS.",
+            "    navBar.compactScrollEdgeAppearance = compactAppearance",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-back-button-titles",
+          "level": 3,
+          "text": "Customize back button titles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can quickly switch between different stack levels with a tap and hold on the back button. The sample shows this by pushing ten view controllers on the current navigation stack to demonstrate that back button titles can be customized for each view controller level in the stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-back-button-with-an-image",
+          "level": 3,
+          "text": "Customize the back button with an image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s also possible to use an image as the back button without any back button text and without the back arrow that normally appears next to the back button. The sample sets the back button UINavigationBar appearance like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// For Back button customization, setup the custom image for UINavigationBar inside CustomBackButtonNavController.",
+            "let backButtonBackgroundImage = UIImage(systemName: \"list.bullet\")",
+            "let barAppearance =",
+            "    UINavigationBar.appearance(whenContainedInInstancesOf: [CustomBackButtonNavController.self])",
+            "barAppearance.backIndicatorImage = backButtonBackgroundImage",
+            "barAppearance.backIndicatorTransitionMaskImage = backButtonBackgroundImage",
+            "",
+            "// Nudge the back UIBarButtonItem image down a bit.",
+            "let barButtonAppearance =",
+            "    UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomBackButtonNavController.self])",
+            "barButtonAppearance.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -5), for: .default)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, it removes the back button text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let backBarButton = UIBarButtonItem(title: \"\", style: .plain, target: nil, action: nil)",
+            "navigationItem.backBarButtonItem = backBarButton"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Modify-the-large-title-in-the-navigation-bar",
+          "level": 3,
+          "text": "Modify the large title in the navigation bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another option for customizing the navigation bar includes setting its title at a larger size, thus increasing the size of the ",
+              "type": "text"
+            },
+            {
+              "code": "UINavigationBar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information, refer to the ",
+              "type": "text"
+            },
+            {
+              "code": "LargeTitleViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " source file in this sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below shows how the sample sets the background image of a navigation bar:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.navigationController?.navigationBar.prefersLargeTitles = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-navigation-bar-appearance",
+          "level": 3,
+          "text": "Change navigation bar appearance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to change the appearance of the navigation bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Make the navigation bar's title with red text.",
+            "let appearance = UINavigationBarAppearance()",
+            "appearance.configureWithOpaqueBackground()",
+            "appearance.backgroundColor = UIColor.systemRed",
+            "appearance.titleTextAttributes = [.foregroundColor: UIColor.lightText] // With a red background, make the title more readable.",
+            "navigationItem.standardAppearance = appearance",
+            "navigationItem.scrollEdgeAppearance = appearance",
+            "navigationItem.compactAppearance = appearance // For iPhone small navigation bar in landscape.",
+            "",
+            "// Make all buttons with green text.",
+            "let buttonAppearance = UIBarButtonItemAppearance()",
+            "buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemGreen]",
+            "navigationItem.standardAppearance?.buttonAppearance = buttonAppearance",
+            "navigationItem.compactAppearance?.buttonAppearance = buttonAppearance // For iPhone small navigation bar in landscape.",
+            "",
+            "// Make the done style button with yellow text.",
+            "let doneButtonAppearance = UIBarButtonItemAppearance()",
+            "doneButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemYellow]",
+            "navigationItem.standardAppearance?.doneButtonAppearance = doneButtonAppearance",
+            "navigationItem.compactAppearance?.doneButtonAppearance = doneButtonAppearance // For iPhone small navigation bar in landscape."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Attach-a-menu-to-a-bar-button-item",
+          "level": 3,
+          "text": "Attach a menu to a bar button item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A menu attachment provides extended and easy access to application features in one place. The sample attaches a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the right side ",
+              "type": "text"
+            },
+            {
+              "code": "UIBarButtonItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " control:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let barButtonMenu = UIMenu(title: \"\", children: [",
+            "    UIAction(title: NSLocalizedString(\"Copy\", comment: \"\"), image: UIImage(systemName: \"doc.on.doc\"), handler: menuHandler),",
+            "    UIAction(title: NSLocalizedString(\"Rename\", comment: \"\"), image: UIImage(systemName: \"pencil\"), handler: menuHandler),",
+            "    UIAction(title: NSLocalizedString(\"Duplicate\", comment: \"\"), image: UIImage(systemName: \"plus.square.on.square\"), handler: menuHandler),",
+            "    UIAction(title: NSLocalizedString(\"Move\", comment: \"\"), image: UIImage(systemName: \"folder\"), handler: menuHandler)",
+            "])",
+            "optionsBarItem.menu = barButtonMenu"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "c789454ba292/CustomizingYourAppsNavigationBar.zip": {
+      "checksum": "c789454ba2928fd41a34db65f2e3f5fbdaa6a89d3d834ab48c2f37461e8f4d36ed8a129b416c5185bbbdc7a17dfe7940e265f74f5968366e141d0090641d215d",
+      "identifier": "c789454ba292/CustomizingYourAppsNavigationBar.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/c789454ba292/CustomizingYourAppsNavigationBar.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of bar button items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItemAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarStyle": {
+      "abstract": [
+        {
+          "text": "Defines the stylistic appearance of different types of views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenu": {
+      "abstract": [
+        {
+          "text": "A container for grouping related menu elements in an app menu or contextual menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenu",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenu"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "abstract": [
+        {
+          "text": "Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance": {
+      "abstract": [
+        {
+          "text": "An object for customizing the appearance of a navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBarAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBarAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBarAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBarAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbarappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController/navigationBar": {
+      "abstract": [
+        {
+          "text": "The navigation bar managed by the navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationBar",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController/navigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller/navigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setNavigationBarHidden(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets whether the navigation bar is hidden.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNavigationBarHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setNavigationBarHidden(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setNavigationBarHidden:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setNavigationBarHidden(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller/setnavigationbarhidden(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem": {
+      "abstract": [
+        {
+          "text": "The items that a navigation bar displays when the associated view controller is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt": {
+      "abstract": [
+        {
+          "text": "A single line of text that displays at the top of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/prompt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prompt"
+        }
+      ],
+      "role": "symbol",
+      "title": "prompt",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/prompt"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/preferredStatusBarStyle": {
+      "abstract": [
+        {
+          "text": "The preferred status bar style for the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredStatusBarStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIStatusBarStyle",
+          "text": "UIStatusBarStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/preferredStatusBarStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredStatusBarStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredStatusBarStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/preferredstatusbarstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uinavigationbar-legacy-customizations": {
+      "abstract": [
+        {
+          "text": "Customize appearance information directly on the navigation bar object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uinavigationbar-legacy-customizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy customizations",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar-legacy-customizations"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "c789454ba292/CustomizingYourAppsNavigationBar.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-navigation-bars",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController/navigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setNavigationBarHidden(_:animated:)"
+      ],
+      "title": "Configuring navigation bars"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-navigation-bars",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationController/navigationBar",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationController/setNavigationBarHidden(_:animated:)"
+              ],
+              "title": "Configuring navigation bars"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBarAppearance/title",
+          "value": "UINavigationBarAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBarAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBarAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBarAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/title",
+          "value": "UIBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemAppearance/title",
+          "value": "UIBarButtonItemAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarStyle/title",
+          "value": "UIBarStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenu/title",
+          "value": "UIMenu"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenu/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1setNavigationBarHidden(_:animated:)/title",
+          "value": "setNavigationBarHidden:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1setNavigationBarHidden(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNavigationBarHidden:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1navigationBar/title",
+          "value": "navigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController~1navigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "navigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1prompt/title",
+          "value": "prompt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem~1prompt/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "prompt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/title",
+          "value": "UINavigationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/title",
+          "value": "UINavigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1preferredStatusBarStyle/title",
+          "value": "preferredStatusBarStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1preferredStatusBarStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredStatusBarStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/customizing-your-app-s-navigation-bar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/customizing-your-app-s-navigation-bar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

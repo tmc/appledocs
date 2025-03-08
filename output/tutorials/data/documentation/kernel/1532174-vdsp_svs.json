@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "Calculates the sum of signed squares in a single-precision vector.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/appledsp"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1532174,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vDSP_svs",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vDSP_svs"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vDSP_svs"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__A, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Stride",
+              "text": "vDSP_Stride"
+            },
+            {
+              "kind": "text",
+              "text": " __IA, "
+            },
+            {
+              "kind": "keyword",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " *__C, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@vDSP_Length",
+              "text": "vDSP_Length"
+            },
+            {
+              "kind": "text",
+              "text": " __N);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The single-precision real input vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__A"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stride for input vector ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__I"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The single-precision output scalar. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__C"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of elements to process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "__N"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function calculates the mean of the signed squares of the first ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements of ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and writes the result to ",
+              "type": "text"
+            },
+            {
+              "code": "C",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3921242",
+              "metadata": {
+                "anchor": "3921242",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operation is: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "C[0] = sum(A[n] * |A[n]|, 0 <= n < N);"
+          ],
+          "metadata": {
+            "anchor": "3921231",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/accelerate/1450006-vdsp_svs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let stride = vDSP_Stride(1)",
+            "",
+            "let a: [Float] = [-1.5, 2.25, 3.6,",
+            "                  0.2, -0.1, -4.3]",
+            "let n = vDSP_Length(a.count)",
+            "",
+            "var c: Float = .nan",
+            "",
+            "vDSP_svs(a,",
+            "         stride,",
+            "         &c,",
+            "         n)",
+            "",
+            "// Prints \"sum of signed squares -2.6875\".",
+            "print(String(format: \"sum of signed squares %.4f\", c))"
+          ],
+          "metadata": {
+            "anchor": "3921232",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/accelerate/1450006-vdsp_svs": {
+      "identifier": "doc://com.apple.documentation/documentation/accelerate/1450006-vdsp_svs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_svs",
+      "type": "topic",
+      "url": "/documentation/accelerate/1450006-vdsp_svs"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs": {
+      "abstract": [
+        {
+          "text": "Calculates the sum of signed squares in a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_svs",
+      "type": "topic",
+      "url": "/documentation/kernel/1532174-vdsp_svs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs#3921231": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs#3921231",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/1532174-vdsp_svs#3921231"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs#3921232": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532174-vdsp_svs#3921232",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/kernel/1532174-vdsp_svs#3921232"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532179-vdsp_svesq": {
+      "abstract": [
+        {
+          "text": "Calculates the sum of values and the sum of squares in a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532179-vdsp_svesq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_svesq",
+      "type": "topic",
+      "url": "/documentation/kernel/1532179-vdsp_svesq"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532207-vdsp_rmsqv": {
+      "abstract": [
+        {
+          "text": "Calculates the root mean square of a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532207-vdsp_rmsqv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_rmsqv",
+      "type": "topic",
+      "url": "/documentation/kernel/1532207-vdsp_rmsqv"
+    },
+    "doc://com.apple.documentation/documentation/kernel/appledsp": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/appledsp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AppleDSP",
+      "type": "topic",
+      "url": "/documentation/kernel/appledsp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_length": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Length",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_length"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vdsp_stride": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vdsp_stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_Stride",
+      "type": "topic",
+      "url": "/documentation/kernel/vdsp_stride"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3921242": {
+      "identifier": "link-media-3921242",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/kernel/1532174-vdsp_svs#3921242"
+    },
+    "media-3921242": {
+      "alt": "A diagram showing the operation of the vDSP_svs function. There are three rows. The top row represents the input, vector A. The second row represents the summation operation. The bottom row represents the output, vector C. The diagram has connecting lines from the input vectors to the operation and from the operation to the output vector indicating the relationships between the input and output.",
+      "identifier": "media-3921242",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82b8352d65/bdbc3d4e-6681-41fe-89c7-a4eb9790588d.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1532207-vdsp_rmsqv",
+        "doc://com.apple.documentation/documentation/kernel/1532179-vdsp_svesq"
+      ],
+      "title": "Vector Reduction Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1532174-vdsp_svs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

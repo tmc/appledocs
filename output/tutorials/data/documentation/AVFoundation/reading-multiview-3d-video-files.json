@@ -1,0 +1,2366 @@
+{
+  "abstract": [
+    {
+      "text": "Render single images for the left eye and right eye from a multiview High Efficiency Video Coding format file by reading individual video frames.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Reading multiview 3D video files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiview High Efficiency Video Coding (MV-HEVC) media files contain information to produce stereoscopic frames, one for the left eye and one for the right, to create an effect of depth and allow for 3D video. This is the standard format for presenting 3D video in visionOS, encoded as MPEG-4 or QuickTime files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Previewing and testing MV-HEVC files without hardware requires the ability to load, view, and step through the video data on a timeline. This sample app opens a media file, checking for the MV-HEVC format, then presents a view containing the individual frames at the timestamp. Step through the timeline by dragging the slider to a specific timestamp, or advance to the next frame by pressing the Space bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full details of the MV-HEVC format, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-and-inspect-the-media-asset",
+          "level": 3,
+          "text": "Load and inspect the media asset",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app first displays a button labeled Open MVHEVC File. When selected, the button presents an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOpenPanel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for choosing video media. Next, the app initializes a ",
+              "type": "text"
+            },
+            {
+              "code": "MediaDetailViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", loading this file as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVURLAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Before opening the file to present any elements for a stereo video frame, the app ensures a playable, readable file, and gets its total length in time. This is all performed in the initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(filename: URL) {",
+            "    asset = AVURLAsset(url: filename)",
+            "    Task { @MainActor in",
+            "        do {",
+            "            let (duration, isPlayable, isReadable) = try await asset.load(.duration, .isPlayable, .isReadable)",
+            "            self.duration = duration.seconds",
+            "            self.isPlayable = isPlayable",
+            "            self.isReadable = isReadable",
+            "        } catch {",
+            "            self.error = error",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-track-data-and-timestamps",
+          "level": 3,
+          "text": "Load track data and timestamps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After confirming the track is readable video data, the app initializes a ",
+              "type": "text"
+            },
+            {
+              "code": "StereoViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": "by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requesting a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaCharacteristic/containsStereoMultiviewVideo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " track. This check confirms that the file meets the MV-HEVC specification and has valid stereo data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let track = try await asset.loadTracks(withMediaCharacteristic: .containsStereoMultiviewVideo).first {",
+            "    self.track = track"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the app pulls available timestamps for each frame in the track by calling ",
+              "type": "text"
+            },
+            {
+              "code": "presentationTimesFor(track:asset:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The app places a video sample cursor at the start of the track with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtFirstSampleInDecodeOrder()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then creates a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferGenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let cursor = track.makeSampleCursorAtFirstSampleInDecodeOrder() else {",
+            "    return []",
+            "}",
+            "let sampleBufferGenerator = AVSampleBufferGenerator(asset: asset, timebase: nil)",
+            "var presentationTimes = [CMTime]()",
+            "let request = AVSampleBufferRequest(start: cursor)",
+            "var numSamples: Int64 = 0"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read the timestamps, obtain the sample buffer for the current cursor from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferGenerator/makeSampleBuffer(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer/presentationTimeStamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the frame. The cursor steps forward by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleCursor/stepInDecodeOrder(byCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", reading and caching timestamps for each frame in the buffer. When ",
+              "type": "text"
+            },
+            {
+              "code": "stepInDecodeOrder(byCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns no next frame, sample times are in the cache and reading the video track completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "repeat {",
+            "    let buf = try sampleBufferGenerator.makeSampleBuffer(for: request)",
+            "    presentationTimes.append(buf.presentationTimeStamp)",
+            "    numSamples = cursor.stepInDecodeOrder(byCount: 1)",
+            "} while numSamples == 1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-video-layer-information",
+          "level": 3,
+          "text": "Load video layer information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After preparing timestamps, the app calls ",
+              "type": "text"
+            },
+            {
+              "code": "loadVideoLayerIdsForTrack()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get the layer IDs for the two tracks associated with the left and right eyes. The app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading/load(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "to retrieve metadata, then filters the layer data out of the first available track’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMFormatDescription/tagCollections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The filter predicate is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTag-swift.class/value(onlyIfMatching:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", extracting only video layer IDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func loadVideoLayerIdsForTrack(_ videoTrack: AVAssetTrack) async throws -> [Int64]? {",
+            "    let formatDescriptions = try await videoTrack.load(.formatDescriptions)",
+            "    var tags = [Int64]()",
+            "    if let tagCollections = formatDescriptions.first?.tagCollections {",
+            "        tags = tagCollections.flatMap({ $0 }).compactMap { tag in",
+            "            tag.value(onlyIfMatching: .videoLayerID)",
+            "        }",
+            "    }",
+            "    return tags",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-video-frames-from-buffers",
+          "level": 3,
+          "text": "Load video frames from buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the timestamp and left eye and right eye video layers identified, ",
+              "type": "text"
+            },
+            {
+              "code": "readBufferFromAsset(at:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls the ",
+              "type": "text"
+            },
+            {
+              "code": "readNextBufferFromAsset()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the app to retrieve and display the frame data. The method starts with a series of ",
+              "type": "text"
+            },
+            {
+              "code": "guard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " checks to ensure read access to the track, creates a local copy of the sample buffer by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput/copyNextSampleBuffer()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and retrieves the tagged video buffers from the track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let assetReader, let trackOutput else {",
+            "    return",
+            "}",
+            "guard assetReader.status == .reading else {",
+            "    publishState(.error(message: \"UNEXPECTED STATUS \\(assetReader.status)\"))",
+            "    return",
+            "}",
+            "guard let sampleBuffer = trackOutput.copyNextSampleBuffer() else {",
+            "    publishState(.error(message: \"READING SAMPLE BUFFER, STATUS \\(assetReader.status), ERROR \\(String(describing: assetReader.error))\"))",
+            "    return",
+            "}",
+            "guard let taggedBuffers = sampleBuffer.taggedBuffers else {",
+            "    publishState(.error(message: \"SAMPLE BUFFER CONTAINS NO TAGGED BUFFERS: \\(sampleBuffer)\"))",
+            "    return",
+            "}",
+            "guard taggedBuffers.count == 2 else {",
+            "    publishState(.error(message: \"EXPECTED 2 TAGGED BUFFERS, GOT \\(taggedBuffers.count)\"))",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app parses each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTaggedBuffer/Buffer-swift.enum/pixelBuffer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the returned sample buffers into an image for display using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438072-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The app creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sets it to the view content as either ",
+              "type": "text"
+            },
+            {
+              "code": "leftEye",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "rightEye",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depending on whether the view contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTag-swift.class/stereoView(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the left or right eye.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "taggedBuffers.forEach { taggedBuffer in",
+            "    switch taggedBuffer.buffer {",
+            "    case let .pixelBuffer(pixelBuffer):",
+            "        let ciimage = CIImage(cvPixelBuffer: pixelBuffer)",
+            "        let context: CIContext = CIContext(options: nil)",
+            "        let cgImage: CGImage = context.createCGImage(ciimage, from: ciimage.extent)!",
+            "        let tags = taggedBuffer.tags",
+            "        Task {",
+            "            await MainActor.run {",
+            "                let nsImage = NSImage(cgImage: cgImage, size: NSSize(width: 320, height: 240))",
+            "                if tags.contains(.stereoView(.leftEye)) {",
+            "                    leftEye = nsImage",
+            "                } else if tags.contains(.stereoView(.rightEye)) {",
+            "                    rightEye = nsImage",
+            "                }",
+            "            }",
+            "        }",
+            "    case .sampleBuffer(let samp):",
+            "        publishState(.error(message: \"EXPECTED PIXEL BUFFER, GOT SAMPLE BUFFER \\(samp)\"))",
+            "    @unknown default:",
+            "        publishState(.error(message: \"EXPECTED PIXEL BUFFER TYPE, GOT \\(taggedBuffer.buffer)\"))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "03b0a926288f/ReadingMultiview3DVideoFiles.zip": {
+      "checksum": "03b0a926288febbf22eaa2a74c7e019a9fb55fa31bea335770b79bb062eaf6207c493ad67001a2047cc06559c0fdf7f6e400b72b7dc2cb8c70a6ccec6cd2b33d",
+      "identifier": "03b0a926288f/ReadingMultiview3DVideoFiles.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/03b0a926288f/ReadingMultiview3DVideoFiles.zip"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads tracks that contain media of a specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset/loadTracks(withMediaCharacteristic:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTracks(withMediaCharacteristic:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset/loadtracks(withmediacharacteristic:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReader",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreader"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads audio samples that result from mixing audio from one or more tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderAudioMixOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderAudioMixOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderAudioMixOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderaudiomixoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface to read media samples from an asset reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput/copyNextSampleBuffer()": {
+      "abstract": [
+        {
+          "text": "Copies the next sample buffer from the output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyNextSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput/copyNextSampleBuffer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyNextSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "copyNextSampleBuffer()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutput/copynextsamplebuffer()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that creates timed metadata group objects for an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutputMetadataAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutputMetadataAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderOutputMetadataAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutputmetadataadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads sample references from an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderSampleReferenceOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderSampleReferenceOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderSampleReferenceOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadersamplereferenceoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from a single track of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderTrackOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads composited video frames from one or more tracks of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderVideoCompositionOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderVideoCompositionOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderVideoCompositionOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadervideocompositionoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtFirstSampleInDecodeOrder()": {
+      "abstract": [
+        {
+          "text": "Creates a sample cursor and positions it at the track’s first media sample in decode order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSampleCursorAtFirstSampleInDecodeOrder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVSampleCursor",
+          "text": "AVSampleCursor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtFirstSampleInDecodeOrder()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeSampleCursorAtFirstSampleInDecodeOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeSampleCursorAtFirstSampleInDecodeOrder()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassettrack/makesamplecursoratfirstsampleindecodeorder()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading/load(_:)": {
+      "abstract": [
+        {
+          "text": "Loads a property asynchronously and returns the value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading/load(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronouskeyvalueloading/load(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaCharacteristic/containsStereoMultiviewVideo": {
+      "abstract": [
+        {
+          "text": "A media characteristic that indicates that a track contains stereoscopic video captured in a multiview compression format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsStereoMultiviewVideo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaCharacteristic/containsStereoMultiviewVideo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaCharacteristicContainsStereoMultiviewVideo"
+        }
+      ],
+      "role": "symbol",
+      "title": "containsStereoMultiviewVideo",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediacharacteristic/containsstereomultiviewvideo"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferGenerator": {
+      "abstract": [
+        {
+          "text": "An object that creates sample buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSampleBufferGenerator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebuffergenerator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferGenerator/makeSampleBuffer(for:)": {
+      "abstract": [
+        {
+          "text": "Creates a sample buffer, and attempts to load its data asynchronously if requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVSampleBufferRequest",
+          "text": "AVSampleBufferRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferGenerator/makeSampleBuffer(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createSampleBufferForRequest:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeSampleBuffer(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebuffergenerator/makesamplebuffer(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferRequest": {
+      "abstract": [
+        {
+          "text": "An object that describes a sample buffer creation request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSampleBufferRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebufferrequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleCursor/stepInDecodeOrder(byCount:)": {
+      "abstract": [
+        {
+          "text": "Moves the cursor a given number of samples in decode order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stepInDecodeOrder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleCursor/stepInDecodeOrder(byCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stepInDecodeOrderByCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stepInDecodeOrder(byCount:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplecursor/stepindecodeorder(bycount:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVURLAsset": {
+      "abstract": [
+        {
+          "text": "An asset that represents media at a local or remote URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVURLAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVURLAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVURLAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVURLAsset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avurlasset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing": {
+      "abstract": [
+        {
+          "text": "Read images from video, export to alternative formats, and perform sample-level reading and writing of media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media reading and writing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-reading-and-writing"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImage"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSOpenPanel": {
+      "abstract": [
+        {
+          "text": "A panel that prompts the user to select a file to open.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOpenPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSOpenPanel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOpenPanel",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSOpenPanel"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMFormatDescription/tagCollections": {
+      "abstract": [
+        {
+          "text": "The tag collections associated with this media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagCollections"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreMedia5CMTagC",
+          "text": "CMTag"
+        },
+        {
+          "kind": "text",
+          "text": "]]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMFormatDescription/tagCollections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tagCollections",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMFormatDescription/tagCollections"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer/presentationTimeStamp": {
+      "abstract": [
+        {
+          "text": "The sample presentation timestamp that’s the earliest numerically in the sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer/presentationTimeStamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentationTimeStamp",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMSampleBuffer/presentationTimeStamp"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTag-swift.class/stereoView(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a tag containing eye information for 3D video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stereoView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMStereoViewComponents",
+          "text": "CMStereoViewComponents"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreMedia10CMTypedTagC",
+          "text": "CMTypedTag"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMStereoViewComponents",
+          "text": "CMStereoViewComponents"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTag-swift.class/stereoView(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stereoView(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTag-swift.class/stereoView(_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTag-swift.class/value(onlyIfMatching:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a tag’s value as a specific type, if and only if it matches a category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onlyIfMatching"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreMedia10CMTypedTagC",
+          "text": "CMTypedTag"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CoreMedia10CMTypedTagC8CategoryV",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "? "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTag-swift.class/value(onlyIfMatching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(onlyIfMatching:)",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTag-swift.class/value(onlyIfMatching:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTaggedBuffer/Buffer-swift.enum/pixelBuffer(_:)": {
+      "abstract": [
+        {
+          "text": "The underlying pixel buffer for a tagged buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTaggedBuffer/Buffer-swift.enum/pixelBuffer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTaggedBuffer.Buffer.pixelBuffer(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTaggedBuffer/Buffer-swift.enum/pixelBuffer(_:)"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1438072-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image object from the contents of a Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cvPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1438072-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cvPixelBuffer:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1438072-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf",
+      "title": "Apple HEVC Stereo Video - Interoperability Profile (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "Apple HEVC Stereo Video - Interoperability Profile (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf"
+    },
+    "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf": {
+      "identifier": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf",
+      "title": "ISO Base Media File Format and Apple HEVC Stereo Video (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "ISO Base Media File Format and Apple HEVC Stereo Video (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "03b0a926288f/ReadingMultiview3DVideoFiles.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-reading",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor"
+      ],
+      "title": "Media reading"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-reading",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor"
+              ],
+              "title": "Media reading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/title",
+          "value": "AVAssetReaderOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/title",
+          "value": "AVAssetReaderSampleReferenceOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrack~1makeSampleCursorAtFirstSampleInDecodeOrder()/title",
+          "value": "makeSampleCursorAtFirstSampleInDecodeOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetTrack~1makeSampleCursorAtFirstSampleInDecodeOrder()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeSampleCursorAtFirstSampleInDecodeOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaCharacteristic~1containsStereoMultiviewVideo/title",
+          "value": "AVMediaCharacteristicContainsStereoMultiviewVideo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaCharacteristic~1containsStereoMultiviewVideo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaCharacteristicContainsStereoMultiviewVideo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/title",
+          "value": "AVAssetReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferGenerator~1makeSampleBuffer(for:)/title",
+          "value": "createSampleBufferForRequest:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferGenerator~1makeSampleBuffer(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createSampleBufferForRequest:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferGenerator/title",
+          "value": "AVSampleBufferGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVURLAsset/title",
+          "value": "AVURLAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVURLAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVURLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVURLAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVURLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSOpenPanel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSOpenPanel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSSavePanel",
+              "text": "NSSavePanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/title",
+          "value": "AVAssetReaderAudioMixOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderAudioMixOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderAudioMixOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreimage~1ciimage~11438072-init/title",
+          "value": "initWithCVPixelBuffer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput~1copyNextSampleBuffer()/title",
+          "value": "copyNextSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput~1copyNextSampleBuffer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyNextSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/title",
+          "value": "AVAssetReaderVideoCompositionOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderVideoCompositionOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderVideoCompositionOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1loadTracks(withMediaCharacteristic:completionHandler:)/title",
+          "value": "loadTracksWithMediaCharacteristic:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset~1loadTracks(withMediaCharacteristic:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/title",
+          "value": "AVAssetReaderTrackOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/title",
+          "value": "AVAssetReaderOutputMetadataAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferRequest/title",
+          "value": "AVSampleBufferRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleCursor~1stepInDecodeOrder(byCount:)/title",
+          "value": "stepInDecodeOrderByCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleCursor~1stepInDecodeOrder(byCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stepInDecodeOrderByCount:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/reading-multiview-3d-video-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/reading-multiview-3d-video-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

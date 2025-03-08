@@ -1,0 +1,416 @@
+{
+  "abstract": [
+    {
+      "text": "Metadata that controls animation idling until a behavior takes over.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "playbackMode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the ",
+              "type": "text"
+            },
+            {
+              "code": "playbackMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " metadata on the document’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stage",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", that is, the outermost container for scene description. For more information about setting stage metadata, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://graphics.pixar.com/usd/docs/api/class_usd_stage.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " > Stage Metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an asset specifies playback metadata and a start animation, the animation plays automatically and loops until a trigger executes the ",
+              "type": "text"
+            },
+            {
+              "code": "StartAnimationAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". After the start animation completes, the asset’s behaviors (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-behavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") take control of the animation. If you don’t define a start animation for the asset, this property indicates whether an animation should restart after it finishes playing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "uniform token playbackMode = \"loop\" (       ",
+            "    allowedTokens = [\"none\",\"loop\"]",
+            ")"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Playback-Modes",
+          "level": 3,
+          "text": "Playback Modes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Runs a start animation only once until the system fires an animation trigger.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "none",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Plays a start animation on a loop until the system fires an animation trigger.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "loop",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Specify-an-initial-idling-animation",
+          "level": 3,
+          "text": "Specify an initial idling animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following metadata demonstrates ",
+              "type": "text"
+            },
+            {
+              "code": "playbackMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for an asset that defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/startanimationaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This example sets ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "loop",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", idling the animation in a perpetual replay until a trigger executes the start action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#usda 1.0",
+            "(",
+            "    endTimeCode = 300",
+            "    startTimeCode = 1",
+            "    timeCodesPerSecond = 30",
+            "    playbackMode = \"loop\"",
+            "    upAxis = \"Y\"",
+            ")",
+            "",
+            "def Xform \"AnimatedModel\"",
+            "{",
+            "    def Xform \"body\"",
+            "    {",
+            "        double3 xformOp:translate.timeSamples = { ... }",
+            "        uniform token[] xformOpOrder = [\"xformOp:translate\"]",
+            "        ...",
+            "    }",
+            "    ...",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/autoplay": {
+      "abstract": [
+        {
+          "text": "Metadata that specifies whether an animation plays automatically on load.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/autoplay",
+      "kind": "article",
+      "role": "article",
+      "title": "autoPlay",
+      "type": "topic",
+      "url": "/documentation/realitykit/autoplay"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode": {
+      "abstract": [
+        {
+          "text": "Metadata that controls animation idling until a behavior takes over.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode",
+      "kind": "article",
+      "role": "article",
+      "title": "playbackMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/playbackmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-behavior": {
+      "abstract": [
+        {
+          "text": "A typed schema that combines one or more triggers with associated actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-behavior",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_Behavior",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-behavior"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/startanimationaction": {
+      "abstract": [
+        {
+          "text": "An action that plays an asset’s animation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/startanimationaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "StartAnimationAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/startanimationaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://graphics.pixar.com/usd/docs/api/class_usd_stage.html": {
+      "identifier": "https://graphics.pixar.com/usd/docs/api/class_usd_stage.html",
+      "title": "UsdStage",
+      "titleInlineContent": [
+        {
+          "text": "UsdStage",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://graphics.pixar.com/usd/docs/api/class_usd_stage.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/autoplay"
+      ],
+      "title": "Animation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/playbackmode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

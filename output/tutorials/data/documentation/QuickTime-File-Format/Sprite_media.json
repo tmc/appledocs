@@ -1,0 +1,882 @@
+{
+  "abstract": [
+    {
+      "text": "Sprite media is used to store character-based animation data in QuickTime movies.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sprite media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Sprite media is deprecated in the QuickTime file format. The information that follows documents existing content containing sprite media and should not be used for new development.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It has a media type of ",
+              "type": "text"
+            },
+            {
+              "code": "'sprt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sprite-Sample-Description",
+          "level": 2,
+          "text": "Sprite Sample Description",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sprite sample description uses the standard sample description header, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data format field in the sample description is always set to ",
+              "type": "text"
+            },
+            {
+              "code": "'sprt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sprite media handler adds no additional fields to the sample description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sprite-Sample-Data",
+          "level": 2,
+          "text": "Sprite Sample Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All sprite samples are stored in QT atom structures. The sprite media uses both key frames and differenced frames. The key frames contain all of the sprite’s image data, and the initial settings for each of the sprite’s properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A key frame always contains a shared data atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "'dflt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This atom contains data to be shared between the sprites, consisting mainly of image data and sample descriptions. The shared data atom contains a single sprite image container atom, with an atom type value of ",
+              "type": "text"
+            },
+            {
+              "code": "'imct'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and an ID value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sprite image container atom stores one or more sprite image atoms of type ",
+              "type": "text"
+            },
+            {
+              "code": "'imag'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each sprite image atom contains an image sample description immediately followed by the sprite’s compressed image data. The sprite image atoms should have ID numbers starting at ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and counting consecutively upward.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key frame also must contain definitions for each sprite in atoms of type ",
+              "type": "text"
+            },
+            {
+              "code": "'sprt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Sprite atoms should have ID numbers start at ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and count consecutively upward. Each sprite atom contains a list of properties. The following table shows all currently defined sprite properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpritePropertyMatrix",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Describes the sprite’s location and scaling within its sprite world or sprite track. By modifying a sprite’s matrix, you can modify the sprite’s location so that it appears to move in a smooth path on the screen or so that it jumps from one place to another. You can modify a sprite’s size, so that it shrinks, grows, or stretches. Depending on which image compressor is used to create the sprite images, other transformations, such as rotation, may be supported as well. Translation-only matrices provide the best performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpritePropertyVisible",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies whether or not the sprite is visible. To make a sprite visible, you set the sprite’s visible property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpritePropertyLayer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains a 16-bit integer value specifying the layer into which the sprite is to be drawn. Sprites with lower layer numbers appear in front of sprites with higher layer numbers. To designate a sprite as a background sprite, you should assign it the special layer number ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kBackgroundSpriteLayerNum",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpritePropertyGraphicsMode",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "6",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies a graphics mode and blend color that indicates how to blend a sprite with any sprites behind it and with the background. To set a sprite’s graphics mode, you call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SetSpriteProperty",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", passing a pointer to a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ModifierTrackGraphicsModeRecord",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " structure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpritePropertyActionHandlingSpriteID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "8",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies another sprite by ID that delegates QT events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kSpritePropertyImageIndex",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains the atom ID of the sprite’s image atom.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The override sample differs from the key frame sample in two ways. First, the override sample does not contain a shared data atom. All shared data must appear in the key frame. Second, only those sprite properties that change need to be specified. If none of a sprite’s properties change in a given frame, then the sprite does not need an atom in the differenced frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The override sample can be used in one of two ways: combined, as with video key frames, to construct the current frame; or the current frame can be derived by combining only the key frame and the current override sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refer to the section ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information on how override samples are indicated in the file, using ",
+              "type": "text"
+            },
+            {
+              "code": "kSpriteTrackPropertySampleFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the default behavior of the ",
+              "type": "text"
+            },
+            {
+              "code": "kKeyFrameAndSingleOverride",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media": {
+      "abstract": [
+        {
+          "text": "Store 3D image data in a base media in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+      "kind": "article",
+      "role": "article",
+      "title": "3D media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/3d_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to replace the default cursors used by QuickTime VR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom cursor atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/custom_cursor_atom"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container": {
+      "abstract": [
+        {
+          "text": "An atom container that includes general information about the node such as the node’s type, ID, and name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Node information atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_information_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom": {
+      "abstract": [
+        {
+          "text": "An atom that is the parent of one or more node ID atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Node parent atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_parent_atom"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key": {
+      "abstract": [
+        {
+          "text": "Build QT atom container-based data structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key",
+      "kind": "article",
+      "role": "article",
+      "title": "QT atom container description key",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/qt_atom_container_description_key"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors": {
+      "abstract": [
+        {
+          "text": "Specify simple button behaviors for sprites in a sprite track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite button behaviors",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_button_behaviors"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types": {
+      "abstract": [
+        {
+          "text": "Atoms that represent sprite media and data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media atom and data types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_atom_and_data_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats": {
+      "abstract": [
+        {
+          "text": "Set sprite media handlers in QT atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media handler sample QT atom container formats",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_handler_sample_qt_atom_container_formats"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format": {
+      "abstract": [
+        {
+          "text": "Set sprite media handler track properties in a QT atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite media handler track properties QT atom container format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_media_handler_track_properties_qt_atom_container_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format": {
+      "abstract": [
+        {
+          "text": "A media format for that stores sprite track information in atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite track media format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_track_media_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties": {
+      "abstract": [
+        {
+          "text": "Define properties that apply to an entire sprite track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties",
+      "kind": "article",
+      "role": "article",
+      "title": "Sprite track properties",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sprite_track_properties"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media": {
+      "abstract": [
+        {
+          "text": "Store pairs of values to be interpolated between in QuickTime movies using tween media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tween media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media": {
+      "abstract": [
+        {
+          "text": "Atoms that describe the QuickTime VR world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VR media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/vr_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar": {
+      "abstract": [
+        {
+          "text": "Embed QT event handlers in their media samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar",
+      "kind": "article",
+      "role": "article",
+      "title": "Wired action grammar",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/wired_action_grammar"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure": {
+      "abstract": [
+        {
+          "text": "An atom that describes the type of a node and its location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Node_location_atom_structure",
+          "text": "Node location atom structure ('nloc')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Node location atom structure ('nloc')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_location_atom_structure"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores information that allows you to decode samples in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom",
+          "text": "Sample description atom ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample description atom ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-data-atom-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_properties",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_track_media_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_atom_and_data_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_button_behaviors",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atom_container_description_key",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_track_properties_QT_atom_container_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sprite_media_handler_sample_QT_atom_container_formats",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/VR_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_parent_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Node_location_atom_structure",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Node_information_atom_container"
+      ],
+      "title": "Media data atom types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sprite_media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

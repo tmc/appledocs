@@ -1,0 +1,578 @@
+{
+  "abstract": [
+    {
+      "text": "Bring an iOS or iPadOS game to visionOS and enhance it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/game-development-sample-code"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "game-stereo-sample-article-poster.jpg",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Rendering a windowed game in stereo"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to render a Metal app in a window on visionOS, with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stereoscopy, head tracking, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-at-different-rasterization-rates",
+              "isActive": true,
+              "overridingTitle": "VRR",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "VRR",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a 3D frame around the window.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The starting app is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+              "isActive": true,
+              "overridingTitle": "Deferred Lighting sample",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Deferred Lighting sample",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for iOS, iPadOS, and macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "game-stereo-sample-article.mp4",
+          "type": "video"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "10093: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10093/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project requires an Apple Vision Pro, and cannot be run in the simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9e321063c3d8/RenderingAWindowedGameInStereo.zip": {
+      "checksum": "9e321063c3d83ad7f6f680637ee10ab02db49a630345f97f225a0469f132b0088918c1f59a2cb479e5c4835f62ed09acab6492b28057745abdaf2b429fe21af6",
+      "identifier": "9e321063c3d8/RenderingAWindowedGameInStereo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9e321063c3d8/RenderingAWindowedGameInStereo.zip"
+    },
+    "BOT-anist-PageImage-card.png": {
+      "alt": null,
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": null,
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": null,
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game": {
+      "abstract": [
+        {
+          "text": "Build an immersive game using RealityKit audio, simulation, and rendering features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game",
+      "images": [
+        {
+          "identifier": "spaceship_page_image.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Spaceship game",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spaceship-game"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/game-development-sample-code": {
+      "abstract": [
+        {
+          "text": "Explore a collection of projects relating to game development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/game-development-sample-code",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gaming sample code projects",
+      "type": "topic",
+      "url": "/documentation/realitykit/game-development-sample-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Swift",
+      "type": "topic",
+      "url": "/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/Metal/rendering-at-different-rasterization-rates": {
+      "abstract": [
+        {
+          "text": "Configure a rasterization rate map to vary rasterization rates depending on the amount of detail needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/rendering-at-different-rasterization-rates",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering at Different Rasterization Rates",
+      "type": "topic",
+      "url": "/documentation/Metal/rendering-at-different-rasterization-rates"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer": {
+      "abstract": [
+        {
+          "text": "Design your app’s visual look and behaviors in Reality Composer, and complete the gameplay experience by using custom RealityKit code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Game with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating_a_game_with_reality_composer"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_scene_understanding": {
+      "abstract": [
+        {
+          "text": "Create AR games and experiences that interact with real-world objects on LiDAR-equipped iOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_scene_understanding",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a game with scene understanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating_a_game_with_scene_understanding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/BOT-anist": {
+      "abstract": [
+        {
+          "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/BOT-anist",
+      "images": [
+        {
+          "identifier": "BOT-anist-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "BOT-anist",
+      "type": "topic",
+      "url": "/documentation/visionOS/BOT-anist"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionOS/happybeam"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionOS/swift-splash"
+    },
+    "game-stereo-sample-article-poster.jpg": {
+      "alt": null,
+      "identifier": "game-stereo-sample-article-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6f511210387c5c4759f8017a8a530c7/game-stereo-sample-article-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8107bf5044222cbf4969cb51e0666b8b/game-stereo-sample-article-poster~dark.jpg"
+        }
+      ]
+    },
+    "game-stereo-sample-article.mp4": {
+      "alt": "A screen recording of a visionOS app in a window, showing a scene with columns and lights moving between the columns. A 3D frame surrounds the window.",
+      "identifier": "game-stereo-sample-article.mp4",
+      "poster": "game-stereo-sample-article-poster.jpg",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d258991c331e488cbd39c095fbefb3a/game-stereo-sample-article.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d007985f8b3f5fbc1b84c1032845f262/game-stereo-sample-article~dark.mp4"
+        }
+      ]
+    },
+    "https://developer.apple.com/wwdc24/10093/": {
+      "identifier": "https://developer.apple.com/wwdc24/10093/",
+      "title": "Bring your iOS or iPadOS game to visionOS",
+      "titleInlineContent": [
+        {
+          "text": "Bring your iOS or iPadOS game to visionOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10093/"
+    },
+    "spaceship_page_image.png": {
+      "alt": null,
+      "identifier": "spaceship_page_image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f1f2f7bea09df5c78609f7bc6780ae0/spaceship_page_image.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9e321063c3d8/RenderingAWindowedGameInStereo.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code-links",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game",
+        "doc://com.apple.documentation/documentation/visionOS/BOT-anist",
+        "doc://com.apple.documentation/documentation/visionOS/happybeam",
+        "doc://com.apple.documentation/documentation/visionOS/swift-splash",
+        "doc://com.apple.documentation/documentation/visionOS/destination-video",
+        "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+        "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_scene_understanding"
+      ],
+      "title": "Sample code links"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/rendering-a-windowed-game-in-stereo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

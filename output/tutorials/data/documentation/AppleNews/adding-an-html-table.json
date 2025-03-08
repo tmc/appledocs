@@ -1,0 +1,706 @@
+{
+  "abstract": [
+    {
+      "text": "Add a table formatted in HTML to your article.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat",
+        "doc://com.apple.applenews/documentation/AppleNews/components",
+        "doc://com.apple.applenews/documentation/AppleNews/tables-in-an-article"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/adding-an-html-table"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding an HTML Table"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an HTML table to your article, you add a component with the ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property set to ",
+              "type": "text"
+            },
+            {
+              "code": "htmltable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In the required ",
+              "type": "text"
+            },
+            {
+              "code": "html",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, add the coded HTML table consisting of your data and the HTML tags that indicate rows. Make sure that all of your HTML code is enclosed in ",
+              "type": "text"
+            },
+            {
+              "code": "<table> </table>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the appearance of an HTML table, you can use any of the HTML tags Apple News Format supports; for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also apply c",
+              "type": "text"
+            },
+            {
+              "code": "omponentStyles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from Apple News Format; for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-the-HTML-Table-Tags",
+          "level": 3,
+          "text": "Review the HTML Table Tags",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple News Format supports these tags for HTML tables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\t<table> </table>",
+            "",
+            "\t<th> </th>",
+            "",
+            "\t<tr> </tr>",
+            "",
+            "\t<td> </td>",
+            "",
+            "\t<thead> </thead>",
+            "",
+            "\t<tbody> </tbody>",
+            "",
+            "\t<tfoot> </tfoot>",
+            "",
+            "\t<caption> </caption>"
+          ],
+          "syntax": "html",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "HTML ",
+                  "type": "text"
+                },
+                {
+                  "code": "<th>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "<td>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " elements that span multiple columns or rows aren’t supported. Apple News Format ignores ",
+                  "type": "text"
+                },
+                {
+                  "code": "colspan",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "rowspan",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This list describes how to use the basic HTML table tags:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Begin each row of the table (including the header row) with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<tr>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and end each row with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "</tr>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use table heading tags (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<th>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "</th>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") around each element in the table header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Put table data tags (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<td>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "</td>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") around each element in a row.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enclose a  single row or group of rows in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<thead>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<tbody>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<tfoot>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tags.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Style your table text using supported HTML tags. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a JSON ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that has the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tableStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object defined to specify table alignment, table padding, and other, nontextual table styles. Apple News Format ignores any style-related HTML attributes, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cellpadding",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cellspacing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "width",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alignment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following example HTML code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<table><tr><th>First Name</th><th>Last Name</th></tr>",
+            "<tr><td>John</td><td>Appleseed</td></tr></table>"
+          ],
+          "syntax": "html",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code results in a table with two columns and two rows — one row is for the heading and one is for data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "First name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Last name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "John",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Appleseed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/components": {
+      "abstract": [
+        {
+          "text": "Understand the types of components that can make up an article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Components",
+      "type": "topic",
+      "url": "/documentation/applenews/components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/tables-in-an-article": {
+      "abstract": [
+        {
+          "text": "Add a JSON or HTML data table, and understand  the options for changing the look of your table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/tables-in-an-article",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tables in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/tables-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use HTML formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using HTML with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-html-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting style properties for components, including background color and fill, borders, and table styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/HTMLTable": {
+      "abstract": [
+        {
+          "text": "The component for adding tables with HTML data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTMLTable"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/HTMLTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HTMLTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "HTMLTable",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/htmltable"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining a style for rows, columns, cells, and headers in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TableStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tablestyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tables-with-HTML-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/HTMLTable"
+      ],
+      "title": "Tables with HTML Data"
+    }
+  ]
+}

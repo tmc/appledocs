@@ -1,0 +1,842 @@
+{
+  "abstract": [
+    {
+      "text": "An updated sound sample description that adds high resolution audio.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Sound_sample_description_version_2",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2",
+        "text": "Sound sample description version 2 ('stsd')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2",
+        "text": "Sound sample description version 2 ('stsd')"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Sound sample description version 2 ('stsd')"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime 7 introduced a new version of the sound sample description, version 2, which extends QuickTime capabilities to include high resolution audio with another expansion of the sound sample description structure. In QuickTime 7, the sound and audio facilities are based on the Core Audio framework facilities and the Sound Manager has been deprecated. In this version of the sound sample description, the format field is set to ",
+              "type": "text"
+            },
+            {
+              "code": "‘lpcm’",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for uncompressed data. For compressed data formats, the format field is set to the compression type code (normally ",
+              "type": "text"
+            },
+            {
+              "code": "‘mp4a’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and the compression specifics and other features of QuickTime 7 are supplied by extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The version field is set to ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this version of the sound sample description structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sound sample description v2 structure adds the following new fields, appending to the v1 structure and renaming the four fields added in v1 to help ensure backwards compatibility with older applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The values contained in these fields have different meanings for compressed and uncompressed audio. The meaning may not be easily deducible from the field name and require reference to the appropriate sound sample description extensions to understand fully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some definitions for sound sample description version 2:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "LPCM Frame: one uncompressed sample in each of the channels (for instance, 44100Hz audio has 44100 LPCM frames per second, whether it is mono, stereo, 5.1, or other possible values). In other words, LPCM Frames divided by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "audioSampleRate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value is duration in seconds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio Packet: For compressed audio, an audio packet is the natural compressed access unit of that format. For uncompressed audio, an audio packet is simply one LPCM frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fields prefixed by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "const",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Note the three sound sample description v2 fields whose names start with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "const",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". These fields are only nonzero if the value is a constant. A zero in each field implies that the value is variable. For example: AAC audio would have a zero in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "constBytesPerAudioPacket",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " because AAC has variable sized audio packets. Codecs with variable duration audio packets set a zero in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "constLPCMFramesPerAudioPacket",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "LPCM-flag-values",
+          "level": 2,
+          "text": "LPCM flag values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The formatSpecificFlags field carries flags significant to the layout and formatting of audio streams defined in the Core Audio underpinnings for sound sample description v2. These are enumerated in the Apple QuickTime/CoreAudioFormat.h interface file and are subject to a fuller interpretation in the context of the AudioStreamBasicDescription data type. See the CoreAudio, “Core Audio Framework Reference” in the OS X Developer Library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum",
+            "{",
+            "    kAudioFormatFlagIsFloat                  = (1 << 0),  // 0x1",
+            "    kAudioFormatFlagIsBigEndian              = (1 << 1),  // 0x2",
+            "    kAudioFormatFlagIsSignedInteger          = (1 << 2),  // 0x4",
+            "    kAudioFormatFlagIsPacked                 = (1 << 3),  // 0x8",
+            "    kAudioFormatFlagIsAlignedHigh            = (1 << 4),  // 0x10",
+            "    kAudioFormatFlagIsNonInterleaved         = (1 << 5),  // 0x20",
+            "    kAudioFormatFlagIsNonMixable             = (1 << 6),  // 0x40",
+            "    kAudioFormatFlagsAreAllClear             = (1 << 31),",
+            "    ",
+            "    kLinearPCMFormatFlagIsFloat              = kAudioFormatFlagIsFloat,",
+            "    kLinearPCMFormatFlagIsBigEndian          = kAudioFormatFlagIsBigEndian,",
+            "    kLinearPCMFormatFlagIsSignedInteger      = kAudioFormatFlagIsSignedInteger,",
+            "    kLinearPCMFormatFlagIsPacked             = kAudioFormatFlagIsPacked,",
+            "    kLinearPCMFormatFlagIsAlignedHigh        = kAudioFormatFlagIsAlignedHigh,",
+            "    kLinearPCMFormatFlagIsNonInterleaved     = kAudioFormatFlagIsNonInterleaved,",
+            "    kLinearPCMFormatFlagIsNonMixable         = kAudioFormatFlagIsNonMixable,",
+            "    kLinearPCMFormatFlagsSampleFractionShift = 7,",
+            "    kLinearPCMFormatFlagsSampleFractionMask  = (0x3F << kLinearPCMFormatFlagsSampleFractionShift),",
+            "    kLinearPCMFormatFlagsAreAllClear         = kAudioFormatFlagsAreAllClear,",
+            "    ",
+            "    kAppleLosslessFormatFlag_16BitSourceData = 1,",
+            "    kAppleLosslessFormatFlag_20BitSourceData = 2,",
+            "    kAppleLosslessFormatFlag_24BitSourceData = 3,",
+            "    kAppleLosslessFormatFlag_32BitSourceData = 4",
+            "};"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history": {
+      "abstract": [
+        {
+          "text": "Changes to the QuickTime File Format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime File Format change log",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/revision_history"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_0": {
+      "abstract": [
+        {
+          "text": "A sound sample description that supports only uncompressed audio in raw or twos-complement format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_0",
+          "text": "Sound sample description version 0 ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sound sample description version 0 ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_0"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_1": {
+      "abstract": [
+        {
+          "text": "An extended sound sample description that supports compressed audio, and includes the ability to add atoms to the sound description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_1",
+          "text": "Sound sample description version 1 ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sound sample description version 1 ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_1"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2": {
+      "abstract": [
+        {
+          "text": "An updated sound sample description that adds high resolution audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2",
+          "text": "Sound sample description version 2 ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sound sample description version 2 ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Data_format": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer indicating the format of the stored data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Data_format",
+          "text": "Data format"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Data_format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/data_format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Data_reference_index": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer that contains the index of the data reference to use to retrieve data associated with samples that use this sample description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Data_reference_index",
+          "text": "Data reference index"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Data_reference_index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data reference index",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/data_reference_index"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Reserved": {
+      "abstract": [
+        {
+          "text": "Six bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Reserved",
+          "text": "Reserved"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Reserved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reserved",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/reserved"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Revision_level": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Revision_level",
+          "text": "Revision level"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Revision_level",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Revision level",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/revision_level"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Sample_description_size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer indicating the number of bytes in the sample description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Sample_description_size",
+          "text": "Sample description size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Sample_description_size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample description size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/sample_description_size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Vendor": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Vendor",
+          "text": "Vendor"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Vendor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Vendor",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/vendor"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Version": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer that holds the sample description version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_Version",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/version"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always0": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_always0",
+          "text": "always0"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "always0",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/always0"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always16": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_always16",
+          "text": "always16"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "always16",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/always16"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always3": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_always3",
+          "text": "always3"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "always3",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/always3"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always65536": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_always65536",
+          "text": "always65536"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always65536",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "always65536",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/always65536"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always7F000000": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_always7F000000",
+          "text": "always7F000000"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always7F000000",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "always7F000000",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/always7f000000"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/alwaysMinus2": {
+      "abstract": [
+        {
+          "text": "A 16-bit integer field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_alwaysMinus2",
+          "text": "alwaysMinus2"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/alwaysMinus2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alwaysMinus2",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/alwaysminus2"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constBitsPerChannel": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer field which is set only if constant and only for uncompressed audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_constBitsPerChannel",
+          "text": "constBitsPerChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constBitsPerChannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constBitsPerChannel",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/constbitsperchannel"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constBytesPerAudioPacket": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer set to the number of bytes per packet only if this value is constant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_constBytesPerAudioPacket",
+          "text": "constBytesPerAudioPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constBytesPerAudioPacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constBytesPerAudioPacket",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/constbytesperaudiopacket"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constLPCMFramesPerAudioPacket": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer set to the number of PCM frames per packet only if this value is constant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_constLPCMFramesPerAudioPacket",
+          "text": "constLPCMFramesPerAudioPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constLPCMFramesPerAudioPacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constLPCMFramesPerAudioPacket",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/constlpcmframesperaudiopacket"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/formatSpecificFlags": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer field which carries LPCM flag values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_formatSpecificFlags",
+          "text": "formatSpecificFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/formatSpecificFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatSpecificFlags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/formatspecificflags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/numAudioChannels": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer field set to the number of audio channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_numAudioChannels",
+          "text": "numAudioChannels"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/numAudioChannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numAudioChannels",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/numaudiochannels"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/sizeOfStructOnly": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer field providing the offset to sound sample description structure’s extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sound_sample_description_version_2_sizeOfStructOnly",
+          "text": "sizeOfStructOnly"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/sizeOfStructOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeOfStructOnly",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_version_2/sizeofstructonly"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Using-sample-descriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_0",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_1"
+      ],
+      "title": "Using sample descriptions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Sample_description_size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Data_format",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Reserved",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Data_reference_index",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Version",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Revision_level",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/Vendor",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always3",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always16",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/alwaysMinus2",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always0",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always65536",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/sizeOfStructOnly",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/numAudioChannels",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/always7F000000",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constBitsPerChannel",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/formatSpecificFlags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constBytesPerAudioPacket",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sound_sample_description_version_2/constLPCMFramesPerAudioPacket"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sound_sample_description_version_2"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

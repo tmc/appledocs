@@ -1,0 +1,318 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_type_categories"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Tween type categories"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of the tween types supported by QuickTime belongs to one of these categories:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Numeric tween types, which have pairs of numeric values, such as long integers, as input. For these types, linear interpolation is used to generate output values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "QuickDraw tween types, most of which have pairs of QuickDraw structures, such as points or rectangles, as input. For these types, one or more structure elements are interpolated, such as the h and v values for points, and each element that is interpolated is interpolated separately from others.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3D tween types, which have a QuickDraw 3D structure such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TQ3Matrix4x4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TQ3RotateAboutAxisTransformData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as input. For these types, a specific 3D transformation is performed on the data to generate output.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The polygon tween type, which takes three four-sided polygons as input. One polygon (such as the bounds for a sprite or track) is transformed, and the two others specify the start and end of the range of polygons into which the tween operation maps it. You can use the output (a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MatrixRecord",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " data structure) to map the source polygon into any intermediate polygon. The intermediate polygon is interpolated from the start and end polygons for each particular time in the tween duration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Path tween types, which have as input a QuickTime vector data stream for a path. Four of the path tween types also have as input a percentage of path’s length; for these types, either a point on the path or a data structure is returned. Two other path tween types treat the path as a function: one returns the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of the point on the path with a given ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, and the other returns the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of the point on the path with a given ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The list tween type, which has as input a QT atom container that contains leaf atoms of a specified atom type. For this tween type category, the duration of the tween operation is divided by the number of leaf atoms of the specified type. For time points within the first time division, the data for the first leaf atom is returned; for the second time division, the data for the second leaf atom is returned; and so on. The resulting tween operation proceeds in discrete steps (one step for each leaf atom), instead of the relatively continuous tweening produced by other tween type categories.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_QT_atom_container": {
+      "abstract": [
+        {
+          "text": "Specify the characteristics of a tween with atoms in a tween QT atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_QT_atom_container",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tween QT atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_qt_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media": {
+      "abstract": [
+        {
+          "text": "Store pairs of values to be interpolated between in QuickTime movies using tween media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tween media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_data": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Tween sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that contains information for converting from media time to sample number to sample location for tweens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Tween sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_sample_description"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-tween-media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_data",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_QT_atom_container"
+      ],
+      "title": "Storing tween media"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/tween_type_categories"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

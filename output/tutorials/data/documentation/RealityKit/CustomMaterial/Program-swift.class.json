@@ -1,0 +1,1299 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the backing shader compilation required for",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "custom materials.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "RealityKit",
+    "externalID": "s:17RealityFoundation14CustomMaterialV7ProgramC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Program"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Program"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CustomMaterial.Program"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Program"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this type to control when RealityKit compiles shaders,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and to initialize ",
+              "type": "text"
+            },
+            {
+              "code": "CustomMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects with more predicitable loading performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When initializing a ",
+              "type": "text"
+            },
+            {
+              "code": "CustomMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " this way, a ",
+              "type": "text"
+            },
+            {
+              "code": "Program",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "created first asynchronously, which is used to cache the material’s shader program so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "CustomMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be loaded immediately later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize descriptor with desired properties",
+            "var descriptor = CustomMaterial.Descriptor()",
+            "descriptor.lightingModel = .unlit",
+            "",
+            "// Create program object",
+            "let program = await CustomMaterial.Program(surfaceShader: surfaceShader,",
+            "                                           descriptor: descriptor)",
+            "",
+            "// Create material (returns immediately)",
+            "let material = CustomMaterial(program: program)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial": {
+      "abstract": [
+        {
+          "text": "A material that works with custom Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/GeometryModifier": {
+      "abstract": [
+        {
+          "text": "The custom material’s optional shader function that can manipulate an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entity’s vertex data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/GeometryModifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeometryModifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMaterial.GeometryModifier",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/geometrymodifier"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that represents the backing shader compilation required for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "custom materials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Program"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Program"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMaterial.Program",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV7ProgramC",
+          "text": "Program"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV7ProgramC",
+          "text": "Program"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/==(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Descriptor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that specifies all parameters necessary to initialize ",
+          "type": "text"
+        },
+        {
+          "code": "CustomMaterial",
+          "type": "codeVoice"
+        },
+        {
+          "text": " programs",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Descriptor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMaterial.Program.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/descriptor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/descriptor-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV7ProgramC",
+          "text": "Program"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV7ProgramC10DescriptorV",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/descriptor-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/descriptor-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/geometryModifier": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometryModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV16GeometryModifierV",
+          "text": "GeometryModifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/geometryModifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "geometryModifier",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/geometrymodifier"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/hash(into:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/hashvalue"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/init(surfaceShader:geometryModifier:descriptor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "surfaceShader"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV13SurfaceShaderV",
+          "text": "SurfaceShader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "geometryModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV16GeometryModifierV",
+          "text": "GeometryModifier"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV7ProgramC",
+          "text": "Program"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV7ProgramC10DescriptorV",
+          "text": "Descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/init(surfaceShader:geometryModifier:descriptor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(surfaceShader:geometryModifier:descriptor:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/init(surfaceshader:geometrymodifier:descriptor:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/surfaceShader": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "surfaceShader"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV",
+          "text": "CustomMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CustomMaterialV13SurfaceShaderV",
+          "text": "SurfaceShader"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/surfaceShader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "surfaceShader",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/program-swift.class/surfaceshader"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/SurfaceShader": {
+      "abstract": [
+        {
+          "text": "The custom material’s surface shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SurfaceShader"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/SurfaceShader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SurfaceShader"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMaterial.SurfaceShader",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial/surfaceshader"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomShaderStage": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomShaderStage"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomShaderStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomShaderStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomShaderStage",
+      "type": "topic",
+      "url": "/documentation/realitykit/customshaderstage"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MaterialFunction": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects representing compute functions for RealityKit custom materials .",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MaterialFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaterialFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MaterialFunction",
+      "type": "topic",
+      "url": "/documentation/realitykit/materialfunction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderGraphMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/shadergraphmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial/FaceCulling-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An alias for the cull mode object that’s appropriate for this material class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FaceCulling"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial/FaceCulling-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FaceCulling"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderGraphMaterial.FaceCulling",
+      "type": "topic",
+      "url": "/documentation/realitykit/shadergraphmaterial/faceculling-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial/TriangleFillMode-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An alias for the triangle fill mode object that’s appropriate for this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "material class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TriangleFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial/TriangleFillMode-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TriangleFillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderGraphMaterial.TriangleFillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/shadergraphmaterial/trianglefillmode-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/modifying-realitykit-rendering-using-custom-materials": {
+      "abstract": [
+        {
+          "text": "Write Metal shader functions to implement custom rendering effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/modifying-realitykit-rendering-using-custom-materials",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying RealityKit rendering using custom materials",
+      "type": "topic",
+      "url": "/documentation/realitykit/modifying-realitykit-rendering-using-custom-materials"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shaders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial/FaceCulling-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial/TriangleFillMode-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/modifying-realitykit-rendering-using-custom-materials",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/SurfaceShader",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/GeometryModifier",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MaterialFunction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Descriptor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomShaderStage"
+      ],
+      "title": "Shaders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Descriptor-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/==(_:_:)"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/init(surfaceShader:geometryModifier:descriptor:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/descriptor-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/geometryModifier",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/hashValue",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/surfaceShader"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/hash(into:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial/Program-swift.class/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/custommaterial/program-swift.class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

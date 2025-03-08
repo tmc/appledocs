@@ -1,0 +1,2435 @@
+{
+  "abstract": [
+    {
+      "text": "Assign resources to mesh and object shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Mesh and Object Shader Resource Preparation Commands"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All mesh shaders share an argument table for each resource type, such as buffers, textures, and sampler states. These argument tables are separate from other shader types, including object shaders, each of which have their own argument tables, one for each resource type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffer(_:offset:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a buffer to an entry in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffer(_:offset:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshBuffer:offset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMeshBuffer(_:offset:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshbuffer(_:offset:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBufferOffset(_:index:)": {
+      "abstract": [
+        {
+          "text": "Updates an entry in the mesh shader argument table with a new location within the entry’s current buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBufferOffset(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshBufferOffset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMeshBufferOffset(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshbufferoffset(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffers(_:offsets:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple buffers to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffers(_:offsets:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMeshBuffers(_:offsets:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshbuffers(_:offsets:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffers:offsets:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple buffers to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshBuffers:offsets:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffers:offsets:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshBuffers:offsets:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMeshBuffers:offsets:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshbuffers:offsets:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBytes(_:length:index:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer from bytes and assigns it to an entry in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBytes(_:length:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshBytes:length:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMeshBytes(_:length:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshbytes(_:length:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a sampler state to an entry in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMeshSamplerState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshsamplerstate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a sampler state and clamp values to an entry in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshsamplerstate(_:lodminclamp:lodmaxclamp:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates(_:lodMinClamps:lodMaxClamps:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states and clamp values to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMeshSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshsamplerstates(_:lodminclamps:lodmaxclamps:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMeshSamplerStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshsamplerstates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states and clamp values to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshsamplerstates:lodminclamps:lodmaxclamps:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshSamplerStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMeshSamplerStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshsamplerstates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTexture(_:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a texture to an entry in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshTexture"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTexture(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshTexture:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMeshTexture(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshtexture(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTextures(_:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple textures to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshTextures"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTextures(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMeshTextures(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshtextures(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTextures:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple textures to a range of entries in the mesh shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMeshTextures:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTextures:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMeshTextures:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMeshTextures:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setmeshtextures:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffer(_:offset:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a buffer to an entry in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffer(_:offset:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectBuffer:offset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setObjectBuffer(_:offset:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectbuffer(_:offset:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBufferOffset(_:index:)": {
+      "abstract": [
+        {
+          "text": "Updates an entry in the object shader argument table with a new location within the entry’s current buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBufferOffset(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectBufferOffset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setObjectBufferOffset(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectbufferoffset(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffers(_:offsets:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple buffers to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffers(_:offsets:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObjectBuffers(_:offsets:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectbuffers(_:offsets:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffers:offsets:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that assigns multiple buffers to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectBuffers:offsets:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffers:offsets:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectBuffers:offsets:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObjectBuffers:offsets:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectbuffers:offsets:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBytes(_:length:index:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer from bytes and assigns it to an entry in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBytes(_:length:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectBytes:length:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setObjectBytes(_:length:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectbytes(_:length:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a sampler state to an entry in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setObjectSamplerState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectsamplerstate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a sampler state and clamp values to an entry in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectsamplerstate(_:lodminclamp:lodmaxclamp:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates(_:lodMinClamps:lodMaxClamps:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states and clamp values to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMinClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lodMaxClamps"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObjectSamplerStates(_:lodMinClamps:lodMaxClamps:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectsamplerstates(_:lodminclamps:lodmaxclamps:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObjectSamplerStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectsamplerstates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states and clamp values to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectsamplerstates:lodminclamps:lodmaxclamps:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple sampler states to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectSamplerStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObjectSamplerStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjectsamplerstates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTexture(_:index:)": {
+      "abstract": [
+        {
+          "text": "Assigns a texture to an entry in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectTexture"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTexture(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectTexture:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setObjectTexture(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjecttexture(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTextures(_:range:)": {
+      "abstract": [
+        {
+          "text": "Assigns multiple textures to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectTextures"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTextures(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObjectTextures(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjecttextures(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTextures:withRange:": {
+      "abstract": [
+        {
+          "text": "Assigns multiple textures to a range of entries in the object shader argument table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObjectTextures:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTextures:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObjectTextures:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObjectTextures:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setobjecttextures:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Load individual resources and multiple resources within a heap into GPU memory so that they’re available to shaders through argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Argument Buffer Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/argument-buffer-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to fragment shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fragment Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/fragment-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to tile shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tile Shaders Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/tile-shaders-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to vertex shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vertex Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/vertex-shader-resource-preparation-commands"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-Resource-Preparation-Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+      ],
+      "title": "Encoding Resource Preparation Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Assigning-Buffers-for-Object-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffer(_:offset:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffers(_:offsets:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBytes(_:length:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBufferOffset(_:index:)"
+      ],
+      "title": "Assigning Buffers for Object Shaders"
+    },
+    {
+      "anchor": "Assigning-Textures-for-Object-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTexture(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTextures(_:range:)"
+      ],
+      "title": "Assigning Textures for Object Shaders"
+    },
+    {
+      "anchor": "Assigning-Sampler-States-for-Object-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates(_:lodMinClamps:lodMaxClamps:range:)"
+      ],
+      "title": "Assigning Sampler States for Object Shaders"
+    },
+    {
+      "anchor": "Assigning-Buffers-for-Mesh-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffer(_:offset:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffers(_:offsets:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBytes(_:length:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBufferOffset(_:index:)"
+      ],
+      "title": "Assigning Buffers for Mesh Shaders"
+    },
+    {
+      "anchor": "Assigning-Textures-for-Mesh-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTexture(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTextures(_:range:)"
+      ],
+      "title": "Assigning Textures for Mesh Shaders"
+    },
+    {
+      "anchor": "Assigning-Sampler-States-for-Mesh-Shaders",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates(_:lodMinClamps:lodMaxClamps:range:)"
+      ],
+      "title": "Assigning Sampler States for Mesh Shaders"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Assigning-Buffers-for-Object-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffer(_:offset:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBuffers:offsets:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBytes(_:length:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectBufferOffset(_:index:)"
+              ],
+              "title": "Assigning Buffers for Object Shaders"
+            },
+            {
+              "anchor": "Assigning-Textures-for-Object-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTexture(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectTextures:withRange:"
+              ],
+              "title": "Assigning Textures for Object Shaders"
+            },
+            {
+              "anchor": "Assigning-Sampler-States-for-Object-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+              ],
+              "title": "Assigning Sampler States for Object Shaders"
+            },
+            {
+              "anchor": "Assigning-Buffers-for-Mesh-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffer(_:offset:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBuffers:offsets:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBytes(_:length:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshBufferOffset(_:index:)"
+              ],
+              "title": "Assigning Buffers for Mesh Shaders"
+            },
+            {
+              "anchor": "Assigning-Textures-for-Mesh-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTexture(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshTextures:withRange:"
+              ],
+              "title": "Assigning Textures for Mesh Shaders"
+            },
+            {
+              "anchor": "Assigning-Sampler-States-for-Mesh-Shaders",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:"
+              ],
+              "title": "Assigning Sampler States for Mesh Shaders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-Resource-Preparation-Commands",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+              ],
+              "title": "Encoding Resource Preparation Commands"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)/title",
+          "value": "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectSamplerState(_:lodMinClamp:lodMaxClamp:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshBytes(_:length:index:)/title",
+          "value": "setMeshBytes:length:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshBytes(_:length:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMeshBytes:length:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshBufferOffset(_:index:)/title",
+          "value": "setMeshBufferOffset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshBufferOffset(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMeshBufferOffset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectSamplerState(_:index:)/title",
+          "value": "setObjectSamplerState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectSamplerState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObjectSamplerState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)/title",
+          "value": "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshSamplerState(_:lodMinClamp:lodMaxClamp:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshTexture(_:index:)/title",
+          "value": "setMeshTexture:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshTexture(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMeshTexture:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectBuffer(_:offset:index:)/title",
+          "value": "setObjectBuffer:offset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectBuffer(_:offset:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObjectBuffer:offset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectTexture(_:index:)/title",
+          "value": "setObjectTexture:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectTexture(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObjectTexture:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshSamplerState(_:index:)/title",
+          "value": "setMeshSamplerState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshSamplerState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMeshSamplerState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectBufferOffset(_:index:)/title",
+          "value": "setObjectBufferOffset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectBufferOffset(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObjectBufferOffset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshBuffer(_:offset:index:)/title",
+          "value": "setMeshBuffer:offset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setMeshBuffer(_:offset:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMeshBuffer:offset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectBytes(_:length:index:)/title",
+          "value": "setObjectBytes:length:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setObjectBytes(_:length:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObjectBytes:length:atIndex:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mesh-and-object-shader-resource-preparation-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mesh-and-object-shader-resource-preparation-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

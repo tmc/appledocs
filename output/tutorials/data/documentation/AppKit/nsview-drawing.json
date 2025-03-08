@@ -1,0 +1,2980 @@
+{
+  "abstract": [
+    {
+      "text": "Draw the content of custom views and update that content when the view’s size or appearance changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+        "doc://com.apple.appkit/documentation/AppKit/NSView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/nsview-drawing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Drawing"
+  },
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBorderType": {
+      "abstract": [
+        {
+          "text": "These constants specify the type of a view’s border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBorderType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBorderType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBorderType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBorderType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbordertype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/FullScreenModeOptionKey": {
+      "abstract": [
+        {
+          "text": "These constants are keys that you can use in the options dictionary in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/exitFullScreenMode(options:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FullScreenModeOptionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/FullScreenModeOptionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FullScreenModeOptionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView.FullScreenModeOptionKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/fullscreenmodeoptionkey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/Invalidating": {
+      "abstract": [
+        {
+          "text": "A property wrapper that notifies the system that a property value change has invalidated an aspect of the containing view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Invalidating"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/Invalidating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Invalidating"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView.Invalidating",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/invalidating"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)": {
+      "abstract": [
+        {
+          "text": "Returns a bitmap-representation object suitable for caching the specified portion of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapImageRepForCachingDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBitmapImageRep",
+          "text": "NSBitmapImageRep"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bitmapImageRepForCachingDisplayInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "bitmapImageRepForCachingDisplay(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/bitmapimagerepforcachingdisplay(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/cacheDisplay(in:to:)": {
+      "abstract": [
+        {
+          "text": "Draws the specified area of the view, and its descendants, into a provided bitmap-representation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cacheDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBitmapImageRep",
+          "text": "NSBitmapImageRep"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/cacheDisplay(in:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cacheDisplayInRect:toBitmapImageRep:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cacheDisplay(in:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/cachedisplay(in:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawConcurrently": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view can draw its contents on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canDrawConcurrently"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawConcurrently",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canDrawConcurrently"
+        }
+      ],
+      "role": "symbol",
+      "title": "canDrawConcurrently",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/candrawconcurrently"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/clipsToBounds": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the view, and its subviews, confine their drawing areas to the bounds of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipsToBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/clipsToBounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clipsToBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "clipsToBounds",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/clipstobounds"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/display()": {
+      "abstract": [
+        {
+          "text": "Displays the view and all its subviews if possible, invoking each of the ",
+          "type": "text"
+        },
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " methods ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/lockFocus()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/unlockFocus()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " as necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "display"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/display()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "display"
+        }
+      ],
+      "role": "symbol",
+      "title": "display()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/display()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/display(_:)": {
+      "abstract": [
+        {
+          "text": "Acts as ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/display()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", but confining drawing to a rectangular region of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "display"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/display(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "display(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/display(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()": {
+      "abstract": [
+        {
+          "text": "Displays the view and all its subviews if any part of the view has been marked as needing display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayIfNeeded"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayIfNeeded()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/displayifneeded()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded(_:)": {
+      "abstract": [
+        {
+          "text": "Acts as ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", confining drawing to a specified region of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayIfNeededInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayIfNeeded(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/displayifneeded(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity()": {
+      "abstract": [
+        {
+          "text": "Acts as ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", except that this method doesn’t back up to the first opaque ancestor—it simply causes the view and its descendants to execute their drawing code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayIfNeededIgnoringOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayIfNeededIgnoringOpacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayIfNeededIgnoringOpacity()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/displayifneededignoringopacity()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity(_:)": {
+      "abstract": [
+        {
+          "text": "Acts as ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", but confining drawing to ",
+          "type": "text"
+        },
+        {
+          "code": "aRect",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and not backing up to the first opaque ancestor—it simply causes the view and its descendants to execute their drawing code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayIfNeededIgnoringOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayIfNeededInRectIgnoringOpacity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayIfNeededIgnoringOpacity(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/displayifneededignoringopacity(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:)": {
+      "abstract": [
+        {
+          "text": "Displays the view but confines drawing to a specified region and does not back up to the first opaque ancestor—it simply causes the view and its descendants to execute their drawing code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayIgnoringOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayRectIgnoringOpacity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayIgnoringOpacity(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/displayignoringopacity(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:in:)": {
+      "abstract": [
+        {
+          "text": "Causes the view and its descendants to be redrawn to the specified graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayIgnoringOpacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayRectIgnoringOpacity:inContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayIgnoringOpacity(_:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/displayignoringopacity(_:in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to draw the view’s image within the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/draw(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)": {
+      "abstract": [
+        {
+          "text": "Sets the view to full screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enterFullScreenMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSScreen",
+          "text": "NSScreen"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSViewFullScreenModeOptionKey",
+          "text": "FullScreenModeOptionKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enterFullScreenMode:withOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enterFullScreenMode(_:withOptions:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/enterfullscreenmode(_:withoptions:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/exitFullScreenMode(options:)": {
+      "abstract": [
+        {
+          "text": "Instructs the view to exit full screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exitFullScreenMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSViewFullScreenModeOptionKey",
+          "text": "FullScreenModeOptionKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/exitFullScreenMode(options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exitFullScreenModeWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "exitFullScreenMode(options:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/exitfullscreenmode(options:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsBeingDrawn(_:count:)": {
+      "abstract": [
+        {
+          "text": "Returns by indirection a list of nonoverlapping rectangles that define the area the view is being asked to draw in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRectsBeingDrawn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsBeingDrawn(_:count:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getRectsBeingDrawn:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getRectsBeingDrawn(_:count:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/getrectsbeingdrawn(_:count:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsExposedDuringLiveResize(_:count:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of rectangles indicating the newly exposed areas of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRectsExposedDuringLiveResize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsExposedDuringLiveResize(_:count:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getRectsExposedDuringLiveResize:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getRectsExposedDuringLiveResize(_:count:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/getrectsexposedduringliveresize(_:count:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/inLiveResize": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view is being rendered as part of a live resizing operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inLiveResize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/inLiveResize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inLiveResize"
+        }
+      ],
+      "role": "symbol",
+      "title": "inLiveResize",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/inliveresize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/isInFullScreenMode": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view is in full screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInFullScreenMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/isInFullScreenMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inFullScreenMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "isInFullScreenMode",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/isinfullscreenmode"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/isOpaque": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view fills its frame rectangle with opaque content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOpaque"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/isOpaque",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "opaque"
+        }
+      ],
+      "role": "symbol",
+      "title": "isOpaque",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/isopaque"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/lockFocus()": {
+      "abstract": [
+        {
+          "text": "Locks the focus on the view, so subsequent commands take effect in the view’s window and coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/lockFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/lockfocus()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the view needs to be redrawn before being displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "needsDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "needsDisplay",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/needsdisplay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/needsToDraw(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the specified rectangle intersects any part of the area that the view is being asked to draw.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsToDraw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/needsToDraw(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "needsToDrawRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "needsToDraw(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/needstodraw(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/preservesContentDuringLiveResize": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view optimizes live-resize operations by preserving content that has not moved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preservesContentDuringLiveResize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/preservesContentDuringLiveResize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preservesContentDuringLiveResize"
+        }
+      ],
+      "role": "symbol",
+      "title": "preservesContentDuringLiveResize",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/preservescontentduringliveresize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/rectPreservedDuringLiveResize": {
+      "abstract": [
+        {
+          "text": "The rectangle identifying the portion of your view that did not change during a live resize operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rectPreservedDuringLiveResize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/rectPreservedDuringLiveResize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rectPreservedDuringLiveResize"
+        }
+      ],
+      "role": "symbol",
+      "title": "rectPreservedDuringLiveResize",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/rectpreservedduringliveresize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/setNeedsDisplay(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the region of the view within the specified rectangle as needing display, increasing the view’s existing invalid region to include it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNeedsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/setNeedsDisplay(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setNeedsDisplayInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setNeedsDisplay(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/setneedsdisplay(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)": {
+      "abstract": [
+        {
+          "text": "Translates the display rectangles by the specified delta.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translateRectsNeedingDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "translateRectsNeedingDisplayInRect:by:"
+        }
+      ],
+      "role": "symbol",
+      "title": "translateRectsNeedingDisplay(in:by:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/translaterectsneedingdisplay(in:by:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/unlockFocus()": {
+      "abstract": [
+        {
+          "text": "Unlocks focus from the current view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/unlockFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/unlockfocus()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/updateLayer()": {
+      "abstract": [
+        {
+          "text": "Updates the view’s content by modifying its underlying layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateLayer"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/updateLayer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateLayer()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/updatelayer()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/viewDidEndLiveResize()": {
+      "abstract": [
+        {
+          "text": "Informs the view of the end of a live resize—the user has finished resizing the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidEndLiveResize"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/viewDidEndLiveResize()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidEndLiveResize"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidEndLiveResize()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/viewdidendliveresize()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillDraw()": {
+      "abstract": [
+        {
+          "text": "Informs the view that it’s required to draw content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillDraw"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillDraw()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewWillDraw"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewWillDraw()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/viewwilldraw()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillStartLiveResize()": {
+      "abstract": [
+        {
+          "text": "Informs the view of the start of a live resize—the user has started resizing the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillStartLiveResize"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillStartLiveResize()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewWillStartLiveResize"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewWillStartLiveResize()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/viewwillstartliveresize()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect": {
+      "abstract": [
+        {
+          "text": "The portion of the view that isn’t clipped by its superviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibleRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "visibleRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "visibleRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/visiblerect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/wantsDefaultClipping": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether AppKit’s default clipping behavior is in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsDefaultClipping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/wantsDefaultClipping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsDefaultClipping"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsDefaultClipping",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/wantsdefaultclipping"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewInvalidating": {
+      "abstract": [
+        {
+          "text": "Implements a type of invalidation that can occur on a view that requires an update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewInvalidating"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewInvalidating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewInvalidating"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewInvalidating",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewinvalidating"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/layout": {
+      "abstract": [
+        {
+          "text": "Specify the size and position your view relative to other nearby views using rules that update your view hierarchy automatically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/appkit/layout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/nsview-printing": {
+      "abstract": [
+        {
+          "text": "Create a printable version of your view’s content and handle pagination and printer-related behaviors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/nsview-printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Printing",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview-printing"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and handle user input and events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/views-and-controls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-views-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/layout",
+        "doc://com.apple.appkit/documentation/AppKit/nsview-printing"
+      ],
+      "title": "Managing the view’s content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Drawing-the-Views-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/updateLayer()",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/clipsToBounds",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawConcurrently",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsBeingDrawn(_:count:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/needsToDraw(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/wantsDefaultClipping",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/cacheDisplay(in:to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSBorderType"
+      ],
+      "title": "Drawing the View’s Content"
+    },
+    {
+      "anchor": "Drawing-the-View-in-Fullscreen-Mode",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/exitFullScreenMode(options:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/isInFullScreenMode",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/FullScreenModeOptionKey"
+      ],
+      "title": "Drawing the View in Fullscreen Mode"
+    },
+    {
+      "anchor": "Invalidating-the-Views-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/setNeedsDisplay(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/display()",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/display(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity()",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/isOpaque",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillDraw()"
+      ],
+      "title": "Invalidating the View’s Content"
+    },
+    {
+      "anchor": "Updating-the-View-When-Property-Values-Change",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/Invalidating",
+        "doc://com.apple.appkit/documentation/AppKit/NSViewInvalidating"
+      ],
+      "title": "Updating the View When Property Values Change"
+    },
+    {
+      "anchor": "Managing-Live-Resize",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/inLiveResize",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/preservesContentDuringLiveResize",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsExposedDuringLiveResize(_:count:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/rectPreservedDuringLiveResize",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillStartLiveResize()",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/viewDidEndLiveResize()"
+      ],
+      "title": "Managing Live Resize"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Drawing-the-Views-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/updateLayer()",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/clipsToBounds",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/canDrawConcurrently",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsBeingDrawn(_:count:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/needsToDraw(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/wantsDefaultClipping",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/cacheDisplay(in:to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSBorderType"
+              ],
+              "title": "Drawing the View’s Content"
+            },
+            {
+              "anchor": "Drawing-the-View-in-Fullscreen-Mode",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/exitFullScreenMode(options:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/isInFullScreenMode",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/FullScreenModeOptionKey"
+              ],
+              "title": "Drawing the View in Fullscreen Mode"
+            },
+            {
+              "anchor": "Invalidating-the-Views-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/setNeedsDisplay(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/display()",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/display(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/displayIgnoringOpacity(_:in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded()",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeeded(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity()",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/displayIfNeededIgnoringOpacity(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/isOpaque",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillDraw()"
+              ],
+              "title": "Invalidating the View’s Content"
+            },
+            {
+              "anchor": "Managing-Live-Resize",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/inLiveResize",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/preservesContentDuringLiveResize",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/getRectsExposedDuringLiveResize(_:count:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/rectPreservedDuringLiveResize",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/viewWillStartLiveResize()",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/viewDidEndLiveResize()"
+              ],
+              "title": "Managing Live Resize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-the-views-content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/layout",
+                "doc://com.apple.appkit/documentation/AppKit/nsview-printing"
+              ],
+              "title": "Managing the view’s content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1getRectsBeingDrawn(_:count:)/title",
+          "value": "getRectsBeingDrawn:count:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1getRectsBeingDrawn(_:count:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRectsBeingDrawn:count:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1inLiveResize/title",
+          "value": "inLiveResize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1inLiveResize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inLiveResize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1needsToDraw(_:)/title",
+          "value": "needsToDrawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1needsToDraw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "needsToDrawRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeededIgnoringOpacity()/title",
+          "value": "displayIfNeededIgnoringOpacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeededIgnoringOpacity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayIfNeededIgnoringOpacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeeded()/title",
+          "value": "displayIfNeeded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeeded()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayIfNeeded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeeded(_:)/title",
+          "value": "displayIfNeededInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeeded(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayIfNeededInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1unlockFocus()/title",
+          "value": "unlockFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1unlockFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockFocus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1draw(_:)/title",
+          "value": "drawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1draw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1canDrawConcurrently/title",
+          "value": "canDrawConcurrently"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1canDrawConcurrently/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canDrawConcurrently"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1viewWillStartLiveResize()/title",
+          "value": "viewWillStartLiveResize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1viewWillStartLiveResize()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillStartLiveResize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1display(_:)/title",
+          "value": "displayRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1display(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1translateRectsNeedingDisplay(in:by:)/title",
+          "value": "translateRectsNeedingDisplayInRect:by:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1translateRectsNeedingDisplay(in:by:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "translateRectsNeedingDisplayInRect:by:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1isOpaque/title",
+          "value": "opaque"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1isOpaque/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "opaque"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1preservesContentDuringLiveResize/title",
+          "value": "preservesContentDuringLiveResize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1preservesContentDuringLiveResize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preservesContentDuringLiveResize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1isInFullScreenMode/title",
+          "value": "inFullScreenMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1isInFullScreenMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inFullScreenMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1rectPreservedDuringLiveResize/title",
+          "value": "rectPreservedDuringLiveResize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1rectPreservedDuringLiveResize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rectPreservedDuringLiveResize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1clipsToBounds/title",
+          "value": "clipsToBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1clipsToBounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clipsToBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1FullScreenModeOptionKey/title",
+          "value": "NSViewFullScreenModeOptionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1FullScreenModeOptionKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewFullScreenModeOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1FullScreenModeOptionKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewFullScreenModeOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1getRectsExposedDuringLiveResize(_:count:)/title",
+          "value": "getRectsExposedDuringLiveResize:count:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1getRectsExposedDuringLiveResize(_:count:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRectsExposedDuringLiveResize:count:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1display()/title",
+          "value": "display"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1display()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "display"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1cacheDisplay(in:to:)/title",
+          "value": "cacheDisplayInRect:toBitmapImageRep:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1cacheDisplay(in:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cacheDisplayInRect:toBitmapImageRep:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1viewWillDraw()/title",
+          "value": "viewWillDraw"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1viewWillDraw()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillDraw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1visibleRect/title",
+          "value": "visibleRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1visibleRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "visibleRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1setNeedsDisplay(_:)/title",
+          "value": "setNeedsDisplayInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1setNeedsDisplay(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNeedsDisplayInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1bitmapImageRepForCachingDisplay(in:)/title",
+          "value": "bitmapImageRepForCachingDisplayInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1bitmapImageRepForCachingDisplay(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bitmapImageRepForCachingDisplayInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIgnoringOpacity(_:)/title",
+          "value": "displayRectIgnoringOpacity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIgnoringOpacity(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayRectIgnoringOpacity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1viewDidEndLiveResize()/title",
+          "value": "viewDidEndLiveResize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1viewDidEndLiveResize()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidEndLiveResize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1exitFullScreenMode(options:)/title",
+          "value": "exitFullScreenModeWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1exitFullScreenMode(options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "exitFullScreenModeWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBorderType/title",
+          "value": "NSBorderType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBorderType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBorderType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBorderType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBorderType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1enterFullScreenMode(_:withOptions:)/title",
+          "value": "enterFullScreenMode:withOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1enterFullScreenMode(_:withOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enterFullScreenMode:withOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1needsDisplay/title",
+          "value": "needsDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1needsDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "needsDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1updateLayer()/title",
+          "value": "updateLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1updateLayer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIgnoringOpacity(_:in:)/title",
+          "value": "displayRectIgnoringOpacity:inContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIgnoringOpacity(_:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayRectIgnoringOpacity:inContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1wantsDefaultClipping/title",
+          "value": "wantsDefaultClipping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1wantsDefaultClipping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsDefaultClipping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeededIgnoringOpacity(_:)/title",
+          "value": "displayIfNeededInRectIgnoringOpacity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1displayIfNeededIgnoringOpacity(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayIfNeededInRectIgnoringOpacity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1lockFocus()/title",
+          "value": "lockFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1lockFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockFocus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsview-drawing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsview-drawing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

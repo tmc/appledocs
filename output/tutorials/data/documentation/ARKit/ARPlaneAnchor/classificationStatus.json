@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "The current state of ARKit’s process for classifying the plane anchor.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classificationStatus"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARPlaneAnchor(py)classificationStatus",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "classificationStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "classificationStatus"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "classificationStatus"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ARPlaneClassificationStatus",
+              "text": "ARPlaneClassificationStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "classificationStatus"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On supported devices, ARKit automatically attempts to characterize each detected plane, describing it as a real-world surface such as as a wall, floor, or table. You can then use this information to enhance the realism of your AR experience; for example, by placing certain virtual content only on floors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this property’s value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusKnown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classification-2hi2p",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property represents ARKit’s characterization of the real-world surface corresponding to the plane anchor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Plane classification can take longer than plane detection, and ARKit reports classifications only for planes where it has a high confidence in the result, so you can use other values of this property to keep track of ARKit’s classification process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ARKit is still working to classify a plane, the classification is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification/ARPlaneClassificationNone",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the status is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusUndetermined",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ARKit cannot characterize a plane with high confidence, the classification is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification/ARPlaneClassificationNone",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the status is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusUnknown",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Plane classification is available only on iPhone XS, iPhone XS Max, and iPhone XR. Before using classification results, check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/isClassificationSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property to make sure you’re on a supported device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a 2D planar surface that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPlaneAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classification-2hi2p": {
+      "abstract": [
+        {
+          "text": "A general characterization of what kind of real-world surface the plane anchor represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "classification"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classification-2hi2p",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classification",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/classification-2hi2p"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classificationStatus": {
+      "abstract": [
+        {
+          "text": "The current state of ARKit’s process for classifying the plane anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "classificationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classificationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classificationStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/classificationstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/isClassificationSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether plane classification is available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isClassificationSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/isClassificationSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classificationSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isClassificationSupported",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor/isclassificationsupported"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification": {
+      "abstract": [
+        {
+          "text": "Possible characterizations of real-world surfaces represented by plane anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneClassification"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARPlaneClassification",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneclassification"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification/ARPlaneClassificationNone": {
+      "abstract": [
+        {
+          "text": "No classification is available for the plane anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneClassificationNone"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification/ARPlaneClassificationNone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARPlaneClassificationNone",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneclassification/arplaneclassificationnone"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus": {
+      "abstract": [
+        {
+          "text": "Possible states of ARKit’s process for classifying plane anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneClassificationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARPlaneClassificationStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneclassificationstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusKnown": {
+      "abstract": [
+        {
+          "text": "ARKit has completed its classfication process for the plane anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneClassificationStatusKnown"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusKnown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARPlaneClassificationStatusKnown",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusknown"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusUndetermined": {
+      "abstract": [
+        {
+          "text": "ARKit has not yet produced a classification for the plane anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneClassificationStatusUndetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusUndetermined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARPlaneClassificationStatusUndetermined",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusundetermined"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusUnknown": {
+      "abstract": [
+        {
+          "text": "ARKit has completed its classification process for the plane anchor, but the result is inconclusive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneClassificationStatusUnknown"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus/ARPlaneClassificationStatusUnknown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARPlaneClassificationStatusUnknown",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusunknown"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classifying-a-Plane",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/isClassificationSupported",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor/classification-2hi2p",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassification",
+        "doc://com.apple.arkit/documentation/ARKit/ARPlaneClassificationStatus"
+      ],
+      "title": "Classifying a Plane"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1isClassificationSupported/title",
+          "value": "classificationSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor~1isClassificationSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "classificationSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/title",
+          "value": "ARPlaneAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arplaneanchor/classificationstatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,850 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieves the CSSM authorization tags of a given access control list entry.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecACLGetAuthorizations"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecACLGetAuthorizations",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecACLGetAuthorizations"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecACLGetAuthorizations"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecACLGetAuthorizations"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecACLGetAuthorizations"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecACL",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecACLRef",
+              "text": "SecACLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "acl"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/CSSM_ACL_AUTHORIZATION_TAG",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CSSM_ACL_AUTHORIZATION_TAG",
+              "text": "CSSM_ACL_AUTHORIZATION_TAG"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "tags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/uint32",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32",
+              "text": "uint32"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "tagCount"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ACL object that identifies the access control list entry from which you wish to retrieve the authorization tags.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "acl"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an array of CSSM authorization tags. You must allocate this array before calling the function. On return, this array contains the authorization tags of the specified ACL entry.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "tags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On entry, points to the number of elements in the array you passed in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "tags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. On return, points to the number of tags actually returned or, in the case of an overflow, the number of tags required.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "tagCount"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This function is deprecated.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ACL object includes a list of trusted applications (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL object applies. Use this function to retrieve the list of operations for an ACL object. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecACLCopySimpleContents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to retrieve the other information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SecACLGetAuthorizations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns an error if there are more tags to return than the number of elements you allocated in the ",
+              "type": "text"
+            },
+            {
+              "code": "tags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. A 20-element array should suffice for most purposes; however, you can test for the ",
+              "type": "text"
+            },
+            {
+              "code": "errSecBufferTooSmall",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error and increase the size of the array before calling the function again if necessary. Alternatively, you can call the function with a tag count of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", read the value returned in the ",
+              "type": "text"
+            },
+            {
+              "code": "tagCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, and then call the function again using that value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is deprecated in macOS 10.7 and later; use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CSSM_ACL_AUTHORIZATION_TAG": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSM_ACL_AUTHORIZATION_TAG"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSM_ACL_AUTHORIZATION_TAG",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSM_ACL_AUTHORIZATION_TAG"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSM_ACL_AUTHORIZATION_TAG",
+      "type": "topic",
+      "url": "/documentation/security/cssm_acl_authorization_tag"
+    },
+    "doc://com.apple.security/documentation/Security/SecACL": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents information about an ACL entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACL"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACL",
+      "type": "topic",
+      "url": "/documentation/security/secacl"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization tags of a given ACL entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLCopyAuthorizations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCopyAuthorizations(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCopyAuthorizations"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLCopyAuthorizations(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclcopyauthorizations(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLCopySimpleContents": {
+      "abstract": [
+        {
+          "text": "Returns the application list, description, and CSSM prompt selector for a given access control list entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLCopySimpleContents"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLCopySimpleContents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLCopySimpleContents",
+      "type": "topic",
+      "url": "/documentation/security/secaclcopysimplecontents"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLGetAuthorizations": {
+      "abstract": [
+        {
+          "text": "Retrieves the CSSM authorization tags of a given access control list entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecACLGetAuthorizations"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLGetAuthorizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecACLGetAuthorizations",
+      "type": "topic",
+      "url": "/documentation/security/secaclgetauthorizations"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a trusted app instance based on the app at the given path in the file system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationCreateFromPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustedApplicationRef",
+          "text": "SecTrustedApplication"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustedApplicationCreateFromPath(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustedApplicationCreateFromPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustedApplicationCreateFromPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustedapplicationcreatefrompath(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/uint32": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint32"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/uint32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uint32"
+        }
+      ],
+      "role": "symbol",
+      "title": "uint32",
+      "type": "topic",
+      "url": "/documentation/security/uint32"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1uint32/title",
+          "value": "uint32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1uint32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1uint32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCreateFromPath(_:_:)/title",
+          "value": "SecTrustedApplicationCreateFromPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustedApplicationCreateFromPath(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustedApplicationCreateFromPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_ACL_AUTHORIZATION_TAG/title",
+          "value": "CSSM_ACL_AUTHORIZATION_TAG"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_ACL_AUTHORIZATION_TAG/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_ACL_AUTHORIZATION_TAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_ACL_AUTHORIZATION_TAG/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_ACL_AUTHORIZATION_TAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/title",
+          "value": "SecACLRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyAuthorizations(_:)/title",
+          "value": "SecACLCopyAuthorizations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLCopyAuthorizations(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLCopyAuthorizations"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secaclgetauthorizations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

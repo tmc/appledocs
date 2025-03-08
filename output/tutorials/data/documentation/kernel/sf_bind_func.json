@@ -1,0 +1,277 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/sf_bind_func"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1433243,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@sf_bind_func",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "sf_bind_func"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/errno_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@errno_t",
+              "text": "errno_t"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "sf_bind_func"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *cookie, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/socket_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@socket_t",
+              "text": "socket_t"
+            },
+            {
+              "kind": "text",
+              "text": " so, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "sockaddr"
+            },
+            {
+              "kind": "text",
+              "text": " *to);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Cookie value specified when the filter attach was called.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cookie"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The socket the filter is attached to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "so"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The local address of the socket will be bound to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "to"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Return: 0 - The caller will continue with normal processing of the bind. EJUSTRETURN - The caller will return with a value of 0 (no error) from that point without further processing the bind command. The protocol layer will not see the call. Anything Else - The caller will rejecting the bind.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "sf_bind_func is called before performing a bind operation on a socket.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/errno_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/errno_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errno_t",
+      "type": "topic",
+      "url": "/documentation/kernel/errno_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/socket_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/socket_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "socket_t",
+      "type": "topic",
+      "url": "/documentation/kernel/socket_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/sf_bind_func"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

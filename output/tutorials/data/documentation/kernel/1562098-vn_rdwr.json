@@ -1,0 +1,456 @@
+{
+  "abstract": [
+    {
+      "text": "Read from or write to a file.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1562098-vn_rdwr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1562098,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@vn_rdwr",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "vn_rdwr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "vn_rdwr"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "uio_rw"
+            },
+            {
+              "kind": "text",
+              "text": " rw, "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "vnode"
+            },
+            {
+              "kind": "text",
+              "text": " *vp, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/caddr_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@caddr_t",
+              "text": "caddr_t"
+            },
+            {
+              "kind": "text",
+              "text": " base, "
+            },
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " len, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/off_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@off_t",
+              "text": "off_t"
+            },
+            {
+              "kind": "text",
+              "text": " offset, "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "uio_seg"
+            },
+            {
+              "kind": "text",
+              "text": " segflg, "
+            },
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " ioflg, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kauth_cred_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kauth_cred_t",
+              "text": "kauth_cred_t"
+            },
+            {
+              "kind": "text",
+              "text": " cred, "
+            },
+            {
+              "kind": "keyword",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " *aresid, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/proc_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@proc_t",
+              "text": "proc_t"
+            },
+            {
+              "kind": "text",
+              "text": " p);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "UIO_READ for a read, UIO_WRITE for a write.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rw"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The vnode on which to perform I/O.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "vp"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Start of buffer into which to read or from which to write data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "base"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Length of buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "len"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Offset within the file at which to start I/O.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "What kind of address \"base\" is. See uio_seg definition in sys/uio.h. UIO_SYSSPACE for kernelspace, UIO_USERSPACE for userspace. UIO_USERSPACE32 and UIO_USERSPACE64 are in general preferred, but vn_rdwr will make sure that has the correct address sizes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "segflg"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Defined in vnode.h, e.g. IO_NOAUTH, IO_NOCACHE.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ioflg"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Credential to pass down to filesystem for authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cred"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Destination for amount of requested I/O which was not completed, as with uio_resid().",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aresid"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Process requesting I/O.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "p"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "0 for success; errors from filesystem, and EIO if did not perform all requested I/O and the \"aresid\" parameter is NULL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vn_rdwr() abstracts the details of constructing a uio and picking a vnode operation to allow simple in-kernel file I/O.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/caddr_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/caddr_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caddr_t",
+      "type": "topic",
+      "url": "/documentation/kernel/caddr_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kauth_cred_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kauth_cred_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kauth_cred_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kauth_cred_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Functions",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_functions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/off_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/off_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "off_t",
+      "type": "topic",
+      "url": "/documentation/kernel/off_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/proc_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/proc_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "proc_t",
+      "type": "topic",
+      "url": "/documentation/kernel/proc_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1562098-vn_rdwr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

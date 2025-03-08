@@ -1,0 +1,748 @@
+{
+  "abstract": [
+    {
+      "text": "A word of bits constituting the low-level attribute flags for imported keys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters/keyAttributes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@SecKeyImportExportParameters@FI@keyAttributes",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "keyAttributes"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CSSM_KEYATTR_FLAGS",
+        "text": "CSSM_KEYATTR_FLAGS"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "keyAttributes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "keyAttributes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyAttributes"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/CSSM_KEYATTR_FLAGS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CSSM_KEYATTR_FLAGS",
+              "text": "CSSM_KEYATTR_FLAGS"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_SENSITIVE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "|",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_EXTRACTABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; the ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_PERMANENT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit is also added to the default if a non-NULL value is specified for the ",
+              "type": "text"
+            },
+            {
+              "code": "importKeychain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following are valid values for these flags: ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_PERMANENT",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_SENSITIVE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_EXTRACTABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_PERMANENT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit is set, the ",
+              "type": "text"
+            },
+            {
+              "code": "importKeychain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is not valid, and if any keys are found in the external representation, then the error ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errSecInvalidKeychain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_SENSITIVE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit indicates that the key can only be extracted in wrapped form.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you do not set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CSSM_KEYATTR_EXTRACTABLE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " bit, you cannot extract the imported key from the keychain in any form, including in wrapped form.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_FLAGS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration is defined in ",
+              "type": "text"
+            },
+            {
+              "code": "cssmtype.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Note that the ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_RETURN_xxx",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bits are always forced to ",
+              "type": "text"
+            },
+            {
+              "code": "CSSM_KEYATTR_RETURN_REF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " regardless of how they are specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "keyAttributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CSSM_KEYATTR_FLAGS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSM_KEYATTR_FLAGS"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSM_KEYATTR_FLAGS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSM_KEYATTR_FLAGS"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSM_KEYATTR_FLAGS",
+      "type": "topic",
+      "url": "/documentation/security/cssm_keyattr_flags"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters": {
+      "abstract": [
+        {
+          "text": "The legacy import/export parameter structure.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyImportExportParameters",
+      "type": "topic",
+      "url": "/documentation/security/seckeyimportexportparameters"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters/keyAttributes": {
+      "abstract": [
+        {
+          "text": "A word of bits constituting the low-level attribute flags for imported keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CSSM_KEYATTR_FLAGS",
+          "text": "CSSM_KEYATTR_FLAGS"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters/keyAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyAttributes",
+      "type": "topic",
+      "url": "/documentation/security/seckeyimportexportparameters/keyattributes"
+    },
+    "doc://com.apple.security/documentation/Security/errSecInvalidKeychain": {
+      "abstract": [
+        {
+          "text": "The keychain is not valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecInvalidKeychain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecInvalidKeychain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errSecInvalidKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "errSecInvalidKeychain",
+      "type": "topic",
+      "url": "/documentation/security/errsecinvalidkeychain"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "keyAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security",
+                "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "identifier": "doc://com.apple.security/documentation/Security/CSSM_KEYATTR_FLAGS",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CSSM_KEYATTR_FLAGS",
+                    "text": "CSSM_KEYATTR_FLAGS"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "keyAttributes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/title",
+          "value": "SecKeyImportExportParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecInvalidKeychain/title",
+          "value": "errSecInvalidKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecInvalidKeychain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecInvalidKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters~1keyAttributes/title",
+          "value": "keyAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters~1keyAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_KEYATTR_FLAGS/title",
+          "value": "CSSM_KEYATTR_FLAGS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_KEYATTR_FLAGS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_KEYATTR_FLAGS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1CSSM_KEYATTR_FLAGS/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSM_KEYATTR_FLAGS"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/seckeyimportexportparameters/keyattributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/seckeyimportexportparameters/keyattributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,927 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about the benefits of having a texture atlas, and the process for using it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About Texture Atlases"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, a SpriteKit texture atlas is created automatically by the Xcode build system after you put multiple images in an ",
+              "type": "text"
+            },
+            {
+              "code": ".atlas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the app bundle. Then, you access those images at runtime using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The benefits are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimized bundle size.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maximized runtime perfomance when rendering more than one of the atlas’s textures at the same time, because SpriteKit is able to effectively render them at the same time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Creating-a-Texture-Atlas",
+          "level": 3,
+          "text": "Creating a Texture Atlas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create texture atlases using Xcode. Add a folder with the ",
+              "type": "text"
+            },
+            {
+              "code": ".atlas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension to your project and place the artwork to be included in the atlas inside this folder. Xcode builds a texture atlas from the artwork and adds it to the app bundle. The format for a compiled texture atlas is private and subject to change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about creating texture atlases, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev0bfaf1ab7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Loading-Textures-from-a-Texture-Atlas",
+          "level": 3,
+          "text": "Loading Textures from a Texture Atlas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a texture using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from an image file in a texture atlas if one is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit searches first for an image file with the specified filename. If it doesn’t find one, it searches inside any texture atlases built into the app bundle. This means that you don’t have to make any coding changes to support this in your game. This design also offers your artists the ability to experiment with new textures without requiring that your game be rebuilt. The artists drop the textures into the app bundle. When the app is relaunched, SpriteKit automatically discovers the textures (overriding any previous versions built into the texture atlases). When the artists are satisfied with the textures, you then add those textures to the project and bake them into your texture atlases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to explicitly work with texture atlas objects, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. First, create a texture atlas object using the name of the atlas. Next, use the names of the image files stored in the atlas to look up the individual textures. The following code shows an example. It uses a texture atlas that holds multiple frames of animation for a monster, and shows how to create textures from those frames and store them in an array. In the actual project, you would add a ",
+              "type": "text"
+            },
+            {
+              "code": "monster.atlas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder with the four image files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let atlas = SKTextureAtlas(named: \"monster\")",
+                    "let f1 = atlas.textureNamed(\"monster-walk1.png\")",
+                    "let f2 = atlas.textureNamed(\"monster-walk2.png\")",
+                    "let f3 = atlas.textureNamed(\"monster-walk3.png\")",
+                    "let f4 = atlas.textureNamed(\"monster-walk4.png\")",
+                    "let monsterWalkTextures = [f1, f2, f3, f4]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@\"monster\"];",
+                    "SKTexture *f1 = [atlas textureNamed:@\"monster-walk1.png\"];",
+                    "SKTexture *f2 = [atlas textureNamed:@\"monster-walk2.png\"];",
+                    "SKTexture *f3 = [atlas textureNamed:@\"monster-walk3.png\"];",
+                    "SKTexture *f4 = [atlas textureNamed:@\"monster-walk4.png\"];",
+                    "NSArray *monsterWalkTextures = @[f1,f2,f3,f4];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether your project uses a texture atlas or a sprite atlas, the code used to load assets is identical.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Creating-a-Texture-Atlas-at-Runtime",
+          "level": 3,
+          "text": "Creating a Texture Atlas at Runtime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, provide a dictionary that points to the various image files that should be part of the atlas. The following code shows how you can create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from three image files. The initializer doesn’t allow for optional values in the dictionary, so a guard statement is used to ensure that all of the images exist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let pandaImage = UIImage(named: \"panda.png\"),",
+            "    let monkeyImage = UIImage(named: \"monkey.png\"),",
+            "    let rabbitImage = UIImage(named: \"rabbit.png\") else {",
+            "        print(\"unable to resolve all images\")",
+            "        return",
+            "}  ",
+            "let textureAtlas = SKTextureAtlas(dictionary: [\"panda\": pandaImage,",
+            "                                               \"monkey\": monkeyImage,",
+            "                                               \"rabbit\": rabbitImage])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, texture atlas objects can be created at runtime by providing a dictionary that points to the various image files that should be part of the atlas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Creating-a-Sprite-Atlas",
+          "level": 3,
+          "text": "Creating a Sprite Atlas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sprite atlas offers the advantages of a texture atlas with the management functionality of an asset catalog. For example, if you supply assets with different resolutions for different devices, sprite atlases support app thinning, and your users will only download the required images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a sprite atlas using Xcode. First add a new asset catalog to your project; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev81ce1d383",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then, inside the new asset catalog, add a new sprite atlas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process is described in detail in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev10510b1f7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this document, the term ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "texture atlas",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " can refer to either a sprite atlas or a texture atlas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Deciding-on-Texture-Count-and-Size",
+          "level": 3,
+          "text": "Deciding on Texture Count and Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the most out of a texture atlas, pack it full of textures you’ll be using simultaneously. But be aware that you need a balance between too many textures and too few.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you include too many images, large amounts of texture data may need to be loaded into memory simultaneously.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With a common maximum texture size of 4,096 x 4,096 pixels, the build system will ideally fit all of your source textures into one destination texture. The build system may need to disperse your source textures across multiple destinations textures depending on the count and size of your source textures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you use too few images, you won’t be getting the most out of the texture atlas’s batch rendering ability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Experiment with different configurations of your texture atlases and choose the combination that gives you the best performance. Xcode builds the atlases for you, so you can switch between different atlas configurations with relative ease.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture": {
+      "abstract": [
+        {
+          "text": "An image, decoded on the GPU, that can be used to render various SpriteKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTexture",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)": {
+      "abstract": [
+        {
+          "text": "Create a new texture object from an image file stored in the app bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithImageNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(imageNamed:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(imagenamed:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas": {
+      "abstract": [
+        {
+          "text": "A collection of textures optimized for storage and drawing performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTextureAtlas",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture atlas from a set of image files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "atlasWithDictionary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/init(dictionary:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture from data stored in the texture atlas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/texturenamed(_:)"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev0bfaf1ab7": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev0bfaf1ab7",
+      "title": "Use texture atlases to improve performance",
+      "titleInlineContent": [
+        {
+          "text": "Use texture atlases to improve performance",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev0bfaf1ab7"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev10510b1f7": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev10510b1f7",
+      "title": "Create asset catalogs and sets",
+      "titleInlineContent": [
+        {
+          "text": "Create asset catalogs and sets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev10510b1f7"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev81ce1d383": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev81ce1d383",
+      "title": "Add files and folders to a project",
+      "titleInlineContent": [
+        {
+          "text": "Add files and folders to a project",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev81ce1d383"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1init(dictionary:)/title",
+          "value": "atlasWithDictionary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1init(dictionary:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "atlasWithDictionary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(imageNamed:)/title",
+          "value": "textureWithImageNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(imageNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithImageNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/title",
+          "value": "textureNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/title",
+          "value": "SKTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/title",
+          "value": "SKTextureAtlas"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/about-texture-atlases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/about-texture-atlases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

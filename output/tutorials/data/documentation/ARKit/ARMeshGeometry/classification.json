@@ -1,0 +1,970 @@
+{
+  "abstract": [
+    {
+      "text": "Classification for each face in the mesh.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/classification"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARMeshGeometry(py)classification",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "classification"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)ARGeometrySource",
+        "text": "ARGeometrySource"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "classification"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "classification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "classification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeometrySource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)ARGeometrySource",
+              "text": "ARGeometrySource"
+            },
+            {
+              "kind": "text",
+              "text": "? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each element of the array (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeometrySource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") is a classification that corresponds to one face in the geometry. The ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of this property represents the number of faces in the geometry. The default value at each index is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", –– the raw value for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates retrieving a classification for a particular face:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension ARMeshGeometry {",
+            "    func classificationOf(faceWithIndex index: Int) -> ARMeshClassification {",
+            "        guard let classification = classification else { return .none }",
+            "        let classificationAddress = classification.buffer.contents().advanced(by: index)",
+            "        let classificationValue = Int(classificationAddress.assumingMemoryBound(to: UInt8.self).pointee)",
+            "        return ARMeshClassification(rawValue: classificationValue) ?? .none",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a sample app that demonstrates classification, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeometryElement": {
+      "abstract": [
+        {
+          "text": "A container for index data, such as vertex indices of a face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeometryElement"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeometryElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeometryElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeometryElement",
+      "type": "topic",
+      "url": "/documentation/arkit/argeometryelement"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeometrySource": {
+      "abstract": [
+        {
+          "text": "Mesh data in a buffer-based array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeometrySource"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeometrySource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeometrySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeometrySource",
+      "type": "topic",
+      "url": "/documentation/arkit/argeometrysource"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification": {
+      "abstract": [
+        {
+          "text": "Enumeration of different classes of real-world objects that ARKit can identify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARMeshClassification"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMeshClassification"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMeshClassification",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshclassification"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification/none": {
+      "abstract": [
+        {
+          "text": "A face ARKit can’t classify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification/none",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMeshClassificationNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMeshClassification.none",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshclassification/none"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry": {
+      "abstract": [
+        {
+          "text": "Mesh information stored in an efficient, array-based format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARMeshGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMeshGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMeshGeometry",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshgeometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/classification": {
+      "abstract": [
+        {
+          "text": "Classification for each face in the mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeometrySource",
+          "text": "ARGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/classification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classification"
+        }
+      ],
+      "role": "symbol",
+      "title": "classification",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshgeometry/classification"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/faces": {
+      "abstract": [
+        {
+          "text": "An object that contains a buffer of vertex indices of the geometry’s faces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "faces"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeometryElement",
+          "text": "ARGeometryElement"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/faces",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "faces"
+        }
+      ],
+      "role": "symbol",
+      "title": "faces",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshgeometry/faces"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/normals": {
+      "abstract": [
+        {
+          "text": "Rays that define which direction is outside for each face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normals"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeometrySource",
+          "text": "ARGeometrySource"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/normals",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "normals"
+        }
+      ],
+      "role": "symbol",
+      "title": "normals",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshgeometry/normals"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene": {
+      "abstract": [
+        {
+          "text": "Estimate the shape of the physical environment using a polygonal mesh.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing and interacting with a reconstructed scene",
+      "type": "topic",
+      "url": "/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Geometry-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification",
+        "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/faces",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeometryElement",
+        "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/normals"
+      ],
+      "title": "Getting Geometry Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "classification"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "classification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit",
+                "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-Geometry-Information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification",
+                "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/faces",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeometryElement",
+                "doc://com.apple.arkit/documentation/ARKit/ARMeshGeometry/normals"
+              ],
+              "title": "Getting Geometry Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeometrySource",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ARGeometrySource",
+                    "text": "ARGeometrySource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "classification"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification~1none/title",
+          "value": "ARMeshClassificationNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshClassificationNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry/title",
+          "value": "ARMeshGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry~1normals/title",
+          "value": "normals"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry~1normals/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "normals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry~1classification/title",
+          "value": "classification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry~1classification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "classification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry~1faces/title",
+          "value": "faces"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshGeometry~1faces/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "faces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification/title",
+          "value": "ARMeshClassification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeometrySource/title",
+          "value": "ARGeometrySource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeometrySource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeometrySource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeometryElement/title",
+          "value": "ARGeometryElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeometryElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeometryElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeometryElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeometryElement"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/armeshgeometry/classification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/armeshgeometry/classification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

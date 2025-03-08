@@ -1,0 +1,249 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/kernel_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ctl_connect_func"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1809179,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@ctl_connect_func",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "ctl_connect_func"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/errno_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@errno_t",
+              "text": "errno_t"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "ctl_connect_func"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_ctl_ref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_ctl_ref",
+              "text": "kern_ctl_ref"
+            },
+            {
+              "kind": "text",
+              "text": " kctlref, "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "sockaddr_ctl"
+            },
+            {
+              "kind": "text",
+              "text": " *sac, "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " **unitinfo);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The control ref for the kernel control the client is connecting to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "kctlref"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address used to connect to this control. The field sc_unit contains the unit number of the kernel control instance the client is connecting to. If CTL_FLAG_REG_ID_UNIT was set when the kernel control was registered, sc_unit is the ctl_unit of the kern_ctl_reg structure. If CTL_FLAG_REG_ID_UNIT was not set when the kernel control was registered, sc_unit is the dynamically allocated unit number of the new kernel control instance that is used for this connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sac"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A placeholder for a pointer to the optional user-defined private data associated with this kernel control instance. This opaque info will be provided to the user when the rest of the callback routines are executed. For example, it can be used to pass a pointer to an instance-specific data structure in order for the user to keep track of the states related to this kernel control instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "unitinfo"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ctl_connect_func is used to receive notification of a client connecting to the kernel control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/errno_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/errno_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errno_t",
+      "type": "topic",
+      "url": "/documentation/kernel/errno_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_ctl_ref": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_ctl_ref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_ctl_ref",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_ctl_ref"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kernel_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kernel_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/kernel_data_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ctl_connect_func"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

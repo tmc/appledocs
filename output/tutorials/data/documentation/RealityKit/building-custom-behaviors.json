@@ -1,0 +1,604 @@
+{
+  "abstract": [
+    {
+      "text": "Create custom behaviors to control objects in your scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Building custom behaviors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Behaviors are composed of two parts: a trigger and an action sequence. A behavior’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trigger defines how and when it fires, and the action sequence defines what actually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "happens when it does. Common triggers include an object being tapped by the user,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "coming into proximity with another object in the scene, or receiving a notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sent from code. Common actions include showing, hiding, and moving objects, and playing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Behaviors give you a versatile way to add interactivity to a Reality Composer scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To create your own new behavior, select the Custom option when adding a behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The behavior is added to your scene with no defined trigger or action sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-trigger",
+          "level": 3,
+          "text": "Define a trigger",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every behavior must contain a trigger, which defines how and when that behavior fires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-an-action-sequence",
+          "level": 3,
+          "text": "Build an action sequence",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A behavior’s action sequence defines what actually happens when the behavior fires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sequence can consist of one or more actions that you configure to run sequentially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or concurrently. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-actions",
+          "level": 3,
+          "text": "Add actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the first action to a sequence, tap or click the plus button next to the Action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Sequence title, or in the dotted box below it, and choose one of the available actions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the popover that appears. If objects in your scene are selected when you add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an action, the new action is automatically configured to affect the selected objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If no objects are selected when you create the action, specify the objects that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want it to affect by using the Affected Object section at the top of the action.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Tap or click the Choose button to go into selection mode, then click or tap the object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or objects you want the action to affect. If an object is already selected, clicking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or tapping it removes it from being affected by the action. When you’re finished,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "press the Done button to finalize your selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using Reality Composer’s Actions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-multiple-actions-to-run-concurrently",
+          "level": 3,
+          "text": "Configure multiple actions to run concurrently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For many behaviors, a single action is all you’ll need, but you can also create complex",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action sequences by combining multiple actions in one sequence. By default, when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you add another action to a sequence, it runs sequentially after the existing actions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "finish.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, you want two or more actions to run at the same time instead of running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one after the other. For example, you might want one object to flip at the same time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that a sound plays. To make multiple actions in a sequence run concurrently, drag",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one of the actions onto the other. The two actions’ boxes then combine into a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "larger box, as shown in the following figure, indicating that they now run at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same time. To run additional actions simultaneously, drag more actions onto the larger",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "box. To make concurrent actions sequential again, drag individual actions outside",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the joined box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-custom-behaviors-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "building-custom-behaviors-1": {
+      "alt": "Screenshot of a Reality Composer behavior with two actions configured to run concurrently.",
+      "identifier": "building-custom-behaviors-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2e6f4fe8b95d93bad783c1f408f6d0d/building-custom-behaviors-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1de468028079198505a9839758af9c2b/building-custom-behaviors-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors": {
+      "abstract": [
+        {
+          "text": "Define what a behavior does by using actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to behaviors",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-interactivity-to-behaviors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life": {
+      "abstract": [
+        {
+          "text": "Add animation and handle user input by using behaviors, triggers, and actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing a Reality Composer scene to life",
+      "type": "topic",
+      "url": "/documentation/realitykit/bringing-a-reality-composer-scene-to-life"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger": {
+      "abstract": [
+        {
+          "text": "Define when and how a behavior fires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Trigger",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-trigger"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer": {
+      "abstract": [
+        {
+          "text": "Design your app’s visual look and behaviors in Reality Composer, and complete the gameplay experience by using custom RealityKit code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Game with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating_a_game_with_reality_composer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+        "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors"
+      ],
+      "title": "Behaviors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Custom-behaviors",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors"
+      ],
+      "title": "Custom behaviors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/building-custom-behaviors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

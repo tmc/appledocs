@@ -1,0 +1,544 @@
+{
+  "abstract": [
+    {
+      "text": "Reads a value collected during authorization.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/security",
+        "doc://com.apple.documentation/documentation/security/authorization-plug-ins",
+        "doc://com.apple.documentation/documentation/security/authorizationcallbacks"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543168-getcontextvalue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1543168,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AuthorizationCallbacks@FI@GetContextValue",
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "parent": {
+      "title": "AuthorizationCallbacks"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "structp",
+    "title": "GetContextValue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "GetContextValue"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationengineref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AuthorizationEngineRef",
+              "text": "AuthorizationEngineRef"
+            },
+            {
+              "kind": "text",
+              "text": " inEngine, "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationString",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AuthorizationString",
+              "text": "AuthorizationString"
+            },
+            {
+              "kind": "text",
+              "text": " inKey, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationcontextflags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AuthorizationContextFlags",
+              "text": "AuthorizationContextFlags"
+            },
+            {
+              "kind": "text",
+              "text": " *outContextFlags, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationvalue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AuthorizationValue",
+              "text": "AuthorizationValue"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "_Nullable"
+            },
+            {
+              "kind": "text",
+              "text": " *outValue);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque handle that is passed to your plug-in when the authorization engine calls your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/security/authorizationplugininterface/1543181-mechanismcreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inEngine"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A key indicating which value you want to retrieve. This key must correspond to one you specified when you used the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543148-setcontextvalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to store a context value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inKey"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On output points to a flag that indicates whether this value is available to the authorization client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outContextFlags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On input, allocate a pointer to an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/security/authorizationvalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure. On output, the structure contains the size of the data and a pointer to the data. Because your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/security/authorizationvalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure does not own the data, you must not deallocate the structure or the data pointed to by the structure. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outValue"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. Possible results are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (no error) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Security Server internal error).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in authorization mechanism might collect data such as the user name and other authentication information during evaluation of authorization. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543148-setcontextvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to have the Security Server store this data and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543168-getcontextvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " function to retrieve it. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization engine sends you the entry point to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543168-getcontextvalue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " function in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/security/1543160-authorizationplugincreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Do not call this function after you have called the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543162-setresult",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function. If you do so, the data retrieved by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543168-getcontextvalue",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " function might not reflect the current value even though the function returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " result code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/security": {
+      "identifier": "doc://com.apple.documentation/documentation/security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.documentation/documentation/security/1543160-authorizationplugincreate": {
+      "identifier": "doc://com.apple.documentation/documentation/security/1543160-authorizationplugincreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginCreate",
+      "type": "topic",
+      "url": "/documentation/security/1543160-authorizationplugincreate"
+    },
+    "doc://com.apple.documentation/documentation/security/authorization-plug-ins": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorization-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Plug-ins",
+      "type": "topic",
+      "url": "/documentation/security/authorization-plug-ins"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationcallbacks": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543148-setcontextvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543148-setcontextvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetContextValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/1543148-setcontextvalue"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543162-setresult": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543162-setresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/1543162-setresult"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543168-getcontextvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationcallbacks/1543168-getcontextvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetContextValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/1543168-getcontextvalue"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationcontextflags": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationcontextflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationContextFlags",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcontextflags"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationengineref": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationengineref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationEngineRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationengineref"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationplugininterface/1543181-mechanismcreate": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationplugininterface/1543181-mechanismcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/1543181-mechanismcreate"
+    },
+    "doc://com.apple.documentation/documentation/security/authorizationvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/security/authorizationvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationvalue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationString": {
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationString",
+      "type": "topic",
+      "url": "/documentation/security/authorizationstring"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationInternal": {
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errAuthorizationInternal",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationinternal"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationSuccess": {
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errAuthorizationSuccess",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationsuccess"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/security/authorizationcallbacks/1543168-getcontextvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

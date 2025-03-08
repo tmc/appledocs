@@ -1,0 +1,760 @@
+{
+  "abstract": [
+    {
+      "text": "An iterator over the registry.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437649,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IORegistryIterator",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IORegistryIterator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IORegistryIterator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ositerator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSIterator",
+              "text": "OSIterator"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IORegistryIterator",
+              "text": "IORegistryIterator"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IORegistryIterator"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iterator that can traverse the children or parents of a registry entry in a plane, and recurse. Access to the registry is protected against multiple threads, but an IORegistryIterator instance is for use by one thread only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1558295-ioprintplane": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1558295-ioprintplane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPrintPlane",
+      "type": "topic",
+      "url": "/documentation/kernel/1558295-ioprintplane"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575336-iobsdnamematching": {
+      "abstract": [
+        {
+          "text": "Create a matching dictionary that specifies an IOService match based on BSD device name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575336-iobsdnamematching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBSDNameMatching",
+      "type": "topic",
+      "url": "/documentation/kernel/1575336-iobsdnamematching"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/registry_keys": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/registry_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Registry Keys",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/registry_keys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/registry_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/registry_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Registry Utilities",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/registry_utilities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryentry": {
+      "abstract": [
+        {
+          "text": "The base class for all objects in the registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator": {
+      "abstract": [
+        {
+          "text": "An iterator over the registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IORegistryIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437616-exitentry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "exitEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437616-exitentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exitEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437616-exitentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437629-getnextobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437629-getnextobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437629-getnextobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437636-iterateover": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateOver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437636-iterateover",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateOver",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437636-iterateover"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437673-enterentry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enterEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437673-enterentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enterEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437673-enterentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437675-isvalid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValid"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437675-isvalid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isValid",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437675-isvalid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437684-getnextobjectflat": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextObjectFlat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437684-getnextobjectflat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextObjectFlat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437684-getnextobjectflat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437700-reset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437700-reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437700-reset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437708-iterateall": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateAll"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437708-iterateall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateAll",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437708-iterateall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437723-getcurrententry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437723-getcurrententry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCurrentEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437723-getcurrententry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437730-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437730-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437730-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437739-getnextobjectrecursive": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextObjectRecursive"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437739-getnextobjectrecursive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextObjectRecursive",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437739-getnextobjectrecursive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437743-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437743-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1437743-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810048-enterentry": {
+      "abstract": [
+        {
+          "text": "Recurse into the current entry in the registry iteration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810048-enterentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enterEntry()",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810048-enterentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810063-enterentry": {
+      "abstract": [
+        {
+          "text": "Recurse into the current entry in the registry iteration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810063-enterentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enterEntry(const IORegistryPlane *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810063-enterentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810081-exitentry": {
+      "abstract": [
+        {
+          "text": "Exits a level of recursion, restoring the current entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810081-exitentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "exitEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810081-exitentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810099-getcurrententry": {
+      "abstract": [
+        {
+          "text": "Return the current entry in the registry iteration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810099-getcurrententry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCurrentEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810099-getcurrententry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810114-getnextobject": {
+      "abstract": [
+        {
+          "text": "Return the next object in the registry iteration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810114-getnextobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNextObject",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810114-getnextobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810135-getnextobjectflat": {
+      "abstract": [
+        {
+          "text": "Return the next object in the registry iteration, ignoring the kIORegistryIterateRecursively option.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810135-getnextobjectflat",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNextObjectFlat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810135-getnextobjectflat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810157-getnextobjectrecursive": {
+      "abstract": [
+        {
+          "text": "Return the next object in the registry iteration, and enter it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810157-getnextobjectrecursive",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNextObjectRecursive",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810157-getnextobjectrecursive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810181-isvalid": {
+      "abstract": [
+        {
+          "text": "Checks that no registry changes have invalidated the iteration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810181-isvalid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isValid",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810181-isvalid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810202-iterateall": {
+      "abstract": [
+        {
+          "text": "Iterates all entries (with getNextObject) and returns a set of all returned entries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810202-iterateall",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "iterateAll",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810202-iterateall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810226-iterateover": {
+      "abstract": [
+        {
+          "text": "Create an iterator rooted at the registry root.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810226-iterateover",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "iterateOver(const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810226-iterateover"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810260-iterateover": {
+      "abstract": [
+        {
+          "text": "Create an iterator rooted at a given registry entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810260-iterateover",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "iterateOver(IORegistryEntry *, const IORegistryPlane *, IOOptionBits)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810260-iterateover"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810295-reset": {
+      "abstract": [
+        {
+          "text": "Exits all levels of recursion, restoring the iterator to its state at creation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810295-reset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/1810295-reset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/3516480-enterentry": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enterEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/3516480-enterentry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enterEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/3516480-enterentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/3516481-iterateover": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "iterateOver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/3516481-iterateover",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iterateOver",
+      "type": "topic",
+      "url": "/documentation/kernel/ioregistryiterator/3516481-iterateover"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ositerator": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ositerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ositerator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ositerator"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioregistryentry",
+        "doc://com.apple.documentation/documentation/kernel/1575336-iobsdnamematching",
+        "doc://com.apple.documentation/documentation/kernel/1558295-ioprintplane",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/registry_utilities",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/registry_keys"
+      ],
+      "title": "Driver Registry"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1674785",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810048-enterentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810063-enterentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810081-exitentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810099-getcurrententry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810114-getnextobject",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810135-getnextobjectflat",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810157-getnextobjectrecursive",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810181-isvalid",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810202-iterateall",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810226-iterateover",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810260-iterateover",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1810295-reset"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "3522692",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437673-enterentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/3516480-enterentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437616-exitentry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437743-free",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437723-getcurrententry",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437730-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437629-getnextobject",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437684-getnextobjectflat",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437739-getnextobjectrecursive",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437675-isvalid",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437708-iterateall",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437700-reset"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3522693",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/1437636-iterateover",
+        "doc://com.apple.documentation/documentation/kernel/ioregistryiterator/3516481-iterateover"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioregistryiterator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

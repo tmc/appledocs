@@ -1,0 +1,1069 @@
+{
+  "abstract": [
+    {
+      "text": "Create and use a projective transformation to apply a perspective warp to an image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-projective-transformations-to-images"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/transforming-an-image-in-three-dimensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Transforming an image in three dimensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides a set of functions that allow you create projective-transformation structures and apply them to images. The following image shows the effect of a projective transformation that derives from the four corner points of a perspective distorted rectangle. The image demonstrates how the projective transformation warps the image to match the empty billboard rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4098130",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-vImage-buffers-that-represent-the-source-images",
+          "level": 3,
+          "text": "Create the vImage buffers that represent the source images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that describes the four-channel, 8-bit-per-channel images that this example uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var format = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8 * 4,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue))!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use separate buffers to store the background and foreground images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let backgroundImage =  imageLiteral(resourceName: \"background.jpg\").cgImage(",
+            "    forProposedRect: nil,",
+            "    context: nil,",
+            "    hints: nil)!",
+            "let backgroundBuffer = try vImage.PixelBuffer<vImage.Interleaved8x4>(",
+            "    cgImage: backgroundImage,",
+            "    cgImageFormat: &format)",
+            "",
+            "let foregroundImage =  imageLiteral(resourceName: \"foreground.jpg\").cgImage(",
+            "    forProposedRect: nil,",
+            "    context: nil,",
+            "    hints: nil)!",
+            "let foregroundBuffer = try vImage.PixelBuffer<vImage.Interleaved8x4>(",
+            "    cgImage: foregroundImage,",
+            "    cgImageFormat: &format)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the perspective warp doesn’t work in place (that is, the source and destination buffers must point to different underlying memory), create a third destination buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let warpedBuffer = vImage.PixelBuffer<vImage.Interleaved8x4>(",
+            "    size: backgroundBuffer.size)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-the-Vision-framework-to-find-the-rectangle-corner-points",
+          "level": 3,
+          "text": "Use the Vision framework to find the rectangle corner points",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework allows you to find the corner points of the target rectangle. The code below is a simplified example. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/detecting-objects-in-still-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for additional information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let imageRequestHandler = VNImageRequestHandler(cgImage: backgroundImage,",
+            "                                                options: [:])",
+            "",
+            "let requests: [VNRequest] = [VNDetectRectanglesRequest()]",
+            "",
+            "try imageRequestHandler.perform(requests)",
+            "",
+            "guard let observation = requests.first?.results?.first as? VNRectangleObservation  else {",
+            "    throw vImage.Error.internalError",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "observation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the four corner points of the target rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-source-and-destination-points",
+          "level": 3,
+          "text": "Create the source and destination points",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the values in the Vision ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNRectangleObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create a set of points for the vImage warp function. The Vision framework returns normalized coordinates in the range ",
+              "type": "text"
+            },
+            {
+              "code": "0...1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the bottom-left of the image. The vImage warp function requires coordinates that represent pixel values with ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the top-left of the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The destination points refer to the corner points of the target rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typealias vImagePoint = (Float, Float)",
+            "",
+            "let dstPoints: [vImagePoint] = {",
+            "    func scalePoint(_ point: CGPoint) -> vImagePoint {",
+            "        return (Float(point.x) * Float(backgroundImage.width),",
+            "                Float(point.y) * Float(backgroundImage.height))",
+            "    }",
+            "    ",
+            "    let dstTopLeft: vImagePoint = scalePoint(observation.topLeft)",
+            "    let dstTopRight: vImagePoint = scalePoint(observation.topRight)",
+            "    let dstBottomLeft: vImagePoint = scalePoint(observation.bottomLeft)",
+            "    let dstBottomRight: vImagePoint = scalePoint(observation.bottomRight)",
+            "    ",
+            "    return [dstTopLeft, dstTopRight, dstBottomLeft, dstBottomRight]",
+            "}()",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The source points refer to the bounding box of the foreground image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let srcPoints: [vImagePoint] = {",
+            "    let foregroundWidth = Float(foregroundImage.width)",
+            "    let foregroundHeight = Float(foregroundImage.height)",
+            "    ",
+            "    let srcTopLeft: (Float, Float) = (0, foregroundHeight)",
+            "    let srcTopRight: (Float, Float) = (foregroundWidth, foregroundHeight)",
+            "    let srcBottomLeft: (Float, Float) = (0, 0)",
+            "    let srcBottomRight: (Float, Float) = (foregroundWidth, 0)",
+            "    ",
+            "    return [srcTopLeft, srcTopRight, srcBottomLeft, srcBottomRight]",
+            "}()",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Calculate-the-projective-transformation",
+          "level": 3,
+          "text": "Calculate the projective transformation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageGetPerspectiveWarp(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to calculate the projective transformation to translate the foreground image to the target rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var transform = vImage_PerpsectiveTransform()",
+            "vImageGetPerspectiveWarp(srcPoints, dstPoints, &transform, 0)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the projective transformation to warp the source points to the destination points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-perspective-warp",
+          "level": 3,
+          "text": "Apply the perspective warp",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePerspectiveWarp_ARGB8888(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to warp the foreground image to the destination rectangle’s shape and position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "foregroundBuffer.withUnsafePointerToVImageBuffer { src in",
+            "    warpedBuffer.withUnsafePointerToVImageBuffer { dst in",
+            "        ",
+            "        var bgColor: [UInt8] = [0, 0, 0, 0]",
+            "        ",
+            "        vImagePerspectiveWarp_ARGB8888(",
+            "            src, dst, nil,",
+            "            &transform,",
+            "            vImage_WarpInterpolation(kvImageInterpolationLinear),",
+            "            &bgColor,",
+            "            vImage_Flags(kvImageBackgroundColorFill))",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Composite-the-warped-foreground-over-the-background-image",
+          "level": 3,
+          "text": "Composite the warped foreground over the background image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, composite the warped foreground image over the background image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "backgroundBuffer.alphaComposite(.nonpremultiplied,",
+            "                                topLayer: warpedBuffer,",
+            "                                destination: backgroundBuffer)",
+            "",
+            "let result = backgroundBuffer.makeCGImage(cgImageFormat: format)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-projective-transformations-to-images": {
+      "abstract": [
+        {
+          "text": "Warp images in three dimensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-projective-transformations-to-images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Applying projective transformations to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-projective-transformations-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageGetPerspectiveWarp(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a projective-transformation structure that defines the mapping between a source quadrilateral and a destination quadrilateral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageGetPerspectiveWarp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_PerpsectiveTransform",
+          "text": "vImage_PerpsectiveTransform"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageGetPerspectiveWarp(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageGetPerspectiveWarp"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageGetPerspectiveWarp(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagegetperspectivewarp(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImagePerspectiveWarp_ARGB8888(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a perspective warp to an 8-bit-per-channel, four-channel interleaved image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImagePerspectiveWarp_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_PerpsectiveTransform",
+          "text": "vImage_PerpsectiveTransform"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_WarpInterpolation",
+          "text": "vImage_WarpInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImagePerspectiveWarp_ARGB8888(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImagePerspectiveWarp_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImagePerspectiveWarp_ARGB8888(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageperspectivewarp_argb8888(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_PerpsectiveTransform": {
+      "abstract": [
+        {
+          "text": "A projective-transformation matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_PerpsectiveTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_PerpsectiveTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_PerpsectiveTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_PerpsectiveTransform",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_perpsectivetransform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNRectangleObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents the four vertices of a detected rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRectangleObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNRectangleObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNRectangleObservation",
+      "type": "topic",
+      "url": "/documentation/Vision/VNRectangleObservation"
+    },
+    "doc://com.apple.documentation/documentation/Vision/detecting-objects-in-still-images": {
+      "abstract": [
+        {
+          "text": "Locate and demarcate rectangles, faces, barcodes, and text in images using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/detecting-objects-in-still-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Objects in Still Images",
+      "type": "topic",
+      "url": "/documentation/Vision/detecting-objects-in-still-images"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4098130": {
+      "alt": "A flow diagram of two images. On the left is a photograph of an empty picture frame, and on the right is the same image with a photograph of a palm tree composited over the picture frame. The photograph has been taken at an angle so that the picture frame is subject to perspective distortion. The composite image shows the palm tree image warped to fit the distorted frame.",
+      "identifier": "media-4098130",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1defa86f6cf143f437a019749fbe43df/media-4098130@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ce03bd7f3c4de351f87a7c8298864f4/media-4098130~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Computing-a-projective-transformation-from-source-and-destination-quadrilaterals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageGetPerspectiveWarp(_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_PerpsectiveTransform"
+      ],
+      "title": "Computing a projective transformation from source and destination quadrilaterals"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageGetPerspectiveWarp(_:_:_:_:)/title",
+          "value": "vImageGetPerspectiveWarp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageGetPerspectiveWarp(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageGetPerspectiveWarp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNRectangleObservation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VNRectangleObservation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)VNDetectedObjectObservation",
+              "text": "VNDetectedObjectObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_PerpsectiveTransform/title",
+          "value": "vImage_PerpsectiveTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_PerpsectiveTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_PerpsectiveTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_PerpsectiveTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_PerpsectiveTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePerspectiveWarp_ARGB8888(_:_:_:_:_:_:_:)/title",
+          "value": "vImagePerspectiveWarp_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImagePerspectiveWarp_ARGB8888(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImagePerspectiveWarp_ARGB8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

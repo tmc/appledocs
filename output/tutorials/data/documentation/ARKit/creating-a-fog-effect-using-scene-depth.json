@@ -1,0 +1,2066 @@
+{
+  "abstract": [
+    {
+      "text": "Apply virtual fog to the physical environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/environmental-analysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a fog effect using scene depth"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices such as the second-generation iPad Pro 11-inch and fourth-generation iPad Pro 12.9-inch can use the LiDAR Scanner to calculate the distance of real-world objects from the user. In world-tracking experiences on iOS 14, ARKit provides a buffer that describes the objects’ distance from the device in meters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses the depth buffer to create a virtual fog effect in real time. To draw its graphics, the sample app uses a small Metal renderer. ARKit provides precise depth values for objects in the camera feed, so the sample app applies a Gaussian blur using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to soften the fog effect. While drawing the camera image to the screen, the renderer checks the depth texture at every pixel, and overlays a fog color based on that pixel’s distance from the device. For more information on sampling textures and drawing with Metal, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/creating-and-sampling-textures",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ar-depth-fog",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-scene-depth-and-run-a-session",
+          "level": 2,
+          "text": "Enable scene depth and run a session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to avoid running an unsupported configuration, the sample app first checks whether the device supports scene depth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if !ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) ||",
+            "    !ARWorldTrackingConfiguration.supportsFrameSemantics(.smoothedSceneDepth) {",
+            "    // Ensure that the device supports scene depth and present",
+            "    //  an error-message view controller, if not.",
+            "    let storyboard = UIStoryboard(name: \"Main\", bundle: nil)",
+            "    window?.rootViewController = storyboard.instantiateViewController(withIdentifier: \"unsupportedDeviceMessage\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device running the app doesn’t support scene depth, the sample project will stop. Optionally, the app could present the user with an error message and continue the experience without scene depth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device supports scene depth, the sample app creates a world-tracking configuration and enables the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "uct`` property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "configuration.frameSemantics = .smoothedSceneDepth"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample project begins the AR experience by running the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.run(configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-the-scenes-depth",
+          "level": 2,
+          "text": "Access the scene’s depth",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit exposes the depth buffer documentation/arkit/ardepthdata/depthmap) as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the current frame’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, depending on the enabled frame semantics. This sample app visualizes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by default. The raw depth values in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can create a flicker whereas smoothing the depth differences across frames visualizes a more realistic fog effect. For debug purposes, the sample allows switching between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an onscreen toggle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let sceneDepth = frame.smoothedSceneDepth ?? frame.sceneDepth else {",
+            "    print(\"Failed to acquire scene depth.\")",
+            "    return",
+            "}",
+            "var pixelBuffer: CVPixelBuffer!",
+            "pixelBuffer = sceneDepth.depthMap"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every pixel in the depth buffer maps to a region of the visible scene, which defines that region’s distance from the device in meters. Because the sample project draws to the screen using Metal, it converts the pixel buffer to a Metal texture as required to transfer the depth data to the GPU for rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var texturePixelFormat: MTLPixelFormat!",
+            "setMTLPixelFormat(&texturePixelFormat, basedOn: pixelBuffer)",
+            "depthTexture = createTexture(fromPixelBuffer: pixelBuffer, pixelFormat: texturePixelFormat, planeIndex: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the depth texture’s Metal pixel format, the sample project calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferGetPixelFormatType(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and chooses an appropriate mapping based on the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileprivate func setMTLPixelFormat(_ texturePixelFormat: inout MTLPixelFormat?, basedOn pixelBuffer: CVPixelBuffer!) {",
+            "    if CVPixelBufferGetPixelFormatType(pixelBuffer) == kCVPixelFormatType_DepthFloat32 {",
+            "        texturePixelFormat = .r32Float",
+            "    } else if CVPixelBufferGetPixelFormatType(pixelBuffer) == kCVPixelFormatType_OneComponent8 {",
+            "        texturePixelFormat = .r8Uint",
+            "    } else {",
+            "        fatalError(\"Unsupported ARDepthData pixel-buffer format.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-a-blur-to-the-depth-buffer",
+          "level": 2,
+          "text": "Apply a blur to the depth buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a benefit of rendering its graphics with Metal, this app has at its disposal the display conveniences of MPS. The sample project uses the MPS Gaussian Blur filter to make realistic fog. When instantiating the filter, the sample project passes a ",
+              "type": "text"
+            },
+            {
+              "code": "sigma",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to specify a 5-pixel radius blur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "blurFilter = MPSImageGaussianBlur(device: device, sigma: 5)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To gain performance at the cost of precision, the app can add ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskerneloptions/mpskerneloptionsallowreducedprecision",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the blur filter’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618889-options",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", which reduces computation time by using ",
+                  "type": "text"
+                },
+                {
+                  "code": "half",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instead of ",
+                  "type": "text"
+                },
+                {
+                  "code": "float",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MPS requires input and output images that define the source and destination pixel data for the filter operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let inputImage = MPSImage(texture: depthTexture, featureChannels: 1)",
+            "let outputImage = MPSImage(texture: filteredDepthTexture, featureChannels: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app passes the input and output images to the blur’s ",
+              "type": "text"
+            },
+            {
+              "code": "encode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, which schedules the blur to happen on the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "blur.encode(commandBuffer: commandBuffer, sourceImage: inputImage, destinationImage: outputImage)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In-place MPS operations can save time, memory, and power. Since in-place MPS requires fallback code for devices that don’t support it, this sample project doesn’t use it. For more information on in-place operations, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Visualize-the-blurred-depth-to-create-fog",
+          "level": 2,
+          "text": "Visualize the blurred depth to create fog",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal renders by providing to the GPU a fragment shader that draws the app’s graphics. Since the sample project renders a camera image, it packages up the camera image for the fragment shader by calling ",
+              "type": "text"
+            },
+            {
+              "code": "setFragmentTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "renderEncoder.setFragmentTexture(CVMetalTextureGetTexture(cameraImageY), index: 0)",
+            "renderEncoder.setFragmentTexture(CVMetalTextureGetTexture(cameraImageCbCr), index: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the sample app packages up the filtered depth texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "renderEncoder.setFragmentTexture(filteredDepthTexture, index: 2)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project’s GPU-side code fields the texture arguments in the order of the ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument. For example, the fragment shader fields the texture with index ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " above as the argument containing the suffix ",
+              "type": "text"
+            },
+            {
+              "code": "texture(0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment half4 fogFragmentShader(FogColorInOut in [[ stage_in ]],",
+            "texture2d<float, access::sample> cameraImageTextureY [[ texture(0) ]],",
+            "texture2d<float, access::sample> cameraImageTextureCbCr [[ texture(1) ]],",
+            "depth2d<float, access::sample> arDepthTexture [[ texture(2) ]],"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To output a rendering, Metal calls the fragment shader once for every pixel it draws to the destination. The sample project’s fragment shader begins by reading the RGB value of the current pixel in the camera image. The object “",
+              "type": "text"
+            },
+            {
+              "code": "s",
+              "type": "codeVoice"
+            },
+            {
+              "text": "” is a ",
+              "type": "text"
+            },
+            {
+              "code": "sampler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which enables the shader to inspect a texture at a specific location. The value ",
+              "type": "text"
+            },
+            {
+              "code": "in.texCoordCamera",
+              "type": "codeVoice"
+            },
+            {
+              "text": " refers to this pixel’s relative location within the camera image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constexpr sampler s(address::clamp_to_edge, filter::linear);",
+            "",
+            "// Sample this pixel's camera image color.",
+            "float4 rgb = ycbcrToRGBTransform(",
+            "    cameraImageTextureY.sample(s, in.texCoordCamera),",
+            "    cameraImageTextureCbCr.sample(s, in.texCoordCamera)",
+            ");",
+            "half4 cameraColor = half4(rgb);"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By sampling the depth texture at ",
+              "type": "text"
+            },
+            {
+              "code": "in.texCoordCamera",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the shader queries for depth at the same relative location that it did for the camera image, and obtains the current pixel’s distance in meters from the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float depth = arDepthTexture.sample(s, in.texCoordCamera);"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the amount of fog that covers this pixel, the sample app calculates a fraction using the current pixel’s distance divided by the distance at which the fog effect fully saturates the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float fogPercentage = depth / fogMax;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "mix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function mixes two colors based on a percentage. The sample project passes in the RGB values, fog color, and fog percentage to create the right amount of fog for the current pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "half4 foggedColor = mix(cameraColor, fogColor, fogPercentage);"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After Metal calls the fragment shader for every pixel, the view presents the final, fogged image of the physical environment to the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-confidence-data",
+          "level": 2,
+          "text": "Visualize confidence data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to measure the accuracy of the corresponding depth data ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Although this sample project doesn’t factor depth confidence into its fog effect, confidence data could filter out lower-accuracy depth values if the app’s algorithm required it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a sense for depth confidence, this sample app visualizes confidence data at runtime using the ",
+              "type": "text"
+            },
+            {
+              "code": "confidenceDebugVisualizationEnabled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "Shaders.metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set to `true` to visualize confidence.",
+            "bool confidenceDebugVisualizationEnabled = false;"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the renderer accesses the current frame’s scene depth, the sample project creates a Metal texture of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to draw it on the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pixelBuffer = sceneDepth.confidenceMap",
+            "setMTLPixelFormat(&texturePixelFormat, basedOn: pixelBuffer)",
+            "confidenceTexture = createTexture(fromPixelBuffer: pixelBuffer, pixelFormat: texturePixelFormat, planeIndex: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the renderer schedules its drawing, the sample project packages up the confidence texture for the GPU by calling ",
+              "type": "text"
+            },
+            {
+              "code": "setFragmentTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "renderEncoder.setFragmentTexture(CVMetalTextureGetTexture(confidenceTexture), index: 3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU-side code fields confidence data as the fragment shader’s third texture argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "texture2d<uint> arDepthConfidence [[ texture(3) ]])"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the confidence value of the current pixel’s depth, the fragment shader samples the confidence texture at ",
+              "type": "text"
+            },
+            {
+              "code": "in.texCoordCamera",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each confidence value in this texture is a ",
+              "type": "text"
+            },
+            {
+              "code": "uint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " equivalent of its corresponding case in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfidenceLevel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enum.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uint confidence = arDepthConfidence.sample(s, in.texCoordCamera).x;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the confidence value at the current pixel, the fragment shader creates a normalized percentage of the confidence color to overlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float confidencePercentage = (float)confidence / (float)maxConfidence;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project calls the ",
+              "type": "text"
+            },
+            {
+              "code": "mix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to blend the confidence color into the processed pixel based on the confidence percentage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "return mix(confidenceColor, foggedColor, confidencePercentage);"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After Metal calls the fragment shader for every pixel, the view presents the camera image augmented with the confidence visualization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ar-depth-confidence",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses the color red to identify parts of the scene in which depth confidence is less than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfidenceLevel/high",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". At low confidence depth values with a normalized percentage of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the visualization renders solid red (",
+              "type": "text"
+            },
+            {
+              "code": "confidenceColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). For high confidence depth values with a value of one, the ",
+              "type": "text"
+            },
+            {
+              "code": "mix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call returns the unfiltered, fogged camera-image color (",
+              "type": "text"
+            },
+            {
+              "code": "foggedColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). At medium-confidence areas of the scene, the ",
+              "type": "text"
+            },
+            {
+              "code": "mix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call returns a blend of both colors that applies a reddish tint to the fogged camera-image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4e4354a829b8/CreatingAFogEffectUsingSceneDepth.zip": {
+      "checksum": "4e4354a829b87b9f05b935da83a8c3d6fd5f417e694a18f52796e7b888fc8859a167944194408259123f20f856117a2435b8a8ad6127a41f07d2d43d701b0187",
+      "identifier": "4e4354a829b8/CreatingAFogEffectUsingSceneDepth.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4e4354a829b8/CreatingAFogEffectUsingSceneDepth.zip"
+    },
+    "ar-depth-confidence": {
+      "alt": "Diagram of a scene containing real-world chairs. Confidence colorizes scene areas that contain disparate depth, such as on object edges.",
+      "identifier": "ar-depth-confidence",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4a54009c447d0543399c26b1ab7aee76/ar-depth-confidence.png"
+        }
+      ]
+    },
+    "ar-depth-fog": {
+      "alt": "Diagram of two versions of a scene with three armchairs in a row, increasing in distance from the viewer. In the first version, the view of the chairs is clear and unimpeded. In the second version, the two chairs in the distance appear to fade into a gray mist.",
+      "identifier": "ar-depth-fog",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70e641c52b5baf5e2bff1f89ed09aefc/ar-depth-fog.png"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfidenceLevel": {
+      "abstract": [
+        {
+          "text": "Degrees to which the framework is confident about depth-data accuracy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARConfidenceLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfidenceLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARConfidenceLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARConfidenceLevel",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfidencelevel"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfidenceLevel/high": {
+      "abstract": [
+        {
+          "text": "Depth-value accuracy in which the framework is fairly confident.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "high"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfidenceLevel/high",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARConfidenceLevelHigh"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARConfidenceLevel.high",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfidencelevel/high"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct": {
+      "abstract": [
+        {
+          "text": "Types of optional frame features you can enable in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FrameSemantics"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARConfiguration.FrameSemantics",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth": {
+      "abstract": [
+        {
+          "text": "An option that provides the distance from the device to real-world objects viewed through the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrameSemanticSceneDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct/scenedepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth": {
+      "abstract": [
+        {
+          "text": "An option that provides the distance from the device to real-world objects, averaged across several frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smoothedSceneDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrameSemanticSmoothedSceneDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "smoothedSceneDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct/smoothedscenedepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData": {
+      "abstract": [
+        {
+          "text": "An object that describes the distance to regions of the real world from the plane of the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARDepthData",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap": {
+      "abstract": [
+        {
+          "text": "The framework’s confidence in the accuracy of the depth-map data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confidenceMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confidenceMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "confidenceMap",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata/confidencemap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap": {
+      "abstract": [
+        {
+          "text": "The estimated distance from the device to its environment, in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthMap",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata/depthmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame": {
+      "abstract": [
+        {
+          "text": "A video image captured as part of a session with position-tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPointCloud": {
+      "abstract": [
+        {
+          "text": "A collection of points in the world coordinate space of the AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPointCloud"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPointCloud"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPointCloud",
+      "type": "topic",
+      "url": "/documentation/arkit/arpointcloud"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth": {
+      "abstract": [
+        {
+          "text": "Present a visualization of the physical environment by placing points based a scene’s depth data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying a point cloud using scene depth",
+      "type": "topic",
+      "url": "/documentation/arkit/displaying-a-point-cloud-using-scene-depth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/environmental-analysis": {
+      "abstract": [
+        {
+          "text": "Analyze the video from the cameras and the accompanying data, and use ray-casting and depth-map information to determine the location of items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/environmental-analysis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Environmental Analysis",
+      "type": "topic",
+      "url": "/documentation/arkit/environmental-analysis"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferGetPixelFormatType(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the pixel format type of the pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVPixelBufferGetPixelFormatType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "pixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVPixelBufferGetPixelFormatType(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVPixelBufferGetPixelFormatType(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVPixelBufferGetPixelFormatType(_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e": {
+      "abstract": [
+        {
+          "text": "An image buffer that holds pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+      "kind": "article",
+      "role": "article",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvpixelbuffer-q2e"
+    },
+    "doc://com.apple.documentation/documentation/Metal/creating-and-sampling-textures": {
+      "abstract": [
+        {
+          "text": "Load image data into a texture and apply it to a quadrangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/creating-and-sampling-textures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating and Sampling Textures",
+      "type": "topic",
+      "url": "/documentation/Metal/creating-and-sampling-textures"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "abstract": [
+        {
+          "text": "Optimize graphics and compute performance with kernels that are fine-tuned for the unique characteristics of each Metal GPU family.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters": {
+      "abstract": [
+        {
+          "text": "Apply high-performance filters to, and extract statistical and histogram data from images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Image Filters",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/image_filters"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618889-options": {
+      "abstract": [
+        {
+          "text": "The set of options used to run the kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSKernelOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel/1618889-options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel/1618889-options"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskerneloptions/mpskerneloptionsallowreducedprecision": {
+      "abstract": [
+        {
+          "text": "When possible, kernels use a higher-precision data representation internally than the destination storage format to avoid excessive accumulation of computational rounding error in the result. This option advises the kernel that the destination storage format already has too much precision for what is ultimately required downstream, and the kernel may use reduced precision internally when it determines that a less precise result would yield better performance. When enabled, the performance win is often small and the precision of the result may vary by hardware and OS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskerneloptions/mpskerneloptionsallowreducedprecision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSKernelOptionsAllowReducedPrecision",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskerneloptions/mpskerneloptionsallowreducedprecision"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4e4354a829b8/CreatingAFogEffectUsingSceneDepth.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Video-Frame-Analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+        "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+        "doc://com.apple.arkit/documentation/ARKit/ARDepthData"
+      ],
+      "title": "Video Frame Analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Video-Frame-Analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+                "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+                "doc://com.apple.arkit/documentation/ARKit/ARDepthData"
+              ],
+              "title": "Video Frame Analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfidenceLevel/title",
+          "value": "ARConfidenceLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfidenceLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfidenceLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfidenceLevel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfidenceLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferGetPixelFormatType(_:)/title",
+          "value": "CVPixelBufferGetPixelFormatType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVPixelBufferGetPixelFormatType(_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSType",
+              "text": "OSType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVPixelBufferGetPixelFormatType"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CVPixelBufferRef",
+              "text": "CVPixelBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1depthMap/title",
+          "value": "depthMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1depthMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1confidenceMap/title",
+          "value": "confidenceMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1confidenceMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "confidenceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/title",
+          "value": "ARDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1smoothedSceneDepth/title",
+          "value": "ARFrameSemanticSmoothedSceneDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1smoothedSceneDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemanticSmoothedSceneDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct/title",
+          "value": "ARFrameSemantics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemantics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemantics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1sceneDepth/title",
+          "value": "ARFrameSemanticSceneDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1sceneDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemanticSceneDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/title",
+          "value": "ARPointCloud"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPointCloud"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPointCloud"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfidenceLevel~1high/title",
+          "value": "ARConfidenceLevelHigh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfidenceLevel~1high/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfidenceLevelHigh"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1metalperformanceshaders~1mpskerneloptions~1mpskerneloptionsallowreducedprecision/title",
+          "value": "allowReducedPrecision"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1metalperformanceshaders~1mpskerneloptions~1mpskerneloptionsallowreducedprecision/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "static var "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowReducedPrecision"
+            },
+            {
+              "kind": "text",
+              "text": ": MPSKernelOptions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/creating-a-fog-effect-using-scene-depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/creating-a-fog-effect-using-scene-depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

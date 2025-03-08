@@ -1,0 +1,1135 @@
+{
+  "abstract": [
+    {
+      "text": "Create a low-level texture and update its pixel data on the GPU to form a dynamic height and normal map.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a dynamic height and normal map with low-level texture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A height map is a texture in which each pixel stores height information describing the shape of a surface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can read height data from a height map to offset the vertices of a mesh, as well as derive the surface normal directions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Generally speaking, height maps are static textures that remain unmodified at runtime; however, by leveraging ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create a dynamic height map that you write height data to in every frame on the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, you can derive surface normals from your height map every time you update it, allowing for a variety of dynamic and interactive effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a height map with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and write height data to its alpha channel in every frame by dispatching a Metal compute shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Derive normal directions from the height map and store them in the red, green, and blue channels of the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an example of how you can dynamically modify the vertices of a low-level mesh with this height and normal map texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-low-level-texture",
+          "level": 2,
+          "text": "Create a low-level texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a height map ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by describing its pixel format, width, height, and usage:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The low-level texture that stores the height and normal information of the height map.",
+            "var heightMapTexture: LowLevelTexture",
+            "",
+            "init(dimensions: SIMD2<UInt32>) throws {",
+            "    // Initialize the texture with an RGBA pixel format where the alpha channel stores height,",
+            "    // while the red, green, and blue channels store the surface normal direction.",
+            "    let textureDescriptor = LowLevelTexture.Descriptor(pixelFormat: .rgba32Float,",
+            "                                                       width: Int(dimensions.x),",
+            "                                                       height: Int(dimensions.y),",
+            "                                                       textureUsage: [.shaderRead, .shaderWrite])",
+            "    self.heightMapTexture = try LowLevelTexture(descriptor: textureDescriptor)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initialize this texture with a pixel format of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so that each pixel in the texture has four 32-bit floats, composing its red, green, blue, and alpha channels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can store height in the alpha channel, and the surface normal direction in the red, green, and blue channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-height-data-to-the-low-level-texture-with-a-compute-shader",
+          "level": 2,
+          "text": "Write height data to the low-level texture with a compute shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Write height data to the texture on the GPU by dispatching a Metal compute shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can create a height map with waves that oscillate outward from the center of the texture by setting the height of each pixel to the sine of the pixel’s distance from the center:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Generates a height map in the shape of a sine wave moving outward from the center of the texture.",
+            "[[kernel]]",
+            "void generateSineWaveHeightMap(texture2d<float, access::read> heightMapIn [[texture(0)]],",
+            "                               texture2d<float, access::write> heightMapOut [[texture(1)]],",
+            "                               constant float &time [[buffer(2)]],",
+            "                               constant float &amplitude [[buffer(3)]],",
+            "                               uint2 pixelCoords [[thread_position_in_grid]]) {",
+            "    // Skip out-of-bounds threads.",
+            "    // https://developer.apple.com/documentation/metal/compute_passes/calculating_threadgroup_and_grid_sizes",
+            "    if (pixelCoords.x >= heightMapIn.get_width() || pixelCoords.y >= heightMapIn.get_height()) { return; }",
+            "    ",
+            "    // Compute texture coordinates ranging from 0 to 1 along each axis.",
+            "    float2 uv = float2(pixelCoords.x / (heightMapIn.get_width() - 1.0),",
+            "                       pixelCoords.y / (heightMapIn.get_height() - 1.0));",
+            "    ",
+            "    // Get the distance to the center of the texture in texture coordinate space.",
+            "    float distanceToCenter = length(uv - 0.5);",
+            "    // Normalize the distance to a range from 0 to 2π along the horizontal and vertical axes.",
+            "    float normalizedDistanceToCenter = (distanceToCenter / 0.5) * (2 * M_PI_F);",
+            "",
+            "    // Get sine as a function of the normalized distance to the center of the texture times the wave count,",
+            "    // subtracting time to animate it outward over time.",
+            "    float waveCount = 3;",
+            "    float sine = sin(normalizedDistanceToCenter * waveCount - time);",
+            "    // Convert sine to the range 0 to 1.",
+            "    float sine01 = (sine + 1) / 2;",
+            "    ",
+            "    // Generate height from the sine function.",
+            "    float height = amplitude * sine01;",
+            "    ",
+            "    // Read the current height map data.",
+            "    float4 heightMapData = heightMapIn.read(pixelCoords);",
+            "    // Update the alpha channel with the new height.",
+            "    heightMapData.a = height;",
+            "    // Write the updated height data to height map.",
+            "    heightMapOut.write(heightMapData, pixelCoords);",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the height map texture as a parameter of this function twice, both in a readable and a writable format, so that you can update the alpha channel of each pixel without updating the red, green, and blue channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video shows the alpha channel of texture this compute shader function creates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "creating-a-dynamic-height-map-with-low-level-texture-1",
+          "type": "video"
+        },
+        {
+          "anchor": "Dispatch-the-compute-shader",
+          "level": 2,
+          "text": "Dispatch the compute shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a helper method that makes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcomputepipelinestate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a given compute shader function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The device Metal selects as the default.",
+            "let metalDevice: MTLDevice? = MTLCreateSystemDefaultDevice()",
+            "",
+            "/// Makes a compute pipeline for the compute function with the given name.",
+            "func makeComputePipeline(named name: String) -> MTLComputePipelineState? {",
+            "    guard let function = metalDevice?.makeDefaultLibrary()?.makeFunction(name: name) else {",
+            "        return nil",
+            "    }",
+            "    return try? metalDevice?.makeComputePipelineState(function: function)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcomputepipelinestate",
+              "isActive": true,
+              "overridingTitle": "MTLComputePipelineState",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MTLComputePipelineState",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "generateSineWaveHeightMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compute shader function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let sineWaveHeightPipeline: MTLComputePipelineState = makeComputePipeline(named: \"generateSineWaveHeightMap\")!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, calculate the number of threads and threadgroups to dispatch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let threadWidth = sineWaveHeightPipeline.threadExecutionWidth",
+            "let threadHeight = sineWaveHeightPipeline.maxTotalThreadsPerThreadgroup / threadWidth",
+            "let threadsPerThreadgroup = MTLSize(width: threadWidth, height: threadHeight, depth: 1)",
+            "let threadgroups = MTLSize(width: (Int(dimensions.x) + threadWidth - 1) / threadWidth,",
+            "                           height: (Int(dimensions.y) + threadHeight - 1) / threadHeight,",
+            "                           depth: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, define the time and amplitude parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var time: Float = 0",
+            "private var amplitude: Float = 0.05"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, dispatch the ",
+              "type": "text"
+            },
+            {
+              "code": "generateSineWaveHeightMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in every frame with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing it both a readable and a writable version of the height map ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as well as the time and the amplitude:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Increment time.",
+            "time += deltaTime",
+            "",
+            "// Set the compute shader pipeline to `generateSineWaveHeightMap`.",
+            "computeEncoder.setComputePipelineState(sineWaveHeightPipeline)",
+            "",
+            "// Pass a readable version of the height map texture to the compute shader.",
+            "computeEncoder.setTexture(heightMapTexture.read(), index: 0)",
+            "// Pass a writable version of the height map texture to the compute shader.",
+            "computeEncoder.setTexture(heightMapTexture.replace(using: commandBuffer), index: 1)",
+            "",
+            "// Pass the time to the compute shader.",
+            "computeEncoder.setBytes(&time, length: MemoryLayout<Float>.size, index: 2)",
+            "// Pass the amplitude to the compute shader.",
+            "computeEncoder.setBytes(&amplitude, length: MemoryLayout<Float>.size, index: 3)",
+            "",
+            "// Dispatch the compute shader.",
+            "computeEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup: threadsPerThreadgroup)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for general information about dispatching Metal shaders, as well as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for specifics on how to obtain the compute encoder, command buffer, and delta time parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Derive-surface-normals-from-the-height-map-texture",
+          "level": 2,
+          "text": "Derive surface normals from the height map texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can derive surface normal directions directly from the height map and store them in its red, green, and blue channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " sample sets its vertex normals with the normals the height map texture stores.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Derive the normal direction at each pixel in the height map by computing the difference between the pixel’s neighboring height values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Derives normal directions from a height map, storing them in the texture's rgb channels.",
+            "[[kernel]]",
+            "void deriveNormalsFromHeightMap(texture2d<float, access::read> heightMapIn [[texture(0)]],",
+            "                                texture2d<float, access::write> heightMapOut [[texture(1)]],",
+            "                                constant float2 &cellSize [[buffer(2)]],",
+            "                                uint2 pixelCoords [[thread_position_in_grid]]) {",
+            "    // Get the dimensions of the height map.",
+            "    uint2 dimensions = uint2(heightMapIn.get_width(), heightMapIn.get_height());",
+            "    ",
+            "    // Skip out-of-bounds threads.",
+            "    if (any(pixelCoords >= dimensions)) { return; }",
+            "    ",
+            "    // The current pixel coordinate minus one in both dimensions, guaranteed to be in bounds.",
+            "    uint2 pixelCoordsMinusOne = max(pixelCoords, 1) - 1;",
+            "    // The current pixel coordinate plus one in both dimensions, guaranteed to be in bounds.",
+            "    uint2 pixelCoordsPlusOne = min(pixelCoords + 1, dimensions - 1);",
+            "    ",
+            "    // Sample the current pixel along with its four neighbors.",
+            "    float height = heightMapIn.read(pixelCoords).a;",
+            "    float leftHeight = heightMapIn.read(uint2(pixelCoordsMinusOne.x, pixelCoords.y)).a;",
+            "    float rightHeight = heightMapIn.read(uint2(pixelCoordsPlusOne.x, pixelCoords.y)).a;",
+            "    float bottomHeight = heightMapIn.read(uint2(pixelCoords.x, pixelCoordsMinusOne.y)).a;",
+            "    float topHeight = heightMapIn.read(uint2(pixelCoords.x, pixelCoordsPlusOne.y)).a;",
+            "    ",
+            "    // Compute the normal direction using central differences.",
+            "    float3 normal = normalize(float3((leftHeight - rightHeight) / (cellSize.x * 2),",
+            "                                     (bottomHeight - topHeight) / (cellSize.y * 2),",
+            "                                     1));",
+            "    ",
+            "    // Write the normal direction to the height map.",
+            "    heightMapOut.write(float4(normal, height), pixelCoords);",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcomputepipelinestate",
+              "isActive": true,
+              "overridingTitle": "MTLComputePipelineState",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MTLComputePipelineState",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for this compute function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let deriveNormalsPipeline: MTLComputePipelineState = makeComputePipeline(named: \"deriveNormalsFromHeightMap\")!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, dispatch this compute function with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder",
+              "isActive": true,
+              "overridingTitle": "MTLComputeCommandEncoder",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MTLComputeCommandEncoder",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", passing in both a readable and a writable version of the height map low-level texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the compute shader pipeline to `deriveNormalsFromHeightMap`.",
+            "computeEncoder.setComputePipelineState(deriveNormalsPipeline)",
+            "",
+            "// Pass a readable version of the height map texture to the compute shader.",
+            "computeEncoder.setTexture(heightMapTexture.read(), index: 0)",
+            "// Pass a writable version of the height map texture to the compute shader.",
+            "computeEncoder.setTexture(heightMapTexture.replace(using: commandBuffer), index: 1)",
+            "",
+            "// Pass the cell size to the compute shader.",
+            "computeEncoder.setBytes(&cellSize, length: MemoryLayout<SIMD2<Float>>.size, index: 2)",
+            "",
+            "// Dispatch the compute shader.",
+            "computeEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup: threadsPerThreadgroup)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, ",
+              "type": "text"
+            },
+            {
+              "code": "cellSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " describes the size of the texture’s pixels in the same units as the height.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample, this is the size of the cells that compose the plane mesh, or rather the distance between the vertices of the mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video shows the normal map the compute shader function derives from the sine wave height map:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "creating-a-dynamic-height-map-with-low-level-texture-2",
+          "type": "video"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-a-dynamic-height-map-with-low-level-texture-1": {
+      "alt": "A video of the height map texture the generate sine wave height map compute shader function creates. The texture oscillates from black to white in concentric circles growing outward from the center of the texture over time.",
+      "identifier": "creating-a-dynamic-height-map-with-low-level-texture-1",
+      "poster": "creating-a-dynamic-height-map-with-low-level-texture-1-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b41f325391db81c314b8a2dd0378d050/creating-a-dynamic-height-map-with-low-level-texture-1.mp4"
+        }
+      ]
+    },
+    "creating-a-dynamic-height-map-with-low-level-texture-1-poster": {
+      "alt": null,
+      "identifier": "creating-a-dynamic-height-map-with-low-level-texture-1-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e743f78b1d3c6f453af31a0c8c2863f/creating-a-dynamic-height-map-with-low-level-texture-1-poster.jpg"
+        }
+      ]
+    },
+    "creating-a-dynamic-height-map-with-low-level-texture-2": {
+      "alt": "A video of the normal map texture the compute shader derives from the sine wave height map. Concentric circles of light teal, pink, blue, and purple oscillate outward in a gradient over time.",
+      "identifier": "creating-a-dynamic-height-map-with-low-level-texture-2",
+      "poster": "creating-a-dynamic-height-map-with-low-level-texture-2-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1758a49a6a77f6086c18eac775cc14c1/creating-a-dynamic-height-map-with-low-level-texture-2.mp4"
+        }
+      ]
+    },
+    "creating-a-dynamic-height-map-with-low-level-texture-2-poster": {
+      "alt": null,
+      "identifier": "creating-a-dynamic-height-map-with-low-level-texture-2-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56eb63138a2eeced9e88eb16fd29d228/creating-a-dynamic-height-map-with-low-level-texture-2-poster.jpg"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture": {
+      "abstract": [
+        {
+          "text": "A container for texture data allowing you to create and update textures using your own format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LowLevelTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LowLevelTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelTexture",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new ",
+          "type": "text"
+        },
+        {
+          "code": "LowLevelTexture",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelTexture.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture/descriptor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/Drawable": {
+      "abstract": [
+        {
+          "text": "A drawable associated with a drawable queue",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/Drawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource.Drawable",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/drawable"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class": {
+      "abstract": [
+        {
+          "text": "A drawable queue that may be used to update a texture resource dynamically",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DrawableQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DrawableQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource.DrawableQueue",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/drawablequeue-swift.class"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class/Descriptor": {
+      "abstract": [
+        {
+          "text": "Describes the texture managed by the drawable queue",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class/Descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource.DrawableQueue.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/drawablequeue-swift.class/descriptor"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application": {
+      "abstract": [
+        {
+          "text": "Build a system that creates and passes Metal command objects to entities dispatching Metal compute shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Metal command objects around your application",
+      "type": "topic",
+      "url": "/documentation/realitykit/passing-metal-command-objects-around-your-application"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo": {
+      "abstract": [
+        {
+          "text": "Bring an iOS or iPadOS game to visionOS and enhance it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo",
+      "images": [
+        {
+          "identifier": "game-stereo-sample-article-poster.jpg",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a windowed game in stereo",
+      "type": "topic",
+      "url": "/documentation/realitykit/rendering-a-windowed-game-in-stereo"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "game-stereo-sample-article-poster.jpg": {
+      "alt": null,
+      "identifier": "game-stereo-sample-article-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6f511210387c5c4759f8017a8a530c7/game-stereo-sample-article-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8107bf5044222cbf4969cb51e0666b8b/game-stereo-sample-article-poster~dark.jpg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder",
+      "title": "MTLComputeCommandEncoder",
+      "titleInlineContent": [
+        {
+          "code": "MTLComputeCommandEncoder",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder"
+    },
+    "https://developer.apple.com/documentation/metal/mtlcomputepipelinestate": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlcomputepipelinestate",
+      "title": "MTLComputePipelineState",
+      "titleInlineContent": [
+        {
+          "code": "MTLComputePipelineState",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlcomputepipelinestate"
+    },
+    "https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32float": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32float",
+      "title": "MTLPixelFormat.rgba32Float",
+      "titleInlineContent": [
+        {
+          "code": "MTLPixelFormat.rgba32Float",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32float"
+    },
+    "https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu": {
+      "identifier": "https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu",
+      "title": "Performing Calculations on a GPU",
+      "titleInlineContent": [
+        {
+          "text": "Performing Calculations on a GPU",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-drawing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/Drawable",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class/Descriptor"
+      ],
+      "title": "Texture drawing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/creating-a-dynamic-height-map-with-low-level-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

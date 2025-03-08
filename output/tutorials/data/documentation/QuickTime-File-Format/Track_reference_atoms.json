@@ -1,0 +1,703 @@
+{
+  "abstract": [
+    {
+      "text": "Atoms that defines relationships between tracks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Track reference atoms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track reference atoms define relationships between tracks. Track reference atoms allow one track to specify how it is related to other tracks. For example, if a movie has three video",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tracks and three sound tracks, track references allow you to identify the related sound and video tracks. Track reference atoms have an atom type value of ",
+              "type": "text"
+            },
+            {
+              "code": "'tref'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track references are unidirectional and point from the recipient track to the source track. For example, a video track may reference a time code track to indicate where its time code is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stored, but the time code track would not reference the video track. The time code track is the source of time information for the video track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single track may reference multiple tracks. For example, a video track could reference a sound track to indicate that the two are synchronized and a time code track to indicate where its time code is stored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single track may also be referenced by multiple tracks. For example, both a sound and video track could reference the same time code track if they share the same timing information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this atom is not present, the track is not referencing any other track in any way. Note that the array of track reference type atoms is sized to fill the track reference atom. Track references with a reference index of 0 are permitted. This indicates no reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Track References, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The layout of a track reference atom is as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Track reference atom",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom/Size",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom/Type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'tref'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_type_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists": {
+      "abstract": [
+        {
+          "text": "Repeat a segment of a movie without copying media with edit lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing with edit lists",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/playing_with_edit_lists"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that store information for each of the track aperture presentation modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track aperture mode dimension atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_aperture_mode_dimension_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that define a single track of a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that define how data being sent to this track from its nonprimary sources is to be interpreted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track input map atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_input_map_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references": {
+      "abstract": [
+        {
+          "text": "Relate a movie’s tracks to one another with track references.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references",
+      "kind": "article",
+      "role": "article",
+      "title": "Track references",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_references"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the clipping regions for movies and for tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clipping_atom",
+          "text": "Clipping atom ('clip')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clipping atom ('clip')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clipping_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the clipping region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clipping_region_atom",
+          "text": "Clipping region atom ('crgn')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clipping region atom ('crgn')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clipping_region_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the image description structure and the matte data associated with a particular matte atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Compressed_matte_atom",
+          "text": "Compressed matte atom ('kmat')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Compressed matte atom ('kmat')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/compressed_matte_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines the portions of the media that are to be used to build up a track for a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_atom",
+          "text": "Edit atom ('edts')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit atom ('edts')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that maps from a time in a movie to a time in a media, and ultimately to media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_list_atom",
+          "text": "Edit list atom ('elst')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit list atom ('elst')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines a single track of a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_atom",
+          "text": "Track atom ('trak')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track atom ('trak')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates not to automatically select this track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_exclude_from_autoselection_atom",
+          "text": "Track exclude from autoselection atom ('txas')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track exclude from autoselection atom ('txas')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_exclude_from_autoselection_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the characteristics of a single track within a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_header_atom",
+          "text": "Track header atom ('tkhd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track header atom ('tkhd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_header_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates how the track is to be used in its movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_load_settings_atom",
+          "text": "Track load settings atom ('load')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track load settings atom ('load')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_load_settings_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to visually blend the track’s image when it is displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_matte_atom",
+          "text": "Track matte atom ('matt')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track matte atom ('matt')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_matte_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines relationships between tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_reference_atom",
+          "text": "Track reference atom ('tref')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track reference atom ('tref')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that specifies the number of bytes in this track reference atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_reference_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that identifies the atom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_reference_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_type_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines relationships with tracks of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_reference_type_atom",
+          "text": "Track reference type atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_type_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track reference type atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_type_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Describing-tracks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_header_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_exclude_from_autoselection_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_aperture_mode_dimension_atoms",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clipping_region_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_matte_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Compressed_matte_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Playing_with_edit_lists",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_load_settings_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_input_map_atoms"
+      ],
+      "title": "Describing tracks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Atoms-for-track-references",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_type_atom"
+      ],
+      "title": "Atoms for track references"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/track_reference_atoms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

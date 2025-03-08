@@ -1,0 +1,439 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a payment request and create the session.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session"
+  },
+  "kind": "article",
+  "legacy_identifier": 2930459,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an Apple Pay Session"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you've checked that the Apple Pay JS API is available and is enabled on the current device, you're ready to create the payment request and start the session.  You can create a session only when a user explicitly asks to make a payment.  For example, you can create the session when the user taps the Apple Pay button. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You supply two parameters to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/2320659-applepaysession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Version number.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "inlineHead"
+                    },
+                    {
+                      "text": " The Apple Pay version you're using.  (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for version information.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Payment Request.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "inlineHead"
+                    },
+                    {
+                      "text": " An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary that contains all the information needed to display the payment sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object throws a JavaScript exception if any of the following occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any Apple Pay JS API is called from an insecure page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You pass an invalid payment request. Payment requests are invalid if they contain missing, unknown, or invalid properties, or if they have a total that is zero or less.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You attempt to create the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " outside of a user gesture handler.  The exception error  \"Must create a new ApplePaySession from a user gesture handler\" appears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the session is created, call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778001-begin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to show the payment sheet.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session#2930461",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " shows creating a payment request and a new Apple Pay session, and displaying the payment sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var request = {",
+            "  countryCode: 'US',",
+            "  currencyCode: 'USD',",
+            "  supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],",
+            "  merchantCapabilities: ['supports3DS'],",
+            "  total: { label: 'Your Merchant Name', amount: '10.00' },",
+            "}",
+            "var session = new ApplePaySession(3, request);"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Example of constructing an Apple Pay session",
+                "type": "text"
+              }
+            ],
+            "anchor": "2930461",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session": {
+      "abstract": [
+        {
+          "text": "Provide a payment request and create the session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Apple Pay Session",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session#2930461": {
+      "abstract": [
+        {
+          "text": "Example of constructing an Apple Pay session",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session#2930461",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session#2930461"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation": {
+      "abstract": [
+        {
+          "text": "Validate your merchant identity and receive a session object for each payment request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Merchant Validation",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session": {
+      "abstract": [
+        {
+          "text": "Request a valid session from the Apple Pay server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting an Apple Pay payment session",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pay on the web version history",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession": {
+      "abstract": [
+        {
+          "text": "A session object for managing the payment process on the web. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePaySession",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778001-begin": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778001-begin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "begin",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778001-begin"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/2320659-applepaysession": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/2320659-applepaysession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePaySession",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/2320659-applepaysession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession"
+      ],
+      "title": "Apple Pay session"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

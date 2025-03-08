@@ -1,0 +1,3733 @@
+{
+  "abstract": [
+    {
+      "text": "Constants that describe compositing operators in terms of source and destination images, each having an opaque and transparent region.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@NSCompositingOperation",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCompositingOperation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSCompositingOperation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "NSCompositingOperation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The type of operation, the source image, and the destination image determine the final output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These compositing operators are defined in and used by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". They are also used by drawing methods in other classes that take a compositing operator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The equations after each constant represent the mathematical formulas for calculating the color value of the resulting pixel. The table below lists the meaning of each placeholder value in the equations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Placeholder",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Meaning",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "R",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The premultiplied result color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "S",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The source color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "D",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The destination color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Sa",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The alpha value of the source color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Da",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The alpha value of the destination color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeClear": {
+      "abstract": [
+        {
+          "text": "Transparent. (",
+          "type": "text"
+        },
+        {
+          "code": "R = 0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeClear"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeClear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeClear",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositeclear"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeColor": {
+      "abstract": [
+        {
+          "text": "Uses the hue and saturation of the source and the luminosity of the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositecolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeColorBurn": {
+      "abstract": [
+        {
+          "text": "Darkens the destination color to reflect the source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeColorBurn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeColorBurn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeColorBurn",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositecolorburn"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeColorDodge": {
+      "abstract": [
+        {
+          "text": "Brightens the destination to reflect the source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeColorDodge"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeColorDodge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeColorDodge",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositecolordodge"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeCopy": {
+      "abstract": [
+        {
+          "text": "Source image. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeCopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeCopy",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositecopy"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeDarken": {
+      "abstract": [
+        {
+          "text": "Use the darker of the source and destination colors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeDarken"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeDarken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeDarken",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositedarken"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationAtop": {
+      "abstract": [
+        {
+          "text": "Destination image wherever both images are opaque, source image wherever source image is opaque but destination image is transparent, and transparent elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S*(1 - Da) + D*Sa",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeDestinationAtop"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationAtop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeDestinationAtop",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositedestinationatop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationIn": {
+      "abstract": [
+        {
+          "text": "Destination image wherever both images are opaque, and transparent elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = D*Sa",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeDestinationIn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationIn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeDestinationIn",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositedestinationin"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationOut": {
+      "abstract": [
+        {
+          "text": "Destination image wherever destination image is opaque but source image is transparent, and transparent elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = D*(1 - Sa)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeDestinationOut"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeDestinationOut",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositedestinationout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationOver": {
+      "abstract": [
+        {
+          "text": "Destination image wherever destination image is opaque, and source image elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S*(1 - Da) + D",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeDestinationOver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationOver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeDestinationOver",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositedestinationover"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeDifference": {
+      "abstract": [
+        {
+          "text": "Subtracts the darker value from the lighter value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeDifference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeDifference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeDifference",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositedifference"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeExclusion": {
+      "abstract": [
+        {
+          "text": "Subtracts the darker value from the lighter value, except lower in contrast.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeExclusion"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeExclusion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeExclusion",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositeexclusion"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeHardLight": {
+      "abstract": [
+        {
+          "text": "Multiplies or screens colors, with the effect of shining a spotlight on the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeHardLight"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeHardLight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeHardLight",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositehardlight"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeHighlight": {
+      "abstract": [
+        {
+          "text": "Source image wherever source image is opaque, and destination image elsewhere.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeHighlight"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeHighlight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeHighlight",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositehighlight"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeHue": {
+      "abstract": [
+        {
+          "text": "Uses the hue of the source and the saturation and luminosity of the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeHue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeHue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeHue",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositehue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeLighten": {
+      "abstract": [
+        {
+          "text": "Use the lighter of the source and destination colors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeLighten"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeLighten",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeLighten",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositelighten"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeLuminosity": {
+      "abstract": [
+        {
+          "text": "Uses the luminosity of the source and the hue and saturation of the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeLuminosity"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeLuminosity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeLuminosity",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositeluminosity"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeMultiply": {
+      "abstract": [
+        {
+          "text": "The source color is multiplied by the destination color.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeMultiply"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeMultiply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeMultiply",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositemultiply"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeOverlay": {
+      "abstract": [
+        {
+          "text": "Source colors overlay the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeOverlay",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositeoverlay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositePlusDarker": {
+      "abstract": [
+        {
+          "text": "Sum of source and destination images, with color values approaching 0 as a limit. (",
+          "type": "text"
+        },
+        {
+          "code": "R = MAX(0, (1 - D) + (1 - S))",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositePlusDarker"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositePlusDarker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositePlusDarker",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositeplusdarker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositePlusLighter": {
+      "abstract": [
+        {
+          "text": "Sum of source and destination images, with color values approaching 1 as a limit. (",
+          "type": "text"
+        },
+        {
+          "code": "R = MIN(1, S + D)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositePlusLighter"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositePlusLighter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositePlusLighter",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositepluslighter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeSaturation": {
+      "abstract": [
+        {
+          "text": "Uses the saturation value of the source and the hue and luminosity of the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeSaturation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeSaturation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeSaturation",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositesaturation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeScreen": {
+      "abstract": [
+        {
+          "text": "Multiplies the complement of the destination and source color values, and then complements the result.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeScreen",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositescreen"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeSoftLight": {
+      "abstract": [
+        {
+          "text": "Darkens or lightens colors, with the effect of shining a diffused spotlight on the destination.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeSoftLight"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeSoftLight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeSoftLight",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositesoftlight"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceAtop": {
+      "abstract": [
+        {
+          "text": "Source image wherever both images are opaque, destination image wherever destination image is opaque but source image is transparent, and transparent elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S*Da + D*(1 - Sa)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeSourceAtop"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceAtop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeSourceAtop",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositesourceatop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceIn": {
+      "abstract": [
+        {
+          "text": "Source image wherever both images are opaque, and transparent elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S*Da",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeSourceIn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceIn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeSourceIn",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositesourcein"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceOut": {
+      "abstract": [
+        {
+          "text": "Source image wherever source image is opaque but destination image is transparent, and transparent elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S*(1 - Da)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeSourceOut"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeSourceOut",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositesourceout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceOver": {
+      "abstract": [
+        {
+          "text": "Source image wherever source image is opaque, and destination image elsewhere. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S + D*(1 - Sa)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeSourceOver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceOver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeSourceOver",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositesourceover"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositeXOR": {
+      "abstract": [
+        {
+          "text": "Exclusive OR of source and destination images. (",
+          "type": "text"
+        },
+        {
+          "code": "R = S*(1 - Da) + D*(1 - Sa)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositeXOR"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositeXOR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositeXOR",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositexor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation": {
+      "abstract": [
+        {
+          "text": "Constants that describe compositing operators in terms of source and destination images, each having an opaque and transparent region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/NSCompositingOperationHighlight": {
+      "abstract": [
+        {
+          "text": "The source image wherever it is opaque, and the destination image elsewhere.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationHighlight"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/NSCompositingOperationHighlight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompositingOperationHighlight",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/nscompositingoperationhighlight"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/clear": {
+      "abstract": [
+        {
+          "text": "Transparency everywhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clear"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/clear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationClear"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.clear",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/clear"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/color": {
+      "abstract": [
+        {
+          "text": "Uses the hue and saturation of the source and the luminosity of the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.color",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/color"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorBurn": {
+      "abstract": [
+        {
+          "text": "Darkens the destination color to reflect the source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorBurn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorBurn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationColorBurn"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.colorBurn",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/colorburn"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorDodge": {
+      "abstract": [
+        {
+          "text": "Brightens the destination to reflect the source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorDodge"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorDodge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationColorDodge"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.colorDodge",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/colordodge"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/copy": {
+      "abstract": [
+        {
+          "text": "The source image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/copy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationCopy"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.copy",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/copy"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/darken": {
+      "abstract": [
+        {
+          "text": "Use the darker of the source and destination colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "darken"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/darken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationDarken"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.darken",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/darken"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationAtop": {
+      "abstract": [
+        {
+          "text": "The destination image wherever both images are opaque, the source image wherever it is opaque and the destination image is transparent, and transparent elsehwere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationAtop"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationAtop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationDestinationAtop"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.destinationAtop",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/destinationatop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationIn": {
+      "abstract": [
+        {
+          "text": "The destination image wherever both images are opaque, and transparent elsewhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationIn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationIn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationDestinationIn"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.destinationIn",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/destinationin"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOut": {
+      "abstract": [
+        {
+          "text": "The destination image wherever it is opaque and the source image is transparent, and transparent elsewhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationOut"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationDestinationOut"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.destinationOut",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/destinationout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOver": {
+      "abstract": [
+        {
+          "text": "The destination image wherever it is opaque, and the source image elsewhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationOver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationDestinationOver"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.destinationOver",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/destinationover"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/difference": {
+      "abstract": [
+        {
+          "text": "Subtracts the darker value from the lighter value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "difference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/difference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationDifference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.difference",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/difference"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/exclusion": {
+      "abstract": [
+        {
+          "text": "Subtracts the darker value from the lighter value, except lower in contrast.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclusion"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/exclusion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationExclusion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.exclusion",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/exclusion"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hardLight": {
+      "abstract": [
+        {
+          "text": "Multiplies or screens colors, with the effect of shining a spotlight on the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardLight"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hardLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationHardLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.hardLight",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/hardlight"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hue": {
+      "abstract": [
+        {
+          "text": "Uses the hue of the source and the saturation and luminosity of the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationHue"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.hue",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/hue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/init(rawvalue:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/lighten": {
+      "abstract": [
+        {
+          "text": "Use the lighter of the source and destination colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lighten"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/lighten",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationLighten"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.lighten",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/lighten"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/luminosity": {
+      "abstract": [
+        {
+          "text": "Uses the luminosity of the source and the hue and saturation of the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "luminosity"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/luminosity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationLuminosity"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.luminosity",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/luminosity"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/multiply": {
+      "abstract": [
+        {
+          "text": "The source color is multiplied by the destination color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/multiply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.multiply",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/multiply"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/overlay": {
+      "abstract": [
+        {
+          "text": "Source colors overlay the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/overlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationOverlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.overlay",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/overlay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusDarker": {
+      "abstract": [
+        {
+          "text": "The sum of the source and destination images, with color values approach 0 as a limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "plusDarker"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusDarker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationPlusDarker"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.plusDarker",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/plusdarker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusLighter": {
+      "abstract": [
+        {
+          "text": "The sum of the source and destination images, with color values approach 1 as a limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "plusLighter"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusLighter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationPlusLighter"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.plusLighter",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/pluslighter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/saturation": {
+      "abstract": [
+        {
+          "text": "Uses the saturation value of the source and the hue and luminosity of the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saturation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/saturation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationSaturation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.saturation",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/saturation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/screen": {
+      "abstract": [
+        {
+          "text": "Multiplies the complement of the destination and source color values, and then complements the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screen"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/screen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationScreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.screen",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/screen"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/softLight": {
+      "abstract": [
+        {
+          "text": "Darkens or lightens colors, with the effect of shining a diffused spotlight on the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "softLight"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/softLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationSoftLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.softLight",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/softlight"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceAtop": {
+      "abstract": [
+        {
+          "text": "The source image wherever both images are opaque, the destination image wherever it is opaque but the source image is transparent, and transparent elsewhere",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceAtop"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceAtop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationSourceAtop"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.sourceAtop",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/sourceatop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceIn": {
+      "abstract": [
+        {
+          "text": "The source image wherever both images are opaque, and transparent elsewhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceIn"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceIn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationSourceIn"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.sourceIn",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/sourcein"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOut": {
+      "abstract": [
+        {
+          "text": "The source image wherever it is opaque and the destination image is transparent, and transparent elsewhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceOut"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationSourceOut"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.sourceOut",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/sourceout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOver": {
+      "abstract": [
+        {
+          "text": "The source image wherever it is opaque, and the destination image elsewhere.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceOver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationSourceOver"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.sourceOver",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/sourceover"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/xor": {
+      "abstract": [
+        {
+          "text": "Exclusive OR of the source and destination images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/xor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCompositingOperationXOR"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCompositingOperation.xor",
+      "type": "topic",
+      "url": "/documentation/appkit/nscompositingoperation/xor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation": {
+      "abstract": [
+        {
+          "text": "The graphics context’s global compositing operation setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositingOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCompositingOperation",
+          "text": "NSCompositingOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositingOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositingOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/compositingoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the graphics context’s interpolation, or image smoothing, behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSImageInterpolation",
+          "text": "NSImageInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageInterpolation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/imageinterpolation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase": {
+      "abstract": [
+        {
+          "text": "The amount to offset the pattern color when filling the graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "patternPhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "patternPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "patternPhase",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/patternphase"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the graphics context uses antialiasing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldAntialias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldAntialias"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldAntialias",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgraphicscontext/shouldantialias"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image to the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:fromRect:operation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:fromrect:operation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image at the specified opacity to the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:fromRect:operation:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:fromrect:operation:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image to the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:operation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:operation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image at the specified opacity in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:operation:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:operation:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)": {
+      "abstract": [
+        {
+          "text": "Draws all or part of the image at the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCompositingOperation",
+          "text": "NSCompositingOperation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawAtPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(at:from:operation:fraction:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/draw(at:from:operation:fraction:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)": {
+      "abstract": [
+        {
+          "text": "Draws all or part of the image in the specified rectangle in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCompositingOperation",
+          "text": "NSCompositingOperation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawInRect:fromRect:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(in:from:operation:fraction:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/draw(in:from:operation:fraction:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation": {
+      "abstract": [
+        {
+          "text": "Constants that specify the interpolation, or image smoothing, behavior used by the image interpolation property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageInterpolation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimageinterpolation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSUInteger": {
+      "abstract": [
+        {
+          "text": "Describes an unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Rendering-Options",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias",
+        "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase"
+      ],
+      "title": "Configuring Rendering Options"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Operations-for-Compositing",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/clear",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/copy",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOver",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceIn",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOut",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceAtop",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOver",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationIn",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOut",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationAtop",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/xor",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusDarker",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusLighter",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/multiply",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/screen",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/overlay",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/darken",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/lighten",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorDodge",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorBurn",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/softLight",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hardLight",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/difference",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/exclusion",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hue",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/saturation",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/color",
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/luminosity"
+      ],
+      "title": "Operations for Compositing"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSCompositingOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Operations-for-Compositing",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/clear",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/copy",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOver",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceIn",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceOut",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/sourceAtop",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOver",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationIn",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationOut",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/destinationAtop",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/xor",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusDarker",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/plusLighter",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/multiply",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/screen",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/overlay",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/darken",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/lighten",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorDodge",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/colorBurn",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/softLight",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hardLight",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/difference",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/exclusion",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/hue",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/saturation",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/color",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/luminosity"
+              ],
+              "title": "Operations for Compositing"
+            },
+            {
+              "anchor": "Deprecated-Compositing-Modes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeClear",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeCopy",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceOver",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceIn",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceOut",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeSourceAtop",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationOver",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationIn",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationOut",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeDestinationAtop",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeXOR",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositePlusDarker",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositePlusLighter",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeMultiply",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeScreen",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeOverlay",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeDarken",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeLighten",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeColorDodge",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeColorBurn",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeSoftLight",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeHardLight",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeDifference",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeExclusion",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeHue",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeSaturation",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeColor",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeLuminosity",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositeHighlight",
+                "doc://com.apple.appkit/documentation/AppKit/NSCompositingOperation/NSCompositingOperationHighlight"
+              ],
+              "title": "Deprecated Compositing Modes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Rendering-Options",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/compositingOperation",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/imageInterpolation",
+                "doc://com.apple.appkit/documentation/AppKit/NSImageInterpolation",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/shouldAntialias",
+                "doc://com.apple.appkit/documentation/AppKit/NSGraphicsContext/patternPhase"
+              ],
+              "title": "Configuring Rendering Options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSCompositingOperation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSUInteger",
+                    "text": "NSUInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1color/title",
+          "value": "NSCompositingOperationColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1color/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1colorDodge/title",
+          "value": "NSCompositingOperationColorDodge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1colorDodge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationColorDodge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1luminosity/title",
+          "value": "NSCompositingOperationLuminosity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1luminosity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationLuminosity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1difference/title",
+          "value": "NSCompositingOperationDifference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1difference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationDifference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1clear/title",
+          "value": "NSCompositingOperationClear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1clear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationClear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1xor/title",
+          "value": "NSCompositingOperationXOR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1xor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationXOR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1patternPhase/title",
+          "value": "patternPhase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1patternPhase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "patternPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationAtop/title",
+          "value": "NSCompositingOperationDestinationAtop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationAtop/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationDestinationAtop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceOut/title",
+          "value": "NSCompositingOperationSourceOut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceOut/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationSourceOut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceOver/title",
+          "value": "NSCompositingOperationSourceOver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceOver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationSourceOver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationOver/title",
+          "value": "NSCompositingOperationDestinationOver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationOver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationDestinationOver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceIn/title",
+          "value": "NSCompositingOperationSourceIn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceIn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationSourceIn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1multiply/title",
+          "value": "NSCompositingOperationMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1multiply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1colorBurn/title",
+          "value": "NSCompositingOperationColorBurn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1colorBurn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationColorBurn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1plusLighter/title",
+          "value": "NSCompositingOperationPlusLighter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1plusLighter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationPlusLighter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation/title",
+          "value": "NSCompositingOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageInterpolation/title",
+          "value": "NSImageInterpolation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageInterpolation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageInterpolation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1lighten/title",
+          "value": "NSCompositingOperationLighten"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1lighten/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationLighten"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1shouldAntialias/title",
+          "value": "shouldAntialias"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1shouldAntialias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldAntialias"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationIn/title",
+          "value": "NSCompositingOperationDestinationIn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationIn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationDestinationIn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceAtop/title",
+          "value": "NSCompositingOperationSourceAtop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1sourceAtop/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationSourceAtop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1copy/title",
+          "value": "NSCompositingOperationCopy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1copy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationCopy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1imageInterpolation/title",
+          "value": "imageInterpolation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1imageInterpolation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1compositingOperation/title",
+          "value": "compositingOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGraphicsContext~1compositingOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compositingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1softLight/title",
+          "value": "NSCompositingOperationSoftLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1softLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationSoftLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1hue/title",
+          "value": "NSCompositingOperationHue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1hue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationHue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1exclusion/title",
+          "value": "NSCompositingOperationExclusion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1exclusion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationExclusion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1saturation/title",
+          "value": "NSCompositingOperationSaturation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1saturation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationSaturation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1draw(at:from:operation:fraction:)/title",
+          "value": "drawAtPoint:fromRect:operation:fraction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1draw(at:from:operation:fraction:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawAtPoint:fromRect:operation:fraction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1darken/title",
+          "value": "NSCompositingOperationDarken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1darken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationDarken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1draw(in:from:operation:fraction:)/title",
+          "value": "drawInRect:fromRect:operation:fraction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1draw(in:from:operation:fraction:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawInRect:fromRect:operation:fraction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1hardLight/title",
+          "value": "NSCompositingOperationHardLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1hardLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationHardLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1overlay/title",
+          "value": "NSCompositingOperationOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1overlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1screen/title",
+          "value": "NSCompositingOperationScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1screen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationScreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1plusDarker/title",
+          "value": "NSCompositingOperationPlusDarker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1plusDarker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationPlusDarker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationOut/title",
+          "value": "NSCompositingOperationDestinationOut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCompositingOperation~1destinationOut/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCompositingOperationDestinationOut"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nscompositingoperation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nscompositingoperation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

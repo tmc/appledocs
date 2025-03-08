@@ -1,0 +1,398 @@
+{
+  "abstract": [
+    {
+      "text": "Validate your merchant identity and receive a session object for each payment request.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation"
+  },
+  "kind": "article",
+  "legacy_identifier": 2930462,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Providing Merchant Validation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As soon as the system displays the payment sheet, the Apple Pay JS API calls your session object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event handler to verify that the request is coming from a valid merchant. It passes the function an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains the validation URL. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL you receive can vary, so always use the URL provided in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent/1778026-validationurl",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property. Your server must provide allow-listed access to all the validation URLs, specified in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You call your server, passing it the URL from the event’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent/1778026-validationurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server uses the validation URL to request a session from the Apple Pay server, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Never send the request for a merchant session from the client.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In response, your server receives an opaque merchant session object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You pass the merchant session object to your Apple Pay session’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. You can use the merchant session object a single time. It expires five minutes after it is created.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session": {
+      "abstract": [
+        {
+          "text": "Provide a payment request and create the session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Apple Pay Session",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation": {
+      "abstract": [
+        {
+          "text": "Validate your merchant identity and receive a session object for each payment request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Merchant Validation",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session": {
+      "abstract": [
+        {
+          "text": "Request a valid session from the Apple Pay server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting an Apple Pay payment session",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession": {
+      "abstract": [
+        {
+          "text": "A session object for managing the payment process on the web. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePaySession",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeMerchantValidation",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778015-completemerchantvalidation"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onvalidatemerchant",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778021-onvalidatemerchant"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayValidateMerchantEvent",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent/1778026-validationurl": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent/1778026-validationurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validationURL",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent/1778026-validationurl"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment": {
+      "abstract": [
+        {
+          "text": "Create your Apple Pay merchant ID and certificates, and verify your domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Environment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/configuring_your_environment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "abstract": [
+        {
+          "text": "Set up your server for secure communications with Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/creating_an_apple_pay_session",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession"
+      ],
+      "title": "Apple Pay session"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/configuring_your_environment",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

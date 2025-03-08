@@ -1,0 +1,1900 @@
+{
+  "abstract": [
+    {
+      "text": "See the various ways to create and use textures in SpriteKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/texture-initializers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Texture Initializers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these functions to create a new texture. While doing so, you should be aware of the memory implications of texture memory, and the other ways to get textures other than ",
+              "type": "text"
+            },
+            {
+              "code": "SKTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Memory-Considerations",
+          "level": 3,
+          "text": "Memory Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating textures you should be aware of the memory consumed as a result of their file size dimensions. Often, the memory available to prepared textures is limited by hardware because textures are loaded in VRAM. Consider the following tips:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access a texture only when needed and dispose of it when you are done. This frees up memory for other parts of the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid loading too many textures in a single pass through the rendering loop. The process of decoding an image from disk is an expensive one and can therefore cause a few frames to be skipped. To avoid performance hiccups, preload textures ahead of time, such as when the scene is loaded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you frequently use that same textures together (for example, all the grass tiles any time grass is displayed in a scene) then you should consider bundling them into an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to increase loading and runtime peformance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Ways-to-Access-Textures",
+          "level": 3,
+          "text": "Ways to Access Textures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/texture-initializers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "SKTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the following other classes vend textures, too:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access a texture by its original filename within a SpriteKit texture atlas folder using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SKTextureAtlas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a texture by rendering an existing node in the tree, including its children, using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SKView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/texture(from:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture": {
+      "abstract": [
+        {
+          "text": "An image, decoded on the GPU, that can be used to render various SpriteKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTexture",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/applying(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture by applying a Core Image filter to an existing texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applying"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/applying(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureByApplyingCIFilter:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applying(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/applying(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap()": {
+      "abstract": [
+        {
+          "text": "Creates a normal map texture by analyzing the contents of an existing texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generatingNormalMap"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureByGeneratingNormalMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "generatingNormalMap()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/generatingnormalmap()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap(withSmoothness:contrast:)": {
+      "abstract": [
+        {
+          "text": "Creates a normal map texture by analyzing the contents of an existing texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generatingNormalMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSmoothness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contrast"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap(withSmoothness:contrast:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureByGeneratingNormalMapWithSmoothness:contrast:"
+        }
+      ],
+      "role": "symbol",
+      "title": "generatingNormalMap(withSmoothness:contrast:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/generatingnormalmap(withsmoothness:contrast:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(cgImage:)": {
+      "abstract": [
+        {
+          "text": "Create a new texture object from a Quartz 2D image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(cgImage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithCGImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(cgImage:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(cgimage:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture from raw pixel data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithData:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:size:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(data:size:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:flipped:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture from raw pixel data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flipped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:flipped:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithData:size:flipped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:size:flipped:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(data:size:flipped:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:rowLength:alignment:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture from custom formatted raw pixel data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rowLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:rowLength:alignment:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithData:size:rowLength:alignment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:size:rowLength:alignment:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(data:size:rowlength:alignment:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(image:)": {
+      "abstract": [
+        {
+          "text": "Create a new texture object from an image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(image:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(image:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(image:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)": {
+      "abstract": [
+        {
+          "text": "Create a new texture object from an image file stored in the app bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithImageNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(imageNamed:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(imagenamed:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseMap:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture from the specified noise map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "noiseMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKNoiseMap",
+          "text": "GKNoiseMap"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseMap:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithNoiseMap:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(noiseMap:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(noisemap:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseWithSmoothness:size:grayscale:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture whose contents are procedurally generated color noise data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "noiseWithSmoothness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "grayscale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseWithSmoothness:size:grayscale:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureNoiseWithSmoothness:size:grayscale:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(noiseWithSmoothness:size:grayscale:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(noisewithsmoothness:size:grayscale:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture from a sub-rectangle of an existing texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureWithRect:inTexture:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(rect:in:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(rect:in:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(vectorNoiseWithSmoothness:size:)": {
+      "abstract": [
+        {
+          "text": "Creates a new texture whose contents are procedurally generated directional noise data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "vectorNoiseWithSmoothness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(vectorNoiseWithSmoothness:size:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureVectorNoiseWithSmoothness:size:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(vectorNoiseWithSmoothness:size:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture/init(vectornoisewithsmoothness:size:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas": {
+      "abstract": [
+        {
+          "text": "A collection of textures optimized for storage and drawing performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTextureAtlas",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture from data stored in the texture atlas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/texturenamed(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/texture(from:)": {
+      "abstract": [
+        {
+          "text": "Renders the contents of a node tree and returns the rendered image as a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/texture(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureFromNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "texture(from:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/texture(from:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/loading-and-using-textures": {
+      "abstract": [
+        {
+          "text": "Learn the basics about using textures in SpriteKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/loading-and-using-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading and Using Textures",
+      "type": "topic",
+      "url": "/documentation/spritekit/loading-and-using-textures"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/texture-initializers": {
+      "abstract": [
+        {
+          "text": "See the various ways to create and use textures in SpriteKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/texture-initializers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Texture Initializers",
+      "type": "topic",
+      "url": "/documentation/spritekit/texture-initializers"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "First-Steps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/loading-and-using-textures"
+      ],
+      "title": "First Steps"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Search the app bundle for an image by filename.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Filename-Initializer",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)"
+      ],
+      "title": "Filename Initializer"
+    },
+    {
+      "anchor": "Texture-Within-a-Texture",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)"
+      ],
+      "title": "Texture Within a Texture"
+    },
+    {
+      "anchor": "Texture-from-Image",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(image:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(cgImage:)"
+      ],
+      "title": "Texture from Image"
+    },
+    {
+      "anchor": "Texture-with-Effects",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/applying(_:)"
+      ],
+      "title": "Texture with Effects"
+    },
+    {
+      "anchor": "Texture-from-Data",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:rowLength:alignment:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:flipped:)"
+      ],
+      "title": "Texture from Data"
+    },
+    {
+      "anchor": "Texture-from-Normal-Map",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap(withSmoothness:contrast:)"
+      ],
+      "title": "Texture from Normal Map"
+    },
+    {
+      "anchor": "Noise-Textures",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(vectorNoiseWithSmoothness:size:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseWithSmoothness:size:grayscale:)"
+      ],
+      "title": "Noise Textures"
+    },
+    {
+      "anchor": "Texture-from-Noise-Map",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseMap:)"
+      ],
+      "title": "Texture from Noise Map"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Search the app bundle for an image by filename.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Filename-Initializer",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(imageNamed:)"
+              ],
+              "title": "Filename Initializer"
+            },
+            {
+              "anchor": "Texture-Within-a-Texture",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(rect:in:)"
+              ],
+              "title": "Texture Within a Texture"
+            },
+            {
+              "anchor": "Texture-from-Image",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(image:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(cgImage:)"
+              ],
+              "title": "Texture from Image"
+            },
+            {
+              "anchor": "Texture-with-Effects",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/applying(_:)"
+              ],
+              "title": "Texture with Effects"
+            },
+            {
+              "anchor": "Texture-from-Data",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:rowLength:alignment:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(data:size:flipped:)"
+              ],
+              "title": "Texture from Data"
+            },
+            {
+              "anchor": "Texture-from-Normal-Map",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/generatingNormalMap(withSmoothness:contrast:)"
+              ],
+              "title": "Texture from Normal Map"
+            },
+            {
+              "anchor": "Noise-Textures",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(vectorNoiseWithSmoothness:size:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseWithSmoothness:size:grayscale:)"
+              ],
+              "title": "Noise Textures"
+            },
+            {
+              "anchor": "Texture-from-Noise-Map",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture/init(noiseMap:)"
+              ],
+              "title": "Texture from Noise Map"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/loading-and-using-textures"
+              ],
+              "title": "First Steps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(data:size:)/title",
+          "value": "textureWithData:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(data:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithData:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(cgImage:)/title",
+          "value": "textureWithCGImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(cgImage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithCGImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1applying(_:)/title",
+          "value": "textureByApplyingCIFilter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1applying(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureByApplyingCIFilter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(image:)/title",
+          "value": "textureWithImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(image:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1generatingNormalMap()/title",
+          "value": "textureByGeneratingNormalMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1generatingNormalMap()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureByGeneratingNormalMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(noiseMap:)/title",
+          "value": "textureWithNoiseMap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(noiseMap:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithNoiseMap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(rect:in:)/title",
+          "value": "textureWithRect:inTexture:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(rect:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithRect:inTexture:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1texture(from:)/title",
+          "value": "textureFromNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1texture(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureFromNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(data:size:flipped:)/title",
+          "value": "textureWithData:size:flipped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(data:size:flipped:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithData:size:flipped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/title",
+          "value": "textureNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(data:size:rowLength:alignment:)/title",
+          "value": "textureWithData:size:rowLength:alignment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(data:size:rowLength:alignment:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithData:size:rowLength:alignment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(imageNamed:)/title",
+          "value": "textureWithImageNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(imageNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureWithImageNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(vectorNoiseWithSmoothness:size:)/title",
+          "value": "textureVectorNoiseWithSmoothness:size:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(vectorNoiseWithSmoothness:size:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureVectorNoiseWithSmoothness:size:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/title",
+          "value": "SKTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(noiseWithSmoothness:size:grayscale:)/title",
+          "value": "textureNoiseWithSmoothness:size:grayscale:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1init(noiseWithSmoothness:size:grayscale:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureNoiseWithSmoothness:size:grayscale:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1generatingNormalMap(withSmoothness:contrast:)/title",
+          "value": "textureByGeneratingNormalMapWithSmoothness:contrast:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture~1generatingNormalMap(withSmoothness:contrast:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureByGeneratingNormalMapWithSmoothness:contrast:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/title",
+          "value": "SKTextureAtlas"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/texture-initializers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/texture-initializers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

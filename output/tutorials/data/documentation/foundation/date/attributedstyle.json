@@ -1,0 +1,1529 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that creates a locale-appropriate attributed string representation of a date instance.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/date/formatstyle"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/date",
+        "doc://com.apple.documentation/documentation/foundation/date/formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3796188,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation4DateV15AttributedStyleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "Date.AttributedStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Date"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.0",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.0",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.0",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "18.0",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "deprecated": true,
+        "deprecatedAt": "2.0",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "deprecated": true,
+        "deprecatedAt": "11.0",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "deprecated": true,
+        "deprecatedAt": "16.0",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Date.AttributedStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AttributedStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance to customize the lexical representation of a date as a string. Use the format style’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " property to customize the visual representation of the date as a string. Attributed strings can represent the subcomponent characters, words, and phrases of a string with a custom combination of font size, weight, and color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the function below uses a date format style to create a custom lexical representation of a date, then retrieves an attributed string representation of the same date and applies a visual emphasis to the year component of the date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Applies visual emphasis to the year component of a formatted attributed date string.",
+            "private func makeAttributedString() -> AttributedString {",
+            "    let date = Date()",
+            "    let formatStyle = Date.FormatStyle(date: .abbreviated, time: .standard)",
+            "    var attributedString = formatStyle.attributed.format(date)",
+            "    for run in attributedString.runs {",
+            "        if let dateFieldAttribute = run.attributes.foundation.dateField,",
+            "           dateFieldAttribute == .year {",
+            "            // When you find a year, change its attributes.",
+            "            attributedString[run.range].inlinePresentationIntent = [.emphasized, .stronglyEmphasized]",
+            "        }",
+            "    }",
+            "    return attributedString",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3856178",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The expression ",
+              "type": "text"
+            },
+            {
+              "code": "formatStyle.attributed.format(date)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " above creates an attributed string representation of the date. This assigns instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate ranges of the string that represent different date fields. The example then loops over the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765859-runs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the attributed string to find any run with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/year",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute. When it finds one, it adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3796123-inlinepresentationintent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attributes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746895-emphasized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746899-stronglyemphasized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The runs of the resulting attributed string have the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "3958605",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attributes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Mar",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/month",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "15",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/day",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2022",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/year",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746895-emphasized",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746899-stronglyemphasized",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/hour",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "06",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/minute",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "46",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/second",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AM",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/ampm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view with this attributed string, SwiftUI renders the combination of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746895-emphasized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746899-stronglyemphasized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attributes as bold, italicized text, as seen in the following screenshot. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3957719",
+              "metadata": {
+                "anchor": "3957719",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3765859-runs": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3765859-runs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runs",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3765859-runs"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3796123-inlinepresentationintent": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/3796123-inlinepresentationintent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inlinePresentationIntent",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/3796123-inlinepresentationintent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/ampm": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/ampm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.amPM",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/ampm"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/day": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/day",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.day",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/day"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/hour": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/hour",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.hour",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/hour"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/minute": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/minute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.minute",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/minute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/month": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/month",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.month",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/month"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/second": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/second",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.second",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/second"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/year": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/year",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.FoundationAttributes.DateFieldAttribute.Field.year",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/foundationattributes/datefieldattribute/field/year"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle": {
+      "abstract": [
+        {
+          "text": "A structure that creates a locale-appropriate attributed string representation of a date instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.AttributedStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle#3856178": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle#3856178",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/date/attributedstyle#3856178"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle#3958605": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle#3958605",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/date/attributedstyle#3958605"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796189": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(Date.AttributedStyle, Date.AttributedStyle) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796189",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796189"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796190": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(Date.AttributedStyle, Date.AttributedStyle) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796190",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796190"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796193-encode": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796193-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796193-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796194-format": {
+      "abstract": [
+        {
+          "text": "Creates a locale-aware attributed string representation from a date value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": "(Date) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796194-format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796194-format"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796195-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796195-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796195-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796196-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value of the style format.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796196-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796196-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796197-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796197-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796197-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796198-list": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<MemberStyle, Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "memberStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": MemberStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.Width) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796198-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(memberStyle:type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796198-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796199-list": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.Width) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796199-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796199-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796200-locale": {
+      "abstract": [
+        {
+          "text": "Modifies the date attributed style to use the specified locale.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": "(Locale) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796200-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3796200-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870011-currency": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870011-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3870011-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870012-currency": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<V>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870012-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3870012-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870013-measurement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitTemperature>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitTemperature>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidesScaleName"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870013-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:hidesScaleName:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3870013-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870014-measurement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<UnitType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitType>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitType>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870014-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/3870014-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/formatinput": {
+      "abstract": [
+        {
+          "text": "The type of data to format.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.AttributedStyle.FormatInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/formatinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.AttributedStyle.FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/formatinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/formatoutput": {
+      "abstract": [
+        {
+          "text": "The type of the formatted data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date.AttributedStyle.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/formatoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.AttributedStyle.FormatOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/date/attributedstyle/formatoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed": {
+      "abstract": [
+        {
+          "text": "An attributed format style created from the date format style.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributed"
+        },
+        {
+          "kind": "text",
+          "text": ": Date.AttributedStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributed",
+      "type": "topic",
+      "url": "/documentation/foundation/date/formatstyle/3796283-attributed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746895-emphasized": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746895-emphasized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "emphasized",
+      "type": "topic",
+      "url": "/documentation/foundation/inlinepresentationintent/3746895-emphasized"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746899-stronglyemphasized": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inlinepresentationintent/3746899-stronglyemphasized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stronglyEmphasized",
+      "type": "topic",
+      "url": "/documentation/foundation/inlinepresentationintent/3746899-stronglyemphasized"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3957719": {
+      "identifier": "link-media-3957719",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/date/attributedstyle#3957719"
+    },
+    "media-3957719": {
+      "alt": "A macOS window with a text view showing the current date and time. The year is displayed in bold, italicized text.",
+      "identifier": "media-3957719",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c86818df0c/rendered2x-1647353541.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/654ef2527f/renderedDark2x-1647353543.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/formatstyle/3796283-attributed"
+      ],
+      "title": "Applying Visual Attributes to Dates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3856179",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796200-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Modifying a Date Attributed Style"
+    },
+    {
+      "anchor": "3856175",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796194-format"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying Date Attributed Styles"
+    },
+    {
+      "anchor": "3856172",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796197-init",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796193-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and Decoding Date Attributed Styles"
+    },
+    {
+      "anchor": "3856176",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796196-hashvalue",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796195-hash"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing Date Attributed Styles"
+    },
+    {
+      "anchor": "3856173",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/formatinput",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/formatoutput"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    },
+    {
+      "anchor": "3856177",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796189",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796190"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Date Attributed Styles"
+    },
+    {
+      "anchor": "3971390",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870011-currency",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870012-currency",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796198-list",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3796199-list",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870013-measurement",
+        "doc://com.apple.documentation/documentation/foundation/date/attributedstyle/3870014-measurement"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/date/attributedstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

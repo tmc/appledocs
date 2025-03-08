@@ -1,0 +1,1785 @@
+{
+  "abstract": [
+    {
+      "text": "An object for requesting data from a resource that an asset resource-loading request references.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAssetResourceLoadingDataRequest",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAssetResourceLoadingDataRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAssetResourceLoadingDataRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAssetResourceLoadingDataRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingDataRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses the ",
+              "type": "text"
+            },
+            {
+              "code": "AVAssetResourceLoadingDataRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to do the actual data reading, and its methods will be invoked, as necessary, to acquire data for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the resource loading delegate, which implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, receives an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the second parameter of the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate/resourceLoader(_:shouldWaitForLoadingOfRequestedResource:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, it has the option of accepting responsibility for loading the referenced resource. If it accepts that responsibility, by returning ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", it must check whether the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest/dataRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If it is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the resource loading delegate is informed of the range of bytes within the resource that are required by the underlying media system. In response, the data is provided by one or more invocations of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/respond(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as required to provide the requested data. The data can be provided in increments determined by the resource loading delegate according to convenience or efficiency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest/finishLoading()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is invoked, the data request is considered fully satisfied. If the entire range of bytes requested has not yet been provided, the underlying media system assumes that the resource’s length is limited to the provided content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoader": {
+      "abstract": [
+        {
+          "text": "An object that mediates resource requests from a URL asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceLoader",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloader"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to handle resource-loading requests coming from a URL asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoaderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoaderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceLoaderDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloaderdelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate/resourceLoader(_:shouldWaitForLoadingOfRequestedResource:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if it wants to load the requested resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceLoader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetResourceLoader",
+          "text": "AVAssetResourceLoader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldWaitForLoadingOfRequestedResource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetResourceLoadingRequest",
+          "text": "AVAssetResourceLoadingRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate/resourceLoader(_:shouldWaitForLoadingOfRequestedResource:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resourceLoader:shouldWaitForLoadingOfRequestedResource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resourceLoader(_:shouldWaitForLoadingOfRequestedResource:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloaderdelegate/resourceloader(_:shouldwaitforloadingofrequestedresource:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingContentInformationRequest": {
+      "abstract": [
+        {
+          "text": "A query for retrieving essential information about a resource that an asset resource-loading request references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingContentInformationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingContentInformationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingContentInformationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceLoadingContentInformationRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingcontentinformationrequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest": {
+      "abstract": [
+        {
+          "text": "An object for requesting data from a resource that an asset resource-loading request references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceLoadingDataRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingdatarequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/currentOffset": {
+      "abstract": [
+        {
+          "text": "The position within the resource of the next byte.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/currentOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentOffset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingdatarequest/currentoffset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedLength": {
+      "abstract": [
+        {
+          "text": "The length, in bytes, of the data requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestedLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestedLength",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingdatarequest/requestedlength"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedOffset": {
+      "abstract": [
+        {
+          "text": "The position within the resource of the first byte requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestedOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestedOffset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingdatarequest/requestedoffset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestsAllDataToEndOfResource": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the entire remaining length of the resource from the offest to the end of the resource is being requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestsAllDataToEndOfResource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestsAllDataToEndOfResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestsAllDataToEndOfResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestsAllDataToEndOfResource",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingdatarequest/requestsalldatatoendofresource"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/respond(with:)": {
+      "abstract": [
+        {
+          "text": "Provides data to the loading request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "respond"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/respond(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "respondWithData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "respond(with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingdatarequest/respond(with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates information about a resource request from a resource loader object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceLoadingRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingrequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest/dataRequest": {
+      "abstract": [
+        {
+          "text": "The range of requested resource data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetResourceLoadingDataRequest",
+          "text": "AVAssetResourceLoadingDataRequest"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest/dataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingrequest/datarequest"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest/finishLoading()": {
+      "abstract": [
+        {
+          "text": "Causes the receiver to treat the processing of the request as complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishLoading"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest/finishLoading()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishLoading()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingrequest/finishloading()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequestor": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the originator of a resource-loading request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingRequestor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequestor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceLoadingRequestor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceLoadingRequestor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourceloadingrequestor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceRenewalRequest": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates information about a resource request from a resource loader to renew a previously issued request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceRenewalRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceRenewalRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetResourceRenewalRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetResourceRenewalRequest",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetresourcerenewalrequest"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resource-loading",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoader",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceRenewalRequest",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequestor",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingContentInformationRequest"
+      ],
+      "title": "Resource loading"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Providing-Data-to-a-Request",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/respond(with:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedLength",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedOffset",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/currentOffset",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestsAllDataToEndOfResource"
+      ],
+      "title": "Providing Data to a Request"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAssetResourceLoadingDataRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingDataRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingDataRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Providing-Data-to-a-Request",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/respond(with:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedLength",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestedOffset",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/currentOffset",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingDataRequest/requestsAllDataToEndOfResource"
+              ],
+              "title": "Providing Data to a Request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resource-loading",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoader",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoaderDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequest",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceRenewalRequest",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingRequestor",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetResourceLoadingContentInformationRequest"
+              ],
+              "title": "Resource loading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAssetResourceLoadingDataRequest"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1requestsAllDataToEndOfResource/title",
+          "value": "requestsAllDataToEndOfResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1requestsAllDataToEndOfResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requestsAllDataToEndOfResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1currentOffset/title",
+          "value": "currentOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1currentOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1respond(with:)/title",
+          "value": "respondWithData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1respond(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "respondWithData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequestor/title",
+          "value": "AVAssetResourceLoadingRequestor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequestor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingRequestor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequestor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingRequestor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoaderDelegate/title",
+          "value": "AVAssetResourceLoaderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoaderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoaderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoaderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoaderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest~1finishLoading()/title",
+          "value": "finishLoading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest~1finishLoading()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest/title",
+          "value": "AVAssetResourceLoadingRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1requestedOffset/title",
+          "value": "requestedOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1requestedOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requestedOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoaderDelegate~1resourceLoader(_:shouldWaitForLoadingOfRequestedResource:)/title",
+          "value": "resourceLoader:shouldWaitForLoadingOfRequestedResource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoaderDelegate~1resourceLoader(_:shouldWaitForLoadingOfRequestedResource:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resourceLoader:shouldWaitForLoadingOfRequestedResource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1requestedLength/title",
+          "value": "requestedLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest~1requestedLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requestedLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceRenewalRequest/title",
+          "value": "AVAssetResourceRenewalRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceRenewalRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceRenewalRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceRenewalRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceRenewalRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingContentInformationRequest/title",
+          "value": "AVAssetResourceLoadingContentInformationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingContentInformationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingContentInformationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingContentInformationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingContentInformationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest~1dataRequest/title",
+          "value": "dataRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingRequest~1dataRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest/title",
+          "value": "AVAssetResourceLoadingDataRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingDataRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoadingDataRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoadingDataRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoader/title",
+          "value": "AVAssetResourceLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetResourceLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetResourceLoader"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetresourceloadingdatarequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetresourceloadingdatarequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

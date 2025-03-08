@@ -1,0 +1,926 @@
+{
+  "abstract": [
+    {
+      "text": "An identifier that disambiguates signposted intervals.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/OSSignpostID"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:2os12OSSignpostIDV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "OSSignpostID"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OSSignpostID"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "OSSignpostID"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSSignpostID"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.os/documentation/os/recording-performance-data"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiple intervals that have matching names, subsystems, and categories, and that exist in the same scope can be in-flight simultaneously. To match a pair of interval calls, you need to identify each interval with a unique signpost identifier. Use the first strategy in the list below that matches your use case:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If identical intervals can never overlap, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/exclusive",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " signpost ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have data that uniquely identifies each instance of the measured task, create a signpost ID using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/init(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. The value you provide must not match that of any of the system-defined signpost IDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have an object that uniquely identifies a pair of interval calls, such as the object you’re measuring, create a signpost ID using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Don’t use this method for signposts that cross process boundaries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, create a signpost ID using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID": {
+      "abstract": [
+        {
+          "text": "An identifier that disambiguates signposted intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostID"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostID",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/exclusive": {
+      "abstract": [
+        {
+          "text": "A signpost identifier that indicates no overlap among different signpost time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclusive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/exclusive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exclusive",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/exclusive"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a signpost ID from an arbitrary 64-bit integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/init(_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/init(log:)": {
+      "abstract": [
+        {
+          "text": "Creates a signpost ID for the specified log.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "log"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/init(log:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(log:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/init(log:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/init(log:object:)": {
+      "abstract": [
+        {
+          "text": "Creates a signpost ID and associates it with the specified object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "log"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/init(log:object:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(log:object:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/init(log:object:)"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/invalid": {
+      "abstract": [
+        {
+          "text": "A signpost identifier that indicates an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/invalid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalid",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/invalid"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/null": {
+      "abstract": [
+        {
+          "text": "A signpost identifier that indicates a disabled signpost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "null"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/null",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "null",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/null"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostID/rawValue": {
+      "abstract": [
+        {
+          "text": "The signpost ID’s raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@os_signpost_id_t",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostID/rawValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rawValue",
+      "type": "topic",
+      "url": "/documentation/os/ossignpostid/rawvalue"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()": {
+      "abstract": [
+        {
+          "text": "Returns an identifier that’s unique within the scope of the signposter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeSignpostID()",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/makesignpostid()"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)": {
+      "abstract": [
+        {
+          "text": "Returns an identifier that the signposter derives from the specified object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSignpostID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSSignpostIDV",
+          "text": "OSSignpostID"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeSignpostID(from:)",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter/makesignpostid(from:)"
+    },
+    "doc://com.apple.os/documentation/os/recording-performance-data": {
+      "abstract": [
+        {
+          "text": "Add signposts to record interesting time-based events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/recording-performance-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording Performance Data",
+      "type": "topic",
+      "url": "/documentation/os/recording-performance-data"
+    },
+    "doc://com.externally.resolved.symbol/s:SL": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators `<`, `<=`, `>=`, and `>`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/Swift/Comparable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SL",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Generating-Signpost-IDs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID()",
+        "doc://com.apple.os/documentation/os/OSSignposter/makeSignpostID(from:)"
+      ],
+      "title": "Generating Signpost IDs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Signpost-Identifiers",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignpostID/exclusive",
+        "doc://com.apple.os/documentation/os/OSSignpostID/invalid",
+        "doc://com.apple.os/documentation/os/OSSignpostID/null"
+      ],
+      "title": "Getting Signpost Identifiers"
+    },
+    {
+      "anchor": "Creating-a-Signpost-Identifier",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignpostID/init(_:)",
+        "doc://com.apple.os/documentation/os/OSSignpostID/init(log:)",
+        "doc://com.apple.os/documentation/os/OSSignpostID/init(log:object:)"
+      ],
+      "title": "Creating a Signpost Identifier"
+    },
+    {
+      "anchor": "Getting-an-Identifiers-Raw-Value",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSSignpostID/rawValue"
+      ],
+      "title": "Getting an Identifier’s Raw Value"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/ossignpostid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

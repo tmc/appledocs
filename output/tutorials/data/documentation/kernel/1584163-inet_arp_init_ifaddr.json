@@ -1,0 +1,275 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/net"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1584163-inet_arp_init_ifaddr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1584163,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@inet_arp_init_ifaddr#*$@S@__ifnet#*$@S@__ifaddr#",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "inet_arp_init_ifaddr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "inet_arp_init_ifaddr"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ifnet_t",
+              "text": "ifnet_t"
+            },
+            {
+              "kind": "text",
+              "text": " interface, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ifaddr_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ifaddr_t",
+              "text": "ifaddr_t"
+            },
+            {
+              "kind": "text",
+              "text": " ipaddr);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The interface the packet was received on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "interface"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ip interface address.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ipaddr"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function should be called in two places, when an IP address is added and when the hardware address changes. This function will setup the ifaddr_t for use with the IP ARP functions. This function will also trigger the transmission of a gratuitous ARP packet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the SIOCSIFADDR ioctl is handled, the data parameter will be an ifaddr_t. If this is an IP address, inet_arp_init_ifaddr should be called. This is usually performed in the protocol attachment's ioctl handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the event handler for the protocol attachment receives a KEV_DL_LINK_ADDRESS_CHANGED event, the event handler should call inet_arp_init_ifaddr for each interface ip address.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example, see bsd/net/ether_inet_pr_module.c in xnu. Search for inet_arp_init_ifaddr.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1584163-inet_arp_init_ifaddr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1584163-inet_arp_init_ifaddr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inet_arp_init_ifaddr",
+      "type": "topic",
+      "url": "/documentation/kernel/1584163-inet_arp_init_ifaddr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1584164-inet_arp_handle_input": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1584164-inet_arp_handle_input",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inet_arp_handle_input",
+      "type": "topic",
+      "url": "/documentation/kernel/1584164-inet_arp_handle_input"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1584165-inet_arp_lookup": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1584165-inet_arp_lookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inet_arp_lookup",
+      "type": "topic",
+      "url": "/documentation/kernel/1584165-inet_arp_lookup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifaddr_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifaddr_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifaddr_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifaddr_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/net": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/net",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "net",
+      "type": "topic",
+      "url": "/documentation/kernel/net"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1584164-inet_arp_handle_input",
+        "doc://com.apple.documentation/documentation/kernel/1584165-inet_arp_lookup"
+      ],
+      "title": "Address Resolution"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1584163-inet_arp_init_ifaddr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

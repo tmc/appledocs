@@ -1,0 +1,872 @@
+{
+  "abstract": [
+    {
+      "text": "An Objective-C message rendered as an object.  ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsinvocation"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437840,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSInvocation",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSInvocation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSInvocation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are used to store and forward messages between objects and between applications, primarily by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and the distributed objects system. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is dispatched.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can be repeatedly dispatched to different targets; its arguments can be modified between dispatch for varying results; even its selector can be changed to another with the same method signature (argument and return types). This flexibility makes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " useful for repeating messages with many arguments and variations; rather than retyping a slightly different expression for each message, you modify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object as needed each time before dispatching it to a new target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " does not support invocations of methods with either variable numbers of arguments or ",
+              "type": "text"
+            },
+            {
+              "code": "union",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arguments. You should use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437844-invocationwithmethodsignature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method to create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects; you should not create these objects using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571958-alloc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class does not retain the arguments for the contained invocation by default. If those objects might disappear between the time you create your instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and the time you use it, you should explicitly retain the objects yourself or invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437838-retainarguments",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method to have the invocation object retain them itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, but only supports coding by an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " does not support archiving.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation": {
+      "abstract": [
+        {
+          "text": "An Objective-C message rendered as an object.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInvocation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437830-getargument": {
+      "abstract": [
+        {
+          "text": "Returns by indirection the receiver's argument at a specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getArgument:atIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437830-getargument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getArgument:atIndex:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437830-getargument"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437832-getreturnvalue": {
+      "abstract": [
+        {
+          "text": "Gets the invocation’s return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getReturnValue:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437832-getreturnvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReturnValue:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437832-getreturnvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437834-setargument": {
+      "abstract": [
+        {
+          "text": "Sets an argument of the receiver. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setArgument:atIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437834-setargument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setArgument:atIndex:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437834-setargument"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437836-selector": {
+      "abstract": [
+        {
+          "text": "The receiver’s selector, or 0 if it hasn’t been set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437836-selector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437836-selector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437838-retainarguments": {
+      "abstract": [
+        {
+          "text": "If the receiver hasn’t already done so, retains the target and all object arguments of the receiver and copies all of its C-string arguments and blocks. If a returnvalue has been set, this is also retained or copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "retainArguments"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437838-retainarguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "retainArguments",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437838-retainarguments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437842-argumentsretained": {
+      "abstract": [
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " if the receiver has retained its arguments, ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " otherwise.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437842-argumentsretained",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "argumentsRetained",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437842-argumentsretained"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437844-invocationwithmethodsignature": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInvocation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object able to construct messages using a given method signature. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "invocationWithMethodSignature:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437844-invocationwithmethodsignature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invocationWithMethodSignature:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437844-invocationwithmethodsignature"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437846-methodsignature": {
+      "abstract": [
+        {
+          "text": "The receiver’s method signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437846-methodsignature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "methodSignature",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437846-methodsignature"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437848-setreturnvalue": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setReturnValue:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437848-setreturnvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setReturnValue:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437848-setreturnvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437850-invoke": {
+      "abstract": [
+        {
+          "text": "Sends the receiver’s message (with arguments) to its target and sets the return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437850-invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invoke",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437850-invoke"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437852-target": {
+      "abstract": [
+        {
+          "text": "The receiver’s target, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the receiver has no target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437852-target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437852-target"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437854-invokewithtarget": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s target, sends the receiver’s message (with arguments) to that target, and sets the return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "invokeWithTarget:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437854-invokewithtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invokeWithTarget:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/1437854-invokewithtarget"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation/3976727-invokeusingimp": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "invokeUsingIMP:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation/3976727-invokeusingimp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invokeUsingIMP:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation/3976727-invokeusingimp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmethodsignature": {
+      "abstract": [
+        {
+          "text": "A record of the type information for the return value and parameters of a method. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmethodsignature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMethodSignature",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmethodsignature"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTimer",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418641-init"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571958-alloc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "alloc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571958-alloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alloc",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571958-alloc"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmethodsignature"
+      ],
+      "title": "Invocations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651089",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437844-invocationwithmethodsignature"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating NSInvocation Objects"
+    },
+    {
+      "anchor": "1651096",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437836-selector",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437852-target",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437834-setargument",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437830-getargument",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437842-argumentsretained",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437838-retainarguments",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437848-setreturnvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437832-getreturnvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring an Invocation Object"
+    },
+    {
+      "anchor": "1651147",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437850-invoke",
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437854-invokewithtarget"
+      ],
+      "kind": "taskGroup",
+      "title": "Dispatching an Invocation"
+    },
+    {
+      "anchor": "1651196",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/1437846-methodsignature"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Method Signature"
+    },
+    {
+      "anchor": "3977927",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsinvocation/3976727-invokeusingimp"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsinvocation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

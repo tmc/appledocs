@@ -1,0 +1,707 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that associates a sample with a sample group description.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Sample-to-group_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom",
+        "text": "Sample-to-group atom ('sbpd')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom",
+        "text": "Sample-to-group atom ('sbpd')"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Sample-to-group atom ('sbpd')"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sample-to-group atoms are used to find the group that a sample belongs to and the associated description of that sample group. The sample-to-group atom has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "‘sbgp’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a general case, there may be multiple instances of sample-to-group atoms if there is more than one sample grouping for the samples in a track. Each instance of the sample-to group atom has a grouping type code that distinguishes different sample groupings. Within a track there can be at most one instance of this atom with a particular grouping type. An associated sample group description atom indicates the same value for the grouping type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample-to-group atom contains a table with a sample count and group description index pairs. The sample count is the number of media samples in the run of samples with the same sample group description. The group description index is an index into the array of payload data entries in the associated sample group description atom’s payload data table, the association defined by having the same grouping type value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For use in AAC encoder delay representation, there is one sample-to-group atom instance in a given QuickTime sound track with grouping type ",
+              "type": "text"
+            },
+            {
+              "code": "‘roll’",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matching the single instance of the sample group description atom. The entry count field value is set to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", indicating one entry in the table data array. That entry is describing all the AAC packets in the track. The sample count in the table data array is typically the same as the sample size atom’s number of entries field, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_size_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which represents the number of media samples in the track (in this use, AAC packets). For AAC encoder delay representation, the only entry in the associated sample group description atom’s payload data table is the first, which provides the value of 1 for the group description index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The layout of the sample-to-group atom is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sample-to-group atom",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Size",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'sbgp'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Version",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Flags",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Grouping_type",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Default_length",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Entry_count",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Table_data",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly": {
+      "abstract": [
+        {
+          "text": "Review an example that represents the temporal position of 5 seconds of 48kHz PCM audio encoded in a 48kHz AAC sound track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly",
+      "kind": "article",
+      "role": "article",
+      "title": "Representing encoder delay explicitly",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/example_representing_encoder_delay_explicitly"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom": {
+      "abstract": [
+        {
+          "text": "An atom that associates a sample with a sample group description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom",
+          "text": "Sample-to-group atom ('sbpd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample-to-group atom ('sbpd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Default_length": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer indicating the length of the group entry in the payload data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Default_length",
+          "text": "Default length"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Default_length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Default length",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/default_length"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Entry_count": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer giving the number of entries in the table data that follows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Entry_count",
+          "text": "Entry count"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Entry_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entry count",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/entry_count"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Flags": {
+      "abstract": [
+        {
+          "text": "A 3-byte reserved space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Flags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Flags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/flags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Grouping_type": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer identifying the grouping type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Grouping_type",
+          "text": "Grouping type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Grouping_type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Grouping type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/grouping_type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that specifies the number of bytes in this sample-to-group atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Table_data": {
+      "abstract": [
+        {
+          "text": "A table of sample count and group description index pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Table_data",
+          "text": "Table data"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Table_data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Table data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/table_data"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that identifies the atom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Version": {
+      "abstract": [
+        {
+          "text": "A 1-byte specification of the version of this sample-to-group atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom_Version",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom/version"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom": {
+      "abstract": [
+        {
+          "text": "An atom that gives information about the characteristics of sample groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_group_description_atom",
+          "text": "Sample group description atom ('sgpd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample group description atom ('sgpd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_group_description_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_size_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to specify the size of each sample in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_size_atom",
+          "text": "Sample size atom ('stsz')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_size_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample size atom ('stsz')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_size_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-group-structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom"
+      ],
+      "title": "Sample group structures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Version",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Flags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Grouping_type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Default_length",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Entry_count",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom/Table_data"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sample-to-group_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

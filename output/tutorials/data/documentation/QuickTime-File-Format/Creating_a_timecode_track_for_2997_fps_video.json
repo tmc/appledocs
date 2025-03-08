@@ -1,0 +1,575 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a timecode track to specify timecode information for other tracks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timecode_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_a_timecode_track_for_2997_fps_video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a timecode track for 29.97 FPS video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A timecode track specifies timecode information for other tracks. The timecode keeps track of the time codes of the original source of the video and audio. After a movie has been edited, the timecode can be extracted to determine the source tape and the time codes of the frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is important that the timecode track have the same time scale as the video track. Otherwise, the timecode will not tick at the exact same time as the video track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each contiguous source tape segment, there is a single timecode sample that specifies the timecode value corresponding to the start of the segment. From this sample, the timecode value can be determined for any point in the segment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample description for a timecode track specifies the timecode system being used (for example, a 30-fps drop frame) and the source information. Each sample is a timecode value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the timecode media handler is a derived from the base media handler, the media information atom starts with a generic media header atom. The timecode atoms would contain the following data values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Generic media header atom",
+            "├── Atom size: 80",
+            "├── Atom type: 'gmhd'",
+            "├── Generic media information atom",
+            "│   ├── Atom size: 24",
+            "│   ├── Atom type: 'gmin'",
+            "│   ├── Version/Flags: 0",
+            "│   ├── Graphics mode: 0x0040",
+            "│   ├── Opcolor (red): 0x8000",
+            "│   ├── Opcolor (green): 0x8000",
+            "│   ├── Opcolor (blue): 0x8000",
+            "│   ├── Balance: 0",
+            "│   └── Reserved: 0",
+            "└── Timecode atom",
+            "    ├── Atom size: 48",
+            "    └── Atom type | 'tmcd'",
+            "    └── Timecode media information atom",
+            "        ├── Atom size: 40",
+            "        ├── Atom type: 'tcmi'",
+            "        ├── Version/Flags: 0",
+            "        ├── Text font: 0 (system font)",
+            "        ├── Text face: 0 (plain)",
+            "        ├── Text size: 12",
+            "        ├── Padding: 0",
+            "        ├── Text color (red): 0",
+            "        ├── Text color (green): 0",
+            "        ├── Text color (blue): 0",
+            "        ├── Background color (red): 0",
+            "        ├── Background color (green): 0",
+            "        ├── Background color (blue): 0",
+            "        └── Font name: '\\pChicago' (Pascal string)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample table atom contains all the standard sample atoms and has the following data values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Sample table atom",
+            "├── Atom size: 174",
+            "├── Atom type: 'stbl' (sample table)",
+            "├── Sample description atom",
+            "│   ├── Atom size: 74",
+            "│   ├── Atom type: 'stsd' (sample description)",
+            "│   ├── Version/Flags: 0",
+            "│   ├── Number of entries: 1",
+            "│   ├── Sample description size[1]: 58",
+            "│   ├── Data format[1]: 'tmcd'",
+            "│   ├── Reserved[1]: 0",
+            "│   ├── Data reference index[1]: 1",
+            "│   ├── Flags[1]: 0",
+            "│   ├── Flags (timecode)[1]: 7 (drop frame + 24 hour + negative times OK)",
+            "│   ├── Time scale[1]: 2997",
+            "│   ├── Frame duration[1]: 100",
+            "│   ├── Number of frames[1]: 20",
+            "│   └── Name atom",
+            "│       ├── Atom size: 24",
+            "│       ├── Atom type: 'name'",
+            "│       ├── String length: 12",
+            "│       ├── Language code: 0 (English)",
+            "│       └── Name: \"my tape name\"",
+            "├── Time to sample atom",
+            "│   ├── Atom size: 24",
+            "│   ├── Atom type: 'stts' (time to sample)",
+            "│   ├── Version/Flags: 0",
+            "│   ├── Number of entries: 1",
+            "│   ├── Sample count[1]: 1",
+            "│   └── Sample duration[1]: 1",
+            "├── Sample to chunk atom",
+            "│   ├── Atom size: 28",
+            "│   ├── Atom type: 'stsc' (sample to chunk)",
+            "│   ├── Version/Flags: 0",
+            "│   ├── Number of entries: 1",
+            "│   ├── First chunk[1]: 1",
+            "│   ├── Samples per chunk[1]: 1",
+            "│   └── Sample description ID[1]: 1",
+            "├── Sample size atom",
+            "│   ├── Atom size: 20",
+            "│   ├── Atom type: 'stsz' (sample size)",
+            "│   ├── Version/Flags: 0",
+            "│   ├── Sample size: 4",
+            "│   └── Number of entries: 1",
+            "└── Chunk offset atom",
+            "    ├── Atom size: 20",
+            "    ├── Atom type: 'stco' (chunk offset)",
+            "    ├── Version/Flags: 0",
+            "    ├── Number of entries: 1",
+            "    └── Offset[1]: (offset into file of chunk 1)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example, let’s assume that the segment’s beginning timecode is 1:15:32.4 (1 hour, 15 minutes, 32 seconds, and 4 frames). The time would be expressed in the data file as ",
+              "type": "text"
+            },
+            {
+              "code": "0x010F2004",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "0x01",
+              "type": "codeVoice"
+            },
+            {
+              "text": " = 1 hour; ",
+              "type": "text"
+            },
+            {
+              "code": "0x0F",
+              "type": "codeVoice"
+            },
+            {
+              "text": " = 15 minutes; ",
+              "type": "text"
+            },
+            {
+              "code": "0x20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " = 32 seconds; ",
+              "type": "text"
+            },
+            {
+              "code": "0x04",
+              "type": "codeVoice"
+            },
+            {
+              "text": " = 4 frames).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The video and sound tracks must contain a track reference atom to indicate that they reference this timecode track. The track reference is the same for both and is contained in the track atom (at the same level as the track header and media atoms).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This track reference would contain the data values listed in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atom size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "12",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atom type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'tref'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reference type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'tmcd'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Track ID of referenced track (timecode track)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the video and sound tracks are tracks ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The timecode track is track ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timecode_media": {
+      "abstract": [
+        {
+          "text": "Store time code data in QuickTime movies with timecode media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timecode_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timecode media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timecode_media"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_media_information_atom": {
+      "abstract": [
+        {
+          "text": "An atom that governs how the timecode text is displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Timecode_media_information_atom",
+          "text": "Timecode media information atom ('tcmi')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_media_information_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timecode media information atom ('tcmi')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timecode_media_information_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_sample_data": {
+      "abstract": [
+        {
+          "text": "An atom that represents timecode sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Timecode_sample_data",
+          "text": "Timecode sample data"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_sample_data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timecode sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timecode_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that defines how to interpret time code media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Timecode_sample_description",
+          "text": "Timecode sample description"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_sample_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timecode sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timecode_sample_description"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-time-code-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_sample_description",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_media_information_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Timecode_sample_data"
+      ],
+      "title": "Storing time code data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/creating_a_timecode_track_for_2997_fps_video"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

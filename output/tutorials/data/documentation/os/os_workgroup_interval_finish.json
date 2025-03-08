@@ -1,0 +1,564 @@
+{
+  "abstract": [
+    {
+      "text": "Stops the current interval-based execution of the workgroup’s threads.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.os/documentation/os/os_workgroup_interval_finish"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_workgroup_interval_finish",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "os_workgroup_interval_finish"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "os_workgroup_interval_finish"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_workgroup_interval_finish"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_workgroup_interval_finish"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_interval_t",
+              "text": "os_workgroup_interval_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "wg"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_data_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@os_workgroup_interval_data_t",
+              "text": "os_workgroup_interval_data_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A workgroup containing one or more threads, including the current thread. If the current thread is not part of this workgroup, this function aborts the process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "wg"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional interval data. Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "data"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success, or a nonzero error code indicating why the function failed. Common error codes include ",
+              "type": "text"
+            },
+            {
+              "code": "EINVAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "EPERM",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, this method returns ",
+              "type": "text"
+            },
+            {
+              "code": "EINVAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you didn’t start the workgroup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this function when you no longer need your workgroup’s threads to run at regular intervals. For example, call this function when the user’s video finishes playing and you no longer need to decode the video frames. This function puts the workgroup back into the idle state, from which you can start it again by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function returns an error if you created the workgroup using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_create_with_workgroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_workgroup_create_with_port",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. This function works only on workgroups that you create using the ",
+              "type": "text"
+            },
+            {
+              "code": "os_workgroup_interval_create",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/os_clockid_t": {
+      "abstract": [
+        {
+          "text": "Options for how to specify time-specific values in an interval workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_clockid_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_clockid_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_clockid_t",
+      "type": "topic",
+      "url": "/documentation/os/os_clockid_t"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_create_with_port": {
+      "abstract": [
+        {
+          "text": "Creates a new workgroup that is bound to the workgroup with the specified Mach port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_create_with_port"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_create_with_port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_create_with_port",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_create_with_port"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_create_with_workgroup": {
+      "abstract": [
+        {
+          "text": "Create a new workgroup that is bound to the specified workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_create_with_workgroup"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_create_with_workgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_create_with_workgroup",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_create_with_workgroup"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_interval_data_t": {
+      "abstract": [
+        {
+          "text": "An opaque structure that contains additional configuration data for the interval workgroup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_interval_data_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_data_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_interval_data_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_interval_data_t"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_interval_finish": {
+      "abstract": [
+        {
+          "text": "Stops the current interval-based execution of the workgroup’s threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_interval_finish"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_finish",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_interval_finish",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_interval_finish"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_interval_start": {
+      "abstract": [
+        {
+          "text": "Starts the regular execution of the workgroup’s threads at the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_interval_start"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_interval_start",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_interval_start"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_interval_t": {
+      "abstract": [
+        {
+          "text": "A workgroup object that supports the scheduling of threads on a repeating cadence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_interval_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_interval_t",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_interval_t"
+    },
+    "doc://com.apple.os/documentation/os/os_workgroup_interval_update": {
+      "abstract": [
+        {
+          "text": "Schedules a new deadline for workgroup threads that run at regular intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_workgroup_interval_update"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_workgroup_interval_update",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_workgroup_interval_update",
+      "type": "topic",
+      "url": "/documentation/os/os_workgroup_interval_update"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interval-Tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/os_workgroup_interval_start",
+        "doc://com.apple.os/documentation/os/os_workgroup_interval_update",
+        "doc://com.apple.os/documentation/os/os_workgroup_interval_t",
+        "doc://com.apple.os/documentation/os/os_workgroup_interval_data_t",
+        "doc://com.apple.os/documentation/os/os_clockid_t"
+      ],
+      "title": "Interval Tasks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/os_workgroup_interval_finish"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

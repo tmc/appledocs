@@ -1,0 +1,1181 @@
+{
+  "abstract": [
+    {
+      "text": "Interrogate the system for processor, cache, and topology information.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/sys",
+        "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname/determining_system_capabilities"
+  },
+  "kind": "article",
+  "legacy_identifier": 3901381,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Determining system capabilities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Obtain information about parameters related to processor availability, cache size, and performance-level characteristics on the system by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. These parameters provide details about your system that can aid in tuning performance. For example, you can obtain the count of the highest-performing processor cores to spawn a worker thread for each core. Or you can determine the size of the L2 cache and the number of processor cores that share it to perform software cache-blocking optimization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3901384",
+          "level": 3,
+          "text": "Determine processor characteristics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system enables a processor core when it’s powered on and available for thread scheduling. Each logical processor core executes a software thread that the operating system manages. On systems where the number of logical processor cores exceeds the number of physical processor cores, two or more logical processor cores share a physical core through simultaneous multithreading (SMT). The following parameters provide processor availability information about the system on chip (SoC):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of enabled logical processor cores in the SoC. This is an alias of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "hw.logicalcpu",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.activecpu",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of logical processor cores in the SoC. This is an alias of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "hw.logicalcpu_max",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.ncpu",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of enabled logical processor cores in the SoC. This is an alias of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "hw.activecpu",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.logicalcpu",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of logical processor cores in the SoC. This is an alias of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "hw.ncpu",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.logicalcpu_max",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of enabled physical processor cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.physicalcpu",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of physical processor cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.physicalcpu_max",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3901385",
+          "level": 3,
+          "text": "Determine system topology",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following parameters provide processor core performance-level information. First, determine the number of types of processor cores with ",
+              "type": "text"
+            },
+            {
+              "code": "hw.nperflevels",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Then, for each of the parameters, replace ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "N",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with a number between ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the number of performance levels minus one. Lower values of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "N",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " indicate higher-performance core types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of types of general purpose processor cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.nperflevels",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": " N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the number of cores that share an L2 cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".cpusperl2",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": " N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the number of cores that share an L3 cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".cpusperl3",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the size in bytes of the L1 data cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".l1dcachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the size in bytes of the L1 instruction cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".l1icachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the size in bytes of the L2 cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".l2cachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the size in bytes of the L3 cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".l3cachesize ",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the number of enabled logical cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".logicalcpu",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the number of logical cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".logicalcpu_max",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the number of enabled physical cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".physicalcpu",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For processor cores of performance level ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "N",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", the number of physical cores in the SoC.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.perflevel",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "N",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "emphasis"
+                  },
+                  {
+                    "code": ".physicalcpu_max",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Querying the following parameters is equivalent to querying the per-performance-level information for the least performant core. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "hw.l1dcachesize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is equivalent to ",
+              "type": "text"
+            },
+            {
+              "code": "hw.perflevel[",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "N",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": "].l1dcachesize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "N",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "hw.nperflevels",
+              "type": "codeVoice"
+            },
+            {
+              "text": " minus one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of the L1 data cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.l1dcachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of the L1 instruction cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.l1icachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of the L2 cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.l2cachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of the L3 cache.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.l3cachesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3901382",
+          "level": 3,
+          "text": "Determine memory sizes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following parameters provide cache line, memory, and page size information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of the system cache line.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.cachelinesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of dynamic RAM.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.memsize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The size in bytes of a virtual memory page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "hw.pagesize",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sysctlbyname",
+      "type": "topic",
+      "url": "/documentation/kernel/1387446-sysctlbyname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname/determining_instruction_set_characteristics": {
+      "abstract": [
+        {
+          "text": "Interrogate the system for details about the instruction set.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname/determining_instruction_set_characteristics",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining Instruction Set Characteristics",
+      "type": "topic",
+      "url": "/documentation/kernel/1387446-sysctlbyname/determining_instruction_set_characteristics"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname/determining_system_capabilities": {
+      "abstract": [
+        {
+          "text": "Interrogate the system for processor, cache, and topology information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname/determining_system_capabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining system capabilities",
+      "type": "topic",
+      "url": "/documentation/kernel/1387446-sysctlbyname/determining_system_capabilities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/sys": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/sys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "sys",
+      "type": "topic",
+      "url": "/documentation/kernel/sys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname/determining_instruction_set_characteristics"
+      ],
+      "title": "Parameters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/1387446-sysctlbyname/determining_system_capabilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

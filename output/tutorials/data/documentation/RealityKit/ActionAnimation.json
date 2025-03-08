@@ -1,0 +1,1800 @@
+{
+  "abstract": [
+    {
+      "text": "Defines an an action animation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation15ActionAnimationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ActionAnimation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ActionAnimation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ActionAnimation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ActionAnimation"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "ActionType"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ActionType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:17RealityFoundation12EntityActionP",
+              "text": "EntityAction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The definition is used to generate an action animation based ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that can then be played",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Action animations can be used to perform operations in lock-step with playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Actions can be grouped or sequenced with pre-existing animation resources or be stand alone.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example an action that triggers sound can be grouped with a sampled animation to trigger sound",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effects at the appropriate times during playback. See: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationResource/group(with:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Stand alone action animations can animate target values using RealityKit’s animation engine with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cross fade, and additive compositing support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "(See: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationStateProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation": {
+      "abstract": [
+        {
+          "text": "Defines an an action animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/AnimationDefinition-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/AnimationDefinition-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AnimationDefinition Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/animationdefinition-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/EventDefinitionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventDefinitionType"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/EventDefinitionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventDefinitionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionAnimation.EventDefinitionType",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/eventdefinitiontype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/EventParameterType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventParameterType"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/EventParameterType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventParameterType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionAnimation.EventParameterType",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/eventparametertype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/action": {
+      "abstract": [
+        {
+          "text": "The action for which an animation is being defined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActionType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/action",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/action"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/bindTarget": {
+      "abstract": [
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition/bindTarget",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " is not used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/bindTarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bindTarget",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/bindtarget"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/blendLayer": {
+      "abstract": [
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition/blendLayer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " is not used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/blendLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendLayer",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/blendlayer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/delay": {
+      "abstract": [
+        {
+          "text": "An amount of time that lapses before the animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/delay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delay",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/delay"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/duration": {
+      "abstract": [
+        {
+          "text": "The elapsed time for one complete rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/duration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/eventDefinitions": {
+      "abstract": [
+        {
+          "text": "The event interval definitions, and their associated parameter data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventDefinitions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation21ActionEventDefinitionV",
+          "text": "ActionEventDefinition"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActionType"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/eventDefinitions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventDefinitions",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/eventdefinitions"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/fillMode": {
+      "abstract": [
+        {
+          "text": "An option that determines which data displays outside of the normal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/fillMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/fillmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/init(for:events:name:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)": {
+      "abstract": [
+        {
+          "text": "Constructs an action animation that generates events at user defined times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActionType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "events"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15ActionAnimationV",
+          "text": "ActionAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ActionType"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15ActionAnimationV19EventDefinitionTypea",
+          "text": "EventDefinitionType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/init(for:events:name:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:events:name:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/init(for:events:name:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/name": {
+      "abstract": [
+        {
+          "text": "A textual name for the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/name"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/offset": {
+      "abstract": [
+        {
+          "text": "The time, in seconds, at which the animation begins within the duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/offset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/repeatMode": {
+      "abstract": [
+        {
+          "text": "An option that determines how the animation repeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/repeatMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/repeatmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/speed": {
+      "abstract": [
+        {
+          "text": "A factor that changes the animation’s rate of playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/speed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/speed"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimDuration": {
+      "abstract": [
+        {
+          "text": "An optional duration that overrides the calculated duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimDuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimDuration",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/trimduration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimEnd": {
+      "abstract": [
+        {
+          "text": "The optional time, in seconds, at which the animation stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimEnd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimEnd",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/trimend"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimStart": {
+      "abstract": [
+        {
+          "text": "The optional time, in seconds, at which the animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimStart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimStart",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionanimation/trimstart"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionEntityResolution": {
+      "abstract": [
+        {
+          "text": "Options available to determine the resolution method for a target entity in an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionEntityResolution"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionEntityResolution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionEntityResolution"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionEntityResolution",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionentityresolution"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ActionHandlerProtocol": {
+      "abstract": [
+        {
+          "text": "The base protocol for action handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionHandlerProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ActionHandlerProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionHandlerProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionHandlerProtocol",
+      "type": "topic",
+      "url": "/documentation/realitykit/actionhandlerprotocol"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition": {
+      "abstract": [
+        {
+          "text": "The configuration, including target object, timeframe, and visual semantics,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationDefinition",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationdefinition"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition/bindTarget": {
+      "abstract": [
+        {
+          "text": "A textual name that identifies the particular property that animates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition/bindTarget",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "bindTarget",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationdefinition/bindtarget"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition/blendLayer": {
+      "abstract": [
+        {
+          "text": "The order in which the framework composites the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition/blendLayer",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "blendLayer",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationdefinition/blendlayer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationResource/group(with:)": {
+      "abstract": [
+        {
+          "text": "Creates an animation resource that simultaneously plays back a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection of animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationResource/group(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "group(with:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationresource/group(with:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationStateProtocol": {
+      "abstract": [
+        {
+          "text": "The protocol representing the current animation state of an action animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationStateProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationStateProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationStateProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationStateProtocol",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationstateprotocol"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)": {
+      "abstract": [
+        {
+          "text": "Plays an animation with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayerOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "separateAnimatedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startsPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handoffType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20AnimationHandoffTypeV",
+          "text": "AnimationHandoffType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AnimationPlaybackControllerC",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAnimation(_:transitionDuration:blendLayerOffset:separateAnimatedValue:startsPaused:clock:handoffType:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playanimation(_:transitionduration:blendlayeroffset:separateanimatedvalue:startspaused:clock:handofftype:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an action for an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/entityaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Action-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EntityAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionEntityResolution",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionHandlerProtocol"
+      ],
+      "title": "Action management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/init(for:events:name:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/action",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/bindTarget",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/blendLayer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/delay",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/duration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/eventDefinitions",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/fillMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/name",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/offset",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/repeatMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/speed",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimDuration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimEnd",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/trimStart"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/EventDefinitionType",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/EventParameterType"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ActionAnimation/AnimationDefinition-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/actionanimation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,783 @@
+{
+  "abstract": [
+    {
+      "text": "An instance of ",
+      "type": "text"
+    },
+    {
+      "code": "NSPointerFunctions",
+      "type": "codeVoice"
+    },
+    {
+      "text": " defines callout functions appropriate for managing a pointer reference held somewhere else.  ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nsmaptable"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nshashtable"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418220,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPointerFunctions",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPointerFunctions"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSPointerFunctions"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPointerFunctions"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions specified by an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSPointerFunctions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are separated into two clusters—those that define “personality” such as “object” or \"C-string”, and those that describe memory management issues such as a memory deallocation function. There are constants for common personalities and memory manager selections (see ",
+              "type": "text"
+            },
+            {
+              "code": "Memory and Personality Options",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " use an ",
+              "type": "text"
+            },
+            {
+              "code": "NSPointerFunctions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to define the acquisition and retention behavior for the pointers they manage. Note, however, that not all combinations of personality and memory management behavior are valid for these collections. The pointer collection objects copy the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPointerFunctions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object on input and output, so you cannot usefully subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSPointerFunctions",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1817021",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSPointerFunctions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not suitable for subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHashTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMapTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413669-pointerfunctions": {
+      "abstract": [
+        {
+          "text": "The functions in use by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointerFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413669-pointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray/1413669-pointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions": {
+      "abstract": [
+        {
+          "text": "An instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSPointerFunctions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " defines callout functions appropriate for managing a pointer reference held somewhere else.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerFunctions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerFunctions",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1408045-sizefunction": {
+      "abstract": [
+        {
+          "text": "The function used to determine the size of pointers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeRawPointer) -> Int)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1408045-sizefunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeFunction",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1408045-sizefunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1408565-relinquishfunction": {
+      "abstract": [
+        {
+          "text": "The function used to relinquish memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "relinquishFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeRawPointer, ((UnsafeRawPointer) -> Int)?) -> Void)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1408565-relinquishfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relinquishFunction",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1408565-relinquishfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1410537-acquirefunction": {
+      "abstract": [
+        {
+          "text": "The function used to acquire memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "acquireFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeRawPointer, ((UnsafeRawPointer) -> Int)?, ObjCBool) -> UnsafeMutableRawPointer)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1410537-acquirefunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acquireFunction",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1410537-acquirefunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1410762-usesstrongwritebarrier": {
+      "abstract": [
+        {
+          "text": "Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesStrongWriteBarrier"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1410762-usesstrongwritebarrier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesStrongWriteBarrier",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1410762-usesstrongwritebarrier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1411097-usesweakreadandwritebarriers": {
+      "abstract": [
+        {
+          "text": "Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesWeakReadAndWriteBarriers"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1411097-usesweakreadandwritebarriers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesWeakReadAndWriteBarriers",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1411097-usesweakreadandwritebarriers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1413473-isequalfunction": {
+      "abstract": [
+        {
+          "text": "The function used to compare pointers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeRawPointer, UnsafeRawPointer, ((UnsafeRawPointer) -> Int)?) -> ObjCBool)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1413473-isequalfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualFunction",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1413473-isequalfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1415200-descriptionfunction": {
+      "abstract": [
+        {
+          "text": "The function used to describe elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptionFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeRawPointer) -> String?)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1415200-descriptionfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptionFunction",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1415200-descriptionfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1415939-hashfunction": {
+      "abstract": [
+        {
+          "text": "The hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": ((UnsafeRawPointer, ((UnsafeRawPointer) -> Int)?) -> Int)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1415939-hashfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashFunction",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1415939-hashfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1417715-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSPointerFunctions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with the given options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPointerFunctions.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1417715-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/1417715-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/options": {
+      "abstract": [
+        {
+          "text": "Defines the memory and personality options for an ",
+          "type": "text"
+        },
+        {
+          "code": "NSPointerFunctions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPointerFunctions.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerFunctions.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerfunctions/options"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerarray/1413669-pointerfunctions"
+      ],
+      "title": "Getting the Pointer Functions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653481",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1417715-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing an NSPointerFunctions Object"
+    },
+    {
+      "anchor": "1653524",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1415939-hashfunction",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1413473-isequalfunction",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1408045-sizefunction",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1415200-descriptionfunction"
+      ],
+      "kind": "taskGroup",
+      "title": "Personality Functions"
+    },
+    {
+      "anchor": "1653613",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1410537-acquirefunction",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1408565-relinquishfunction",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1410762-usesstrongwritebarrier",
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/1411097-usesweakreadandwritebarriers"
+      ],
+      "kind": "taskGroup",
+      "title": "Memory Configuration"
+    },
+    {
+      "anchor": "1679499",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspointerfunctions/options"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nspointerfunctions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nspointerfunctions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

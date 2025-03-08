@@ -1,0 +1,702 @@
+{
+  "abstract": [
+    {
+      "text": "The graphics technology SceneKit uses to render the scene.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/scenekit",
+        "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/scenekit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522616-renderingapi"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1522616,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)SCNSceneRenderer(py)renderingAPI",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "renderingAPI"
+      },
+      {
+        "kind": "text",
+        "text": ": SCNRenderingAPI"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "parent": {
+      "title": "SCNSceneRenderer"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "intfp",
+    "title": "renderingAPI"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderingAPI"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/scenekit/scnrenderingapi",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SCNRenderingAPI",
+              "text": "SCNRenderingAPI"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You choose a graphics technology when initializing a scene renderer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When initializing a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView/init(frame:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView/Option/preferredRenderingAPI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key. Alternatively, create a view in Interface Builder and use the Rendering API control in the inspector. During initialization, the view will attempt to use the preferred API, but will fall back to a different API if the preferred one is not supported on the current hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object that renders into your own OpenGL contect, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer/init(context:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer. To create a renderer for use in your own Metal workflow, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer/init(device:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The rendering technology used by a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object is determined by Core Animation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After initializing a renderer, this property reflects the rendering technology in use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/scenekit": {
+      "identifier": "doc://com.apple.documentation/documentation/scenekit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scndebugoptions": {
+      "abstract": [
+        {
+          "text": "Options for drawing overlays with SceneKit content that can aid in debugging, used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523281-debugoptions",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNDebugOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scndebugoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNDebugOptions",
+      "type": "topic",
+      "url": "/documentation/scenekit/scndebugoptions"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnrenderingapi": {
+      "abstract": [
+        {
+          "text": "Options for choosing the graphics technology for an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object (or other SceneKit renderer) to use for drawing its contents. Used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522616-renderingapi",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property and the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView/Option/preferredRenderingAPI",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " option when initializing an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNRenderingAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnrenderingapi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNRenderingAPI",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnrenderingapi"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer": {
+      "abstract": [
+        {
+          "text": "Methods and properties common to the ",
+          "type": "text"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "text": " classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNSceneRenderer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522616-renderingapi": {
+      "abstract": [
+        {
+          "text": "The graphics technology SceneKit uses to render the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderingAPI"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNRenderingAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522616-renderingapi",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "renderingAPI",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/1522616-renderingapi"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522763-showsstatistics": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit displays rendering performance statistics in an accessory view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsStatistics"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522763-showsstatistics",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "showsStatistics",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/1522763-showsstatistics"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523281-debugoptions": {
+      "abstract": [
+        {
+          "text": "Options for drawing overlay content in a scene that can aid debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNDebugOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523281-debugoptions",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "debugOptions",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/1523281-debugoptions"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523812-autoenablesdefaultlighting": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit automatically adds lights to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoenablesDefaultLighting"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523812-autoenablesdefaultlighting",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "autoenablesDefaultLighting",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/1523812-autoenablesdefaultlighting"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523982-pointofview": {
+      "abstract": [
+        {
+          "text": "The node from which the scene’s contents are viewed for rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointOfView"
+        },
+        {
+          "kind": "text",
+          "text": ": SCNNode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523982-pointofview",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "pointOfView",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/1523982-pointofview"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1524026-isjitteringenabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether SceneKit applies jittering to reduce aliasing artifacts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isJitteringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1524026-isjitteringenabled",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "isJitteringEnabled",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/1524026-isjitteringenabled"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNLayer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnlayer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNRenderer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnrenderer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer/init(context:options:)": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer/init(context:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(context:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnrenderer/init(context:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer/init(device:options:)": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer/init(device:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnrenderer/init(device:options:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNView": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNView",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnview"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNView/Option/preferredRenderingAPI": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView/Option/preferredRenderingAPI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredRenderingAPI",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnview/option/preferredrenderingapi"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNView/init(frame:options:)": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView/init(frame:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(frame:options:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnview/init(frame:options:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523982-pointofview",
+        "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523812-autoenablesdefaultlighting",
+        "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1524026-isjitteringenabled",
+        "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1522763-showsstatistics",
+        "doc://com.apple.documentation/documentation/scenekit/scnscenerenderer/1523281-debugoptions",
+        "doc://com.apple.documentation/documentation/scenekit/scndebugoptions",
+        "doc://com.apple.documentation/documentation/scenekit/scnrenderingapi"
+      ],
+      "title": "Managing Scene Display"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/scenekit/scnscenerenderer/1522616-renderingapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/scenekit/scnscenerenderer/1522616-renderingapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

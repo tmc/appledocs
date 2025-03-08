@@ -1,0 +1,1233 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that contains information for converting from media time to sample number to sample location.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Sample_table_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom",
+        "text": "Sample table atom ('stbl')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom",
+        "text": "Sample table atom ('stbl')"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Sample table atom ('stbl')"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This atom also indicates how to interpret the sample (for example, whether to decompress the video data and, if so, how). This section describes the format and content of the sample table atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample table atom has an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "'stbl'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It can contain the sample description atom, the time-to-sample atom, the sync sample atom, the sample-to-chunk atom, the sample size atom, the chunk offset atom, and the shadow sync atom. Recent additions to the list of atom types that a sample table atom can contain are the optional sample group description and sample-to-group atoms included in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample table atom contains all the time and data indexing of the media samples in a track. Using tables, it is possible to locate samples in time, determine their type, and determine their size, container, and offset into that container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the track that contains the sample table atom references no data, then the sample table atom does not need to contain any child atoms (not a very useful media track).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the track that the sample table atom is contained in does reference data, then the following child atoms are required: sample description, sample size, sample to chunk, and chunk offset. All of the subtables of the sample table use the same total sample count.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample description atom must contain at least one entry. A sample description atom is required because it contains the data reference index field that indicates which data reference atom to use to retrieve the media samples. Without the sample description, it is not possible to determine where the media samples are stored. The sync sample atom is optional. If the sync sample atom is not present, all samples are implicitly sync samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The layout of the sample table atom is as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Size",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4 bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'stbl'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4 bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_description_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stsd'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Time-to-sample_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stts'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_offset_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'ctts'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_shift_least_greatest_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'cslg'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sync_sample_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stss'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Partial_sync_sample_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stps'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample-to-chunk_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stsc'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_size_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stsz'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Chunk_offset_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stco'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_dependency_flags_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'sdtp'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Shadow_sync_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'stsh'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media": {
+      "abstract": [
+        {
+          "text": "Store 3D image data in a base media in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/3D_media",
+      "kind": "article",
+      "role": "article",
+      "title": "3D media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/3d_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC": {
+      "abstract": [
+        {
+          "text": "Position a source audio signal in a sound track to handle encoder delay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio priming-handling encoder delay in AAC",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_g_audio_priming_handling_encoder_delay_in_aac"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_sound_tracks_at_441_kHz": {
+      "abstract": [
+        {
+          "text": "Configure your time-to-sample atom for sound at 44.1 kHz.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_sound_tracks_at_441_kHz",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating sound tracks at 44.1 kHz",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_sound_tracks_at_441_khz"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_video_tracks_at_2997_frames_per_second": {
+      "abstract": [
+        {
+          "text": "Configure your time-to-sample atom for 29.97 frames per second.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_video_tracks_at_2997_frames_per_second",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating video tracks at 29.97 frames per second",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_video_tracks_at_2997_frames_per_second"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_video_tracks_at_30_frames_per_second": {
+      "abstract": [
+        {
+          "text": "Configure your time-to-sample atom for 30 frames per second.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_video_tracks_at_30_frames_per_second",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating video tracks at 30 frames per second",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_video_tracks_at_30_frames_per_second"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Referencing_two_data_files_with_a_single_track": {
+      "abstract": [
+        {
+          "text": "Use multiple sample descriptions reference data in multiple files for a track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Referencing_two_data_files_with_a_single_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Referencing two data files with a single track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/referencing_two_data_files_with_a_single_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Seeking_with_a_QuickTime_file": {
+      "abstract": [
+        {
+          "text": "Seek with a QuickTime file using child atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Seeking_with_a_QuickTime_file",
+      "kind": "article",
+      "role": "article",
+      "title": "Seeking with a QuickTime file",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/seeking_with_a_quicktime_file"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media": {
+      "abstract": [
+        {
+          "text": "Store streaming data in a streaming media track for QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/streaming_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that contains information for converting from media time to sample number to sample location for tweens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_sample_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Tween sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_sample_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_composition_offset_and_composition_shift_least_greatest_atoms": {
+      "abstract": [
+        {
+          "text": "Calculate the offset shift when you store an out of order video stream’s sample table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_composition_offset_and_composition_shift_least_greatest_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Using composition offset and composition shift least greatest atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/using_composition_offset_and_composition_shift_least_greatest_atoms"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Chunk_offset_atom": {
+      "abstract": [
+        {
+          "text": "An atom that identifies the location of each chunk of data in the media’s data stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Chunk_offset_atom",
+          "text": "Chunk offset atom ('stco')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Chunk_offset_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Chunk offset atom ('stco')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/chunk_offset_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Composition_offset_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to specify out-of-order video samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Composition_offset_atom",
+          "text": "Composition offset atom ('ctts')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Composition_offset_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Composition offset atom ('ctts')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/composition_offset_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Composition_shift_least_greatest_atom": {
+      "abstract": [
+        {
+          "text": "An atom that summarizes the calculated minimum and maximum offsets between decode and composition time, as well as the start and end times, for all samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Composition_shift_least_greatest_atom",
+          "text": "Composition shift least greatest atom ('cslg')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Composition_shift_least_greatest_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Composition shift least greatest atom ('cslg')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/composition_shift_least_greatest_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Partial_sync_sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that lists the partial sync samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Partial_sync_sample_atom",
+          "text": "Partial sync sample atom ('stps')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Partial_sync_sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Partial sync sample atom ('stps')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/partial_sync_sample_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-chunk_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores chunk information for the samples in a media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-chunk_atom",
+          "text": "Sample-to-chunk atom ('stsc')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-chunk_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample-to-chunk atom ('stsc')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-chunk_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores information that allows you to decode samples in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_description_atom",
+          "text": "Sample description atom ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample description atom ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_description_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_size_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to specify the size of each sample in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_size_atom",
+          "text": "Sample size atom ('stsz')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_size_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample size atom ('stsz')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_size_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains information for converting from media time to sample number to sample location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom",
+          "text": "Sample table atom ('stbl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample table atom ('stbl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Chunk_offset_atom": {
+      "abstract": [
+        {
+          "text": "An atom that identifies the location of each chunk of data in the media’s data stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Chunk_offset_atom",
+          "text": "Chunk offset atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Chunk_offset_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Chunk offset atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/chunk_offset_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_offset_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to specify out-of-order video samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Composition_offset_atom",
+          "text": "Composition offset atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_offset_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Composition offset atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/composition_offset_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_shift_least_greatest_atom": {
+      "abstract": [
+        {
+          "text": "An atom that summarizes the calculated minimum and maximum offsets between decode and composition time, as well as the start and end times, for all samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Composition_shift_least_greatest_atom",
+          "text": "Composition shift least greatest atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_shift_least_greatest_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Composition shift least greatest atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/composition_shift_least_greatest_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Partial_sync_sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that lists the partial sync samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Partial_sync_sample_atom",
+          "text": "Partial sync sample atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Partial_sync_sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Partial sync sample atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/partial_sync_sample_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample-to-chunk_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores chunk information for the samples in a media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Sample-to-chunk_atom",
+          "text": "Sample-to-chunk atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample-to-chunk_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample-to-chunk atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/sample-to-chunk_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_dependency_flags_atom": {
+      "abstract": [
+        {
+          "text": "An atom that uses one byte per sample as a bit field that describes dependency information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Sample_dependency_flags_atom",
+          "text": "Sample dependency flags atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_dependency_flags_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample dependency flags atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/sample_dependency_flags_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_description_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores information that allows you to decode samples in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Sample_description_atom",
+          "text": "Sample description atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_description_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample description atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/sample_description_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_size_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to specify the size of each sample in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Sample_size_atom",
+          "text": "Sample size atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_size_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample size atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/sample_size_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Shadow_sync_atom": {
+      "abstract": [
+        {
+          "text": "An atom reserved for future use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Shadow_sync_atom",
+          "text": "Shadow sync atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Shadow_sync_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Shadow sync atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/shadow_sync_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that specifies the number of bytes in this sample table atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sync_sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that identifies the key frames in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Sync_sample_atom",
+          "text": "Sync sample atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sync_sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sync sample atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/sync_sample_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Time-to-sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores duration information for a media’s samples, providing a mapping from a time in a media to the corresponding data sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Time-to-sample_atom",
+          "text": "Time-to-sample atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Time-to-sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Time-to-sample atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/time-to-sample_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that identifies the atom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_table_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_table_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sync_sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that identifies the key frames in the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sync_sample_atom",
+          "text": "Sync sample atom ('stss')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sync_sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sync sample atom ('stss')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sync_sample_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Time-to-sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores duration information for a media’s samples, providing a mapping from a time in a media to the corresponding data sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Time-to-sample_atom",
+          "text": "Time-to-sample atom ('stts')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Time-to-sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Time-to-sample atom ('stts')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/time-to-sample_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Describing-samples",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Seeking_with_a_QuickTime_file",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_description_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Time-to-sample_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_video_tracks_at_30_frames_per_second",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_video_tracks_at_2997_frames_per_second",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_sound_tracks_at_441_kHz",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Composition_offset_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Composition_shift_least_greatest_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_composition_offset_and_composition_shift_least_greatest_atoms",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sync_sample_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Partial_sync_sample_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-chunk_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Referencing_two_data_files_with_a_single_track",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_size_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Chunk_offset_atom"
+      ],
+      "title": "Describing samples"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_description_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Time-to-sample_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_offset_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Composition_shift_least_greatest_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sync_sample_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Partial_sync_sample_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample-to-chunk_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_size_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Chunk_offset_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Sample_dependency_flags_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_table_atom/Shadow_sync_atom"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sample_table_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

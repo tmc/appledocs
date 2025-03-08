@@ -1,0 +1,443 @@
+{
+  "abstract": [
+    {
+      "text": "Features that you include in any file that includes a profile atom.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Universal features"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A feature consists of four fields: a reserved field, which is set to zero; a part-ID, which specifies which brand the feature belongs to; a feature code, which identifies the feature; and a value field, which holds the feature value).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The part-ID can be either universal or brand-specific. Universal features have a part-ID of four ASCII spaces (",
+              "type": "text"
+            },
+            {
+              "code": "0x20202020",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Brand-specific features have a part-ID for a particular brand, which is taken from the Compatible_brands field of the file type atom. Brand-specific features of QuickTime files have a part-ID of ",
+              "type": "text"
+            },
+            {
+              "code": "'qt  '",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". All features listed in this section are universal features; that is, they can be used in any file that includes a profile atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is permissible to use the feature code of ",
+              "type": "text"
+            },
+            {
+              "code": "0x00000000",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a placeholder, paired with a feature value of ",
+              "type": "text"
+            },
+            {
+              "code": "0x00000000",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for one or more features. Readers should simply ignore features having a feature code of zero.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "No feature will exist to describe the unit of other features, such as bit rate. The device should consider the magnitude and tailor its display appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This specification describes only how features are stored in files. It does not require that the values of features be reported (for example, in a user interface) in the same manner as they are stored, or require that they be reported at all.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/About_this_appendix": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/About_this_appendix",
+      "kind": "article",
+      "role": "article",
+      "title": "About this appendix",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/about_this_appendix"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines": {
+      "abstract": [
+        {
+          "text": "Summarize profile information about a QuickTime movie so readers can easily determine features and complexity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appendix F: Profile atom guidelines",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_f_profile_atom_guidelines"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_channel_count": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_channel_count",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio channel count",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/audio_channel_count"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_sample_rate_for_a_sample_entry": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_sample_rate_for_a_sample_entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio sample rate for a sample entry",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/audio_sample_rate_for_a_sample_entry"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_variable_bit_rate_indication": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_variable_bit_rate_indication",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio variable bit rate indication",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/audio_variable_bit_rate_indication"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_audio_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_audio_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Average audio bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/average_audio_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Average video bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/average_video_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_frame_rate_in_a_single_track": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_frame_rate_in_a_single_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Average video frame rate in a single track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/average_video_frame_rate_in_a_single_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_audio_codec": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_audio_codec",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 audio codec",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_audio_codec"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_codec": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_codec",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 video codec",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_video_codec"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_object_type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_object_type",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 video object type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_video_object_type"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_profile": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_profile",
+      "kind": "article",
+      "role": "article",
+      "title": "MPEG-4 video profile",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_video_profile"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_audio_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_audio_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum audio bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_audio_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_bit_rate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_bit_rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video bit rate",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_bit_rate"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_frame_rate_in_a_single_track": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_frame_rate_in_a_single_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video frame rate in a single track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_frame_rate_in_a_single_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_movie": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_movie",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video size in a movie",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_size_in_a_movie"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_track": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximum video size in a track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/maximum_video_size_in_a_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_audio_codec_type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_audio_codec_type",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime audio codec type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_audio_codec_type"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_video_codec_type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_video_codec_type",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime video codec type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_video_codec_type"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Table_of_features": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Table_of_features",
+      "kind": "article",
+      "role": "article",
+      "title": "Table of features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/table_of_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_variable_frame_rate_indication": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_variable_frame_rate_indication",
+      "kind": "article",
+      "role": "article",
+      "title": "Video variable frame rate indication",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/video_variable_frame_rate_indication"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom": {
+      "abstract": [
+        {
+          "text": "An atom that expresses profiles or feature codes for features that occur in the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom",
+          "text": "Profile atom ('prfl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Profile atom ('prfl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Building-a-profile-atom",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/About_this_appendix",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom"
+      ],
+      "title": "Building a profile atom"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-features",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Table_of_features",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_audio_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_audio_bit_rate",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_video_codec_type",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_audio_codec_type",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_profile",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_codec",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_video_object_type",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/MPEG-4_audio_codec",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_movie",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_size_in_a_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Maximum_video_frame_rate_in_a_single_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Average_video_frame_rate_in_a_single_track",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_variable_frame_rate_indication",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_sample_rate_for_a_sample_entry",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_variable_bit_rate_indication",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Audio_channel_count"
+      ],
+      "title": "Setting features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/universal_features"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

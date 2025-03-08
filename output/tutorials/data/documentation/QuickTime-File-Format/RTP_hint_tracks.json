@@ -1,0 +1,258 @@
+{
+  "abstract": [
+    {
+      "text": "Allow a streaming server to create RTP streams from a QuickTime movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/RTP_hint_tracks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "RTP hint tracks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RTP hint tracks contain information that allows a streaming server to create RTP streams from a QuickTime movie, without requiring the server to know anything about the media type, compression, or payload format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In RTP, each media stream, such as an audio or video track, is sent as a separate RTP stream. Consequently, each media track in the movie has an associated RTP hint track containing the data necessary to packetize it for RTP transport, and each hint track contains a track reference back to its associated media track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Media tracks that do not have an associated RTP hint track cannot be streamed over RTP. RTP streaming servers ignore them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is possible for a media track to have more than one associated hint track. The hint track contains information such as the packet size and time scale in the hint track’s sample description. This minimizes the runtime server load, but in order to support multiple packet sizes it is necessary to have multiple RTP hint tracks for each media track, each with different a packet size. A similar mechanism could be used to provide hint tracks for multiple protocols in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is also possible for a single hint track to refer to more than one media stream. For example, audio and video MPEG elementary streams could be multiplexed into a single systems stream RTP payload format, and a single hint track would contain the necessary information to combine both elementary streams into a single series of RTP packets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is the exception rather than the rule, however. In general, multiplexing is achieved by using IP’s port-level multiplexing, not by interleaving the data from multiple streams into a single RTP session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hint track is related to each base media track by a track reference declaration. The sample description for RTP declares the maximum packet size that this hint track will generate. Partial session description (SDP) information is stored in the track’s user data atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Finding_an_original_media_track_from_a_hint_track": {
+      "abstract": [
+        {
+          "text": "Use track reference atoms from hint tracks to locate the original media track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Finding_an_original_media_track_from_a_hint_track",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding an original media track from a hint track",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/finding_an_original_media_track_from_a_hint_track"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hint_media": {
+      "abstract": [
+        {
+          "text": "Provide information about data units to stream in hint tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hint_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Hint media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hint_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hint_track_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the data format and location of the hint track sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hint_track_sample_description",
+          "text": "Hint track sample description"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hint_track_sample_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hint sample data format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hint_track_sample_description"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Packetization_hint_sample_data": {
+      "abstract": [
+        {
+          "text": "An atom that describes the sample data for data using the Real-Time Transport Protocol (RTP).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Packetization_hint_sample_data",
+          "text": "Packetization hint sample data"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Packetization_hint_sample_data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Packetization hint sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/packetization_hint_sample_data"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Hint-media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hint_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Finding_an_original_media_track_from_a_hint_track",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hint_track_sample_description",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Packetization_hint_sample_data"
+      ],
+      "title": "Hint media"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/rtp_hint_tracks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

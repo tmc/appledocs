@@ -1,1 +1,1185 @@
-{"sections":[],"metadata":{"title":"applyPolynomial(coefficientSegments:boundaries:destination:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"applyPolynomial"},{"kind":"text","text":"("},{"kind":"externalParam","text":"coefficientSegments"},{"kind":"text","text":": [["},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"]], "},{"kind":"externalParam","text":"boundaries"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"destination"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:10Accelerate6vImageO","text":"vImage"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:10Accelerate6vImageO11PixelBufferV","text":"PixelBuffer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Format"},{"kind":"text","text":">)"}],"symbolKind":"method","roleHeading":"Instance Method","role":"symbol","extendedModule":"Accelerate","modules":[{"name":"Accelerate"}],"platforms":[{"deprecated":false,"beta":false,"unavailable":false,"name":"iOS","introducedAt":"16.0"},{"deprecated":false,"beta":false,"unavailable":false,"name":"iPadOS","introducedAt":"16.0"},{"deprecated":false,"beta":false,"unavailable":false,"name":"Mac Catalyst"},{"deprecated":false,"beta":false,"unavailable":false,"name":"macOS","introducedAt":"13.0"},{"deprecated":false,"beta":false,"unavailable":false,"name":"tvOS","introducedAt":"16.0"},{"deprecated":false,"beta":false,"unavailable":false,"name":"visionOS"},{"deprecated":false,"beta":false,"unavailable":false,"name":"watchOS","introducedAt":"9.0"}],"externalID":"s:10Accelerate6vImageO11PixelBufferVAaC7PlanarFVRszrlE15applyPolynomial19coefficientSegments10boundaries11destinationySaySaySfGG_AlEy_AGGtF","conformance":{"availabilityPrefix":[{"text":"Available when","type":"text"}],"constraints":[{"code":"Format","type":"codeVoice"},{"type":"text","text":" is "},{"code":"vImage.PlanarF","type":"codeVoice"},{"type":"text","text":"."}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]}},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.accelerate/documentation/Accelerate","doc://com.apple.accelerate/documentation/Accelerate/vImage","doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"]]},"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-3c46t"]}],"kind":"symbol","primaryContentSections":[{"declarations":[{"languages":["swift"],"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"applyPolynomial"},{"kind":"text","text":"("},{"kind":"externalParam","text":"coefficientSegments"},{"kind":"text","text":": [["},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf","identifier":"doc://com.externally.resolved.symbol/s:Sf"},{"kind":"text","text":"]], "},{"kind":"externalParam","text":"boundaries"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf","identifier":"doc://com.externally.resolved.symbol/s:Sf"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"destination"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"vImage","preciseIdentifier":"s:10Accelerate6vImageO","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"PixelBuffer","preciseIdentifier":"s:10Accelerate6vImageO11PixelBufferV","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Format"},{"kind":"text","text":">)"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"]}],"kind":"declarations"},{"parameters":[{"name":"coefficientSegments","content":[{"inlineContent":[{"type":"text","text":"An array that contains the polynomial coefficient array. Each polynomial must be of the same order."}],"type":"paragraph"}]},{"name":"boundaries","content":[{"inlineContent":[{"type":"text","text":"An array of boundary values, in increasing order, that separates adjacent ranges of pixel values. "},{"type":"codeVoice","code":"boundaries"},{"type":"text","text":" must contain "},{"type":"codeVoice","code":"coefficientSegments.count + 1"},{"type":"text","text":" elements."}],"type":"paragraph"}]},{"name":"destination","content":[{"type":"paragraph","inlineContent":[{"text":"The destination pixel buffer.","type":"text"}]}]}],"kind":"parameters"},{"kind":"content","content":[{"type":"heading","text":"Discussion","level":2,"anchor":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"The following code shows an example of applying three polynomials to an "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarF"},{"type":"text","text":" buffer:"}]},{"code":["let src = vImage.PixelBuffer<vImage.PlanarF>(","    pixelValues: [0.25, 0.5, 0.75, 1.0],","    size: vImage.Size(width: 4, height: 1))","","let dest = vImage.PixelBuffer<vImage.PlanarF>(","    size: src.size)","","src.applyPolynomial(coefficientSegments: [ [1, 0, 0],","                                           [0, 1, 0],","                                           [0, 0, 1] ],","                    boundaries: [0, 1/3, 2/3, 1] as [Float],","                    destination: dest)","","// Prints:","//  1.0     ≅ 1 * 0.25⁰","","//  0.5     ≅ 1 * 0.5¹","","//  0.5625  ≅ 1 * 0.75²","//  1.0     ≅ 1 * 1.0²","print(dest.array)"],"type":"codeListing","syntax":"swift"}]}],"abstract":[{"text":"Applies a set of piecewise polynomials to a 32-bit planar buffer.","type":"text"}],"identifier":{"url":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-3c46t","interfaceLanguage":"swift"},"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"title":"Related Documentation","anchor":"Related-Documentation","identifiers":["doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images"]},{"title":"Appying polynomial (32-bit)","generated":true,"anchor":"Appying-polynomial-32-bit","identifiers":["doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8f5i9","doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom","doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8uesn"]}],"references":{"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8f5i9":{"role":"symbol","title":"applyPolynomial(coefficientSegments:boundaries:destination:)","type":"topic","conformance":{"availabilityPrefix":[{"text":"Available when","type":"text"}],"constraints":[{"type":"codeVoice","code":"Format"},{"text":" is ","type":"text"},{"type":"codeVoice","code":"vImage.InterleavedFx2"},{"text":".","type":"text"}],"conformancePrefix":[{"text":"Conforms when","type":"text"}]},"kind":"symbol","url":"/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-8f5i9","abstract":[{"type":"text","text":"Applies a set of piecewise polynomials to a 2-channel, 32-bit interleaved buffer."}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"applyPolynomial"},{"kind":"text","text":"("},{"kind":"externalParam","text":"coefficientSegments"},{"kind":"text","text":": [["},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"]], "},{"kind":"externalParam","text":"boundaries"},{"kind":"text","text":": ["},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"], "},{"text":"destination","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:10Accelerate6vImageO","text":"vImage","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:10Accelerate6vImageO11PixelBufferV","text":"PixelBuffer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Format","kind":"typeIdentifier"},{"text":">)","kind":"text"}],"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8f5i9"},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","kind":"technologies","url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"type":"topic"},"doc://com.apple.accelerate/documentation/Accelerate":{"abstract":[{"text":"Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.","type":"text"}],"type":"topic","title":"Accelerate","identifier":"doc://com.apple.accelerate/documentation/Accelerate","kind":"symbol","url":"/documentation/accelerate","role":"collection"},"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-3c46t":{"conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"constraints":[{"code":"Format","type":"codeVoice"},{"type":"text","text":" is "},{"code":"vImage.PlanarF","type":"codeVoice"},{"type":"text","text":"."}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"abstract":[{"text":"Applies a set of piecewise polynomials to a 32-bit planar buffer.","type":"text"}],"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-3c46t","title":"applyPolynomial(coefficientSegments:boundaries:destination:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"applyPolynomial","kind":"identifier"},{"text":"(","kind":"text"},{"text":"coefficientSegments","kind":"externalParam"},{"text":": [[","kind":"text"},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"]], "},{"kind":"externalParam","text":"boundaries"},{"kind":"text","text":": ["},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"destination"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:10Accelerate6vImageO","text":"vImage","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:10Accelerate6vImageO11PixelBufferV","text":"PixelBuffer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Format","kind":"typeIdentifier"},{"text":">)","kind":"text"}],"url":"/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-3c46t","kind":"symbol","role":"symbol","type":"topic"},"doc://com.externally.resolved.symbol/s:Sf":{"identifier":"doc://com.externally.resolved.symbol/s:Sf","kind":"symbol","title":"Float","fragments":[{"text":"@frozen","kind":"attribute"},{"kind":"text","text":" "},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Float","kind":"identifier"}],"role":"symbol","type":"topic","url":"/documentation/Swift/Float","abstract":[{"type":"text","text":"A single-precision, floating-point value type."}]},"doc://com.apple.accelerate/documentation/Accelerate/vImage":{"abstract":[{"type":"text","text":"An enumeration that acts as a namespace for Swift overlays to vImage."}],"navigatorTitle":[{"text":"vImage","kind":"identifier"}],"title":"vImage","type":"topic","kind":"symbol","url":"/documentation/accelerate/vimage","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage","role":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"vImage","kind":"identifier"}]},"doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarF":{"abstract":[{"type":"text","text":"A single-channel, 32-bit-per-channel, floating-point buffer."}],"navigatorTitle":[{"text":"PlanarF","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PlanarF","kind":"identifier"}],"title":"vImage.PlanarF","type":"topic","url":"/documentation/accelerate/vimage/planarf","role":"symbol","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarF","kind":"symbol"},"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom":{"conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"constraints":[{"type":"codeVoice","code":"Format"},{"type":"text","text":" is "},{"type":"codeVoice","code":"vImage.InterleavedFx3"},{"type":"text","text":"."}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"abstract":[{"text":"Applies a set of piecewise polynomials to a 3-channel, 32-bit interleaved buffer.","type":"text"}],"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom","title":"applyPolynomial(coefficientSegments:boundaries:destination:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"applyPolynomial","kind":"identifier"},{"text":"(","kind":"text"},{"text":"coefficientSegments","kind":"externalParam"},{"text":": [[","kind":"text"},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"]], "},{"kind":"externalParam","text":"boundaries"},{"kind":"text","text":": ["},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"], "},{"text":"destination","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"vImage","preciseIdentifier":"s:10Accelerate6vImageO","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"PixelBuffer","preciseIdentifier":"s:10Accelerate6vImageO11PixelBufferV","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Format","kind":"typeIdentifier"},{"text":">)","kind":"text"}],"url":"/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-26zom","kind":"symbol","role":"symbol","type":"topic"},"doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images":{"role":"sampleCode","identifier":"doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images","abstract":[{"type":"text","text":"Use the vImage library’s polynomial transform to apply tone curve adjustments to images."}],"url":"/documentation/accelerate/applying-tone-curve-adjustments-to-images","kind":"article","type":"topic","title":"Applying tone curve adjustments to images"},"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer":{"type":"topic","abstract":[{"type":"text","text":"An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels."}],"role":"symbol","url":"/documentation/accelerate/vimage/pixelbuffer","title":"vImage.PixelBuffer","navigatorTitle":[{"kind":"identifier","text":"PixelBuffer"}],"kind":"symbol","identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"PixelBuffer"}]},"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8uesn":{"conformance":{"conformancePrefix":[{"text":"Conforms when","type":"text"}],"constraints":[{"code":"Format","type":"codeVoice"},{"text":" is ","type":"text"},{"type":"codeVoice","code":"vImage.InterleavedFx4"},{"text":".","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}]},"abstract":[{"text":"Applies a set of piecewise polynomials to a 4-channel, 32-bit interleaved buffer.","type":"text"}],"identifier":"doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8uesn","title":"applyPolynomial(coefficientSegments:boundaries:destination:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"applyPolynomial","kind":"identifier"},{"text":"(","kind":"text"},{"text":"coefficientSegments","kind":"externalParam"},{"text":": [[","kind":"text"},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"]], "},{"kind":"externalParam","text":"boundaries"},{"kind":"text","text":": ["},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":"], "},{"text":"destination","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"vImage","preciseIdentifier":"s:10Accelerate6vImageO","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"PixelBuffer","preciseIdentifier":"s:10Accelerate6vImageO11PixelBufferV","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Format","kind":"typeIdentifier"},{"text":">)","kind":"text"}],"url":"/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-8uesn","kind":"symbol","role":"symbol","type":"topic"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Applies a set of piecewise polynomials to a 32-bit planar buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-3c46t"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "conformance": {
+      "availabilityPrefix": [
+        {
+          "text": "Available when",
+          "type": "text"
+        }
+      ],
+      "conformancePrefix": [
+        {
+          "text": "Conforms when",
+          "type": "text"
+        }
+      ],
+      "constraints": [
+        {
+          "code": "Format",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is ",
+          "type": "text"
+        },
+        {
+          "code": "vImage.PlanarF",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ]
+    },
+    "extendedModule": "Accelerate",
+    "externalID": "s:10Accelerate6vImageO11PixelBufferVAaC7PlanarFVRszrlE15applyPolynomial19coefficientSegments10boundaries11destinationySaySaySfGG_AlEy_AGGtF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "applyPolynomial"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "coefficientSegments"
+      },
+      {
+        "kind": "text",
+        "text": ": [["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sf",
+        "text": "Float"
+      },
+      {
+        "kind": "text",
+        "text": "]], "
+      },
+      {
+        "kind": "externalParam",
+        "text": "boundaries"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sf",
+        "text": "Float"
+      },
+      {
+        "kind": "text",
+        "text": "], "
+      },
+      {
+        "kind": "externalParam",
+        "text": "destination"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Accelerate6vImageO",
+        "text": "vImage"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+        "text": "PixelBuffer"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Format"
+      },
+      {
+        "kind": "text",
+        "text": ">)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "applyPolynomial(coefficientSegments:boundaries:destination:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyPolynomial"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "coefficientSegments"
+            },
+            {
+              "kind": "text",
+              "text": ": [["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": "]], "
+            },
+            {
+              "kind": "externalParam",
+              "text": "boundaries"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": "], "
+            },
+            {
+              "kind": "externalParam",
+              "text": "destination"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate6vImageO",
+              "text": "vImage"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+              "text": "PixelBuffer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Format"
+            },
+            {
+              "kind": "text",
+              "text": ">)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains the polynomial coefficient array. Each polynomial must be of the same order.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "coefficientSegments"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of boundary values, in increasing order, that separates adjacent ranges of pixel values. ",
+                  "type": "text"
+                },
+                {
+                  "code": "boundaries",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must contain ",
+                  "type": "text"
+                },
+                {
+                  "code": "coefficientSegments.count + 1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " elements.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "boundaries"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The destination pixel buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "destination"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of applying three polynomials to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarF",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let src = vImage.PixelBuffer<vImage.PlanarF>(",
+            "    pixelValues: [0.25, 0.5, 0.75, 1.0],",
+            "    size: vImage.Size(width: 4, height: 1))",
+            "",
+            "let dest = vImage.PixelBuffer<vImage.PlanarF>(",
+            "    size: src.size)",
+            "",
+            "src.applyPolynomial(coefficientSegments: [ [1, 0, 0],",
+            "                                           [0, 1, 0],",
+            "                                           [0, 0, 1] ],",
+            "                    boundaries: [0, 1/3, 2/3, 1] as [Float],",
+            "                    destination: dest)",
+            "",
+            "// Prints:",
+            "//  1.0     ≅ 1 * 0.25⁰",
+            "",
+            "//  0.5     ≅ 1 * 0.5¹",
+            "",
+            "//  0.5625  ≅ 1 * 0.75²",
+            "//  1.0     ≅ 1 * 1.0²",
+            "print(dest.array)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images": {
+      "abstract": [
+        {
+          "text": "Use the vImage library’s polynomial transform to apply tone curve adjustments to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying tone curve adjustments to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-tone-curve-adjustments-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vImage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom": {
+      "abstract": [
+        {
+          "text": "Applies a set of piecewise polynomials to a 3-channel, 32-bit interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyPolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coefficientSegments"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundaries"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyPolynomial(coefficientSegments:boundaries:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-26zom"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-3c46t": {
+      "abstract": [
+        {
+          "text": "Applies a set of piecewise polynomials to a 32-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.PlanarF",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyPolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coefficientSegments"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundaries"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-3c46t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyPolynomial(coefficientSegments:boundaries:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-3c46t"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8f5i9": {
+      "abstract": [
+        {
+          "text": "Applies a set of piecewise polynomials to a 2-channel, 32-bit interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx2",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyPolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coefficientSegments"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundaries"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8f5i9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyPolynomial(coefficientSegments:boundaries:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-8f5i9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8uesn": {
+      "abstract": [
+        {
+          "text": "Applies a set of piecewise polynomials to a 4-channel, 32-bit interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx4",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyPolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coefficientSegments"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundaries"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8uesn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyPolynomial(coefficientSegments:boundaries:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-8uesn"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarF": {
+      "abstract": [
+        {
+          "text": "A single-channel, 32-bit-per-channel, floating-point buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarF"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarF",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlanarF"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PlanarF",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planarf"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sf": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Appying-polynomial-32-bit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8f5i9",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-8uesn"
+      ],
+      "title": "Appying polynomial (32-bit)"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-3c46t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

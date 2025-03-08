@@ -1,0 +1,1737 @@
+{
+  "abstract": [
+    {
+      "text": "Solves the system ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "AX = B",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": " using the supplied double-precision factorization of ",
+      "type": "text"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "A",
+          "type": "text"
+        }
+      ],
+      "type": "emphasis"
+    },
+    {
+      "text": ", without any internal memory allocations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-7aj3g"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SparseSolve#$@SA@SparseOpaqueFactorization_Double#$@SA@DenseMatrix_Double#S1_#*v#",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SparseSolve"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Double",
+        "text": "SparseOpaqueFactorization_Double"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+        "text": "DenseMatrix_Double"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+        "text": "DenseMatrix_Double"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sv",
+        "text": "UnsafeMutableRawPointer"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SparseSolve"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SparseSolve(_:_:_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "Factored"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Double",
+              "text": "SparseOpaqueFactorization_Double"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "B"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+              "text": "DenseMatrix_Double"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "X"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+              "text": "DenseMatrix_Double"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "workspace"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sv",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The factorization of ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Factored"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The right-hand-side, B.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "B"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The matrix for returning solutions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "X"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The scratch space of size ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredStatic",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "+",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "nrhs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "*",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredPerRHS",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", where ",
+                  "type": "text"
+                },
+                {
+                  "code": "nrhs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is the number of right-hand-sides to find solutions for.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "workspace"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to solve a system of linear equations using a factored coefficient matrix. In cases where your code calls the function frequently, create and manage the workspace that the Sparse Solvers library uses and reuse it across function calls. Reusing a workspace prevents the Sparse Solvers library from allocating the temporary storage with each call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows two systems of equations where the coefficient matrix is sparse:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3703883",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code solves this system with a QR factorization of the coefficient matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Create the coefficient matrix _A_.",
+            "let rowIndices: [Int32] =    [ 0,  1, 1,  2]",
+            "let columnIndices: [Int32] = [ 2,  0, 2,  1]",
+            "let aValues: [Double] =      [10, 20, 5, 50]",
+            "",
+            "let A = SparseConvertFromCoordinate(3, 3,",
+            "                                    4, 1,",
+            "                                    SparseAttributes_t(),",
+            "                                    rowIndices, columnIndices,",
+            "                                    aValues)",
+            "",
+            "/// Factorize _A_.",
+            "let factorization = SparseFactor(SparseFactorizationQR, A)",
+            "",
+            "defer {",
+            "    SparseCleanup(A)",
+            "    SparseCleanup(factorization)",
+            "}",
+            "",
+            "/// Create the workspace.",
+            "let nrhs = Int(A.structure.columnCount)",
+            "let byteCount = factorization.solveWorkspaceRequiredStatic +",
+            "                    nrhs * factorization.solveWorkspaceRequiredPerRHS",
+            "let workspace = UnsafeMutableRawPointer.allocate(",
+            "    byteCount: byteCount,",
+            "    alignment: MemoryLayout<Double>.alignment)",
+            "defer {",
+            "    workspace.deallocate()",
+            "}",
+            "",
+            "/// Create the right-hand-side matrix, _B_.",
+            "var bValues: [Double] = [30, 35, 100,",
+            "                         300, 350, 1000]",
+            "let n = bValues.count",
+            "",
+            "/// Solve the system.",
+            "let xValues = [Double](unsafeUninitializedCapacity: n) {",
+            "    buffer, count in",
+            "    bValues.withUnsafeMutableBufferPointer { bPtr in",
+            "        let B = DenseMatrix_Double(rowCount: 3,",
+            "                                   columnCount: 2,",
+            "                                   columnStride: 3,",
+            "                                   attributes: SparseAttributes_t(),",
+            "                                   data: bPtr.baseAddress!)",
+            "        ",
+            "        let X = DenseMatrix_Double(rowCount: 3,",
+            "                                   columnCount: 2,",
+            "                                   columnStride: 3,",
+            "                                   attributes: SparseAttributes_t(),",
+            "                                   data: buffer.baseAddress!)",
+            "        ",
+            "        SparseSolve(factorization, B, X,",
+            "                    workspace)",
+            "        ",
+            "        count = n",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "xValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[1.0, 2.0, 3.0, 10.0, 20.0, 30.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the factorization is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A = QR",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the function returns the solution of minimum norm ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "‖ x ‖₂",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for underdetermined systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the factorization is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A = QR",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the function returns the least squares solution ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "minₓ ‖ AX - B ‖₂",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for overdetermined systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the factorization is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorizationCholeskyAtA",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the factorization is of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "AᵀA",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and the solution that returns is for the system ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "AᵀAX = B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double": {
+      "abstract": [
+        {
+          "text": "A structure that contains a dense matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DenseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DenseMatrix_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "DenseMatrix_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/densematrix_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorizationCholeskyAtA": {
+      "abstract": [
+        {
+          "text": "A constant that represents ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QR",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " factorization without storing ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Q",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseFactorizationCholeskyAtA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseFactorization_t",
+          "text": "SparseFactorization_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseFactorizationCholeskyAtA",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseFactorizationCholeskyAtA"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseFactorizationCholeskyAtA",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsefactorizationcholeskyata"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double": {
+      "abstract": [
+        {
+          "text": "A structure that represents the factorization of a matrix of double-precision, floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueFactorization_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueFactorization_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOpaqueFactorization_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquefactorization_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredPerRHS": {
+      "abstract": [
+        {
+          "text": "The required size of the per-right-hand-side workspace for a call to a sparse solve function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "solveWorkspaceRequiredPerRHS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredPerRHS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "solveWorkspaceRequiredPerRHS"
+        }
+      ],
+      "role": "symbol",
+      "title": "solveWorkspaceRequiredPerRHS",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquefactorization_double/solveworkspacerequiredperrhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredStatic": {
+      "abstract": [
+        {
+          "text": "The required size of the static workspace for a call to a sparse solve function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "solveWorkspaceRequiredStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "solveWorkspaceRequiredStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "solveWorkspaceRequiredStatic",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquefactorization_double/solveworkspacerequiredstatic"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-7aj3g": {
+      "abstract": [
+        {
+          "text": "Solves the system ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AX = B",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " using the supplied double-precision factorization of ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", without any internal memory allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Double",
+          "text": "SparseOpaqueFactorization_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+          "text": "DenseMatrix_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+          "text": "DenseMatrix_Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-7aj3g",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:)-7aj3g"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-8xma8": {
+      "abstract": [
+        {
+          "text": "Solves the system ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AX = B",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " using the supplied single-precision factorization of ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", without any internal memory allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Float",
+          "text": "SparseOpaqueFactorization_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseMatrix_Float",
+          "text": "DenseMatrix_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@DenseMatrix_Float",
+          "text": "DenseMatrix_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-8xma8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSolve(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesolve(_:_:_:_:)-8xma8"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sv": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutableRawPointer"
+    },
+    "media-3703883": {
+      "alt": "A mathematical equation that has two stacked sets of three simultaneous equations on the left. Each equation has three unknowns. The same sets of simultaneous equations appear on the right as a single matrix equation, A x equals B. The single matrix equation consists of a three-by-three matrix multiplied by a three-by-two matrix that equals a three-by-two matrix.",
+      "identifier": "media-3703883",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f418105a3665a60546bc23d6a8dd3f50/media-3703883@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Out-of-Place-Direct-Solving-Functions-with-User-Defined-Workspace",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-8xma8"
+      ],
+      "title": "Out-of-Place Direct Solving Functions with User-Defined Workspace"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Out-of-Place-Direct-Solving-Functions-with-User-Defined-Workspace",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseSolve(_:_:_:_:)-8xma8"
+              ],
+              "title": "Out-of-Place Direct Solving Functions with User-Defined Workspace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SparseSolve"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Double",
+                    "text": "SparseOpaqueFactorization_Double"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "Factored"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+                    "text": "DenseMatrix_Double"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "X"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.accelerate/documentation/Accelerate/DenseMatrix_Double",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@DenseMatrix_Double",
+                    "text": "DenseMatrix_Double"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "B"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "workspace"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The factorization of ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "A",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "Factored"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The matrix for returning solutions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "X"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The right-hand-side, B.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "B"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The scratch space of size ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredStatic",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "+",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nrhs",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "*",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueFactorization_Double/solveWorkspaceRequiredPerRHS",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", where ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nrhs",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is the number of right-hand-sides to find solutions for.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "workspace"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:)-8xma8/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:)-8xma8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double/title",
+          "value": "SparseOpaqueFactorization_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueFactorization_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueFactorization_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Double/title",
+          "value": "DenseMatrix_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1DenseMatrix_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DenseMatrix_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double~1solveWorkspaceRequiredPerRHS/title",
+          "value": "solveWorkspaceRequiredPerRHS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double~1solveWorkspaceRequiredPerRHS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "solveWorkspaceRequiredPerRHS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:)-7aj3g/title",
+          "value": "SparseSolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSolve(_:_:_:_:)-7aj3g/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseFactorizationCholeskyAtA/title",
+          "value": "SparseFactorizationCholeskyAtA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseFactorizationCholeskyAtA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseFactorizationCholeskyAtA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double~1solveWorkspaceRequiredStatic/title",
+          "value": "solveWorkspaceRequiredStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueFactorization_Double~1solveWorkspaceRequiredStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "solveWorkspaceRequiredStatic"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/sparsesolve(_:_:_:_:)-7aj3g"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/sparsesolve(_:_:_:_:)-7aj3g"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

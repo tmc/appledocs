@@ -1,0 +1,2993 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance the appearance of objects in a RealityKit scene with Physically Based Rendering",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "(PBR).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/applying-realistic-material-and-lighting-effects-to-entities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying realistic material and lighting effects to entities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance describes the surface properties of an entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and controls how RealityKit renders that entity. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is a type of material that closely approximates the way light bounces off objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the real world. It creates very realistic rendered objects that look natural when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "placed into an AR scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you import models from USDZ files, RealityKit automatically creates one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances from the PBR material settings in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the file. You can also create PBR materials manually, either to change the appearance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of an entity loaded from a USDZ file at runtime, or to use PBR rendering with procedurally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "created entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-material-and-specify-core-properties",
+          "level": 3,
+          "text": "Create a material and specify core properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PBR materials use three core properties to define an object’s fundamental appearance:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/baseColor-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/roughness-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/metallic-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/baseColor-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property defines the underlying color of the entity as it would look under soft,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bright, neutral lighting with no shadows or highlights. The ",
+              "type": "text"
+            },
+            {
+              "code": "roughness",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is a measure of how the surface of the entity scatters the light that it reflects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A material with a low ",
+              "type": "text"
+            },
+            {
+              "code": "roughness",
+              "type": "codeVoice"
+            },
+            {
+              "text": " looks shiny, while one with a high ",
+              "type": "text"
+            },
+            {
+              "code": "roughness",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has a matte appearance. The ",
+              "type": "text"
+            },
+            {
+              "code": "metallic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property defines how the material reflects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the environment around the entity. The figure below illustrates the visual effects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of changing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/metallic-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/roughness-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while keeping its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/baseColor-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "applying-realistic-material-and-lighting-effects-to-entities-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example demonstrates how to create a PBR material that uses a color and a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "roughness",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "metallic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for the entire material:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var material = PhysicallyBasedMaterial()",
+            "material.baseColor.tint = .orange",
+            "material.roughness = PhysicallyBasedMaterial.Roughness(",
+            "    floatLiteral: 0.0",
+            ")",
+            "material.metallic = PhysicallyBasedMaterial.Metallic(",
+            "    floatLiteral: 1.0",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And the following example shows how to create a PBR material using UV-mapped image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "textures for all three properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var material = PhysicallyBasedMaterial()",
+            "",
+            "if let baseResource = try? TextureResource.load(named: \"entity_basecolor\") {",
+            "    let baseTexture = MaterialParameters.Texture(baseResource)",
+            "    material.baseColor = PhysicallyBasedMaterial.BaseColor(",
+            "        texture: baseTexture",
+            "    )",
+            "}",
+            "",
+            "if let metalResource = try? TextureResource.load(named: \"entity_metallic\") {",
+            "    let metalTexture = MaterialParameters.Texture(metalResource)",
+            "    material.metallic = PhysicallyBasedMaterial.Metallic(",
+            "        texture: metalTexture",
+            "    )",
+            "}",
+            "",
+            "if let roughnessResource = try? TextureResource.load(named: \"entity_roughness\") {",
+            "    let roughnessTexture = MaterialParameters.Texture(roughnessResource)",
+            "    material.roughness = PhysicallyBasedMaterial.Roughness(",
+            "        texture: roughnessTexture",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/metallic-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/roughness-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "maps, use a grayscale image. If you use a color image, RealityKit only uses the red",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-normal-map",
+          "level": 3,
+          "text": "Add a normal map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Normal mapping",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a real-time rendering technique that captures fine surface details",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a model using a texture instead of increasing the number of polygons in the model.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It works by storing ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "surface normals",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which are vectors perpendicular to the surface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the model, from a much higher resolution version of the same 3D object. A normal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "map stores vectors by storing its ",
+              "type": "text"
+            },
+            {
+              "code": "X",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Y",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Z",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value as the ",
+              "type": "text"
+            },
+            {
+              "code": "R",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "G",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "components of the corresponding pixel in a UV-mapped image. RealityKit uses those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "normals to do lighting calculations, which results in much more realistic highlights,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shadows, and reflections without incurring the computational cost of using a much",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "higher resolution 3D model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit’s ",
+              "type": "text"
+            },
+            {
+              "code": "PhysicallyBasedMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports normal maps using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/normal-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "RealityKit uses ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tangent space normal maps,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " which many 3D software packages",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "can create. You can recognize tangent space normal maps by their predominately purple",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "color.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a ",
+              "type": "text"
+            },
+            {
+              "code": "normal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " map to your entity, load it as a texture resource, and use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resource to create a ",
+              "type": "text"
+            },
+            {
+              "code": "PhysicallyBasedMaterial.Normal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, as in this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let normalResource = try? TextureResource.load(named: \"entity_normals\") {",
+            "    let normalTexture = MaterialParameters.Texture(normalResource)",
+            "    material.normal = PhysicallyBasedMaterial.Normal(",
+            "        texture: normalTexture",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-blending-and-opacity",
+          "level": 3,
+          "text": "Specify blending and opacity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, RealityKit materials are opaque, but RealityKit can render entities with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transparency to simulate real-world objects. To render a material with transparency,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/blending-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".opaque",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": ".transparent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": ".transparent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration case takes an associated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value that controls the amount of transparency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify opacity, create a ",
+              "type": "text"
+            },
+            {
+              "code": "PhysicallyBasedMaterial.Opacity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. You can specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opacity for the entire entity using a single value between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is fully opaque and ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is fully transparent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "material.blending = .transparent(",
+            "    opacity: PhysicallyBasedMaterial.Opacity(floatLiteral: 0.5)",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also specify opacity using an image texture (sometimes called an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alpha map",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "transparency map",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). In an alpha map, black pixels represent fully transparent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parts of the entity, white pixels represent fully opaque parts of the entity, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gray pixels represent parts of the entity that are partially transparent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let opacityResource = try? TextureResource.load(named: \"entity_opacity\") {",
+            "    let opacityMap = MaterialParameters.Texture(opacityResource)",
+            "    let opacityValue = PhysicallyBasedMaterial.Opacity(texture: opacityMap)",
+            "    material.blending = .transparent(opacity: opacityValue)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change the behavior of an alpha map to function as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mask",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " rather than a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transparency map. When using an alpha mask, RealityKit draws every pixel of the entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "either fully transparent or fully opaque with no partially transparency. Use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/opacityThreshold",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to enable alpha",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "masking. If you specify a value greater than ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", RealityKit uses the image texture",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a mask, and renders any pixel with a value of less than or equal to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/opacityThreshold",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as fully transparent. RealityKit draws any pixel value greater than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/opacityThreshold",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as fully opaque.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-specular-highlights",
+          "level": 3,
+          "text": "Add specular highlights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit automatically draws ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "specular highlights",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for physically based materials",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the values of various properties, primarily ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/roughness-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/metallic-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Specular highlights",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are bright spots of reflected light that appear on shiny objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "applying-realistic-material-and-lighting-effects-to-entities-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While many real-world objects can be accurately and realistically simulated with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "just the core PBR properties, you can create additional realistic effects by augmenting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the specular highlights.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/specular-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulate the bright highlights found on certain ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dielectric",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (nonmetallic) materials",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like cut gemstones and faceted glass, which have specular highlights much brighter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than the ones RealityKit creates from just the core properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s how to specify specular using a single value for the entire material:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "material.specular = PhysicallyBasedMaterial.Specular(",
+            "    floatLiteral: 0.8",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates how to specify specular using a UV-mapped image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let specularResource = try? TextureResource.load(named: \"entity_specular\") {",
+            "    let specularTexture = MaterialParameters.Texture(specularResource)",
+            "    material.specular = PhysicallyBasedMaterial.Specular(",
+            "        texture: specularTexture",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use specular highlights to simulate subtle reflections like the ones",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that occur on some types of fabric. Create these types of effects with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/sheen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property, as illustrated in the following figure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "applying-realistic-material-and-lighting-effects-to-entities-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example shows how to specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/sheen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single value for the entire material:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sheenTint = PhysicallyBasedMaterial.Color(",
+            "    red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0",
+            ")",
+            "material.sheen = PhysicallyBasedMaterial.SheenColor(",
+            "    tint: sheenTint",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And this example demonstrates how to specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/sheen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a UV-mapped image texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let sheenResource = try? TextureResource.load(named: \"entity_sheen\") {",
+            "    let sheenMap = MaterialParameters.Texture(sheenResource)",
+            "    material.sheen = PhysicallyBasedMaterial.SheenColor(",
+            "        texture: sheenMap",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-anisotropy-for-directional-highlights",
+          "level": 3,
+          "text": "Use anisotropy for directional highlights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, PBR materials are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "isotropic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "; in other words, an entity that uses a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reflects light uniformly in all directions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mimicking the behavior of most real-world objects. Some objects, including those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with many small parallel striations such as vinyl records, CDs, or straight hair,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reflect light more in some directions than others, resulting in stretched or oblong",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specular highlights called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "anisotropic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " highlights.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "applying-realistic-material-and-lighting-effects-to-entities-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In RealityKit, you adjust anisotropy using two parameters: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyLevel-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyAngle-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the amount of anisotropy, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyLevel-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specifying a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " results in an entirely isotropic appearance, while nonzero",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values up to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " simulate the appearance of increasingly anisotropic objects. Change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the angle of anisotropy to affect the direction in which the specular highlights",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stretch with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyAngle-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which also takes a value between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0 ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means a rotation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of 0° and a value of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates a rotation of 360°. To determine the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyAngle-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value to use, divide the desired angle in degrees by ",
+              "type": "text"
+            },
+            {
+              "code": "360.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or the desired angle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in radians by pi times 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let angleDegrees: Float = 125",
+            "let anisotropyAngleFromDegrees = angleDegrees / 360",
+            "",
+            "let angleRadians: Float = 2.181662",
+            "let anisotropyAngleFromRadians = angleRadians / (2 * .pi)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates how to specify anisotropy using single values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the entire material:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "material.anisotropyLevel = PhysicallyBasedMaterial.AnisotropyLevel(",
+            "    floatLiteral: 0.5",
+            ")",
+            "material.anisotropyAngle = PhysicallyBasedMaterial.AnisotropyAngle(",
+            "    floatLiteral: 0.5",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And this example shows how to specify anisotropy using a UV-mapped image texture",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyLevel-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a separate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyAngle-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let anisoLevelResource = try? TextureResource.load(named: \"entity_aniso_level\") {",
+            "    let anisoLevelMap = MaterialParameters.Texture(anisoLevelResource)",
+            "    material.anisotropyLevel = PhysicallyBasedMaterial.AnisotropyLevel(",
+            "        texture: anisoLevelMap",
+            "    )",
+            "}",
+            "",
+            "if let anisoAngleResource = try? TextureResource.load(named: \"entity_aniso_angle\") {",
+            "    let anisoAngleMap = MaterialParameters.Texture(anisoAngleResource)",
+            "    material.anisotropyAngle = PhysicallyBasedMaterial.AnisotropyAngle(",
+            "        texture: anisoAngleMap",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "applying-realistic-material-and-lighting-effects-to-entities-1": {
+      "alt": "An illustration showing a matrix of spheres rendered with a physically based material. Each sphere has a different roughness and metallic value to demonstrate the impact of changing these attributes.",
+      "identifier": "applying-realistic-material-and-lighting-effects-to-entities-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff798fb7c11104058e658b0ec4144e6d/applying-realistic-material-and-lighting-effects-to-entities-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b23c11f6831d2b2a30649f18f8134225/applying-realistic-material-and-lighting-effects-to-entities-1~dark@2x.png"
+        }
+      ]
+    },
+    "applying-realistic-material-and-lighting-effects-to-entities-2": {
+      "alt": "An illustration showing a sphere and a cube with rounded corners. Both have a shiny surface and a small white spot labeled “specular highlights” where they reflect the scene’s light source.",
+      "identifier": "applying-realistic-material-and-lighting-effects-to-entities-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b83dd2d5721a30ef708e7bf6420620b/applying-realistic-material-and-lighting-effects-to-entities-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d55b8b8bfea90b36827ff808c53aef92/applying-realistic-material-and-lighting-effects-to-entities-2~dark@2x.png"
+        }
+      ]
+    },
+    "applying-realistic-material-and-lighting-effects-to-entities-3": {
+      "alt": "An illustration of two spheres. The one on the right has very subtle, soft specular highlight and is labeled “With Sheen”. The one on the right has no specular highlights and is labeled “Without Sheen”.",
+      "identifier": "applying-realistic-material-and-lighting-effects-to-entities-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/359c94162d7f5fc848064f68f22585d1/applying-realistic-material-and-lighting-effects-to-entities-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e34006b34d873c764de65a123e65fa8/applying-realistic-material-and-lighting-effects-to-entities-3~dark@2x.png"
+        }
+      ]
+    },
+    "applying-realistic-material-and-lighting-effects-to-entities-4": {
+      "alt": "An illustration showing 11 metallic spheres in a horizontal row. The left-most sphere is isotropic. The spheres represent increasing anisotropy from left to right, with the sphere furthest to the right displaying a long, stretched highlight.",
+      "identifier": "applying-realistic-material-and-lighting-effects-to-entities-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2eecb2feb22234ad8501e669131a2d52/applying-realistic-material-and-lighting-effects-to-entities-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da67ec3f35d951973cbf463df6c24aa7/applying-realistic-material-and-lighting-effects-to-entities-4~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial": {
+      "abstract": [
+        {
+          "text": "A material that simulates the appearance of real-world objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicallyBasedMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicallyBasedMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AmbientOcclusion-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the ambient occlusion of an entity’s surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AmbientOcclusion"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AmbientOcclusion-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AmbientOcclusion"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.AmbientOcclusion",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/ambientocclusion-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AnisotropyAngle-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object used to define a material’s anisotropy angle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnisotropyAngle"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AnisotropyAngle-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnisotropyAngle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.AnisotropyAngle",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/anisotropyangle-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AnisotropyLevel-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the degree to which an entity reflects light to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "create stretched or oblong highlights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnisotropyLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AnisotropyLevel-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnisotropyLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.AnisotropyLevel",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/anisotropylevel-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/BaseColor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines an entity’s base color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BaseColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/BaseColor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BaseColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.BaseColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/basecolor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Blending-swift.enum": {
+      "abstract": [
+        {
+          "text": "The object that defines the transparency of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Blending"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Blending-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Blending"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.Blending",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/blending-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Clearcoat-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the intensity of an entity’s clear, shiny",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Clearcoat"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Clearcoat-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clearcoat"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.Clearcoat",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/clearcoat-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/ClearcoatRoughness-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the degree to which an entity’s clear, shiny",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coating scatters light to create soft highlights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClearcoatRoughness"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/ClearcoatRoughness-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClearcoatRoughness"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.ClearcoatRoughness",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/clearcoatroughness-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/EmissiveColor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the color of the light an entity emits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmissiveColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/EmissiveColor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmissiveColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.EmissiveColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/emissivecolor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Metallic-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the reflectiveness of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Metallic"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Metallic-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Metallic"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.Metallic",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/metallic-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Normal-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that specifies an entity’s normal map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Normal"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Normal-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Normal"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.Normal",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/normal-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Roughness-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the roughness of an entity’s surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Roughness"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Roughness-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Roughness"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.Roughness",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/roughness-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/SheenColor": {
+      "abstract": [
+        {
+          "text": "An object that defines the color of an entity’s sheen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SheenColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/SheenColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SheenColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.SheenColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/sheencolor"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Specular-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that defines the specular highlights of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Specular"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Specular-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Specular"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.Specular",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/specular-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/TextureCoordinateTransform-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An alias for the texture coordinate transform that’s appropriate for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this material class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextureCoordinateTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/TextureCoordinateTransform-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextureCoordinateTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial.TextureCoordinateTransform",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/texturecoordinatetransform-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyAngle-swift.property": {
+      "abstract": [
+        {
+          "text": "The angle at which the anisotropic direction of the material is oriented,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "influencing the reflection and appearance of surface highlights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anisotropyAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV15AnisotropyAngleV",
+          "text": "AnisotropyAngle"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyAngle-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anisotropyAngle",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/anisotropyangle-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyLevel-swift.property": {
+      "abstract": [
+        {
+          "text": "The degree to which an entity reflects light to create stretched or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "oblong highlights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anisotropyLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV15AnisotropyLevelV",
+          "text": "AnisotropyLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/anisotropyLevel-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anisotropyLevel",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/anisotropylevel-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/baseColor-swift.property": {
+      "abstract": [
+        {
+          "text": "The color of an entity unmodified by lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV9BaseColorV",
+          "text": "BaseColor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/baseColor-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/basecolor-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/blending-swift.property": {
+      "abstract": [
+        {
+          "text": "The transparency of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blending"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV8BlendingO",
+          "text": "Blending"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/blending-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blending",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/blending-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/metallic-swift.property": {
+      "abstract": [
+        {
+          "text": "The reflectiveness of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metallic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV8MetallicV",
+          "text": "Metallic"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/metallic-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metallic",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/metallic-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/normal-swift.property": {
+      "abstract": [
+        {
+          "text": "The normal map for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV6NormalV",
+          "text": "Normal"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/normal-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normal",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/normal-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/opacityThreshold": {
+      "abstract": [
+        {
+          "text": "A threshold below which RealityKit ignores opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacityThreshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/opacityThreshold",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacityThreshold",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/opacitythreshold"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/roughness-swift.property": {
+      "abstract": [
+        {
+          "text": "The amount the surface of the 3D object scatters reflected light.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roughness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV9RoughnessV",
+          "text": "Roughness"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/roughness-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roughness",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/roughness-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/sheen": {
+      "abstract": [
+        {
+          "text": "The intensity of an entity’s sheen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sheen"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV10SheenColorV",
+          "text": "SheenColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/sheen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sheen",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/sheen"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/specular-swift.property": {
+      "abstract": [
+        {
+          "text": "The specular highlight applied to the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "specular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV8SpecularV",
+          "text": "Specular"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/specular-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "specular",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/specular-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Realistic-materials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/BaseColor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Roughness-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Metallic-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Normal-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Blending-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AmbientOcclusion-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Specular-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/SheenColor",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/Clearcoat-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/ClearcoatRoughness-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AnisotropyLevel-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/AnisotropyAngle-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/EmissiveColor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/TextureCoordinateTransform-swift.typealias"
+      ],
+      "title": "Realistic materials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/applying-realistic-material-and-lighting-effects-to-entities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1934 @@
+{
+  "abstract": [
+    {
+      "text": "A container for texture data allowing you to create and update textures using your own format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation15LowLevelTextureC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LowLevelTexture"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LowLevelTexture"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "LowLevelTexture"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LowLevelTexture"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you want to bring your own texture data to RealityKit, or update your data frequently.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You update the data on the GPU with Metal compute shaders.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is ideal for bringing your own textures to RealityKit as-is, or when you intend to update your data frequently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For a simpler alternative, consider creating your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " from a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/init(image:withName:options:)-4qz9s",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/texture2DArray(slices:named:options:)-50g10",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/cube(slices:named:options:)-57yj1",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/texture3D(slices:named:options:)-6pude",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Express your texture by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that describes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how the data is laid out, along with the size of the texture.  This descriptor is similar to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", first configure the descriptor with the desired characteristics of your texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var textureDescriptor: LowLevelTexture.Descriptor {",
+            "    var desc = LowLevelTexture.Descriptor()",
+            "",
+            "    desc.textureType = .type2D",
+            "    desc.arrayLength = 1",
+            "",
+            "    desc.width = 2048",
+            "    desc.height = 2048",
+            "    desc.depth = 1",
+            "",
+            "    desc.mipmapLevelCount = 1",
+            "    desc.pixelFormat = .bgra8Unorm",
+            "    desc.textureUsage = [.shaderRead, .shaderWrite]",
+            "    desc.swizzle = .init(red: .red, green: .green, blue: .blue, alpha: .alpha)",
+            "",
+            "    return desc",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, you can initialize the ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from its descriptor and provide it to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let texture = try LowLevelTexture(descriptor: textureDescriptor)",
+            "let resource = try TextureResource(from: texture)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You update the contents of a ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the GPU, using a Metal Command Buffer and Compute Command Encoder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can write a compute kernel in Metal Shading Language to generate the color of each pixel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kernel void",
+            "lowLevelTextureKernel(",
+            "    texture2d<half, access::write> outTexture [[texture(0)]],",
+            "    uint2 gid [[thread_position_in_grid]])",
+            "{",
+            "    // Compute texture coordinate ranging from 0 to 1 along each axis.",
+            "    half2 texCoord {",
+            "        half(gid[0]) / (outTexture.get_width() - 1),",
+            "        half(gid[1]) / (outTexture.get_height() - 1)",
+            "    };",
+            "",
+            "    // Compute the color as a linear gradient from top to bottom.",
+            "    half3 color = mix(",
+            "        half3 { 0.2, 0.2, 0.8 },",
+            "        half3 { 0.7, 0.7, 0.9 },",
+            "        texCoord.y);",
+            "",
+            "    // Specify an opacity of 1 if the pixel is within a circle",
+            "    // spanning the image bounds.",
+            "    half alpha = length(texCoord - 0.5) < 0.5 ? 1.0h : 0.0h;",
+            "",
+            "    // Write the color and opacity to the texture.",
+            "    outTexture.write(half4(color, alpha), gid);",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this compute kernel to populate the ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func populate(texture: LowLevelTexture, device: MTLDevice) {",
+            "    // Set up the Metal command queue and compute command encoder, ",
+            "    // or abort if that fails.",
+            "    guard let commandQueue = device.makeCommandQueue(),",
+            "          let commandBuffer = commandQueue.makeCommandBuffer(),",
+            "          let computeEncoder = commandBuffer.makeComputeCommandEncoder() else {",
+            "        return",
+            "    }",
+            "",
+            "    // Load a Metal compute kernel written in Metal Shading Language, ",
+            "    // or abort if that fails.",
+            "    guard let library = device.makeDefaultLibrary(),",
+            "          let function = library.makeFunction(name: \"lowLevelTextureKernel\"),",
+            "          let computePipelineState = try? device.makeComputePipelineState(function: function) else {",
+            "        return",
+            "    }",
+            "",
+            "    // Enqueue the Metal command buffer.",
+            "    commandBuffer.enqueue()",
+            "",
+            "    // Set up the Metal compute command encoder with the app's compute kernel.",
+            "    computeEncoder.setComputePipelineState(computePipelineState)",
+            "",
+            "    // Retrieve a MTLTexture from LowLevelTexture.",
+            "    // This texture will be directly consumed by RealityKit's renderer.",
+            "    let outTexture: MTLTexture = texture.replace(using: commandBuffer)",
+            "    computeEncoder.setTexture(outTexture, index: 0)",
+            "",
+            "    // Disptach the GPU compute work.",
+            "    // Note: threadGroupCount and threadGroupSize determined elsewhere.",
+            "    computeEncoder.dispatchThreadgroups(",
+            "        threadGroupCount,",
+            "        threadsPerThreadgroup: threadGroupSize)",
+            "",
+            "    // End the encoding and commit the command buffer.",
+            "    // When the command buffer completes, RealityKit automatically applies the changes.",
+            "    computeEncoder.endEncoding()",
+            "    commandBuffer.commit()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To finish, add your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and display it on an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func textureEntity(device: MTLDevice) throws -> Entity {",
+            "    // Create the LowLevelTexture and populate it on the GPU.",
+            "    let texture = try LowLevelTexture(descriptor: textureDescriptor)",
+            "    populate(texture: texture, device: device)",
+            "",
+            "    // Create a TextureResource from the LowLevelTexture.",
+            "    let resource = try TextureResource(from: texture)",
+            "",
+            "    // Create a material that uses the texture.",
+            "    var material = UnlitMaterial(texture: resource)",
+            "    material.opacityThreshold = 0.5",
+            "",
+            "    // Return an entity of a plane which uses the generated texture.",
+            "    return ModelEntity(mesh: .generatePlane(width: 1, depth: 1), materials: [material])",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "lowleveltexture-circle-unlit",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " retains a reference to the ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and presents changes made to the ",
+              "type": "text"
+            },
+            {
+              "code": "LowLevelTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the renderer updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture": {
+      "abstract": [
+        {
+          "text": "A container for texture data allowing you to create and update textures using your own format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LowLevelTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LowLevelTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelTexture",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new ",
+          "type": "text"
+        },
+        {
+          "code": "LowLevelTexture",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelTexture.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture/descriptor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/descriptor-swift.property": {
+      "abstract": [
+        {
+          "text": "The descriptor that you use to initialize the ",
+          "type": "text"
+        },
+        {
+          "code": "LowLevelTexture",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15LowLevelTextureC",
+          "text": "LowLevelTexture"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15LowLevelTextureC10DescriptorV",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/descriptor-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture/descriptor-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/init(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a low-level texture from a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15LowLevelTextureC",
+          "text": "LowLevelTexture"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15LowLevelTextureC10DescriptorV",
+          "text": "Descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/init(descriptor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture/init(descriptor:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/read()": {
+      "abstract": [
+        {
+          "text": "Retrieves the current texture for GPU reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/read()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read()",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture/read()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/replace(using:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a Metal texture that your app’s shaders can write to when they run on a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/replace(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(using:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowleveltexture/replace(using:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource": {
+      "abstract": [
+        {
+          "text": "A representation of a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextureResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/Drawable": {
+      "abstract": [
+        {
+          "text": "A drawable associated with a drawable queue",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/Drawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource.Drawable",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/drawable"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class": {
+      "abstract": [
+        {
+          "text": "A drawable queue that may be used to update a texture resource dynamically",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DrawableQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DrawableQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource.DrawableQueue",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/drawablequeue-swift.class"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class/Descriptor": {
+      "abstract": [
+        {
+          "text": "Describes the texture managed by the drawable queue",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class/Descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextureResource.DrawableQueue.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/drawablequeue-swift.class/descriptor"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/cube(slices:named:options:)-57yj1": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a cube texture resource from face images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cube"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "slices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/cube(slices:named:options:)-57yj1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cube(slices:named:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/cube(slices:named:options:)-57yj1"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/init(image:withName:options:)-4qz9s": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a texture resource from an in-memory Core",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/init(image:withName:options:)-4qz9s",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(image:withName:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/init(image:withname:options:)-4qz9s"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/texture2DArray(slices:named:options:)-50g10": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a 2D texture array by generating it from images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture2DArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "slices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/texture2DArray(slices:named:options:)-50g10",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture2DArray(slices:named:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/texture2darray(slices:named:options:)-50g10"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/texture3D(slices:named:options:)-6pude": {
+      "abstract": [
+        {
+          "text": "Asynchronously creates a 3D texture by generating it from images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture3D"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "slices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC13CreateOptionsV",
+          "text": "CreateOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15TextureResourceC",
+          "text": "TextureResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/texture3D(slices:named:options:)-6pude",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture3D(slices:named:options:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/textureresource/texture3d(slices:named:options:)-6pude"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture": {
+      "abstract": [
+        {
+          "text": "Create a low-level texture and update its pixel data on the GPU to form a dynamic height and normal map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a dynamic height and normal map with low-level texture",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-dynamic-height-map-with-low-level-texture"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo": {
+      "abstract": [
+        {
+          "text": "Bring an iOS or iPadOS game to visionOS and enhance it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo",
+      "images": [
+        {
+          "identifier": "game-stereo-sample-article-poster.jpg",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a windowed game in stereo",
+      "type": "topic",
+      "url": "/documentation/realitykit/rendering-a-windowed-game-in-stereo"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new Metal texture objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureDescriptor",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureDescriptor"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "game-stereo-sample-article-poster.jpg": {
+      "alt": null,
+      "identifier": "game-stereo-sample-article-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6f511210387c5c4759f8017a8a530c7/game-stereo-sample-article-poster.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8107bf5044222cbf4969cb51e0666b8b/game-stereo-sample-article-poster~dark.jpg"
+        }
+      ]
+    },
+    "lowleveltexture-circle-unlit": {
+      "alt": "A screenshot of a circle.  The color of the circle is a linear gradient; the top is light blue and the bottom is close to white.",
+      "identifier": "lowleveltexture-circle-unlit",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e518125eb1798957de0f8855cab1a35/lowleveltexture-circle-unlit.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-drawing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/rendering-a-windowed-game-in-stereo",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-dynamic-height-map-with-low-level-texture",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/Drawable",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextureResource/DrawableQueue-swift.class/Descriptor"
+      ],
+      "title": "Texture drawing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/Descriptor-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/init(descriptor:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/descriptor-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/read()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelTexture/replace(using:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLTextureDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/lowleveltexture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

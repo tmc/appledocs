@@ -1,0 +1,419 @@
+{
+  "abstract": [
+    {
+      "text": "Describe virtual machine exit conditions.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management/exits"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3624761,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Exits"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run": {
+      "abstract": [
+        {
+          "text": "Starts the execution of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_run"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_run(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441231-hv_vcpu_run"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the cumulative execution time of a vCPU, in nanoseconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_exec_time"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_exec_time(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441687-hv_vcpu_get_exec_time"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt": {
+      "abstract": [
+        {
+          "text": "Gets pending interrupts for a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_pending_interrupt"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_interrupt_type_t, UnsafeMutablePointer<Bool>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_pending_interrupt(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt": {
+      "abstract": [
+        {
+          "text": "Sets pending interrupts for a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_pending_interrupt"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_interrupt_type_t, Bool) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_pending_interrupt(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit": {
+      "abstract": [
+        {
+          "text": "Forces an immediate exit of a set of vCPUs of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpus_exit"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<hv_vcpu_t>, UInt32) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpus_exit(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608569-hv_vcpus_exit"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vCPU Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/vcpu_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management/exits": {
+      "abstract": [
+        {
+          "text": "Describe virtual machine exit conditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management/exits",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exits",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/vcpu_management/exits"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_exception_address_t": {
+      "abstract": [
+        {
+          "text": "Type of a vCPU exception virtual address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_exception_address_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_exception_address_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_exception_address_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_exception_address_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_exception_syndrome_t": {
+      "abstract": [
+        {
+          "text": "Type of a vCPU exception syndrome.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_exception_syndrome_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_exception_syndrome_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_exception_syndrome_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_exception_syndrome_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_exit_reason_t": {
+      "abstract": [
+        {
+          "text": "The type that describes the event that triggered a guest exit to the host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_exit_reason_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_exit_reason_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_exit_reason_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_exit_reason_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_interrupt_type_t": {
+      "abstract": [
+        {
+          "text": "The type that defines the vCPU’s interrupts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_interrupt_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_interrupt_type_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_interrupt_type_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_interrupt_type_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_exit_t": {
+      "abstract": [
+        {
+          "text": "Information about an exit from the vCPU to the host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_exit_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_exit_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_exit_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_exit_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+        "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit",
+        "doc://com.apple.documentation/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt",
+        "doc://com.apple.documentation/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt",
+        "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_interrupt_type_t"
+      ],
+      "title": "Runtime"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3624758",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_exit_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Descriptor"
+    },
+    {
+      "anchor": "3624757",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/hv_exit_reason_t",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_exception_syndrome_t",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_exception_address_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Exit reasons"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/apple_silicon/vcpu_management/exits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/apple_silicon/vcpu_management/exits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

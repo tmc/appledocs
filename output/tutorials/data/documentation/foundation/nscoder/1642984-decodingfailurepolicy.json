@@ -1,0 +1,487 @@
+{
+  "abstract": [
+    {
+      "text": "The action the coder should take when decoding fails.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+        "doc://com.apple.documentation/documentation/foundation/nscoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1642984,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCoder(py)decodingFailurePolicy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "decodingFailurePolicy"
+      },
+      {
+        "kind": "text",
+        "text": ": NSCoder.DecodingFailurePolicy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSCoder"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "decodingFailurePolicy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodingFailurePolicy"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSDecodingFailurePolicy",
+              "text": "DecodingFailurePolicy"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A decode call can fail for the following reasons:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The keyed archive data is corrupt or missing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A type mismatch occurs, such as expecting a class by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292924-decodeobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " but encountering a numeric type instead. This also occurs when ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409246-decodeinteger",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " encounters a value encoded as floating-point, or vice versa.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A secure coding violation occurs. This happens when you attempt to decode an object that doesn’t conform to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This also happens when the encoded type doesn’t match any of the types passed to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292944-decodeobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1409246-decodeinteger": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1409246-decodeinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInteger(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1409246-decodeinteger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1416125-containsvalue": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether an encoded value is available for a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1416125-containsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containsValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1416125-containsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1417541-allowskeyedcoding": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver supports keyed coding of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsKeyedCoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1417541-allowskeyedcoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsKeyedCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1417541-allowskeyedcoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy": {
+      "abstract": [
+        {
+          "text": "The action the coder should take when decoding fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodingFailurePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder.DecodingFailurePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/1642984-decodingfailurepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodingFailurePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/1642984-decodingfailurepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2292924-decodeobject": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292924-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject(of:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2292924-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/2292944-decodeobject": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/2292944-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject(of:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/2292944-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy": {
+      "abstract": [
+        {
+          "text": "Policies describing the action the coder should take when encountering decode failures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder.DecodingFailurePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder.DecodingFailurePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder/decodingfailurepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1417541-allowskeyedcoding",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/1416125-containsvalue",
+        "doc://com.apple.documentation/documentation/foundation/nscoder/decodingfailurepolicy"
+      ],
+      "title": "Inspecting a Coder"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscoder/1642984-decodingfailurepolicy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscoder/1642984-decodingfailurepolicy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

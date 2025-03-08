@@ -1,0 +1,330 @@
+{
+  "abstract": [
+    {
+      "text": "Detects when you use an uninitialized mutex.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Uninitialized mutexes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this check to detect when you call ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_mutex_lock(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_mutex_unlock(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with an uninitialized ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_mutex_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable. Attempting to use an uninitialized mutex results in an error, and bypasses ordering conditions that exist on a locked mutex. Available in Xcode 8 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-of-uninitialized-mutex-in-C",
+          "level": 3,
+          "text": "Use of uninitialized mutex in C",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_mutex_lock(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function executes with an uninitialized ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_mutex_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static pthread_mutex_t mutex;",
+            "void performWork() {",
+            "    pthread_mutex_lock(&mutex); // Error: uninitialized mutex",
+            "    // ...",
+            "    pthread_mutex_unlock(&mutex);",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_once(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to initialize a mutex before you use it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static pthread_once_t once = PTHREAD_ONCE_INIT;",
+            "static pthread_mutex_t mutex;",
+            "void init() {    ",
+            "    pthread_mutex_init(&mutex, NULL);",
+            "}",
+            "void performWork() {",
+            "    pthread_once(&once, init); // Correct",
+            "    pthread_mutex_lock(&mutex);",
+            "    // ...",
+            "    pthread_mutex_unlock(&mutex);",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/data-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/data-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Data races",
+      "type": "topic",
+      "url": "/documentation/xcode/data-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis": {
+      "abstract": [
+        {
+          "text": "Detects when one thread accesses a mutable object while another thread is writing to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Races on collections and other APIs",
+      "type": "topic",
+      "url": "/documentation/xcode/races-on-collections-and-other-apis"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-access-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Swift access races",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-access-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/thread-leaks": {
+      "abstract": [
+        {
+          "text": "Detects when you don’t close threads after use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/thread-leaks",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread leaks",
+      "type": "topic",
+      "url": "/documentation/xcode/thread-leaks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Thread-Sanitizer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/data-races",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+        "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis",
+        "doc://com.apple.Xcode/documentation/Xcode/thread-leaks"
+      ],
+      "title": "Thread Sanitizer"
+    }
+  ]
+}

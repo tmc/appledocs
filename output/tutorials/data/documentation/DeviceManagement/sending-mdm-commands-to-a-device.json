@@ -1,0 +1,1196 @@
+{
+  "abstract": [
+    {
+      "text": "Execute commands on a device and receive responses that contain the results of each operation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/sending-mdm-commands-to-a-device"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending MDM Commands to a Device"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a device installs the MDM enrollment profile, the MDM server can send commands to it. The MDM server sends a push notification to the device to initiate communication, and the device responds and establishes a secure connection with it. Then the server can send commands to the device, which the device executes and reports results back to the server. Wait for the response from a device with a matching ",
+              "type": "text"
+            },
+            {
+              "code": "UUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a command, to verify that the device executed it. This value corresponds to the contents of the ",
+              "type": "text"
+            },
+            {
+              "code": "User ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the ",
+              "type": "text"
+            },
+            {
+              "code": "Subject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the push-notification client certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initiate-Polling-for-MDM-Commands",
+          "level": 3,
+          "text": "Initiate Polling for MDM Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MDM server sends a notification through the APNS gateway to the device, to make a device poll the MDM server for commands. Format the message that the server sends with the push notification as JSON, and only include the ",
+              "type": "text"
+            },
+            {
+              "code": "PushMagic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string as the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "mdm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "{\"mdm\":\"PushMagicValue\"}",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In place of ",
+              "type": "text"
+            },
+            {
+              "code": "PushMagicValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", substitute the actual ",
+              "type": "text"
+            },
+            {
+              "code": "PushMagic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string that the device sends to the MDM server in the ",
+              "type": "text"
+            },
+            {
+              "code": "TokenUpdate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " message. This is the complete message. Don’t include an ",
+              "type": "text"
+            },
+            {
+              "code": "aps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, which you only use for third-party app push notifications. It’s safe to send several push notifications to a device, because APNS coalesces multiple notifications and delivers only the last one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Establish-a-Connection-to-the-MDM-Server",
+          "level": 3,
+          "text": "Establish a Connection to the MDM Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to receiving a push notification from an MDM server, a device initiates communication by establishing a TLS connection to the MDM server URL. The device validates the server’s certificate, then uses its identity as the client certificate to authentication for the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "MDM follows HTTP ",
+                  "type": "text"
+                },
+                {
+                  "code": "3xx",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " redirections without user interaction. However, it doesn’t save the URL given by HTTP ",
+                  "type": "text"
+                },
+                {
+                  "code": "301",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " (Moved Permanently) redirections. Each transaction begins at the URL the MDM payload specifies.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device then sends a request-payload message in a plist-encoded dictionary to the MDM server using an HTTP PUT request. This message contains either an ",
+              "type": "text"
+            },
+            {
+              "code": "Idle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status or the result of a previous operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A request payload message looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PUT /your/url HTTP/1.1",
+            "Host: www.yourhostname.com",
+            "Content-Length: 1234",
+            "Content-Type: application/x-apple-aspen-mdm; charset=UTF-8",
+            "",
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\"> ",
+            "<dict>",
+            "    <key>UDID</key>",
+            "    <string>...</string>",
+            "    <key>CommandUUID</key>",
+            "    <string>9F09D114-BCFD-42AD-A974-371AA7D6256E</string>",
+            "    <key>Status</key>",
+            "    <string>Acknowledged</string> ",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Send-a-Command-to-the-Device",
+          "level": 3,
+          "text": "Send a Command to the Device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server responds to the request-payload message from the device by sending a response-payload message back to the device enclosed in an HTTP reply. This message includes the next command for the device to execute in a plist-encoded dictionary that contains the following required keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Command",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The command dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CommandUUID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique identifier of the command.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the ",
+              "type": "text"
+            },
+            {
+              "code": "RequestType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the content of the ",
+              "type": "text"
+            },
+            {
+              "code": "Command",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary, along with additional keys defined by each command. For example, here’s a request payload message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 200 OK",
+            "Content-Length: 1234",
+            "Content-Type: application/xml; charset=UTF-8",
+            "",
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<!-- PEALISTv1: TextSize:0| -->",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>CommandUUID</key>",
+            "    <string>9F09D114-BCFD-42AD-A974-371AA7D6256E</string>",
+            "    <key>Command</key>",
+            "    <dict>",
+            "        <key>RequestType</key>",
+            "        <string>...</string>",
+            "    </dict>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Execute-the-Command-and-Report-Results",
+          "level": 3,
+          "text": "Execute the Command and Report Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device executes the command and sends its response in another HTTP PUT request to the MDM server. The response includes a plist-encoded dictionary that contains the following keys, and additional keys returned by the command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CommandUUID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique identifier of the command for this response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ErrorChain",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If present, an array of dictionaries that describes any errors that occurred. The first item represents the top-level error. Subsequent items represent the underlying errors that led up to the top-level error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The status of the response, which is one of the following values: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Acknowledged",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The device processed the command successfully. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Error",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": An error occurred. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ErrorChain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for more details. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CommandFormatError",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A protocol error occurred, which can result from a malformed command. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Idle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The device is idle; there’s no status. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NotNow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The device received the command, but couldn’t execute it. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-notnow-status-responses",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UDID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique identifier of the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each entry in the ",
+              "type": "text"
+            },
+            {
+              "code": "ErrorChain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ErrorCode",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The error code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ErrorDomain",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The error domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "LocalizedDescription",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A description of the error in the device’s localized language.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "USEnglishDescription",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A description of the error in U.S. English.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ErrorCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ErrorDomain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys contain internal codes that are useful for diagnostics. However, don’t rely on these values, because they may change between software releases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device disconnects from the MDM server while processing a command, it caches the result of the command and reports the result when it reconnects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-Results-and-Optionally-Send-Another-Command",
+          "level": 3,
+          "text": "Receive Results and Optionally Send Another Command",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the server receives a response from the device, it can either reply with the next command or end the connection by sending a ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status (OK) with an empty response body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the connection breaks or the server returns a non ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status while performing a command, the device caches the result of the command and re-attempts a connection to the server until the server returns a ",
+              "type": "text"
+            },
+            {
+              "code": "2xx",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An empty response body is zero bytes in length and doesn’t contain an empty property list.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Manage-the-Command-Queue",
+          "level": 3,
+          "text": "Manage the Command Queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t consider a command accepted and executed by a device until the server receives the ",
+              "type": "text"
+            },
+            {
+              "code": "Acknowledged",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status with the command ",
+              "type": "text"
+            },
+            {
+              "code": "UUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the message. Until then, leave the last command on the queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s also possible for the device to send the same status twice. Examine the ",
+              "type": "text"
+            },
+            {
+              "code": "CommandUUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in the deviceʼs status message to determine which command to which it applies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-notnow-status-responses": {
+      "abstract": [
+        {
+          "text": "Handle when a device won’t execute a command and instead returns a NotNow status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-notnow-status-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling NotNow Status Responses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/handling-notnow-status-responses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/handling-notnow-status-responses"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/sending-mdm-commands-to-a-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

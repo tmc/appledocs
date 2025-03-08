@@ -1,0 +1,829 @@
+{
+  "abstract": [
+    {
+      "text": "Time an action in a scene, by adding or modifying timing properties, or cancel an action.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/configuring-action-timing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Action Timing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, an action with a duration applies its changes linearly over the duration you specify. However, you can adjust the timing of actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-or-Change-Properties-to-Adjust-the-Timing-of-an-Action",
+          "level": 3,
+          "text": "Add or Change Properties to Adjust the Timing of an Action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These options are available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use an action’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to choose a nonlinear timing mode for an animation. For example, you can have the action start quickly and then slow down over the remainder of the run (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a custom timing function if you want finer control over an action’s timing. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Speed up or slow down an animation from its default timing using an action’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "speed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property, which changes the rate at which an animation plays. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "speed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the normal rate, but if you set an action’s speed property to, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", SpriteKit plays the animation twice as fast. To pause the action, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "speed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If you adjust the speed of an action that contains other actions (such as a group, sequence, or repeating action), the rate is applied to the actions contained within. The contained actions are also affected by their own speed property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A node’s speed property has the same effect as the action’s speed property, but the rate is applied to all actions processed by the node or any of its descendants in the scene tree.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because there are multiple rates involved in an animation’s speed, SpriteKit finds all the rates that apply to the action and multiplies them to determine the final rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Cancel-Actions-that-Should-Be-Stopped",
+          "level": 3,
+          "text": "Cancel Actions that Should Be Stopped",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To cancel actions that a node is running, call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllActions()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. All actions are removed from the node immediately. If a removed action had a duration, any changes it already made to the node remain intact, but further changes are not executed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction": {
+      "abstract": [
+        {
+          "text": "An object that is run by a node to change its structure or content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration": {
+      "abstract": [
+        {
+          "text": "The duration required to complete an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/duration"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed": {
+      "abstract": [
+        {
+          "text": "A speed factor that modifies how fast an action runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speed"
+        }
+      ],
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/speed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction": {
+      "abstract": [
+        {
+          "text": "A block used to customize the timing function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKActionTimingFunction",
+          "text": "SKActionTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "timingFunction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/timingfunction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode": {
+      "abstract": [
+        {
+          "text": "A setting that controls the speed curve of an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKActionTimingMode",
+          "text": "SKActionTimingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "timingMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction/timingmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingFunction": {
+      "abstract": [
+        {
+          "text": "The signature for the custom timing block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKActionTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKActionTimingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKActionTimingFunction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skactiontimingfunction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingMode": {
+      "abstract": [
+        {
+          "text": "The modes that an action can use to adjust the apparent timing of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKActionTimingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKActionTimingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKActionTimingMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skactiontimingmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllActions()": {
+      "abstract": [
+        {
+          "text": "Ends and removes all actions from the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllActions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllActions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllActions()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/removeallactions()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controlling-Action-Timing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingMode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingFunction",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed"
+      ],
+      "title": "Controlling Action Timing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Controlling-Action-Timing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/duration",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingMode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingMode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/timingFunction",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKActionTimingFunction",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKAction/speed"
+              ],
+              "title": "Controlling Action Timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1speed/title",
+          "value": "speed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1speed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeAllActions()/title",
+          "value": "removeAllActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeAllActions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKActionTimingMode/title",
+          "value": "SKActionTimingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKActionTimingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKActionTimingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKActionTimingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKActionTimingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/title",
+          "value": "SKAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKActionTimingFunction/title",
+          "value": "SKActionTimingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKActionTimingFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKActionTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKActionTimingFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKActionTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingFunction/title",
+          "value": "timingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingMode/title",
+          "value": "timingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction~1timingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timingMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/configuring-action-timing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/configuring-action-timing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
