@@ -1,1 +1,672 @@
-{"schemaVersion":{"major":0,"minor":3,"patch":0},"primaryContentSections":[{"declarations":[{"languages":["occ"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS","watchOS"],"tokens":[{"text":"+ (","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate"},{"text":" *) ","kind":"text"},{"text":"predicateForCategorySamplesEqualToValues:","kind":"identifier"},{"text":"(","kind":"text"},{"text":"NSSet<NSNumber *>","kind":"typeIdentifier","preciseIdentifier":"c:Q$objc(cs)NSSet"},{"text":" *) ","kind":"text"},{"text":"values","kind":"internalParam"},{"text":";","kind":"text"}]}],"kind":"declarations"},{"parameters":[{"content":[{"type":"paragraph","inlineContent":[{"text":"The category value to match. Each category type has a set of valid values. For more information about the category types, see ","type":"text"},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier","type":"reference","isActive":true},{"text":".","type":"text"}]}],"name":"values"}],"kind":"parameters"},{"content":[{"text":"Discussion","type":"heading","level":2,"anchor":"Discussion"},{"type":"paragraph","inlineContent":[{"text":"The following example creates a query for sleep analysis samples with the ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepDeep"},{"text":" category value.","type":"text"}]},{"syntax":"objc","type":"codeListing","code":["HKCategoryType *sleepType = [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];","","NSPredicate *deepSleepPredicate =","[HKQuery predicateForCategorySamplesEqualToValues:"," [NSSet setWithObject:","  [NSNumber numberWithInt:HKCategoryValueSleepAnalysisAsleepDeep]]];","","HKSampleQuery *query = [[HKSampleQuery alloc]","                        initWithSampleType:sleepType","                        predicate:deepSleepPredicate","                        limit:HKObjectQueryNoLimit","                        sortDescriptors:nil","                        resultsHandler:^(HKSampleQuery * _Nonnull query,","                                         NSArray<__kindof HKSample *> * _Nullable results,","                                         NSError * _Nullable error) {","    ","    if (error != nil) {","        // Handle the error here.","        NSLog(@\"*** An error occurred: %@ ***\", error.localizedDescription);","        return;","    }","    ","    // Do something with the results here.","    ","}];","","[store executeQuery:query];"]},{"content":[{"inlineContent":[{"text":"","type":"text"},{"text":" ","type":"text"},{"text":"Because the category type is an integer, several different category types may share the same value. You’ll need to specify the category type that you’re interested in, either in the query or in an additional predicate.","type":"text"}],"type":"paragraph"}],"style":"note","name":"Note","type":"aside"}],"kind":"content"}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.healthkit/documentation/HealthKit","doc://com.apple.healthkit/documentation/HealthKit/HKQuery"]]},"variants":[{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/healthkit/hkquery/predicateforcategorysamplesequaltovalues:"]}],"sections":[],"abstract":[{"type":"text","text":"A predicate that returns category samples with a matching value."}],"identifier":{"url":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamplesEqualToValues:","interfaceLanguage":"occ"},"kind":"symbol","seeAlsoSections":[{"title":"Creating category sample predicates","identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamples(with:value:)"],"generated":true,"anchor":"Creating-category-sample-predicates"}],"metadata":{"roleHeading":"Type Method","platforms":[{"unavailable":false,"beta":false,"deprecated":false,"name":"iOS"},{"unavailable":false,"beta":false,"deprecated":false,"name":"iPadOS"},{"name":"Mac Catalyst","beta":false,"unavailable":false,"deprecated":false},{"name":"macOS","beta":false,"unavailable":false,"deprecated":false},{"unavailable":false,"name":"visionOS","deprecated":false,"beta":false},{"unavailable":false,"name":"watchOS","deprecated":false,"beta":false}],"fragments":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForCategorySamplesEqualToValues:"}],"externalID":"c:objc(cs)HKQuery(cm)predicateForCategorySamplesEqualToValues:","navigatorTitle":[{"kind":"identifier","text":"predicateForCategorySamplesEqualToValues:"}],"modules":[{"name":"HealthKit"}],"role":"symbol","title":"predicateForCategorySamplesEqualToValues:","symbolKind":"method"},"references":{"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamplesEqualToValues:":{"role":"symbol","abstract":[{"text":"A predicate that returns category samples with a matching value.","type":"text"}],"navigatorTitle":[{"text":"predicateForCategorySamplesEqualToValues:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamplesEqualToValues:","kind":"symbol","url":"/documentation/healthkit/hkquery/predicateforcategorysamplesequaltovalues:","type":"topic","title":"predicateForCategorySamplesEqualToValues:","fragments":[{"text":"+ ","kind":"text"},{"text":"predicateForCategorySamplesEqualToValues:","kind":"identifier"}]},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"kind":"technologies","identifier":"doc://com.apple.documentation/documentation/technologies","type":"topic","role":"overview"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery":{"title":"HKQuery","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKQuery"}],"url":"/documentation/healthkit/hkquery","abstract":[{"type":"text","text":"An abstract class for all the query classes in HealthKit."}],"kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery","type":"topic","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"HKQuery"}]},"doc://com.apple.healthkit/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepDeep":{"abstract":[{"text":"The user is in deep sleep.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"HKCategoryValueSleepAnalysisAsleepDeep"}],"type":"topic","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"asleepDeep"}],"url":"/documentation/healthkit/hkcategoryvaluesleepanalysis/asleepdeep","kind":"symbol","role":"symbol","title":"HKCategoryValueSleepAnalysis.asleepDeep","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepDeep"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamples(with:value:)":{"role":"symbol","abstract":[{"text":"Returns a predicate that checks a category sample’s value.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"predicateForCategorySamplesWithOperatorType:value:"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamples(with:value:)","kind":"symbol","url":"/documentation/healthkit/hkquery/predicateforcategorysamples(with:value:)","type":"topic","title":"predicateForCategorySamples(with:value:)","deprecated":true,"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForCategorySamples","kind":"identifier"},{"text":"(","kind":"text"},{"text":"with","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSComparisonPredicate","text":"NSComparisonPredicate","kind":"typeIdentifier"},{"text":".","kind":"text"},{"kind":"typeIdentifier","text":"Operator","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"value"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate"}]},"doc://com.apple.healthkit/documentation/HealthKit":{"type":"topic","title":"HealthKit","kind":"symbol","abstract":[{"text":"Access and share health and fitness data while maintaining the user’s privacy and control.","type":"text"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit","role":"collection","url":"/documentation/healthkit"},"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate":{"url":"/documentation/foundation/nspredicate","title":"NSPredicate","abstract":[{"text":"A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.","type":"text"}],"fragments":[{"kind":"text","text":"class "},{"kind":"identifier","text":"NSPredicate"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate","type":"topic","role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier":{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier","navigatorTitle":[{"kind":"identifier","text":"HKCategoryTypeIdentifier"}],"url":"/documentation/healthkit/hkcategorytypeidentifier","type":"topic","role":"symbol","kind":"symbol","title":"HKCategoryTypeIdentifier","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKCategoryTypeIdentifier"}],"abstract":[{"text":"Identifiers for creating category types.","type":"text"}]}},"variantOverrides":[{"patch":[{"op":"replace","value":"HKQuery","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/title"},{"value":[{"text":"HKQuery","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/fragments","op":"replace"},{"op":"replace","value":[{"text":"HKQuery","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/navigatorTitle"},{"value":"HKCategoryValueSleepAnalysisAsleepDeep","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryValueSleepAnalysis~1asleepDeep/title","op":"replace"},{"value":[{"kind":"identifier","text":"HKCategoryValueSleepAnalysisAsleepDeep"}],"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryValueSleepAnalysis~1asleepDeep/fragments","op":"replace"},{"value":"predicateForCategorySamplesWithOperatorType:value:","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForCategorySamples(with:value:)/title","op":"replace"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForCategorySamplesWithOperatorType:value:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForCategorySamples(with:value:)/fragments","op":"replace"},{"value":"HKCategoryTypeIdentifier","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier/title","op":"replace"},{"value":[{"text":"HKCategoryTypeIdentifier","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier/fragments","op":"replace"},{"value":[{"text":"HKCategoryTypeIdentifier","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier/navigatorTitle","op":"replace"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A predicate that returns category samples with a matching value.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamplesEqualToValues:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKQuery(cm)predicateForCategorySamplesEqualToValues:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "+ "
+      },
+      {
+        "kind": "identifier",
+        "text": "predicateForCategorySamplesEqualToValues:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "predicateForCategorySamplesEqualToValues:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "predicateForCategorySamplesEqualToValues:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPredicate",
+              "text": "NSPredicate"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForCategorySamplesEqualToValues:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<NSNumber *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "values"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The category value to match. Each category type has a set of valid values. For more information about the category types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "values"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a query for sleep analysis samples with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepDeep",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " category value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HKCategoryType *sleepType = [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];",
+            "",
+            "NSPredicate *deepSleepPredicate =",
+            "[HKQuery predicateForCategorySamplesEqualToValues:",
+            " [NSSet setWithObject:",
+            "  [NSNumber numberWithInt:HKCategoryValueSleepAnalysisAsleepDeep]]];",
+            "",
+            "HKSampleQuery *query = [[HKSampleQuery alloc]",
+            "                        initWithSampleType:sleepType",
+            "                        predicate:deepSleepPredicate",
+            "                        limit:HKObjectQueryNoLimit",
+            "                        sortDescriptors:nil",
+            "                        resultsHandler:^(HKSampleQuery * _Nonnull query,",
+            "                                         NSArray<__kindof HKSample *> * _Nullable results,",
+            "                                         NSError * _Nullable error) {",
+            "    ",
+            "    if (error != nil) {",
+            "        // Handle the error here.",
+            "        NSLog(@\"*** An error occurred: %@ ***\", error.localizedDescription);",
+            "        return;",
+            "    }",
+            "    ",
+            "    // Do something with the results here.",
+            "    ",
+            "}];",
+            "",
+            "[store executeQuery:query];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Because the category type is an integer, several different category types may share the same value. You’ll need to specify the category type that you’re interested in, either in the query or in an additional predicate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "Identifiers for creating category types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCategoryTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCategoryTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCategoryTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcategorytypeidentifier"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepDeep": {
+      "abstract": [
+        {
+          "text": "The user is in deep sleep.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asleepDeep"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepDeep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCategoryValueSleepAnalysisAsleepDeep"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCategoryValueSleepAnalysis.asleepDeep",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcategoryvaluesleepanalysis/asleepdeep"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery": {
+      "abstract": [
+        {
+          "text": "An abstract class for all the query classes in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamples(with:value:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that checks a category sample’s value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForCategorySamples"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamples(with:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForCategorySamplesWithOperatorType:value:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForCategorySamples(with:value:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforcategorysamples(with:value:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamplesEqualToValues:": {
+      "abstract": [
+        {
+          "text": "A predicate that returns category samples with a matching value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForCategorySamplesEqualToValues:"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamplesEqualToValues:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForCategorySamplesEqualToValues:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForCategorySamplesEqualToValues:",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforcategorysamplesequaltovalues:"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-category-sample-predicates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForCategorySamples(with:value:)"
+      ],
+      "title": "Creating category sample predicates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/title",
+          "value": "HKQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryValueSleepAnalysis~1asleepDeep/title",
+          "value": "HKCategoryValueSleepAnalysisAsleepDeep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryValueSleepAnalysis~1asleepDeep/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategoryValueSleepAnalysisAsleepDeep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForCategorySamples(with:value:)/title",
+          "value": "predicateForCategorySamplesWithOperatorType:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForCategorySamples(with:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForCategorySamplesWithOperatorType:value:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier/title",
+          "value": "HKCategoryTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategoryTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategoryTypeIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategoryTypeIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkquery/predicateforcategorysamplesequaltovalues:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

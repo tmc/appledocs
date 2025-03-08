@@ -1,1 +1,2049 @@
-{"sections":[],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/healthkit/hkquery/predicateforobjects(from:)-89b4t"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/healthkit/hkquery/predicateforobjects(from:)-89b4t"]}],"abstract":[{"text":"Returns a predicate that matches all the objects that were created by any of the provided sources.","type":"text"}],"kind":"symbol","schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"anchor":"Related-Documentation","title":"Related Documentation","identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKObject/source","doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery"]},{"anchor":"Creating-object-predicates","title":"Creating object predicates","generated":true,"identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()"]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.healthkit/documentation/HealthKit","doc://com.apple.healthkit/documentation/HealthKit/HKQuery"]]},"identifier":{"url":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-89b4t","interfaceLanguage":"swift"},"primaryContentSections":[{"declarations":[{"tokens":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"from","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"sources","kind":"internalParam"},{"text":": ","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/s:Sh","text":"Set","preciseIdentifier":"s:Sh","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKSource","text":"HKSource","preciseIdentifier":"c:objc(cs)HKSource","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate","text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS","watchOS"],"languages":["swift"]}],"kind":"declarations"},{"kind":"parameters","parameters":[{"content":[{"type":"paragraph","inlineContent":[{"text":"A set of sources that have saved data to the HealthKit store.","type":"text"}]}],"name":"sources"}]},{"kind":"content","content":[{"type":"heading","level":2,"anchor":"return-value","text":"Return Value"},{"type":"paragraph","inlineContent":[{"type":"text","text":"A predicate that matches all the objects created by any of the provided sources."}]}]},{"kind":"content","content":[{"anchor":"Discussion","level":2,"type":"heading","text":"Discussion"},{"inlineContent":[{"text":"Use this convenience method to create a predicate that finds all the objects from a specified set of apps or devices. The following sample uses both the convenience method and a predicate format string to create equivalent predicates.","type":"text"}],"type":"paragraph"},{"tabs":[{"content":[{"syntax":"swift","code":["let fromSources = HKQuery.predicateForObjectsFromSources(sources)"," ","let explicitFromSources =","    NSPredicate(format: \"%K IN %@\", HKPredicateKeyPathSource, sources)"],"type":"codeListing"}],"title":"Swift"},{"content":[{"code":["NSPredicate *fromSources = [HKQuery predicateForObjectsFromSources:sources];"," ","NSPredicate *explicitFromSources = [NSPredicate predicateWithFormat:@\"%K IN %@\",","                                   HKPredicateKeyPathSource,","                                   sources];"],"syntax":"objc","type":"codeListing"}],"title":"Objective-C"}],"type":"tabNavigator"}]}],"metadata":{"platforms":[{"name":"iOS","unavailable":false,"beta":false,"deprecated":false},{"name":"iPadOS","unavailable":false,"beta":false,"deprecated":false},{"name":"Mac Catalyst","unavailable":false,"beta":false,"deprecated":false},{"name":"macOS","unavailable":false,"beta":false,"deprecated":false},{"name":"visionOS","unavailable":false,"beta":false,"deprecated":false},{"name":"watchOS","unavailable":false,"beta":false,"deprecated":false}],"symbolKind":"method","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"from","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Set","kind":"typeIdentifier","preciseIdentifier":"s:Sh"},{"text":"<","kind":"text"},{"text":"HKSource","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)HKSource"},{"text":">) -> ","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate"}],"title":"predicateForObjects(from:)","roleHeading":"Type Method","role":"symbol","externalID":"c:objc(cs)HKQuery(cm)predicateForObjectsFromSources:","navigatorTitle":[{"text":"predicateForObjectsFromSources:","kind":"identifier"}],"modules":[{"name":"HealthKit"}],"extendedModule":"HealthKit"},"references":{"doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery":{"title":"HKSourceQuery","navigatorTitle":[{"kind":"identifier","text":"HKSourceQuery"}],"kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery","role":"symbol","abstract":[{"type":"text","text":"A query that returns a list of sources, such as apps and devices, that have saved matching queries to the HealthKit store."}],"type":"topic","url":"/documentation/healthkit/hksourcequery","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKSourceQuery"}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)":{"abstract":[{"type":"text","text":"Returns a predicate that matches any object whose metadata contains the provided key."}],"navigatorTitle":[{"text":"predicateForObjectsWithMetadataKey:","kind":"identifier"}],"url":"/documentation/healthkit/hkquery/predicateforobjects(withmetadatakey:)","role":"symbol","kind":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"withMetadataKey","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:SS","text":"String","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"title":"predicateForObjects(withMetadataKey:)","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)"},"doc://com.apple.healthkit/documentation/HealthKit/HKSource":{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKSource","kind":"symbol","title":"HKSource","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"HKSource"}],"abstract":[{"text":"An object indicating the app or device that created a HealthKit sample","type":"text"}],"url":"/documentation/healthkit/hksource","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKSource"}],"type":"topic"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)":{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)","fragments":[{"kind":"keyword","text":"class"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"with","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sh","text":"Set","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"s:10Foundation4UUIDV","text":"UUID","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"url":"/documentation/healthkit/hkquery/predicateforobjects(with:)","abstract":[{"type":"text","text":"Returns a predicate that matches the objects with the specified  universally unique identifiers (UUIDs)."}],"kind":"symbol","title":"predicateForObjects(with:)","type":"topic","navigatorTitle":[{"text":"predicateForObjectsWithUUIDs:","kind":"identifier"}],"role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)":{"role":"symbol","navigatorTitle":[{"text":"predicateForObjectWithUUID:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)","abstract":[{"text":"Returns a predicate that matches an object with the specified universally unique identifier (UUID).","type":"text"}],"type":"topic","title":"predicateForObject(with:)","url":"/documentation/healthkit/hkquery/predicateforobject(with:)","kind":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObject","kind":"identifier"},{"text":"(","kind":"text"},{"text":"with","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:10Foundation4UUIDV","text":"UUID","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}]},"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate":{"url":"/documentation/foundation/nspredicate","title":"NSPredicate","abstract":[{"text":"A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.","type":"text"}],"fragments":[{"kind":"text","text":"class "},{"kind":"identifier","text":"NSPredicate"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate","type":"topic","role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)":{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)","navigatorTitle":[{"text":"predicateForObjectsWithMetadataKey:operatorType:value:","kind":"identifier"}],"abstract":[{"type":"text","text":"Returns a predicate that matches objects based on the provided metadata key, value, and operator."}],"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"withMetadataKey","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:SS","text":"String","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"operatorType","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSComparisonPredicate","kind":"typeIdentifier","text":"NSComparisonPredicate"},{"kind":"text","text":"."},{"preciseIdentifier":"c:@E@NSPredicateOperatorType","kind":"typeIdentifier","text":"Operator"},{"kind":"text","text":", "},{"kind":"externalParam","text":"value"},{"kind":"text","text":": "},{"kind":"keyword","text":"Any"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate"}],"kind":"symbol","title":"predicateForObjects(withMetadataKey:operatorType:value:)","url":"/documentation/healthkit/hkquery/predicateforobjects(withmetadatakey:operatortype:value:)","role":"symbol","type":"topic"},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"kind":"technologies","identifier":"doc://com.apple.documentation/documentation/technologies","type":"topic","role":"overview"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()":{"role":"symbol","abstract":[{"type":"text","text":"Returns a predicate that matches all objects that are not associated with a HealthKit correlation."}],"navigatorTitle":[{"kind":"identifier","text":"predicateForObjectsWithNoCorrelation"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()","url":"/documentation/healthkit/hkquery/predicateforobjectswithnocorrelation()","kind":"symbol","title":"predicateForObjectsWithNoCorrelation()","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForObjectsWithNoCorrelation"},{"kind":"text","text":"() -> "},{"preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier","text":"NSPredicate"}],"type":"topic"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)":{"role":"symbol","abstract":[{"type":"text","text":"Returns a predicate that matches objects based on the provided metadata key and an array of target values."}],"navigatorTitle":[{"text":"predicateForObjectsWithMetadataKey:allowedValues:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)","url":"/documentation/healthkit/hkquery/predicateforobjects(withmetadatakey:allowedvalues:)","kind":"symbol","title":"predicateForObjects(withMetadataKey:allowedValues:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForObjects"},{"kind":"text","text":"("},{"kind":"externalParam","text":"withMetadataKey"},{"kind":"text","text":": "},{"preciseIdentifier":"s:SS","kind":"typeIdentifier","text":"String"},{"text":", ","kind":"text"},{"text":"allowedValues","kind":"externalParam"},{"text":": [","kind":"text"},{"text":"Any","kind":"keyword"},{"text":"]) -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"type":"topic"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-89b4t":{"kind":"symbol","type":"topic","navigatorTitle":[{"text":"predicateForObjectsFromSources:","kind":"identifier"}],"title":"predicateForObjects(from:)","abstract":[{"text":"Returns a predicate that matches all the objects that were created by any of the provided sources.","type":"text"}],"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"from","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sh","text":"Set","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"c:objc(cs)HKSource","text":"HKSource","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"url":"/documentation/healthkit/hkquery/predicateforobjects(from:)-89b4t","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-89b4t","role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKObject/source":{"url":"/documentation/healthkit/hkobject/source","deprecated":true,"fragments":[{"text":"var","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"source"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)HKSource","kind":"typeIdentifier","text":"HKSource"}],"title":"source","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKObject/source","navigatorTitle":[{"kind":"identifier","text":"source"}],"role":"symbol","type":"topic","abstract":[{"type":"text","text":"A HealthKit source, representing the app or device that created this object."}],"kind":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2":{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2","fragments":[{"kind":"keyword","text":"class"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"from","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)HKSource","text":"HKSource","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"url":"/documentation/healthkit/hkquery/predicateforobjects(from:)-7j3p2","abstract":[{"type":"text","text":"Returns a predicate that matches all the objects that were created by the provided source."}],"kind":"symbol","title":"predicateForObjects(from:)","type":"topic","navigatorTitle":[{"text":"predicateForObjectsFromSource:","kind":"identifier"}],"role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery":{"title":"HKQuery","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKQuery"}],"url":"/documentation/healthkit/hkquery","abstract":[{"type":"text","text":"An abstract class for all the query classes in HealthKit."}],"kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery","type":"topic","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"HKQuery"}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f":{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f","fragments":[{"kind":"keyword","text":"class"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"from","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sh","text":"Set","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"c:objc(cs)HKDevice","text":"HKDevice","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"url":"/documentation/healthkit/hkquery/predicateforobjects(from:)-9h87f","abstract":[{"type":"text","text":"Returns a predicate that matches all the objects that were created by any of the provided devices."}],"kind":"symbol","title":"predicateForObjects(from:)","type":"topic","navigatorTitle":[{"text":"predicateForObjectsFromDevices:","kind":"identifier"}],"role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit":{"type":"topic","title":"HealthKit","kind":"symbol","abstract":[{"text":"Access and share health and fitness data while maintaining the user’s privacy and control.","type":"text"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit","role":"collection","url":"/documentation/healthkit"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g":{"role":"symbol","navigatorTitle":[{"text":"predicateForObjectsFromSourceRevisions:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g","abstract":[{"text":"Returns a predicate that matches all the objects that were created by any of the provided source revisions.","type":"text"}],"type":"topic","title":"predicateForObjects(from:)","url":"/documentation/healthkit/hkquery/predicateforobjects(from:)-1ar4g","kind":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"from","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sh","text":"Set","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"c:objc(cs)HKSourceRevision","text":"HKSourceRevision","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}]},"doc://com.externally.resolved.symbol/s:Sh":{"abstract":[{"text":"An unordered collection of unique elements.","type":"text"}],"role":"symbol","title":"Set","identifier":"doc://com.externally.resolved.symbol/s:Sh","fragments":[{"text":"@frozen","kind":"attribute"},{"text":" ","kind":"text"},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Set","kind":"identifier"},{"text":"<","kind":"text"},{"text":"Element","kind":"genericParameter"},{"text":"> ","kind":"text"},{"text":"where","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Element","kind":"typeIdentifier"},{"text":" : ","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"s:SH","text":"Hashable"}],"type":"topic","url":"/documentation/Swift/Set","kind":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)":{"abstract":[{"text":"Returns a predicate that matches all objects created by devices with the specified properties.","type":"text"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)","kind":"symbol","title":"predicateForObjects(withDeviceProperty:allowedValues:)","role":"symbol","url":"/documentation/healthkit/hkquery/predicateforobjects(withdeviceproperty:allowedvalues:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForObjects","kind":"identifier"},{"text":"(","kind":"text"},{"text":"withDeviceProperty","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:SS","text":"String","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"allowedValues","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sh","text":"Set","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"s:SS","text":"String","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSPredicate","text":"NSPredicate","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"predicateForObjectsWithDeviceProperty:allowedValues:","kind":"identifier"}],"type":"topic"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"value":"occ","path":"/identifier/interfaceLanguage","op":"replace"},{"value":[{"unavailable":false,"beta":false,"deprecated":false,"name":"iOS"},{"unavailable":false,"beta":false,"deprecated":false,"name":"iPadOS"},{"unavailable":false,"beta":false,"deprecated":false,"name":"Mac Catalyst"},{"unavailable":false,"beta":false,"deprecated":false,"name":"macOS"},{"unavailable":false,"beta":false,"deprecated":false,"name":"visionOS"},{"unavailable":false,"beta":false,"deprecated":false,"name":"watchOS"}],"path":"/metadata/platforms","op":"replace"},{"value":"Type Method","path":"/metadata/roleHeading","op":"replace"},{"value":"predicateForObjectsFromSources:","path":"/metadata/title","op":"replace"},{"value":"method","path":"/metadata/symbolKind","op":"replace"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForObjectsFromSources:","kind":"identifier"}],"path":"/metadata/fragments","op":"replace"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.healthkit/documentation/HealthKit","doc://com.apple.healthkit/documentation/HealthKit/HKQuery"]]},"path":"/hierarchy","op":"replace"},{"value":null,"path":"/topicSections","op":"add"},{"value":null,"path":"/relationshipsSections","op":"add"},{"value":[{"identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKObject/source","doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery"],"anchor":"Related-Documentation","title":"Related Documentation"},{"generated":true,"identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()"],"anchor":"Creating-object-predicates","title":"Creating object predicates"}],"path":"/seeAlsoSections","op":"replace"},{"value":{"kind":"declarations","declarations":[{"tokens":[{"text":"+ (","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate"},{"text":" *) ","kind":"text"},{"text":"predicateForObjectsFromSources:","kind":"identifier"},{"text":"(","kind":"text"},{"text":"NSSet<HKSource *>","kind":"typeIdentifier","preciseIdentifier":"c:Q$objc(cs)NSSet"},{"text":" *) ","kind":"text"},{"text":"sources","kind":"internalParam"},{"text":";","kind":"text"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS","watchOS"],"languages":["occ"]}]},"path":"/primaryContentSections/0","op":"replace"},{"path":"/primaryContentSections/1","value":{"parameters":[{"name":"sources","content":[{"inlineContent":[{"text":"A set of sources that have saved data to the HealthKit store.","type":"text"}],"type":"paragraph"}]}],"kind":"parameters"},"op":"replace"},{"value":{"content":[{"anchor":"return-value","level":2,"text":"Return Value","type":"heading"},{"inlineContent":[{"type":"text","text":"A predicate that matches all the objects created by any of the provided sources."}],"type":"paragraph"}],"kind":"content"},"path":"/primaryContentSections/2","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSourceQuery/title","value":"HKSourceQuery","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSourceQuery/fragments","value":[{"kind":"identifier","text":"HKSourceQuery"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSourceQuery/navigatorTitle","value":[{"text":"HKSourceQuery","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:)/title","value":"predicateForObjectsWithMetadataKey:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:)/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsWithMetadataKey:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSource/title","value":"HKSource","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSource/fragments","value":[{"text":"HKSource","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSource/navigatorTitle","value":[{"text":"HKSource","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(with:)/title","value":"predicateForObjectsWithUUIDs:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(with:)/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsWithUUIDs:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObject(with:)/title","value":"predicateForObjectWithUUID:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObject(with:)/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectWithUUID:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:operatorType:value:)/title","value":"predicateForObjectsWithMetadataKey:operatorType:value:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:operatorType:value:)/fragments","value":[{"text":"+ ","kind":"text"},{"text":"predicateForObjectsWithMetadataKey:operatorType:value:","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjectsWithNoCorrelation()/title","value":"predicateForObjectsWithNoCorrelation","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjectsWithNoCorrelation()/fragments","value":[{"text":"+ ","kind":"text"},{"text":"predicateForObjectsWithNoCorrelation","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:allowedValues:)/title","value":"predicateForObjectsWithMetadataKey:allowedValues:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:allowedValues:)/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsWithMetadataKey:allowedValues:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-89b4t/title","value":"predicateForObjectsFromSources:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-89b4t/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsFromSources:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject~1source/title","value":"source","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject~1source/fragments","value":[{"kind":"identifier","text":"source"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-7j3p2/title","value":"predicateForObjectsFromSource:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-7j3p2/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsFromSource:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/title","value":"HKQuery","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/fragments","value":[{"text":"HKQuery","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/navigatorTitle","value":[{"kind":"identifier","text":"HKQuery"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-9h87f/title","value":"predicateForObjectsFromDevices:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-9h87f/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsFromDevices:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-1ar4g/title","value":"predicateForObjectsFromSourceRevisions:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-1ar4g/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsFromSourceRevisions:"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withDeviceProperty:allowedValues:)/title","value":"predicateForObjectsWithDeviceProperty:allowedValues:","op":"replace"},{"path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withDeviceProperty:allowedValues:)/fragments","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForObjectsWithDeviceProperty:allowedValues:"}],"op":"replace"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Returns a predicate that matches all the objects that were created by any of the provided sources.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-89b4t"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "HealthKit",
+    "externalID": "c:objc(cs)HKQuery(cm)predicateForObjectsFromSources:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "predicateForObjects"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "from"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sh",
+        "text": "Set"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)HKSource",
+        "text": "HKSource"
+      },
+      {
+        "kind": "text",
+        "text": ">) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSPredicate",
+        "text": "NSPredicate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "predicateForObjectsFromSources:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "predicateForObjects(from:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjects"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "from"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sources"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sh",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sh",
+              "text": "Set"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)HKSource",
+              "text": "HKSource"
+            },
+            {
+              "kind": "text",
+              "text": ">) -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPredicate",
+              "text": "NSPredicate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A set of sources that have saved data to the HealthKit store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sources"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A predicate that matches all the objects created by any of the provided sources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this convenience method to create a predicate that finds all the objects from a specified set of apps or devices. The following sample uses both the convenience method and a predicate format string to create equivalent predicates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let fromSources = HKQuery.predicateForObjectsFromSources(sources)",
+                    " ",
+                    "let explicitFromSources =",
+                    "    NSPredicate(format: \"%K IN %@\", HKPredicateKeyPathSource, sources)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSPredicate *fromSources = [HKQuery predicateForObjectsFromSources:sources];",
+                    " ",
+                    "NSPredicate *explicitFromSources = [NSPredicate predicateWithFormat:@\"%K IN %@\",",
+                    "                                   HKPredicateKeyPathSource,",
+                    "                                   sources];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKObject/source": {
+      "abstract": [
+        {
+          "text": "A HealthKit source, representing the app or device that created this object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKObject/source",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "source"
+        }
+      ],
+      "role": "symbol",
+      "title": "source",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkobject/source"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery": {
+      "abstract": [
+        {
+          "text": "An abstract class for all the query classes in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches an object with the specified universally unique identifier (UUID).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectWithUUID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObject(with:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobject(with:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches all the objects that were created by any of the provided source revisions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSourceRevision",
+          "text": "HKSourceRevision"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsFromSourceRevisions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(from:)-1ar4g"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches all the objects that were created by the provided source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsFromSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(from:)-7j3p2"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-89b4t": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches all the objects that were created by any of the provided sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-89b4t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsFromSources:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(from:)-89b4t"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches all the objects that were created by any of the provided devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKDevice",
+          "text": "HKDevice"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsFromDevices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(from:)-9h87f"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches the objects with the specified  universally unique identifiers (UUIDs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithUUIDs:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(with:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(with:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches all objects created by devices with the specified properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDeviceProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowedValues"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithDeviceProperty:allowedValues:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(withDeviceProperty:allowedValues:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(withdeviceproperty:allowedvalues:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches any object whose metadata contains the provided key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithMetadataKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(withMetadataKey:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(withmetadatakey:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches objects based on the provided metadata key and an array of target values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowedValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithMetadataKey:allowedValues:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(withMetadataKey:allowedValues:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(withmetadatakey:allowedvalues:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches objects based on the provided metadata key, value, and operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMetadataKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operatorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithMetadataKey:operatorType:value:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjects(withMetadataKey:operatorType:value:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjects(withmetadatakey:operatortype:value:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches all objects that are not associated with a HealthKit correlation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithNoCorrelation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectsWithNoCorrelation"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObjectsWithNoCorrelation()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobjectswithnocorrelation()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSource": {
+      "abstract": [
+        {
+          "text": "An object indicating the app or device that created a HealthKit sample",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery": {
+      "abstract": [
+        {
+          "text": "A query that returns a list of sources, such as apps and devices, that have saved matching queries to the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSourceQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSourceQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSourceQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksourcequery"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.externally.resolved.symbol/s:Sh": {
+      "abstract": [
+        {
+          "text": "An unordered collection of unique elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/Swift/Set"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKObject/source",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Creating-object-predicates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()"
+      ],
+      "title": "Creating object predicates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "predicateForObjectsFromSources:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsFromSources:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKObject/source",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKSourceQuery"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Creating-object-predicates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(with:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-7j3p2",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-9h87f",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withDeviceProperty:allowedValues:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(from:)-1ar4g",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:allowedValues:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjects(withMetadataKey:operatorType:value:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObjectsWithNoCorrelation()"
+              ],
+              "title": "Creating object predicates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "+ ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSPredicate",
+                    "text": "NSPredicate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "predicateForObjectsFromSources:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSSet",
+                    "text": "NSSet<HKSource *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "sources"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A set of sources that have saved data to the HealthKit store.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "sources"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A predicate that matches all the objects created by any of the provided sources.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSourceQuery/title",
+          "value": "HKSourceQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSourceQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSourceQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSourceQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSourceQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:)/title",
+          "value": "predicateForObjectsWithMetadataKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsWithMetadataKey:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSource/title",
+          "value": "HKSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(with:)/title",
+          "value": "predicateForObjectsWithUUIDs:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsWithUUIDs:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObject(with:)/title",
+          "value": "predicateForObjectWithUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObject(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectWithUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:operatorType:value:)/title",
+          "value": "predicateForObjectsWithMetadataKey:operatorType:value:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:operatorType:value:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsWithMetadataKey:operatorType:value:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjectsWithNoCorrelation()/title",
+          "value": "predicateForObjectsWithNoCorrelation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjectsWithNoCorrelation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsWithNoCorrelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:allowedValues:)/title",
+          "value": "predicateForObjectsWithMetadataKey:allowedValues:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withMetadataKey:allowedValues:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsWithMetadataKey:allowedValues:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-89b4t/title",
+          "value": "predicateForObjectsFromSources:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-89b4t/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsFromSources:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject~1source/title",
+          "value": "source"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKObject~1source/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "source"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-7j3p2/title",
+          "value": "predicateForObjectsFromSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-7j3p2/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsFromSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/title",
+          "value": "HKQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-9h87f/title",
+          "value": "predicateForObjectsFromDevices:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-9h87f/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsFromDevices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-1ar4g/title",
+          "value": "predicateForObjectsFromSourceRevisions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(from:)-1ar4g/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsFromSourceRevisions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withDeviceProperty:allowedValues:)/title",
+          "value": "predicateForObjectsWithDeviceProperty:allowedValues:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObjects(withDeviceProperty:allowedValues:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectsWithDeviceProperty:allowedValues:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkquery/predicateforobjects(from:)-89b4t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkquery/predicateforobjects(from:)-89b4t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

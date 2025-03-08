@@ -1,1 +1,2202 @@
-{"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.healthkit/documentation/HealthKit","doc://com.apple.healthkit/documentation/HealthKit/HKQuery"]]},"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSComparisonPredicate","kind":"typeIdentifier","text":"NSComparisonPredicate","preciseIdentifier":"c:objc(cs)NSComparisonPredicate"},{"kind":"text","text":"."},{"identifier":"doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType","kind":"typeIdentifier","text":"Operator","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"quantityType"},{"kind":"text","text":": "},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType","kind":"typeIdentifier","text":"HKQuantityType","preciseIdentifier":"c:objc(cs)HKQuantityType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"averageQuantity"},{"kind":"text","text":": "},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantity","kind":"typeIdentifier","text":"HKQuantity","preciseIdentifier":"c:objc(cs)HKQuantity"},{"kind":"text","text":") -> "},{"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate","kind":"typeIdentifier","text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate"}],"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS","watchOS"]}]},{"kind":"parameters","parameters":[{"name":"operatorType","content":[{"inlineContent":[{"type":"text","text":"The operator type to use when comparing the average quantity."}],"type":"paragraph"}]},{"name":"quantityType","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The type of "},{"type":"reference","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample","isActive":true},{"type":"text","text":" objects used to calculate the average quantity."}]}]},{"name":"averageQuantity","content":[{"inlineContent":[{"type":"text","text":"The target value for the average quantity."}],"type":"paragraph"}]}]},{"kind":"content","content":[{"level":2,"text":"Discussion","anchor":"Discussion","type":"heading"},{"inlineContent":[{"text":"Use this convenience method to create a predicate that matches workouts with the specified average quantity. To use this predicate, call ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkouts(activityPredicate:)"},{"text":" to wrap this predicate inside a workout predicate. You can then use the workout predicate in your query.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"text":"The following sample creates a predicate for workout activities with an average heart rate of 150 bmp or higher.","type":"text"}],"type":"paragraph"},{"syntax":"swift","code":["let quantityType = HKQuantityType(.heartRate)","","let expectedQuantity =","HKQuantity(unit: .count().unitDivided(by: .minute()),","           doubleValue: 150.0)","","let heartRatePredicate =","HKQuery.predicateForWorkoutActivities(","    operatorType: .greaterThanOrEqualTo,","    quantityType: quantityType,","    averageQuantity:","        expectedQuantity",")","","// Wrap the activity predicate inside a workout predicate.","let workoutPredicate = HKQuery.predicateForWorkouts(activityPredicate: heartRatePredicate)"],"type":"codeListing"},{"inlineContent":[{"text":"For more information on how HealthKit calculates statistics for ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity","type":"reference"},{"text":" objects, see ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity/statistics(for:)","type":"reference"},{"text":".","type":"text"}],"type":"paragraph"}]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"metadata":{"modules":[{"name":"HealthKit"}],"role":"symbol","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSComparisonPredicate","preciseIdentifier":"c:objc(cs)NSComparisonPredicate"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Operator","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"quantityType"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"HKQuantityType","preciseIdentifier":"c:objc(cs)HKQuantityType"},{"text":", ","kind":"text"},{"text":"averageQuantity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"HKQuantity","preciseIdentifier":"c:objc(cs)HKQuantity","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier"}],"symbolKind":"method","navigatorTitle":[{"text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:","kind":"identifier"}],"externalID":"c:objc(cs)HKQuery(cm)predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:","roleHeading":"Type Method","platforms":[{"beta":false,"name":"iOS","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"iPadOS","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"Mac Catalyst","introducedAt":"16.0","deprecated":false,"unavailable":false},{"beta":false,"name":"macOS","introducedAt":"13.0","deprecated":false,"unavailable":false},{"beta":false,"name":"visionOS","introducedAt":"1.0","deprecated":false,"unavailable":false},{"beta":false,"name":"watchOS","introducedAt":"9.0","deprecated":false,"unavailable":false}],"extendedModule":"HealthKit","title":"predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)"},"sections":[],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:averagequantity:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:averagequantity:)"]}],"seeAlsoSections":[{"generated":true,"anchor":"Creating-workout-activity-predicates","identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)"],"title":"Creating workout activity predicates"}],"abstract":[{"text":"Returns a predicate for matching workout activities based the average value of an associated quantity type.","type":"text"}],"kind":"symbol","identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)"},"references":{"doc://com.apple.healthkit/documentation/HealthKit":{"type":"topic","title":"HealthKit","kind":"symbol","abstract":[{"text":"Access and share health and fitness data while maintaining the user’s privacy and control.","type":"text"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit","role":"collection","url":"/documentation/healthkit"},"doc://com.externally.resolved.symbol/c:objc(cs)NSComparisonPredicate":{"url":"/documentation/foundation/nscomparisonpredicate","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSComparisonPredicate","role":"symbol","abstract":[{"text":"A specialized predicate for comparing expressions.","type":"text"}],"fragments":[{"text":"class ","kind":"text"},{"text":"NSComparisonPredicate","kind":"identifier"}],"kind":"symbol","title":"NSComparisonPredicate","type":"topic"},"doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType":{"identifier":"doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType","url":"/documentation/foundation/nscomparisonpredicate/operator","title":"NSComparisonPredicate.Operator","abstract":[{"text":"Defines the type of comparison for a comparison predicate.","type":"text"}],"fragments":[{"text":"enum ","kind":"text"},{"text":"NSComparisonPredicate.Operator","kind":"identifier"}],"type":"topic","kind":"symbol","role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType":{"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKQuantityType"}],"type":"topic","title":"HKQuantityType","kind":"symbol","role":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType","url":"/documentation/healthkit/hkquantitytype","navigatorTitle":[{"kind":"identifier","text":"HKQuantityType"}],"abstract":[{"type":"text","text":"A type that identifies samples that store numerical values."}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)":{"type":"topic","role":"symbol","abstract":[{"type":"text","text":"Returns a predicate for workout activities that occur between the start and end date."}],"navigatorTitle":[{"text":"predicateForWorkoutActivitiesWithStartDate:endDate:options:","kind":"identifier"}],"url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(start:end:options:)","kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"start"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Date","preciseIdentifier":"s:10Foundation4DateV"},{"text":"?, ","kind":"text"},{"text":"end","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Date","kind":"typeIdentifier","preciseIdentifier":"s:10Foundation4DateV"},{"text":"?, ","kind":"text"},{"text":"options","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"HKQueryOptions","kind":"typeIdentifier","preciseIdentifier":"c:@E@HKQueryOptions"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate"}],"title":"predicateForWorkoutActivities(start:end:options:)"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)":{"type":"topic","role":"symbol","abstract":[{"type":"text","text":"Returns a predicate for matching workout activities based the average value of an associated quantity type."}],"navigatorTitle":[{"kind":"identifier","text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"}],"url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:averagequantity:)","kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSComparisonPredicate","preciseIdentifier":"c:objc(cs)NSComparisonPredicate"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Operator","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"quantityType"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"HKQuantityType","preciseIdentifier":"c:objc(cs)HKQuantityType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"averageQuantity"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"HKQuantity","preciseIdentifier":"c:objc(cs)HKQuantity"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate"}],"title":"predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)":{"type":"topic","title":"predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"text":"NSComparisonPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSComparisonPredicate"},{"text":".","kind":"text"},{"text":"Operator","kind":"typeIdentifier","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"text":", ","kind":"text"},{"text":"quantityType","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"HKQuantityType","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)HKQuantityType"},{"text":", ","kind":"text"},{"text":"minimumQuantity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"HKQuantity","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)HKQuantity"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate"}],"role":"symbol","kind":"symbol","url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:minimumquantity:)","navigatorTitle":[{"text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)","abstract":[{"type":"text","text":"Returns a predicate for matching workout activities based the minimum value of an associated quantity type."}]},"doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity":{"abstract":[{"text":"An object that describes an activity within a longer workout.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"HKWorkoutActivity"}],"title":"HKWorkoutActivity","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKWorkoutActivity"}],"role":"symbol","url":"/documentation/healthkit/hkworkoutactivity","kind":"symbol","type":"topic","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)":{"type":"topic","title":"predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSComparisonPredicate","preciseIdentifier":"c:objc(cs)NSComparisonPredicate"},{"kind":"text","text":"."},{"text":"Operator","kind":"typeIdentifier","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"text":", ","kind":"text"},{"text":"quantityType","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"HKQuantityType","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)HKQuantityType"},{"text":", ","kind":"text"},{"text":"maximumQuantity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"HKQuantity","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)HKQuantity"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate"}],"role":"symbol","kind":"symbol","url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:maximumquantity:)","navigatorTitle":[{"text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)","abstract":[{"type":"text","text":"Returns a predicate for matching workout activities based the maximum value of an associated quantity type."}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuantity":{"title":"HKQuantity","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"HKQuantity","kind":"identifier"}],"url":"/documentation/healthkit/hkquantity","abstract":[{"text":"An object that stores a value for a given unit.","type":"text"}],"kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantity","type":"topic","role":"symbol","navigatorTitle":[{"text":"HKQuantity","kind":"identifier"}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkouts(activityPredicate:)":{"type":"topic","url":"/documentation/healthkit/hkquery/predicateforworkouts(activitypredicate:)","title":"predicateForWorkouts(activityPredicate:)","role":"symbol","kind":"symbol","abstract":[{"text":"Returns a predicate for matching workouts based on the associated workout activities.","type":"text"}],"navigatorTitle":[{"text":"predicateForWorkoutsWithActivityPredicate:","kind":"identifier"}],"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"predicateForWorkouts","kind":"identifier"},{"text":"(","kind":"text"},{"text":"activityPredicate","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkouts(activityPredicate:)"},"doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity/statistics(for:)":{"navigatorTitle":[{"kind":"identifier","text":"statisticsForType:"}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"statistics"},{"text":"(","kind":"text"},{"text":"for","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:objc(cs)HKQuantityType","text":"HKQuantityType","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)HKStatistics","text":"HKStatistics"},{"kind":"text","text":"?"}],"abstract":[{"text":"Returns the activity’s statistics for the provided quantity type.","type":"text"}],"url":"/documentation/healthkit/hkworkoutactivity/statistics(for:)","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity/statistics(for:)","role":"symbol","kind":"symbol","type":"topic","title":"statistics(for:)"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)":{"type":"topic","title":"predicateForWorkoutActivities(operatorType:duration:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)NSComparisonPredicate","kind":"typeIdentifier","text":"NSComparisonPredicate"},{"kind":"text","text":"."},{"text":"Operator","kind":"typeIdentifier","preciseIdentifier":"c:@E@NSPredicateOperatorType"},{"text":", ","kind":"text"},{"text":"duration","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"TimeInterval","kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate"}],"role":"symbol","kind":"symbol","url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:duration:)","navigatorTitle":[{"text":"predicateForWorkoutActivitiesWithOperatorType:duration:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)","abstract":[{"type":"text","text":"Returns a predicate for matching workout activities based on their duration."}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)":{"type":"topic","role":"symbol","abstract":[{"type":"text","text":"Returns a predicate for matching workout activities based the sum of an associated quantity type."}],"navigatorTitle":[{"kind":"identifier","text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"}],"url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:sumquantity:)","kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"operatorType"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)NSComparisonPredicate","kind":"typeIdentifier","text":"NSComparisonPredicate"},{"kind":"text","text":"."},{"preciseIdentifier":"c:@E@NSPredicateOperatorType","kind":"typeIdentifier","text":"Operator"},{"kind":"text","text":", "},{"kind":"externalParam","text":"quantityType"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)HKQuantityType","kind":"typeIdentifier","text":"HKQuantityType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"sumQuantity"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)HKQuantity","kind":"typeIdentifier","text":"HKQuantity"},{"kind":"text","text":") -> "},{"preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier","text":"NSPredicate"}],"title":"predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)"},"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate":{"url":"/documentation/foundation/nspredicate","title":"NSPredicate","abstract":[{"text":"A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.","type":"text"}],"fragments":[{"kind":"text","text":"class "},{"kind":"identifier","text":"NSPredicate"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate","type":"topic","role":"symbol"},"doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample":{"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"HKQuantitySample","kind":"identifier"}],"type":"topic","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample","url":"/documentation/healthkit/hkquantitysample","title":"HKQuantitySample","kind":"symbol","abstract":[{"type":"text","text":"A sample that represents a quantity, including the value and the units."}],"role":"symbol","navigatorTitle":[{"text":"HKQuantitySample","kind":"identifier"}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery":{"title":"HKQuery","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"HKQuery"}],"url":"/documentation/healthkit/hkquery","abstract":[{"type":"text","text":"An abstract class for all the query classes in HealthKit."}],"kind":"symbol","identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery","type":"topic","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"HKQuery"}]},"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)":{"type":"topic","title":"predicateForWorkoutActivities(workoutActivityType:)","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"predicateForWorkoutActivities"},{"kind":"text","text":"("},{"kind":"externalParam","text":"workoutActivityType"},{"kind":"text","text":": "},{"text":"HKWorkoutActivityType","kind":"typeIdentifier","preciseIdentifier":"c:@E@HKWorkoutActivityType"},{"text":") -> ","kind":"text"},{"text":"NSPredicate","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSPredicate"}],"role":"symbol","kind":"symbol","url":"/documentation/healthkit/hkquery/predicateforworkoutactivities(workoutactivitytype:)","navigatorTitle":[{"text":"predicateForWorkoutActivitiesWithWorkoutActivityType:","kind":"identifier"}],"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)","abstract":[{"type":"text","text":"Returns a predicate for workout activities based on the type of activity performed."}]},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"kind":"technologies","identifier":"doc://com.apple.documentation/documentation/technologies","type":"topic","role":"overview"}},"variantOverrides":[{"patch":[{"value":"occ","op":"replace","path":"/identifier/interfaceLanguage"},{"value":[{"deprecated":false,"introducedAt":"16.0","unavailable":false,"name":"iOS","beta":false},{"deprecated":false,"introducedAt":"16.0","unavailable":false,"name":"iPadOS","beta":false},{"deprecated":false,"introducedAt":"16.0","unavailable":false,"name":"Mac Catalyst","beta":false},{"deprecated":false,"introducedAt":"13.0","unavailable":false,"name":"macOS","beta":false},{"deprecated":false,"introducedAt":"1.0","unavailable":false,"name":"visionOS","beta":false},{"deprecated":false,"introducedAt":"9.0","unavailable":false,"name":"watchOS","beta":false}],"op":"replace","path":"/metadata/platforms"},{"value":"Type Method","op":"replace","path":"/metadata/roleHeading"},{"value":"predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:","op":"replace","path":"/metadata/title"},{"value":"method","op":"replace","path":"/metadata/symbolKind"},{"value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"}],"op":"replace","path":"/metadata/fragments"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.healthkit/documentation/HealthKit","doc://com.apple.healthkit/documentation/HealthKit/HKQuery"]]},"op":"replace","path":"/hierarchy"},{"value":null,"op":"add","path":"/topicSections"},{"value":null,"op":"add","path":"/relationshipsSections"},{"value":[{"generated":true,"title":"Creating workout activity predicates","identifiers":["doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)","doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)"],"anchor":"Creating-workout-activity-predicates"}],"op":"replace","path":"/seeAlsoSections"},{"value":{"kind":"declarations","declarations":[{"languages":["occ"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS","watchOS"],"tokens":[{"text":"+ (","kind":"text"},{"text":"NSPredicate","preciseIdentifier":"c:objc(cs)NSPredicate","kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate"},{"text":" *) ","kind":"text"},{"text":"predicateForWorkoutActivitiesWithOperatorType:","kind":"identifier"},{"text":"(","kind":"text"},{"text":"NSPredicateOperatorType","preciseIdentifier":"c:@E@NSPredicateOperatorType","kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType"},{"text":") ","kind":"text"},{"text":"operatorType","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"quantityType:","kind":"identifier"},{"kind":"text","text":"("},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType","kind":"typeIdentifier","text":"HKQuantityType","preciseIdentifier":"c:objc(cs)HKQuantityType"},{"kind":"text","text":" *) "},{"kind":"internalParam","text":"quantityType"},{"kind":"text","text":" "},{"kind":"identifier","text":"averageQuantity:"},{"kind":"text","text":"("},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantity","kind":"typeIdentifier","text":"HKQuantity","preciseIdentifier":"c:objc(cs)HKQuantity"},{"kind":"text","text":" *) "},{"kind":"internalParam","text":"averageQuantity"},{"kind":"text","text":";"}]}]},"op":"replace","path":"/primaryContentSections/0"},{"value":{"parameters":[{"name":"operatorType","content":[{"type":"paragraph","inlineContent":[{"text":"The operator type to use when comparing the average quantity.","type":"text"}]}]},{"name":"quantityType","content":[{"inlineContent":[{"type":"text","text":"The type of "},{"identifier":"doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample","isActive":true,"type":"reference"},{"type":"text","text":" objects used to calculate the average quantity."}],"type":"paragraph"}]},{"name":"averageQuantity","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The target value for the average quantity."}]}]}],"kind":"parameters"},"op":"replace","path":"/primaryContentSections/1"},{"value":"HKQuantityType","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityType/title"},{"value":[{"text":"HKQuantityType","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityType/fragments"},{"value":[{"kind":"identifier","text":"HKQuantityType"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityType/navigatorTitle"},{"value":"predicateForWorkoutActivitiesWithStartDate:endDate:options:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(start:end:options:)/title"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForWorkoutActivitiesWithStartDate:endDate:options:","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(start:end:options:)/fragments"},{"value":"predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)/title"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)/fragments"},{"value":"predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)/title"},{"value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)/fragments"},{"value":"HKWorkoutActivity","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/title"},{"value":[{"text":"HKWorkoutActivity","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/fragments"},{"value":[{"kind":"identifier","text":"HKWorkoutActivity"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/navigatorTitle"},{"value":"predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)/title"},{"value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)/fragments"},{"value":"HKQuantity","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/title"},{"value":[{"kind":"identifier","text":"HKQuantity"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/fragments"},{"value":[{"text":"HKQuantity","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/navigatorTitle"},{"value":"predicateForWorkoutsWithActivityPredicate:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkouts(activityPredicate:)/title"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForWorkoutsWithActivityPredicate:","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkouts(activityPredicate:)/fragments"},{"value":"statisticsForType:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity~1statistics(for:)/title"},{"value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"statisticsForType:"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity~1statistics(for:)/fragments"},{"value":"predicateForWorkoutActivitiesWithOperatorType:duration:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:duration:)/title"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForWorkoutActivitiesWithOperatorType:duration:","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:duration:)/fragments"},{"value":"predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)/title"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)/fragments"},{"value":"HKQuantitySample","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/title"},{"value":[{"kind":"identifier","text":"HKQuantitySample"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/fragments"},{"value":[{"kind":"identifier","text":"HKQuantitySample"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/navigatorTitle"},{"value":"HKQuery","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/title"},{"value":[{"kind":"identifier","text":"HKQuery"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/fragments"},{"value":[{"kind":"identifier","text":"HKQuery"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/navigatorTitle"},{"value":"predicateForWorkoutActivitiesWithWorkoutActivityType:","op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(workoutActivityType:)/title"},{"value":[{"text":"+ ","kind":"text"},{"text":"predicateForWorkoutActivitiesWithWorkoutActivityType:","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(workoutActivityType:)/fragments"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Returns a predicate for matching workout activities based the average value of an associated quantity type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "HealthKit",
+    "externalID": "c:objc(cs)HKQuery(cm)predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "predicateForWorkoutActivities"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "operatorType"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+        "text": "NSComparisonPredicate"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+        "text": "Operator"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "quantityType"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)HKQuantityType",
+        "text": "HKQuantityType"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "averageQuantity"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)HKQuantity",
+        "text": "HKQuantity"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSPredicate",
+        "text": "NSPredicate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivities"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "operatorType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSComparisonPredicate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+              "text": "NSComparisonPredicate"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+              "text": "Operator"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "quantityType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)HKQuantityType",
+              "text": "HKQuantityType"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "averageQuantity"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)HKQuantity",
+              "text": "HKQuantity"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPredicate",
+              "text": "NSPredicate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The operator type to use when comparing the average quantity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "operatorType"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects used to calculate the average quantity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "quantityType"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The target value for the average quantity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "averageQuantity"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this convenience method to create a predicate that matches workouts with the specified average quantity. To use this predicate, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkouts(activityPredicate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to wrap this predicate inside a workout predicate. You can then use the workout predicate in your query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sample creates a predicate for workout activities with an average heart rate of 150 bmp or higher.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let quantityType = HKQuantityType(.heartRate)",
+            "",
+            "let expectedQuantity =",
+            "HKQuantity(unit: .count().unitDivided(by: .minute()),",
+            "           doubleValue: 150.0)",
+            "",
+            "let heartRatePredicate =",
+            "HKQuery.predicateForWorkoutActivities(",
+            "    operatorType: .greaterThanOrEqualTo,",
+            "    quantityType: quantityType,",
+            "    averageQuantity:",
+            "        expectedQuantity",
+            ")",
+            "",
+            "// Wrap the activity predicate inside a workout predicate.",
+            "let workoutPredicate = HKQuery.predicateForWorkouts(activityPredicate: heartRatePredicate)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how HealthKit calculates statistics for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity/statistics(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity": {
+      "abstract": [
+        {
+          "text": "An object that stores a value for a given unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a quantity, including the value and the units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType": {
+      "abstract": [
+        {
+          "text": "A type that identifies samples that store numerical values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantityType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantityType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery": {
+      "abstract": [
+        {
+          "text": "An abstract class for all the query classes in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for matching workout activities based on their duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "operatorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithOperatorType:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(operatorType:duration:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:duration:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for matching workout activities based the average value of an associated quantity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "operatorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quantityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "averageQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:averagequantity:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for matching workout activities based the maximum value of an associated quantity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "operatorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quantityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:maximumquantity:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for matching workout activities based the minimum value of an associated quantity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "operatorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quantityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:minimumquantity:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for matching workout activities based the sum of an associated quantity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "operatorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+          "text": "Operator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quantityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:sumquantity:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for workout activities that occur between the start and end date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKQueryOptions",
+          "text": "HKQueryOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithStartDate:endDate:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(start:end:options:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(start:end:options:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for workout activities based on the type of activity performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "workoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutActivitiesWithWorkoutActivityType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkoutActivities(workoutActivityType:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkoutactivities(workoutactivitytype:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkouts(activityPredicate:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for matching workouts based on the associated workout activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkouts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkouts(activityPredicate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForWorkoutsWithActivityPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForWorkouts(activityPredicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforworkouts(activitypredicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity": {
+      "abstract": [
+        {
+          "text": "An object that describes an activity within a longer workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutActivity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutactivity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity/statistics(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the activity’s statistics for the provided quantity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statistics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKStatistics",
+          "text": "HKStatistics"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutActivity/statistics(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statisticsForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "statistics(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutactivity/statistics(for:)"
+    },
+    "doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType": {
+      "abstract": [
+        {
+          "text": "Defines the type of comparison for a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate.Operator"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate.Operator",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate/operator"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSComparisonPredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSComparisonPredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-workout-activity-predicates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)"
+      ],
+      "title": "Creating workout activity predicates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-workout-activity-predicates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(workoutActivityType:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:duration:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(start:end:options:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)"
+              ],
+              "title": "Creating workout activity predicates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "+ ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSPredicate",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSPredicate",
+                    "text": "NSPredicate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "predicateForWorkoutActivitiesWithOperatorType:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@E@NSPredicateOperatorType",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@NSPredicateOperatorType",
+                    "text": "NSPredicateOperatorType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "operatorType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "quantityType:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantityType",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)HKQuantityType",
+                    "text": "HKQuantityType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "quantityType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "averageQuantity:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)HKQuantity",
+                    "text": "HKQuantity"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "averageQuantity"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operator type to use when comparing the average quantity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "operatorType"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " objects used to calculate the average quantity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "quantityType"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The target value for the average quantity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "averageQuantity"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityType/title",
+          "value": "HKQuantityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantityType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(start:end:options:)/title",
+          "value": "predicateForWorkoutActivitiesWithStartDate:endDate:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(start:end:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithStartDate:endDate:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)/title",
+          "value": "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:averageQuantity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)/title",
+          "value": "predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:minimumQuantity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/title",
+          "value": "HKWorkoutActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)/title",
+          "value": "predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:maximumQuantity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/title",
+          "value": "HKQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkouts(activityPredicate:)/title",
+          "value": "predicateForWorkoutsWithActivityPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkouts(activityPredicate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutsWithActivityPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity~1statistics(for:)/title",
+          "value": "statisticsForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutActivity~1statistics(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "statisticsForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:duration:)/title",
+          "value": "predicateForWorkoutActivitiesWithOperatorType:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithOperatorType:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)/title",
+          "value": "predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(operatorType:quantityType:sumQuantity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/title",
+          "value": "HKQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/title",
+          "value": "HKQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(workoutActivityType:)/title",
+          "value": "predicateForWorkoutActivitiesWithWorkoutActivityType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForWorkoutActivities(workoutActivityType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForWorkoutActivitiesWithWorkoutActivityType:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:averagequantity:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkquery/predicateforworkoutactivities(operatortype:quantitytype:averagequantity:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
