@@ -1,0 +1,622 @@
+{
+  "abstract": [
+    {
+      "text": "Control how the article’s opening section comes into view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fading sticky header scene causes the header to briefly “stick” to the top of the screen and then fade to a defined color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to add a scene to your article.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624925",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement a scene, you add a ",
+              "type": "text"
+            },
+            {
+              "code": "scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a ",
+              "type": "text"
+            },
+            {
+              "code": "section",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "chapter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-a-Scene",
+          "level": 3,
+          "text": "Apply a Scene",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your working ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, delete the parallax behavior from the first section. The code you are deleting begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"behavior\": {",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ends with a closing brace and a comma (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "},",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene#Scene-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the first section, replacing the behavior that you deleted in step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene#Scene-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the fading sticky header scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scene-Copy-This-Code",
+          "level": 4,
+          "text": "Scene: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "      \"scene\": {",
+            "        \"type\": \"fading_sticky_header\",",
+            "        \"fadeColor\": \"#000\"",
+            "      },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Scene-Result",
+          "level": 4,
+          "text": "Scene: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"scene\": {",
+            "        \"type\": \"fading_sticky_header\",",
+            "        \"fadeColor\": \"#000\"",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"header\",",
+            "          \"layout\": \"headerImageLayout\",",
+            "          \"style\": {",
+            "            \"fill\": {",
+            "              \"type\": \"image\",",
+            "              \"URL\": \"bundle://header.jpg\",",
+            "              \"fillMode\": \"cover\",",
+            "              \"verticalAlignment\": \"top\",",
+            "              \"horizontalAlignment\": \"center\"",
+            "            }",
+            "          },",
+            "          \"components\": [",
+            "            ...",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene#Scene-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene#Scene-Copy-This-Code",
+      "kind": "section",
+      "title": "Scene: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene#Scene-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene#Scene-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene#Scene-Result",
+      "kind": "section",
+      "title": "Scene: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene#Scene-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene-to-a-chapter-or-a-section-header": {
+      "abstract": [
+        {
+          "text": "Add a scene to your article to create special effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene-to-a-chapter-or-a-section-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene to a Chapter or a Section Header",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene-to-a-chapter-or-a-section-header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-animations": {
+      "abstract": [
+        {
+          "text": "Use animations to affect how parts of your article come into view the first time they appear.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Animations",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-animations"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges": {
+      "abstract": [
+        {
+          "text": "Create text in color by using HTML to refer to TextStyle objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Color to Text Ranges",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-color-to-text-ranges"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header": {
+      "abstract": [
+        {
+          "text": "Layer a title and heading in front of an image, with their colors optimized for legibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Complex, Layered Header",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption": {
+      "abstract": [
+        {
+          "text": "Position a caption in the wide right margin of your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Floating Caption",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-floating-caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo": {
+      "abstract": [
+        {
+          "text": "Wrap article body text around an inset photo.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Inset Photo",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote": {
+      "abstract": [
+        {
+          "text": "Wrap article body text around an inset pull quote.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Inset Pull Quote",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 2",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FadingStickyHeader": {
+      "abstract": [
+        {
+          "text": "The scene that briefly keeps a header at the top of the screen as the person scrolls through the article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FadingStickyHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FadingStickyHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FadingStickyHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "FadingStickyHeader",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/fadingstickyheader"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Section": {
+      "abstract": [
+        {
+          "text": "The component for organizing an article into sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/section"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624925": {
+      "alt": "Side-by-side screenshots of an Apple News article on iPhone showing the effect of scrolling with a fading sticky header scene.",
+      "identifier": "media-3624925",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15e322be7c406b36bdecf38d62e3bd4a/media-3624925@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb96b3eaa5d7ea5be63b992d3fc05403/media-3624925~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene-to-a-chapter-or-a-section-header",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/FadingStickyHeader",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Section"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-2-Layout-and-Positioning",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+      ],
+      "title": "Advanced Design Tutorial 2: Layout and Positioning"
+    }
+  ]
+}

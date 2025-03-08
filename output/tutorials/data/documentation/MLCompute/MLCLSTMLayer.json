@@ -1,0 +1,2444 @@
+{
+  "abstract": [
+    {
+      "text": "A layer that represents long short-term memory (LSTM) networks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mlcompute/documentation/MLCompute"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MLCLSTMLayer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLCLSTMLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ML Compute"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLCLSTMLayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.3",
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MLCLSTMLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMLayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this class to create an LSTM layer with one of the following configurations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The input weights, hidden weights, and biases are arrays of 4 tensors that describe the specified weights for the input, hidden, cell, and output gates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Unidirectional single layer",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The input weights, hidden weights and biases are arrays of ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor/layerCount",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "* 4",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tensors that describe the specified weights for the input, hidden, cell, and output gates, for ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "layer0...layer(layerCount - 1)",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Unidirectional stacked layers",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The input weights, hidden weights, and biases are arrays of 8 tensors, where the backward time weights and biases follow the forward time weights.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Bidirectional single layer",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute": {
+      "abstract": [
+        {
+          "text": "Accelerate training and validation of neural networks across the CPU and one or more GPUs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ML Compute",
+      "type": "topic",
+      "url": "/documentation/mlcompute"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCConvolutionLayer": {
+      "abstract": [
+        {
+          "text": "A layer that applies a convolution over a signal.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCConvolutionLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCConvolutionLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCConvolutionLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCConvolutionLayer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcconvolutionlayer"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCEmbeddingLayer": {
+      "abstract": [
+        {
+          "text": "A layer that stores a word embedding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCEmbeddingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCEmbeddingLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCEmbeddingLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCEmbeddingLayer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcembeddinglayer"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor": {
+      "abstract": [
+        {
+          "text": "The configuration object you use to create the LSTM layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCLSTMDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCLSTMDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCLSTMDescriptor",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmdescriptor"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor/layerCount": {
+      "abstract": [
+        {
+          "text": "The number of recurrent layers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor/layerCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "layerCount",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmdescriptor/layercount"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer": {
+      "abstract": [
+        {
+          "text": "A layer that represents long short-term memory (LSTM) networks.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCLSTMLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCLSTMLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCLSTMLayer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biases": {
+      "abstract": [
+        {
+          "text": "The array of tensors that describe the bias terms you use for the input, hidden, cell, and output gates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "biases"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biases",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "biases"
+        }
+      ],
+      "role": "symbol",
+      "title": "biases",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/biases"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biasesParameters": {
+      "abstract": [
+        {
+          "text": "The biases tensor parameters you use for optimizer updates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "biasesParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorParameter",
+          "text": "MLCTensorParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biasesParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "biasesParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "biasesParameters",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/biasesparameters"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/descriptor": {
+      "abstract": [
+        {
+          "text": "The configuration object you use to create the LSTM layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLSTMDescriptor",
+          "text": "MLCLSTMDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "descriptor",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/descriptor"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/gateActivations": {
+      "abstract": [
+        {
+          "text": "The array of gate activations you use for input, hidden, cell, and output gates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gateActivations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCActivationDescriptor",
+          "text": "MLCActivationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/gateActivations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gateActivations"
+        }
+      ],
+      "role": "symbol",
+      "title": "gateActivations",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/gateactivations"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeights": {
+      "abstract": [
+        {
+          "text": "The array of tensors that describe the hidden weights you use for the input, hidden, cell, and output gates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hiddenWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hiddenWeights"
+        }
+      ],
+      "role": "symbol",
+      "title": "hiddenWeights",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/hiddenweights"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeightsParameters": {
+      "abstract": [
+        {
+          "text": "The hidden weights tensor parameters you use for optimizer updates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hiddenWeightsParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorParameter",
+          "text": "MLCTensorParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeightsParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hiddenWeightsParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "hiddenWeightsParameters",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/hiddenweightsparameters"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:biases:)": {
+      "abstract": [
+        {
+          "text": "Creates an LSTM layer with the descriptor, input and hidden weights, and biases you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLSTMDescriptor",
+          "text": "MLCLSTMDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hiddenWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "biases"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:biases:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerWithDescriptor:inputWeights:hiddenWeights:biases:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(descriptor:inputWeights:hiddenWeights:biases:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/init(descriptor:inputweights:hiddenweights:biases:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)": {
+      "abstract": [
+        {
+          "text": "Creates an LSTM layer with the descriptor, weights, and biases you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLSTMDescriptor",
+          "text": "MLCLSTMDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hiddenWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "peepholeWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "biases"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/init(descriptor:inputweights:hiddenweights:peepholeweights:biases:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)": {
+      "abstract": [
+        {
+          "text": "Creates an LSTM layer using the descriptor, weights, biases, gate activations, and output result activation that you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCLSTMDescriptor",
+          "text": "MLCLSTMDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hiddenWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "peepholeWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "biases"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "gateActivations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCActivationDescriptor",
+          "text": "MLCActivationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputResultActivation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCActivationDescriptor",
+          "text": "MLCActivationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/init(descriptor:inputweights:hiddenweights:peepholeweights:biases:gateactivations:outputresultactivation:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeights": {
+      "abstract": [
+        {
+          "text": "The array of tensors that describe the input weights you use for the input, hidden, cell, and output gates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputWeights"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputWeights",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/inputweights"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeightsParameters": {
+      "abstract": [
+        {
+          "text": "The input weights tensor parameters you use for optimizer updates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputWeightsParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorParameter",
+          "text": "MLCTensorParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeightsParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputWeightsParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputWeightsParameters",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/inputweightsparameters"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/outputResultActivation": {
+      "abstract": [
+        {
+          "text": "The output activation descriptor.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputResultActivation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCActivationDescriptor",
+          "text": "MLCActivationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/outputResultActivation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputResultActivation"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputResultActivation",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/outputresultactivation"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeights": {
+      "abstract": [
+        {
+          "text": "The array of tensors that describe the peephole weights you use for the input, hidden, cell, and output gates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peepholeWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peepholeWeights"
+        }
+      ],
+      "role": "symbol",
+      "title": "peepholeWeights",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/peepholeweights"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeightsParameters": {
+      "abstract": [
+        {
+          "text": "The peephole weights tensor parameters you use for optimizer updates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peepholeWeightsParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorParameter",
+          "text": "MLCTensorParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeightsParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peepholeWeightsParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "peepholeWeightsParameters",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmlayer/peepholeweightsparameters"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMResultMode": {
+      "abstract": [
+        {
+          "text": "Constants that describe the result of an LSTM layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCLSTMResultMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMResultMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCLSTMResultMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCLSTMResultMode",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclstmresultmode"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCLayer": {
+      "abstract": [
+        {
+          "text": "The base class for all framework layers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCLayer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlclayer"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCPoolingLayer": {
+      "abstract": [
+        {
+          "text": "A layer that summarizes the average presence of a feature.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCPoolingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCPoolingLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCPoolingLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCPoolingLayer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcpoolinglayer"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCUpsampleLayer": {
+      "abstract": [
+        {
+          "text": "A layer that applies upsampling with the shape you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCUpsampleLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCUpsampleLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCUpsampleLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCUpsampleLayer",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcupsamplelayer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLayer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Convolution-and-Recurrent-Layers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCConvolutionLayer",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCPoolingLayer",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCUpsampleLayer",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCEmbeddingLayer"
+      ],
+      "title": "Convolution and Recurrent Layers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-LSTM-Layers",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:biases:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMResultMode"
+      ],
+      "title": "Creating LSTM Layers"
+    },
+    {
+      "anchor": "Inspecting-LSTM-Layers",
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/descriptor",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/gateActivations",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/outputResultActivation",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeights",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeights",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeights",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biases",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeightsParameters",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeightsParameters",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeightsParameters",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biasesParameters"
+      ],
+      "title": "Inspecting LSTM Layers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "14.3",
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MLCLSTMLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mlcompute/documentation/MLCompute"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-LSTM-Layers",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:biases:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMDescriptor",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMResultMode"
+              ],
+              "title": "Creating LSTM Layers"
+            },
+            {
+              "anchor": "Inspecting-LSTM-Layers",
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/descriptor",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/gateActivations",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/outputResultActivation",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeights",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeights",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeights",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biases",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/inputWeightsParameters",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/hiddenWeightsParameters",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/peepholeWeightsParameters",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLSTMLayer/biasesParameters"
+              ],
+              "title": "Inspecting LSTM Layers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCLayer"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Convolution-and-Recurrent-Layers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCConvolutionLayer",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCPoolingLayer",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCUpsampleLayer",
+                "doc://com.apple.mlcompute/documentation/MLCompute/MLCEmbeddingLayer"
+              ],
+              "title": "Convolution and Recurrent Layers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MLCLSTMLayer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCLayer",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MLCLayer",
+                    "text": "MLCLayer"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1biasesParameters/title",
+          "value": "biasesParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1biasesParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "biasesParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMResultMode/title",
+          "value": "MLCLSTMResultMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMResultMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMResultMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMResultMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMResultMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCUpsampleLayer/title",
+          "value": "MLCUpsampleLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCUpsampleLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCUpsampleLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCUpsampleLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCUpsampleLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1biases/title",
+          "value": "biases"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1biases/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "biases"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCConvolutionLayer/title",
+          "value": "MLCConvolutionLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCConvolutionLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCConvolutionLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCConvolutionLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCConvolutionLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)/title",
+          "value": "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCPoolingLayer/title",
+          "value": "MLCPoolingLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCPoolingLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCPoolingLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCPoolingLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCPoolingLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1inputWeightsParameters/title",
+          "value": "inputWeightsParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1inputWeightsParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputWeightsParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer/title",
+          "value": "MLCLSTMLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCEmbeddingLayer/title",
+          "value": "MLCEmbeddingLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCEmbeddingLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCEmbeddingLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCEmbeddingLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCEmbeddingLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)/title",
+          "value": "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1init(descriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMDescriptor/title",
+          "value": "MLCLSTMDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLSTMDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1hiddenWeights/title",
+          "value": "hiddenWeights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1hiddenWeights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hiddenWeights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLayer/title",
+          "value": "MLCLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1hiddenWeightsParameters/title",
+          "value": "hiddenWeightsParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1hiddenWeightsParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hiddenWeightsParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1gateActivations/title",
+          "value": "gateActivations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1gateActivations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gateActivations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1init(descriptor:inputWeights:hiddenWeights:biases:)/title",
+          "value": "layerWithDescriptor:inputWeights:hiddenWeights:biases:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1init(descriptor:inputWeights:hiddenWeights:biases:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layerWithDescriptor:inputWeights:hiddenWeights:biases:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1inputWeights/title",
+          "value": "inputWeights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1inputWeights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputWeights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1peepholeWeightsParameters/title",
+          "value": "peepholeWeightsParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1peepholeWeightsParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "peepholeWeightsParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1outputResultActivation/title",
+          "value": "outputResultActivation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1outputResultActivation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputResultActivation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1descriptor/title",
+          "value": "descriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1descriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1peepholeWeights/title",
+          "value": "peepholeWeights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMLayer~1peepholeWeights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "peepholeWeights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMDescriptor~1layerCount/title",
+          "value": "layerCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCLSTMDescriptor~1layerCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layerCount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mlcompute/mlclstmlayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mlcompute/mlclstmlayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

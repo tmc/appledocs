@@ -1,0 +1,877 @@
+{
+  "abstract": [
+    {
+      "text": "Searches for iOS apps to promote in a campaign.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Search-for-iOS-apps"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:get:v5-search-apps",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Search for iOS apps"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Search for iOS apps"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/search/apps"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "20"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of items to return per request. The maximum is 1000.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "GET https://api.searchads.apple.com/api/v5/search/apps?limit=100"
+              ],
+              "syntax": "console",
+              "type": "codeListing"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The offset pagination that limits the number of records returned. The start of each page is offset by the number specified. You can apply ",
+                  "type": "text"
+                },
+                {
+                  "code": "offset",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to most API calls, but not all GET endpoints support it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "GET https://api.searchads.apple.com/api/v5/search/apps?limit=<LIMIT>&offset=<OFFSET>"
+              ],
+              "syntax": "console",
+              "type": "codeListing"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The query for a list of iOS apps using a matching prefix.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "GET https://api.searchads.apple.com/api/v5/search/apps?query=Run%20Ke"
+              ],
+              "syntax": "console",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The query search pattern uses a prefix-matching algorithm. You can use spaces in search patterns. Prefixes require a minimum of three characters. If you’re sending a quoted search string, use HTML encoding.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "query",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The list of apps belonging to your organization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "GET https://api.searchads.apple.com/api/v5/search/apps?query=appexample&returnOwnedApps=true"
+              ],
+              "syntax": "console",
+              "type": "codeListing"
+            }
+          ],
+          "name": "returnOwnedApps",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppInfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppInfoListResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:AppInfoListResponse",
+              "text": "AppInfoListResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to search for iOS apps that you can promote in a campaign. You can use query parameters to fetch data. For more information, see the Use Query Parameters section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/using-apple-search-ads-api-functionality",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app search returns your ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which you can use in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in addition to the ",
+              "type": "text"
+            },
+            {
+              "code": "AppDownloaderCriteria",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " payload. You can apply targeting dimensions to ad groups using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4452999",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-Example-Search-for-iOS-apps",
+          "level": 3,
+          "text": "Payload Example: Search for iOS apps",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.searchads.apple.com/api/v5/search/apps?query=apple&limit=1"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[",
+                    "  {",
+                    "    \"adamId\": 427916203,",
+                    "    \"appName\": \"Trip Trek example app\",",
+                    "    \"developerName\": \"example Apple developer\",",
+                    "    \"countryOrRegionCodes\": [",
+                    "      \"FR\",",
+                    "      \"DE\",",
+                    "      \"US\",",
+                    "      \"NO\",",
+                    "      \"MX\",",
+                    "      \"GB\",",
+                    "      \"CA\",",
+                    "      \"SE\",",
+                    "      \"AU\"",
+                    "    ]",
+                    "  }",
+                    "]"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/using-apple-search-ads-api-functionality": {
+      "abstract": [
+        {
+          "text": "Call endpoints using CRUD methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/using-apple-search-ads-api-functionality",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Using Apple Search Ads API Functionality",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/using-apple-search-ads-api-functionality"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AppInfo": {
+      "abstract": [
+        {
+          "text": "The response to an app search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppInfo",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/appinfo"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AppInfoListResponse": {
+      "abstract": [
+        {
+          "text": "The response details of app search requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppInfoListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppInfoListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppInfoListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppInfoListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/appinfolistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Creates a campaign to promote an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Creates an ad group as part of a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-an-ad-group"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Search-for-iOS-apps": {
+      "abstract": [
+        {
+          "text": "Searches for iOS apps to promote in a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Search-for-iOS-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Search for iOS apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for iOS apps",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/search-for-ios-apps"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions": {
+      "abstract": [
+        {
+          "text": "The optional criteria to use with ad groups to narrow the audience that views your ads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TargetingDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TargetingDimensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "TargetingDimensions",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/targetingdimensions"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Updates an ad group with an ad group identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-an-ad-group"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4452999": {
+      "alt": "Search for iOS apps workflow. The first box on the left in the flow diagram is the get call URL. The second box is the AppDownloaderCriteria targeting dimension. The third box in the flow diagram specifies to create or update an ad group.",
+      "identifier": "media-4452999",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b06241f90357f928e68361bbf3a80703/media-4452999@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30c48187c64d88ea910900e21e2f9268/media-4452999~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/search-for-ios-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

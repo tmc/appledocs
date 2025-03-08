@@ -1,0 +1,2541 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of a message to send or receive, containing protocol metadata and send properties.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/nw_content_context_t"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@nw_content_context_t",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "typealias"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "nw_content_context_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "nw_content_context_t"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "nw_content_context_t"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_t"
+            },
+            {
+              "kind": "text",
+              "text": " = any "
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/OS_nw_content_context",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)OS_nw_content_context",
+              "text": "OS_nw_content_context"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sending, you should use ",
+              "type": "text"
+            },
+            {
+              "code": "NW_CONNECTION_DEFAULT_MESSAGE_CONTEXT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unless there is a reason to override some values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pass ",
+              "type": "text"
+            },
+            {
+              "code": "NW_CONNECTION_FINAL_MESSAGE_CONTEXT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to mark the final message in a connection. Once this context is used for sending, and the send is marked as complete, no more data can be sent on the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are using a protocol that expects message content, like WebSocket or a custom framer, create a custom context and set metadata using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_set_metadata_for_protocol(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_content_context": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_content_context"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_content_context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_content_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_content_context",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_content_context"
+    },
+    "doc://com.apple.network/documentation/Network/nw_advertise_descriptor_t": {
+      "abstract": [
+        {
+          "text": "A description used to advertise the Bonjour service that a listener provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_advertise_descriptor_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_advertise_descriptor_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_advertise_descriptor_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_advertise_descriptor_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_advertise_descriptor_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browse_descriptor_t": {
+      "abstract": [
+        {
+          "text": "A service description used to discover Bonjour services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browse_descriptor_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browse_descriptor_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browse_descriptor_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browse_descriptor_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browse_descriptor_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browse_result_change_t": {
+      "abstract": [
+        {
+          "text": "Flags describing ways in which discovered services can change between specific results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browse_result_change_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browse_result_change_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browse_result_change_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browse_result_change_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browse_result_change_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browse_result_enumerate_interface_t": {
+      "abstract": [
+        {
+          "text": "A handler that enumerates the interfaces associated with a discovered service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browse_result_enumerate_interface_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browse_result_enumerate_interface_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browse_result_enumerate_interface_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browse_result_enumerate_interface_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browse_result_enumerate_interface_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browse_result_t": {
+      "abstract": [
+        {
+          "text": "A discovered service and metadata about the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browse_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browse_result_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browse_result_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browse_result_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browse_result_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browser_browse_results_changed_handler_t": {
+      "abstract": [
+        {
+          "text": "A handler that delivers updates about discovered services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browser_browse_results_changed_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browser_browse_results_changed_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browser_browse_results_changed_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browser_browse_results_changed_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browser_browse_results_changed_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browser_state_changed_handler_t": {
+      "abstract": [
+        {
+          "text": "A handler that delivers browser state updates with associated errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browser_state_changed_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browser_state_changed_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browser_state_changed_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browser_state_changed_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browser_state_changed_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browser_t": {
+      "abstract": [
+        {
+          "text": "An object you use to browse for available network services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browser_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browser_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browser_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browser_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browser_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_boolean_event_handler_t": {
+      "abstract": [
+        {
+          "text": "A handler that receives Boolean state updates from a connection, such as viability and better path state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_boolean_event_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_boolean_event_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_boolean_event_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_boolean_event_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_boolean_event_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_new_connection_handler_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_new_connection_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_new_connection_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_new_connection_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_new_connection_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_new_connection_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_receive_handler_t": {
+      "abstract": [
+        {
+          "text": "A handler that receives inbound messages from members of the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_receive_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_receive_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_receive_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_receive_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_receive_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_send_completion_t": {
+      "abstract": [
+        {
+          "text": "A completion to notify you when data has been processed and sent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_send_completion_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_send_completion_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_send_completion_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_send_completion_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_send_completion_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_state_changed_handler_t": {
+      "abstract": [
+        {
+          "text": "A handler that receives connection group state updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_state_changed_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_state_changed_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_state_changed_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_state_changed_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_state_changed_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_t": {
+      "abstract": [
+        {
+          "text": "An object you use to communicate with a group of endpoints, such as an IP multicast group on a local network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_path_event_handler_t": {
+      "abstract": [
+        {
+          "text": "A handler that delivers network path updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_path_event_handler_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_path_event_handler_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_path_event_handler_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_path_event_handler_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_path_event_handler_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_copy_antecedent(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses the optional message context that must be sent before the context you are sending.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_copy_antecedent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_copy_antecedent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_copy_antecedent"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_copy_antecedent(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_copy_antecedent(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_copy_protocol_metadata(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retreives the metadata associated with a specific protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_copy_protocol_metadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_protocol_definition_t",
+          "text": "nw_protocol_definition_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_protocol_metadata_t",
+          "text": "nw_protocol_metadata_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_copy_protocol_metadata(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_copy_protocol_metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_copy_protocol_metadata(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_copy_protocol_metadata(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_create(_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a custom message context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_create"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_create(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_create"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_create(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_create(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_foreach_protocol_metadata(_:_:)": {
+      "abstract": [
+        {
+          "text": "Iterates through all protocol metadata associated with the message context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_foreach_protocol_metadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_protocol_definition_t",
+          "text": "nw_protocol_definition_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_protocol_metadata_t",
+          "text": "nw_protocol_metadata_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_foreach_protocol_metadata(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_foreach_protocol_metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_foreach_protocol_metadata(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_foreach_protocol_metadata(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_get_expiration_milliseconds(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses the expiration set for this message context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_expiration_milliseconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_get_expiration_milliseconds(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_expiration_milliseconds"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_get_expiration_milliseconds(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_get_expiration_milliseconds(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_get_identifier(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses the identifier used to create this message context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_identifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_get_identifier(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_get_identifier(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_get_identifier(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_get_is_final(_:)": {
+      "abstract": [
+        {
+          "text": "Checks whether this context represents the final message being received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_is_final"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_get_is_final(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_is_final"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_get_is_final(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_get_is_final(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_get_relative_priority(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses the relative value of priority used to reorder contexts when sending.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_relative_priority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_get_relative_priority(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_get_relative_priority"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_get_relative_priority(_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_get_relative_priority(_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_set_antecedent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Set an optional message context that must be sent before the context you are sending.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_antecedent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_set_antecedent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_antecedent"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_set_antecedent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_set_antecedent(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_set_expiration_milliseconds(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the number of milliseconds after which sending the data associated with this context must begin, otherwise the data is discarded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_expiration_milliseconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_set_expiration_milliseconds(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_expiration_milliseconds"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_set_expiration_milliseconds(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_set_expiration_milliseconds(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_set_is_final(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a Boolean indicating if this context represents the final message being sent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_is_final"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_set_is_final(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_is_final"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_set_is_final(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_set_is_final(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_set_metadata_for_protocol(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets protocol metadata to configure per-message or per-packet properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_metadata_for_protocol"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_protocol_metadata_t",
+          "text": "nw_protocol_metadata_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_set_metadata_for_protocol(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_metadata_for_protocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_set_metadata_for_protocol(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_set_metadata_for_protocol(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_set_relative_priority(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the relative value of priority used to reorder contexts when sending.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_relative_priority"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_content_context_t",
+          "text": "nw_content_context_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_set_relative_priority(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_set_relative_priority"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_set_relative_priority(_:_:)",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_set_relative_priority(_:_:)"
+    },
+    "doc://com.apple.network/documentation/Network/nw_content_context_t": {
+      "abstract": [
+        {
+          "text": "A representation of a message to send or receive, containing protocol metadata and send properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_content_context_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_content_context_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_content_context_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_content_context_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_protocol_metadata_t": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for specifying metadata about a network protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_protocol_metadata_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_protocol_metadata_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_protocol_metadata_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_protocol_metadata_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_protocol_metadata_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/nw_advertise_descriptor_t",
+        "doc://com.apple.network/documentation/Network/nw_browse_descriptor_t",
+        "doc://com.apple.network/documentation/Network/nw_browse_result_change_t",
+        "doc://com.apple.network/documentation/Network/nw_browse_result_enumerate_interface_t",
+        "doc://com.apple.network/documentation/Network/nw_browse_result_t",
+        "doc://com.apple.network/documentation/Network/nw_browser_browse_results_changed_handler_t",
+        "doc://com.apple.network/documentation/Network/nw_browser_state_changed_handler_t",
+        "doc://com.apple.network/documentation/Network/nw_browser_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_boolean_event_handler_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_group_new_connection_handler_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_group_receive_handler_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_group_send_completion_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_group_state_changed_handler_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_group_t",
+        "doc://com.apple.network/documentation/Network/nw_connection_path_event_handler_t"
+      ],
+      "title": "Data Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Custom-Send-Contexts",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/nw_content_context_create(_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_set_metadata_for_protocol(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_protocol_metadata_t",
+        "doc://com.apple.network/documentation/Network/nw_content_context_set_antecedent(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_copy_antecedent(_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_set_expiration_milliseconds(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_get_expiration_milliseconds(_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_set_relative_priority(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_get_relative_priority(_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_set_is_final(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_get_identifier(_:)"
+      ],
+      "title": "Creating Custom Send Contexts"
+    },
+    {
+      "anchor": "Inspecting-Receive-Contexts",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/nw_content_context_get_is_final(_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_copy_protocol_metadata(_:_:)",
+        "doc://com.apple.network/documentation/Network/nw_content_context_foreach_protocol_metadata(_:_:)"
+      ],
+      "title": "Inspecting Receive Contexts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "nw_content_context_t"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.network/documentation/Network"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Custom-Send-Contexts",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/nw_content_context_create(_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_set_metadata_for_protocol(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_protocol_metadata_t",
+                "doc://com.apple.network/documentation/Network/nw_content_context_set_antecedent(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_copy_antecedent(_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_set_expiration_milliseconds(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_get_expiration_milliseconds(_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_set_relative_priority(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_get_relative_priority(_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_set_is_final(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_get_identifier(_:)"
+              ],
+              "title": "Creating Custom Send Contexts"
+            },
+            {
+              "anchor": "Inspecting-Receive-Contexts",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/nw_content_context_get_is_final(_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_copy_protocol_metadata(_:_:)",
+                "doc://com.apple.network/documentation/Network/nw_content_context_foreach_protocol_metadata(_:_:)"
+              ],
+              "title": "Inspecting Receive Contexts"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_content_context",
+                    "text": "NSObject<OS_nw_content_context>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "nw_content_context_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_advertise_descriptor_t/title",
+          "value": "nw_advertise_descriptor_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_advertise_descriptor_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_advertise_descriptor_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_advertise_descriptor_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_advertise_descriptor_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_create(_:)/title",
+          "value": "nw_content_context_create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_create(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_create"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_change_t/title",
+          "value": "nw_browse_result_change_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_change_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_result_change_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_change_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_result_change_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_antecedent(_:_:)/title",
+          "value": "nw_content_context_set_antecedent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_antecedent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_set_antecedent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/title",
+          "value": "nw_connection_group_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_t/title",
+          "value": "nw_browse_result_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/title",
+          "value": "nw_browser_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_content_context/title",
+          "value": "OS_nw_content_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_content_context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_content_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_content_context/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_content_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_foreach_protocol_metadata(_:_:)/title",
+          "value": "nw_content_context_foreach_protocol_metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_foreach_protocol_metadata(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_foreach_protocol_metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_protocol_metadata_t/title",
+          "value": "nw_protocol_metadata_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_protocol_metadata_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_protocol_metadata_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_protocol_metadata_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_protocol_metadata_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_path_event_handler_t/title",
+          "value": "nw_connection_path_event_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_path_event_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_path_event_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_path_event_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_path_event_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_send_completion_t/title",
+          "value": "nw_connection_group_send_completion_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_send_completion_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_send_completion_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_send_completion_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_send_completion_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_metadata_for_protocol(_:_:)/title",
+          "value": "nw_content_context_set_metadata_for_protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_metadata_for_protocol(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_set_metadata_for_protocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_new_connection_handler_t/title",
+          "value": "nw_connection_group_new_connection_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_new_connection_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_new_connection_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_new_connection_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_new_connection_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_t/title",
+          "value": "nw_content_context_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_copy_protocol_metadata(_:_:)/title",
+          "value": "nw_content_context_copy_protocol_metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_copy_protocol_metadata(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_copy_protocol_metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_is_final(_:)/title",
+          "value": "nw_content_context_get_is_final"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_is_final(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_get_is_final"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_relative_priority(_:)/title",
+          "value": "nw_content_context_get_relative_priority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_relative_priority(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_get_relative_priority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_relative_priority(_:_:)/title",
+          "value": "nw_content_context_set_relative_priority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_relative_priority(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_set_relative_priority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_is_final(_:_:)/title",
+          "value": "nw_content_context_set_is_final"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_is_final(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_set_is_final"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_boolean_event_handler_t/title",
+          "value": "nw_connection_boolean_event_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_boolean_event_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_boolean_event_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_boolean_event_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_boolean_event_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_state_changed_handler_t/title",
+          "value": "nw_browser_state_changed_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_state_changed_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_state_changed_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_state_changed_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_state_changed_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_receive_handler_t/title",
+          "value": "nw_connection_group_receive_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_receive_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_receive_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_receive_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_receive_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_browse_results_changed_handler_t/title",
+          "value": "nw_browser_browse_results_changed_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_browse_results_changed_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_browse_results_changed_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_browse_results_changed_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_browse_results_changed_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_copy_antecedent(_:)/title",
+          "value": "nw_content_context_copy_antecedent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_copy_antecedent(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_copy_antecedent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_expiration_milliseconds(_:_:)/title",
+          "value": "nw_content_context_set_expiration_milliseconds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_set_expiration_milliseconds(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_set_expiration_milliseconds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_state_changed_handler_t/title",
+          "value": "nw_connection_group_state_changed_handler_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_state_changed_handler_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_state_changed_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_state_changed_handler_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_state_changed_handler_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_enumerate_interface_t/title",
+          "value": "nw_browse_result_enumerate_interface_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_enumerate_interface_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_result_enumerate_interface_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_result_enumerate_interface_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_result_enumerate_interface_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_expiration_milliseconds(_:)/title",
+          "value": "nw_content_context_get_expiration_milliseconds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_expiration_milliseconds(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_get_expiration_milliseconds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_identifier(_:)/title",
+          "value": "nw_content_context_get_identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_content_context_get_identifier(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_content_context_get_identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_descriptor_t/title",
+          "value": "nw_browse_descriptor_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_descriptor_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_descriptor_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browse_descriptor_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browse_descriptor_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/nw_content_context_t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/nw_content_context_t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

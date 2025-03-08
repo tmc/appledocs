@@ -1,0 +1,1571 @@
+{
+  "abstract": [
+    {
+      "text": "A description of a long short-term memory block or layer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2865713,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSLSTMDescriptor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSLSTMDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSLSTMDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSLSTMDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSRNNDescriptor",
+              "text": "MPSRNNDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The recurrent neural network (RNN) layer initialized with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " transforms the input data (image or matrix), the memory cell data, and previous output with a set of filters. Each produces one feature map in the output data and memory cell according to the long short-term memory (LSTM) formula detailed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may provide the LSTM unit with a single input or a sequence of inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2888088",
+          "level": 3,
+          "text": "Description of Operation",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x_j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the input data (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " index containing quadruplet: batch index, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and feature index (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x = y = 0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for matrices)).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h0_j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the recurrent input (previous output) data from previous time step (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h1_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the output data produced at this time step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "c0_j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the previous memory cell data (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "c1_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the new memory cell data (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wi_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ui_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Vi_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the input gate weights for input, recurrent input, and memory cell (peephole) data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bi_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the input gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wf_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Uf_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Vf_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the forget gate weights for input, recurrent input, and memory cell data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bf_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the forget gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wo_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Uo_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Vo_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the output gate weights for input, recurrent input, and memory cell data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bo_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the output gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Wc_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Uc_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Vc_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the memory cell gate weights for input, recurrent input, and memory cell data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bc_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the bias for the memory cell gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gi(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gf(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "go(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gc(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the neuron activation function for the input, forget, output gate, and memory cell gate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gh(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the activation function applied to result memory cell data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output of the LSTM layer is computed as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "I_i = gi(  Wi_ij * x_j  +  Ui_ij * h0_j  +  Vi_ij * c0_j  + bi_i  )",
+            "F_i = gf(  Wf_ij * x_j  +  Uf_ij * h0_j  +  Vf_ij * c0_j  + bf_i  )",
+            "C_i = gc(  Wc_ij * x_j  +  Uc_ij * h0_j  +  Vc_ij * c0_j  + bc_i  )",
+            "",
+            "c1_i = F_i c0_i  +  I_i C_i",
+            "",
+            "O_i = go(  Wo_ij * x_j  +  Uo_ij * h0_j  +  Vo_ij * c1_j  + bo_i  )",
+            "h1_i = O_i gh( c1_i )"
+          ],
+          "metadata": {
+            "anchor": "2888089",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stands for convolution (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or matrix-vector/matrix multiplication (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Summation is over index ",
+              "type": "text"
+            },
+            {
+              "code": "j",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (except for the batch index), but there's no summation over repeated index ",
+              "type": "text"
+            },
+            {
+              "code": "i",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (the output index).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that for validity, all intermediate images must be of same size, and all ",
+              "type": "text"
+            },
+            {
+              "code": "U",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "V",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matrices must be square (that is, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " == ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Also, the bias terms are scalars with regard to spatial dimensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource": {
+      "abstract": [
+        {
+          "text": "The protocol that provides convolution filter weights and bias terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionDataSource",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurontype": {
+      "abstract": [
+        {
+          "text": "The types of neuron filter to append to a convolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneurontype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a gated recurrent unit block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSGRUDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSGRUDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a long short-term memory block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSLSTMDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSLSTMDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor#2888089": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor#2888089",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor#2888089"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865679-cellgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865679-cellgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865679-cellgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865681-createlstmdescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createLSTMDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withInputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865681-createlstmdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createLSTMDescriptor(withInputFeatureChannels:outputFeatureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865681-createlstmdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865683-cellgatememoryweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellGateMemoryWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865683-cellgatememoryweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellGateMemoryWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865683-cellgatememoryweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865684-inputgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865684-inputgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865684-inputgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865688-outputgatememoryweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputGateMemoryWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865688-outputgatememoryweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputGateMemoryWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865688-outputgatememoryweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865689-forgetgatememoryweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "forgetGateMemoryWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865689-forgetgatememoryweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forgetGateMemoryWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865689-forgetgatememoryweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865694-celltooutputneuronparamb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellToOutputNeuronParamB"
+        },
+        {
+          "kind": "text",
+          "text": ": Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865694-celltooutputneuronparamb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellToOutputNeuronParamB",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865694-celltooutputneuronparamb"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865701-outputgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865701-outputgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865701-outputgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865712-memoryweightsarediagonal": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryWeightsAreDiagonal"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865712-memoryweightsarediagonal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memoryWeightsAreDiagonal",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865712-memoryweightsarediagonal"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865731-inputgatememoryweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputGateMemoryWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865731-inputgatememoryweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputGateMemoryWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865731-inputgatememoryweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865734-forgetgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "forgetGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865734-forgetgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forgetGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865734-forgetgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865735-forgetgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "forgetGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865735-forgetgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forgetGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865735-forgetgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865736-celltooutputneurontype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellToOutputNeuronType"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNNeuronType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865736-celltooutputneurontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellToOutputNeuronType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865736-celltooutputneurontype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865741-cellgateinputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellGateInputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865741-cellgateinputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellGateInputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865741-cellgateinputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865744-celltooutputneuronparama": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellToOutputNeuronParamA"
+        },
+        {
+          "kind": "text",
+          "text": ": Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865744-celltooutputneuronparama",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellToOutputNeuronParamA",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865744-celltooutputneuronparama"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865747-inputgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865747-inputgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865747-inputgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865750-outputgaterecurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputGateRecurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865750-outputgaterecurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputGateRecurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2865750-outputgaterecurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2935551-celltooutputneuronparamc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellToOutputNeuronParamC"
+        },
+        {
+          "kind": "text",
+          "text": ": Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2935551-celltooutputneuronparamc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellToOutputNeuronParamC",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor/2935551-celltooutputneuronparamc"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNImageInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNImageInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer": {
+      "abstract": [
+        {
+          "text": "A layer for training recurrent neural networks on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate": {
+      "abstract": [
+        {
+          "text": "A class that holds data from a forward pass to be used in a backward pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection": {
+      "abstract": [
+        {
+          "text": "Directions that a sequence of inputs can be processed by a recurrent neural network layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSequenceDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSequenceDirection",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsequencedirection"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a simple recurrent block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSingleGateDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSingleGateDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+      ],
+      "title": "Recurrent Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868759",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865741-cellgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865683-cellgatememoryweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865679-cellgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865744-celltooutputneuronparama",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865694-celltooutputneuronparamb",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865736-celltooutputneurontype",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurontype",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865734-forgetgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865689-forgetgatememoryweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865735-forgetgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865684-inputgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865731-inputgatememoryweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865747-inputgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865712-memoryweightsarediagonal",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865701-outputgateinputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865688-outputgatememoryweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865750-outputgaterecurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2935551-celltooutputneuronparamc"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2868760",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor/2865681-createlstmdescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpslstmdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpslstmdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

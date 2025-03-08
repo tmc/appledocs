@@ -1,0 +1,1834 @@
+{
+  "abstract": [
+    {
+      "text": "Create an article with text components and component text styles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating Your First Article"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you learned how to download the article structure bundle. To create an article, you must add some JSON objects (called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "components",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") to that bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to add:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simple text components representing article content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Component text style defaults",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A drop cap",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Add-Text-Components-to-the-Article-Structure",
+          "level": 3,
+          "text": "Add Text Components to the Article Structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Components represent the content of your article, including the article’s title, introduction, byline, and body text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Components-Copy-This-Code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is long, but you don’t need to understand all of it yet. All you’ll do here is copy and paste it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "News_Design_Tutorial_1_Article_Structure",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder that you created in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial#Download-the-Article-Bundle-Examples",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Components-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your working ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "file",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", select this line: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"components\": [],",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the copied code into ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", replacing the line that you selected in the previous step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You have added fifteen components to your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see your content on the simulated device, without any added styles or layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The body content in the example is in HTML. For details about using HTML tags to format articles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Make sure to save your ",
+                  "type": "text"
+                },
+                {
+                  "code": "article.json",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file. Do not change the file name.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Components-Copy-This-Code",
+          "level": 4,
+          "text": "Components: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"heading1\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"title\",",
+            "      \"text\": \"ARTICLE TITLE\"",
+            "    },",
+            "    {",
+            "      \"role\": \"intro\",",
+            "      \"text\": \"Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque ipsum?\"",
+            "    },",
+            "    {",
+            "      \"role\": \"byline\",",
+            "      \"text\": \"By Urna Semper\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, dolor repellendus. <a href='http://www.apple.com'>Link text</a> quibusdam et aut.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, adipisci velit.</p>\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio ducimus qui blanditiis.</p><p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer.</p><p>Temporibus autem et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque rerum hic tenetur.</p><p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo esciunt enim ipsam voluptatem quia.</p><p>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis <a href='http://www.apple.com'>link text</a> repellat. Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque, totam rem aperiam, eaque ipsa quae ab illo inventore.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.</p>\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas.\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas est, omnis dolor repellendus.\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"<p>Consequatur aut doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusantium doloremque laudantium, totam rem, eaque ipsa quae ab illo inventore veritatis et quasi archit ecto beatae vitae.</p><p>Nemo enim ipsam volup tatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conse quuntur magni. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p><p>Consequatur aut perferendis doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi archit ecto beatae vitae dicta. Nemo enim ipsam volup tatem quia voluptas sit <a href='http://www.apple.com'>link text</a> aut odit aut fugit, sed quia conse quuntur perspiciatis doloribus magni dolores.</p><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam suscipit laboriosam.</p>\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio. Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.\"",
+            "    }",
+            "  ],"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-a-Default-Text-Style-to-the-Article",
+          "level": 3,
+          "text": "Apply a Default Text Style to the Article",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should always include a default text style to ensure a consistent appearance for the text components in your article. You can always override the default style, as needed, for one or more components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Text-Style-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the opening brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Text-Style-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see that all of your components are now using the ",
+              "type": "text"
+            },
+            {
+              "code": "default",
+              "type": "codeVoice"
+            },
+            {
+              "text": " text style. You can tell because the text in the preview is bold and link text is yellow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Default-Text-Style-Copy-This-Code",
+          "level": 4,
+          "text": "Default Text Style: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "    \"default\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"textColor\": \"#222222\",",
+            "      \"fontSize\": 16,",
+            "      \"lineHeight\": 22,",
+            "      \"linkStyle\": {",
+            "        \"textColor\": \"#D5B327\"",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Default-Text-Style-Result",
+          "level": 4,
+          "text": "Default Text Style: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    \"default\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"textColor\": \"#222222\",",
+            "      \"fontSize\": 16,",
+            "      \"lineHeight\": 22,",
+            "      \"linkStyle\": {",
+            "        \"textColor\": \"#D5B327\"",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-Default-Text-Styles-by-Component-Role",
+          "level": 3,
+          "text": "Apply Default Text Styles by Component Role",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Default ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-specific component text styles ensure a consistent text style across all components with a given ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", such as all ",
+              "type": "text"
+            },
+            {
+              "code": "heading",
+              "type": "codeVoice"
+            },
+            {
+              "text": " components or all ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " components. You can always override these default styles, as needed, for one or more components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Component-Text-Styles-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") for the content that you added in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Apply-a-Default-Text-Style-to-the-Article",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Component-Text-Styles-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code adds default text styles for ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and other component types. The properties in these ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-specific text styles override the same properties in the article’s default text style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see that your article’s components now use the default component text styles for their types. For example, article body text uses a serif font, and the first four components in your article have gray text instead of black.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Default-Component-Text-Styles-Copy-This-Code",
+          "level": 4,
+          "text": "Default Component Text Styles: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"default-body\": {",
+            "      \"fontName\": \"IowanOldStyle-Roman\",",
+            "      \"paragraphSpacingBefore\": 12,",
+            "      \"paragraphSpacingAfter\": 12",
+            "    },",
+            "    \"default-title\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"fontSize\": 42,",
+            "      \"lineHeight\": 44,",
+            "      \"textColor\": \"#53585F\"",
+            "    },",
+            "    \"default-intro\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"fontSize\": 18,",
+            "      \"lineHeight\": 22,",
+            "      \"textColor\": \"#A6AAA9\"",
+            "    },",
+            "    \"default-byline\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"fontSize\": 15,",
+            "      \"lineHeight\": 18,",
+            "      \"textColor\": \"#53585F\"",
+            "    },",
+            "    \"default-heading2\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"tracking\": 0.05,",
+            "      \"textColor\": \"#53585F\"",
+            "    },",
+            "    \"default-heading1\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"tracking\": 0.12,",
+            "      \"textColor\": \"#53585F\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Default-Component-Text-Styles-Result",
+          "level": 4,
+          "text": "Default Component Text Styles: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    \"default-body\": {",
+            "      \"fontName\": \"IowanOldStyle-Roman\",",
+            "      \"paragraphSpacingBefore\": 12,",
+            "      \"paragraphSpacingAfter\": 12",
+            "    },",
+            "    \"default-title\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"fontSize\": 42,",
+            "      \"lineHeight\": 44,",
+            "      \"textColor\": \"#53585F\"",
+            "    },",
+            "    \"default-intro\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"fontSize\": 18,",
+            "      \"lineHeight\": 22,",
+            "      \"textColor\": \"#A6AAA9\"",
+            "    },",
+            "    \"default-byline\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"fontSize\": 15,",
+            "      \"lineHeight\": 18,",
+            "      \"textColor\": \"#53585F\"",
+            "    },",
+            "    \"default-heading2\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"tracking\": 0.05,",
+            "      \"textColor\": \"#53585F\"",
+            "    },",
+            "    \"default-heading1\": {",
+            "      \"fontName\": \"DINAlternate-Bold\",",
+            "      \"tracking\": 0.12,",
+            "      \"textColor\": \"#53585F\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Style-That-Has-a-Drop-Cap",
+          "level": 3,
+          "text": "Define a Style That Has a Drop Cap",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A drop cap changes the size, position, and style of a text component’s first character, or first few characters. Before you can add a drop cap to a text component, you must define a style that has a drop cap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The drop cap text style was named ",
+                  "type": "text"
+                },
+                {
+                  "code": "dropCapStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this tutorial, but when you create your own articles, you can create your own component and style names.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#bodyFirstDropCap-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentTextStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and before the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#bodyFirstDropCap-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "bodyFirstDropCap-Copy-This-Code",
+          "level": 4,
+          "text": "bodyFirstDropCap: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"bodyFirstDropCap\": {",
+            "      \"dropCapStyle\": {",
+            "        \"fontName\": \"DINAlternate-Bold\",",
+            "        \"textColor\": \"#A6AAA9\",",
+            "        \"numberOfLines\": 2",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "bodyFirstDropCap-Result",
+          "level": 4,
+          "text": "bodyFirstDropCap: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    ...",
+            "    \"bodyFirstDropCap\": {",
+            "      \"dropCapStyle\": {",
+            "        \"fontName\": \"DINAlternate-Bold\",",
+            "        \"textColor\": \"#A6AAA9\",",
+            "        \"numberOfLines\": 2",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-the-Drop-Cap-Style-in-a-Body-Component",
+          "level": 3,
+          "text": "Use the Drop Cap Style in a Body Component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you have defined a style with a drop cap, you can use that style in one or more components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add this line inside your article’s first body component:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "\"textStyle\": \"bodyFirstDropCap\",",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Drop-Cap-Style-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see a drop cap in your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Drop-Cap-Style-Result",
+          "level": 4,
+          "text": "Drop Cap Style: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (…) indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"textStyle\": \"bodyFirstDropCap\",",
+            "      \"text\": \"<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, dolor repellendus. <a href='http://www.apple.com'>Link text</a> quibusdam et aut.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, adipisci velit.</p>\"",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Further-Exploration",
+          "level": 3,
+          "text": "Further Exploration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At any time, you can try changing property values in your ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and then use News Preview to see how these changes affect the look of your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, try changing the height of your article’s drop cap:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentTextStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bodyFirstDropCap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bodyFirstDropCap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "numberOfLines",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "numberOfLines",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", with a number of your choice between 2 and 10.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preview your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in News Preview.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The drop cap in your article now uses the new height that you chose. If you chose a number less than 2 or greater than 10, the error console informs you that you chose an illegal value. On some devices, the height of the drop cap may be adjusted automatically to help ensure a better visual experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider": {
+      "abstract": [
+        {
+          "text": "Create a horizontal, styled divider that extends to the right edge of the display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Divider",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-divider"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images": {
+      "abstract": [
+        {
+          "text": "Display three images as a sequential gallery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Gallery of Images",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-gallery-of-images"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images": {
+      "abstract": [
+        {
+          "text": "Display five images as mosaic tiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Mosaic of Images",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-mosaic-of-images"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast": {
+      "abstract": [
+        {
+          "text": "Add a link to a podcast that displays the podcast artwork and the podcast show or episode information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Podcast",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-podcast"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote": {
+      "abstract": [
+        {
+          "text": "Break an existing body component into two components, and then insert a pull quote between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Pull Quote",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-pull-quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet": {
+      "abstract": [
+        {
+          "text": "Include a tweet in an article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Tweet",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-tweet"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions": {
+      "abstract": [
+        {
+          "text": "Create a photo that extends to both edges of the display, with captions that appear in the article layout and in full-screen view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an Image and Captions",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/applying-apple-news-format-fonts": {
+      "abstract": [
+        {
+          "text": "Choose a font family for Apple News Format that’s supported in iOS, iPadOS, and macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/applying-apple-news-format-fonts",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying Apple News Format Fonts",
+      "type": "topic",
+      "url": "/documentation/applenews/applying-apple-news-format-fonts"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/components": {
+      "abstract": [
+        {
+          "text": "Understand the types of components that can make up an article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Components",
+      "type": "topic",
+      "url": "/documentation/applenews/components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Apply-a-Default-Text-Style-to-the-Article": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Apply-a-Default-Text-Style-to-the-Article",
+      "kind": "section",
+      "title": "Apply a Default Text Style to the Article",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Apply-a-Default-Text-Style-to-the-Article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Components-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Components-Copy-This-Code",
+      "kind": "section",
+      "title": "Components: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Components-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Component-Text-Styles-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Component-Text-Styles-Copy-This-Code",
+      "kind": "section",
+      "title": "Default Component Text Styles: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Default-Component-Text-Styles-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Component-Text-Styles-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Component-Text-Styles-Result",
+      "kind": "section",
+      "title": "Default Component Text Styles: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Default-Component-Text-Styles-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Text-Style-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Text-Style-Copy-This-Code",
+      "kind": "section",
+      "title": "Default Text Style: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Default-Text-Style-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Text-Style-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Default-Text-Style-Result",
+      "kind": "section",
+      "title": "Default Text Style: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Default-Text-Style-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Drop-Cap-Style-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#Drop-Cap-Style-Result",
+      "kind": "section",
+      "title": "Drop Cap Style: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#Drop-Cap-Style-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#bodyFirstDropCap-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#bodyFirstDropCap-Copy-This-Code",
+      "kind": "section",
+      "title": "bodyFirstDropCap: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#bodyFirstDropCap-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#bodyFirstDropCap-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article#bodyFirstDropCap-Result",
+      "kind": "section",
+      "title": "bodyFirstDropCap: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article#bodyFirstDropCap-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles": {
+      "abstract": [
+        {
+          "text": "Define and apply custom, default, and inline text styles, or use HTML tags or Markdown syntax to style your text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining and Applying Text Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/defining-and-applying-text-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components": {
+      "abstract": [
+        {
+          "text": "Adjust the positions of the text components in your article—for example, place the article body off-center.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning Text Components",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-text-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial": {
+      "abstract": [
+        {
+          "text": "Download the tutorial files, and learn about what you’ll create in the introductory tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up the Introductory Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/setting-up-the-introductory-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial#Download-the-Article-Bundle-Examples": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial#Download-the-Article-Bundle-Examples",
+      "kind": "section",
+      "title": "Download the Article Bundle Examples",
+      "type": "topic",
+      "url": "/documentation/applenews/setting-up-the-introductory-tutorial#Download-the-Article-Bundle-Examples"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use HTML formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using HTML with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-html-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for the Introductory Design Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-the-introductory-design-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the style for a text component, including spacing, alignment, and drop caps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DropCapStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the drop cap text style to use in the first paragraph in a text component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DropCapStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DropCapStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DropCapStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "DropCapStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/dropcapstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles",
+        "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+        "doc://com.apple.applenews/documentation/AppleNews/applying-apple-news-format-fonts",
+        "doc://com.apple.applenews/documentation/AppleNews/components",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/DropCapStyle"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Introductory-Design-Tutorial",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial"
+      ],
+      "title": "Introductory Design Tutorial"
+    }
+  ]
+}

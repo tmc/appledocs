@@ -1,0 +1,987 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a campaign to promote an app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v5-campaigns",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Create a Campaign"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create a Campaign"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/campaigns"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Campaign",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:Campaign",
+          "text": "Campaign"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that includes the details of the campaign.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Campaign",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CampaignResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:CampaignResponse",
+              "text": "CampaignResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-3",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Essential points for creating campaigns are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Search-for-iOS-apps",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to retrieve your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "adamId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to use in the request payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-App-Eligibility-Records",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to determine your app eligibility to run in campaigns.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dailyBudgetAmount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a required field to manage the daily budget of your campaigns. Use an optional ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "budgetAmount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to manage your lifetime budget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "countriesOrRegions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to assign App Store locations. To advertise in multiple markets, group countries and regions into a single campaign using ISO alpha-2 country code values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Campaign",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/SupplySource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for descriptions of attributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating a campaign, set up ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-example-Create-a-campaign",
+          "level": 3,
+          "text": "Payload example: Create a campaign",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/campaigns",
+                    "",
+                    "{",
+                    "    \"orgId\": 39879640,",
+                    "    \"name\": \"TripTrek example campaign\",",
+                    "    \"startTime\": \"2024-05-08T17:00:00.000\",",
+                    "    \"endTime\": \"2024-05-09T17:00:00.000\",",
+                    "    \"billingEvent\": \"TAPS\",",
+                    "    \"budgetAmount\": {",
+                    "      \"amount\": \"1500.00\",",
+                    "      \"currency\": \"USD\"",
+                    "    },",
+                    "    \"dailyBudgetAmount\": {",
+                    "      \"amount\": \"250.00\",",
+                    "      \"currency\": \"USD\"",
+                    "    },",
+                    "    \"adamId\": 1004806037,",
+                    "    \"countriesOrRegions\": [\"US\",\"CA\"],",
+                    "    \"status\": \"ENABLED\",",
+                    "    \"supplySources\": [\"APPSTORE_TODAY_TAB\"],",
+                    "    \"adChannelType\": \"DISPLAY\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": {",
+                    "        \"id\": 585885088,",
+                    "        \"orgId\": 39879640,",
+                    "        \"name\": \"TripTrek Campaign\",",
+                    "        \"budgetAmount\": {",
+                    "            \"amount\": \"1500\",",
+                    "            \"currency\": \"USD\"",
+                    "        },",
+                    "        \"dailyBudgetAmount\": {",
+                    "            \"amount\": \"250\",",
+                    "            \"currency\": \"USD\"",
+                    "        },",
+                    "        \"adamId\": 1004806037,",
+                    "        \"paymentModel\": PAYG,",
+                    "        \"locInvoiceDetails\": null,",
+                    "        \"budgetOrders\": [],",
+                    "        \"startTime\": \"2024-05-08T17:00:00.000\",",
+                    "        \"endTime\": \"2024-05-09T17:00:00.000\",",
+                    "        \"status\": \"ENABLED\",",
+                    "        \"servingStatus\": \"NOT_RUNNING\",",
+                    "        \"creationTime\": \"2024-05-04T20:15:04.382\",",
+                    "        \"servingStateReasons\": [",
+                    "            \"APP_NOT_PUBLISHED_YET\",",
+                    "            \"CAMPAIGN_START_DATE_IN_FUTURE\",",
+                    "            \"AD_GROUP_MISSING\"",
+                    "        ],",
+                    "        \"modificationTime\": \"2024-05-04T20:15:04.747\",",
+                    "        \"deleted\": false,",
+                    "        \"sapinLawResponse\": \"NOT_ANSWERED\",",
+                    "        \"countriesOrRegions\": [",
+                    "            \"CA\",",
+                    "            \"US\"",
+                    "        ],",
+                    "        \"countryOrRegionServingStateReasons\": {",
+                    "            \"CA\": [",
+                    "                \"APP_NOT_PUBLISHED_YET\"",
+                    "            ],",
+                    "            \"US\": [",
+                    "                \"APP_NOT_PUBLISHED_YET\"",
+                    "            ]",
+                    "        },",
+                    "        \"supplySources\": [",
+                    "            \"APPSTORE_TODAY_TAB\"",
+                    "        ],",
+                    "        \"adChannelType\": \"DISPLAY\",",
+                    "        \"billingEvent\": \"TAPS\",",
+                    "        \"displayStatus\": \"ON_HOLD\"",
+                    "    },",
+                    "    \"pagination\": null,",
+                    "    \"error\": null",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-groups": {
+      "abstract": [
+        {
+          "text": "Create and manage ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-groups",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad Groups",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/ad-groups"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-3": {
+      "abstract": [
+        {
+          "text": "Apple no longer supports this API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 3",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-3"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Apple Search Ads Campaign Management API 4.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 4",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-4"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Campaign": {
+      "abstract": [
+        {
+          "text": "The response to a request to create and fetch campaigns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Campaign"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CampaignResponse": {
+      "abstract": [
+        {
+          "text": "A container for the campaign response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CampaignResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CampaignResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CampaignResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CampaignResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/campaignresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Creates a campaign to promote an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Deletes a specific campaign by campaign identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/delete-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-App-Eligibility-Records": {
+      "abstract": [
+        {
+          "text": "Fetches app eligibility records by adam ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-App-Eligibility-Records",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find App Eligibility Records"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find App Eligibility Records",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-app-eligibility-records"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Campaigns": {
+      "abstract": [
+        {
+          "text": "Fetches campaigns with selector operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Campaigns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find Campaigns"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find Campaigns",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-campaigns"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Fetches a specific campaign by campaign identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Campaigns": {
+      "abstract": [
+        {
+          "text": "Fetches all of an organization’s assigned campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Campaigns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get all Campaigns"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get all Campaigns",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-campaigns"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Search-for-iOS-apps": {
+      "abstract": [
+        {
+          "text": "Searches for iOS apps to promote in a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Search-for-iOS-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Search for iOS apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for iOS apps",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/search-for-ios-apps"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/SupplySource": {
+      "abstract": [
+        {
+          "text": "The ad placements for a campaign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupplySource"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/SupplySource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupplySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupplySource",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/supplysource"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Updates a campaign with a campaign identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-a-campaign"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Campaign-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Campaigns",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Campaign",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Campaigns",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Campaign",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-a-Campaign"
+      ],
+      "title": "Campaign Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/create-a-campaign"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

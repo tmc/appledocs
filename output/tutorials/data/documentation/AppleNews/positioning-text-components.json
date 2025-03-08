@@ -1,0 +1,824 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust the positions of the text components in your article—for example, place the article body off-center.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Positioning Text Components"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you added some text components and component text styles to your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to control:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Where text components are horizontally aligned",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How wide the text components are",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The vertical spacing between the text components",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Define-Basic-ComponentLayout-Objects",
+          "level": 3,
+          "text": "Define Basic ComponentLayout Objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects determine the placement of components in your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components#Basic-ComponentLayout-Objects-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, select this line: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"componentLayouts\": {},",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the copied code into ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", replacing the line that you selected in the previous step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The names of these ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects were created for this tutorial; when you create your own articles, you can create your own ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object names. For the purposes of this tutorial, a “full” margin was considered to be a 24-point space above a or below a component, a “half” margin to be a 12-point space, and a “quarter” margin to be a 6-point space.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Basic-ComponentLayout-Objects-Copy-This-Code",
+          "level": 4,
+          "text": "Basic ComponentLayout Objects: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "  \"componentLayouts\": {",
+            "    \"noMarginLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14",
+            "    },",
+            "    \"heading1Layout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14,",
+            "      \"margin\": {",
+            "        \"top\": 24,",
+            "        \"bottom\": 3",
+            "      }",
+            "    },",
+            "    \"halfMarginBelowLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14,",
+            "      \"margin\": {",
+            "        \"bottom\": 12",
+            "      }",
+            "    },",
+            "    \"fullMarginBelowLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14,",
+            "      \"margin\": {",
+            "        \"bottom\": 24",
+            "      }",
+            "    },",
+            "    \"fullMarginAboveHalfBelowLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14,",
+            "      \"margin\": {",
+            "        \"top\": 24,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }",
+            "  },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-ComponentLayout-Objects-in-Text-Components",
+          "level": 3,
+          "text": "Use ComponentLayout Objects in Text Components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you have defined some ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, you can use them in one or more components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add references to ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects inside components as shown in the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components#Positioning-Text-Components-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In each object, use ",
+              "type": "text"
+            },
+            {
+              "code": "\"layout\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the property name and the name of the ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object as the property value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see changes in the positioning of your components. For example, your article now has a wide right margin when viewed on an iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Positioning-Text-Components-Result",
+          "level": 4,
+          "text": "Positioning Text Components: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"heading1\",",
+            "      \"layout\": \"heading1Layout\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"title\",",
+            "      \"layout\": \"halfMarginBelowLayout\",",
+            "      \"text\": \"ARTICLE TITLE\"",
+            "    },",
+            "    {",
+            "      \"role\": \"intro\",",
+            "      \"layout\": \"halfMarginBelowLayout\",",
+            "      \"text\": \"Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque ipsum?\"",
+            "    },",
+            "    {",
+            "      \"role\": \"byline\",",
+            "      \"layout\": \"fullMarginBelowLayout\",",
+            "      \"text\": \"By Urna Semper\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"layout\": \"noMarginLayout\",",
+            "      \"textStyle\": \"bodyFirstDropCap\",",
+            "      \"text\": \"<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, dolor repellendus. <a href='http://www.apple.com'>Link text</a> quibusdam et aut.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, adipisci velit.</p>\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "      \"text\": \"LOREM IPSUM DOLOR\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"layout\": \"noMarginLayout\",",
+            "      \"text\": \"<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio ducimus qui blanditiis.</p><p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer.</p><p>Temporibus autem et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque rerum hic tenetur.</p><p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo esciunt enim ipsam voluptatem quia.</p><p>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis <a href='http://www.apple.com'>link text</a> repellat. Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque, totam rem aperiam, eaque ipsa quae ab illo inventore.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.</p>\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"layout\": \"noMarginLayout\",",
+            "      \"text\": \"Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas.\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"layout\": \"noMarginLayout\",",
+            "      \"text\": \"Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas est, omnis dolor repellendus.\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"layout\": \"noMarginLayout\",",
+            "      \"text\": \"<p>Consequatur aut doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusantium doloremque laudantium, totam rem, eaque ipsa quae ab illo inventore veritatis et quasi archit ecto beatae vitae.</p><p>Nemo enim ipsam volup tatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conse quuntur magni. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p><p>Consequatur aut perferendis doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi archit ecto beatae vitae dicta. Nemo enim ipsam volup tatem quia voluptas sit <a href='http://www.apple.com'>link text</a> aut odit aut fugit, sed quia conse quuntur perspiciatis doloribus magni dolores.</p><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam suscipit laboriosam.</p>\"",
+            "    },",
+            "    {",
+            "      \"role\": \"heading2\",",
+            "      \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "      \"text\": \"HEADING\"",
+            "    },",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"layout\": \"noMarginLayout\",",
+            "      \"text\": \"Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio. Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.\"",
+            "    },",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider": {
+      "abstract": [
+        {
+          "text": "Create a horizontal, styled divider that extends to the right edge of the display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Divider",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-divider"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images": {
+      "abstract": [
+        {
+          "text": "Display three images as a sequential gallery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Gallery of Images",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-gallery-of-images"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images": {
+      "abstract": [
+        {
+          "text": "Display five images as mosaic tiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Mosaic of Images",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-mosaic-of-images"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast": {
+      "abstract": [
+        {
+          "text": "Add a link to a podcast that displays the podcast artwork and the podcast show or episode information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Podcast",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-podcast"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote": {
+      "abstract": [
+        {
+          "text": "Break an existing body component into two components, and then insert a pull quote between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Pull Quote",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-pull-quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet": {
+      "abstract": [
+        {
+          "text": "Include a tweet in an article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Tweet",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-tweet"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions": {
+      "abstract": [
+        {
+          "text": "Create a photo that extends to both edges of the display, with captions that appear in the article layout and in full-screen view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an Image and Captions",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article": {
+      "abstract": [
+        {
+          "text": "Create an article with text components and component text styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Your First Article",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article": {
+      "abstract": [
+        {
+          "text": "Define a layout that supports the look you want for your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Planning the Layout for Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/planning-the-layout-for-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components#Basic-ComponentLayout-Objects-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components#Basic-ComponentLayout-Objects-Copy-This-Code",
+      "kind": "section",
+      "title": "Basic ComponentLayout Objects: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-text-components#Basic-ComponentLayout-Objects-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components#Positioning-Text-Components-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components#Positioning-Text-Components-Result",
+      "kind": "section",
+      "title": "Positioning Text Components: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-text-components#Positioning-Text-Components-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial": {
+      "abstract": [
+        {
+          "text": "Download the tutorial files, and learn about what you’ll create in the introductory tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up the Introductory Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/setting-up-the-introductory-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for the Introductory Design Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-the-introductory-design-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the positioning for a specific component within the article’s column system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlayout"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+        "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Introductory-Design-Tutorial",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial"
+      ],
+      "title": "Introductory Design Tutorial"
+    }
+  ]
+}

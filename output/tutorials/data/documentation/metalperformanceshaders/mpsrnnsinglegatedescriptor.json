@@ -1,0 +1,901 @@
+{
+  "abstract": [
+    {
+      "text": "A description of a simple recurrent block or layer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2865680,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSRNNSingleGateDescriptor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSRNNSingleGateDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSRNNSingleGateDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSRNNSingleGateDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSRNNDescriptor",
+              "text": "MPSRNNDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The recurrent neural network (RNN) layer initialized with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " transforms the input data (image or matrix) and previous output with a set of filters. Each produces one feature map in the new output data. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may provide the RNN unit with a single input or a sequence of inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2888084",
+          "level": 3,
+          "text": "Description of Operation",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x_j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the input data (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " index containing quadruplet: batch index, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x,y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and feature index (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x = y = 0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for matrices)).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h0_j",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the recurrent input (previous output) data from previous time step (at time index ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "t-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of sequence).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "h1_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the output data produced at this time step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "W_ij, U_ij",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be the weights for input and recurrent input data, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "b_i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be a bias term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Let ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "gi(x)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " be a neuron activation function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The new output image ",
+              "type": "text"
+            },
+            {
+              "code": "h1_i",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data is computed as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "h1_i = gi( W_ij * x_j + U_ij * h0_j  + b_i )"
+          ],
+          "metadata": {
+            "anchor": "2888085",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stands for convolution (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or matrix-vector/matrix multiplication (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Summation is over index ",
+              "type": "text"
+            },
+            {
+              "code": "j",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (except for the batch index), but there's no summation over repeated index ",
+              "type": "text"
+            },
+            {
+              "code": "i",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (the output index).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that for validity, all intermediate images must be of same size, and the ",
+              "type": "text"
+            },
+            {
+              "code": "U",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matrix must be square (that is, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Also, the bias terms are scalars with regard to spatial dimensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource": {
+      "abstract": [
+        {
+          "text": "The protocol that provides convolution filter weights and bias terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionDataSource",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a gated recurrent unit block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSGRUDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSGRUDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a long short-term memory block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSLSTMDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSLSTMDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor/2865702-outputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor/2865707-inputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNImageInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNImageInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer": {
+      "abstract": [
+        {
+          "text": "A layer for training recurrent neural networks on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate": {
+      "abstract": [
+        {
+          "text": "A class that holds data from a forward pass to be used in a backward pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection": {
+      "abstract": [
+        {
+          "text": "Directions that a sequence of inputs can be processed by a recurrent neural network layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSequenceDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSequenceDirection",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsequencedirection"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a simple recurrent block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSingleGateDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSingleGateDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor#2888085": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor#2888085",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor#2888085"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865686-recurrentweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "recurrentWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865686-recurrentweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recurrentWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865686-recurrentweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865703-creaternnsinglegatedescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createRNNSingleGateDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withInputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865703-creaternnsinglegatedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createRNNSingleGateDescriptor(withInputFeatureChannels:outputFeatureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865703-creaternnsinglegatedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865723-inputweights": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MPSCNNConvolutionDataSource)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865723-inputweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865723-inputweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+      ],
+      "title": "Recurrent Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868903",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865723-inputweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865686-recurrentweights",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2868904",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor/2865703-creaternnsinglegatedescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

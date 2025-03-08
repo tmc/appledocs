@@ -1,0 +1,1510 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches reports for campaigns.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Campaign-Level-Reports"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v5-reports-campaigns",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Campaign-Level Reports"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Campaign-Level Reports"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/reports/campaigns"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:ReportingRequest",
+          "text": "ReportingRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The report request body consisting of metrics and dimensions to use as filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponseBody",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ReportingResponseBody",
+              "text": "ReportingResponseBody"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-3",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to fetch reports for your campaigns. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingCampaign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CampaignAppDetail",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operators and field values to filter results with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "code": "groupBy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter description in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for supported values per targeting dimension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "orderBy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies fields to sort the records list by ",
+              "type": "text"
+            },
+            {
+              "code": "ASCENDING",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "DESCENDING",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". All ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingCampaign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fields are available to the ",
+              "type": "text"
+            },
+            {
+              "code": "orderBy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " except ",
+              "type": "text"
+            },
+            {
+              "code": "servingStateReasons",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "app",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "app:{appName}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "app:{adamId}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-example-1-Get-campaign-level-reports",
+          "level": 3,
+          "text": "Payload example 1: Get campaign-level reports",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/reports/campaigns",
+                    "",
+                    "{",
+                    "  \"startTime\": \"2024-04-08\",",
+                    "  \"endTime\": \"2024-04-09\",",
+                    "  \"selector\": {",
+                    "    \"orderBy\": [",
+                    "      {",
+                    "        \"field\": \"countryOrRegion\",",
+                    "        \"sortOrder\": \"ASCENDING\"",
+                    "      }",
+                    "    ],",
+                    "    \"conditions\": [",
+                    "      {",
+                    "        \"field\": \"countriesOrRegions\",",
+                    "        \"operator\": \"CONTAINS_ANY\",",
+                    "        \"values\": [",
+                    "          \"US\",",
+                    "          \"GB\"",
+                    "        ]",
+                    "      },",
+                    "      {",
+                    "        \"field\": \"countryOrRegion\",",
+                    "        \"operator\": \"IN\",",
+                    "        \"values\": [",
+                    "          \"US\"",
+                    "        ]",
+                    "      }",
+                    "    ],",
+                    "    \"pagination\": {",
+                    "      \"offset\": 0,",
+                    "      \"limit\": 1000",
+                    "    }",
+                    "  },",
+                    "  \"groupBy\": [",
+                    "    \"countryOrRegion\"",
+                    "  ],",
+                    "  \"timeZone\": \"UTC\",",
+                    "  \"returnRecordsWithNoMetrics\": true,",
+                    "  \"returnRowTotals\": true,",
+                    "  \"returnGrandTotals\": true",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"row\": [",
+                    "      {",
+                    "        \"other\": false,",
+                    "        \"granularity\": [",
+                    "          {",
+                    "            \"impressions\": 17        ",
+                    "            \"taps\": 6,",
+                    "            \"ttr\": 0.2727,",
+                    "            \"avgCPT\": {",
+                    "              \"amount\": \"0.1583\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"avgCPM\": {",
+                    "              \"amount\": \"2500\",",
+                    "              \"currency\": \"USD\"",
+                    "            },            ",
+                    "            \"localSpend\": {",
+                    "              \"amount\": \"0.95\",",
+                    "              \"currency\": \"USD\"",
+                    "            },         ",
+                    "            \"totalInstalls\": 10,",
+                    "            \"totalNewDownloads\": 3,",
+                    "            \"totalRedownloads\": 7,",
+                    "            \"viewInstalls\": 18,",
+                    "            \"tapInstalls\": 5,",
+                    "            \"tapNewDownloads\": 2,",
+                    "            \"tapRedownloads\": 3,",
+                    "            \"viewNewDownloads\": 0,",
+                    "            \"viewReDownloads\": 5,",
+                    "            \"totalAvgCPI\": {",
+                    "              \"amount\": \"1.57\",",
+                    "              \"currency\": \"USD\"",
+                    "           },",
+                    "            \"totalInstallRate\": 0.962,",
+                    "            \"tapInstallCPI\": {",
+                    "              \"amount\": \"0.19\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            “tapInstallRate”: 0.8333,",
+                    "            \"date\": \"2024-04-08\"",
+                    "          },",
+                    "          {",
+                    "            \"impressions\": 15,",
+                    "            \"taps\": 7,",
+                    "            \"ttr\": 0.4667,",
+                    "            \"avgCPT\": {",
+                    "              \"amount\": \"0.1829\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"avgCPM\": {",
+                    "              \"amount\": \"2500\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"localSpend\": {",
+                    "              \"amount\": \"1.28\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"totalInstalls\": 6,",
+                    "            \"totalNewDownloads\": 3,",
+                    "            \"totalRedownloads\": 7,",
+                    "            \"viewInstalls\": 9,",
+                    "            \"tapInstalls\": 5,",
+                    "            \"tapNewDownloads\": 2,",
+                    "            \"tapRedownloads\": 3,",
+                    "            \"viewNewDownloads\": 0,",
+                    "            \"viewReDownloads\": 5,",
+                    "            \"totalAvgCPI\": {",
+                    "              \"amount\": \"1.57\",",
+                    "              \"currency\": \"USD\"",
+                    "           },",
+                    "            “totalInstallRate”: 0.962,            ",
+                    "            \"tapInstallCPI\": {",
+                    "              \"amount\": \"0.2133\",",
+                    "              \"currency\": \"USD\"",
+                    "            },                     ",
+                    "            \"tapInstallRate\": 0.8571,",
+                    "            \"date\": \"2024-04-08\"",
+                    "          }",
+                    "        ],",
+                    "        \"metadata\": {",
+                    "          \"adChannelType\": \"SEARCH\",",
+                    "          \"billingEvent\": \"TAPS\",",
+                    "          \"supplySources\": [",
+                    "            \"APPSTORE_SEARCH_RESULTS\"",
+                    "          ],",
+                    "          \"campaignId\": 542370539,",
+                    "          \"campaignName\": \"campaign name example\",",
+                    "          \"deleted\": false,",
+                    "          \"campaignStatus\": \"ENABLED\",",
+                    "          \"app\": {",
+                    "            \"appName\": \"Trip Trek example app name\",",
+                    "            \"adamId\": 427916203",
+                    "          },",
+                    "          \"servingStatus\": \"RUNNING\",",
+                    "          \"servingStateReasons\": null,",
+                    "          \"countriesOrRegions\": [",
+                    "            \"US\"",
+                    "          ],",
+                    "          \"modificationTime\": \"2024-04-08T15:51:14.500\",",
+                    "          \"totalBudget\": {",
+                    "            \"amount\": \"10000\",",
+                    "            \"currency\": \"USD\"",
+                    "          },",
+                    "          \"dailyBudgetAmount\": {",
+                    "            \"amount\": \"500\",",
+                    "            \"currency\": \"USD\"",
+                    "          },",
+                    "          \"displayStatus\": \"RUNNING\",",
+                    "          \"orgId\": 40669820,",
+                    "          \"countryOrRegionServingStateReasons\": {},",
+                    "          \"countryOrRegion\": \"US\",",
+                    "          \"deviceClass\": \"iPhone\"",
+                    "        }",
+                    "      }",
+                    "    ]",
+                    "  }"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Payload-example-2-Get-campaign-level-reports",
+          "level": 3,
+          "text": "Payload example 2: Get campaign-level reports",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/reports/campaigns",
+                    "",
+                    "{",
+                    "  \"startTime\": \"2024-04-08\",",
+                    "  \"endTime\": \"2024-04-09\",",
+                    "  \"selector\": {",
+                    "    \"orderBy\": [",
+                    "      {",
+                    "        \"field\": \"billingEvent\",",
+                    "        \"sortOrder\": \"DESCENDING\"",
+                    "      }",
+                    "    ],",
+                    "    \"conditions\": [",
+                    "      {",
+                    "        \"field\": \"billingEvent\",",
+                    "        \"operator\": \"IN\",",
+                    "        \"values\": [",
+                    "          \"IMPRESSIONS\",",
+                    "          \"TAPS\"",
+                    "        ]",
+                    "      }",
+                    "    ],",
+                    "    \"pagination\": {",
+                    "      \"offset\": 0,",
+                    "      \"limit\": 34",
+                    "    }",
+                    "  },",
+                    "  \"timeZone\": \"UTC\",",
+                    "  \"returnRecordsWithNoMetrics\": false,",
+                    "  \"returnRowTotals\": true,",
+                    "  \"returnGrandTotals\": true",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "      \"row\": [",
+                    "        {",
+                    "          \"other\": false,",
+                    "          \"total\": {",
+                    "            \"impressions\": 36,",
+                    "            \"taps\": 14,",
+                    "            \"ttr\": 4,",
+                    "            \"avgCPT\": {",
+                    "              \"amount\": \"0.625\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"avgCPM\": {",
+                    "              \"amount\": \"250\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"localSpend\": {",
+                    "              \"amount\": \"900\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "             \"totalInstalls\": 10,",
+                    "             \"totalNewDownloads\": 3,",
+                    "             \"totalRedownloads\": 7,",
+                    "             \"viewInstalls\": 18,",
+                    "             \"tapInstalls\": 5,",
+                    "            \"tapNewDownloads\": 10,",
+                    "            \"tapNewDownloads\": 10,",
+                    "            \"tapRedownloads\": 10,",
+                    "            \"viewNewDownloads\": 10,",
+                    "            \"viewReDownloads\": 10,",
+                    "            \"totalAvgCPI\": {",
+                    "              \"amount\": \"1.57\",",
+                    "              \"currency\": \"USD\"",
+                    "           },",
+                    "            \"totalInstallRate\": 0.962,",
+                    "            \"tapInstallCPI\": {",
+                    "              \"amount\": \"0.8333\",",
+                    "              \"currency\": \"USD\"",
+                    "            },       ",
+                    "           \"tapInstallRate\": 0.75",
+                    "          },",
+                    "          \"metadata\": {",
+                    "            \"campaignId\": 542370539,",
+                    "            \"campaignName\": \"campaign name example\",",
+                    "            \"deleted\": false,",
+                    "            \"campaignStatus\": \"ENABLED\",",
+                    "            \"app\": {",
+                    "              \"appName\": \"Trip Trek example app\",",
+                    "              \"adamId\": 427916203",
+                    "            },",
+                    "            \"servingStatus\": \"RUNNING\",",
+                    "            \"servingStateReasons\": null,",
+                    "            \"countriesOrRegions\": [",
+                    "              \"AU\",",
+                    "              \"CA\",",
+                    "              \"US\"",
+                    "            ],",
+                    "            \"modificationTime\": \"2024-04-08T09:55:36.265\",",
+                    "            \"totalBudget\": {",
+                    "              \"amount\": \"1000\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"dailyBudget\": 100,",
+                    "            \"displayStatus\": \"RUNNING\",",
+                    "            \"supplySources\": [",
+                    "              \"APPSTORE_SEARCH_TAB\"",
+                    "            ],",
+                    "            \"adChannelType\": \"DISPLAY\",",
+                    "            \"orgId\": 40669820,",
+                    "            \"countryOrRegionServingStateReasons\": {},",
+                    "            \"billingEvent\": \"IMPRESSIONS\"",
+                    "          }",
+                    "          }",
+                    "        ],",
+                    "        \"grandTotals\": {",
+                    "          \"other\": false,",
+                    "          \"total\": {",
+                    "            \"impressions\": 74,",
+                    "            \"taps\": 29,",
+                    "            \"ttr\": 4,",
+                    "            \"avgCPT\": {",
+                    "              \"amount\": \"0.625\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"avgCPM\": {",
+                    "              \"amount\": \"250\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "            \"localSpend\": {",
+                    "              \"amount\": \"300\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "             \"totalInstalls\": 10,",
+                    "             \"totalNewDownloads\": 3,",
+                    "             \"totalRedownloads\": 7,",
+                    "             \"viewInstalls\": 18,",
+                    "             \"tapInstalls\": 5,",
+                    "             \"tapNewDownloads\": 3,",
+                    "             \"tapNewDownloads\": 4,",
+                    "             \"tapRedownloads\": 8,",
+                    "             \"viewNewDownloads\": 12,",
+                    "             \"viewReDownloads\": 10,",
+                    "             \"totalAvgCPI\": {",
+                    "              \"amount\": \"1.57\",",
+                    "              \"currency\": \"USD\"",
+                    "           },",
+                    "             \"totalInstallRate\": 0.843,",
+                    "             \"tapInstallCPI\": {",
+                    "              \"amount\": \"0.4222\",",
+                    "              \"currency\": \"USD\"",
+                    "            },       ",
+                    "           \"tapInstallRate\": 0.75",
+                    "          },",
+                    "          }",
+                    "        }",
+                    "    }"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Payload-example-3-Get-campaign-level-reports-with-granularity",
+          "level": 3,
+          "text": "Payload example 3: Get campaign-level reports with granularity",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/reports/campaigns",
+                    "",
+                    "{  ",
+                    "  \"startTime\": \"2024-04-08\",",
+                    "  \"endTime\": \"2024-04-18\",",
+                    "  \"selector\": {",
+                    "    \"orderBy\": [",
+                    "      {",
+                    "        \"field\": \"countryOrRegion\",",
+                    "        \"sortOrder\": \"ASCENDING\"",
+                    "      }",
+                    "    ],",
+                    "    \"conditions\": [",
+                    "      {",
+                    "        \"field\": \"countriesOrRegions\",",
+                    "        \"operator\": \"CONTAINS_ANY\",",
+                    "        \"values\": [",
+                    "          \"US\",",
+                    "          \"GB\"",
+                    "        ]",
+                    "      },",
+                    "      {",
+                    "        \"field\": \"countryOrRegion\",",
+                    "        \"operator\": \"IN\",",
+                    "        \"values\": [",
+                    "          \"US\"",
+                    "        ]",
+                    "      }",
+                    "    ],",
+                    "    \"pagination\": {",
+                    "      \"offset\": 0,",
+                    "      \"limit\": 1000",
+                    "    }",
+                    "  },",
+                    "  \"groupBy\": [",
+                    "    \"countryOrRegion\"",
+                    "  ],",
+                    "  \"timeZone\": \"UTC\",",
+                    "  \"returnRecordsWithNoMetrics\": true,",
+                    "  \"returnRowTotals\": false,",
+                    "  \"granularity\": \"DAILY\",",
+                    "  \"returnGrandTotals\": false",
+                    "}",
+                    ""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"row\": [",
+                    "      {",
+                    "        \"other\": false,",
+                    "        \"granularity\": [",
+                    "          {",
+                    "            \"date\": \"2024-04-08\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-09\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-10\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-11\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-12\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-13\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-14\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-15\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-16\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2021-04-17\"",
+                    "          },",
+                    "          {",
+                    "            \"date\": \"2024-04-18\"",
+                    "          }",
+                    "        ],",
+                    "        \"total\": {",
+                    "           \"impressions\": 36,",
+                    "           \"taps\": 14,",
+                    "           \"ttr\": 4,",
+                    "           \"avgCPT\": {",
+                    "             \"amount\": \"0.625\",",
+                    "             \"currency\": \"USD\"",
+                    "            },",
+                    "            \"avgCPM\": {",
+                    "             \"amount\": \"250\",",
+                    "             \"currency\": \"USD”",
+                    "            },",
+                    "            \"localSpend\": {",
+                    "              \"amount\": \"300\",",
+                    "              \"currency\": \"USD\"",
+                    "            },",
+                    "             \"totalInstalls\": 10,",
+                    "             \"totalNewDownloads\": 3,",
+                    "             \"totalRedownloads\": 7,",
+                    "             \"viewInstalls\": 18,",
+                    "             \"tapInstalls\": 5,",
+                    "             \"tapNewDownloads\": 10,",
+                    "             \"tapNewDownloads\": 10,",
+                    "             \"tapRedownloads\": 10,",
+                    "             \"viewNewDownloads\": 10,",
+                    "             \"viewReDownloads\": 10,",
+                    "             \"totalAvgCPI\": {",
+                    "              \"amount\": \"1.57\",",
+                    "              \"currency\": \"USD\"",
+                    "           },",
+                    "            \"totalInstallRate\": 0.962,",
+                    "            \"tapInstallCPI\": {",
+                    "              \"amount\": \"0.8333\",",
+                    "              \"currency\": \"USD\"",
+                    "            },       ",
+                    "           \"tapInstallRate\": 0.75",
+                    "          },",
+                    "        \"metadata\": {",
+                    "          \"billingEvent\": \"TAPS\",",
+                    "          \"supplySources\": [",
+                    "            \"APPSTORE_SEARCH_RESULTS\"",
+                    "          ],",
+                    "          \"campaignId\": 542370539,",
+                    "          \"campaignName\": \"Get campaign report name example\",",
+                    "          \"deleted\": false,",
+                    "          \"campaignStatus\": \"ENABLED\",",
+                    "          \"app\": {",
+                    "            \"appName\": \"Trip Trek example app\",",
+                    "            \"adamId\": 427916203",
+                    "          },",
+                    "          \"servingStatus\": \"RUNNING\",",
+                    "          \"servingStateReasons\": null,",
+                    "          \"countriesOrRegions\": [",
+                    "            \"US\"",
+                    "          ],",
+                    "          \"modificationTime\": \"2024-04-08T08:46:08.848\",",
+                    "          \"totalBudget\": {",
+                    "            \"amount\": \"1000\",",
+                    "            \"currency\": \"USD\"",
+                    "          },",
+                    "          \"dailyBudgetAmount\": {",
+                    "            \"amount\": \"200\",",
+                    "            \"currency\": \"USD\"",
+                    "          },",
+                    "          \"displayStatus\": \"RUNNING\",",
+                    "          \"orgId\": 541231618,",
+                    "          \"countryOrRegionServingStateReasons\": {},",
+                    "          \"countryOrRegion\": \"US\"",
+                    "        }",
+                    "      }",
+                    "    ]",
+                    "  }"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-3": {
+      "abstract": [
+        {
+          "text": "Apple no longer supports this API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 3",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-3"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Apple Search Ads Campaign Management API 4.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 4",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-4"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CampaignAppDetail": {
+      "abstract": [
+        {
+          "text": "The app data to fetch from campaign-level reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CampaignAppDetail"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CampaignAppDetail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CampaignAppDetail"
+        }
+      ],
+      "role": "symbol",
+      "title": "CampaignAppDetail",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/campaignappdetail"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition": {
+      "abstract": [
+        {
+          "text": "The list of condition objects that allow users to filter a list of records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "role": "symbol",
+      "title": "Condition",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/condition"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Group-Level-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches reports for ad groups within a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Group-Level-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Ad Group-Level Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Ad Group-Level Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-ad-group-level-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Level-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches ad performance data within a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Level-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Ad-Level Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Ad-Level Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-ad-level-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Campaign-Level-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches reports for campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Campaign-Level-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Campaign-Level Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Campaign-Level Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-campaign-level-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Keyword-Level-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches reports for targeting keywords within a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Keyword-Level-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Keyword-Level Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Keyword-Level Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-keyword-level-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Keyword-Level-within-Ad-Group-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches reports for targeting keywords within an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Keyword-Level-within-Ad-Group-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Keyword-Level within Ad Group Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Keyword-Level within Ad Group Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-keyword-level-within-ad-group-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Search-Term-Level-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches reports for search terms within a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Search-Term-Level-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Search Term-Level Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Search Term-Level Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-search-term-level-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Search-Term-Level-within-Ad-Group-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches reports for search terms within an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Search-Term-Level-within-Ad-Group-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Search Term-Level within Ad Group Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Search Term-Level within Ad Group Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-search-term-level-within-ad-group-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingCampaign": {
+      "abstract": [
+        {
+          "text": "The response to a request to fetch campaign-level reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReportingCampaign"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingCampaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReportingCampaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReportingCampaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingcampaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest": {
+      "abstract": [
+        {
+          "text": "The report request body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReportingRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReportingRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReportingRequest",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingrequest"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponse": {
+      "abstract": [
+        {
+          "text": "The container object of report metrics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReportingResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReportingResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReportingResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponseBody": {
+      "abstract": [
+        {
+          "text": "The container object for the report response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReportingResponseBody"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ReportingResponseBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReportingResponseBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReportingResponseBody",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/reportingresponsebody"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector": {
+      "abstract": [
+        {
+          "text": "The selector objects available to filter returned data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Selector"
+        }
+      ],
+      "role": "symbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/selector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reports-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Group-Level-Reports",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Keyword-Level-Reports",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Keyword-Level-within-Ad-Group-Reports",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Search-Term-Level-Reports",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Search-Term-Level-within-Ad-Group-Reports",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Level-Reports"
+      ],
+      "title": "Reports Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/get-campaign-level-reports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

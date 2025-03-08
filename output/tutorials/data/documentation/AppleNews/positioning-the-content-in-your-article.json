@@ -1,0 +1,1306 @@
+{
+  "abstract": [
+    {
+      "text": "Align article components with columns in your layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Positioning the Content in Your Article"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You set the number of columns you want in your design using the ",
+              "type": "text"
+            },
+            {
+              "code": "layout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of Article Document. To determine the position for a component, like a heading, you align the left edge of the component with a column in your layout. (The component automatically lines up with the left edge of the column.) See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layout columns are numbered from left to right starting with 0. You use this column system to figure out the positioning for all the components in your article and then, in your ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify the position settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4087463",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-Positions-for-Components",
+          "level": 3,
+          "text": "Specify Positions for Components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the starting column and how many columns you want a component to span. For example, in the previous figure, a pull quote component is positioned at column 0 and spans three columns. The figure also shows a caption component positioned at column 7 that spans three columns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify the positioning for components, you create a component layout object at one of two levels. If you create a component layout object in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", multiple components can refer to it. Two components that use the same component layout object start in the same column, span the same number of columns, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a component layout object as a property for a specific component, only that component can use it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows a component layout object called ",
+              "type": "text"
+            },
+            {
+              "code": "heading1Layout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This  component layout object has been created in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so other components in the article can use it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"componentLayouts\": {",
+            "   \"heading1Layout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 6,",
+            "      \"margin\": {",
+            "        \"top\": 24,",
+            "        \"bottom\": 3",
+            "      }",
+            "   }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For best results, the sum of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "columnStart",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "columnSpan",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value shouldn’t exceed the number of columns available for the component. Otherwise, your article may not render as expected.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fine-Tune-the-Position-of-Components",
+          "level": 3,
+          "text": "Fine-Tune the Position of Components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "margin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify the top and bottom margins (in points) for a component and to create space above and below the component.  Specify a single number to use for both measurements, or — to specify different settings for the top and bottom margins — use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to using ",
+              "type": "text"
+            },
+            {
+              "code": "margin",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can also use the ",
+              "type": "text"
+            },
+            {
+              "code": "padding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to define the space inside a component. With the ",
+              "type": "text"
+            },
+            {
+              "code": "padding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, you can set spacing for both sides of the component, as well as for the top and bottom. The ",
+              "type": "text"
+            },
+            {
+              "code": "padding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is different from margins in that it applies to the spacing ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "inside",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the component; margins are applied to the spacing of the component within the article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object located within the component object lets you associate the placement of one component with another component so you can align components vertically in your layout. The position of the target component determines the position of the component that has the anchor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Horizontally align the contents of a component within the component. (This property applies only to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " components.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To position text ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "within",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " a component, such as for centered text or for a drop cap, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object for the individual component.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Align-and-Position-Content",
+          "level": 3,
+          "text": "Align and Position Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your content span the entire device screen, use the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code example, ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, which causes Apple News to ignore padding on both sides of the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"title\",",
+            "      \"text\": \"Article Title\"",
+            "    },",
+            "    {",
+            "      \"role\": \"image\",",
+            "      \"URL\": \"bundle://summer.jpg\",",
+            "      \"caption\": \"Thanks to the record drought, mountain lions have begun to descend from the peaks.\",",
+            "      \"layout\": {",
+            "        \"ignoreViewportPadding\": true",
+            "      }",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make content extend past the columns of your article layout and into the margin that you added, but not into the extra padding the Apple News app adds, use the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This property allows a component to be full width on most screens, while preventing it from growing too wide on very wide screens like a Mac computer. Use ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only if you haven’t specified a value for ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code example, the ",
+              "type": "text"
+            },
+            {
+              "code": "image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object ignores the left and right margins specified in the document layout and spans the full width and the margin of the document. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"title\",",
+            "      \"text\": \"Article Title\"",
+            "    },",
+            "    {",
+            "      \"role\": \"image\",",
+            "      \"URL\": \"bundle://summer.jpg\",",
+            "      \"caption\": \"Thanks to the record drought, mountain lions have begun to descend from the peaks.\",",
+            "      \"layout\": {",
+            "        \"ignoreDocumentMargin\": true",
+            "      }",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "What-Changed-in-iOS-13-iPadOS-13-and-macOS-1015",
+          "level": 4,
+          "text": "What Changed in iOS 13, iPadOS 13, and macOS 10.15",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to iOS 13, iPadOS 13, and macOS 10.15, the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object caused a component to span the entire screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 13, iPadOS 13, and macOS 10.15, the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object now allows a component to span the entire screen until the screen becomes wider than the document ",
+              "type": "text"
+            },
+            {
+              "code": "margin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the document ",
+              "type": "text"
+            },
+            {
+              "code": "width",
+              "type": "codeVoice"
+            },
+            {
+              "text": " combined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a component span the entire screen, regardless of the screen width, use the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you previously used the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, you must update your ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to use the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows an ",
+              "type": "text"
+            },
+            {
+              "code": "image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4099659",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the image object span only the document width plus margin, set ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreViewportPadding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article": {
+      "abstract": [
+        {
+          "text": "Define a layout that supports the look you want for your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Planning the Layout for Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/planning-the-layout-for-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component": {
+      "abstract": [
+        {
+          "text": "Define the layout of a text component to wrap around another component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Wrapping Text Around a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/wrapping-text-around-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the margin above and below advertising components.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvertisingLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvertisingLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvertisingLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/advertisinglayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor": {
+      "abstract": [
+        {
+          "text": "The object for anchoring one component to another component in your article’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/anchor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object containing component layout objects that components in the article can refer to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentLayouts"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentLayouts"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.componentLayouts",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/componentlayouts-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the margin above and below advertising components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutoPlacementLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutoPlacementLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutoPlacementLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/autoplacementlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the positioning for a specific component within the article’s column system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the style for a text component, including spacing, alignment, and drop caps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider": {
+      "abstract": [
+        {
+          "text": "The component for defining a horizontal line to visually divide parts of your article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "role": "symbol",
+      "title": "Divider",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/divider"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Image": {
+      "abstract": [
+        {
+          "text": "The component for displaying JPEG, WebP, PNG, or GIF images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/image"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout": {
+      "abstract": [
+        {
+          "text": "The object for defining columns, gutters, and margins for your article’s designed width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/layout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo": {
+      "abstract": [
+        {
+          "text": "The component for including a logo image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Logo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Logo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Logo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/logo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin": {
+      "abstract": [
+        {
+          "text": "The object for defining the space above and below a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Margin"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Margin"
+        }
+      ],
+      "role": "symbol",
+      "title": "Margin",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/margin"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4087463": {
+      "alt": "Screenshot of an article with a caption and pull quote on iPad.",
+      "identifier": "media-4087463",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6365cc60f22e609306f1af40c4461e0e/media-4087463@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac38d8b6892feeb4463d54da87838cac/media-4087463~dark@2x.png"
+        }
+      ]
+    },
+    "media-4099659": {
+      "alt": "Screenshot showing the image object spanning the entire iPad screen.",
+      "identifier": "media-4099659",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/904ee2fef2ec65b013fc0decfdeed4a3/media-4099659@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fdf81fda49e98bf7c1c140796d3a83eb/media-4099659~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Article-Layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout"
+      ],
+      "title": "Article Layout"
+    }
+  ]
+}

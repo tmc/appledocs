@@ -1,0 +1,1755 @@
+{
+  "abstract": [
+    {
+      "text": "Wrap article body text around an inset pull quote.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an Inset Pull Quote"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you positioned a component in the article margin. Now, you’ll position a component in the same columns as the body text and make text wrap around it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enclose the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pullquote",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components in a container so that you can position the components as one unit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to control the horizontal placement of the container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use an anchor to control vertical placement and allow body text to flow around the pull quote.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delete some ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "divider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components, and replace them with top and bottom borders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Define-Minor-Adjustments-for-Pull-Quote-Position",
+          "level": 3,
+          "text": "Define Minor Adjustments for Pull Quote Position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can position the pull quote in the leftmost three columns of the article, you must define some new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. The ",
+              "type": "text"
+            },
+            {
+              "code": "quoteLockupLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object determines that the pull quote is displayed in the left portion of the article. The other two ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects will make minor vertical adjustments to the components’ placement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Two of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects in this example only have a ",
+                  "type": "text"
+                },
+                {
+                  "code": "margin",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property. Because the ",
+                  "type": "text"
+                },
+                {
+                  "code": "columnStart",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "columnSpan",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " properties are not specified, these ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects will always extend to the left and right margins of the available space (either the parent container, or the whole article if there is no parent container). You can reuse margin-only ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects like these to adjust vertical positioning within containers, and then use the containers’ ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects to adjust other aspects of the layout.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inset-Pull-Quote-Layout-Copy-This-Code",
+          "level": 4,
+          "text": "Inset Pull Quote Layout: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"quoteLockupLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 6",
+            "    },",
+            "    \"halfMarginAboveQuarterBelowContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"top\": 12,",
+            "        \"bottom\": 6",
+            "      }",
+            "    },",
+            "    \"halfMarginBelowContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"bottom\": 12",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Inset-Pull-Quote-Layout-Result",
+          "level": 4,
+          "text": "Inset Pull Quote Layout: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentLayouts\": {",
+            "    ...",
+            "    \"quoteLockupLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 6",
+            "    },",
+            "    \"halfMarginAboveQuarterBelowContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"top\": 12,",
+            "        \"bottom\": 6",
+            "      }",
+            "    },",
+            "    \"halfMarginBelowContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"bottom\": 12",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Top-and-Bottom-Borders",
+          "level": 3,
+          "text": "Create Top and Bottom Borders",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your pull quote has dividers above and below it, and you’ll replace these with borders. Before you can add top and bottom borders to the pull quote, you must create a ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that creates a top and bottom border.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#quoteLockupStyle-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#quoteLockupStyle-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "quoteLockupStyle-Copy-This-Code",
+          "level": 4,
+          "text": "quoteLockupStyle: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"quoteLockupStyle\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"width\": 1,",
+            "          \"color\": \"#D5B327\"",
+            "        },",
+            "        \"top\": true,",
+            "        \"right\": false,",
+            "        \"bottom\": true,",
+            "        \"left\": false",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "quoteLockupStyle-Result",
+          "level": 4,
+          "text": "quoteLockupStyle: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "    \"quoteLockupStyle\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"width\": 1,",
+            "          \"color\": \"#D5B327\"",
+            "        },",
+            "        \"top\": true,",
+            "        \"right\": false,",
+            "        \"bottom\": true,",
+            "        \"left\": false",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Recombine-Body-Components-and-Use-Style-and-Layout-with-a-Container",
+          "level": 3,
+          "text": "Recombine Body Components and Use Style and Layout with a Container",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, copy the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "text",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the first ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Quis autem vel eum",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Do not copy the quotation marks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the text inside the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "text",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Cras ultricies mi eu turpis",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", at the beginning of the value, before the existing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<p>.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " Then wrap the pasted text with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<p></p>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, delete the first ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Quis autem vel eum",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This is the component you copied from in step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, delete the two ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pullquote",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components and the dividers that precede and follow them. The code you’re deleting begins with an opening brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") before ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"role\": \"divider\",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ends with a closing brace and a comma (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "},",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Container-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Quis autem vel eum",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Container-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see that the pull quote is vertically aligned. Note that the text does not yet wrap around the pull quote.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Container-Copy-This-Code",
+          "level": 4,
+          "text": "Container: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"quoteLockupLayout\",",
+            "          \"style\": \"quoteLockupStyle\",",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"format\": \"html\",",
+            "              \"layout\": \"halfMarginAboveQuarterBelowContainedLayout\",",
+            "              \"text\": \"“QUIA CONSEQUUNTUR MAGNI DOLORES EOS QUI RATIONE VOLUPTATEM SEQUI NESCIUNT.”\"",
+            "            },",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"layout\": \"halfMarginBelowContainedLayout\",",
+            "              \"textStyle\": \"attribution\",",
+            "              \"text\": \"— ATTRIBUTION\"",
+            "            }",
+            "          ]",
+            "        },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Container-Result",
+          "level": 4,
+          "text": "Container: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"section\",",
+            "      ...",
+            "      \"components\": [",
+            "        ...",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"quoteLockupLayout\",",
+            "          \"style\": \"quoteLockupStyle\",",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"format\": \"html\",",
+            "              \"layout\": \"halfMarginAboveQuarterBelowContainedLayout\",",
+            "              \"text\": \"“QUIA CONSEQUUNTUR MAGNI DOLORES EOS QUI RATIONE VOLUPTATEM SEQUI NESCIUNT.”\"",
+            "            },",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"layout\": \"halfMarginBelowContainedLayout\",",
+            "              \"textStyle\": \"attribution\",",
+            "              \"text\": \"— ATTRIBUTION\"",
+            "            }",
+            "          ]",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Wrap-Text-Around-the-Pull-Quote",
+          "level": 3,
+          "text": "Wrap Text Around the Pull Quote",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that the ",
+              "type": "text"
+            },
+            {
+              "code": "pullquote",
+              "type": "codeVoice"
+            },
+            {
+              "text": " components are combined in a container, you can use HTML to anchor the container, as one unit, to a portion of the body text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624924",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an anchor to a location in a ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component, you’ll define the target inline in the HTML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "container",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component that encloses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pullquote",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components, after this line: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"style\": \"quoteLockupStyle\",",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the code ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<p id='p1'>",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Quis autem vel eum",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", replacing a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<p>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag, as in the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Result",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You may have to scroll to the right in the example code to see this.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make these changes in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the text wrapped around the pull quote.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Anchor-Copy-This-Code",
+          "level": 4,
+          "text": "Anchor: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "          \"anchor\": {",
+            "            \"targetAnchorPosition\": \"center\",",
+            "            \"target\": \"p1\"",
+            "          },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Anchor-Result",
+          "level": 4,
+          "text": "Anchor: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"section\",",
+            "      ...",
+            "      \"components\": [",
+            "        ...",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"quoteLockupLayout\",",
+            "          \"style\": \"quoteLockupStyle\",",
+            "          \"anchor\": {",
+            "            \"targetAnchorPosition\": \"center\",",
+            "            \"target\": \"p1\"",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"format\": \"html\",",
+            "              \"layout\": \"halfMarginAboveQuarterBelowContainedLayout\",",
+            "              \"text\": \"“QUIA CONSEQUUNTUR MAGNI DOLORES EOS QUI RATIONE VOLUPTATEM SEQUI NESCIUNT.”\"",
+            "            },",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"layout\": \"halfMarginBelowContainedLayout\",",
+            "              \"textStyle\": \"attribution\",",
+            "              \"text\": \"— ATTRIBUTION\"",
+            "            }",
+            "          ]",
+            "        },",
+            "        {",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"noMarginLayout\",",
+            "          \"text\": \"<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio ducimus qui blanditiis.</p><p id='p1'>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer.</p><p>Temporibus autem et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque rerum hic tenetur.</p><p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo esciunt enim ipsam voluptatem quia.</p><p>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis <a href='http://www.apple.com'>link text</a> repellat. Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque, totam rem aperiam, eaque ipsa quae ab illo inventore.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.</p>\"",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene": {
+      "abstract": [
+        {
+          "text": "Control how the article’s opening section comes into view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-animations": {
+      "abstract": [
+        {
+          "text": "Use animations to affect how parts of your article come into view the first time they appear.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Animations",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-animations"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges": {
+      "abstract": [
+        {
+          "text": "Create text in color by using HTML to refer to TextStyle objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Color to Text Ranges",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-color-to-text-ranges"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header": {
+      "abstract": [
+        {
+          "text": "Layer a title and heading in front of an image, with their colors optimized for legibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Complex, Layered Header",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption": {
+      "abstract": [
+        {
+          "text": "Position a caption in the wide right margin of your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Floating Caption",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-floating-caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo": {
+      "abstract": [
+        {
+          "text": "Wrap article body text around an inset photo.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Inset Photo",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Copy-This-Code",
+      "kind": "section",
+      "title": "Anchor: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#Anchor-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Anchor-Result",
+      "kind": "section",
+      "title": "Anchor: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#Anchor-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Container-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Container-Copy-This-Code",
+      "kind": "section",
+      "title": "Container: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#Container-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Container-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Container-Result",
+      "kind": "section",
+      "title": "Container: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#Container-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Copy-This-Code",
+      "kind": "section",
+      "title": "Inset Pull Quote Layout: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Result",
+      "kind": "section",
+      "title": "Inset Pull Quote Layout: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#Inset-Pull-Quote-Layout-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#quoteLockupStyle-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#quoteLockupStyle-Copy-This-Code",
+      "kind": "section",
+      "title": "quoteLockupStyle: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#quoteLockupStyle-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#quoteLockupStyle-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote#quoteLockupStyle-Result",
+      "kind": "section",
+      "title": "quoteLockupStyle: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote#quoteLockupStyle-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article": {
+      "abstract": [
+        {
+          "text": "Use container components to create the component hierarchies you need for special article designs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Nesting Components in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/nesting-components-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 2",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component": {
+      "abstract": [
+        {
+          "text": "Define the layout of a text component to wrap around another component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Wrapping Text Around a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/wrapping-text-around-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor": {
+      "abstract": [
+        {
+          "text": "The object for anchoring one component to another component in your article’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/anchor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Border": {
+      "abstract": [
+        {
+          "text": "The object for setting borders for component sides or tables.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Border"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Border",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Border"
+        }
+      ],
+      "role": "symbol",
+      "title": "Border",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/border"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting style properties for components, including background color and fill, borders, and table styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/StrokeStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the color, width, and style of a border or divider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StrokeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/StrokeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StrokeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "StrokeStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/strokestyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624924": {
+      "alt": "Screenshot of an Apple News article with an inset pull quote on iPad.",
+      "identifier": "media-3624924",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23fe13694bb806cdcb75554542ed96b0/media-3624924@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd05c51e026268f518856fb3cd59afa6/media-3624924~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+        "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Border",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/StrokeStyle"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-2-Layout-and-Positioning",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+      ],
+      "title": "Advanced Design Tutorial 2: Layout and Positioning"
+    }
+  ]
+}

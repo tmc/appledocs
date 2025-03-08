@@ -1,0 +1,879 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches app asset metadata by adam ID.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-App-Assets"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v5-apps-{}-assets-find",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Find App Assets"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Find App Assets"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/apps/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{adamId}"
+        },
+        {
+          "kind": "path",
+          "text": "/assets/find"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your unique App Store app identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Your ",
+                  "type": "text"
+                },
+                {
+                  "code": "adamId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the resource path needs to match the ",
+                  "type": "text"
+                },
+                {
+                  "code": "adamId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in your campaign. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Campaign",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Campaigns",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to obtain your ",
+                  "type": "text"
+                },
+                {
+                  "code": "adamId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and correlate it to the correct campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "adamId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:Selector",
+          "text": "Selector"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that includes the selector ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects define what data the API returns when fetching resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAssetListResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAssetListResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:AppAssetListResponse",
+              "text": "AppAssetListResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-5",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find app asset metadata associated with an ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use your ",
+              "type": "text"
+            },
+            {
+              "code": "adamId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the resource path. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for parameter descriptions and selector condition operators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint supports default and custom product page ads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-example-Find-app-assets",
+          "level": 3,
+          "text": "Payload example: Find app assets",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "HTTP POST https://api.searchads.apple.com/api/v5/apps/{adamId}/assets/find",
+                    "",
+                    "{",
+                    "  “conditions”: [",
+                    "    {",
+                    "      “field”: “assetGenId”,",
+                    "      “operator”: “equals”,",
+                    "      “values”: [",
+                    "        “368234568;en-US;9;0;4201c5a4bd4087cc82xdfetdc8141b94d0”",
+                    "      ]",
+                    "    }",
+                    "  ]",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": [",
+                    "    {",
+                    "      \"assetGenId\": \"368234568;en-US;9;0;4201c5a4bd4087cc82xdfetdc8141b94d0\",",
+                    "      \"adamId\": 835599320,",
+                    "      \"assetURL”: “https://is5-ssl.mzstatic.com/image/thumb/source113/v4/25/f5/70/25f57023-87bd-25f0-71dc-bf5f48525b4c/afcd3ec4-d7af-49c5-9d93-44084b0abea8_2208x1242iphone55_4.jpg/2208x1242.jpg\",",
+                    "      \"assetVideoURL\": null,",
+                    "      \"appPreviewDevice\": “iphone_6_7”,",
+                    "      \"sourceHeight\": 2208,",
+                    "      \"sourceWidth\": 1242,",
+                    "      \"orientation\": \"PORTRAIT\",",
+                    "      \"assetType\": \"SCREENSHOT\"",
+                    "    },",
+                    "    {",
+                    "      \"assetGenId\": \"368234568;en-US;9;0;4201c5a4bd4087cc82xdfetdc8141b94d0\",",
+                    "      \"adamId\": 835599320,",
+                    "      \"assetURL”: “https://is5-ssl.mzstatic.com/image/thumb/PurpleSource122/v4/0b/d2/ea/0bd2ea96-744a-4341-2227-8aaa5c79ceef/84589e4f-d770-4444-9ade-e0806658f171_0.png/1290x2796.jpg\",",
+                    "      \"assetVideoURL\": null,",
+                    "      \"appPreviewDevice\": \"iphone_6_7\",",
+                    "      \"sourceHeight\": 1290,",
+                    "      \"sourceWidth\": 2796,",
+                    "      \"orientation\": “LANDSCAPE”,",
+                    "      \"assetType\": “SCREENSHOT”",
+                    "    }",
+                    " ],",
+                    "  \"pagination\": {",
+                    "    \"totalResults\": 2,",
+                    "    \"startIndex\": 0,",
+                    "    \"itemsPerPage\": 10",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Apple Search Ads Campaign Management API 4.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 4",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-4"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-5": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Apple Search Ads Campaign Management API 5.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-5",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 5",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-5"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAsset": {
+      "abstract": [
+        {
+          "text": "The app assets associated with an adam ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppAsset",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/appasset"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAssetListResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request that returns a list of app assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppAssetListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AppAssetListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppAssetListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppAssetListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/appassetlistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition": {
+      "abstract": [
+        {
+          "text": "The list of condition objects that allow users to filter a list of records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "role": "symbol",
+      "title": "Condition",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/condition"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Creative-Rejection-Reasons": {
+      "abstract": [
+        {
+          "text": "Fetches ad creative rejection reasons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Creative-Rejection-Reasons",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find Ad Creative Rejection Reasons"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find Ad Creative Rejection Reasons",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-ad-creative-rejection-reasons"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-App-Assets": {
+      "abstract": [
+        {
+          "text": "Fetches app asset metadata by adam ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-App-Assets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find App Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find App Assets",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-app-assets"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Fetches a specific campaign by campaign identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Campaigns": {
+      "abstract": [
+        {
+          "text": "Fetches all of an organization’s assigned campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Campaigns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get all Campaigns"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get all Campaigns",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-campaigns"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Gets-a-product-page-reason": {
+      "abstract": [
+        {
+          "text": "Fetches ad creative rejection reasons by custom product page ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Gets-a-product-page-reason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gets a product page reason"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Ad Creative Rejection Reasons",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/gets-a-product-page-reason"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector": {
+      "abstract": [
+        {
+          "text": "The selector objects available to filter returned data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Selector"
+        }
+      ],
+      "role": "symbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/selector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-Rejections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Creative-Rejection-Reasons",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Gets-a-product-page-reason"
+      ],
+      "title": "Ad Rejections"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/find-app-assets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

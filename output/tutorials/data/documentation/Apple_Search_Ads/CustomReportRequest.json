@@ -1,0 +1,839 @@
+{
+  "abstract": [
+    {
+      "text": "The Impression Share report request body.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:search_ads:CustomReportRequest",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "CustomReportRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CustomReportRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "4.7",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "CustomReportRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Search Ads"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "CustomReportRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "LAST_WEEK"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "LAST_WEEK",
+                "LAST_2_WEEKS",
+                "LAST_4_WEEKS"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date range of the report request. A date range is required only when using ",
+                  "type": "text"
+                },
+                {
+                  "code": "WEEKLY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " granularity in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Impression-Share-Report",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dateRange",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The end time of the report. The format is ",
+                  "type": "text"
+                },
+                {
+                  "code": "YYYY-MM-DD",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "2024-06-30",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "endTime",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "DAILY"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "DAILY",
+                "WEEKLY"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The report data organized by day or week.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Impression Share reports with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "WEEKLY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " granularity value can’t have custom ",
+                  "type": "text"
+                },
+                {
+                  "code": "startTime",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "endTime",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the request payload.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "granularity",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A free-text field. The maximum length is 50 characters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "name",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is an optional parameter to filter API results using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "adamId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " fields.  For ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", use an alpha-2 country code value. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "IN",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " operator is available to use with Impression Share reports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/SovCondition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " descriptions and see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for structural guidance with selectors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "{",
+                "  \"name\": \"impression_share_API_report_example\",",
+                "  \"granularity\": \"DAILY\",",
+                "  \"startTime\": \"2024-01-11\",",
+                "  \"endTime\": \"2024-02-08\",",
+                "  \"selector\": {",
+                "    \"conditions\": [",
+                "      {",
+                "        \"field\": \"adamId\",",
+                "        \"operator\": \"IN\",",
+                "        \"values\": [",
+                "          1252497129,",
+                "          282614216",
+                "        ]",
+                "      },",
+                "      {",
+                "        \"field\": \"countryOrRegion\",",
+                "        \"operator\": \"IN\",",
+                "        \"values\": [",
+                "          \"US\",",
+                "          \"CA\"",
+                "        ]",
+                "      }",
+                "    ]",
+                "  }",
+                "}"
+              ],
+              "syntax": "json",
+              "type": "codeListing"
+            }
+          ],
+          "name": "selector",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest/Selector-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:CustomReportRequest.Selector",
+              "text": "CustomReportRequest.Selector"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The start time of the report. The format is ",
+                  "type": "text"
+                },
+                {
+                  "code": "YYYY-MM-DD",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "2024-06-01",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "startTime",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Impression-Share-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Single-Impression-Share-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Impression-Share-Reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion": {
+      "abstract": [
+        {
+          "text": "The supported locales of a product page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CountryOrRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CountryOrRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CountryOrRegion",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/countryorregion"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest": {
+      "abstract": [
+        {
+          "text": "The Impression Share report request body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReportRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReportRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReportRequest",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/customreportrequest"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest/Selector-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A list of condition objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReportRequest.Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest/Selector-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReportRequest.Selector"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReportRequest.Selector",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/customreportrequest/selector-data.dictionary"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponse": {
+      "abstract": [
+        {
+          "text": "A container for Impression Share report metrics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReportResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReportResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReportResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/customreportresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponseBody": {
+      "abstract": [
+        {
+          "text": "A container for the Impression Share report response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReportResponseBody"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponseBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReportResponseBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReportResponseBody",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/customreportresponsebody"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Impression-Share-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches all Impression Share reports containing metrics and metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Impression-Share-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Impression Share Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Impression Share Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-impression-share-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Single-Impression-Share-Report": {
+      "abstract": [
+        {
+          "text": "Fetches a single Impression Share report containing metrics and metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Single-Impression-Share-Report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Single Impression Share Report"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Single Impression Share Report",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-a-single-impression-share-report"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Impression-Share-Report": {
+      "abstract": [
+        {
+          "text": "Obtain a report ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Impression-Share-Report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Impression Share Report"
+        }
+      ],
+      "role": "symbol",
+      "title": "Impression Share Report",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/impression-share-report"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector": {
+      "abstract": [
+        {
+          "text": "The selector objects available to filter returned data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Selector"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Selector"
+        }
+      ],
+      "role": "symbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/selector"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/SovCondition": {
+      "abstract": [
+        {
+          "text": "The list of condition objects that allow users to filter a list of records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SovCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/SovCondition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SovCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "SovCondition",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/sovcondition"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Impression-Share-Report-Request-and-Response-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportResponseBody",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/SovCondition"
+      ],
+      "title": "Impression Share Report Request and Response Objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/CustomReportRequest/Selector-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/customreportrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

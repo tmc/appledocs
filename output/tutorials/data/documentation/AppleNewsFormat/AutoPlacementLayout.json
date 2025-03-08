@@ -1,0 +1,610 @@
+{
+  "abstract": [
+    {
+      "text": "The object for defining the margin above and below advertising components.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:AutoPlacementLayout",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "AutoPlacementLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AutoPlacementLayout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecatedAt": "1.25",
+        "introducedAt": "1.9",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "AutoPlacementLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "AutoPlacementLayout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedTypes",
+              "values": [
+                [
+                  {
+                    "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "data:news_format:Margin",
+                    "text": "Margin"
+                  }
+                ],
+                [
+                  {
+                    "kind": "text",
+                    "text": "integer"
+                  }
+                ]
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The top and bottom margin in points, or in any other unit of measure for components. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "margin",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Margin",
+              "text": "Margin"
+            },
+            {
+              "kind": "text",
+              "text": " | integer)"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-release-notes-for-ios-17-ipados-17-and-macos-14"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "AutoPlacementLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to define the margins for ad components that are inserted automatically. This object is different from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and supports only one property, ",
+              "type": "text"
+            },
+            {
+              "code": "margin",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This object can be used in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisementAutoPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"version\": \"1.9\",",
+            "  \"identifier\": \"SampleArticle\",",
+            "  \"language\": \"en\",",
+            "  \"title\": \"Apple News\",",
+            "  \"layout\": {",
+            "    \"columns\": 20,",
+            "    \"width\": 1024,",
+            "    \"margin\": 60,",
+            "    \"gutter\": 20",
+            "  },",
+            "  \"autoplacement\": {",
+            "    \"advertisement\": {",
+            "      \"enabled\": true,",
+            "      \"bannerType\": \"any\",",
+            "      \"distanceFromMedia\": \"10vh\",",
+            "      \"frequency\": 10,",
+            "      \"layout\": {",
+            "        \"margin\": 10",
+            "      }",
+            "    }",
+            "  },",
+            "  …",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-release-notes-for-ios-17-ipados-17-and-macos-14": {
+      "abstract": [
+        {
+          "text": "Learn about new features that require iOS 17, iPadOS 17, and macOS 14.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-release-notes-for-ios-17-ipados-17-and-macos-14",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple News Format Release Notes for iOS 17, iPadOS 17, and macOS 14",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-release-notes-for-ios-17-ipados-17-and-macos-14"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article": {
+      "abstract": [
+        {
+          "text": "Define a layout that supports the look you want for your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Planning the Layout for Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/planning-the-layout-for-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components": {
+      "abstract": [
+        {
+          "text": "Specify the units of measure to use for margins, minimum heights, and other dimensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Measurements for Components",
+      "type": "topic",
+      "url": "/documentation/applenews/specifying-measurements-for-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component": {
+      "abstract": [
+        {
+          "text": "Define the layout of a text component to wrap around another component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Wrapping Text Around a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/wrapping-text-around-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisementAutoPlacement": {
+      "abstract": [
+        {
+          "text": "The object for defining the automatic placement of advertisements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvertisementAutoPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisementAutoPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvertisementAutoPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvertisementAutoPlacement",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/advertisementautoplacement"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the margin above and below advertising components.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvertisingLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvertisingLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvertisingLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/advertisinglayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor": {
+      "abstract": [
+        {
+          "text": "The object for anchoring one component to another component in your article’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/anchor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the margin above and below advertising components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutoPlacementLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutoPlacementLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutoPlacementLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/autoplacementlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the positioning for a specific component within the article’s column system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout": {
+      "abstract": [
+        {
+          "text": "The object for defining columns, gutters, and margins for your article’s designed width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/layout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin": {
+      "abstract": [
+        {
+          "text": "The object for defining the space above and below a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Margin"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Margin"
+        }
+      ],
+      "role": "symbol",
+      "title": "Margin",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/margin"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Article-Layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout"
+      ],
+      "title": "Article Layout"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/autoplacementlayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

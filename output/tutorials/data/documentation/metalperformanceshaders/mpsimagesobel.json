@@ -1,0 +1,717 @@
+{
+  "abstract": [
+    {
+      "text": "A filter that convolves an image with the Sobel operator.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1618799,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSImageSobel",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSImageSobel"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSImageSobel"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSImageSobel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSUnaryImageKernel",
+              "text": "MPSUnaryImageKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the color model (e.g. RGB, two-channel, grayscale, etc.) of the source and destination textures match, the filter is applied to each color channel separately. If the destination is single-channel (i.e. monochrome) but the source is multi-channel, the pixel values are converted to grayscale before applying the Sobel operator by using the linear gray color transform vector ",
+              "type": "text"
+            },
+            {
+              "code": "v ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "shown in the code listing below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Luminance = v[0] * pixel.x + v[1] * pixel.y + v[2] * pixel.z"
+          ],
+          "metadata": {
+            "anchor": "3734482",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Filters",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/image_filters"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagebox": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a given kernel of odd width and height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageBox"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagebox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageBox",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagebox"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconvolution": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a given kernel of odd width and height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageConvolution",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconvolution"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianblur": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a Gaussian blur of a given sigma in both the x and y directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageGaussianBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianblur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageGaussianBlur",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagegaussianblur"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianpyramid": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a Gaussian pyramid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageGaussianPyramid"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianpyramid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageGaussianPyramid",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagegaussianpyramid"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacian": {
+      "abstract": [
+        {
+          "text": "An optimized Laplacian filter, provided for ease of use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageLaplacian"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacian",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageLaplacian",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagelaplacian"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramid": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a Laplacian filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageLaplacianPyramid"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageLaplacianPyramid",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagelaplacianpyramid"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramidadd": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with an additive Laplacian pyramid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageLaplacianPyramidAdd"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramidadd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageLaplacianPyramidAdd",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagelaplacianpyramidadd"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramidsubtract": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a subtractive Laplacian pyramid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageLaplacianPyramidSubtract"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramidsubtract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageLaplacianPyramidSubtract",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagelaplacianpyramidsubtract"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagemedian": {
+      "abstract": [
+        {
+          "text": "A filter that applies a median filter in a square region centered around each pixel in the source image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageMedian"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagemedian",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageMedian",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagemedian"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagepyramid": {
+      "abstract": [
+        {
+          "text": "A base class for creating different kinds of pyramid images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImagePyramid"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagepyramid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImagePyramid",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagepyramid"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with the Sobel operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageSobel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageSobel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesobel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel#3734482": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel#3734482",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsimagesobel#3734482"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618777-colortransform": {
+      "abstract": [
+        {
+          "text": "The color transform used to initialize the Sobel filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618777-colortransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorTransform",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesobel/1618777-colortransform"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618843-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Sobel filter on a given device using the default color transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618843-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesobel/1618843-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618899-init": {
+      "abstract": [
+        {
+          "text": "Initializes a Sobel filter on a given device using a specific color transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearGrayColorTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618899-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:linearGrayColorTransform:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesobel/1618899-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/2866152-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/2866152-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesobel/2866152-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagetent": {
+      "abstract": [
+        {
+          "text": "A filter that convolves an image with a tent filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageTent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagetent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageTent",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagetent"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSUnaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconvolution",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagemedian",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagebox",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagetent",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianblur",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagegaussianpyramid",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacian",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramid",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramidadd",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelaplacianpyramidsubtract",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagepyramid"
+      ],
+      "title": "Convolution Image Filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868650",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/2866152-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "1674313",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618843-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618899-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods"
+    },
+    {
+      "anchor": "1674339",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesobel/1618777-colortransform"
+      ],
+      "kind": "taskGroup",
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimagesobel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimagesobel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

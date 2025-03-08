@@ -1,0 +1,451 @@
+{
+  "abstract": [
+    {
+      "text": "Changes the device's power state to the specified level.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/ioservice"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioservice/3180692-changepowerstate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180692,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOService@F@ChangePowerState#i#",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOService"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "ChangePowerState"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "text": "virtual"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ChangePowerState"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " powerFlags);"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ChangePowerState"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " powerFlags, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osdispatchmethod",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSDispatchMethod",
+              "text": "OSDispatchMethod"
+            },
+            {
+              "kind": "text",
+              "text": " supermethod);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The new power state for the device. Typically, you specify only ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilitylow",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for this parameter. For a list of all possible values, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "powerFlags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. For a list of error codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the new state is different than the device's current state, this method places an asynchronous request to change the state to the new value. If the change is successful, the system subsequently calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your service. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the power state of a device. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Service Power Capabilities",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325571-service_power_capabilities"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilitylow": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilitylow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOServicePowerCapabilityLow",
+      "type": "topic",
+      "url": "/documentation/driverkit/3325571-service_power_capabilities/kioservicepowercapabilitylow"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180692-changepowerstate": {
+      "abstract": [
+        {
+          "text": "Changes the device's power state to the specified level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChangePowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180692-changepowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ChangePowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180692-changepowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate": {
+      "abstract": [
+        {
+          "text": "Updates the service in response to power-related changes for a provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetPowerState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetPowerState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180704-setpowerstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdispatchmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdispatchmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDispatchMethod",
+      "type": "topic",
+      "url": "/documentation/kernel/osdispatchmethod"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/3180704-setpowerstate",
+        "doc://com.apple.documentation/documentation/driverkit/3325571-service_power_capabilities"
+      ],
+      "title": "Responding to Power-Level Changes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioservice/3180692-changepowerstate",
+        "documentation/driverkit/ioservice/3180692-changepowerstate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

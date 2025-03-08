@@ -1,0 +1,398 @@
+{
+  "abstract": [
+    {
+      "text": "The object for defining information about an issue.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/Issue"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:Issue",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Issue"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Issue"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.11",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "Issue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Issue"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string that references an issue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "identifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A number, supporting floats, that suggests the order in which the article should appear in the issue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "order",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "number"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string that represents a byline for the entire article. This string is displayed in the table of contents.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "1.19.0",
+          "name": "tocByline",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "issue",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is an ordered collection of articles and advertisements, with other elements that you provide, including a title and a cover image. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "Issue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to provide additional information about an Apple News Format issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"metadata\": {",
+            "    \"excerpt\": \"This is a sample sports article.\",",
+            "    \"thumbnailURL\": \"bundle://Football.jpg\",",
+            "    \"datePublished\": \"2018-09-09T14:45:45+00:00\",",
+            "    \"dateCreated\": \"2018-09-08T12:41:00+00:00\",",
+            "    \"dateModified\": \"2018-09-10T12:41:00+00:00\",",
+            "    \"authors\": [",
+            "      \"Anne Johnson\"",
+            "    ],",
+            "    \"campaignData\": {",
+            "      \"sport\": [",
+            "        \"football\"",
+            "      ],",
+            "      \"event\": [",
+            "        \"Football\"",
+            "      ],",
+            "      \"author\": [",
+            "        \"John Appleseed\"",
+            "      ]",
+            "    },",
+            "    \"generatorName\": \"Generator\",",
+            "    \"generatorVersion\": \"1.0\",",
+            "    \"canonicalURL\": \"https://example.com/articles/2015/original-article.html\",",
+            "    \"links\": [",
+            "      {",
+            "        \"URL\": \"https://apple.news/AT6kNQslCQy6EE4bF8hpOoQ\",",
+            "        \"relationship\": \"related\"",
+            "      }",
+            "    ],",
+            "    \"issue\": {",
+            "      \"identifier\": \"September 2018\",",
+            "      \"order\": 5,",
+            "      \"tocByline\": \"Anne Johnson\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Issue": {
+      "abstract": [
+        {
+          "text": "The object for defining information about an issue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Issue"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Issue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Issue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Issue",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/issue"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkedArticle": {
+      "abstract": [
+        {
+          "text": "A relationship between your article and another Apple News article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkedArticle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkedArticle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkedArticle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkedArticle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/linkedarticle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata": {
+      "abstract": [
+        {
+          "text": "Information about your article, including author name, creation date, publication date, keywords, and excerpt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Metadata",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/metadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Article-Metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkedArticle"
+      ],
+      "title": "Article Metadata"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/issue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

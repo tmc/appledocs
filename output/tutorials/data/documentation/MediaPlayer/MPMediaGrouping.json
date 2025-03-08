@@ -1,0 +1,1556 @@
+{
+  "abstract": [
+    {
+      "text": "Keys used to configure a media query.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MPMediaGrouping",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPMediaGrouping"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MPMediaGrouping"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "MPMediaGrouping"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPMediaGrouping"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippet shows how to apply a grouping key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let everything = MPMediaQuery()",
+                    "everything.groupingType = MPMediaGrouping.album",
+                    "let collections = [everything]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MPMediaQuery *everything = [[MPMediaQuery alloc] init];",
+                    "[everything setGroupingType: MPMediaGroupingAlbum];",
+                    "NSArray *collections = [everything collections];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After running these code lines, the ",
+              "type": "text"
+            },
+            {
+              "code": "collections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains all the matched media items grouped and sorted according to album name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain a sorted list of songs, configure a media query with the ",
+              "type": "text"
+            },
+            {
+              "code": "MPMediaGroupingTitle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, or take advantage of the title key being the default for a media query. In either case, each obtained media item is, in effect, its own collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collections sort according to the same rules used by iTunes on the desktop. This includes respecting the primary system language chosen by the user. The system ignores leading articles during sorting, including “A,” “An,” and “The” when using English, or “L’,” “La,” and “Le” when using French. If you need precise control over sorting, implement it in your application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping": {
+      "abstract": [
+        {
+          "text": "Keys used to configure a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaGrouping"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGrouping"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/album": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by album, and sorts songs within an album by track order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "album"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/album",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingAlbum"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.album",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/album"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/albumArtist": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by album artist (the primary performing artist for an album as a whole).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "albumArtist"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/albumArtist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingAlbumArtist"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.albumArtist",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/albumartist"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/artist": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by performing artist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "artist"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/artist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingArtist"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.artist",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/artist"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/composer": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by composer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "composer"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/composer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingComposer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.composer",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/composer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/genre": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by musical or film genre.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "genre"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/genre",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingGenre"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.genre",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/genre"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/init(rawvalue:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/playlist": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playlist"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingPlaylist"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.playlist",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/playlist"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/podcastTitle": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by podcast title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "podcastTitle"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/podcastTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingPodcastTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.podcastTitle",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/podcasttitle"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/title": {
+      "abstract": [
+        {
+          "text": "Groups and sorts media item collections by title. For songs, for example, the title is the song name. This is the default grouping key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaGroupingTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaGrouping.title",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediagrouping/title"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/addFilterPredicate(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a media property predicate to a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addFilterPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaPredicate",
+          "text": "MPMediaPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/addFilterPredicate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addFilterPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addFilterPredicate(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/addfilterpredicate(_:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/collectionSections": {
+      "abstract": [
+        {
+          "text": "An array representing the section grouping of the query’s specified media item collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionSections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaQuerySection",
+          "text": "MPMediaQuerySection"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/collectionSections",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionSections"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionSections",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/collectionsections"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/filterPredicates": {
+      "abstract": [
+        {
+          "text": "The media property predicates of the media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterPredicates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaPredicate",
+          "text": "MPMediaPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/filterPredicates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "filterPredicates"
+        }
+      ],
+      "role": "symbol",
+      "title": "filterPredicates",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/filterpredicates"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/groupingType": {
+      "abstract": [
+        {
+          "text": "The grouping for collections retrieved with the media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupingType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMediaGrouping",
+          "text": "MPMediaGrouping"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/groupingType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "groupingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "groupingType",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/groupingtype"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/itemSections": {
+      "abstract": [
+        {
+          "text": "An array representing the section grouping of the query’s specified media items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemSections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaQuerySection",
+          "text": "MPMediaQuerySection"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/itemSections",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemSections"
+        }
+      ],
+      "role": "symbol",
+      "title": "itemSections",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/itemsections"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/removeFilterPredicate(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a filter predicate from a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFilterPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaPredicate",
+          "text": "MPMediaPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/removeFilterPredicate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFilterPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFilterPredicate(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/removefilterpredicate(_:)"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-media-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/filterPredicates",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/addFilterPredicate(_:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/removeFilterPredicate(_:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/groupingType",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/itemSections",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/collectionSections"
+      ],
+      "title": "Configuring media queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Media-query-keys",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/title",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/album",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/artist",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/albumArtist",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/composer",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/genre",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/playlist",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/podcastTitle"
+      ],
+      "title": "Media query keys"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MPMediaGrouping"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGrouping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGrouping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Media-query-keys",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/title",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/album",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/artist",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/albumArtist",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/composer",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/genre",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/playlist",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/podcastTitle"
+              ],
+              "title": "Media query keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-media-queries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/filterPredicates",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/addFilterPredicate(_:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/removeFilterPredicate(_:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/groupingType",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/itemSections",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/collectionSections"
+              ],
+              "title": "Configuring media queries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MPMediaGrouping"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSInteger",
+                    "text": "NSInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1album/title",
+          "value": "MPMediaGroupingAlbum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1album/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingAlbum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1collectionSections/title",
+          "value": "collectionSections"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1collectionSections/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collectionSections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1genre/title",
+          "value": "MPMediaGroupingGenre"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1genre/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingGenre"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1playlist/title",
+          "value": "MPMediaGroupingPlaylist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1playlist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingPlaylist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1artist/title",
+          "value": "MPMediaGroupingArtist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1artist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingArtist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1groupingType/title",
+          "value": "groupingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1groupingType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "groupingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1podcastTitle/title",
+          "value": "MPMediaGroupingPodcastTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1podcastTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingPodcastTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1itemSections/title",
+          "value": "itemSections"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1itemSections/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "itemSections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1title/title",
+          "value": "MPMediaGroupingTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1filterPredicates/title",
+          "value": "filterPredicates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1filterPredicates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "filterPredicates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1addFilterPredicate(_:)/title",
+          "value": "addFilterPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1addFilterPredicate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addFilterPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1removeFilterPredicate(_:)/title",
+          "value": "removeFilterPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1removeFilterPredicate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFilterPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1albumArtist/title",
+          "value": "MPMediaGroupingAlbumArtist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1albumArtist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingAlbumArtist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1composer/title",
+          "value": "MPMediaGroupingComposer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping~1composer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGroupingComposer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping/title",
+          "value": "MPMediaGrouping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGrouping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaGrouping/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaGrouping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpmediagrouping"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpmediagrouping"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

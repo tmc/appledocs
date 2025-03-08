@@ -1,0 +1,805 @@
+{
+  "abstract": [
+    {
+      "text": "Creates negative keywords in a specific ad group.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-Ad-Group-Negative-Keywords"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v5-campaigns-{}-adgroups-{}-negativekeywords-bulk",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Create Ad Group Negative Keywords"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create Ad Group Negative Keywords"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/campaigns/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{campaignId}"
+        },
+        {
+          "kind": "path",
+          "text": "/adgroups/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{adgroupId}"
+        },
+        {
+          "kind": "path",
+          "text": "/negativekeywords/bulk"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the ad group.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "adgroupId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "campaignId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "["
+        },
+        {
+          "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeyword",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:NegativeKeyword",
+          "text": "NegativeKeyword"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that includes negative keyword details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns a list of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeyword",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If you create duplicate keywords, the payload response indicates an error, but the call returns with a 200 status code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "name": "Note",
+              "style": "note",
+              "type": "aside"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeywordListResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:NegativeKeywordListResponse",
+              "text": "NegativeKeywordListResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Negative keywords prevent your ad from showing up in App Store searches. Negative keywords can belong to a campaign or an ad group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create ad group negative keywords, use the associated ",
+              "type": "text"
+            },
+            {
+              "code": "campaignId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "adgroupId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the URI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-example-Create-ad-group-negative-keywords",
+          "level": 3,
+          "text": "Payload example: Create ad group negative keywords",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/campaigns/{campaignId}/adgroups/{adgroupId}/negativekeywords/bulk",
+                    "",
+                    "[  ",
+                    " {",
+                    "    \"text\": \"ad group negative keyword 1\",",
+                    "    \"matchType\": \"BROAD\"",
+                    "  },",
+                    "  {",
+                    "    \"text\": \"ad group negative keyword 2\",",
+                    "    \"matchType\": \"EXACT\"",
+                    "  }",
+                    "]",
+                    ""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[",
+                    "  {",
+                    "    \"id\": 542370642,",
+                    "    \"campaignId\": 542370539,",
+                    "    \"adGroupId\": 427916203,",
+                    "    \"text\": \"ad group negative keyword example 1\",",
+                    "    \"status\": \"ACTIVE\",",
+                    "    \"matchType\": \"BROAD\",",
+                    "    \"modificationTime\": \"2024-04-08T22:02:07.514\",",
+                    "    \"deleted\": false",
+                    "  },",
+                    "  {",
+                    "    \"id\": 542370643,",
+                    "    \"campaignId\": 542370539,",
+                    "    \"adGroupId\": 427916203,",
+                    "    \"text\": \"Update campaign negative keyword example 2\",",
+                    "    \"status\": \"ACTIVE\",",
+                    "    \"matchType\": \"EXACT\",",
+                    "    \"modificationTime\": \"2024-04-08T22:02:07.523\",",
+                    "    \"deleted\": false",
+                    "  }",
+                    "]"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-Ad-Group-Negative-Keywords": {
+      "abstract": [
+        {
+          "text": "Creates negative keywords in a specific ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-Ad-Group-Negative-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Ad Group Negative Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Ad Group Negative Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-ad-group-negative-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-Ad-Group-Negative-Keywords": {
+      "abstract": [
+        {
+          "text": "Deletes negative keywords from an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-Ad-Group-Negative-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete Ad Group Negative Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete Ad Group Negative Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/delete-ad-group-negative-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Group-Negative-Keywords": {
+      "abstract": [
+        {
+          "text": "Fetches negative keywords in a campaign’s ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Group-Negative-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find Ad Group Negative Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find Ad Group Negative Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-ad-group-negative-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Ad-Group-Negative-Keywords": {
+      "abstract": [
+        {
+          "text": "Fetches all negative keywords in ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Ad-Group-Negative-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Ad Group Negative Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Ad Group Negative Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-ad-group-negative-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group-Negative-Keyword": {
+      "abstract": [
+        {
+          "text": "Fetches a specific negative keyword in an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group-Negative-Keyword",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get an Ad Group Negative Keyword"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get an Ad Group Negative Keyword",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-an-ad-group-negative-keyword"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeyword": {
+      "abstract": [
+        {
+          "text": "Negative keyword parameters to use in requests and responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NegativeKeyword"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeyword",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NegativeKeyword"
+        }
+      ],
+      "role": "symbol",
+      "title": "NegativeKeyword",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/negativekeyword"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeywordListResponse": {
+      "abstract": [
+        {
+          "text": "The response details of negative keyword requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NegativeKeywordListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/NegativeKeywordListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NegativeKeywordListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "NegativeKeywordListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/negativekeywordlistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-Ad-Group-Negative-Keywords": {
+      "abstract": [
+        {
+          "text": "Updates negative keywords in an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-Ad-Group-Negative-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update Ad Group Negative Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update Ad Group Negative Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-ad-group-negative-keywords"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-Group-Negative-Keywords-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Group-Negative-Keywords",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group-Negative-Keyword",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Ad-Group-Negative-Keywords",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-Ad-Group-Negative-Keywords",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-Ad-Group-Negative-Keywords"
+      ],
+      "title": "Ad Group Negative Keywords Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/create-ad-group-negative-keywords"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

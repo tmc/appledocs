@@ -1,0 +1,455 @@
+{
+  "abstract": [
+    {
+      "text": "Use reports to understand how DNS and protocol handshakes impact",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "connection establishment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network",
+        "doc://com.apple.network/documentation/Network/NWConnection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/collecting-network-connection-metrics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Collecting Network Connection Metrics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/713/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "017625187506/CollectingNetworkConnectionMetrics.zip": {
+      "checksum": "0176251875068658fa326627d24161c0440c9b8b8c3723885df372d35a5210c0b40bf5fb047ca261c4094bcee1328e54ff1b95d22d1a3f6b93d526b246db8a6f",
+      "identifier": "017625187506/CollectingNetworkConnectionMetrics.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/017625187506/CollectingNetworkConnectionMetrics.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection/DataTransferReport": {
+      "abstract": [
+        {
+          "text": "A report that provides metrics about data being sent and received on a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataTransferReport"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection/DataTransferReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataTransferReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnection.DataTransferReport",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection/datatransferreport"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection/EstablishmentReport": {
+      "abstract": [
+        {
+          "text": "A report that provides metrics about the establishment of a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EstablishmentReport"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection/EstablishmentReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EstablishmentReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnection.EstablishmentReport",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection/establishmentreport"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection/PendingDataTransferReport": {
+      "abstract": [
+        {
+          "text": "An outstanding data transfer report that has yet to be collected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PendingDataTransferReport"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection/PendingDataTransferReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PendingDataTransferReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnection.PendingDataTransferReport",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection/pendingdatatransferreport"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection/requestEstablishmentReport(queue:completion:)": {
+      "abstract": [
+        {
+          "text": "Requests a copy of the connection’s establishment report once the connection is in the ready state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestEstablishmentReport"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWConnectionC",
+          "text": "NWConnection"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWConnectionC19EstablishmentReportV",
+          "text": "EstablishmentReport"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection/requestEstablishmentReport(queue:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestEstablishmentReport(queue:completion:)",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection/requestestablishmentreport(queue:completion:)"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection/startDataTransferReport()": {
+      "abstract": [
+        {
+          "text": "Begins a new data transfer report, which can later be collected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDataTransferReport"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWConnectionC",
+          "text": "NWConnection"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWConnectionC25PendingDataTransferReportC",
+          "text": "PendingDataTransferReport"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection/startDataTransferReport()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startDataTransferReport()",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection/startdatatransferreport()"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/713/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/713/",
+      "title": "713: Advances in Networking, Part 2",
+      "titleInlineContent": [
+        {
+          "text": "713: Advances in Networking, Part 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/713/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "017625187506/CollectingNetworkConnectionMetrics.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collecting-Connection-Metrics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWConnection/requestEstablishmentReport(queue:completion:)",
+        "doc://com.apple.network/documentation/Network/NWConnection/EstablishmentReport",
+        "doc://com.apple.network/documentation/Network/NWConnection/startDataTransferReport()",
+        "doc://com.apple.network/documentation/Network/NWConnection/PendingDataTransferReport",
+        "doc://com.apple.network/documentation/Network/NWConnection/DataTransferReport"
+      ],
+      "title": "Collecting Connection Metrics"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/collecting-network-connection-metrics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

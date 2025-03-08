@@ -1,0 +1,5759 @@
+{
+  "abstract": [
+    {
+      "text": "A type of movie player that manages the playback of a movie from a file or a network stream.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use AVPlayerViewController in AVKit",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPMoviePlayerController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPMoviePlayerController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MPMoviePlayerController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "3.2",
+        "message": "Use AVPlayerViewController in AVKit",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "3.2",
+        "message": "Use AVPlayerViewController in AVKit",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "message": "Use AVPlayerViewController in AVKit",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MPMoviePlayerController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class is formally deprecated in iOS 9. (The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class is also formally deprecated.) To play video content in iOS 9 and later, instead use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPictureInPictureController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class from the AVKit framework, or the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class from WebKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Playback occurs in a view owned by the movie player and takes place either fullscreen or inline. You can incorporate a movie player’s view into a view hierarchy owned by your app, or use an MPMoviePlayerViewController object to manage the presentation for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Movie players support wireless movie playback to AirPlay-enabled hardware such as Apple TV. AirPlay playback is enabled by default. To disable AirPlay in your app, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/allowsAirPlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In iOS 8.0 and later, users access AirPlay compatible hardware through the Control Panel; no AirPlay control is displayed by the movie player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a movie player’s view to your app’s view hierarchy, be sure to size the frame correctly, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MPMoviePlayerController *player =",
+            "        [[MPMoviePlayerController alloc] initWithContentURL: myURL];",
+            "[player prepareToPlay];",
+            "[player.view setFrame: myView.bounds];  // player's frame must match parent's",
+            "[myView addSubview: player.view];",
+            "// ...",
+            "[player play];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider a movie player view to be an opaque structure. You can add your own custom subviews to layer content on top of the movie but you must never modify any of its existing subviews.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to layering content on top of a movie, you can provide custom background content by adding subviews to the view in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/backgroundView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Custom subviews are supported in both inline and fullscreen playback modes but you must adjust the positions of your views when entering or exiting fullscreen mode. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillEnterFullscreenNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillExitFullscreenNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications to detect changes to and from fullscreen mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class supports programmatic control of movie playback, and user-based control via buttons supplied by the movie player. You can control most aspects of playback programmatically using the methods and properties of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, to which this class conforms. The methods and properties of that protocol let you start and stop playback, seek forward and backward through the movie’s content, and even change the playback rate. In addition, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/controlStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of this class lets you display a set of standard system controls that allow the user to manipulate playback. You can also set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/shouldAutoplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for network-based content to start automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically specify the movie you want to play when you create a new ",
+              "type": "text"
+            },
+            {
+              "code": "MPMoviePlayerController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. However, you can also change the currently playing movie by changing the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/contentURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Changing this property lets you reuse the same movie player controller object in multiple places. For performance reasons you may want to play movies as local files. Do this by first downloading them to a local directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Although you can create multiple ",
+                  "type": "text"
+                },
+                {
+                  "code": "MPMoviePlayerController",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects and present their views in your interface, only one movie player at a time can play its movie.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To facilitate the creation of video bookmarks or chapter links for a long movie, the ",
+              "type": "text"
+            },
+            {
+              "code": "MPMoviePlayerController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines methods for generating thumbnail images at specific times within a movie. You can request a single thumbnail image using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/thumbnailImage(atTime:timeOption:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or request multiple thumbnail images using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/requestThumbnailImages(atTimes:timeOption:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play a network stream whose URL requires access credentials, first create an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Do this by calling, for example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential/1417977-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSURLCredential *credential = [[NSURLCredential alloc]",
+            "                        initWithUser: @\"userName\"",
+            "                            password: @\"password\"",
+            "                         persistence: NSURLCredentialPersistenceForSession];",
+            " ",
+            "self.credential = credential;",
+            "[credential release];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, create an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, as shown here. Make appropriate modifications for the realm you are accessing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc]",
+            "                            initWithHost: \"@streams.mydomain.com\"",
+            "                                    port: 80",
+            "                                protocol: @\"http\"",
+            "                                   realm: @\"mydomain.com\"",
+            "                    authenticationMethod: NSURLAuthenticationMethodDefault];",
+            " ",
+            "self.protectionSpace = protectionSpace;",
+            "[protectionSpace release];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the URL credential and the protection space to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Singleton.html#//apple_ref/doc/uid/TP40008195-CH49",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Do this by calling, for example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage/1407227-set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[NSURLCredentialStorage sharedCredentialStorage]",
+            "                    setDefaultCredential: credential",
+            "                      forProtectionSpace: protectionSpace];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the credential and protection space information in place, you can then play the protected stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Movie-player-notifications",
+          "level": 3,
+          "text": "Movie player notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A movie player generates notifications to keep your app informed about the state of movie playback. In addition to being notified when playback finishes, your app can be notified in the following situations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the movie player begins playing, is paused, or begins seeking forward or backward",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When AirPlay playback starts or ends",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the scaling mode of the movie changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the movie enters or exits fullscreen mode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the load state for network-based movies changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When meta-information about the movie itself becomes available",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the Notifications section in this document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVKit/AVPictureInPictureController": {
+      "abstract": [
+        {
+          "text": "A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPictureInPictureController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPictureInPictureController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPictureInPictureController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPictureInPictureController"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPlayerViewController"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredential": {
+      "abstract": [
+        {
+          "text": "`A`n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredential",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredential"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredential/1417977-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL credential instance initialized with a given user name and password, using a given persistence setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistence"
+        },
+        {
+          "kind": "text",
+          "text": ": URLCredential.Persistence)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential/1417977-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(user:password:persistence:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredential/1417977-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage": {
+      "abstract": [
+        {
+          "text": "The manager of a shared credentials cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCredentialStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredentialStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredentialstorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage/1407227-set": {
+      "abstract": [
+        {
+          "text": "Adds a credential to the credential storage for the specified protection space. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(URLCredential, "
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": URLProtectionSpace)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage/1407227-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredentialstorage/1407227-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotectionspace": {
+      "abstract": [
+        {
+          "text": "A server or an area on a server, commonly referred to as a realm, that requires authentication. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtectionSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLProtectionSpace",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotectionspace"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/imageCropRect": {
+      "abstract": [
+        {
+          "text": "The bounds, in points, of the content area for the full size image associated with the media item artwork.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageCropRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/imageCropRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageCropRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageCropRect",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitemartwork/imagecroprect"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)": {
+      "abstract": [
+        {
+          "text": "Initializes a media item artwork instance with a full-size image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(image:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitemartwork/init(image:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface for controlling audio media playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlayback"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPlayback",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaplayback"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLog": {
+      "abstract": [
+        {
+          "text": "Key metrics about network playback for an associated movie player that’s playing streamed content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieAccessLog"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieAccessLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieAccessLog",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieaccesslog"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLogEvent": {
+      "abstract": [
+        {
+          "text": "A single piece of information for a movie access log.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieAccessLogEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLogEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieAccessLogEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieAccessLogEvent",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieaccesslogevent"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieControlStyle": {
+      "abstract": [
+        {
+          "text": "Constants describing the style of the playback controls.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieControlStyle",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviecontrolstyle"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieDurationAvailableNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the duration of a movie has been determined. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieDurationAvailableNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieDurationAvailableNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMovieDurationAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviedurationavailablenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLog": {
+      "abstract": [
+        {
+          "text": "Data describing network resource playback failures for the associated movie player, including timestamps indicating when each failure occurred.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieErrorLog"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieErrorLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieErrorLog",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieerrorlog"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLogEvent": {
+      "abstract": [
+        {
+          "text": "A single piece of information for a movie error log.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieErrorLogEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLogEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieErrorLogEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieErrorLogEvent",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieerrorlogevent"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieFinishReason": {
+      "abstract": [
+        {
+          "text": "Constants describing the reason that playback ended.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieFinishReason"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieFinishReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieFinishReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieFinishReason",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviefinishreason"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieLoadState": {
+      "abstract": [
+        {
+          "text": "Constants describing the network load state of the movie player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieLoadState"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieLoadState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieLoadState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieLoadState",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieloadstate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypeMask": {
+      "abstract": [
+        {
+          "text": "The types of content available in the movie file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieMediaTypeMask"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypeMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieMediaTypeMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieMediaTypeMask",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviemediatypemask"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypesAvailableNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the available media types in a movie are determined. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieMediaTypesAvailableNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypesAvailableNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMovieMediaTypesAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviemediatypesavailablenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieNaturalSizeAvailableNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the natural frame size of a movie is first determined or subsequently changes. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieNaturalSizeAvailableNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieNaturalSizeAvailableNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMovieNaturalSizeAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovienaturalsizeavailablenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlaybackState": {
+      "abstract": [
+        {
+          "text": "Constants describing the current playback state of the movie player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlaybackState"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlaybackState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlaybackState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMoviePlaybackState",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplaybackstate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController": {
+      "abstract": [
+        {
+          "text": "A type of movie player that manages the playback of a movie from a file or a network stream.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMoviePlayerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/accessLog": {
+      "abstract": [
+        {
+          "text": "A snapshot of the network playback log for the movie player if it is playing a network stream.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessLog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMovieAccessLog",
+          "text": "MPMovieAccessLog"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/accessLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessLog",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/accesslog"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/allowsAirPlay": {
+      "abstract": [
+        {
+          "text": "Specifies whether the movie player allows AirPlay movie playback.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsAirPlay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/allowsAirPlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsAirPlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsAirPlay",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/allowsairplay"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/backgroundView": {
+      "abstract": [
+        {
+          "text": "A customizable view that is displayed behind the movie content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/backgroundView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundView"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundView",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/backgroundview"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/cancelAllThumbnailImageRequests()": {
+      "abstract": [
+        {
+          "text": "Cancels all pending asynchronous thumbnail image requests.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelAllThumbnailImageRequests"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/cancelAllThumbnailImageRequests()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelAllThumbnailImageRequests"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelAllThumbnailImageRequests()",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/cancelallthumbnailimagerequests()"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/contentURL": {
+      "abstract": [
+        {
+          "text": "The URL that points to the movie file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/contentURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentURL",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/contenturl"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/controlStyle": {
+      "abstract": [
+        {
+          "text": "The style of the playback controls.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieControlStyle",
+          "text": "MPMovieControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/controlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "controlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "controlStyle",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/controlstyle"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/duration": {
+      "abstract": [
+        {
+          "text": "The duration of the movie, measured in seconds.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/duration"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/endPlaybackTime": {
+      "abstract": [
+        {
+          "text": "The end time (measured in seconds) for playback of the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endPlaybackTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/endPlaybackTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endPlaybackTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "endPlaybackTime",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/endplaybacktime"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/errorLog": {
+      "abstract": [
+        {
+          "text": "A snapshot of the playback failure error log for the movie player if it is playing a network stream.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorLog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMovieErrorLog",
+          "text": "MPMovieErrorLog"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/errorLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errorLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "errorLog",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/errorlog"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/init(contentURL:)": {
+      "abstract": [
+        {
+          "text": "Returns a ",
+          "type": "text"
+        },
+        {
+          "code": "MPMoviePlayerController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with the movie at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/init(contentURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithContentURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(contentURL:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/init(contenturl:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/initialPlaybackTime": {
+      "abstract": [
+        {
+          "text": "The time, specified in seconds within the video timeline, when playback should start.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialPlaybackTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/initialPlaybackTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initialPlaybackTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "initialPlaybackTime",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/initialplaybacktime"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isAirPlayVideoActive": {
+      "abstract": [
+        {
+          "text": "Indicates whether the movie player is currently playing video via AirPlay.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAirPlayVideoActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isAirPlayVideoActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "airPlayVideoActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAirPlayVideoActive",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/isairplayvideoactive"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isFullscreen": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the movie player is in full-screen mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFullscreen"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isFullscreen",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fullscreen"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFullscreen",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/isfullscreen"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/loadState": {
+      "abstract": [
+        {
+          "text": "The network load state of the movie player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieLoadState",
+          "text": "MPMovieLoadState"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/loadState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadState"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadState",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/loadstate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieMediaTypes": {
+      "abstract": [
+        {
+          "text": "The types of media available in the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "movieMediaTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieMediaTypeMask",
+          "text": "MPMovieMediaTypeMask"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieMediaTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movieMediaTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "movieMediaTypes",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/moviemediatypes"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieSourceType": {
+      "abstract": [
+        {
+          "text": "The playback type of the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "movieSourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieSourceType",
+          "text": "MPMovieSourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieSourceType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "movieSourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "movieSourceType",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/moviesourcetype"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/naturalSize": {
+      "abstract": [
+        {
+          "text": "The width and height of the movie frame.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "naturalSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/naturalSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "naturalSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "naturalSize",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/naturalsize"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playableDuration": {
+      "abstract": [
+        {
+          "text": "The amount of currently playable content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playableDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playableDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playableDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "playableDuration",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/playableduration"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playbackState": {
+      "abstract": [
+        {
+          "text": "The current playback state of the movie player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMoviePlaybackState",
+          "text": "MPMoviePlaybackState"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playbackState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackState"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackState",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/playbackstate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/readyForDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the first video frame of the movie is ready to be displayed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readyForDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/readyForDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyForDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "readyForDisplay",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/readyfordisplay"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/repeatMode": {
+      "abstract": [
+        {
+          "text": "Determines how the movie player repeats the playback of the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieRepeatMode",
+          "text": "MPMovieRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/repeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "repeatMode",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/repeatmode"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/requestThumbnailImages(atTimes:timeOption:)": {
+      "abstract": [
+        {
+          "text": "Captures one or more thumbnail images asynchronously from the current movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestThumbnailImages"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTimes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeOption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieTimeOption",
+          "text": "MPMovieTimeOption"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/requestThumbnailImages(atTimes:timeOption:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestThumbnailImagesAtTimes:timeOption:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestThumbnailImages(atTimes:timeOption:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/requestthumbnailimages(attimes:timeoption:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/scalingMode": {
+      "abstract": [
+        {
+          "text": "The scaling mode to use when displaying the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scalingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieScalingMode",
+          "text": "MPMovieScalingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/scalingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scalingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "scalingMode",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/scalingmode"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/setFullscreen(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Causes the movie player to enter or exit full-screen mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFullscreen"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/setFullscreen(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFullscreen:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFullscreen(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/setfullscreen(_:animated:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/shouldAutoplay": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether a movie should begin playback automatically.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldAutoplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/shouldAutoplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldAutoplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldAutoplay",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/shouldautoplay"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/thumbnailImage(atTime:timeOption:)": {
+      "abstract": [
+        {
+          "text": "Captures and returns a thumbnail image from the current movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "thumbnailImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeOption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPMovieTimeOption",
+          "text": "MPMovieTimeOption"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/thumbnailImage(atTime:timeOption:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "thumbnailImageAtTime:timeOption:"
+        }
+      ],
+      "role": "symbol",
+      "title": "thumbnailImage(atTime:timeOption:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/thumbnailimage(attime:timeoption:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/timedMetadata": {
+      "abstract": [
+        {
+          "text": "Obtains the most recent time-based metadata provided by the streamed movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timedMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/timedMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timedMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "timedMetadata",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/timedmetadata"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/useApplicationAudioSession": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the movie player should use the app’s audio session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useApplicationAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/useApplicationAudioSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useApplicationAudioSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "useApplicationAudioSession",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/useapplicationaudiosession"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/view": {
+      "abstract": [
+        {
+          "text": "The view containing the movie content and controls.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayercontroller/view"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerDidEnterFullscreenNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player has entered full-screen mode. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerDidEnterFullscreenNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerDidEnterFullscreenNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerDidEnterFullscreenNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerdidenterfullscreennotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerDidExitFullscreenNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player has exited full-screen mode. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerDidExitFullscreenNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerDidExitFullscreenNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerDidExitFullscreenNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerdidexitfullscreennotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player has started or ended playing a movie via AirPlay. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerisairplayvideoactivedidchangenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerLoadStateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player’s network buffering state has changed. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerLoadStateDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerLoadStateDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerLoadStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerloadstatedidchangenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerNowPlayingMovieDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the currently playing movie has changed. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerNowPlayingMovieDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerNowPlayingMovieDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerNowPlayingMovieDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayernowplayingmoviedidchangenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie has finished playing. The ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary of this notification contains the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishReasonUserInfoKey",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key, which indicates the reason that playback finished. This notification is also sent when playback fails because of an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerPlaybackDidFinishNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerPlaybackDidFinishNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerplaybackdidfinishnotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishReasonUserInfoKey": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishReasonUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMoviePlayerPlaybackDidFinishReasonUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerplaybackdidfinishreasonuserinfokey"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackStateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player’s playback state has changed. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerPlaybackStateDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackStateDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerPlaybackStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerplaybackstatedidchangenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerReadyForDisplayDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the ready for display state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerReadyForDisplayDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerReadyForDisplayDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerReadyForDisplayDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerreadyfordisplaydidchangenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerScalingModeDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the scaling mode of a movie player has changed. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerScalingModeDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerScalingModeDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerScalingModeDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerscalingmodedidchangenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerThumbnailImageRequestDidFinishNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a request to capture a thumbnail from a movie has finished whether the request succeeded or failed. Upon successful capture of a thumbnail, the ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary contains values for the following keys:",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerThumbnailImageRequestDidFinishNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerThumbnailImageRequestDidFinishNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerThumbnailImageRequestDidFinishNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerthumbnailimagerequestdidfinishnotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerTimedMetadataUpdatedNotification": {
+      "abstract": [
+        {
+          "text": "Posted when new timed metadata arrives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerTimedMetadataUpdatedNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerTimedMetadataUpdatedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerTimedMetadataUpdatedNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayertimedmetadataupdatednotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerViewController": {
+      "abstract": [
+        {
+          "text": "A simple view controller for displaying full-screen movies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMoviePlayerViewController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerviewcontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillEnterFullscreenNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player is about to enter full-screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerWillEnterFullscreenNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillEnterFullscreenNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerWillEnterFullscreenNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerwillenterfullscreennotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillExitFullscreenNotification": {
+      "abstract": [
+        {
+          "text": "Posted when a movie player is about to exit full-screen mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMoviePlayerWillExitFullscreenNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillExitFullscreenNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMoviePlayerWillExitFullscreenNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovieplayerwillexitfullscreennotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieRepeatMode": {
+      "abstract": [
+        {
+          "text": "Constants describing how the movie player repeats content at the end of playback.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieRepeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieRepeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieRepeatMode",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovierepeatmode"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieScalingMode": {
+      "abstract": [
+        {
+          "text": "Constants describing how the movie content is scaled to fit the frame of its view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieScalingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieScalingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieScalingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieScalingMode",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviescalingmode"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceType": {
+      "abstract": [
+        {
+          "text": "Specifies the type of the movie file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieSourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieSourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieSourceType",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviesourcetype"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceTypeAvailableNotification": {
+      "abstract": [
+        {
+          "text": "Posted when the source type of a movie was previously unknown and is newly available. There is no ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieSourceTypeAvailableNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceTypeAvailableNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPMovieSourceTypeAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmoviesourcetypeavailablenotification"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieTimeOption": {
+      "abstract": [
+        {
+          "text": "Constants describing which frame to use when generating thumbnail images.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMovieTimeOption"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieTimeOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMovieTimeOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMovieTimeOption",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmovietimeoption"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer": {
+      "abstract": [
+        {
+          "text": "Returns the iPod music player, which controls the iPod app’s state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iPodMusicPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMusicPlayerController",
+          "text": "MPMusicPlayerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "iPodMusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "iPodMusicPlayer",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayercontroller/ipodmusicplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager": {
+      "abstract": [
+        {
+          "text": "A shared content manager for controlling interactions between your media app and system-provided or external media player interfaces.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPPlayableContentManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPPlayableContentManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPPlayableContentManager",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentmanager"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManagerContext": {
+      "abstract": [
+        {
+          "text": "An object representing the current state of the playable endpoint.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPPlayableContentManagerContext"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManagerContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPPlayableContentManagerContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPPlayableContentManagerContext",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentmanagercontext"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPTimedMetadata": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "timed metadata object that",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " carries time-based information within HTTP streamed media.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPTimedMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPTimedMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPTimedMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPTimedMetadata",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mptimedmetadata"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/routeButtonImage(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the button image associated with the specified control state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "routeButtonImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIControl",
+          "text": "UIControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIControlState",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/routeButtonImage(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "routeButtonImageForState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "routeButtonImage(for:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpvolumeview/routebuttonimage(for:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/showsRouteButton": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the route button is visible in the volume view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsRouteButton"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/showsRouteButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsRouteButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsRouteButton",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpvolumeview/showsroutebutton"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/fullscreen-notification-keys": {
+      "abstract": [
+        {
+          "text": "The following keys may be found in the ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary of notifications for transitioning in or out of full-screen mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/fullscreen-notification-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fullscreen notification keys",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/fullscreen-notification-keys"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/playback-finished-notification-key": {
+      "abstract": [
+        {
+          "text": "The following key may be found in the userInfo dictionary of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishNotification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/playback-finished-notification-key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playback finished notification key",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/playback-finished-notification-key"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/thumbnail-notification-user-info-keys": {
+      "abstract": [
+        {
+          "text": "The following keys may be found in the ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerThumbnailImageRequestDidFinishNotification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/thumbnail-notification-user-info-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Thumbnail notification user info keys",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/thumbnail-notification-user-info-keys"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Singleton.html#//apple_ref/doc/uid/TP40008195-CH49": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Singleton.html#//apple_ref/doc/uid/TP40008195-CH49",
+      "title": "Singleton",
+      "titleInlineContent": [
+        {
+          "text": "Singleton",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Singleton.html#//apple_ref/doc/uid/TP40008195-CH49"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-symbols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLog",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLogEvent",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLog",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLogEvent",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieLoadState",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypeMask",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerViewController",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPTimedMetadata",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManagerContext",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/imageCropRect",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/showsRouteButton",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/routeButtonImage(for:)"
+      ],
+      "title": "Deprecated symbols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-initializing-the-object",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/init(contentURL:)"
+      ],
+      "title": "Creating and initializing the object"
+    },
+    {
+      "anchor": "Accessing-movie-properties",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/contentURL",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieSourceType",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieMediaTypes",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/allowsAirPlay",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isAirPlayVideoActive",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/naturalSize",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isFullscreen",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/setFullscreen(_:animated:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/scalingMode",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/controlStyle",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/useApplicationAudioSession"
+      ],
+      "title": "Accessing movie properties"
+    },
+    {
+      "anchor": "Accessing-the-movie-duration",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/duration",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playableDuration"
+      ],
+      "title": "Accessing the movie duration"
+    },
+    {
+      "anchor": "Accessing-the-view",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/view",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/backgroundView"
+      ],
+      "title": "Accessing the view"
+    },
+    {
+      "abstract": [
+        {
+          "text": "See also the methods of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Controlling-and-monitoring-playback",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/loadState",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playbackState",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/initialPlaybackTime",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/endPlaybackTime",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/shouldAutoplay",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/readyForDisplay",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/repeatMode",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/timedMetadata"
+      ],
+      "title": "Controlling and monitoring playback"
+    },
+    {
+      "anchor": "Generating-thumbnail-images",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/thumbnailImage(atTime:timeOption:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/requestThumbnailImages(atTimes:timeOption:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/cancelAllThumbnailImageRequests()"
+      ],
+      "title": "Generating thumbnail images"
+    },
+    {
+      "anchor": "Retrieving-movie-logs",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/accessLog",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/errorLog"
+      ],
+      "title": "Retrieving movie logs"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieLoadState",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieControlStyle",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieFinishReason",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlaybackState",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieRepeatMode",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieScalingMode",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieTimeOption",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypeMask",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceType",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/thumbnail-notification-user-info-keys",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/fullscreen-notification-keys",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/playback-finished-notification-key"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "9.0",
+              "introducedAt": "3.2",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "9.0",
+              "introducedAt": "3.2",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.1",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MPMoviePlayerController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-initializing-the-object",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/init(contentURL:)"
+              ],
+              "title": "Creating and initializing the object"
+            },
+            {
+              "anchor": "Accessing-movie-properties",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/contentURL",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieSourceType",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/movieMediaTypes",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/allowsAirPlay",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isAirPlayVideoActive",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/naturalSize",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/isFullscreen",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/setFullscreen(_:animated:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/scalingMode",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/controlStyle",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/useApplicationAudioSession"
+              ],
+              "title": "Accessing movie properties"
+            },
+            {
+              "anchor": "Accessing-the-movie-duration",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/duration",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playableDuration"
+              ],
+              "title": "Accessing the movie duration"
+            },
+            {
+              "anchor": "Accessing-the-view",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/view",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/backgroundView"
+              ],
+              "title": "Accessing the view"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "See also the methods of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Controlling-and-monitoring-playback",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/loadState",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/playbackState",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/initialPlaybackTime",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/endPlaybackTime",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/shouldAutoplay",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/readyForDisplay",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/repeatMode",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/timedMetadata"
+              ],
+              "title": "Controlling and monitoring playback"
+            },
+            {
+              "anchor": "Generating-thumbnail-images",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/thumbnailImage(atTime:timeOption:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/requestThumbnailImages(atTimes:timeOption:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/cancelAllThumbnailImageRequests()"
+              ],
+              "title": "Generating thumbnail images"
+            },
+            {
+              "anchor": "Retrieving-movie-logs",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/accessLog",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerController/errorLog"
+              ],
+              "title": "Retrieving movie logs"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieLoadState",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieControlStyle",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieFinishReason",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlaybackState",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieRepeatMode",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieScalingMode",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieTimeOption",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypeMask",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceType",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/thumbnail-notification-user-info-keys",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/fullscreen-notification-keys",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/playback-finished-notification-key"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerDidEnterFullscreenNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerDidExitFullscreenNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerLoadStateDidChangeNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerNowPlayingMovieDidChangeNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackDidFinishNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerPlaybackStateDidChangeNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerReadyForDisplayDidChangeNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerScalingModeDidChangeNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerThumbnailImageRequestDidFinishNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerTimedMetadataUpdatedNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillEnterFullscreenNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerWillExitFullscreenNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieDurationAvailableNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypesAvailableNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieNaturalSizeAvailableNotification",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieSourceTypeAvailableNotification"
+              ],
+              "title": "Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated-symbols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLog",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieAccessLogEvent",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLog",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieErrorLogEvent",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieLoadState",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMovieMediaTypeMask",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMoviePlayerViewController",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPTimedMetadata",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManagerContext",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork/imageCropRect",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/showsRouteButton",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView/routeButtonImage(for:)"
+              ],
+              "title": "Deprecated symbols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MPMoviePlayerController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use AVPlayerViewController in AVKit",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlcredentialstorage/title",
+          "value": "NSURLCredentialStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieAccessLogEvent/title",
+          "value": "MPMovieAccessLogEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieAccessLogEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieAccessLogEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieAccessLogEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieAccessLogEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1backgroundView/title",
+          "value": "backgroundView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1backgroundView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1endPlaybackTime/title",
+          "value": "endPlaybackTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1endPlaybackTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endPlaybackTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieMediaTypeMask/title",
+          "value": "MPMovieMediaTypeMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieMediaTypeMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieMediaTypeMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieMediaTypeMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieMediaTypeMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1loadState/title",
+          "value": "loadState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1loadState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "loadState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1contentURL/title",
+          "value": "contentURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1contentURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieControlStyle/title",
+          "value": "MPMovieControlStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieControlStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieControlStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieControlStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieControlStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1playbackState/title",
+          "value": "playbackState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1playbackState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1repeatMode/title",
+          "value": "repeatMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1repeatMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "repeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlcredential~11417977-init/title",
+          "value": "initWithUser:password:persistence:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1allowsAirPlay/title",
+          "value": "allowsAirPlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1allowsAirPlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsAirPlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1init(contentURL:)/title",
+          "value": "initWithContentURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1init(contentURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithContentURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieRepeatMode/title",
+          "value": "MPMovieRepeatMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieRepeatMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieRepeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieRepeatMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieRepeatMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManager/title",
+          "value": "MPPlayableContentManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlcredentialstorage~11407227-set/title",
+          "value": "setCredential:forProtectionSpace:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerViewController/title",
+          "value": "MPMoviePlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController/title",
+          "value": "MPMoviePlayerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1shouldAutoplay/title",
+          "value": "shouldAutoplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1shouldAutoplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldAutoplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlprotectionspace/title",
+          "value": "NSURLProtectionSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerPlaybackDidFinishReasonUserInfoKey/title",
+          "value": "MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerPlaybackDidFinishReasonUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlaybackState/title",
+          "value": "MPMoviePlaybackState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlaybackState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlaybackState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlaybackState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMoviePlaybackState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManagerContext/title",
+          "value": "MPPlayableContentManagerContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManagerContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentManagerContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManagerContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentManagerContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1naturalSize/title",
+          "value": "naturalSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1naturalSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "naturalSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieFinishReason/title",
+          "value": "MPMovieFinishReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieFinishReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieFinishReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieFinishReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieFinishReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1timedMetadata/title",
+          "value": "timedMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1timedMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timedMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/title",
+          "value": "MPMediaPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlcredential/title",
+          "value": "NSURLCredential"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieErrorLogEvent/title",
+          "value": "MPMovieErrorLogEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieErrorLogEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieErrorLogEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieErrorLogEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieErrorLogEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieSourceType/title",
+          "value": "MPMovieSourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieSourceType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieSourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieSourceType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieSourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1errorLog/title",
+          "value": "errorLog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1errorLog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errorLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1controlStyle/title",
+          "value": "controlStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1controlStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "controlStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieTimeOption/title",
+          "value": "MPMovieTimeOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieTimeOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieTimeOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieTimeOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieTimeOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1setFullscreen(_:animated:)/title",
+          "value": "setFullscreen:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1setFullscreen(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFullscreen:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1movieMediaTypes/title",
+          "value": "movieMediaTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1movieMediaTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "movieMediaTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieErrorLog/title",
+          "value": "MPMovieErrorLog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieErrorLog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieErrorLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieErrorLog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieErrorLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPTimedMetadata/title",
+          "value": "MPTimedMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPTimedMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPTimedMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPTimedMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPTimedMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1accessLog/title",
+          "value": "accessLog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1accessLog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1useApplicationAudioSession/title",
+          "value": "useApplicationAudioSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1useApplicationAudioSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "useApplicationAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1scalingMode/title",
+          "value": "scalingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1scalingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scalingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1movieSourceType/title",
+          "value": "movieSourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1movieSourceType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "movieSourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1requestThumbnailImages(atTimes:timeOption:)/title",
+          "value": "requestThumbnailImagesAtTimes:timeOption:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1requestThumbnailImages(atTimes:timeOption:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestThumbnailImagesAtTimes:timeOption:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPictureInPictureController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPictureInPictureController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1playableDuration/title",
+          "value": "playableDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1playableDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playableDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController~1iPodMusicPlayer/title",
+          "value": "iPodMusicPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController~1iPodMusicPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "iPodMusicPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieScalingMode/title",
+          "value": "MPMovieScalingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieScalingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieScalingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieScalingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieScalingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1cancelAllThumbnailImageRequests()/title",
+          "value": "cancelAllThumbnailImageRequests"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1cancelAllThumbnailImageRequests()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelAllThumbnailImageRequests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView~1routeButtonImage(for:)/title",
+          "value": "routeButtonImageForState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView~1routeButtonImage(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "routeButtonImageForState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView~1showsRouteButton/title",
+          "value": "showsRouteButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView~1showsRouteButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsRouteButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1initialPlaybackTime/title",
+          "value": "initialPlaybackTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1initialPlaybackTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initialPlaybackTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork~1imageCropRect/title",
+          "value": "imageCropRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork~1imageCropRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageCropRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieAccessLog/title",
+          "value": "MPMovieAccessLog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieAccessLog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieAccessLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieAccessLog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieAccessLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1thumbnailImage(atTime:timeOption:)/title",
+          "value": "thumbnailImageAtTime:timeOption:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1thumbnailImage(atTime:timeOption:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "thumbnailImageAtTime:timeOption:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieLoadState/title",
+          "value": "MPMovieLoadState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieLoadState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieLoadState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMovieLoadState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMovieLoadState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1isFullscreen/title",
+          "value": "fullscreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1isFullscreen/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fullscreen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork~1init(image:)/title",
+          "value": "initWithImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork~1init(image:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1readyForDisplay/title",
+          "value": "readyForDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1readyForDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readyForDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1isAirPlayVideoActive/title",
+          "value": "airPlayVideoActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1isAirPlayVideoActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "airPlayVideoActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMoviePlayerController~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpmovieplayercontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpmovieplayercontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

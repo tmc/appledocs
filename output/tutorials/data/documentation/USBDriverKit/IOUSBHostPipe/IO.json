@@ -1,0 +1,532 @@
+{
+  "abstract": [
+    {
+      "text": "Performs a synchronous request on a bulk or interrupt endpoint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/IO"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUSBHostPipe@F@IO#*$@S@IOMemoryDescriptor#i#*i#i#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IO"
+      }
+    ],
+    "modules": [
+      {
+        "name": "USBDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IO"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "IO"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IO"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOMemoryDescriptor",
+              "text": "IOMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dataBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dataBufferLength"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "bytesTransferred"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionTimeoutMs"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The data buffer to use for the request. When transferring data to the device, this buffer contains the data to send. When receiving data from the device, this buffer is empty initially.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dataBuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length of the data buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dataBufferLength"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a variable. On output, this variable contains the number of bytes that were actually transferred.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bytesTransferred"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The timeout value in milliseconds. Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you don’t want the request to time out. You must specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when transferring data on an interrupt endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completionTimeoutMs"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method acquires the service’s workloop lock and performs an appropriate USB I/O request on the device. The method waits for the request to complete, and may call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " during that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573818-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for USB-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe": {
+      "abstract": [
+        {
+          "text": "An object you use to transfer data to or from a USB endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostPipe"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostPipe",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/AsyncIO": {
+      "abstract": [
+        {
+          "text": "Enqueues an asynchronous request on a bulk or interrupt endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AsyncIO"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/AsyncIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncIO",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe/asyncio"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIO": {
+      "abstract": [
+        {
+          "text": "Handles the completion of an asynchronous I/O request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteAsyncIO"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteAsyncIO",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe/completeasyncio"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/IO": {
+      "abstract": [
+        {
+          "text": "Performs a synchronous request on a bulk or interrupt endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IO"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/IO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IO",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe/io"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint32_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint32_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint32_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interacting-with-Bulk-and-Interrupt-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/AsyncIO",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIO"
+      ],
+      "title": "Interacting with Bulk and Interrupt Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usbdriverkit/iousbhostpipe/io"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1253 @@
+{
+  "abstract": [
+    {
+      "text": "Wrap article body text around an inset photo.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an Inset Photo"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you placed a pull quote within the article body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Place a photo within the article body.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to control horizontal placement in the column system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an anchor to control vertical placement and make text wrap around the photo.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624923",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-ComponentLayout-Objects-for-an-Inset-Photo",
+          "level": 3,
+          "text": "Define ComponentLayout Objects for an Inset Photo",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can position the photo inside the article body, you must define some new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects for this example. The ",
+              "type": "text"
+            },
+            {
+              "code": "smallImageLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object determines that the pull quote container gets laid out in the rightmost three columns of the article text. The other two ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects make minor vertical adjustments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Inset-Photo-Layout-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (}) of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Inset-Photo-Layout-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inset-Photo-Layout-Copy-This-Code",
+          "level": 4,
+          "text": "Inset Photo Layout: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"smallImageLayout\": {",
+            "      \"columnStart\": 8,",
+            "      \"columnSpan\": 6",
+            "    },",
+            "    \"halfMarginAboveContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"top\": 12",
+            "      }",
+            "    },",
+            "    \"halfMarginBothContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"top\": 12,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Inset-Photo-Layout-Result",
+          "level": 4,
+          "text": "Inset Photo Layout: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentLayouts\": {",
+            "    ...",
+            "    \"smallImageLayout\": {",
+            "      \"columnStart\": 8,",
+            "      \"columnSpan\": 6",
+            "    },",
+            "    \"halfMarginAboveContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"top\": 12",
+            "      }",
+            "    },",
+            "    \"halfMarginBothContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"top\": 12,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Bottom-Border",
+          "level": 3,
+          "text": "Define a Bottom Border",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can add a bottom border to the inset photo, you must define a ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that creates a bottom border only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#captionLockupStyle-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#captionLockupStyle-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "captionLockupStyle-Copy-This-Code",
+          "level": 4,
+          "text": "captionLockupStyle: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"captionLockupStyle\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"width\": 1,",
+            "          \"color\": \"#D5B327\"",
+            "        },",
+            "        \"top\": false,",
+            "        \"right\": false,",
+            "        \"bottom\": true,",
+            "        \"left\": false",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "captionLockupStyle-Result",
+          "level": 4,
+          "text": "captionLockupStyle: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "    \"captionLockupStyle\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"width\": 1,",
+            "          \"color\": \"#D5B327\"",
+            "        },",
+            "        \"top\": false,",
+            "        \"right\": false,",
+            "        \"bottom\": true,",
+            "        \"left\": false",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-Style-and-Layout-and-Wrap-Text-Around-a-Container",
+          "level": 3,
+          "text": "Use Style and Layout, and Wrap Text Around a Container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Download the Article Bundle Examples, you downloaded a bundle called ",
+              "type": "text"
+            },
+            {
+              "code": "News_Design_Tutorial_Advanced_Article_2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains a sidebar image. Now, you’ll move that image into your working folder and create a photo component to display the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sidebar.jpg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Desktop/News_Design_Tutorial_Advanced/News_Design_Tutorial_Advanced_Article_2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder to your working article directory. This directory is most likely ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Desktop/News_Design_Tutorial_Advanced/News_Design_Tutorial_6_Embeds",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Desktop/News_Design_Tutorial_Advanced/News_Design_Tutorial_Advanced_Article_1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Container-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code before the opening brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the body component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Consequatur aut doloribus",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the code ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<a id='a1' />",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component whose text begins with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Consequatur aut doloribus",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", as in the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Container-Result",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You may have to scroll to the right in the example code to see this.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make these changes in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the inset photo.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Container-Copy-This-Code",
+          "level": 4,
+          "text": "Container: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"smallImageLayout\",",
+            "          \"style\": \"captionLockupStyle\",",
+            "          \"anchor\": {",
+            "            \"targetAnchorPosition\": \"top\",",
+            "            \"originAnchorPosition\": \"top\",",
+            "            \"target\": \"a1\"",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"photo\",",
+            "              \"layout\": \"noMarginLayout\",",
+            "              \"URL\": \"bundle://sidebar.jpg\",",
+            "              \"caption\": \"A caption for the sidebar photo.\"",
+            "            },",
+            "            {",
+            "              \"role\": \"caption\",",
+            "              \"format\": \"html\",",
+            "              \"layout\": \"halfMarginBothContainedLayout\",",
+            "              \"text\": \"ABOVE: A caption for the sidebar photo. (Attribution)\"",
+            "            }",
+            "          ]",
+            "        },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Container-Result",
+          "level": 4,
+          "text": "Container: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"section\",",
+            "      ...",
+            "      \"components\": [",
+            "        ...",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"smallImageLayout\",",
+            "          \"style\": \"captionLockupStyle\",",
+            "          \"anchor\": {",
+            "            \"targetAnchorPosition\": \"center\",",
+            "            \"target\": \"a1\"",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"photo\",",
+            "              \"layout\": \"halfMarginAboveContainedLayout\",",
+            "              \"URL\": \"bundle://sidebar.jpg\",",
+            "              \"caption\": \"A caption for the sidebar photo.\"",
+            "            },",
+            "            {",
+            "              \"role\": \"caption\",",
+            "              \"format\": \"html\",",
+            "              \"layout\": \"halfMarginBothContainedLayout\",",
+            "              \"text\": \"ABOVE: A caption for the sidebar photo. (Attribution)\"",
+            "            }",
+            "          ]",
+            "        },",
+            "        {",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"noMarginLayout\",",
+            "          \"text\": \"<p>Consequatur aut doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusantium doloremque laudantium, totam rem, eaque ipsa quae ab illo inventore veritatis et quasi archit ecto beatae vitae.</p><p>Nemo enim ipsam volup tatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conse quuntur magni. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt <a id='a1' />ut labore et dolore aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p><p>Consequatur aut perferendis doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi archit ecto beatae vitae dicta. Nemo enim ipsam volup tatem quia voluptas sit <a href='http://www.apple.com'>link text</a> aut odit aut fugit, sed quia conse quuntur perspiciatis doloribus magni dolores.</p><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam suscipit laboriosam.</p>\"",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene": {
+      "abstract": [
+        {
+          "text": "Control how the article’s opening section comes into view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-animations": {
+      "abstract": [
+        {
+          "text": "Use animations to affect how parts of your article come into view the first time they appear.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Animations",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-animations"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges": {
+      "abstract": [
+        {
+          "text": "Create text in color by using HTML to refer to TextStyle objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Color to Text Ranges",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-color-to-text-ranges"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header": {
+      "abstract": [
+        {
+          "text": "Layer a title and heading in front of an image, with their colors optimized for legibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Complex, Layered Header",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption": {
+      "abstract": [
+        {
+          "text": "Position a caption in the wide right margin of your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Floating Caption",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-floating-caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Container-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Container-Copy-This-Code",
+      "kind": "section",
+      "title": "Container: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo#Container-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Container-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Container-Result",
+      "kind": "section",
+      "title": "Container: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo#Container-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Inset-Photo-Layout-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Inset-Photo-Layout-Copy-This-Code",
+      "kind": "section",
+      "title": "Inset Photo Layout: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo#Inset-Photo-Layout-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Inset-Photo-Layout-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#Inset-Photo-Layout-Result",
+      "kind": "section",
+      "title": "Inset Photo Layout: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo#Inset-Photo-Layout-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#captionLockupStyle-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#captionLockupStyle-Copy-This-Code",
+      "kind": "section",
+      "title": "captionLockupStyle: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo#captionLockupStyle-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#captionLockupStyle-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo#captionLockupStyle-Result",
+      "kind": "section",
+      "title": "captionLockupStyle: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo#captionLockupStyle-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote": {
+      "abstract": [
+        {
+          "text": "Wrap article body text around an inset pull quote.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Inset Pull Quote",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article": {
+      "abstract": [
+        {
+          "text": "Use container components to create the component hierarchies you need for special article designs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Nesting Components in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/nesting-components-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 2",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component": {
+      "abstract": [
+        {
+          "text": "Define the layout of a text component to wrap around another component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Wrapping Text Around a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/wrapping-text-around-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor": {
+      "abstract": [
+        {
+          "text": "The object for anchoring one component to another component in your article’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/anchor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Border": {
+      "abstract": [
+        {
+          "text": "The object for setting borders for component sides or tables.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Border"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Border",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Border"
+        }
+      ],
+      "role": "symbol",
+      "title": "Border",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/border"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Container": {
+      "abstract": [
+        {
+          "text": "Properties shared by all container types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Container"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Container",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Container"
+        }
+      ],
+      "role": "symbol",
+      "title": "Container",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/container"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo": {
+      "abstract": [
+        {
+          "text": "The component for including a photograph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Photo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/photo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624923": {
+      "alt": "Screenshot of an Apple News article with an inset photo on iPad.",
+      "identifier": "media-3624923",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48fe5e55e2f466580a8aa774cf4cc857/media-3624923@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3ff133d60b04851af77284f99c932fa/media-3624923~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+        "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Container",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Border"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-2-Layout-and-Positioning",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+      ],
+      "title": "Advanced Design Tutorial 2: Layout and Positioning"
+    }
+  ]
+}

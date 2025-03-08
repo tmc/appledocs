@@ -1,0 +1,645 @@
+{
+  "abstract": [
+    {
+      "text": "Performs a synchronous or asynchronous request on an isochronous endpoint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/IsochIO"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUSBHostPipe@F@IsochIO#*$@S@IOMemoryDescriptor#S0_#k#*$@S@OSAction#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IsochIO"
+      }
+    ],
+    "modules": [
+      {
+        "name": "USBDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IsochIO"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "IsochIO"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IsochIO"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOMemoryDescriptor",
+              "text": "IOMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dataBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOMemoryDescriptor",
+              "text": "IOMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "frameList"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint64_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint64_t",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "firstFrameNumber"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@OSAction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSAction",
+              "text": "OSAction"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The buffer to store the data. When transferring data to the device, this buffer contains the data to send. When receiving data from the device, this buffer is empty initially.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dataBuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid memory descriptor containing the frame list, which is an array of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBIsochronousFrame",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structures. For example, a frame list with 8 frames should be of size ",
+                  "type": "text"
+                },
+                {
+                  "code": "(sizeof(IOUSBIsochronousFrame) * 8)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "frameList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The starting frame number for the request. You can get the current frame number from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/GetFrameNumber",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to begin the transfer on the next available frame (XHCI only).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "firstFrameNumber"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional completion handler. To create a synchronous I/O request, specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". To create an asynchronous request, provide an appropriate action method with your callback routine. This method copies your action object, so you can allocate that object on the stack if you prefer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completion"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to issue isochronous requests. Allocate and initialize an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBIsochronousFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures, which describe the frames to transfer. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBIsochronousFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information regarding structure initialization requirements and usage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for USB-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice": {
+      "abstract": [
+        {
+          "text": "A provider object that represents the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostDevice",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/GetFrameNumber": {
+      "abstract": [
+        {
+          "text": "Gets the current frame number of the USB controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetFrameNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/GetFrameNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetFrameNumber",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/getframenumber"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface": {
+      "abstract": [
+        {
+          "text": "A provider object that manages interactions with an interface of the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostInterface",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe": {
+      "abstract": [
+        {
+          "text": "An object you use to transfer data to or from a USB endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostPipe"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostPipe",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIsochIO": {
+      "abstract": [
+        {
+          "text": "Handles the completion of an asynchronous request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteAsyncIsochIO"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIsochIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteAsyncIsochIO",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe/completeasyncisochio"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/IsochIO": {
+      "abstract": [
+        {
+          "text": "Performs a synchronous or asynchronous request on an isochronous endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IsochIO"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/IsochIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IsochIO",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe/isochio"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBIsochronousFrame": {
+      "abstract": [
+        {
+          "text": "A structure representing a single frame in an isochronous transfer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBIsochronousFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBIsochronousFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBIsochronousFrame",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbisochronousframe"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOMemoryDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@OSAction": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@OSAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint64_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint64_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interacting-with-Isochronous-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIsochIO",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBIsochronousFrame"
+      ],
+      "title": "Interacting with Isochronous Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usbdriverkit/iousbhostpipe/isochio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

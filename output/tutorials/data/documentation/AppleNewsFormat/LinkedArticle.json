@@ -1,0 +1,492 @@
+{
+  "abstract": [
+    {
+      "text": "A relationship between your article and another Apple News article.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkedArticle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:LinkedArticle",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "LinkedArticle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LinkedArticle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.7",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "LinkedArticle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "LinkedArticle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "related",
+                "promoted"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of relationship between the article and the linked document.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Valid values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "related",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The linked article is an article on the same topic, part of the same dossier, or provides more information about the subjects discussed.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "promoted",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The linked article isn’t directly related, but deserves additional promotion because the article covers another important topic. This value also puts the article at the top of the channel feed.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "name": "relationship",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL for the link, which can be either an Apple News link, like ",
+                  "type": "text"
+                },
+                {
+                  "code": "https://apple.news/[article_id]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or a link to an article on your website, if the website link matches the ",
+                  "type": "text"
+                },
+                {
+                  "code": "canonicalURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " metadata property of the linked article. For more information about ",
+                  "type": "text"
+                },
+                {
+                  "code": "canonicalURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "URL",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uri"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can control lists of links that people see in articles by using the ",
+              "type": "text"
+            },
+            {
+              "code": "links",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you are linking to a sponsored article, ensure that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request uses the ",
+              "type": "text"
+            },
+            {
+              "code": "isSponsored",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"metadata\": {",
+            "    \"excerpt\": \"This is a sample sports article.\",",
+            "    \"thumbnailURL\": \"bundle://Football.jpg\",",
+            "    \"datePublished\": \"2018-09-09T14:45:45+00:00\",",
+            "    \"dateCreated\": \"2018-09-08T12:41:00+00:00\",",
+            "    \"dateModified\": \"2018-09-10T12:41:00+00:00\",",
+            "    \"authors\": [",
+            "      \"Anne Johnson\"",
+            "    ],",
+            "    \"campaignData\": {",
+            "      \"sport\": [",
+            "        \"football\"",
+            "      ],",
+            "      \"event\": [",
+            "        \"Football\"",
+            "      ],",
+            "      \"author\": [",
+            "        \"John Appleseed\"",
+            "      ]",
+            "    },",
+            "    \"generatorName\": \"Generator\",",
+            "    \"generatorVersion\": \"1.0\",",
+            "    \"canonicalURL\": \"https://example.com/articles/2015/original-article.html\",",
+            "    \"links\": [",
+            "      {",
+            "        \"URL\": \"https://apple.news/AT6kNQslCQy6EE4bF8hpOoQ\",",
+            "        \"relationship\": \"related\"",
+            "      }",
+            "    ]",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "Publish an article to your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Issue": {
+      "abstract": [
+        {
+          "text": "The object for defining information about an issue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Issue"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Issue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Issue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Issue",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/issue"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkedArticle": {
+      "abstract": [
+        {
+          "text": "A relationship between your article and another Apple News article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkedArticle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkedArticle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkedArticle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkedArticle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/linkedarticle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata": {
+      "abstract": [
+        {
+          "text": "Information about your article, including author name, creation date, publication date, keywords, and excerpt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Metadata",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/metadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Article-Metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Issue"
+      ],
+      "title": "Article Metadata"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/linkedarticle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

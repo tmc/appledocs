@@ -1,0 +1,416 @@
+{
+  "abstract": [
+    {
+      "text": "A neural transfer function that  is useful for constructing a loss function to be minimized when training neural networks.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmax"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2206723,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSCNNLogSoftMax",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSCNNLogSoftMax"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSCNNLogSoftMax"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSCNNLogSoftMax"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSCNNKernel",
+              "text": "MPSCNNKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The logarithmic softmax filter is calculated by taking the natural logarithm of the result of a softmax filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each feature channel per pixel in an image in a feature map, the logarithmic softmax filter computes the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2903560",
+              "metadata": {
+                "anchor": "2903560",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Where ",
+              "type": "text"
+            },
+            {
+              "code": "R",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the result channel in the pixel, ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the number of feature channels, and ",
+              "type": "text"
+            },
+            {
+              "code": "y=ln(x)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " satisfies ",
+              "type": "text"
+            },
+            {
+              "code": "e",
+              "type": "codeVoice"
+            },
+            {
+              "code": "ʸ",
+              "type": "codeVoice"
+            },
+            {
+              "code": "=x",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmax": {
+      "abstract": [
+        {
+          "text": "A neural transfer function that  is useful for constructing a loss function to be minimized when training neural networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLogSoftMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLogSoftMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlogsoftmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient": {
+      "abstract": [
+        {
+          "text": "A gradient logarithmic softmax filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLogSoftMaxGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLogSoftMaxGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmax": {
+      "abstract": [
+        {
+          "text": "A neural transfer function that is useful for classification tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSoftMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSoftMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsoftmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmaxgradient": {
+      "abstract": [
+        {
+          "text": "A gradient softmax filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSoftMaxGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmaxgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSoftMaxGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsoftmaxgradient"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-2903560": {
+      "identifier": "link-media-2903560",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/metalperformanceshaders/mpscnnlogsoftmax#2903560"
+    },
+    "media-2903560": {
+      "alt": "pixel = pixel(x,y,k)) - ln{sum(exp(pixel(x,y,0)) ... exp(pixel(x,y,N-1))}",
+      "identifier": "media-2903560",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/866dd98e74/635d7e69-cec5-4062-bbe6-6085ad72b501.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmaxgradient"
+      ],
+      "title": "Softmax Layers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscnnlogsoftmax"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscnnlogsoftmax"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

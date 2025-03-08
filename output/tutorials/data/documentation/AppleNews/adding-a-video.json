@@ -1,0 +1,786 @@
+{
+  "abstract": [
+    {
+      "text": "Add a video component inside the header component.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Video"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component allows the user to control playback and hear audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to add a video component.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624927",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Video-to-the-Header",
+          "level": 3,
+          "text": "Add a Video to the Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a video to your article, you simply add a ",
+              "type": "text"
+            },
+            {
+              "code": "video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component to a ",
+              "type": "text"
+            },
+            {
+              "code": "components",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Here, you’ll add a ",
+              "type": "text"
+            },
+            {
+              "code": "video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component to the ",
+              "type": "text"
+            },
+            {
+              "code": "components",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the ",
+              "type": "text"
+            },
+            {
+              "code": "header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Alternatively, to include a video that plays automatically as the header’s background, you can use a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/VideoFill",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". With a video fill, playback and audio are disabled, but the video can automatically loop. With a video fill, but not a ",
+                  "type": "text"
+                },
+                {
+                  "code": "video",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " component, you can also use a scene to affect how the opening section or chapter, including the video, comes into view. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you downloaded a bundle called ",
+              "type": "text"
+            },
+            {
+              "code": "News_Design_Tutorial_Advanced_Article_3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains a thumbnail image. Now, you’ll move that image into your working folder and use it as a thumbnail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "video-still.jpg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Desktop/News_Design_Tutorial_Advanced/News_Design_Tutorial_Advanced_Article_3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder to the folder that contains your working ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your working ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, delete the first section, including its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array. The code you are deleting begins with the opening brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") before ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"role\": \"section\",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ends with a closing bracket, a closing brace, and a comma (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "]},",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video#Header-Component-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the top-level ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array, after the opening  bracket (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video#Header-Component-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Header-Component-Copy-This-Code",
+          "level": 4,
+          "text": "Header Component: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "    {",
+            "      \"role\": \"header\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"behavior\": {",
+            "        \"type\": \"parallax\",",
+            "        \"factor\": 0.8",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"video\",",
+            "          \"layout\": \"fullBleedLayout\",",
+            "          \"URL\": \"http://podcasts.apple.com/resources/462787156.mp4\",",
+            "          \"stillURL\": \"bundle://video-still.jpg\",",
+            "          \"accessibilityCaption\": \"Sed ut pers piciatis unde omnis iste natus volup tatem accusantium dolor emque, totam rem aperiam.\"",
+            "        }",
+            "      ]",
+            "    },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Header-Component-Result",
+          "level": 4,
+          "text": "Header Component: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"header\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"behavior\": {",
+            "        \"type\": \"parallax\",",
+            "        \"factor\": 0.8",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"video\",",
+            "          \"layout\": \"fullBleedLayout\",",
+            "          \"URL\": \"http://podcasts.apple.com/resources/462787156.mp4\",",
+            "          \"stillURL\": \"bundle://video-still.jpg\",",
+            "          \"accessibilityCaption\": \"Sed ut pers piciatis unde omnis iste natus volup tatem accusantium dolor emque, totam rem aperiam.\"",
+            "        }",
+            "      ]",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill": {
+      "abstract": [
+        {
+          "text": "Add an image that remains stationary when the user scrolls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Fixed Image Fill",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene": {
+      "abstract": [
+        {
+          "text": "Control how the article’s opening section comes into view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-video#Header-Component-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video#Header-Component-Copy-This-Code",
+      "kind": "section",
+      "title": "Header Component: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-video#Header-Component-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-video#Header-Component-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video#Header-Component-Result",
+      "kind": "section",
+      "title": "Header Component: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-video#Header-Component-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element": {
+      "abstract": [
+        {
+          "text": "Add a newsletter sign-up element in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Newsletter Sign-Up Element",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar": {
+      "abstract": [
+        {
+          "text": "Create a box with an HTML bulleted list in the margin.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Sidebar",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme": {
+      "abstract": [
+        {
+          "text": "Apply a new color scheme to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+      "kind": "article",
+      "role": "article",
+      "title": "Giving the Article a Dark Color Scheme",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets": {
+      "abstract": [
+        {
+          "text": "Add media assets to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Image, Video, Audio, Music, and ARKit Assets",
+      "type": "topic",
+      "url": "/documentation/applenews/preparing-image-video-audio-music-and-arkit-assets"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples",
+      "kind": "section",
+      "title": "Download the Article Bundle Examples",
+      "type": "topic",
+      "url": "/documentation/applenews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 3",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Video": {
+      "abstract": [
+        {
+          "text": "The component for adding a video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Video"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Video",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Video"
+        }
+      ],
+      "role": "symbol",
+      "title": "Video",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/video"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/VideoFill": {
+      "abstract": [
+        {
+          "text": "The object for adding a video background fill to a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/VideoFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/videofill"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624927": {
+      "alt": "Screenshot of an Apple News article with a video component on iPad.",
+      "identifier": "media-3624927",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/53e00d87fe871aafebaec503a71c89d1/media-3624927@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/15c6e78716fe9887e0d966f5cdaff687/media-3624927~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Video",
+        "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-3-More-Ideas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+      ],
+      "title": "Advanced Design Tutorial 3: More Ideas"
+    }
+  ]
+}

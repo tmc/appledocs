@@ -1,0 +1,1166 @@
+{
+  "abstract": [
+    {
+      "text": "Update your article template so that your article adapts when Dark Mode is active.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/supporting-dark-mode-for-your-article"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting Dark Mode for Your Article"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Automatic Dark Mode support is available in iOS 14, iPadOS 14, and macOS 10.16 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Apple News Format, you can customize the appearance of your article in Dark Mode. Do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dark",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Condition",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "preferredColorScheme",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set conditions for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t configure Dark Mode, Apple News automatically inverts colors for automatic Dark Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the appearance of components requiring special consideration in Dark Mode while retaining automatic color inversion for others.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When automatic Dark Mode is on, Apple News does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evaluates ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "documentStyle.backgroundColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to determine if the article already has a dark appearance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evaluates the colors in the article and picks an inverted color to automatically switch to a dark appearance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can control the way your article appears in Dark Mode by changing your article template to use darker background colors and lighter foreground colors, and you can modify styles to make your article content stand out. To set up different styles based on conditions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalDocumentStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTextStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalComponentTextStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalComponentStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are some important points to note about automatic Dark Mode in Apple News:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text styling you use for full-screen image ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " isn’t inverted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " component, the text colors aren’t inverted if any of their parent containers use a fill.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/GradientFill",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " colors aren’t inverted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sections that follow provide example code that shows how to modify properties to set up your article for Dark Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Document-Style",
+          "level": 3,
+          "text": "Define Document Style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this code example, note how the ",
+              "type": "text"
+            },
+            {
+              "code": "backgroundColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property within the ",
+              "type": "text"
+            },
+            {
+              "code": "preferredColorScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "dark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " condition, sets up the document style for Dark Mode. This conditional background color appears any time a device is in Dark Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"documentStyle\": {",
+            "    \"backgroundColor\": \"#FFF\",",
+            "    \"conditional\": [",
+            "      {",
+            "        \"backgroundColor\": \"#000\",",
+            "        \"conditions\": [",
+            "          {",
+            "            \"preferredColorScheme\": \"dark\"",
+            "          }",
+            "        ]",
+            "      } ",
+            "    ]",
+            "  }  ",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-Text-Style",
+          "level": 3,
+          "text": "Define Text Style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this code example, note how the ",
+              "type": "text"
+            },
+            {
+              "code": "textColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property within the ",
+              "type": "text"
+            },
+            {
+              "code": "preferredColorScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "dark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " condition, sets up the text style for Dark Mode. This conditional text color appears any time a device is in Dark Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"textStyles\": {",
+            "    \"default-tag-abbr\": {",
+            "      \"textColor\": \"#34AF15\",",
+            "      \"conditional\": [",
+            "        {",
+            "          \"textColor\": \"#FFC800\",",
+            "          \"conditions\": [",
+            "            {",
+            "              \"preferredColorScheme\": \"dark\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    }",
+            "  },",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"<p>The <abbr>WWF</abbr> is an international wildlife fund.</p>\"",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-Component-Text-Style",
+          "level": 3,
+          "text": "Define Component Text Style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this code example, note how the ",
+              "type": "text"
+            },
+            {
+              "code": "textColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property within the ",
+              "type": "text"
+            },
+            {
+              "code": "preferredColorScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "dark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " condition, sets up the component text style for Dark Mode. This conditional text color appears any time a device is in Dark Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"componentTextStyles\": {",
+            "    \"exampleStyle\": {",
+            "      \"textColor\": \"#666\",",
+            "      \"conditional\": [",
+            "        {",
+            "          \"textColor\": \"#FFF\",",
+            "          \"conditions\": [",
+            "            {",
+            "              \"preferredColorScheme\": \"dark\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    }",
+            "  },",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"body\",",
+            "      \"text\": \"This is body text\",",
+            "      \"textStyle\": \"exampleStyle\"",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-Component-Style",
+          "level": 3,
+          "text": "Define Component Style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this code example, note how the ",
+              "type": "text"
+            },
+            {
+              "code": "color",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property for the ",
+              "type": "text"
+            },
+            {
+              "code": "border",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object within the ",
+              "type": "text"
+            },
+            {
+              "code": "preferredColorScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "dark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " condition, sets up the component style for Dark Mode. This conditional color appears any time a device is in Dark Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"role\": \"container\",",
+            "    \"layout\": {},",
+            "    \"style\": {",
+            "      \"border\": {",
+            "        \"all\": {",
+            "          \"width\": 1,",
+            "          \"color\": \"#333\"",
+            "        }",
+            "      },",
+            "      \"conditional\": [",
+            "        {",
+            "          \"border\": {",
+            "            \"all\": {",
+            "              \"width\": 1,",
+            "              \"color\": \"#FFF\"",
+            "            }",
+            "          },",
+            "          \"conditions\": [",
+            "            {",
+            "              \"preferredColorScheme\": \"dark\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    \"components\": [",
+            "      {",
+            "        \"role\": \"title\",",
+            "        \"text\": \"Test Title\"",
+            "      }",
+            "    ]",
+            "  }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/component-styles": {
+      "abstract": [
+        {
+          "text": "Learn to use component styles to add borders, set background colors, and apply background images to components and to set the styling for tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/component-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/component-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles": {
+      "abstract": [
+        {
+          "text": "Improve the appearance of the text and components in your article by using Apple News Format styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing Your Articles with Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/enhancing-your-articles-with-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/supported-color-names": {
+      "abstract": [
+        {
+          "text": "Learn the color names supported in Apple News Format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/supported-color-names",
+      "kind": "article",
+      "role": "article",
+      "title": "Supported Color Names",
+      "type": "topic",
+      "url": "/documentation/applenews/supported-color-names"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/text-styles": {
+      "abstract": [
+        {
+          "text": "Learn about text styles and how to apply them to your text and text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/text-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/text-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption": {
+      "abstract": [
+        {
+          "text": "The component for adding caption text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Caption"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Caption"
+        }
+      ],
+      "role": "symbol",
+      "title": "Caption",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Color": {
+      "abstract": [
+        {
+          "text": "The strings for defining colors in Apple News Format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "role": "symbol",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/color"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting style properties for components, including background color and fill, borders, and table styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the style for a text component, including spacing, alignment, and drop caps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Condition": {
+      "abstract": [
+        {
+          "text": "The object for defining a condition that, when met, causes conditional properties to go into effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Condition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "role": "symbol",
+      "title": "Condition",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/condition"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalComponentStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining conditional properties for a component style, and when the conditional properties are in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalComponentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalComponentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalComponentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalComponentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionalcomponentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining conditional properties for a component text style, and when the conditional properties are in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionalcomponenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalDocumentStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining conditional properties for a document style, and when the conditional properties are in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalDocumentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalDocumentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalDocumentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalDocumentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionaldocumentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining conditional properties for a text style, and when the conditional properties are in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConditionalTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ConditionalTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConditionalTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConditionalTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/conditionaltextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting the background color for your article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/documentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/GradientFill": {
+      "abstract": [
+        {
+          "text": "The properties all gradient fill types share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GradientFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/GradientFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GradientFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "GradientFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/gradientfill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Text": {
+      "abstract": [
+        {
+          "text": "Properties shared by all text component types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/text"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the text style, such as font family, size, and color, that you can apply to ranges of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/textstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle",
+        "doc://com.apple.applenews/documentation/AppleNews/text-styles",
+        "doc://com.apple.applenews/documentation/AppleNews/component-styles",
+        "doc://com.apple.applenews/documentation/AppleNews/supported-color-names",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Color"
+      ],
+      "title": "Styles"
+    }
+  ]
+}

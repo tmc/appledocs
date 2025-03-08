@@ -1,0 +1,682 @@
+{
+  "abstract": [
+    {
+      "text": "Define a layout that supports the look you want for your article.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Planning the Layout for Your Article"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a unique look for your News article, you start by defining your layout. Apple News Format uses a column system that provides different horizontal locations for aligning the components in your design — your title, headings, body text, images, pull quotes, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might be familiar with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "column",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " as a text formatting term, but in Apple News Format a column is used for aligning entire components, not the text within a component. The column system is a set of equal-width, vertical segments you use to align components in your layout. The number of columns you choose for your layout determines your options for positioning components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a layout with one column provides only one location for alignment, so all components align to a single horizontal position at the far left.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decide-How-Many-Columns-You-Need",
+          "level": 3,
+          "text": "Decide How Many Columns You Need",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the components you plan to include and their horizontal locations relative to each other. Consider how your design will look in landscape and portrait and on different-sized devices. Is your design symmetrical or asymmetrical? Do you want your images aligned to the same position as your headings and body text, or to a different position?",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you know the general horizontal placements you need, imagine overlaying equal-width columns on your design. How many equal columns do you need to get all the horizontal alignments you want for your design?",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layouts with 5 to 20 columns provide enough flexibility to support most designs. If you create a layout with fewer than 5 columns, Apple News Format may not have enough information to maintain your intended design on smaller devices. A layout with 7 columns usually provides enough layout information to resize your design for iPad, iPhone, Mac, and Apple Vision Pro. A layout with 20 columns helps with readability and results in a better user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-Automatic-Resizing",
+          "level": 3,
+          "text": "Understand Automatic Resizing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "News uses this column system when it automatically scales down your article for people to read on smaller screens. It takes the number of columns you specified for your layout along with the width of your article to determine an optimal column width. Then, on smaller devices, it automatically uses fewer columns. Consider the following figures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first figure shows an article on three different devices. In this example, there are 10 columns on the iPad Pro, 7 on the iPad in portrait, and 3 on the iPhone in portrait.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4087466",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4087467",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The News app doesn’t scale up. The number of columns decreases on narrower displays, but never increases. In the previous figure, the layout with 7 columns designed for iPad in landscape still has 7 columns on iPad Pro —even though iPad Pro has an extra 300 points in landscape. News doesn’t increase the number of columns, but instead increases the margins on the left and right sides. The width of the gutter between columns remains fixed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-the-Layout-for-Your-Article",
+          "level": 3,
+          "text": "Set Up the Layout for Your Article",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the layout for your article, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "columns",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Default: 7. Number of columns in the article.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "width",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Default: 1024 pts. Width the article is designed for in points (iPad in landscape orientation).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "margin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Default: 60 pts each. Size of the left and right margin in points.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "gutter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Default: 20 pts. Gutter width in points.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows an article that uses the default values. With 7 columns and a 60-point margin on each side, this layout offers flexibility for a variety of designs and easily scales down to iPhones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4099658",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your next step is to position each component. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption": {
+      "abstract": [
+        {
+          "text": "Position a caption in the wide right margin of your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Floating Caption",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-floating-caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar": {
+      "abstract": [
+        {
+          "text": "Create a box with an HTML bulleted list in the margin.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Sidebar",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component": {
+      "abstract": [
+        {
+          "text": "Define the layout of a text component to wrap around another component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Wrapping Text Around a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/wrapping-text-around-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the margin above and below advertising components.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvertisingLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvertisingLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvertisingLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/advertisinglayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor": {
+      "abstract": [
+        {
+          "text": "The object for anchoring one component to another component in your article’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/anchor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the margin above and below advertising components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutoPlacementLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutoPlacementLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutoPlacementLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/autoplacementlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the positioning for a specific component within the article’s column system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout": {
+      "abstract": [
+        {
+          "text": "The object for defining columns, gutters, and margins for your article’s designed width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/layout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin": {
+      "abstract": [
+        {
+          "text": "The object for defining the space above and below a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Margin"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Margin"
+        }
+      ],
+      "role": "symbol",
+      "title": "Margin",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/margin"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4087466": {
+      "alt": "Screenshots showing the layout of an article on iPad Pro, iPad, and iPhone.",
+      "identifier": "media-4087466",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5704ae71cfad5437b2b0484597cbb1b/media-4087466@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e02286e9b224f51cfd4db5093e7be5d/media-4087466~dark@2x.png"
+        }
+      ]
+    },
+    "media-4087467": {
+      "alt": "Screenshots showing the layout of an article with fewer columns on iPad Pro, iPad, and iPhone. ",
+      "identifier": "media-4087467",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a11d6a46e5a1107ea711964c44b5b0d1/media-4087467@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c3a266358a7c8e2f5b6b0f7ee3bb327/media-4087467~dark@2x.png"
+        }
+      ]
+    },
+    "media-4099658": {
+      "alt": "Labeled screenshot of an article layout that conforms to the rules for article layout.",
+      "identifier": "media-4099658",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3bc53dc195e7f19be2df6cd99d3c0a3d/media-4099658@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49761a620f44254fd57f9928d29ecf80/media-4099658~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Article-Layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Margin",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacementLayout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingLayout"
+      ],
+      "title": "Article Layout"
+    }
+  ]
+}

@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the DHCP information for the specified service.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyDHCPInfo"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SCDynamicStoreCopyDHCPInfo",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SCDynamicStoreCopyDHCPInfo"
+      }
+    ],
+    "modules": [
+      {
+        "name": "System Configuration"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCDynamicStoreCopyDHCPInfo"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.1",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SCDynamicStoreCopyDHCPInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreCopyDHCPInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SCDynamicStoreRef",
+              "text": "SCDynamicStoreRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "store"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "serviceID"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dynamic store session that should be used for communication with the server. If this is ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", a temporary session is used.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "store"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The service ID. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to retrieve information for the primary service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "serviceID"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A dictionary containing DHCP information if successful, or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if unsuccessful. You must use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to release return values other than ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetOptionData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to extract individual options from the dictionary returned by this function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration": {
+      "abstract": [
+        {
+          "text": "Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetLeaseStartTime": {
+      "abstract": [
+        {
+          "text": "Returns the lease start time data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DHCPInfoGetLeaseStartTime"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetLeaseStartTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DHCPInfoGetLeaseStartTime",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/dhcpinfogetleasestarttime"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetOptionData": {
+      "abstract": [
+        {
+          "text": "Returns DHCP option data, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DHCPInfoGetOptionData"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetOptionData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DHCPInfoGetOptionData",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/dhcpinfogetoptiondata"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore": {
+      "abstract": [
+        {
+          "text": "The handle to an open dynamic store session with the system configuration daemon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStore"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDynamicStore",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstore"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyDHCPInfo": {
+      "abstract": [
+        {
+          "text": "Returns the DHCP information for the specified service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCDynamicStoreCopyDHCPInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCDynamicStoreCopyDHCPInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCDynamicStoreCopyDHCPInfo",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scdynamicstorecopydhcpinfo"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFStringRef": {
+      "abstract": [
+        {
+          "text": "A reference to a CFString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Group",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetOptionData",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/DHCPInfoGetLeaseStartTime"
+      ],
+      "title": "Group"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFStringRef/title",
+          "value": "CFStringRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDictionaryRef/title",
+          "value": "CFDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStore/title",
+          "value": "SCDynamicStoreRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCDynamicStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDynamicStoreRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scdynamicstorecopydhcpinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

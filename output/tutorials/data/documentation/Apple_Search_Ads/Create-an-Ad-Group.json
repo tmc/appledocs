@@ -1,1 +1,960 @@
-{"identifier":{"interfaceLanguage":"data","url":"doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group"},"abstract":[{"type":"text","text":"Creates an ad group as part of a campaign."}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.applesearchads/documentation/apple_search_ads"]]},"metadata":{"modules":[{"name":"Apple Search Ads"}],"symbolKind":"httpRequest","role":"symbol","title":"Create an Ad Group","roleHeading":"Web Service Endpoint","platforms":[{"beta":false,"name":"Search Ads","introducedAt":"5.0"}],"navigatorTitle":[{"text":"Create an Ad Group","kind":"identifier"}],"externalID":"rest:search_ads:post:v5-campaigns-{}-adgroups"},"primaryContentSections":[{"title":"URL","kind":"restEndpoint","tokens":[{"kind":"method","text":"POST"},{"kind":"text","text":" "},{"kind":"baseURL","text":"https://api.searchads.apple.com/api/"},{"kind":"path","text":"v5/campaigns/"},{"kind":"parameter","text":"{campaignId}"},{"kind":"path","text":"/adgroups"}]},{"items":[{"name":"campaignId","attributes":[],"required":true,"type":[{"text":"int64","kind":"text"}],"content":[{"inlineContent":[{"text":"The unique identifier for the campaign.","type":"text"}],"type":"paragraph"}]}],"source":"path","title":"Path Parameters","kind":"restParameters"},{"content":[{"inlineContent":[{"type":"text","text":"The request body that includes the details of the ad group and campaign."}],"type":"paragraph"}],"bodyContentType":[{"kind":"typeIdentifier","preciseIdentifier":"data:search_ads:AdGroup","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup","text":"AdGroup"}],"title":"HTTP Body","parameters":[],"kind":"restBody","mimeType":"application/json"},{"items":[{"content":[{"type":"paragraph","inlineContent":[{"text":"If the call succeeds, the API returns the ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup"},{"text":" object in the response payload with an HTTP status code of ","type":"text"},{"code":"200(OK)","type":"codeVoice"},{"text":". If unsuccessful, the HTTP status code indicates the error with details in the error message.","type":"text"}]}],"mimeType":"application/json","status":200,"reason":"OK","type":[{"text":"AdGroupResponse","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroupResponse","kind":"typeIdentifier","preciseIdentifier":"data:search_ads:AdGroupResponse"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"An invalid query or missing required parameters.","type":"text"}]}],"mimeType":"application/json","status":400,"reason":"Bad Request","type":[{"identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse","preciseIdentifier":"data:search_ads:ApiErrorResponse","kind":"typeIdentifier","text":"ApiErrorResponse"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"An unauthenticated call fails to get the requested response.","type":"text"}]}],"mimeType":"application/json","status":401,"reason":"Unauthorized","type":[{"identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse","kind":"typeIdentifier","preciseIdentifier":"data:search_ads:ApiErrorResponse","text":"ApiErrorResponse"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"Insufficient rights to the resource.","type":"text"}]}],"mimeType":"application/json","status":403,"reason":"Forbidden","type":[{"kind":"typeIdentifier","text":"ApiErrorResponse","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse","preciseIdentifier":"data:search_ads:ApiErrorResponse"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"The API can’t locate the resource.","type":"text"}]}],"mimeType":"application/json","status":404,"reason":"Not Found","type":[{"preciseIdentifier":"data:search_ads:ApiErrorResponse","text":"ApiErrorResponse","kind":"typeIdentifier","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse"}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The API calls exceed rate-limit thresholds. See the Rate Limits subsection of "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api"},{"type":"text","text":"."}]}],"mimeType":"application/json","status":429,"type":[{"kind":"typeIdentifier","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse","text":"ApiErrorResponse","preciseIdentifier":"data:search_ads:ApiErrorResponse"}]},{"content":[{"inlineContent":[{"text":"The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.","type":"text"}],"type":"paragraph"}],"mimeType":"application/json","status":500,"reason":"Internal Server Error","type":[{"kind":"typeIdentifier","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse","preciseIdentifier":"data:search_ads:ApiErrorResponse","text":"ApiErrorResponse"}]}],"title":"Response Codes","kind":"restResponses"},{"content":[{"anchor":"Discussion","type":"heading","text":"Discussion","level":2},{"inlineContent":[{"text":"To create ad groups, use the associated ","type":"text"},{"type":"codeVoice","code":"campaignId"},{"text":" as a resource in the URI. In the request, specify ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions","type":"reference"},{"text":" and apply it to ad groups.","type":"text"}],"type":"paragraph"},{"type":"aside","style":"note","content":[{"type":"paragraph","inlineContent":[{"text":"","type":"text"},{"text":" ","type":"text"},{"text":"You can’t create or update ad groups with geotargeting for campaigns with multiple ","type":"text"},{"code":"countriesOrRegions","type":"codeVoice"},{"text":".","type":"text"}]}],"name":"Note"},{"text":"Payload example: Create an ad group with targeting","type":"heading","anchor":"Payload-example-Create-an-ad-group-with-targeting","level":3},{"tabs":[{"content":[{"syntax":null,"type":"codeListing","code":["POST https://api.searchads.apple.com/api/v5/campaigns/{campaignId}/adgroups","","{","  \"campaignId\": 56543219,","  \"name\": \"TripTrek ad group\",","  \"cpaGoal\": {","    \"amount\": \"1\",","    \"currency\": \"USD\"","  },","  \"startTime\": \"2024-05-18T00:00:00.000\",","  \"endTime\": \"2024-05-22T00:00:00.000\",","  \"automatedKeywordsOptIn\": true,","  \"pricingModel\": \"CPC\",","  \"defaultBidAmount\": {","    \"amount\": \"1\",","    \"currency\": \"USD\"","  },"," \"targetingDimensions\": {","    \"age\": {","      \"included\": [","        {","          \"minAge\": 20,","          \"maxAge\": 25","        }","      ]","    },","    \"gender\": {","      \"included\": [","        \"F\",","        \"M\"","      ]","    },","    \"deviceClass\": {","      \"included\": [","        \"IPAD\",","        \"IPHONE\"","        ]","    }","  },","  \"orgId\": 39879640,","  \"status\": \"ENABLED\"","}"]}],"title":"Request"},{"title":"Response","content":[{"type":"codeListing","syntax":"json","code":["{","  \"id\": 542370642,","  \"campaignId\": 56543219,","  \"name\": \"TripTrek ad group\",","  \"cpaGoal\": {","    \"amount\": \"1\",","    \"currency\": \"USD\"","  },","  \"startTime\": \"2024-05-18T00:00:00.000\",","  \"endTime\": \"2024-05-22T00:00:00.000\",","  \"automatedKeywordsOptIn\": true,","  \"pricingModel\": \"CPC\",","  \"defaultBidAmount\": {","    \"amount\": \"1\",","    \"currency\": \"USD\"","  },","  \"targetingDimensions\": {","    \"age\": {","      \"included\": [","        {","          \"minAge\": 20,","          \"maxAge\": 25","        }","      ]","    },","    \"gender\": {","      \"included\": [","        \"F\",","        \"M\"","      ]","    },","    \"country\": null,","    \"adminArea\": null,","    \"locality\": null,","    \"deviceClass\": {","      \"included\": [","        \"IPAD\",","        \"IPHONE\"","        ]","    },","    \"appDownloaders\": null","  },","  \"orgId\": 40669820,","  \"modificationTime\": \"2024-05-22T17:30:56.435\",","  \"status\": \"ENABLED\",","  \"servingStatus\": \"NOT_RUNNING\",","  \"servingStateReasons\": [","    \"START_DATE_IN_THE_FUTURE\"","  ],","  \"displayStatus\": \"ON_HOLD\",","  \"deleted\": false","}"]}]}],"type":"tabNavigator"},{"type":"heading","anchor":"Payload-example-Create-an-ad-group-without-targeting","text":"Payload example: Create an ad group without targeting","level":3},{"tabs":[{"content":[{"type":"codeListing","syntax":null,"code":["POST https://api.searchads.apple.com/api/v5/campaigns/{campaignId}/adgroups","","{","  \"name\": \"TripTrek ad group\",","  \"startTime\": \"2024-05-18T00:00:00.000\",","  \"endTime\": \"2024-05-22T00:00:00.000\",","  \"automatedKeywordsOptIn\": false,","  \"pricingModel\": \"CPC\",","  \"defaultBidAmount\": {","    \"amount\": \"1\",","    \"currency\": \"USD\"","  },","  \"orgId\": 39879640,","  \"status\": \"ENABLED\"","}"]}],"title":"Request"},{"content":[{"type":"codeListing","syntax":"json","code":["{","  \"data\": {","    \"id\": 586648342,","    \"campaignId\": 586640439,","    \"name\": \"TripTrek ad group\",","    \"cpaGoal\": null,","    \"startTime\": \"2024-05-18T00:00:00.000\",","    \"endTime\": \"2024-05-22T00:00:00.000\",","    \"automatedKeywordsOptIn\": false,","    \"targetingDimensions\": {","      \"age\": null,","      \"gender\": null,","      \"country\": null,","      \"adminArea\": null,","      \"locality\": null,","      \"deviceClass\": {","        \"included\": [","          \"IPHONE\",","          \"IPAD\"","        ]","      },","      \"daypart\": null,","      \"appDownloaders\": null","    },","    \"orgId\": 39879640,","    \"creationTime\": \"2024-05-11T20:22:04.405\",","    \"pricingModel\": \"CPC\",","    \"modificationTime\": \"2024-05-11T20:22:04.405\",","    \"status\": \"ENABLED\",","    \"servingStatus\": \"NOT_RUNNING\",","    \"servingStateReasons\": [","      \"START_DATE_IN_THE_FUTURE\"","    ],","    \"displayStatus\": \"ON_HOLD\",","    \"deleted\": false,","    \"defaultBidAmount\": {","      \"amount\": \"1\",","      \"currency\": \"USD\"","    }","  },","  \"pagination\": null,","  \"error\": null","}"]}],"title":"Response"}],"type":"tabNavigator"}],"kind":"content"}],"variants":[{"traits":[{"interfaceLanguage":"data"}],"paths":["/documentation/apple_search_ads/create-an-ad-group"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"symbol","seeAlsoSections":[{"identifiers":["doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups","doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups-(org-level)","doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group","doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Ad-Groups","doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group","doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-an-Ad-Group"],"generated":true,"title":"Ad Group Endpoints","anchor":"Ad-Group-Endpoints"}],"sections":[],"references":{"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse":{"title":"ApiErrorResponse","url":"/documentation/apple_search_ads/apierrorresponse","abstract":[{"text":"A parent object of the error response body.","type":"text"}],"navigatorTitle":[{"text":"ApiErrorResponse","kind":"identifier"}],"type":"topic","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse","kind":"symbol","fragments":[{"text":"object ","kind":"text"},{"text":"ApiErrorResponse","kind":"identifier"}],"role":"symbol"},"doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups-(org-level)":{"url":"/documentation/apple_search_ads/find-ad-groups-(org-level)","kind":"symbol","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups-(org-level)","navigatorTitle":[{"kind":"identifier","text":"Find Ad Groups (org-level)"}],"title":"Find Ad Groups (org-level)","abstract":[{"type":"text","text":"Fetches ad groups within an organization."}],"type":"topic","role":"symbol"},"doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group":{"url":"/documentation/apple_search_ads/create-an-ad-group","kind":"symbol","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group","navigatorTitle":[{"kind":"identifier","text":"Create an Ad Group"}],"title":"Create an Ad Group","abstract":[{"type":"text","text":"Creates an ad group as part of a campaign."}],"type":"topic","role":"symbol"},"doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups":{"url":"/documentation/apple_search_ads/find-ad-groups","kind":"symbol","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups","navigatorTitle":[{"kind":"identifier","text":"Find Ad Groups"}],"title":"Find Ad Groups","abstract":[{"text":"Fetches ad groups within a campaign.","type":"text"}],"type":"topic","role":"symbol"},"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup":{"fragments":[{"text":"object ","kind":"text"},{"text":"AdGroup","kind":"identifier"}],"identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup","abstract":[{"text":"The response to ad group requests.","type":"text"}],"kind":"symbol","type":"topic","title":"AdGroup","url":"/documentation/apple_search_ads/adgroup","role":"symbol","navigatorTitle":[{"text":"AdGroup","kind":"identifier"}]},"doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions":{"role":"symbol","title":"TargetingDimensions","fragments":[{"text":"object ","kind":"text"},{"text":"TargetingDimensions","kind":"identifier"}],"navigatorTitle":[{"text":"TargetingDimensions","kind":"identifier"}],"kind":"symbol","type":"topic","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions","url":"/documentation/apple_search_ads/targetingdimensions","abstract":[{"type":"text","text":"The optional criteria to use with ad groups to narrow the audience that views your ads."}]},"doc://com.apple.applesearchads/documentation/apple_search_ads":{"type":"topic","role":"collection","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads","abstract":[{"text":"Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.","type":"text"}],"title":"Apple Search Ads","url":"/documentation/apple_search_ads","kind":"symbol"},"doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group":{"url":"/documentation/apple_search_ads/get-an-ad-group","kind":"symbol","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group","navigatorTitle":[{"kind":"identifier","text":"Get an Ad Group"}],"title":"Get an Ad Group","abstract":[{"text":"Fetches a specific ad group with a campaign and ad group identifier.","type":"text"}],"type":"topic","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"type":"topic","role":"overview","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","url":"/documentation/technologies","kind":"technologies"},"doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api":{"title":"Calling the Apple Search Ads API","identifier":"doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api","role":"collectionGroup","url":"/documentation/apple_search_ads/calling-the-apple-search-ads-api","abstract":[{"text":"Pass your access token in the authorization header of HTTP requests.","type":"text"}],"kind":"article","type":"topic"},"doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-an-Ad-Group":{"navigatorTitle":[{"text":"Delete an Ad Group","kind":"identifier"}],"role":"symbol","url":"/documentation/apple_search_ads/delete-an-ad-group","title":"Delete an Ad Group","type":"topic","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-an-Ad-Group","kind":"symbol","abstract":[{"type":"text","text":"Deletes an ad group with a campaign and ad group identifier."}]},"doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Ad-Groups":{"url":"/documentation/apple_search_ads/get-all-ad-groups","kind":"symbol","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Ad-Groups","navigatorTitle":[{"kind":"identifier","text":"Get all Ad Groups"}],"title":"Get all Ad Groups","abstract":[{"text":"Fetches all ad groups with a campaign identifier.","type":"text"}],"type":"topic","role":"symbol"},"doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group":{"navigatorTitle":[{"text":"Update an Ad Group","kind":"identifier"}],"role":"symbol","url":"/documentation/apple_search_ads/update-an-ad-group","title":"Update an Ad Group","type":"topic","identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group","kind":"symbol","abstract":[{"type":"text","text":"Updates an ad group with an ad group identifier."}]},"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroupResponse":{"abstract":[{"type":"text","text":"A container for the ad group response body."}],"fragments":[{"text":"object ","kind":"text"},{"kind":"identifier","text":"AdGroupResponse"}],"identifier":"doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroupResponse","title":"AdGroupResponse","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"AdGroupResponse"}],"role":"symbol","url":"/documentation/apple_search_ads/adgroupresponse","type":"topic"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Creates an ad group as part of a campaign.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v5-campaigns-{}-adgroups",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Create an Ad Group"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create an Ad Group"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/campaigns/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{campaignId}"
+        },
+        {
+          "kind": "path",
+          "text": "/adgroups"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "campaignId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:AdGroup",
+          "text": "AdGroup"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that includes the details of the ad group and campaign.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroupResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:AdGroupResponse",
+              "text": "AdGroupResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create ad groups, use the associated ",
+              "type": "text"
+            },
+            {
+              "code": "campaignId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a resource in the URI. In the request, specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and apply it to ad groups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t create or update ad groups with geotargeting for campaigns with multiple ",
+                  "type": "text"
+                },
+                {
+                  "code": "countriesOrRegions",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Payload-example-Create-an-ad-group-with-targeting",
+          "level": 3,
+          "text": "Payload example: Create an ad group with targeting",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/campaigns/{campaignId}/adgroups",
+                    "",
+                    "{",
+                    "  \"campaignId\": 56543219,",
+                    "  \"name\": \"TripTrek ad group\",",
+                    "  \"cpaGoal\": {",
+                    "    \"amount\": \"1\",",
+                    "    \"currency\": \"USD\"",
+                    "  },",
+                    "  \"startTime\": \"2024-05-18T00:00:00.000\",",
+                    "  \"endTime\": \"2024-05-22T00:00:00.000\",",
+                    "  \"automatedKeywordsOptIn\": true,",
+                    "  \"pricingModel\": \"CPC\",",
+                    "  \"defaultBidAmount\": {",
+                    "    \"amount\": \"1\",",
+                    "    \"currency\": \"USD\"",
+                    "  },",
+                    " \"targetingDimensions\": {",
+                    "    \"age\": {",
+                    "      \"included\": [",
+                    "        {",
+                    "          \"minAge\": 20,",
+                    "          \"maxAge\": 25",
+                    "        }",
+                    "      ]",
+                    "    },",
+                    "    \"gender\": {",
+                    "      \"included\": [",
+                    "        \"F\",",
+                    "        \"M\"",
+                    "      ]",
+                    "    },",
+                    "    \"deviceClass\": {",
+                    "      \"included\": [",
+                    "        \"IPAD\",",
+                    "        \"IPHONE\"",
+                    "        ]",
+                    "    }",
+                    "  },",
+                    "  \"orgId\": 39879640,",
+                    "  \"status\": \"ENABLED\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"id\": 542370642,",
+                    "  \"campaignId\": 56543219,",
+                    "  \"name\": \"TripTrek ad group\",",
+                    "  \"cpaGoal\": {",
+                    "    \"amount\": \"1\",",
+                    "    \"currency\": \"USD\"",
+                    "  },",
+                    "  \"startTime\": \"2024-05-18T00:00:00.000\",",
+                    "  \"endTime\": \"2024-05-22T00:00:00.000\",",
+                    "  \"automatedKeywordsOptIn\": true,",
+                    "  \"pricingModel\": \"CPC\",",
+                    "  \"defaultBidAmount\": {",
+                    "    \"amount\": \"1\",",
+                    "    \"currency\": \"USD\"",
+                    "  },",
+                    "  \"targetingDimensions\": {",
+                    "    \"age\": {",
+                    "      \"included\": [",
+                    "        {",
+                    "          \"minAge\": 20,",
+                    "          \"maxAge\": 25",
+                    "        }",
+                    "      ]",
+                    "    },",
+                    "    \"gender\": {",
+                    "      \"included\": [",
+                    "        \"F\",",
+                    "        \"M\"",
+                    "      ]",
+                    "    },",
+                    "    \"country\": null,",
+                    "    \"adminArea\": null,",
+                    "    \"locality\": null,",
+                    "    \"deviceClass\": {",
+                    "      \"included\": [",
+                    "        \"IPAD\",",
+                    "        \"IPHONE\"",
+                    "        ]",
+                    "    },",
+                    "    \"appDownloaders\": null",
+                    "  },",
+                    "  \"orgId\": 40669820,",
+                    "  \"modificationTime\": \"2024-05-22T17:30:56.435\",",
+                    "  \"status\": \"ENABLED\",",
+                    "  \"servingStatus\": \"NOT_RUNNING\",",
+                    "  \"servingStateReasons\": [",
+                    "    \"START_DATE_IN_THE_FUTURE\"",
+                    "  ],",
+                    "  \"displayStatus\": \"ON_HOLD\",",
+                    "  \"deleted\": false",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Payload-example-Create-an-ad-group-without-targeting",
+          "level": 3,
+          "text": "Payload example: Create an ad group without targeting",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST https://api.searchads.apple.com/api/v5/campaigns/{campaignId}/adgroups",
+                    "",
+                    "{",
+                    "  \"name\": \"TripTrek ad group\",",
+                    "  \"startTime\": \"2024-05-18T00:00:00.000\",",
+                    "  \"endTime\": \"2024-05-22T00:00:00.000\",",
+                    "  \"automatedKeywordsOptIn\": false,",
+                    "  \"pricingModel\": \"CPC\",",
+                    "  \"defaultBidAmount\": {",
+                    "    \"amount\": \"1\",",
+                    "    \"currency\": \"USD\"",
+                    "  },",
+                    "  \"orgId\": 39879640,",
+                    "  \"status\": \"ENABLED\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": {",
+                    "    \"id\": 586648342,",
+                    "    \"campaignId\": 586640439,",
+                    "    \"name\": \"TripTrek ad group\",",
+                    "    \"cpaGoal\": null,",
+                    "    \"startTime\": \"2024-05-18T00:00:00.000\",",
+                    "    \"endTime\": \"2024-05-22T00:00:00.000\",",
+                    "    \"automatedKeywordsOptIn\": false,",
+                    "    \"targetingDimensions\": {",
+                    "      \"age\": null,",
+                    "      \"gender\": null,",
+                    "      \"country\": null,",
+                    "      \"adminArea\": null,",
+                    "      \"locality\": null,",
+                    "      \"deviceClass\": {",
+                    "        \"included\": [",
+                    "          \"IPHONE\",",
+                    "          \"IPAD\"",
+                    "        ]",
+                    "      },",
+                    "      \"daypart\": null,",
+                    "      \"appDownloaders\": null",
+                    "    },",
+                    "    \"orgId\": 39879640,",
+                    "    \"creationTime\": \"2024-05-11T20:22:04.405\",",
+                    "    \"pricingModel\": \"CPC\",",
+                    "    \"modificationTime\": \"2024-05-11T20:22:04.405\",",
+                    "    \"status\": \"ENABLED\",",
+                    "    \"servingStatus\": \"NOT_RUNNING\",",
+                    "    \"servingStateReasons\": [",
+                    "      \"START_DATE_IN_THE_FUTURE\"",
+                    "    ],",
+                    "    \"displayStatus\": \"ON_HOLD\",",
+                    "    \"deleted\": false,",
+                    "    \"defaultBidAmount\": {",
+                    "      \"amount\": \"1\",",
+                    "      \"currency\": \"USD\"",
+                    "    }",
+                    "  },",
+                    "  \"pagination\": null,",
+                    "  \"error\": null",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup": {
+      "abstract": [
+        {
+          "text": "The response to ad group requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdGroup",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/adgroup"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroupResponse": {
+      "abstract": [
+        {
+          "text": "A container for the ad group response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdGroupResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroupResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdGroupResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdGroupResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/adgroupresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Creates an ad group as part of a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-an-ad-group"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Deletes an ad group with a campaign and ad group identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/delete-an-ad-group"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups": {
+      "abstract": [
+        {
+          "text": "Fetches ad groups within a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find Ad Groups"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find Ad Groups",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-ad-groups"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups-(org-level)": {
+      "abstract": [
+        {
+          "text": "Fetches ad groups within an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups-(org-level)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find Ad Groups (org-level)"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find Ad Groups (org-level)",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-ad-groups-(org-level)"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Ad-Groups": {
+      "abstract": [
+        {
+          "text": "Fetches all ad groups with a campaign identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Ad-Groups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get all Ad Groups"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get all Ad Groups",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-ad-groups"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Fetches a specific ad group with a campaign and ad group identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-an-ad-group"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions": {
+      "abstract": [
+        {
+          "text": "The optional criteria to use with ad groups to narrow the audience that views your ads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TargetingDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/TargetingDimensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TargetingDimensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "TargetingDimensions",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/targetingdimensions"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Updates an ad group with an ad group identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-an-ad-group"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-Group-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Ad-Groups-(org-level)",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-an-Ad-Group",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-all-Ad-Groups",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad-Group",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-an-Ad-Group"
+      ],
+      "title": "Ad Group Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/create-an-ad-group"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "abstract": [
+    {
+      "text": "A filter that finds the maximum pixel value in a rectangular region by applying a dilation function. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1618286,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSImageDilate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSImageDilate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSImageDilate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSImageDilate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSUnaryImageKernel",
+              "text": "MPSUnaryImageKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " filter behaves like the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamax",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter, except Metal calculates the intensity at each position relative to a different value before determining which is the maximum pixel value, allowing for shaped, nonrectangular morphological probes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example below shows pseudocode for the calculation that returns each pixel value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for each pixel in the filter window",
+            "    value = pixel[filterY][filterX] - filter[filterY*filter_width+filterX]",
+            "    if( value > bestValue ){",
+            "        result = value",
+            "        bestValue = value",
+            "    }"
+          ],
+          "metadata": {
+            "anchor": "2556910",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A filter that contains all zeros is identical to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamax",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter. Metal handles the center filter element as ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to avoid causing a general darkening of the image, and it handles the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618812-edgemode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property  as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/clamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for this filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Filters",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/image_filters"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamax": {
+      "abstract": [
+        {
+          "text": "A filter that finds the maximum pixel value in a rectangular region centered around each pixel in the source image. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageAreaMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageAreaMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageareamax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamin": {
+      "abstract": [
+        {
+          "text": "A filter that finds the minimum pixel value in a rectangular region centered around each pixel in the source image. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageAreaMin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageAreaMin",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageareamin"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate": {
+      "abstract": [
+        {
+          "text": "A filter that finds the maximum pixel value in a rectangular region by applying a dilation function. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageDilate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageDilate",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedilate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate#2556910": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate#2556910",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsimagedilate#2556910"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618279-kernelwidth": {
+      "abstract": [
+        {
+          "text": "The width of the filter window which must be an odd number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618279-kernelwidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelWidth",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedilate/1618279-kernelwidth"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618280-kernelheight": {
+      "abstract": [
+        {
+          "text": "The height of the filter window. which must be an odd number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618280-kernelheight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelHeight",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedilate/1618280-kernelheight"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618285-init": {
+      "abstract": [
+        {
+          "text": "Initializes the kernel with a specified width, height, and weight values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "values"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618285-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:kernelWidth:kernelHeight:values:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedilate/1618285-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/2866325-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/2866325-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedilate/2866325-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/clamp": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/clamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageEdgeMode.clamp",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageedgemode/clamp"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageerode": {
+      "abstract": [
+        {
+          "text": "A filter that finds the minimum pixel value in a rectangular region by applying an erosion function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageErode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageerode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageErode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageerode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSUnaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618812-edgemode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618812-edgemode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "edgeMode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618812-edgemode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageareamin",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageerode"
+      ],
+      "title": "Morphological Image Filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868611",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/2866325-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "1674334",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618285-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods"
+    },
+    {
+      "anchor": "1674349",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618280-kernelheight",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedilate/1618279-kernelwidth"
+      ],
+      "kind": "taskGroup",
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimagedilate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimagedilate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

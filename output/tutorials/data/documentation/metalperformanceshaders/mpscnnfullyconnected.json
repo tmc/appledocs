@@ -1,0 +1,877 @@
+{
+  "abstract": [
+    {
+      "text": "A fully connected convolution layer, also known as an inner product layer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1817670,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSCNNFullyConnected",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSCNNFullyConnected"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSCNNFullyConnected"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSCNNFullyConnected"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSCNNConvolution",
+              "text": "MPSCNNConvolution"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fully connected layer in  a Convolutional Neural Network (CNN) is one where every input channel is connected to every output channel. The kernel width is equal to the width of the source image, and the kernel height is equal to the height of the source image. The width and height of the output is ",
+              "type": "text"
+            },
+            {
+              "code": "1 x 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fully connected layer takes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with dimensions ",
+              "type": "text"
+            },
+            {
+              "code": "source.width x source.height x Ni",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", convolves it with ",
+              "type": "text"
+            },
+            {
+              "code": "Weights[No][source.width][source.height][Ni]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "and produces a ",
+              "type": "text"
+            },
+            {
+              "code": "1 x 1 x No",
+              "type": "codeVoice"
+            },
+            {
+              "text": " output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Thus, the following conditions must be true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kernelWidth  == source.width",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kernelHeight == source.height",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "clipRect.size.width == 1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "clipRect.size.height == 1",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can think of a fully connected layer as a matrix multiplication where the image is flattened into a vector of length ",
+              "type": "text"
+            },
+            {
+              "code": "source.width*source.height*Ni",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the weights are arranged in a matrix of dimension ",
+              "type": "text"
+            },
+            {
+              "code": "No x (source.width*source.height*Ni)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to produce an output vector of length ",
+              "type": "text"
+            },
+            {
+              "code": "No",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of the ",
+              "type": "text"
+            },
+            {
+              "code": "strideInPixelsX",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648847-strideinpixelsy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution/1845269-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties must be ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is not applicable and it is ignored. Because the clip rectangle is clamped to the destination image bounds, if the destination is ",
+              "type": "text"
+            },
+            {
+              "code": "1 x 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you do not need to set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can implement a fully connected convolution layer using an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object by setting the following property values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "offset = (kernelWidth/2,kernelHeight/2)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "clipRect.origin = (ox,oy)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "clipRect.size = (1,1)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "strideInPixelsX = strideInPixelsY = groups = 1",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "However, using an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object directly is better for performance as it lets the Metal Performance Shaders framework choose the most performant implementation method, which may not be possible when you use a general convolution. For example, the framework may internally use matrix multiplication or special reduction kernels for a specific Metal feature set.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected": {
+      "abstract": [
+        {
+          "text": "A fully connected convolution layer with binary weights and optionally binarized input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryFullyConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryFullyConnected",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolution",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolution"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution/1845269-groups": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution/1845269-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groups",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolution/1845269-groups"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource": {
+      "abstract": [
+        {
+          "text": "The protocol that provides convolution filter weights and bias terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionDataSource",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the attributes of a convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648847-strideinpixelsy": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648847-strideinpixelsy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strideInPixelsY",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648847-strideinpixelsy"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionflags": {
+      "abstract": [
+        {
+          "text": "Options used to control how kernel weights are stored and used in the CNN kernels",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionFlags",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutionflags"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected": {
+      "abstract": [
+        {
+          "text": "A fully connected convolution layer, also known as an inner product layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNFullyConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNFullyConnected",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnected"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/1829441-init": {
+      "abstract": [
+        {
+          "text": "Initializes a fully connected convolution layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNConvolutionDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "biasTerms"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNConvolutionFlags)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/1829441-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:convolutionDescriptor:kernelWeights:biasTerms:flags:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnected/1829441-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/2867158-init": {
+      "abstract": [
+        {
+          "text": "Initializes a fully connected convolution layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/2867158-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnected/2867158-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/2867198-init": {
+      "abstract": [
+        {
+          "text": "Initializes a fully connected convolution layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "weights"
+        },
+        {
+          "kind": "text",
+          "text": ": any MPSCNNConvolutionDataSource)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/2867198-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:weights:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnected/2867198-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient": {
+      "abstract": [
+        {
+          "text": "A gradient fully connected convolution layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNFullyConnectedGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNFullyConnectedGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipRect",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient"
+      ],
+      "title": "Fully Connected Layers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1930262",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/2867158-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/2867198-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected/1829441-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionflags"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscnnfullyconnected"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscnnfullyconnected"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

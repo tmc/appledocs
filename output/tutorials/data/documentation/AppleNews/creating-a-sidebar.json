@@ -1,0 +1,1245 @@
+{
+  "abstract": [
+    {
+      "text": "Create a box with an HTML bulleted list in the margin.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Sidebar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Placing supplemental or reference information in the margin of your article can create an informative and engaging experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to create a sidebar that contains some HTML formatting.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624926",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Component-Layout-Objects-for-the-Sidebar",
+          "level": 3,
+          "text": "Create Component Layout Objects for the Sidebar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object called ",
+              "type": "text"
+            },
+            {
+              "code": "sidebarLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies that the sidebar will begin in column 7 of the article layout and span three columns. The other ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object makes a minor adjustment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Sidebar-Layout-Objects-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Sidebar-Layout-Objects-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sidebar-Layout-Objects-Copy-This-Code",
+          "level": 4,
+          "text": "Sidebar Layout Objects: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"sidebarLayout\": {",
+            "      \"contentInset\": {",
+            "        \"left\": true,",
+            "        \"right\": true",
+            "      },",
+            "      \"columnStart\": 14,",
+            "      \"columnSpan\": 6,",
+            "      \"margin\": {",
+            "        \"top\": 24",
+            "      }",
+            "    },",
+            "    \"fullMarginBelowContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"bottom\": 24",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Sidebar-Layout-Objects-Result",
+          "level": 4,
+          "text": "Sidebar Layout Objects: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentLayouts\": {",
+            "    ...",
+            "    \"sidebarLayout\": {",
+            "      \"contentInset\": {",
+            "        \"left\": true,",
+            "        \"right\": true",
+            "      },",
+            "      \"columnStart\": 14,",
+            "      \"columnSpan\": 6,",
+            "      \"margin\": {",
+            "        \"top\": 24",
+            "      }",
+            "    },",
+            "    \"fullMarginBelowContainedLayout\": {",
+            "      \"margin\": {",
+            "        \"bottom\": 24",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Component-Style-Object-for-the-Sidebar",
+          "level": 3,
+          "text": "Define a Component Style Object for the Sidebar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can apply a background color to the sidebar, you must define  a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for the sidebar background color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#sidebarBackgroundStyle-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#sidebarBackgroundStyle-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "sidebarBackgroundStyle-Copy-This-Code",
+          "level": 4,
+          "text": "sidebarBackgroundStyle: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"sidebarBackgroundStyle\": {",
+            "      \"backgroundColor\": \"#EAF1F4\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "sidebarBackgroundStyle-Result",
+          "level": 4,
+          "text": "sidebarBackgroundStyle: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "    \"sidebarBackgroundStyle\": {",
+            "      \"backgroundColor\": \"#EAF1F4\"",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-Body-Component",
+          "level": 3,
+          "text": "Update the Body Component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, update the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component that follows the ",
+              "type": "text"
+            },
+            {
+              "code": "podcast",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Body-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the copied code, replacing the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component that follows the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "podcast",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Body-Result",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Body-Copy-This-Code",
+          "level": 4,
+          "text": "Body: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"identifier\": \"body2\",",
+            "  \"role\": \"body\",",
+            "  \"format\": \"html\",",
+            "  \"layout\": \"fullMarginAboveLayout\",",
+            "  \"text\": \"<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio. Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p><p>Sed dignissim magna nec metus tincidunt, in posuere tortor malesuada. Morbi auctor justo sodales nulla tincidunt rhoncus. Praesent aliquam, ex eu auctor auctor, turpis metus vehicula augue, non dapibus odio massa a massa. Nunc condimentum dui quis odio condimentum, ac sodales libero elementum. Nullam sagittis felis ac tortor varius ultricies. Duis aliquet ex vel orci aliquam, sit amet bibendum risus rhoncus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p><p>Aliquam erat volutpat. Phasellus laoreet porttitor quam ut hendrerit. Aliquam nec arcu scelerisque, scelerisque nisi sit amet, eleifend augue. Nunc sit amet elit commodo, congue felis eget, gravida nibh. Praesent lorem risus, tristique sed porta non, aliquam in sapien. Praesent rhoncus orci eu scelerisque euismod. Morbi bibendum lorem lorem, eu tincidunt neque volutpat sit amet. Sed urna ligula, volutpat nec posuere a, laoreet ut tellus. Curabitur lacinia ornare nisi, et aliquet ex pretium sit amet. Aliquam finibus tristique arcu at feugiat. Donec nec sodales magna. Nulla vulputate sem eget libero venenatis lobortis. Morbi nec sodales metus. Ut eu diam quis augue imperdiet interdum ac quis metus.</p>\"",
+            "},"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Body-Result",
+          "level": 4,
+          "text": "Body: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"bodyBackgroundStyle\",",
+            "      \"components\": [",
+            "        ...",
+            "        {",
+            "          \"role\": \"podcast\",",
+            "          \"layout\": \"noMarginLayout\",",
+            "          \"orientation\": \"horizontal\",",
+            "          \"URL\": \"https://podcasts.apple.com/us/podcast/apple-news-today/id1473872585\"",
+            "        },",
+            "        {",
+            "          \"identifier\": \"body2\",",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"fullMarginAboveLayout\",",
+            "          \"text\": \"<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio. Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p><p>Sed dignissim magna nec metus tincidunt, in posuere tortor malesuada. Morbi auctor justo sodales nulla tincidunt rhoncus. Praesent aliquam, ex eu auctor auctor, turpis metus vehicula augue, non dapibus odio massa a massa. Nunc condimentum dui quis odio condimentum, ac sodales libero elementum. Nullam sagittis felis ac tortor varius ultricies. Duis aliquet ex vel orci aliquam, sit amet bibendum risus rhoncus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p><p>Aliquam erat volutpat. Phasellus laoreet porttitor quam ut hendrerit. Aliquam nec arcu scelerisque, scelerisque nisi sit amet, eleifend augue. Nunc sit amet elit commodo, congue felis eget, gravida nibh. Praesent lorem risus, tristique sed porta non, aliquam in sapien. Praesent rhoncus orci eu scelerisque euismod. Morbi bibendum lorem lorem, eu tincidunt neque volutpat sit amet. Sed urna ligula, volutpat nec posuere a, laoreet ut tellus. Curabitur lacinia ornare nisi, et aliquet ex pretium sit amet. Aliquam finibus tristique arcu at feugiat. Donec nec sodales magna. Nulla vulputate sem eget libero venenatis lobortis. Morbi nec sodales metus. Ut eu diam quis augue imperdiet interdum ac quis metus.</p>\"",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-and-Anchor-the-Sidebar-Content",
+          "level": 3,
+          "text": "Add and Anchor the Sidebar Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component that follows the ",
+              "type": "text"
+            },
+            {
+              "code": "podcast",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component should now have an ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property with the value ",
+              "type": "text"
+            },
+            {
+              "code": "body2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Container-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code after the closing brace and comma at the end of the body component that contains an identifier property with the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Container-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Container-Copy-This-Code",
+          "level": 4,
+          "text": "Container: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  \"role\": \"container\",",
+            "  \"layout\": \"sidebarLayout\",",
+            "  \"style\": \"sidebarBackgroundStyle\",",
+            "  \"anchor\": {",
+            "    \"targetComponentIdentifier\": \"body2\",",
+            "    \"targetAnchorPosition\": \"bottom\",",
+            "    \"originAnchorPosition\": \"bottom\"",
+            "  },",
+            "  \"animation\": {",
+            "    \"type\": \"fade_in\",",
+            "    \"userControllable\": true,",
+            "    \"initialAlpha\": 0.5",
+            "  },",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"heading3\",",
+            "      \"layout\": \"halfMarginBothContainedLayout\",",
+            "      \"text\": \"EPISODES OF NOTE\"",
+            "    },",
+            "    {",
+            "      \"role\": \"divider\",",
+            "      \"layout\": \"halfMarginBelowContainedLayout\",",
+            "      \"stroke\": {",
+            "        \"width\": 1,",
+            "        \"color\": \"#A6AAA9\"",
+            "      }",
+            "    },",
+            "    {",
+            "      \"role\": \"caption\",",
+            "      \"layout\": \"fullMarginBelowContainedLayout\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \" <ul><li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</li> <li>Praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.</li> <li>Sint occaecati cupiditate non provident.</li> <li>similique sunt in culpa qui officia deserunt mollitia animi.</li> <li>Et harum quidem rerum facilis est et expedita distinctio.</li></ul>\"",
+            "    }",
+            "  ]",
+            "},"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Container-Result",
+          "level": 4,
+          "text": "Container: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"bodyBackgroundStyle\",",
+            "      \"components\": [",
+            "        ...",
+            "        {",
+            "          \"identifier\": \"body2\",",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"fullMarginAboveLayout\",",
+            "          \"text\": \"<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio. Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p><p>Sed dignissim magna nec metus tincidunt, in posuere tortor malesuada. Morbi auctor justo sodales nulla tincidunt rhoncus. Praesent aliquam, ex eu auctor auctor, turpis metus vehicula augue, non dapibus odio massa a massa. Nunc condimentum dui quis odio condimentum, ac sodales libero elementum. Nullam sagittis felis ac tortor varius ultricies. Duis aliquet ex vel orci aliquam, sit amet bibendum risus rhoncus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p><p>Aliquam erat volutpat. Phasellus laoreet porttitor quam ut hendrerit. Aliquam nec arcu scelerisque, scelerisque nisi sit amet, eleifend augue. Nunc sit amet elit commodo, congue felis eget, gravida nibh. Praesent lorem risus, tristique sed porta non, aliquam in sapien. Praesent rhoncus orci eu scelerisque euismod. Morbi bibendum lorem lorem, eu tincidunt neque volutpat sit amet. Sed urna ligula, volutpat nec posuere a, laoreet ut tellus. Curabitur lacinia ornare nisi, et aliquet ex pretium sit amet. Aliquam finibus tristique arcu at feugiat. Donec nec sodales magna. Nulla vulputate sem eget libero venenatis lobortis. Morbi nec sodales metus. Ut eu diam quis augue imperdiet interdum ac quis metus.</p>\"",
+            "        },",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"sidebarLayout\",",
+            "          \"style\": \"sidebarBackgroundStyle\",",
+            "          \"anchor\": {",
+            "            \"targetComponentIdentifier\": \"body2\",",
+            "            \"targetAnchorPosition\": \"bottom\",",
+            "            \"originAnchorPosition\": \"bottom\"",
+            "          },",
+            "          \"animation\": {",
+            "            \"type\": \"fade_in\",",
+            "            \"userControllable\": true,",
+            "            \"initialAlpha\": 0.5",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"heading3\",",
+            "              \"layout\": \"halfMarginBothContainedLayout\",",
+            "              \"text\": \"EPISODES OF NOTE\"",
+            "            },",
+            "            {",
+            "              \"role\": \"divider\",",
+            "              \"layout\": \"halfMarginBelowContainedLayout\",",
+            "              \"stroke\": {",
+            "                \"width\": 1,",
+            "                \"color\": \"#A6AAA9\"",
+            "              }",
+            "            },",
+            "            {",
+            "              \"role\": \"caption\",",
+            "              \"layout\": \"fullMarginBelowContainedLayout\",",
+            "              \"format\": \"html\",",
+            "              \"text\": \" <ul><li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</li> <li>Praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.</li> <li>Sint occaecati cupiditate non provident.</li> <li>similique sunt in culpa qui officia deserunt mollitia animi.</li> <li>Et harum quidem rerum facilis est et expedita distinctio.</li></ul>\"",
+            "            }",
+            "          ]",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill": {
+      "abstract": [
+        {
+          "text": "Add an image that remains stationary when the user scrolls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Fixed Image Fill",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-video": {
+      "abstract": [
+        {
+          "text": "Add a video component inside the header component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Video",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-video"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element": {
+      "abstract": [
+        {
+          "text": "Add a newsletter sign-up element in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Newsletter Sign-Up Element",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Body-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Body-Copy-This-Code",
+      "kind": "section",
+      "title": "Body: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#Body-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Body-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Body-Result",
+      "kind": "section",
+      "title": "Body: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#Body-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Container-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Container-Copy-This-Code",
+      "kind": "section",
+      "title": "Container: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#Container-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Container-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Container-Result",
+      "kind": "section",
+      "title": "Container: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#Container-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Sidebar-Layout-Objects-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Sidebar-Layout-Objects-Copy-This-Code",
+      "kind": "section",
+      "title": "Sidebar Layout Objects: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#Sidebar-Layout-Objects-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Sidebar-Layout-Objects-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#Sidebar-Layout-Objects-Result",
+      "kind": "section",
+      "title": "Sidebar Layout Objects: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#Sidebar-Layout-Objects-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#sidebarBackgroundStyle-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#sidebarBackgroundStyle-Copy-This-Code",
+      "kind": "section",
+      "title": "sidebarBackgroundStyle: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#sidebarBackgroundStyle-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#sidebarBackgroundStyle-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar#sidebarBackgroundStyle-Result",
+      "kind": "section",
+      "title": "sidebarBackgroundStyle: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar#sidebarBackgroundStyle-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme": {
+      "abstract": [
+        {
+          "text": "Apply a new color scheme to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+      "kind": "article",
+      "role": "article",
+      "title": "Giving the Article a Dark Color Scheme",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article": {
+      "abstract": [
+        {
+          "text": "Use container components to create the component hierarchies you need for special article designs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Nesting Components in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/nesting-components-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article": {
+      "abstract": [
+        {
+          "text": "Define a layout that supports the look you want for your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Planning the Layout for Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/planning-the-layout-for-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use HTML formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using HTML with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-html-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 3",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component": {
+      "abstract": [
+        {
+          "text": "Define the layout of a text component to wrap around another component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Wrapping Text Around a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/wrapping-text-around-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor": {
+      "abstract": [
+        {
+          "text": "The object for anchoring one component to another component in your article’s layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/anchor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624926": {
+      "alt": "Screenshot of an Apple News article with an anchored sidebar on iPad.",
+      "identifier": "media-3624926",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/879c27a2ea7d3a61ed1801527ae9c5bd/media-3624926@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e653ed104d6fd180ce5dca1ad6834bcf/media-3624926~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/wrapping-text-around-a-component",
+        "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Anchor",
+        "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-3-More-Ideas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+      ],
+      "title": "Advanced Design Tutorial 3: More Ideas"
+    }
+  ]
+}

@@ -1,0 +1,809 @@
+{
+  "abstract": [
+    {
+      "text": "Get details about your channel, including the name, corresponding website, and default section.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:news_api:get:channels-{}",
+    "modules": [
+      {
+        "name": "Apple News API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /channels/{channelId}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple News API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Read Channel Information"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://news-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "channels/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{channelId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID of the channel to get. You can get your channel ID from News Publisher. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://support.apple.com/guide/news-publisher/apd88c8447e6",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in News Publisher User Guide.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "channelId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:ChannelResponse",
+              "text": "ChannelResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MISSING",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". You didn’t include the Channel UUID field in the request. Key path: *",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_JSON",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The server can’t parse the JSON specified in the request as JSON. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_TYPE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The value you specified for ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channelId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " is not of the correct type for that field. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channelId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You didn’t include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header. Key path: None.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You tried to access a channel your ",
+                  "type": "text"
+                },
+                {
+                  "code": "API",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "key",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " doesn’t have permission to access. Key path: None.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The endpoint you tried to access doesn’t exist. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The channel you tried to access doesn’t exist. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channel_id.",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api",
+        "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Read Channel Information endpoint to retrieve information about the channel, list of custom fonts used in the channel (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Channel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and link to the channel’s default section (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelLinks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a channel in News Publisher, not the Apple News API. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/news-publisher/apd1c0277d3e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in News Publisher User Guide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET /channels/63a75491-2c4d-3530-af91-819be8c3ace0 HTTP/1.1",
+                    "Host: news-api.apple.com",
+                    "Accept: application/json",
+                    "Authorization: HHMAC; key=\"1e3gfc5e-e9f8-4232-a6be-17bf40edad09\"; signature=\"mLtpym3Lgl1300t8cze9wyWOaxkRBKL3j3ztalMjgWs=\"; date=\"2015-03-05T02:49:58Z\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "HTTP/1.1 200 OK",
+                    "Date: Thu, 05 Mar 2015 02:53:54 GMT",
+                    "Content-Type: application/json;charset=UTF-8",
+                    "Transfer-Encoding: chunked\t ",
+                    "{",
+                    "  \"data\": {",
+                    "    \"createdAt\": \"2015-02-19T04:57:23Z\",",
+                    "    \"modifiedAt\": \"2015-02-23T23:25:53Z\",",
+                    "    \"id\": \"63a75491-2c4d-3530-af91-819be8c3ace0\",",
+                    "    \"type\": \"channel\",",
+                    "    \"shareUrl\": \"https://apple.news/ArRPpLPE9QXu3sehS0rvxvA\",",
+                    "    \"links\": {",
+                    "      \"defaultSection\": \"https://news-api.apple.com/sections/4523e2f6-89fb-4842-b9f2-46514f7ebc6b\",",
+                    "      \"self\": \"https://news-api.apple.com/channels/63a75491-2c4d-3530-af91-819be8c3ace0\"",
+                    "    },",
+                    "    \"name\": \"My Channel\",",
+                    "    \"website\": \"http://example.com\"",
+                    "    \"fonts\": [",
+                    "    ]",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial": {
+      "abstract": [
+        {
+          "text": "Request channel data and publish an article using the Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News API Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-api-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api": {
+      "abstract": [
+        {
+          "text": "Create the URL, set the method, and send the request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/making-an-http-request-to-the-apple-news-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Making an HTTP Request to the Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenews/making-an-http-request-to-the-apple-news-api"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request": {
+      "abstract": [
+        {
+          "text": "Sign the canonical request and send the custom authorization header to the Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/signing-the-http-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing the HTTP Request",
+      "type": "topic",
+      "url": "/documentation/applenews/signing-the-http-request"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI": {
+      "abstract": [
+        {
+          "text": "Publish and manage Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenewsapi"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Channel": {
+      "abstract": [
+        {
+          "text": "See the fields the read channel endpoint returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Channel"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Channel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Channel"
+        }
+      ],
+      "role": "symbol",
+      "title": "Channel",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/channel"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelLinks": {
+      "abstract": [
+        {
+          "text": "See the links the read channel endpoint returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChannelLinks"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelLinks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChannelLinks"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChannelLinks",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/channellinks"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelResponse": {
+      "abstract": [
+        {
+          "text": "See which objects make up the channel response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChannelResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChannelResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChannelResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/channelresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Error": {
+      "abstract": [
+        {
+          "text": "See the properties of an error the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/error"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_": {
+      "abstract": [
+        {
+          "text": "Get details about your channel, including the name, corresponding website, and default section.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /channels/{channelId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Channel Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-channels-_channelid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-quota": {
+      "abstract": [
+        {
+          "text": "Get details about your channel’s remaining quota for sending create and update requests, the queue size, and wait time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-quota",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /channels/{channelId}/quota"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Channel Quota Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-channels-_channelid_-quota"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/news-publisher/apd1c0277d3e": {
+      "identifier": "https://support.apple.com/guide/news-publisher/apd1c0277d3e",
+      "title": "Add or share a channel",
+      "titleInlineContent": [
+        {
+          "text": "Add or share a channel",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/news-publisher/apd1c0277d3e"
+    },
+    "https://support.apple.com/guide/news-publisher/apd88c8447e6": {
+      "identifier": "https://support.apple.com/guide/news-publisher/apd88c8447e6",
+      "title": "Use your CMS with News Publisher",
+      "titleInlineContent": [
+        {
+          "text": "Use your CMS with News Publisher",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/news-publisher/apd88c8447e6"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Channel",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-quota",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Channel",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelLinks",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ChannelResponse"
+      ],
+      "title": "Channel"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsapi/get-channels-_channelid_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1385 @@
+{
+  "abstract": [
+    {
+      "text": "See a list of all articles in a section that match the specified search criteria.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:news_api:get:sections-{}-articles",
+    "modules": [
+      {
+        "name": "Apple News API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /sections/{sectionId}/articles"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple News API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Search Articles in a Section"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://news-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "sections/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{sectionId}"
+        },
+        {
+          "kind": "path",
+          "text": "/articles"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID of the section to search.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sectionId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If specified, the server only returns articles with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "createdAt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " date later than ",
+                  "type": "text"
+                },
+                {
+                  "code": "fromDate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fromDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "10"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of articles to return on each page. This value must be an integer between 1 and 100 (inclusive).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pageSize",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque token that specifies the page to view. The server returns links with the URL in each response. It also includes the ",
+                  "type": "text"
+                },
+                {
+                  "code": "pageToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the next page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pageToken",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "DESC"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Indicates whether to return oldest articles first (",
+                  "type": "text"
+                },
+                {
+                  "code": "ASC",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") or newest articles first (",
+                  "type": "text"
+                },
+                {
+                  "code": "DESC",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sortDir",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If specified, the server only returns articles with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "createdAt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " date earlier than ",
+                  "type": "text"
+                },
+                {
+                  "code": "toDate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "toDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:SearchResponse",
+              "text": "SearchResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MISSING",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". You didn’t include the Channel UUID field in the request. Key path: *",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_TYPE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The value you specified for ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channelId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " is not of the correct type for that field. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channelId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "pageToken",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " parameter isn’t a valid token returned in a ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "next",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " link or ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "nextPageToken",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " field. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "pageToken",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "sortDir",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " parameter isn’t ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "ASC",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " or ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "DESC",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "sortDir",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "fromDate",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " parameter isn’t in ISO 8601 date format. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "fromDate",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "toDate",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " parameter isn’t in ISO 8601 date format. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "toDate.",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "pageSize",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " parameter isn’t an integer in the range 1 to 100 (inclusive). Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "pageSize",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You didn’t include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header. Key path: N/A",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You tried to access a section your API key doesn’t have permission to access. Key path: N/A",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The endpoint you tried to access doesn’t exist. Key path: N/A.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The section you tried to access doesn’t exist. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "sectionId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You exceeded the number of articles that you can search for in a section within the specific time window. The response header ",
+                  "type": "text"
+                },
+                {
+                  "code": "<Retry-After: delay-seconds>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates the time in seconds you need to wait before sending a new search request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Too Many Requests",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Search Articles request returns a list of all articles in a section that were created between ",
+              "type": "text"
+            },
+            {
+              "code": "fromDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "toDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The results of this call are paginated, with a maximum page size of 100. Each response contains a link to the next page of results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET /sections/63a75491-2c4d-3530-af91-819be8c3ace0/articles?pageSize=2 HTTP/1.1",
+                    "Host: news-api.apple.com",
+                    "Accept: application/json",
+                    "Authorization: HHMAC; key=\"1e3gfc5e-e9f8-4232-a6be-17bf40edad09\"; signature=\"irqw07DCRQLtx/40Z2VhNc7sl3nB1PKII374R7AHjUQ=\"; date=\"2015-02-28T00:03:31Z\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "HTTP/1.1 200 OK",
+                    "Date: Thu, 19 Apr 2018 20:47:26 GMT",
+                    "Request-Id: de2c85c0-4412-11e8-b019-43ff3ca2e49c",
+                    "X-TEST-SOURCE-ENVIRONMENT: local",
+                    "Content-Type: application/json;charset=utf-8",
+                    "{",
+                    " \"data\": [",
+                    "   {",
+                    "     \"createdAt\": \"2018-04-18T20:39:46Z\",",
+                    "     \"modifiedAt\": \"2018-04-18T20:39:46Z\",",
+                    "     \"id\": \"a329513d-2e32-438d-a056-15ab0e04f671\",",
+                    "     \"type\": \"article\",",
+                    "     \"shareUrl\": \"https://apple.news/AoylRPS4yQ42gVhWrDgT2cQ\",",
+                    "     \"links\": {",
+                    "       \"channel\": \"https://news-api.apple.com/channels/effd4d34-99b7-4abf-9f19-176d54f648ab\",",
+                    "       \"self\": \"https://news-api.apple.com/articles/a329513d-2e32-438d-a056-15ab0e04f671\",",
+                    "       \"sections\": [",
+                    "         \"https://news-api.apple.com/sections/80deebc0-3b53-49cb-af3f-e91798b3dd10\"",
+                    "       ]",
+                    "     },",
+                    "     \"revision\": \"AAAAAAAAAAD//////////w==\",",
+                    "     \"state\": \"PROCESSING\",",
+                    "     \"title\": \"Sample Article\",",
+                    "     \"maturityRating\": null,",
+                    "     \"warnings\": [",
+                    "",
+                    "     ],",
+                    "     \"isCandidateToBeFeatured\": false,",
+                    "     \"isSponsored\": false,",
+                    "     \"isPreview\": false,",
+                    "     \"isDevelopingStory\": false,",
+                    "     \"isHidden\": false",
+                    "   },",
+                    "   {",
+                    "     \"createdAt\": \"2018-04-17T19:22:44Z\",",
+                    "     \"modifiedAt\": \"2018-04-17T19:34:14Z\",",
+                    "     \"id\": \"75594e44-5503-4c75-93a2-96c53a930672\",",
+                    "     \"type\": \"article\",",
+                    "     \"shareUrl\": \"https://apple.news/AdVlORFUDTHWTopbFOpMGcg\",",
+                    "     \"links\": {",
+                    "       \"channel\": \"https://news-api.apple.com/channels/effd4d34-99b7-4abf-9f19-176d54f648ab\",",
+                    "       \"self\": \"https://news-api.apple.com/articles/75594e44-5503-4c75-93a2-96c53a930672\",",
+                    "       \"sections\": [",
+                    "         \"https://news-api.apple.com/sections/80deebc0-3b53-49cb-af3f-e91798b3dd10\"",
+                    "       ]",
+                    "     },",
+                    "     \"revision\": \"AAAAAAAAAAD//////////w==\",",
+                    "     \"state\": \"LIVE\",",
+                    "     \"title\": \"Sample Article\",",
+                    "     \"maturityRating\": null,",
+                    "     \"warnings\": [],",
+                    "     \"isCandidateToBeFeatured\": false,",
+                    "     \"isSponsored\": false,",
+                    "     \"isPreview\": false,",
+                    "     \"isDevelopingStory\": false,",
+                    "     \"isHidden\": false",
+                    "   },",
+                    " \"links\": {",
+                    "   \"next\": \"https://news-api.apple.com/sections/80deebc0-3b53-49cb-af3f-e91798b3dd10/articles?pageToken=AoJ%2FsvmP6eICPwUxYTkxOGRlMi0wMjM4LTQ4ZGQtOTE3Yy1lZDVlMThiMzhkYjQ%3D\",",
+                    "   \"self\": \"https://news-api.apple.com/sections/80deebc0-3b53-49cb-af3f-e91798b3dd10/articles\"",
+                    " },",
+                    " \"meta\": {",
+                    "   \"nextPageToken\": \"AoJ/svmP6eICPwUxYTkxOGRlMi0wMjM4LTQ4ZGQtOTE3Yy1lZDVlMThiMzhkYjQ=\"",
+                    " }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14": {
+      "abstract": [
+        {
+          "text": "Learn about the new features and deprecated fields in Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple News API Release Notes for iOS 17, iPadOS 17, and macOS 14",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI": {
+      "abstract": [
+        {
+          "text": "Publish and manage Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenewsapi"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Article": {
+      "abstract": [
+        {
+          "text": "See the fields the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "role": "symbol",
+      "title": "Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest": {
+      "abstract": [
+        {
+          "text": "See the required field for the Create an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLinksRequest",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articlelinksrequest"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse": {
+      "abstract": [
+        {
+          "text": "See the links the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLinksResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articlelinksresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse": {
+      "abstract": [
+        {
+          "text": "See which objects make up the Create an Article, Read an Article, and Update an Article responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articleresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the optional metadata fields for the Create an Article Request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/create-article-metadata-fields"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Delete the specified article from your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/delete-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Error": {
+      "abstract": [
+        {
+          "text": "See the properties of an error the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/error"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Retrieve information about an article, such as the revision number and maturity rating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Article Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "See a list of all articles in a channel that match the specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search Articles in a Channel",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles": {
+      "abstract": [
+        {
+          "text": "See a list of all articles in a section that match the specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /sections/{sectionId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search Articles in a Section",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-sections-_sectionid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Read an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "role": "symbol",
+      "title": "Meta",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/meta"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Update an existing article in your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "Publish an article to your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse": {
+      "abstract": [
+        {
+          "text": "See the fields the search article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/searchresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Update an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Throttling"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Throttling"
+        }
+      ],
+      "role": "symbol",
+      "title": "Throttling",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/throttling"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the metadata fields for the Update an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/update-article-metadata-fields"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsapi/get-sections-_sectionid_-articles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

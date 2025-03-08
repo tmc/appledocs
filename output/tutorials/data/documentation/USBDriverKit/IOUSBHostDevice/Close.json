@@ -1,0 +1,479 @@
+{
+  "abstract": [
+    {
+      "text": "Closes the session to the host device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Close"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUSBHostDevice@F@Close#*$@S@IOService#i#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "Close"
+      }
+    ],
+    "modules": [
+      {
+        "name": "USBDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Close"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "Close"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Close"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "forClient"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@IOOptionBits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOOptionBits",
+              "text": "IOOptionBits"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The service object that is closing the session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "forClient"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Options to use when closing the service. Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method closes a session to a device that you previously opened using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Open",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The method acquires the service’s workloop lock, and aborts any I/O initiated by the client service. This method may call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow for the processing of aborted I/O before returning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573818-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for USB-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice": {
+      "abstract": [
+        {
+          "text": "A provider object that represents the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostDevice",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Close": {
+      "abstract": [
+        {
+          "text": "Closes the session to the host device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Close"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Close",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/close"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Open": {
+      "abstract": [
+        {
+          "text": "Opens a session to a host device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Open"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Open",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/open"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Reset": {
+      "abstract": [
+        {
+          "text": "Terminates the device and attempts to reenumerate it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Reset"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reset",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/reset"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@IOOptionBits": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOOptionBits"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@IOOptionBits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOOptionBits",
+      "type": "topic",
+      "url": "/documentation/iokit/iooptionbits"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-Device-Session",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Open",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/Reset"
+      ],
+      "title": "Managing the Device Session"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usbdriverkit/iousbhostdevice/close"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,746 @@
+{
+  "abstract": [
+    {
+      "text": "Get information about the specified section, including its name, its channel, and whether it’s a default section.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:news_api:get:sections-{}",
+    "modules": [
+      {
+        "name": "Apple News API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /sections/{sectionId}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple News API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Read Section Information"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://news-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "sections/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{sectionId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID of the section with information to fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sectionId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:SectionResponse",
+              "text": "SectionResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MISSING.",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " You didn’t include the section UUID field in the request. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "sectionid",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_TYPE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The value you specified for the section is not of the correct type for that field. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "sectionid",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You didn’t include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header. Key path: None.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You tried to access a channel your API key doesn’t have permission to access. Key path: None.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The endpoint you tried to access doesn’t exist. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The section you tried to access doesn’t exist. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "sectionId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Read Section Information request retrieves information about a single section. A section is a grouping of articles on a particular topic; for example, Sports, Silicon Valley, or Politics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every channel has a default section, even if no other sections are defined. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/news-publisher/apdfc6a051aa",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in News Publisher User Guide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET /sections/4523e2f6-89fb-4842-b9f2-46514f7ebc6b HTTP/1.1",
+                    "Host: news-api.apple.com",
+                    "Accept: application/json",
+                    "Authorization: HHMAC; key=\"1e3gfc5e-e9f8-4232-a6be-17bf40edad09\"; signature=\"mLtpym3Lgl1300t8cze9wyWOaxkRBKL3j3ztalMjgWs=\"; date=\"2015-03-05T02:49:58Z\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "HTTP/1.1 200 OK",
+                    "Date: Thu, 05 Mar 2015 02:53:54 GMT",
+                    "Content-Type: application/json;charset=UTF-8",
+                    "Transfer-Encoding: chunked",
+                    "{",
+                    "  \"data\": {",
+                    "    \"createdAt\": \"2015-03-05T02:49:58Z\",",
+                    "    \"modifiedAt\": \"2015-03-05T02:49:58Z\",",
+                    "    \"id\": \"4523e2f6-89fb-4842-b9f2-46514f7ebc6b\",",
+                    "    \"type\": \"section\",",
+                    "    \"shareUrl\": \"https://apple.news/ArRPpLPE9QXu3sehS0rvxvA\",",
+                    "    \"links\": {",
+                    "      \"channel\": \"https://news-api.apple.com/channels/a5164537-3f2e-3569-8ff4-d5ac865e520e\",",
+                    "      \"self\": \"https://news-api.apple.com/sections/4523e2f6-89fb-4842-b9f2-46514f7ebc6b\"",
+                    "    },",
+                    "    \"name\": \"Business\",",
+                    "    \"isDefault\": false",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNewsAPI": {
+      "abstract": [
+        {
+          "text": "Publish and manage Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenewsapi"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Error": {
+      "abstract": [
+        {
+          "text": "See the properties of an error the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/error"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-sections": {
+      "abstract": [
+        {
+          "text": "See a list of available sections in your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-sections",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /channels/{channelId}/sections"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Sections",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-channels-_channelid_-sections"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_": {
+      "abstract": [
+        {
+          "text": "Get information about the specified section, including its name, its channel, and whether it’s a default section.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /sections/{sectionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Section Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-sections-_sectionid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-sections-_sectionId_-promotedArticles": {
+      "abstract": [
+        {
+          "text": "Set the list of promoted articles for the specified section.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-sections-_sectionId_-promotedArticles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /sections/{sectionId}/promotedArticles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Promote Articles in a Section",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-sections-_sectionid_-promotedarticles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/PromoteArticleRequest": {
+      "abstract": [
+        {
+          "text": "See the required field for the Promote an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PromoteArticleRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/PromoteArticleRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PromoteArticleRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PromoteArticleRequest",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/promotearticlerequest"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/PromoteArticleResponse": {
+      "abstract": [
+        {
+          "text": "See the field the Promote an Article response returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PromoteArticleResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/PromoteArticleResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PromoteArticleResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PromoteArticleResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/promotearticleresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Section": {
+      "abstract": [
+        {
+          "text": "See the fields the section endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/section"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionLinks": {
+      "abstract": [
+        {
+          "text": "See the links the section endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectionLinks"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionLinks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectionLinks"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectionLinks",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/sectionlinks"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionResponse": {
+      "abstract": [
+        {
+          "text": "See which objects make up the section response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectionResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/sectionresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/guide/news-publisher/apdfc6a051aa": {
+      "identifier": "https://support.apple.com/guide/news-publisher/apdfc6a051aa",
+      "title": "Add and manage sections",
+      "titleInlineContent": [
+        {
+          "text": "Add and manage sections",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/news-publisher/apdfc6a051aa"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sections",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-sections",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-sections-_sectionId_-promotedArticles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Section",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionLinks",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/SectionResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/PromoteArticleRequest",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/PromoteArticleResponse"
+      ],
+      "title": "Sections"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsapi/get-sections-_sectionid_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

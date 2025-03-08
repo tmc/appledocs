@@ -1,0 +1,521 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the error message format for the Apple News API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/about-apple-news-api-error-messages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About Apple News API Error Messages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In responses, errors are represented as an array of information in a common format. The following example shows a Read Channel 400 error.  If the value of ",
+              "type": "text"
+            },
+            {
+              "code": "channel_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your Read Channel request is not a UUID, you’ll receive an error such as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "Date: Wed, 17 Dec 2014 22:06:52 GMT",
+            "Content-Type: application/json",
+            "Content-Length: 212",
+            "",
+            "{",
+            "  \"errors\": [",
+            "    {",
+            "      \"code\": \"INVALID_TYPE\",",
+            "      \"keyPath\": [",
+            "        \"channel_id\"",
+            "      ],",
+            "      \"value\": \"not_a_uuid\"",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understanding-the-keyPath-Array",
+          "level": 3,
+          "text": "Understanding the keyPath Array",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When reporting Apple News Format errors through the API, the component with the error is identified through a ",
+              "type": "text"
+            },
+            {
+              "code": "keyPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. The ",
+              "type": "text"
+            },
+            {
+              "code": "keyPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array navigates from the root of the JSON document to the problematic object. It identifies keys by name and array items by index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider this test article example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"title\": \"Test Article\",",
+            "  \"identifier\": \"testArticle\",",
+            "  \"version\": \"1.0\",",
+            "  \"language\": \"en\",",
+            "  \"layout\": {",
+            "    \"columns\": 7,",
+            "    \"width\": 1024,",
+            "    \"margin\": 75,",
+            "    \"gutter\": 20",
+            "  },",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"title\",",
+            "      \"format\": \"html\",",
+            "      \"text\": \"Article Title\"",
+            "    },",
+            "    {",
+            "      \"role\": \"container\",",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"heading\",",
+            "          \"text\": \"Article Subhead\"",
+            "        },",
+            "        {",
+            "          \"role\": \"intro\",",
+            "          \"text\": \"Article introduction.\"",
+            "        },",
+            "        {",
+            "          \"role\": \"body\",",
+            "          \"layout\": \"bodyLayout\",",
+            "          \"text\": \"Second paragraph\"",
+            "        }",
+            "      ]",
+            "    }",
+            "  ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now consider this error for the above example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"errors\": [",
+            "    {",
+            "      \"code\": \"INVALID_DOCUMENT\",",
+            "      \"keyPath\": [",
+            "        \"components\",",
+            "        1,",
+            "        \"components\",",
+            "        2,",
+            "        \"layout\"",
+            "      ],",
+            "      \"message\": \"Component layout with identifier, bodyLayout, not found.\"",
+            "    }",
+            "  ]",
+            "}",
+            ""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the test article example, to find the problematic component, you would follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the top-level ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property, whose value is an array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the second object (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "container",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") in the array you found in step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "container",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component, find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property, whose value is an array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the third object (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") in the array you found in step 3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Within this ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component, find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "layout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property. This is where the problem is occurring.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI": {
+      "abstract": [
+        {
+          "text": "Publish and manage Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenewsapi"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Code": {
+      "abstract": [
+        {
+          "text": "See the error codes the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "Code",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Error": {
+      "abstract": [
+        {
+          "text": "See the properties of an error the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/error"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Status": {
+      "abstract": [
+        {
+          "text": "See the HTTP status codes the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Status",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/status"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Warning": {
+      "abstract": [
+        {
+          "text": "See the properties of a warning the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Warning"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Warning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Warning"
+        }
+      ],
+      "role": "symbol",
+      "title": "Warning",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/warning"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Warning",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Code",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Status"
+      ],
+      "title": "Errors"
+    }
+  ]
+}

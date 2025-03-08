@@ -1,0 +1,545 @@
+{
+  "abstract": [
+    {
+      "text": "This function sets properties that define the device behavior.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/ioforcefeedbacklib-h"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.forcefeedback/documentation/ForceFeedback/setproperty"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Force Feedback"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "SetProperty"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "HRESULT ( *SetProperty)(",
+            "   void *self,",
+            "   FFProperty property,",
+            "   void *pValue );"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Parameters",
+          "level": 3,
+          "text": "Parameters",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Pointer to the FFPlugInDriver implementation instance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "self",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The following property values are defined for a FF device:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFPROP_AUTOCENTER",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies whether the actuated FF axes are self-centering. This property controls the devicexD5s xD2default centering springxD3.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pValue member points to a UInt32 and can be one of the following values.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "0 - OFF: The device should not automatically center when the user releases the device. An application that uses force feedback should disable autocentering before playing effects.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "1 - ON: The device should automatically center when the user releases the device.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Not all devices support the autocenter property.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFPROP_FFGAIN",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the gain for the device.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pValue member points to a UInt32 that contains a gain value that is applied to all effects created on the device. The value is an integer in the range from 0 through 10,000, specifying the amount by which effect magnitudes should be scaled for the device. For example, a value of 10,000 indicates that all effect magnitudes are to be taken at face value. A value of 9,000 indicates that all effect magnitudes are to be reduced to 90% of their nominal magnitudes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Setting a gain value is useful when an application wants to scale down the strength of all force-feedback effects uniformly, based on user preferences.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "property",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Address of the location where the property value is to be read. This function will assume that the data is valid, and of the correct type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "pValue",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Return-Value",
+          "level": 3,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the method succeeds, the return value is FF_OK or FFERR_UNSUPPORTED. If the method fails, the return value can be one of the following error values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FFERR_INVALIDPARAM",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback": {
+      "abstract": [
+        {
+          "text": "Control force feedback devices attached to the system. Develop plug-ins that enable communication with force feedback hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Force Feedback",
+      "type": "topic",
+      "url": "/documentation/forcefeedback"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect": {
+      "abstract": [
+        {
+          "text": "This function commands the device to “destroy” a currently downloaded effect. The effect ID and any data that is associated with the effect are freed and available for reallocation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect",
+      "kind": "article",
+      "role": "article",
+      "title": "DestroyEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/destroyeffect"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/downloadeffect": {
+      "abstract": [
+        {
+          "text": "This function sends an effect to the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/downloadeffect",
+      "kind": "article",
+      "role": "article",
+      "title": "DownloadEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/downloadeffect"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape": {
+      "abstract": [
+        {
+          "text": "This function escapes to the driver. This method is called in response to an application invoking the FFEffectEscape or FFDeviceEscape methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape",
+      "kind": "article",
+      "role": "article",
+      "title": "Escape",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/escape"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion": {
+      "abstract": [
+        {
+          "text": "This function is used to determine driver and API version information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion",
+      "kind": "article",
+      "role": "article",
+      "title": "ForceFeedbackGetVersion",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/forcefeedbackgetversion"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus": {
+      "abstract": [
+        {
+          "text": "This function returns the device effect’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus",
+      "kind": "article",
+      "role": "article",
+      "title": "GetEffectStatus",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/geteffectstatus"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities": {
+      "abstract": [
+        {
+          "text": "This function escapes to the driver. This method is called in response to an application invoking the FFEffectEscape or FFDevicEscape methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "GetForceFeedbackCapabilities",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/getforcefeedbackcapabilities"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate": {
+      "abstract": [
+        {
+          "text": "This function returns the state of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate",
+      "kind": "article",
+      "role": "article",
+      "title": "GetForceFeedbackState",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/getforcefeedbackstate"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate": {
+      "abstract": [
+        {
+          "text": "This function is used to “create and destroy” particular device instances. It provides the FF plug-in driver with all the necessary start-up parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate",
+      "kind": "article",
+      "role": "article",
+      "title": "InitializeTerminate",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/initializeterminate"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/ioforcefeedbacklib-h": {
+      "abstract": [
+        {
+          "text": "Public Interfaces and constants used to develop Force Feedback plugIns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/ioforcefeedbacklib-h",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOForceFeedbackLib.h",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/ioforcefeedbacklib-h"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand": {
+      "abstract": [
+        {
+          "text": "This function sends a command to the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand",
+      "kind": "article",
+      "role": "article",
+      "title": "SendForceFeedbackCommand",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/sendforcefeedbackcommand"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect": {
+      "abstract": [
+        {
+          "text": "This function commands the device to play back an effect that was previously loaded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect",
+      "kind": "article",
+      "role": "article",
+      "title": "StartEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/starteffect"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect": {
+      "abstract": [
+        {
+          "text": "This function commands the device to stop an effect that was previously started.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect",
+      "kind": "article",
+      "role": "article",
+      "title": "StopEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/stopeffect"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Miscellaneous",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/downloadeffect",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Miscellaneous",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/downloadeffect",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect"
+              ],
+              "title": "Miscellaneous"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/forcefeedback/setproperty"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/forcefeedback/setproperty"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

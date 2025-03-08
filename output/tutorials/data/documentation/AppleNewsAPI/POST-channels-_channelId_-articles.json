@@ -1,0 +1,2666 @@
+{
+  "abstract": [
+    {
+      "text": "Publish an article to your channel.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:news_api:post:channels-{}-articles",
+    "modules": [
+      {
+        "name": "Apple News API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "POST /channels/{channelId}/articles"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple News API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create an Article"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://news-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "channels/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{channelId}"
+        },
+        {
+          "kind": "path",
+          "text": "/articles"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID of the channel to publish the article to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "channelId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "form-data"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The article’s Apple News Format JSON document and other assets, like PDFs, images, and fonts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "multipart/form-data",
+      "parameters": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can include an optional metadata to provide additional non–Apple News",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Format data about the article. The metadata part can also specify any sections for the article, by URL.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "name": "metadata",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Create_Article_Metadata_Fields",
+              "text": "Create Article Metadata Fields"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Assets such as images and fonts. Images can have ",
+                  "type": "text"
+                },
+                {
+                  "code": "image/png",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "image/gif",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "image/jpeg",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "application/octet-stream",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as the content type. Fonts should have ",
+                  "type": "text"
+                },
+                {
+                  "code": "application/octet-stream",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as the content type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/octet-stream",
+          "name": "Any Key",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "binary"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple News Format document that contains this article’s content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "name": "article.json",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "You successfully created the article.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The server returns a warning for articles with a publication date before 2015.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Created",
+          "status": 201,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:ArticleResponse",
+              "text": "ArticleResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "ARTICLE_TERRITORY_NOT_ALLOWED.",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " The channel doesn’t support the country code you provided, or the country code you provided is valid but isn’t an Apple News territory (US, UK, AU or CA). Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "DOES_NOT_EXIST",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The section you specified doesn’t exist. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "DUPLICATE_ARTICLE_FOUND",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". An article with a source URL or a thumbnail is considered a duplicate if you post the article on the same channel, using the same title, source URL, or thumbnail, within a 24-hour period. An article without a source URL and thumbnail is considered a duplicate if you post the article on the same channel, using the same title, within a 24-hour period. The server provides the original article ID in the response.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INCORRECT_ENCODING",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The body of the request isn’t encoded with the encoding specified in ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "Content-Encoding",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INCORRECT_HOST",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The section URL has the wrong hostname or port. Key path: data.links.sections.#.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_ARTICLE_LANGUAGE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The language of the article doesn’t match the language of the channel. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_ARTICLE_TERRITORY",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". A country code isn’t valid. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_DOCUMENT",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The JSON in the Apple News Format document (",
+                          "type": "text"
+                        },
+                        {
+                          "code": "article.json",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ") is invalid. Test the ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "article.json",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " file with News Preview first. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_MIME_MULTIPART",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The server can’t parse the request body as valid ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "MIME-multipart",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_PUBLISHING_DATE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The publication date of the article can’t be before 1970. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "metadata.datePublished",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_RESOURCE_ID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The section URL has a section ID that isn’t a valid UUID. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_RESOURCE_TYPE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The path in the section URL doesn’t start with ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "/sections/",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_SCHEME",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The section URL must have the https scheme. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_TYPE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The value you specified for the article is not of the correct type for that field. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channelId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_URL",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " The section URL you specified isn’t a valid URL. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MIME_PART_MISSING_FILENAME",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The specified ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "MIME",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " part doesn’t have the filename parameter in its ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "Content-Disposition",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " header. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "{mime_part_name}",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MIME_PART_TOO_SLOW",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The MIME part took too long to load from the request body. Key path: {",
+                          "type": "text"
+                        },
+                        {
+                          "code": "mime_part_name",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": "}.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MIME_PART_TOO_LARGE",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".  The MIME part is larger than the allowable size limit. Images exceeding 20 MB, fonts exceeding 5 MB, and attachments exceeding 50 MB generate this error. Key path: {",
+                          "type": "text"
+                        },
+                        {
+                          "code": "file name}",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MISSING",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The specified ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "MIME",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " part is required and was missing. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "{mime_part_name}",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MISSING",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". You didn’t include the Article UUID or the Share URL ID field in the request. Key path: *",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "MISSING_RESOURCE_ID",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The section URL is missing the ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "section_id",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " UUID. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "NOT_ALLOWED",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The section you specified doesn’t belong to the given channel. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "data.links.sections.#",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "ONLY_PREVIEW_ALLOWED",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". This channel is currently allowed to publish preview articles only, but ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "isPreview",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " is false. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "PUBLISHING_NOT_ALLOWED",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". This channel is currently not allowed to publish articles. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "UNSUPPORTED_ENCODING",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". The encoding specified in ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "Content-Type",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " or ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "Content-Transfer-Encoding",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " isn’t supported. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You didn’t include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header. Key path: None.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You tried to access a channel your API key doesn’t have permission to access. Key path: None.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The endpoint you tried to access doesn’t exist. Key path: None.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The channel you want to add an article to doesn’t exist. Key path: ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "channelId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You exceeded the number of articles that can be published within the allowed time window. The response header ",
+                  "type": "text"
+                },
+                {
+                  "code": "<Retry-After: delay-seconds>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates the time in seconds you need to wait before sending a new request to publish articles.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Too Many Requests",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:Error",
+              "text": "Error"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/publishing-an-article",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14",
+        "doc://com.apple.applenews/documentation/AppleNews/changing-the-appearance-of-your-article-tile-in-feeds"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Create an Article endpoint to publish an article to your channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are the guidelines for Apple News Format documents and resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Create an Article request must consist of at least one ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MIME",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " part that contains the article’s Apple News Format document. This part must have filename set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". See “Example Code for Creating an Article Without Metadata” below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The server requires additional parts for each resource referenced in the Apple News Format document that uses a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in this format: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bundle:// URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each part must have a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Content-Disposition",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header. The disposition must be form-data, and you must specify the filename parameter of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Content-Disposition",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In resource parts, the filename parameter must match the path of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bundle://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Apple News Format document that references this file. For example, if the document references a URL of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bundle://logo.png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", there must be a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MIME",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " part with filename set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "logo.png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For resource parts, the valid values for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Content-Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "image/jpeg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "image/png",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "image/gif",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "application/octet-stream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When using a remote image, the URL must be in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "http://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " format. No additional parts are required in the URL for remote images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn how to publish an article using the Apple News API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are the guidelines for Apple News Format metadata:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can include an optional metadata part to provide additional non–Apple News Format data about the article, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isSponsored",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "maturityRating",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The metadata part can also specify any sections for the article by URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must wrap all metadata fields in a data key. See “Example Code for Creating an Article with Metadata” below_._ The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INVALID_JSON",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " error is thrown if there is no ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in the request call.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are the guidelines for Apple News Format sections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To publish the article to the channel’s default section, omit ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "links.sections",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To get information about a specific section, such as the section ID, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To publish a standalone article outside of sections, set ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sections",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (an empty array). Standalone articles don’t appear in your channel, but still appear in topics and search results, and may appear in For You.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are general guidelines for Apple News Format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For articles with a source URL or thumbnail, avoid posting more than one article on the same channel using the same title, source URL, or thumbnail, within a 24-hour period. An article is considered a duplicate if these conditions are met.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For articles without a source URL and thumbnail, avoid posting more than one article on same channel, using the same title, within a 24-hour period. An article is considered a duplicate if these conditions are met.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you create an article, be sure to retain the article ID or the self URL that’s returned in the response. You need the article ID to read, update, and delete an article.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To publish older articles, use the metadata properties in Apple News Format. If you set an older publication date, the article appears earlier in the feed. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in Apple News Format documentation. Articles are sorted by publication date.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A canonical URL is required to do data collection and reporting for comScore analytics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t change the canonical URL of the article after it has been set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Example-Code-for-Creating-an-Article-Without-Metadata",
+          "level": 3,
+          "text": "Example Code for Creating an Article Without Metadata",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "POST /channels/63a75491-2c4d-3530-af91-819be8c3ace0/articles HTTP/1.1",
+                    "Host: news-api.apple.com",
+                    "Accept: application/json",
+                    "Content-Type: multipart/form-data; boundary=535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Length: 94348",
+                    "Authorization: HHMAC; key=\"1e3gfc5e-e9f8-4232-a6be-17bf40edad09\"; signature=\"gJYsk8qm+6wpONE8twX/yDlGRt0UzS7Qn32yHNpiwnM=\"; date=\"2015-03-05T03:00:27Z\"",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: application/json",
+                    "Content-Disposition: form-data; filename=article.json; name=article.json",
+                    "{",
+                    "    \"version\": \"1.7\",",
+                    "    \"identifier\": \"SampleArticle\",",
+                    "    \"language\": \"en\",",
+                    "    \"title\": \"Apple News App\",",
+                    "    \"subtitle\": \"A look at the features of the News iOS app\",",
+                    "    \"layout\": {",
+                    "        \"columns\": 7,",
+                    "        \"width\": 1024,",
+                    "        \"margin\": 75,",
+                    "        \"gutter\": 20",
+                    "    },",
+                    "    \"components\": [",
+                    "        {",
+                    "            \"role\": \"title\",",
+                    "            \"text\": \"Apple News App\",",
+                    "            \"textStyle\": \"title\"",
+                    "        },",
+                    "        {",
+                    "            \"role\": \"body\",",
+                    "            \"text\": \"The Apple News Format allows publishers to craft beautiful editorial layouts. Galleries, audio, video, and fun interactions like animation make stories spring to life.\"",
+                    "        },",
+                    "        {",
+                    "            \"role\": \"photo\",",
+                    "            \"URL\": \"bundle://image.jpg\"",
+                    "        }",
+                    "    ],",
+                    "    \"documentStyle\": {",
+                    "        \"backgroundColor\": \"#F7F7F7\"",
+                    "    },",
+                    "    \"componentTextStyles\": {",
+                    "        \"default\": {",
+                    "            \"fontName\": \"Helvetica\",",
+                    "            \"fontSize\": 13,",
+                    "            \"linkStyle\": {",
+                    "                \"textColor\": \"#428bca\"",
+                    "            }",
+                    "        },",
+                    "        \"title\": {",
+                    "            \"fontName\": \"Helvetica-Bold\",",
+                    "            \"fontSize\": 30,",
+                    "            \"hyphenation\": false",
+                    "        },",
+                    "        \"default-body\": {",
+                    "        \"fontName\": \"Helvetica\",",
+                    "        \"fontSize\": 13",
+                    "        }",
+                    "    }",
+                    "}",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: image/jpeg",
+                    "Content-Disposition: form-data; filename=mountain-lions.jpg; name=my_image",
+                    "{binary content of mountain-lions.jpg}",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: application/octet-stream",
+                    "Content-Disposition: form-data; filename=gradient.png; name=a_gradient",
+                    "{binary content of gradient.png}",
+                    "--535e329ca936f79a19ac9a251f7d48f7--"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "HTTP/1.1 201 OK",
+                    "Date: Thu, 05 Mar 2015 02:53:54 GMT",
+                    "Content-Type: application/json;charset=UTF-8",
+                    "Transfer-Encoding: chunked",
+                    "{",
+                    "  \"data\": {",
+                    "    \"createdAt\": \"2015-03-05T02:57:59Z\",",
+                    "    \"modifiedAt\": \"2015-03-05T02:57:59Z\",",
+                    "    \"id\": \"a91760f1-c169-47d2-9fc4-a7711341264d\",",
+                    "    \"type\": \"article\",",
+                    "    \"shareUrl\": \"https://apple.news/ArRPpLPE9QXu3sehS0rvxvA\",",
+                    "    \"links\": {",
+                    "      \"channel\": \"https://news-api.apple.com/channels/63a75491-2c4d-3530-af91-819be8c3ace0\",",
+                    "      \"self\": \"https://news-api.apple.com/articles/a91760f1-c169-47d2-9fc4-a7711341264d\",",
+                    "      \"sections\": [",
+                    "        \"https://news-api.apple.com/sections/0a468272-356f-3b61-afa3-c4f989954180\"",
+                    "      ]",
+                    "    },",
+                    "    \"meta\": {",
+                    "      \"throttling\": {",
+                    "        \"isThrottled\": true,",
+                    "        \"quotaAvailable\": 0,",
+                    "        \"queueSize\": 42,",
+                    "        \"estimatedDelayInSeconds”: 1260  ",
+                    "    }",
+                    "    },",
+                    "\"document\": {",
+                    "  \"version\": \"1.7\",",
+                    "  \"identifier\": \"SampleArticle\",",
+                    "  \"language\": \"en\",",
+                    "  \"title\": \"Apple News App\",",
+                    "  \"subtitle\": \"A look at the features of the News iOS app\",",
+                    "  \"layout\": {",
+                    "    \"columns\": 7,",
+                    "    \"width\": 1024,",
+                    "    \"margin\": 75,",
+                    "    \"gutter\": 20",
+                    "  },",
+                    "  \"components\": [",
+                    "    {",
+                    "      \"role\": \"title\",",
+                    "      \"text\": \"Apple News App\",",
+                    "      \"textStyle\": \"title\"",
+                    "    },",
+                    "    {",
+                    "      \"role\": \"body\",",
+                    "      \"text\": \"The Apple News Format allows publishers to craft beautiful editorial layouts. Galleries, audio, video, and fun interactions like animation make stories spring to life.\"",
+                    "    },",
+                    "    {",
+                    "      \"role\": \"photo\",",
+                    "      \"URL\": \"bundle://image.jpg\"",
+                    "    }",
+                    "  ],",
+                    "  \"documentStyle\": {",
+                    "    \"backgroundColor\": \"#F7F7F7\"",
+                    "  },",
+                    "  \"componentTextStyles\": {",
+                    "    \"default\": {",
+                    "      \"fontName\": \"Helvetica\",",
+                    "      \"fontSize\": 13,",
+                    "      \"linkStyle\": {",
+                    "        \"textColor\": \"#428bca\"",
+                    "      }",
+                    "    },",
+                    "    \"title\": {",
+                    "      \"fontName\": \"Helvetica-Bold\",",
+                    "      \"fontSize\": 30,",
+                    "      \"hyphenation\": false",
+                    "    },",
+                    "    \"default-body\": {",
+                    "      \"fontName\": \"Helvetica\",",
+                    "      \"fontSize\": 13",
+                    "    }",
+                    "  }",
+                    "},",
+                    "\"revision\": \"AAAAAAAAAAAAAAAAAAAAew==\",",
+                    "\"state\": \"PROCESSING\",",
+                    "\"title\": \"Flother City Lions\",",
+                    "\"maturityRating\": null,",
+                    "\"warnings\": [],",
+                    "\"isCandidateToBeFeatured\": false,",
+                    "\"isSponsored\": false,",
+                    "\"isPreview\": false",
+                    "}",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Example-Code-for-Creating-an-Article-with-Metadata",
+          "level": 3,
+          "text": "Example Code for Creating an Article with Metadata",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "",
+                    "",
+                    "POST /channels/63a75491-2c4d-3530-af91-819be8c3ace0/articles HTTP/1.1",
+                    "Host: news-api.apple.com",
+                    "Accept: application/json",
+                    "Content-Type: multipart/form-data; boundary=535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Length: 94348",
+                    "Authorization: HHMAC; key=\"1e3gfc5e-e9f8-4232-a6be-17bf40edad09\"; signature=\"gJYsk8qm+6wpONE8twX/yDlGRt0UzS7Qn32yHNpiwnM=\"; date=\"2015-03-05T03:00:27Z\"",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: application/json",
+                    "Content-Disposition: form-data; name=metadata",
+                    "{",
+                    "    \"data\": {",
+                    "        \"isCandidateToBeFeatured\": \"false\",",
+                    "        \"isSponsored\": true,",
+                    "        \"isPreview\": true,",
+                    "        \"maturityRating\": null,",
+                    "        \"targetTerritoryCountryCodes\": [\"GB\", \"US\"],",
+                    "        \"links\": {",
+                    "            \"sections\": [",
+                    "                \"https://news-api.apple.com/sections/0a468272-356f-3b61-afa3-c4f989954180\",",
+                    "                \"https://news-api.apple.com/sections/5cec0b36-529e-31bc-bc1e-3eaccbc15b97\"",
+                    "            ]",
+                    "        }",
+                    "    }",
+                    "}",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: application/json",
+                    "Content-Disposition: form-data; filename=article.json; name=article.json",
+                    "{",
+                    "    \"version\": \"1.7\",",
+                    "    \"identifier\": \"SampleArticle\",",
+                    "    \"language\": \"en\",",
+                    "    \"title\": \"Apple News App\",",
+                    "    \"subtitle\": \"A look at the features of the News iOS app\",",
+                    "    \"layout\": {",
+                    "        \"columns\": 7,",
+                    "        \"width\": 1024,",
+                    "        \"margin\": 75,",
+                    "        \"gutter\": 20",
+                    "    },",
+                    "    \"components\": [",
+                    "        {",
+                    "            \"role\": \"title\",",
+                    "            \"text\": \"Apple News App\",",
+                    "            \"textStyle\": \"title\"",
+                    "        },",
+                    "        {",
+                    "            \"role\": \"body\",",
+                    "            \"text\": \"The Apple News Format allows publishers to craft beautiful editorial layouts. Galleries, audio, video, and fun interactions like animation make stories spring to life.\"",
+                    "        },",
+                    "        {",
+                    "            \"role\": \"photo\",",
+                    "            \"URL\": \"bundle://image.jpg\"",
+                    "        }",
+                    "    ],",
+                    "    \"documentStyle\": {",
+                    "        \"backgroundColor\": \"#F7F7F7\"",
+                    "    },",
+                    "    \"componentTextStyles\": {",
+                    "        \"default\": {",
+                    "            \"fontName\": \"Helvetica\",",
+                    "            \"fontSize\": 13,",
+                    "            \"linkStyle\": {",
+                    "                \"textColor\": \"#428bca\"",
+                    "            }",
+                    "        },",
+                    "        \"title\": {",
+                    "            \"fontName\": \"Helvetica-Bold\",",
+                    "            \"fontSize\": 30,",
+                    "            \"hyphenation\": false",
+                    "        },",
+                    "        \"default-body\": {",
+                    "        \"fontName\": \"Helvetica\",",
+                    "        \"fontSize\": 13",
+                    "        }",
+                    "    }",
+                    "}",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: image/jpeg",
+                    "Content-Disposition: form-data; filename=mountain-lions.jpg; name=my_image",
+                    "{binary content of mountain-lions.jpg}",
+                    "--535e329ca936f79a19ac9a251f7d48f7",
+                    "Content-Type: application/octet-stream",
+                    "Content-Disposition: form-data; filename=gradient.png; name=a_gradient",
+                    "{binary content of gradient.png}",
+                    "-535e329ca936f79a19ac9a251f7d48f7--"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "",
+                    "",
+                    "HTTP/1.1 201 OK",
+                    "Date: Thu, 05 Mar 2015 02:53:54 GMT",
+                    "Content-Type: application/json;charset=UTF-8",
+                    "Transfer-Encoding: chunked",
+                    "{",
+                    "  \"data\": {",
+                    "    \"createdAt\": \"2015-03-05T02:57:59Z\",",
+                    "    \"modifiedAt\": \"2015-03-05T02:57:59Z\",",
+                    "    \"id\": \"a91760f1-c169-47d2-9fc4-a7711341264d\",",
+                    "    \"type\": \"article\",",
+                    "    \"shareUrl\": \"https://apple.news/ArRPpLPE9QXu3sehS0rvxvA\",",
+                    "    \"links\": {",
+                    "      \"channel\": \"https://news-api.apple.com/channels/63a75491-2c4d-3530-af91-819be8c3ace0\",",
+                    "      \"self\": \"https://news-api.apple.com/articles/a91760f1-c169-47d2-9fc4-a7711341264d\",",
+                    "      \"sections\": [",
+                    "        \"https://news-api.apple.com/sections/0a468272-356f-3b61-afa3-c4f989954180\",",
+                    "        \"https://news-api.apple.com/sections/5cec0b36-529e-31bc-bc1e-3eaccbc15b97\"",
+                    "      ]",
+                    "    },",
+                    "    \"meta\": {",
+                    "      \"throttling\": {",
+                    "        \"isThrottled\": true,",
+                    "        \"quotaAvailable\": 0,",
+                    "        \"queueSize\": 42,",
+                    "        \"estimatedDelayInSeconds”: 1260  ",
+                    "      }",
+                    "    },",
+                    "\"document\": {",
+                    "  \"version\": \"1.7\",",
+                    "  \"identifier\": \"SampleArticle\",",
+                    "  \"language\": \"en\",",
+                    "  \"title\": \"Apple News App\",",
+                    "  \"subtitle\": \"A look at the features of the News iOS app\",",
+                    "  \"layout\": {",
+                    "    \"columns\": 7,",
+                    "    \"width\": 1024,",
+                    "    \"margin\": 75,",
+                    "    \"gutter\": 20",
+                    "  },",
+                    "  \"components\": [",
+                    "    {",
+                    "      \"role\": \"title\",",
+                    "      \"text\": \"Apple News App\",",
+                    "      \"textStyle\": \"title\"",
+                    "    },",
+                    "    {",
+                    "      \"role\": \"body\",",
+                    "      \"text\": \"The Apple News Format allows publishers to craft beautiful editorial layouts. Galleries, audio, video, and fun interactions like animation make stories spring to life.\"",
+                    "    },",
+                    "    {",
+                    "      \"role\": \"photo\",",
+                    "      \"URL\": \"bundle://image.jpg\"",
+                    "    }",
+                    "  ],",
+                    "  \"documentStyle\": {",
+                    "    \"backgroundColor\": \"#F7F7F7\"",
+                    "  },",
+                    "  \"componentTextStyles\": {",
+                    "    \"default\": {",
+                    "      \"fontName\": \"Helvetica\",",
+                    "      \"fontSize\": 13,",
+                    "      \"linkStyle\": {",
+                    "        \"textColor\": \"#428bca\"",
+                    "      }",
+                    "    },",
+                    "    \"title\": {",
+                    "      \"fontName\": \"Helvetica-Bold\",",
+                    "      \"fontSize\": 30,",
+                    "      \"hyphenation\": false",
+                    "    },",
+                    "    \"default-body\": {",
+                    "      \"fontName\": \"Helvetica\",",
+                    "      \"fontSize\": 13",
+                    "    }",
+                    "  }",
+                    "},",
+                    "\"revision\": \"AAAAAAAAAAAAAAAAAAAAew==\",",
+                    "\"state\": \"PROCESSING\",",
+                    "\"title\": \"Flother City Lions\",",
+                    "\"maturityRating\": null,",
+                    "\"warnings\": [",
+                    "  ",
+                    "],",
+                    "\"isCandidateToBeFeatured\": false,",
+                    "\"isSponsored\": true,",
+                    "\"isPreview\": true,",
+                    "\"targetTerritoryCountryCodes\": [\"GB\", \"US\"]",
+                    "}",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14": {
+      "abstract": [
+        {
+          "text": "Learn about the new features and deprecated fields in Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple News API Release Notes for iOS 17, iPadOS 17, and macOS 14",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial": {
+      "abstract": [
+        {
+          "text": "Request channel data and publish an article using the Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-tutorial",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News API Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-api-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/changing-the-appearance-of-your-article-tile-in-feeds": {
+      "abstract": [
+        {
+          "text": "Change the information that News displays about your published article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/changing-the-appearance-of-your-article-tile-in-feeds",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing the Appearance of Your Article Tile in Feeds",
+      "type": "topic",
+      "url": "/documentation/applenews/changing-the-appearance-of-your-article-tile-in-feeds"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps": {
+      "abstract": [
+        {
+          "text": "Plan the design for your article and create it in Apple News Format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Article: Main Steps",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-article-main-steps"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/publishing-an-article": {
+      "abstract": [
+        {
+          "text": "Build a URL and article body for the publish-article request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/publishing-an-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Publishing an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/publishing-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI": {
+      "abstract": [
+        {
+          "text": "Publish and manage Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenewsapi"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Article": {
+      "abstract": [
+        {
+          "text": "See the fields the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "role": "symbol",
+      "title": "Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest": {
+      "abstract": [
+        {
+          "text": "See the required field for the Create an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLinksRequest",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articlelinksrequest"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse": {
+      "abstract": [
+        {
+          "text": "See the links the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLinksResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articlelinksresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse": {
+      "abstract": [
+        {
+          "text": "See which objects make up the Create an Article, Read an Article, and Update an Article responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articleresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the optional metadata fields for the Create an Article Request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/create-article-metadata-fields"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Delete the specified article from your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/delete-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Error": {
+      "abstract": [
+        {
+          "text": "See the properties of an error the Apple News API returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/error"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Retrieve information about an article, such as the revision number and maturity rating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Article Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "See a list of all articles in a channel that match the specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search Articles in a Channel",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_": {
+      "abstract": [
+        {
+          "text": "Get information about the specified section, including its name, its channel, and whether it’s a default section.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /sections/{sectionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Section Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-sections-_sectionid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles": {
+      "abstract": [
+        {
+          "text": "See a list of all articles in a section that match the specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /sections/{sectionId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search Articles in a Section",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-sections-_sectionid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Read an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "role": "symbol",
+      "title": "Meta",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/meta"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Update an existing article in your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "Publish an article to your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse": {
+      "abstract": [
+        {
+          "text": "See the fields the search article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/searchresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Update an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Throttling"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Throttling"
+        }
+      ],
+      "role": "symbol",
+      "title": "Throttling",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/throttling"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the metadata fields for the Update an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/update-article-metadata-fields"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata": {
+      "abstract": [
+        {
+          "text": "Information about your article, including author name, creation date, publication date, keywords, and excerpt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Metadata",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/metadata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsapi/post-channels-_channelid_-articles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

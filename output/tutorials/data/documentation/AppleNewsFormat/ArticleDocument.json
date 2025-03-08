@@ -1,0 +1,2057 @@
+{
+  "abstract": [
+    {
+      "text": "The root object of an Apple News article, that contains required properties, metadata, content, layout, and styles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_format:ArticleDocument",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ArticleDocument"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ArticleDocument"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.7",
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "ArticleDocument"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News Format"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ArticleDocument"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of components that form the content of this article. Components have different roles and types, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Music",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "components",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Component",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Component",
+              "text": "Component"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The component text styles that components in this document can refer to. Each ",
+                  "type": "text"
+                },
+                {
+                  "code": "article.json",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file must have, at minimum, a default component text style named ",
+                  "type": "text"
+                },
+                {
+                  "code": "default",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". You can also set defaults by component role. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentTextStyles",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ArticleDocument.componentTextStyles",
+              "text": "ArticleDocument.componentTextStyles"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique, publisher-provided identifier for this article. This identifier must remain constant; you can’t change it when you update the article. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/PublisherArticleIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This identifier can include the following:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Up to 64 characters",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Uppercase and lowercase letters",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Numbers",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Hyphens",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Underscores",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "name": "identifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A code that indicates the language of the article. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to find the appropriate code; e.g., ",
+                  "type": "text"
+                },
+                {
+                  "code": "en",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for English, or the more specific ",
+                  "type": "text"
+                },
+                {
+                  "code": "en-GB",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for English (U.K.) or ",
+                  "type": "text"
+                },
+                {
+                  "code": "en-US",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for English (U.S.).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "language",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The article’s column system. Apple News Format layouts make it possible to recreate print design on iPhone, iPad, Mac, and Apple Vision Pro. Apple News Format uses the layout information to calculate relative positioning and size for these devices. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "layout",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Layout",
+              "text": "Layout"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The article title or headline. Use plain text; formatted text (HTML or Markdown) isn’t supported.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "title",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The version of Apple News Format you use in the JSON document.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "version",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property must not be earlier than the version number of any property that you use anywhere in the article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-version-history",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "version",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An advertisement to be inserted at a position that is both possible and optimal. You can specify what ",
+                  "type": "text"
+                },
+                {
+                  "code": "bannerType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " you want to have automatically inserted.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Note. This property is deprecated. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisementAutoPlacement",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "advertisingSettings",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingSettings",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:AdvertisingSettings",
+              "text": "AdvertisingSettings"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The metadata, appearance, and placement of advertising and related content components within Apple News Format articles.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "autoplacement",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:AutoPlacement",
+              "text": "AutoPlacement"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The c",
+                  "type": "text"
+                },
+                {
+                  "code": "olorScheme",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object that you use for automatic Dark Mode behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "1.14.1",
+          "name": "colorScheme",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/colorScheme-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ArticleDocument.colorScheme",
+              "text": "ArticleDocument.colorScheme"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The article-level ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayout",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects that you can refer to by their key within the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentLayouts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentLayouts",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ArticleDocument.componentLayouts",
+              "text": "ArticleDocument.componentLayouts"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The component styles that you can refer to by components within this document. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "componentStyles",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentStyles-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ArticleDocument.componentStyles",
+              "text": "ArticleDocument.componentStyles"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An object containing the background color of the article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "documentStyle",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:DocumentStyle",
+              "text": "DocumentStyle"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The article’s metadata, such as publication date, ad campaign data, and other information that isn’t part of the core article content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "metadata",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:Metadata",
+              "text": "Metadata"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The article subtitle. Should be plain text; formatted text (HTML or Markdown) isn’t supported.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "subtitle",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "markdown",
+                "html",
+                "none"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The global text format to apply to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Text",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " components and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FormattedText",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you don’t specify the ",
+                  "type": "text"
+                },
+                {
+                  "code": "textFormat",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "format",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Text",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " components and ",
+                  "type": "text"
+                },
+                {
+                  "code": "formattedText",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects defaults to ",
+                  "type": "text"
+                },
+                {
+                  "code": "none",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify the ",
+                  "type": "text"
+                },
+                {
+                  "code": "textFormat",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "format",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Text",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " components and ",
+                  "type": "text"
+                },
+                {
+                  "code": "formattedText",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects defaults to the value of this property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "To override the ",
+                  "type": "text"
+                },
+                {
+                  "code": "textFormat",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "format",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Text",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " component or the ",
+                  "type": "text"
+                },
+                {
+                  "code": "formattedText",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "1.16.0",
+          "name": "textFormat",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects available to use inline for text in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Text",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " components. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-markdown-with-apple-news-format",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/InlineTextStyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "textStyles",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/textStyles-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_format:ArticleDocument.textStyles",
+              "text": "ArticleDocument.textStyles"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/changing-the-appearance-of-your-article-tile-in-feeds",
+        "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-components",
+        "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every Apple News Format document must have the same filename: ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". An ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file must contain the ",
+              "type": "text"
+            },
+            {
+              "code": "ArticleDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. This is the object that is sent in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Every Apple News Format document must contain all items marked as required in the preceding Properties list. Apple News API and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/news-preview/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " display errors if you omit any required properties. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In JSON, the order of properties in an object is not important; however, as you create your JSON document, you may find it useful to follow the order shown in the example that follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view this example in News Preview, copy the example code to a file named ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and put a file named ",
+              "type": "text"
+            },
+            {
+              "code": "image.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the same folder. (You can use any JPEG, GIF, or PNG file.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            " \"version\": \"1.7\",",
+            " \"identifier\": \"SampleArticle\",",
+            " \"language\": \"en\",",
+            " \"title\": \"Apple News\",",
+            " \"layout\": {",
+            "   \"columns\": 20,",
+            "   \"width\": 1024,",
+            "   \"margin\": 60,",
+            "   \"gutter\": 20",
+            " },",
+            " \"documentStyle\": {",
+            "   \"backgroundColor\": \"#F7F7F7\"",
+            " },",
+            " \"textFormat\": \"none\",",
+            " \"components\": [",
+            "   {",
+            "     \"role\": \"title\",",
+            "     \"text\": \"Apple News App\",",
+            "     \"textStyle\": \"title\"",
+            "   },",
+            "   {",
+            "     \"role\": \"body\",",
+            "     \"text\": \"The Apple News Format allows publishers to craft beautiful editorial layouts. Galleries, audio, video, and fun interactions like animation make stories spring to life.\"",
+            "   },",
+            "   {",
+            "     \"role\": \"photo\",",
+            "     \"URL\": \"bundle://image.jpg\"",
+            "   }",
+            " ],",
+            " \"componentTextStyles\": {",
+            "   \"default\": {",
+            "     \"fontName\": \"Helvetica\",",
+            "     \"fontSize\": 13,",
+            "     \"linkStyle\": {",
+            "       \"textColor\": \"#428bca\"",
+            "     }",
+            "   },",
+            "   \"title\": {",
+            "     \"fontName\": \"Helvetica-Bold\",",
+            "     \"fontSize\": 30,",
+            "     \"hyphenation\": false",
+            "   },",
+            "   \"default-body\": {",
+            "     \"fontName\": \"Helvetica\",",
+            "     \"fontSize\": 13",
+            "   }",
+            " }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/adding-components": {
+      "abstract": [
+        {
+          "text": "Learn the basics for adding components to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Components",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-version-history": {
+      "abstract": [
+        {
+          "text": "Learn how Apple News Format versions map to iOS, iPadOS, macOS, and visionOS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-version-history",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple News Format Version History",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-version-history"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/changing-the-appearance-of-your-article-tile-in-feeds": {
+      "abstract": [
+        {
+          "text": "Change the information that News displays about your published article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/changing-the-appearance-of-your-article-tile-in-feeds",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing the Appearance of Your Article Tile in Feeds",
+      "type": "topic",
+      "url": "/documentation/applenews/changing-the-appearance-of-your-article-tile-in-feeds"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps": {
+      "abstract": [
+        {
+          "text": "Plan the design for your article and create it in Apple News Format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Article: Main Steps",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-article-main-steps"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles": {
+      "abstract": [
+        {
+          "text": "Define and apply custom, default, and inline text styles, or use HTML tags or Markdown syntax to style your text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining and Applying Text Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/defining-and-applying-text-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles": {
+      "abstract": [
+        {
+          "text": "Improve the appearance of the text and components in your article by using Apple News Format styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/enhancing-your-articles-with-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing Your Articles with Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/enhancing-your-articles-with-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure": {
+      "abstract": [
+        {
+          "text": "Understand basic JSON concepts and become familiar with the structure of an Apple News Format article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "JSON Concepts and Article Structure",
+      "type": "topic",
+      "url": "/documentation/applenews/json-concepts-and-article-structure"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article": {
+      "abstract": [
+        {
+          "text": "Define a layout that supports the look you want for your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/planning-the-layout-for-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Planning the Layout for Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/planning-the-layout-for-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use HTML formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using HTML with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-html-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-markdown-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use Markdown formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-markdown-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Markdown with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-markdown-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Update an existing article in your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "Publish an article to your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisementAutoPlacement": {
+      "abstract": [
+        {
+          "text": "The object for defining the automatic placement of advertisements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvertisementAutoPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisementAutoPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvertisementAutoPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvertisementAutoPlacement",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/advertisementautoplacement"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingSettings": {
+      "abstract": [
+        {
+          "text": "The object for defining properties that affect the frequency and placement with which banner advertisements and medium rectangle advertisements are automatically placed in your article.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvertisingSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AdvertisingSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvertisingSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvertisingSettings",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/advertisingsettings"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument": {
+      "abstract": [
+        {
+          "text": "The root object of an Apple News article, that contains required properties, metadata, content, layout, and styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/colorScheme-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The object that contains information about the color scheme of the document, including Dark Mode behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.colorScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/colorScheme-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.colorScheme"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.colorScheme",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/colorscheme-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object containing component layout objects that components in the article can refer to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentLayouts"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentLayouts"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.componentLayouts",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/componentlayouts-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentStyles-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object containing component style objects that components in the article can refer to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentStyles-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentStyles"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.componentStyles",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/componentstyles-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object containing component text style defaults as well as component text styles that components in the article can use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentTextStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.componentTextStyles"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.componentTextStyles",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/componenttextstyles-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/textStyles-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object containing text style objects that components within this document can refer to inline in text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.textStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/textStyles-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleDocument.textStyles"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleDocument.textStyles",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articledocument/textstyles-data.dictionary"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacement": {
+      "abstract": [
+        {
+          "text": "The object for automatically placing components within Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutoPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AutoPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutoPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AutoPlacement",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/autoplacement"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Component": {
+      "abstract": [
+        {
+          "text": "Properties shared by all component types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting the background color for your article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DocumentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/documentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FormattedText": {
+      "abstract": [
+        {
+          "text": "The object for specifying formatted text content and styling for captions in table cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormattedText"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FormattedText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FormattedText"
+        }
+      ],
+      "role": "symbol",
+      "title": "FormattedText",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/formattedtext"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/InlineTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for applying text styling when not using HTML or Markdown formatting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InlineTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/InlineTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InlineTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "InlineTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/inlinetextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout": {
+      "abstract": [
+        {
+          "text": "The object for defining columns, gutters, and margins for your article’s designed width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/layout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata": {
+      "abstract": [
+        {
+          "text": "Information about your article, including author name, creation date, publication date, keywords, and excerpt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Metadata",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/metadata"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Music": {
+      "abstract": [
+        {
+          "text": "The component for adding a playable music file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Music"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Music",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Music"
+        }
+      ],
+      "role": "symbol",
+      "title": "Music",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/music"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo": {
+      "abstract": [
+        {
+          "text": "The component for including a photograph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Photo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/photo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/PublisherArticleIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier provided by the publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PublisherArticleIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/PublisherArticleIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PublisherArticleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "PublisherArticleIdentifier",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/publisherarticleidentifier"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Text": {
+      "abstract": [
+        {
+          "text": "Properties shared by all text component types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/news-preview/": {
+      "identifier": "https://developer.apple.com/news-preview/",
+      "title": "News Preview",
+      "titleInlineContent": [
+        {
+          "text": "News Preview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/news-preview/"
+    },
+    "https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry": {
+      "identifier": "https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
+      "title": "IANA.org language subtag registry",
+      "titleInlineContent": [
+        {
+          "text": "IANA.org language subtag registry",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-main-steps"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentLayouts-data.dictionary",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentStyles-data.dictionary",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/componentTextStyles-data.dictionary",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/textStyles-data.dictionary",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleDocument/colorScheme-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsformat/articledocument"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

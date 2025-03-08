@@ -1,1 +1,1050 @@
-{"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.modelio/documentation/ModelIO","doc://com.apple.modelio/documentation/ModelIO/MDLObject"]]},"schemaVersion":{"major":0,"minor":3,"patch":0},"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/modelio/mdlobject/boundingbox(attime:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/modelio/mdlobject/boundingbox(attime:)"]}],"sections":[],"seeAlsoSections":[{"generated":true,"anchor":"Working-with-Objects-in-Space","title":"Working with Objects in Space","identifiers":["doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform"]}],"kind":"symbol","abstract":[{"text":"Returns the minimum region entirely enclosing the object’s contents at the specified time sample.","type":"text"}],"metadata":{"roleHeading":"Instance Method","navigatorTitle":[{"text":"boundingBoxAtTime:","kind":"identifier"}],"platforms":[{"beta":false,"name":"iOS","introducedAt":"9.0","unavailable":false,"deprecated":false},{"beta":false,"name":"iPadOS","introducedAt":"9.0","unavailable":false,"deprecated":false},{"beta":false,"name":"Mac Catalyst","introducedAt":"13.1","unavailable":false,"deprecated":false},{"deprecated":false,"introducedAt":"10.11","unavailable":false,"beta":false,"name":"macOS"},{"deprecated":false,"introducedAt":"9.0","unavailable":false,"beta":false,"name":"tvOS"},{"deprecated":false,"introducedAt":"1.0","unavailable":false,"beta":false,"name":"visionOS"}],"modules":[{"name":"Model I/O"}],"externalID":"c:objc(cs)MDLObject(im)boundingBoxAtTime:","role":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"boundingBox"},{"text":"(","kind":"text"},{"text":"atTime","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@SA@MDLAxisAlignedBoundingBox","text":"MDLAxisAlignedBoundingBox","kind":"typeIdentifier"}],"title":"boundingBox(atTime:)","symbolKind":"method"},"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"boundingBox"},{"kind":"text","text":"("},{"kind":"externalParam","text":"atTime"},{"kind":"text","text":" "},{"kind":"internalParam","text":"time"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:@SA@MDLAxisAlignedBoundingBox","text":"MDLAxisAlignedBoundingBox","identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS"],"languages":["swift"]}]},{"parameters":[{"content":[{"inlineContent":[{"type":"text","text":"A timestamp referring to timed information in the asset."}],"type":"paragraph"}],"name":"time"}],"kind":"parameters"},{"content":[{"anchor":"return-value","text":"Return Value","type":"heading","level":2},{"inlineContent":[{"text":"The asset’s bounding box as of the specified time sample.","type":"text"}],"type":"paragraph"}],"kind":"content"},{"content":[{"level":2,"type":"heading","text":"Discussion","anchor":"Discussion"},{"type":"paragraph","inlineContent":[{"text":"Objects may or may not provide spatial content. Subclasses of ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject","type":"reference"},{"text":" that include spatial content, such as the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLMesh","type":"reference"},{"text":" class, implement this method to return the axis-aligned minimal region that entirely encloses such content. Objects without spatial content return an empty bounding box—that is, a ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox","type":"reference"},{"text":" structure whose ","type":"text"},{"code":"minBounds","type":"codeVoice"},{"text":" field is greater than its ","type":"text"},{"code":"maxBounds","type":"codeVoice"},{"text":" field.","type":"text"}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Calling this method on an object that contains other objects (that is, one whose "},{"type":"reference","identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject/children","isActive":true},{"type":"text","text":" property is not "},{"type":"codeVoice","code":"nil"},{"type":"text","text":" and references a nonempty container) recursively computes the combined bounding box enclosing of the object’s children."}]}],"kind":"content"}],"identifier":{"url":"doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)","interfaceLanguage":"swift"},"references":{"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","title":"Technologies","url":"/documentation/technologies","kind":"technologies","role":"overview","abstract":[{"text":"","type":"text"}],"type":"topic"},"doc://com.apple.modelio/documentation/ModelIO/MDLObject":{"kind":"symbol","url":"/documentation/modelio/mdlobject","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"MDLObject"}],"type":"topic","role":"symbol","title":"MDLObject","identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject","abstract":[{"text":"The base class for objects that are part of a 3D asset, including meshes, cameras, and lights.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"MDLObject"}]},"doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox":{"title":"MDLAxisAlignedBoundingBox","identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox","type":"topic","navigatorTitle":[{"text":"MDLAxisAlignedBoundingBox","kind":"identifier"}],"url":"/documentation/modelio/mdlaxisalignedboundingbox","abstract":[{"type":"text","text":"The minimal volume containing an object, used by the "},{"isActive":true,"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)","type":"reference"},{"text":" method.","type":"text"}],"role":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MDLAxisAlignedBoundingBox","kind":"identifier"}],"kind":"symbol"},"doc://com.apple.modelio/documentation/ModelIO/MDLMesh":{"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MDLMesh","kind":"identifier"}],"type":"topic","abstract":[{"text":"A container for vertex buffer data to be used in rendering a 3D object.","type":"text"}],"role":"symbol","navigatorTitle":[{"text":"MDLMesh","kind":"identifier"}],"title":"MDLMesh","url":"/documentation/modelio/mdlmesh","kind":"symbol","identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLMesh"},"doc://com.apple.modelio/documentation/ModelIO/MDLObject/children":{"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject/children","url":"/documentation/modelio/mdlobject/children","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"children"},{"kind":"text","text":": any "},{"kind":"typeIdentifier","text":"MDLObjectContainerComponent","preciseIdentifier":"c:objc(pl)MDLObjectContainerComponent"}],"title":"children","kind":"symbol","abstract":[{"type":"text","text":"A component that manages this object’s collection of children."}],"navigatorTitle":[{"kind":"identifier","text":"children"}],"role":"symbol","type":"topic"},"doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform":{"title":"transform","abstract":[{"text":"A component that manages this object’s spatial transform and its changes over time.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"transform","kind":"identifier"},{"text":": (any ","kind":"text"},{"kind":"typeIdentifier","text":"MDLTransformComponent","preciseIdentifier":"c:objc(pl)MDLTransformComponent"},{"kind":"text","text":")?"}],"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform","role":"symbol","type":"topic","kind":"symbol","url":"/documentation/modelio/mdlobject/transform","navigatorTitle":[{"kind":"identifier","text":"transform"}]},"doc://com.apple.modelio/documentation/ModelIO":{"identifier":"doc://com.apple.modelio/documentation/ModelIO","title":"Model I/O","role":"collection","kind":"symbol","abstract":[{"text":"Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.","type":"text"}],"type":"topic","url":"/documentation/modelio"},"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval":{"role":"symbol","fragments":[{"kind":"text","text":"typealias "},{"kind":"identifier","text":"TimeInterval"}],"type":"topic","title":"TimeInterval","abstract":[{"type":"text","text":"A number of seconds."}],"url":"/documentation/foundation/timeinterval","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval","kind":"symbol"},"doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)":{"title":"boundingBox(atTime:)","type":"topic","kind":"symbol","role":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"boundingBox","kind":"identifier"},{"text":"(","kind":"text"},{"text":"atTime","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"TimeInterval","kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval"},{"text":") -> ","kind":"text"},{"text":"MDLAxisAlignedBoundingBox","kind":"typeIdentifier","preciseIdentifier":"c:@SA@MDLAxisAlignedBoundingBox"}],"url":"/documentation/modelio/mdlobject/boundingbox(attime:)","abstract":[{"text":"Returns the minimum region entirely enclosing the object’s contents at the specified time sample.","type":"text"}],"navigatorTitle":[{"text":"boundingBoxAtTime:","kind":"identifier"}],"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"value":"occ","path":"/identifier/interfaceLanguage","op":"replace"},{"value":[{"beta":false,"name":"iOS","introducedAt":"9.0","unavailable":false,"deprecated":false},{"beta":false,"name":"iPadOS","introducedAt":"9.0","unavailable":false,"deprecated":false},{"beta":false,"name":"Mac Catalyst","introducedAt":"13.1","unavailable":false,"deprecated":false},{"beta":false,"name":"macOS","introducedAt":"10.11","unavailable":false,"deprecated":false},{"deprecated":false,"introducedAt":"9.0","unavailable":false,"beta":false,"name":"tvOS"},{"deprecated":false,"introducedAt":"1.0","unavailable":false,"beta":false,"name":"visionOS"}],"path":"/metadata/platforms","op":"replace"},{"value":"Instance Method","path":"/metadata/roleHeading","op":"replace"},{"value":"boundingBoxAtTime:","path":"/metadata/title","op":"replace"},{"value":"method","path":"/metadata/symbolKind","op":"replace"},{"value":[{"text":"- ","kind":"text"},{"text":"boundingBoxAtTime:","kind":"identifier"}],"path":"/metadata/fragments","op":"replace"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.modelio/documentation/ModelIO","doc://com.apple.modelio/documentation/ModelIO/MDLObject"]]},"path":"/hierarchy","op":"replace"},{"value":null,"path":"/topicSections","op":"add"},{"value":null,"path":"/relationshipsSections","op":"add"},{"value":[{"generated":true,"anchor":"Working-with-Objects-in-Space","title":"Working with Objects in Space","identifiers":["doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform"]}],"path":"/seeAlsoSections","op":"replace"},{"value":{"declarations":[{"tokens":[{"kind":"text","text":"- ("},{"identifier":"doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox","kind":"typeIdentifier","preciseIdentifier":"c:@SA@MDLAxisAlignedBoundingBox","text":"MDLAxisAlignedBoundingBox"},{"kind":"text","text":") "},{"kind":"identifier","text":"boundingBoxAtTime:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"NSTimeInterval","identifier":"doc://com.externally.resolved.symbol/c:@T@NSTimeInterval"},{"kind":"text","text":") "},{"kind":"internalParam","text":"time"},{"kind":"text","text":";"}],"languages":["occ"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS"]}],"kind":"declarations"},"path":"/primaryContentSections/0","op":"replace"},{"value":{"parameters":[{"name":"time","content":[{"type":"paragraph","inlineContent":[{"text":"A timestamp referring to timed information in the asset.","type":"text"}]}]}],"kind":"parameters"},"op":"replace","path":"/primaryContentSections/1"},{"value":{"kind":"content","content":[{"level":2,"text":"Return Value","anchor":"return-value","type":"heading"},{"type":"paragraph","inlineContent":[{"text":"The asset’s bounding box as of the specified time sample.","type":"text"}]}]},"path":"/primaryContentSections/2","op":"replace"},{"value":"MDLObject","op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/title"},{"value":[{"kind":"identifier","text":"MDLObject"}],"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/fragments"},{"value":[{"kind":"identifier","text":"MDLObject"}],"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/navigatorTitle"},{"value":"MDLAxisAlignedBoundingBox","op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAxisAlignedBoundingBox/title"},{"value":[{"text":"MDLAxisAlignedBoundingBox","kind":"identifier"}],"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAxisAlignedBoundingBox/fragments"},{"value":[{"kind":"identifier","text":"MDLAxisAlignedBoundingBox"}],"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAxisAlignedBoundingBox/navigatorTitle"},{"value":"MDLMesh","op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/title"},{"value":[{"kind":"identifier","text":"MDLMesh"}],"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/fragments"},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/navigatorTitle","value":[{"text":"MDLMesh","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1children/title","value":"children"},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1children/fragments","value":[{"text":"children","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1transform/title","value":"transform"},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1transform/fragments","value":[{"kind":"identifier","text":"transform"}]},{"op":"replace","path":"/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSTimeInterval/title","value":"NSTimeInterval"},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1boundingBox(atTime:)/title","value":"boundingBoxAtTime:"},{"op":"replace","path":"/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1boundingBox(atTime:)/fragments","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"boundingBoxAtTime:"}]}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Returns the minimum region entirely enclosing the object’s contents at the specified time sample.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MDLObject(im)boundingBoxAtTime:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "boundingBox"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "atTime"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSTimeInterval",
+        "text": "TimeInterval"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+        "text": "MDLAxisAlignedBoundingBox"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "boundingBoxAtTime:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "boundingBox(atTime:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingBox"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "atTime"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "time"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "TimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+              "text": "MDLAxisAlignedBoundingBox"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A timestamp referring to timed information in the asset.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "time"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The asset’s bounding box as of the specified time sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects may or may not provide spatial content. Subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that include spatial content, such as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, implement this method to return the axis-aligned minimal region that entirely encloses such content. Objects without spatial content return an empty bounding box—that is, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure whose ",
+              "type": "text"
+            },
+            {
+              "code": "minBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field is greater than its ",
+              "type": "text"
+            },
+            {
+              "code": "maxBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method on an object that contains other objects (that is, one whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/children",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and references a nonempty container) recursively computes the combined bounding box enclosing of the object’s children.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox": {
+      "abstract": [
+        {
+          "text": "The minimal volume containing an object, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAxisAlignedBoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAxisAlignedBoundingBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAxisAlignedBoundingBox",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlaxisalignedboundingbox"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLMesh": {
+      "abstract": [
+        {
+          "text": "A container for vertex buffer data to be used in rendering a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLMesh",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlmesh"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject": {
+      "abstract": [
+        {
+          "text": "The base class for objects that are part of a 3D asset, including meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObject",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)": {
+      "abstract": [
+        {
+          "text": "Returns the minimum region entirely enclosing the object’s contents at the specified time sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingBox"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+          "text": "MDLAxisAlignedBoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/boundingBox(atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundingBoxAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundingBox(atTime:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject/boundingbox(attime:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject/children": {
+      "abstract": [
+        {
+          "text": "A component that manages this object’s collection of children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLObjectContainerComponent",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/children",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "children"
+        }
+      ],
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject/children"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform": {
+      "abstract": [
+        {
+          "text": "A component that manages this object’s spatial transform and its changes over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLTransformComponent",
+          "text": "MDLTransformComponent"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject/transform"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval": {
+      "abstract": [
+        {
+          "text": "A number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimeInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/timeinterval"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Objects-in-Space",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform"
+      ],
+      "title": "Working with Objects in Space"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "boundingBoxAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingBoxAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObject"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Objects-in-Space",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObject/transform"
+              ],
+              "title": "Working with Objects in Space"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAxisAlignedBoundingBox",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@MDLAxisAlignedBoundingBox",
+                    "text": "MDLAxisAlignedBoundingBox"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "boundingBoxAtTime:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSTimeInterval",
+                    "text": "NSTimeInterval"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "time"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A timestamp referring to timed information in the asset.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "time"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "The asset’s bounding box as of the specified time sample.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/title",
+          "value": "MDLObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAxisAlignedBoundingBox/title",
+          "value": "MDLAxisAlignedBoundingBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAxisAlignedBoundingBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAxisAlignedBoundingBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAxisAlignedBoundingBox/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAxisAlignedBoundingBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/title",
+          "value": "MDLMesh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLMesh/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLMesh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1children/title",
+          "value": "children"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1children/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "children"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSTimeInterval/title",
+          "value": "NSTimeInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1boundingBox(atTime:)/title",
+          "value": "boundingBoxAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1boundingBox(atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingBoxAtTime:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdlobject/boundingbox(attime:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdlobject/boundingbox(attime:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

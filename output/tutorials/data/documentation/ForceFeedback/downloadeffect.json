@@ -1,0 +1,782 @@
+{
+  "abstract": [
+    {
+      "text": "This function sends an effect to the device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/ioforcefeedbacklib-h"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.forcefeedback/documentation/ForceFeedback/downloadeffect"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Force Feedback"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "DownloadEffect"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "HRESULT ( *DownloadEffect)(",
+            "   void *self,",
+            "   CFUUIDRef effectType,",
+            "   FFEffectDownloadID *pDownloadID,",
+            "   FFEFFECT *pEffect,",
+            "   FFEffectParameterFlag flags );"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Parameters",
+          "level": 3,
+          "text": "Parameters",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Pointer to the FFPlugInDriver implementation instance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "self",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the type of effect being created. Valid UUIDs are listed as kFFEffectType_* constants in the ForceFeedbackConstants.h file. (Supported effect types include Sine, Square, Triangle, SawtoothUp, SawtoothDown, Constant, Spring, Damper, etc.).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "effectType",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On entry, this parameter points to the handle of the effect being downloaded. If the parameter points to a zero, then a new effect is downloaded. On exit, the FFEffectDownloadID pointed to by this parameter contains the new effect handle. On failure, the FFEffectDownloadID pointed to by this parameter is set to zero if the effect is lost, or left alone if the effect is still valid with its old parameters. Note that zero is never a valid effect handle.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "pDownloadID",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The new parameters for the effect.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "IMPORTANT NOTE: Unlike the IDirectInputEffectDriver specification, the axis and button values are NOT converted to object identifiers before they are handed over to the driver. In this case, the only supported method used to assign triggers and output axes is through object offsets, defined by the FFJOFS_* constants. Therefore, if a button is assigned to trigger an effect, FFEFFECT.dwTriggerButton will contain a constant of the form FFJOFS_BUTTONn. Similarly, output axes will be identified in FFEFFECT.rgdwAxes[n] as FFJOFS_X, FFJOFS_Y, etc.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "pEffect",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specifies which portions of the effect information have changed from the effect already on the device. This information is passed to drivers to allow for the optimization of effect modification. If an effect is being modified, a driver may be able to update the effect in its original position and transmit to the device only the information that has changed. Drivers are not, however, required to implement this optimization. All members of the FFEFFECT structure that are pointed to by the pEffect parameter are valid, and a driver may choose simply to update all parameters of the effect at each download. There may be zero, one, or more of the following:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_DURATION",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the dwDuration member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_SAMPLEPERIOD",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the dwSamplePeriod member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_GAIN",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the dwGain member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_TRIGGERBUTTON",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the dwTriggerButton member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_TRIGGERREPEATINTERVAL",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the dwTriggerRepeatInterval member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_AXES",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the cAxes and rgdwAxes members of the FFEFFECT structure are being downloaded for the first time or have changed since their last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_DIRECTION",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the cAxes and rglDirection members of the FFEFFECT structure are being downloaded for the first time or have changed since their last download. (The dwFlags member of the FFEFFECT structure specifies, through FFEFF_CARTESIAN or FFEFF_POLAR, the coordinate system in which the values should be interpreted.)",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_ENVELOPE",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the lpEnvelope member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download. If this flag is set and the lpEnvelope member is a NULL pointer, then the effect is being created with no envelope, or the existing envelope is being deleted.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_TYPESPECIFICPARAMS",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the cbTypeSpecificParams and lpTypeSpecificParams members of the FFEFFECT structure are being downloaded for the first time or have changed since their last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_STARTDELAY",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates the dwStartDelay member of the FFEFFECT structure is being downloaded for the first time or has changed since its last download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_START",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates that the effect is to be restarted from the beginning after the parameters of the effect have been updated. Note that the FFEP_NODOWNLOAD flag overrides the FFEP_START flag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_NORESTART",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If this flag is not specified, the effect device driver is permitted to restart the effect if doing so is necessary to change the specified parameters. Note that the FFEP_NODOWNLOAD and FFEP_START flags override this flag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "FFEP_NODOWNLOAD",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Suppresses the automatic download that is normally performed after the parameters are updated. If this flag is set, the driver should validate parameters without performing an actual download.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "flags",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Return-Value",
+          "level": 3,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns FF_OK if successful, or an error value otherwise:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FFERR_DEVICEPAUSED",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FFERR_DEVICEFULL",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FFERR_INVALIDDOWNLOADID",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FFERR_INTERNAL",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FFERR_EFFECTTYPEMISMATCH",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback": {
+      "abstract": [
+        {
+          "text": "Control force feedback devices attached to the system. Develop plug-ins that enable communication with force feedback hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Force Feedback",
+      "type": "topic",
+      "url": "/documentation/forcefeedback"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect": {
+      "abstract": [
+        {
+          "text": "This function commands the device to “destroy” a currently downloaded effect. The effect ID and any data that is associated with the effect are freed and available for reallocation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect",
+      "kind": "article",
+      "role": "article",
+      "title": "DestroyEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/destroyeffect"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape": {
+      "abstract": [
+        {
+          "text": "This function escapes to the driver. This method is called in response to an application invoking the FFEffectEscape or FFDeviceEscape methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape",
+      "kind": "article",
+      "role": "article",
+      "title": "Escape",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/escape"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion": {
+      "abstract": [
+        {
+          "text": "This function is used to determine driver and API version information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion",
+      "kind": "article",
+      "role": "article",
+      "title": "ForceFeedbackGetVersion",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/forcefeedbackgetversion"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus": {
+      "abstract": [
+        {
+          "text": "This function returns the device effect’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus",
+      "kind": "article",
+      "role": "article",
+      "title": "GetEffectStatus",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/geteffectstatus"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities": {
+      "abstract": [
+        {
+          "text": "This function escapes to the driver. This method is called in response to an application invoking the FFEffectEscape or FFDevicEscape methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "GetForceFeedbackCapabilities",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/getforcefeedbackcapabilities"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate": {
+      "abstract": [
+        {
+          "text": "This function returns the state of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate",
+      "kind": "article",
+      "role": "article",
+      "title": "GetForceFeedbackState",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/getforcefeedbackstate"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate": {
+      "abstract": [
+        {
+          "text": "This function is used to “create and destroy” particular device instances. It provides the FF plug-in driver with all the necessary start-up parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate",
+      "kind": "article",
+      "role": "article",
+      "title": "InitializeTerminate",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/initializeterminate"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/ioforcefeedbacklib-h": {
+      "abstract": [
+        {
+          "text": "Public Interfaces and constants used to develop Force Feedback plugIns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/ioforcefeedbacklib-h",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOForceFeedbackLib.h",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/ioforcefeedbacklib-h"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand": {
+      "abstract": [
+        {
+          "text": "This function sends a command to the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand",
+      "kind": "article",
+      "role": "article",
+      "title": "SendForceFeedbackCommand",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/sendforcefeedbackcommand"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/setproperty": {
+      "abstract": [
+        {
+          "text": "This function sets properties that define the device behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/setproperty",
+      "kind": "article",
+      "role": "article",
+      "title": "SetProperty",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/setproperty"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect": {
+      "abstract": [
+        {
+          "text": "This function commands the device to play back an effect that was previously loaded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect",
+      "kind": "article",
+      "role": "article",
+      "title": "StartEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/starteffect"
+    },
+    "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect": {
+      "abstract": [
+        {
+          "text": "This function commands the device to stop an effect that was previously started.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect",
+      "kind": "article",
+      "role": "article",
+      "title": "StopEffect",
+      "type": "topic",
+      "url": "/documentation/forcefeedback/stopeffect"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Miscellaneous",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/setproperty",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect",
+        "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Miscellaneous",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/destroyeffect",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/escape",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/forcefeedbackgetversion",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/geteffectstatus",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackcapabilities",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/getforcefeedbackstate",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/initializeterminate",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/sendforcefeedbackcommand",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/setproperty",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/starteffect",
+                "doc://com.apple.forcefeedback/documentation/ForceFeedback/stopeffect"
+              ],
+              "title": "Miscellaneous"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/forcefeedback/downloadeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/forcefeedback/downloadeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

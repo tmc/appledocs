@@ -1,0 +1,718 @@
+{
+  "abstract": [
+    {
+      "text": "Specify the units of measure to use for margins, minimum heights, and other dimensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Specifying Measurements for Components"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Apple News Format, you can use variable sizing for component margins, minimum component height, and other measurements. Sizes can be a percentage of the width or height of the viewport, the document margins and gutters, or the component’s height (the part of the document visible to the user).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "By default, values are set in points (pt). You can set the points value as a number, or as a string that includes the ",
+                  "type": "text"
+                },
+                {
+                  "code": "pt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " abbreviation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example sets the margin to 10 points, as a string value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": {",
+            "  \"top\": \"10pt\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example also sets the margin to 10 points, because an integer is specified and the default unit is points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": {",
+            "  \"top\": 10",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Component-Measurements-Based-on-the-Viewport",
+          "level": 3,
+          "text": "Set Component Measurements Based on the Viewport",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the size of a margin or the minimum height for a component based on a percentage of the width or height of the viewport. The viewport includes the portion of the screen that is sometimes covered by the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Measurements-Based-on-Viewport-Height",
+          "level": 4,
+          "text": "Set Measurements Based on Viewport Height",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example results in a component height of at least 50 percent of the viewport height (vh).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"minimumHeight\": \"50vh\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Measurements-Based-on-Viewport-Width",
+          "level": 4,
+          "text": "Set Measurements Based on Viewport Width",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the component’s margin is set to 20 percent of the viewport width (vw).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": {",
+            "  \"bottom\": \"20vw\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Measurements-Based-on-the-Viewports-Shortest-Side",
+          "level": 4,
+          "text": "Set Measurements Based on the Viewport’s Shortest Side",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you base a component’s minimum height on the shortest side of the viewport, remember that the minimum height varies depending on your device orientation. If your article is being viewed in portrait orientation, the calculation is based on the width of the viewport; in landscape, the calculation is based on the height of the viewport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the viewport is narrow and tall (portrait), a value of ",
+              "type": "text"
+            },
+            {
+              "code": "150vmin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is calculated as 150 percent of the width. This example sets the component’s minimum height to 25 percent of the shortest side of the viewport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"minimumHeight\": \"25vmin\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Measurements-Based-on-the-Viewports-Longest-Side",
+          "level": 4,
+          "text": "Set Measurements Based on the Viewport’s Longest Side",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you base a component’s minimum height on the longest side of the viewport, remember that the minimum height varies depending on your device orientation. If your article is being viewed in portrait orientation, the calculation is based on the height of the viewport; in landscape, the calculation is based on the width of the viewport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the viewport is narrow and tall (portrait), a value of ",
+              "type": "text"
+            },
+            {
+              "code": "150vmax",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is calculated as 150 percent of the height. The following example sets the component’s minimum height to 25 percent of the longest side of the viewport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"minimumHeight\": \"25vmax\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Component-Height-Based-on-Component-Width",
+          "level": 3,
+          "text": "Set Component Height Based on Component Width",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the component width (",
+              "type": "text"
+            },
+            {
+              "code": "cw",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") unit to set a component’s height as a percentage of the component’s width, which guarantees a specific aspect ratio. This example calculates the value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "height ÷ width * 100 "
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, for a landscape image with a 9:16 aspect ratio, you calculate ",
+              "type": "text"
+            },
+            {
+              "code": "9 ÷ 16 * 100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for a value of ",
+              "type": "text"
+            },
+            {
+              "code": "56.25cw",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This example sets the component’s height to 50 percent of its width.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"minimumHeight\": \"50cw\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Component-Width-Based-on-Parent-Component-Width",
+          "level": 3,
+          "text": "Set Component Width Based on Parent Component Width",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the parent width (",
+              "type": "text"
+            },
+            {
+              "code": "pw",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") unit to set ",
+              "type": "text"
+            },
+            {
+              "code": "minimumWidth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "maximumWidth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in relation to the width of the parent component. If you use the ",
+              "type": "text"
+            },
+            {
+              "code": "pw",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unit on a top-level component inside a document that doesn’t have a parent, Apple News Format uses the viewport width (",
+              "type": "text"
+            },
+            {
+              "code": "vw",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"minimumWidth\": \"30pw\", \"maximumWidth\": \"50pw\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Component-Margins-Based-on-Gutter-Size",
+          "level": 3,
+          "text": "Set Component Margins Based on Gutter Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "gut",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unit to base a component’s margin on the column gutter size. This example sets the component’s margin to the full width of the gutter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": {",
+            "  \"bottom\": \"100gut\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "dg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unit to base a component’s margin on the column gutter size. This example sets the component’s margin to the full width of the gutter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": {",
+            "  \"bottom\": \"100dg\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example sets the component’s margin to half the width of the gutter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": {",
+            "  \"bottom\": \"50dg\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-Vertical-Margins-for-a-Component",
+          "level": 3,
+          "text": "Set Vertical Margins for a Component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "margin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the ",
+              "type": "text"
+            },
+            {
+              "code": "layout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object provides the spacing for the outer left and right sides of the document and can change depending on the device size. To apply that same spacing vertically, use the ",
+              "type": "text"
+            },
+            {
+              "code": "dm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unit in the ",
+              "type": "text"
+            },
+            {
+              "code": "margin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the component layout object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example creates a vertical margin between components that’s 100 percent of the left margin of the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": \"100dm\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example creates a vertical margin that’s 50 percent of the left margin of the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"margin\": \"50dm\""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A value such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "100dm",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in versions of iOS earlier than iOS 11 is interpreted as a left-right margin of 100 points.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill": {
+      "abstract": [
+        {
+          "text": "Add an image that remains stationary when the user scrolls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Fixed Image Fill",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-layered-header": {
+      "abstract": [
+        {
+          "text": "Create a header with a caption that’s layered in front of an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-layered-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Layered Header",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-layered-header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets": {
+      "abstract": [
+        {
+          "text": "Add media assets to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Image, Video, Audio, Music, and ARKit Assets",
+      "type": "topic",
+      "url": "/documentation/applenews/preparing-image-video-audio-music-and-arkit-assets"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits": {
+      "abstract": [
+        {
+          "text": "The units of measurement Apple News Format supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupportedUnits"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupportedUnits"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupportedUnits",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/supportedunits"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-layered-header",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Component-Measurements-and-Media-Guidelines",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedUnits",
+        "doc://com.apple.applenews/documentation/AppleNews/preparing-image-video-audio-music-and-arkit-assets"
+      ],
+      "title": "Component Measurements and Media Guidelines"
+    }
+  ]
+}

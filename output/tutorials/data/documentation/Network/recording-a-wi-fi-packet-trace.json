@@ -1,0 +1,422 @@
+{
+  "abstract": [
+    {
+      "text": "Record traces of Wi-Fi traffic and traffic management.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Recording a Wi-Fi Packet Trace"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with Wi-Fi, your best option for recording a packet trace depends on whether you’re interested in the network traffic itself, or in the details of how the Wi-Fi network manages traffic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Record-a-High-Level-Packet-Trace-of-Wi-Fi-Traffic",
+          "level": 3,
+          "text": "Record a High-Level Packet Trace of Wi-Fi Traffic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re primarily interested in the traffic going over the Wi-Fi — that is, you would like to ignore all the low-level details of Wi-Fi and treat the Wi-Fi network like an Ethernet network without all those pesky wires — use one of the following high-level approaches:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If possible, run the packet trace on one of the machines involved in the communication — including using RVI to record an iOS packet trace. That’s the easiest solution. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for instructions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your Wi-Fi access point supports bridge mode (notably, all Apple base stations do), you can bridge the Wi-Fi network on to an Ethernet network and then use standard Ethernet techniques to capture a packet trace. You won’t be able to see Wi-Fi to Wi-Fi traffic, but in many situations that’s not a problem.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you enable Internet Sharing on your Mac, and have your Wi-Fi clients join the shared network, you can run your packet trace program on the Mac and see all the Wi-Fi traffic. If you target the Mac’s Wi-Fi interface, you will see all traffic, including Wi-Fi to Wi-Fi traffic. If you target the Mac’s Ethernet interface, you will only see traffic entering or leaving the Wi-Fi network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Record-Low-Level-Details-of-Wi-Fi-Traffic-Management",
+          "level": 3,
+          "text": "Record Low-Level Details of Wi-Fi Traffic Management",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are interested in the low-level details of how the Wi-Fi network manages traffic, record a low-level Wi-Fi packet trace. To do this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a Mac on which to record your trace. That Mac cannot use the Wi-Fi interface for normal network traffic while recording the trace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure your access point to use a fixed channel. When recording a packet trace, you must specify the channel to record, and having the access point choose its channel automatically makes that harder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Either temporarily turn off the Wi-Fi password on your network or use a separate test network that has no password. If the Wi-Fi network has a password, Wi-Fi encryption makes it harder to examine the trace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Wireless Diagnostics app (you can find this in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/System/Library/CoreServices/Applications/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Window > Sniffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Sniffer window, select the channel number and width you want to record and click Start.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Stop when you’re done.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Finder, navigate to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/var/tmp/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and look for the resulting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".pcap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple": {
+      "abstract": [
+        {
+          "text": "Learn the best way to record a packet trace when communicating with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Submitting a Packet Trace to Apple",
+      "type": "topic",
+      "url": "/documentation/network/submitting-a-packet-trace-to-apple"
+    },
+    "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces": {
+      "abstract": [
+        {
+          "text": "Take action to address packet tracing problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting Packet Traces",
+      "type": "topic",
+      "url": "/documentation/network/troubleshooting-packet-traces"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Packet-Traces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+        "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+      ],
+      "title": "Working with Packet Traces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Packet-Traces",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+                "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+              ],
+              "title": "Working with Packet Traces"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/recording-a-wi-fi-packet-trace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/recording-a-wi-fi-packet-trace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

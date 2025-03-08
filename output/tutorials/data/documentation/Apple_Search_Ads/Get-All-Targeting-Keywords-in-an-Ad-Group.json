@@ -1,0 +1,882 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches all targeting keywords in ad groups.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Targeting-Keywords-in-an-Ad-Group"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:get:v5-campaigns-{}-adgroups-{}-targetingkeywords",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get All Targeting Keywords in an Ad Group"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get All Targeting Keywords in an Ad Group"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/campaigns/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{campaignId}"
+        },
+        {
+          "kind": "path",
+          "text": "/adgroups/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{adgroupId}"
+        },
+        {
+          "kind": "path",
+          "text": "/targetingkeywords"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the ad group.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "adgroupId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "campaignId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "20"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of items to return per request. The maximum is 1000 for most objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The offset pagination that limits the number of returned records. The start of each page is offset by the specified number.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns a list of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Keyword",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/KeywordListResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:KeywordListResponse",
+              "text": "KeywordListResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To return all targeting keywords for a campaign, use the associated ",
+              "type": "text"
+            },
+            {
+              "code": "campaignId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "adgroupId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the URI. You can also use a partial fetch. For more information, see the Use a Partial Fetch section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/using-apple-search-ads-api-functionality",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-example-Get-all-targeting-keywords",
+          "level": 3,
+          "text": "Payload example: Get all targeting keywords",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.searchads.apple.com/api/v5/campaigns/{campaignId}/adgroups/{adgroupId}/targetingkeywords"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[",
+                    "        {",
+                    "            \"id\": 542370642,",
+                    "            \"adGroupId\": 542317095,",
+                    "            \"text\": \"targeting keyword example 1\",",
+                    "            \"status\": \"ACTIVE\",",
+                    "            \"matchType\": \"BROAD\",",
+                    "            \"bidAmount\": {",
+                    "                \"amount\": \"100\",",
+                    "                \"currency\": \"USD\"",
+                    "            },",
+                    "            \"modificationTime\": \"2024-04-08T16:53:17.457\",",
+                    "            \"deleted\": false",
+                    "        },",
+                    "        {",
+                    "            \"id\": 542370643,",
+                    "            \"adGroupId\": 542317095,",
+                    "            \"text\": \"targeting keyword example 2\",",
+                    "            \"status\": \"ACTIVE\",",
+                    "            \"matchType\": \"BROAD\",",
+                    "            \"bidAmount\": {",
+                    "                \"amount\": \"100\",",
+                    "                \"currency\": \"USD\"",
+                    "            },",
+                    "            \"modificationTime\": \"2024-04-08T20:48:28.206\",",
+                    "            \"deleted\": false",
+                    "        },",
+                    "        {",
+                    "            \"id\": 542370644,",
+                    "            \"adGroupId\": 542317095,",
+                    "            \"text\": \"targeting keyword example 3\",",
+                    "            \"status\": \"PAUSED\",",
+                    "            \"matchType\": \"BROAD\",",
+                    "            \"bidAmount\": {",
+                    "                \"amount\": \"2\",",
+                    "                \"currency\": \"USD\"",
+                    "            },",
+                    "            \"modificationTime\": \"2023-04-08T21:02:24.257\",",
+                    "            \"deleted\": false",
+                    "        },",
+                    "        {",
+                    "            \"id\": 542370645,",
+                    "            \"adGroupId\": 542317095,",
+                    "            \"text\": \"targeting keyword example 4\",",
+                    "            \"status\": \"ACTIVE\",",
+                    "            \"matchType\": \"EXACT\",",
+                    "            \"bidAmount\": {",
+                    "                \"amount\": \"100\",",
+                    "                \"currency\": \"USD\"",
+                    "            },",
+                    "            \"modificationTime\": \"2024-04-08T16:53:17.468\",",
+                    "            \"deleted\": false",
+                    "        },",
+                    "        {",
+                    "            \"id\": 542370646,",
+                    "            \"adGroupId\": 542317095,",
+                    "            \"text\": \"targeting keyword example 5\",",
+                    "            \"status\": \"ACTIVE\",",
+                    "            \"matchType\": \"EXACT\",",
+                    "            \"bidAmount\": {",
+                    "                \"amount\": \"100\",",
+                    "                \"currency\": \"USD\"",
+                    "            },",
+                    "            \"modificationTime\": \"2023-04-08T17:53:10.899\",",
+                    "            \"deleted\": false",
+                    "        },",
+                    "        {",
+                    "            \"id\": 542370647,",
+                    "            \"adGroupId\": 542317095,",
+                    "            \"text\": \"targeting keyword example 6\",",
+                    "            \"status\": \"PAUSED\",",
+                    "            \"matchType\": \"EXACT\",",
+                    "            \"bidAmount\": {",
+                    "                \"amount\": \"100\",",
+                    "                \"currency\": \"USD\"",
+                    "            },",
+                    "            \"modificationTime\": \"2024-04-08T21:02:24.267\",",
+                    "            \"deleted\": false",
+                    "        }",
+                    "    ]"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/using-apple-search-ads-api-functionality": {
+      "abstract": [
+        {
+          "text": "Call endpoints using CRUD methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/using-apple-search-ads-api-functionality",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Using Apple Search Ads API Functionality",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/using-apple-search-ads-api-functionality"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-Targeting-Keywords": {
+      "abstract": [
+        {
+          "text": "Creates targeting keywords in ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-Targeting-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Targeting Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Targeting Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-targeting-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-Targeting-Keywords": {
+      "abstract": [
+        {
+          "text": "Deletes targeting keywords from ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-Targeting-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete Targeting Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete Targeting Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/delete-targeting-keywords"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-a-Targeting-Keyword": {
+      "abstract": [
+        {
+          "text": "Deletes a targeting keyword in an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-a-Targeting-Keyword",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete a Targeting Keyword"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Targeting Keyword",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/delete-a-targeting-keyword"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Targeting-Keywords-in-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Fetches targeting keywords in a campaign’s ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Targeting-Keywords-in-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Find Targeting Keywords in a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Find Targeting Keywords in a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/find-targeting-keywords-in-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Targeting-Keywords-in-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Fetches all targeting keywords in ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Targeting-Keywords-in-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Targeting Keywords in an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Targeting Keywords in an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-targeting-keywords-in-an-ad-group"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Targeting-Keyword-in-an-Ad-Group": {
+      "abstract": [
+        {
+          "text": "Fetches a specific targeting keyword in an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Targeting-Keyword-in-an-Ad-Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Targeting Keyword in an Ad Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Targeting Keyword in an Ad Group",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-a-targeting-keyword-in-an-ad-group"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Keyword": {
+      "abstract": [
+        {
+          "text": "Targeting keyword parameters to use in requests and responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Keyword"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Keyword",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Keyword"
+        }
+      ],
+      "role": "symbol",
+      "title": "Keyword",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/keyword"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/KeywordListResponse": {
+      "abstract": [
+        {
+          "text": "The response details of targeting keyword requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "KeywordListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/KeywordListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "KeywordListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "KeywordListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/keywordlistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-Targeting-Keywords": {
+      "abstract": [
+        {
+          "text": "Updates targeting keywords in ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-Targeting-Keywords",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update Targeting Keywords"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update Targeting Keywords",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-targeting-keywords"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ad-Group-Targeting-Keywords-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-Targeting-Keywords",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Find-Targeting-Keywords-in-a-Campaign",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Targeting-Keyword-in-an-Ad-Group",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-Targeting-Keywords",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-Targeting-Keywords",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Delete-a-Targeting-Keyword"
+      ],
+      "title": "Ad Group Targeting Keywords Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/get-all-targeting-keywords-in-an-ad-group"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

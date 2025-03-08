@@ -1,0 +1,1141 @@
+{
+  "abstract": [
+    {
+      "text": "See the metadata fields for the Update an Article request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:news_api:Update_Article_Metadata_Fields",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Update Article Metadata Fields"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple News API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Update Article Metadata Fields"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple News API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "Update Article Metadata Fields"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: Apple News API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Update Article Metadata Fields"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current revision token for the article. The value of this field must match the latest revision from an earlier Create, Read, or Update Article call. This field prevents multiple users from updating an article simultaneously, which results in data loss.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "revision",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "metadata.authors"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "100"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The text to include below the article excerpt in the channel view, such as a ",
+                  "type": "text"
+                },
+                {
+                  "code": "byline",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "category",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " label.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "accessoryText",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean that indicates whether this article should be considered for featuring in Apple News.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "isCandidateToBeFeatured",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean that indicates whether the article should be temporarily hidden from display in the News feed. Note that a hidden article is accessible if you have a direct link to the article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "isHidden",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean that indicates whether this article should be public (live) or should be a preview that’s only visible to members of your channel. Set ",
+                  "type": "text"
+                },
+                {
+                  "code": "isPreview",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to publish the article immediately and make it visible to all News users.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If your channel hasn’t yet been approved to publish articles in Apple News Format, setting ",
+                  "type": "text"
+                },
+                {
+                  "code": "isPreview",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " results in an ",
+                  "type": "text"
+                },
+                {
+                  "code": "ONLY_PREVIEW_ALLOWED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "isPreview",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean that indicates whether this article consists of sponsored content for promotional purposes. You must mark sponsored content as such; channels that don’t follow this policy may be suspended.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "When using ",
+                  "type": "text"
+                },
+                {
+                  "code": "isSponsored",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", if you don’t want the sponsored article to appear in your channel’s feed, set sections to ",
+                  "type": "text"
+                },
+                {
+                  "code": "[]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " (an empty array).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "isSponsored",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The section links for the article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "links",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:news_api:ArticleLinksRequest",
+              "text": "ArticleLinksRequest"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "null"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "KIDS",
+                "MATURE",
+                "GENERAL"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string that indicates the viewing audience for the content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "MATURE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicates explicit content that’s only appropriate for a specific audience.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, the article inherits the value you set for your channel in News Publisher.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "maturityRating",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The target country codes required for publishing the updated article.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you don’t specify the ",
+                  "type": "text"
+                },
+                {
+                  "code": "targetTerritoryCountryCodes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Update Article Metadata Fields",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the updated article is visible in all of your channel’s territories.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "targetTerritoryCountryCodes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and no ",
+                  "type": "text"
+                },
+                {
+                  "code": "targetTerritoryCountryCodes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is specified in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Update Article Metadata Fields",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the article is visible in all the countries specified in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Create",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "Article",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "Metadata",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "Fields",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "targetTerritoryCountryCodes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and a subset of country codes are specified in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Update Article Metadata Fields",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the article is visible only in the subset of countries specified in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Update Article Metadata Fields",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Country codes must be in ISO 3166-1 alpha-2 code format; for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "AU",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for Australia. For a complete list of ISO country codes, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://help.apple.com/app-store-connect/#/dev997f9cf7c",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you specify a country code that isn’t not defined in your channel’s territories, the  ",
+                  "type": "text"
+                },
+                {
+                  "code": "ARTICLE_TERRITORY_NOT_ALLOWED",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error is generated by the server. If you specify an invalid country code, the server generates an ",
+                  "type": "text"
+                },
+                {
+                  "code": "INVALID_ARTICLE_TERRITORY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetTerritoryCountryCodes",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14"
+      ]
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14": {
+      "abstract": [
+        {
+          "text": "Learn about the new features and deprecated fields in Apple News API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple News API Release Notes for iOS 17, iPadOS 17, and macOS 14",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-api-release-notes-for-ios-17-ipados-17-and-macos-14"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI": {
+      "abstract": [
+        {
+          "text": "Publish and manage Apple News Format articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News API",
+      "type": "topic",
+      "url": "/documentation/applenewsapi"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Article": {
+      "abstract": [
+        {
+          "text": "See the fields the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Article"
+        }
+      ],
+      "role": "symbol",
+      "title": "Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest": {
+      "abstract": [
+        {
+          "text": "See the required field for the Create an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLinksRequest",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articlelinksrequest"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse": {
+      "abstract": [
+        {
+          "text": "See the links the article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLinksResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLinksResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articlelinksresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse": {
+      "abstract": [
+        {
+          "text": "See which objects make up the Create an Article, Read an Article, and Update an Article responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/articleresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the optional metadata fields for the Create an Article Request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/create-article-metadata-fields"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Delete the specified article from your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/delete-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Retrieve information about an article, such as the revision number and maturity rating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Article Information",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "See a list of all articles in a channel that match the specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search Articles in a Channel",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles": {
+      "abstract": [
+        {
+          "text": "See a list of all articles in a section that match the specified search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /sections/{sectionId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search Articles in a Section",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/get-sections-_sectionid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Read an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Meta"
+        }
+      ],
+      "role": "symbol",
+      "title": "Meta",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/meta"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_": {
+      "abstract": [
+        {
+          "text": "Update an existing article in your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /articles/{articleId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-articles-_articleid_"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles": {
+      "abstract": [
+        {
+          "text": "Publish an article to your channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /channels/{channelId}/articles"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Article",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/post-channels-_channelid_-articles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse": {
+      "abstract": [
+        {
+          "text": "See the fields the search article endpoints returned.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchResponse",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/searchresponse"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling": {
+      "abstract": [
+        {
+          "text": "See the object that wraps the throttling information that’s returned for the Create an Article and Update an Article endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Throttling"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Throttling"
+        }
+      ],
+      "role": "symbol",
+      "title": "Throttling",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/throttling"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields": {
+      "abstract": [
+        {
+          "text": "See the metadata fields for the Update an Article request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update Article Metadata Fields"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsAPI/Update-Article-Metadata-Fields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update Article Metadata Fields"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update Article Metadata Fields",
+      "type": "topic",
+      "url": "/documentation/applenewsapi/update-article-metadata-fields"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/app-store-connect/#/dev997f9cf7c": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev997f9cf7c",
+      "title": "App Store Territories",
+      "titleInlineContent": [
+        {
+          "text": "App Store Territories",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev997f9cf7c"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-channels-_channelId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-channels-_channelId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/GET-sections-_sectionId_-articles",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/POST-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/DELETE-articles-_articleId_",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Create-Article-Metadata-Fields",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksRequest",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Article",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/ArticleLinksResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/SearchResponse",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Meta",
+        "doc://com.apple.applenews/documentation/AppleNewsAPI/Throttling"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applenewsapi/update-article-metadata-fields"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

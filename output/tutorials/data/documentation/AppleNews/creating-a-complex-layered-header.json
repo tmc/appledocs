@@ -1,0 +1,2126 @@
+{
+  "abstract": [
+    {
+      "text": "Layer a title and heading in front of an image, with their colors optimized for legibility.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Complex, Layered Header"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the first advanced tutorial, you created a header with layering and parallax behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this second article, you’ll add more code to the same article to modify the layout. You’ll wrap body text around an image, place captions in the article margin, create a more complex header, and add component animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to create a more complex layered header.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Move-Title-and-Heading-Text-into-the-Header",
+          "level": 3,
+          "text": "Move Title and Heading Text into the Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, you need to layer title and heading information in front of the header’s image fill. You’ll move ",
+              "type": "text"
+            },
+            {
+              "code": "heading1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "divider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " components from the second section of the article into the ",
+              "type": "text"
+            },
+            {
+              "code": "header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This image shows the heading and title before they have been lightened for legibility; you’ll lighten this text in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Define-a-Light-Text-Style-for-Heading-Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3627616",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that you completed in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-parallax-behavior",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Desktop/News_Design_Tutorial/News_Design_Tutorial_Advanced_Article_1/article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file (not the example code below), cut the first three components inside the second section to your clipboard. The code you are cutting begins with the opening bracket (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") before ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"role\": \"heading1\",",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ends with the closing bracket and comma  (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "},",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") that end the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the components inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array in your article’s header, after the opening square bracket (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") that comes a few lines after this line: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"role\": \"header\",",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Moving-Components-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see that the title is layered in front of the header as shown in the previous figure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Moving-Components-Result",
+          "level": 4,
+          "text": "Moving Components: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"behavior\": {",
+            "        \"type\": \"parallax\",",
+            "        \"factor\": 0.8",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"header\",",
+            "          \"layout\": \"headerImageLayout\",",
+            "          \"style\": {",
+            "            \"fill\": {",
+            "              \"type\": \"image\",",
+            "              \"URL\": \"bundle://header.jpg\",",
+            "              \"fillMode\": \"cover\",",
+            "              \"verticalAlignment\": \"top\",",
+            "              \"horizontalAlignment\": \"center\"",
+            "            }",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"heading1\",",
+            "              \"layout\": \"heading1Layout\",",
+            "              \"text\": \"HEADING\"",
+            "            },",
+            "            {",
+            "              \"role\": \"divider\",",
+            "              \"layout\": \"bigDividerLayout\",",
+            "              \"stroke\": {",
+            "                \"width\": 3,",
+            "                \"color\": \"#D5B327\"",
+            "              }",
+            "            },",
+            "            {",
+            "              \"role\": \"title\",",
+            "              \"layout\": \"halfMarginBelowLayout\",",
+            "              \"text\": \"ARTICLE TITLE\"",
+            "            },",
+            "            {",
+            "              \"role\": \"container\",",
+            "              \"layout\": \"fullBleedLayout\",",
+            "              \"style\": \"captionBarBackgroundStyle\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"bottom\"",
+            "              },",
+            "              \"components\": [",
+            "                {",
+            "                  \"role\": \"caption\",",
+            "                  \"textStyle\": \"captionLight\",",
+            "                  \"layout\": \"halfMarginBothLayout\",",
+            "                  \"text\": \"ABOVE: Sed ut pers piciatis unde omnis iste error sit volup tatem accusantium dolor emque, totam rem. (Attribution)\"",
+            "                }",
+            "              ]",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-More-Space-Above-the-Intro-Component",
+          "level": 3,
+          "text": "Create More Space Above the Intro Component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you moved your title in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Move-Title-and-Heading-Text-into-the-Header",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the spacing around your ",
+              "type": "text"
+            },
+            {
+              "code": "intro",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component changed. You can use an already defined ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to create more space above the ",
+              "type": "text"
+            },
+            {
+              "code": "intro",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create additional space, in your ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, inside the ",
+              "type": "text"
+            },
+            {
+              "code": "intro",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component, change the value of ",
+              "type": "text"
+            },
+            {
+              "code": "layout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from ",
+              "type": "text"
+            },
+            {
+              "code": "\"halfMarginBelowLayout\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "\"halfMarginBothLayout\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Intro-ComponentLayout-Object-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the adjustment to the ",
+              "type": "text"
+            },
+            {
+              "code": "intro",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component’s position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Intro-ComponentLayout-Object-Result",
+          "level": 4,
+          "text": "Intro ComponentLayout Object: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"behavior\": {",
+            "        \"type\": \"parallax\",",
+            "        \"factor\": 0.8",
+            "      },",
+            "      \"components\": [",
+            "        ...",
+            "      ]",
+            "    },",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"bodyBackgroundStyle\",",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"intro\",",
+            "          \"layout\": \"halfMarginBothLayout\",",
+            "          \"text\": \"Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque ipsum?\"",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Anchor-the-Title-to-the-Bottom-of-the-Header",
+          "level": 3,
+          "text": "Anchor the Title to the Bottom of the Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you anchor multiple child components to the same side of the parent, the children will stack as in the following figure. This image shows the heading and title before they have been lightened for legibility; you’ll lighten this text in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Use-the-Dark-Background-and-Light-Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3627615",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your working ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, delete the contents of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array inside your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "header",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Header-Contents-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the now-empty ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array of the header, where you deleted content in step 1. Make sure to paste inside the square brackets (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Header-Contents-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see that the article title information is anchored to the bottom of the header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Header-Contents-Copy-This-Code",
+          "level": 4,
+          "text": "Header Contents: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "            {",
+            "              \"role\": \"container\",",
+            "              \"layout\": \"fullBleedLayout\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"bottom\"",
+            "              },",
+            "              \"components\": [",
+            "                {",
+            "                  \"role\": \"heading1\",",
+            "                  \"layout\": \"heading1Layout\",",
+            "                  \"text\": \"HEADING\"",
+            "                },",
+            "                {",
+            "                  \"role\": \"divider\",",
+            "                  \"layout\": \"bigDividerLayout\",",
+            "                  \"stroke\": {",
+            "                    \"width\": 3,",
+            "                    \"color\": \"#D5B327\"",
+            "                  }",
+            "                },",
+            "                {",
+            "                  \"role\": \"title\",",
+            "                  \"format\": \"html\",",
+            "                  \"layout\": \"halfMarginBelowLayout\",",
+            "                  \"text\": \"ARTICLE TITLE\"",
+            "                }",
+            "              ]",
+            "            },",
+            "            {",
+            "              \"role\": \"container\",",
+            "              \"layout\": \"fullBleedLayout\",",
+            "              \"style\": \"captionBarBackgroundStyle\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"bottom\"",
+            "              },",
+            "              \"components\": [",
+            "                {",
+            "                  \"role\": \"caption\",",
+            "                  \"textStyle\": \"captionLight\",",
+            "                  \"layout\": \"halfMarginBothLayout\",",
+            "                  \"text\": \"ABOVE: Sed ut pers piciatis unde omnis iste error sit volup tatem accusantium dolor emque, totam rem. (Attribution)\"",
+            "                }",
+            "              ]",
+            "            }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Header-Contents-Result",
+          "level": 4,
+          "text": "Header Contents: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"behavior\": {",
+            "        \"type\": \"parallax\",",
+            "        \"factor\": 0.8",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"header\",",
+            "          \"layout\": \"headerImageLayout\",",
+            "          \"style\": {",
+            "            \"fill\": {",
+            "              \"type\": \"image\",",
+            "              \"URL\": \"bundle://header.jpg\",",
+            "              \"fillMode\": \"cover\",",
+            "              \"verticalAlignment\": \"top\",",
+            "              \"horizontalAlignment\": \"center\"",
+            "            }",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"container\",",
+            "              \"layout\": \"fullBleedLayout\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"bottom\"",
+            "              },",
+            "              \"components\": [",
+            "                {",
+            "                  \"role\": \"heading1\",",
+            "                  \"layout\": \"heading1Layout\",",
+            "                  \"text\": \"HEADING\"",
+            "                },",
+            "                {",
+            "                  \"role\": \"divider\",",
+            "                  \"layout\": \"bigDividerLayout\",",
+            "                  \"stroke\": {",
+            "                    \"width\": 3,",
+            "                    \"color\": \"#D5B327\"",
+            "                  }",
+            "                },",
+            "                {",
+            "                  \"role\": \"title\",",
+            "                  \"format\": \"html\",",
+            "                  \"layout\": \"halfMarginBelowLayout\",",
+            "                  \"text\": \"ARTICLE TITLE\"",
+            "                }",
+            "              ]",
+            "            },",
+            "            {",
+            "              \"role\": \"container\",",
+            "              \"layout\": \"fullBleedLayout\",",
+            "              \"style\": \"captionBarBackgroundStyle\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"bottom\"",
+            "              },",
+            "              \"components\": [",
+            "                {",
+            "                  \"role\": \"caption\",",
+            "                  \"textStyle\": \"captionLight\",",
+            "                  \"layout\": \"halfMarginBothLayout\",",
+            "                  \"text\": \"ABOVE: Sed ut pers piciatis unde omnis iste error sit volup tatem accusantium dolor emque, totam rem. (Attribution)\"",
+            "                }",
+            "              ]",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Dark-Background-for-the-Title-and-Heading",
+          "level": 3,
+          "text": "Define a Dark Background for the Title and Heading",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add contrast to your title and heading text, you can adjust the text color and the background of the text’s parent container. You’ll set the title container background to a gradient that fades from transparent at the top to black at the bottom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3627614",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#scrimBackgroundStyle-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#scrimBackgroundStyle-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "scrimBackgroundStyle-Copy-This-Code",
+          "level": 4,
+          "text": "scrimBackgroundStyle: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"scrimBackgroundStyle\": {",
+            "      \"fill\": {",
+            "        \"type\": \"linear_gradient\",",
+            "        \"colorStops\": [",
+            "          {",
+            "            \"color\": \"#00000000\"",
+            "          },",
+            "          {",
+            "            \"color\": \"#00000090\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "scrimBackgroundStyle-Result",
+          "level": 4,
+          "text": "scrimBackgroundStyle: Result",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "    \"scrimBackgroundStyle\": {",
+            "      \"fill\": {",
+            "        \"type\": \"linear_gradient\",",
+            "        \"colorStops\": [",
+            "          {",
+            "            \"color\": \"#00000000\"",
+            "          },",
+            "          {",
+            "            \"color\": \"#00000090\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Light-Text-Style-for-Heading-Text",
+          "level": 3,
+          "text": "Define a Light Text Style for Heading Text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can lighten the text of the heading, you must define a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentTextStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#heading1Light-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentTextStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and before the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#heading1Light-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "heading1Light-Copy-This-Code",
+          "level": 4,
+          "text": "heading1Light: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"heading1Light\": {",
+            "      \"textColor\": \"#FFF\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "heading1Light-Result",
+          "level": 4,
+          "text": "heading1Light: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    ...",
+            "    \"heading1Light\": {",
+            "      \"textColor\": \"#FFF\"",
+            "    }",
+            "  }",
+            "  ...",
+            "}",
+            ""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-the-Dark-Background-and-Light-Text",
+          "level": 3,
+          "text": "Use the Dark Background and Light Text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now you can add references to the ",
+              "type": "text"
+            },
+            {
+              "code": "scrimBackgroundStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "heading1Light",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "header",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component’s child container, add a property named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "style",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"scrimBackgroundStyle\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", as in the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Dark-Background-and-Light-Text-Result",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json file",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", inside both the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "heading1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component, add a property named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"heading1Light\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", as in the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Dark-Background-and-Light-Text-Result",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the optimized styling of your header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dark-Background-and-Light-Text-Result",
+          "level": 4,
+          "text": "Dark Background and Light Text: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"section\",",
+            "      ...",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"header\",",
+            "          ...",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"container\",",
+            "              \"layout\": \"fullBleedLayout\",",
+            "              \"style\": \"scrimBackgroundStyle\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"bottom\"",
+            "              },",
+            "              \"components\": [",
+            "                {",
+            "                  \"role\": \"heading1\",",
+            "                  \"textStyle\": \"heading1Light\",",
+            "                  \"layout\": \"heading1Layout\",",
+            "                  \"text\": \"HEADING\"",
+            "                },",
+            "                {",
+            "                  \"role\": \"divider\",",
+            "                  \"layout\": \"bigDividerLayout\",",
+            "                  \"stroke\": {",
+            "                    \"width\": 3,",
+            "                    \"color\": \"#D5B327\"",
+            "                  }",
+            "                },",
+            "                {",
+            "                  \"role\": \"title\",",
+            "                  \"textStyle\": \"heading1Light\",",
+            "                  \"format\": \"html\",",
+            "                  \"layout\": \"halfMarginBelowLayout\",",
+            "                  \"text\": \"ARTICLE TITLE\"",
+            "                }",
+            "              ]",
+            "            },",
+            "            ...",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-1",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene": {
+      "abstract": [
+        {
+          "text": "Control how the article’s opening section comes into view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-animations": {
+      "abstract": [
+        {
+          "text": "Use animations to affect how parts of your article come into view the first time they appear.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Animations",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-animations"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges": {
+      "abstract": [
+        {
+          "text": "Create text in color by using HTML to refer to TextStyle objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Color to Text Ranges",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-color-to-text-ranges"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-parallax-behavior": {
+      "abstract": [
+        {
+          "text": "Create an illusion of multiple flat layers by causing the article body to overlap the header as the user scrolls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-parallax-behavior",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Parallax Behavior",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-parallax-behavior"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component": {
+      "abstract": [
+        {
+          "text": "Change the appearance of the backgrounds in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying a Background to a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/applying-a-background-to-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Dark-Background-and-Light-Text-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Dark-Background-and-Light-Text-Result",
+      "kind": "section",
+      "title": "Dark Background and Light Text: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Dark-Background-and-Light-Text-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Define-a-Light-Text-Style-for-Heading-Text": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Define-a-Light-Text-Style-for-Heading-Text",
+      "kind": "section",
+      "title": "Define a Light Text Style for Heading Text",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Define-a-Light-Text-Style-for-Heading-Text"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Header-Contents-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Header-Contents-Copy-This-Code",
+      "kind": "section",
+      "title": "Header Contents: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Header-Contents-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Header-Contents-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Header-Contents-Result",
+      "kind": "section",
+      "title": "Header Contents: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Header-Contents-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Intro-ComponentLayout-Object-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Intro-ComponentLayout-Object-Result",
+      "kind": "section",
+      "title": "Intro ComponentLayout Object: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Intro-ComponentLayout-Object-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Move-Title-and-Heading-Text-into-the-Header": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Move-Title-and-Heading-Text-into-the-Header",
+      "kind": "section",
+      "title": "Move Title and Heading Text into the Header",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Move-Title-and-Heading-Text-into-the-Header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Moving-Components-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Moving-Components-Result",
+      "kind": "section",
+      "title": "Moving Components: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Moving-Components-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Use-the-Dark-Background-and-Light-Text": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#Use-the-Dark-Background-and-Light-Text",
+      "kind": "section",
+      "title": "Use the Dark Background and Light Text",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#Use-the-Dark-Background-and-Light-Text"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#heading1Light-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#heading1Light-Copy-This-Code",
+      "kind": "section",
+      "title": "heading1Light: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#heading1Light-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#heading1Light-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#heading1Light-Result",
+      "kind": "section",
+      "title": "heading1Light: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#heading1Light-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#scrimBackgroundStyle-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#scrimBackgroundStyle-Copy-This-Code",
+      "kind": "section",
+      "title": "scrimBackgroundStyle: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#scrimBackgroundStyle-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#scrimBackgroundStyle-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-complex-layered-header#scrimBackgroundStyle-Result",
+      "kind": "section",
+      "title": "scrimBackgroundStyle: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-complex-layered-header#scrimBackgroundStyle-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption": {
+      "abstract": [
+        {
+          "text": "Position a caption in the wide right margin of your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Floating Caption",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-floating-caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo": {
+      "abstract": [
+        {
+          "text": "Wrap article body text around an inset photo.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Inset Photo",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-photo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote": {
+      "abstract": [
+        {
+          "text": "Wrap article body text around an inset pull quote.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Inset Pull Quote",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-inset-pull-quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles": {
+      "abstract": [
+        {
+          "text": "Define and apply custom, default, and inline text styles, or use HTML tags or Markdown syntax to style your text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining and Applying Text Styles",
+      "type": "topic",
+      "url": "/documentation/applenews/defining-and-applying-text-styles"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article": {
+      "abstract": [
+        {
+          "text": "Use container components to create the component hierarchies you need for special article designs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Nesting Components in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/nesting-components-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article": {
+      "abstract": [
+        {
+          "text": "Align article components with columns in your layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning the Content in Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-the-content-in-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-1": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-1",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 1",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-1"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 2",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the positioning for a specific component within the article’s column system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting style properties for components, including background color and fill, borders, and table styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the style for a text component, including spacing, alignment, and drop caps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Header": {
+      "abstract": [
+        {
+          "text": "The component for defining the top area of an article, chapter, or section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Header"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Header",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Header"
+        }
+      ],
+      "role": "symbol",
+      "title": "Header",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill": {
+      "abstract": [
+        {
+          "text": "The object for displaying a linear gradient as a component background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGradientFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGradientFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGradientFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/lineargradientfill"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3627614": {
+      "alt": "Labeled screenshot of an Apple News article on iPhone. The article includes a title and heading within a container with a contrasting background color. The container is layered in front of a header image and anchored to the bottom of the header.",
+      "identifier": "media-3627614",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1adea1dac5ef77a9e4c17c361f42377/media-3627614@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7efcf454219fd7599066ddfcf9d7f00d/media-3627614~dark@2x.png"
+        }
+      ]
+    },
+    "media-3627615": {
+      "alt": "Labeled screenshot of an Apple News article on iPhone. The article includes a title and heading within a container that is layered in front of a header image and anchored to the bottom of the header.",
+      "identifier": "media-3627615",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51d2ea8846887297dd5d44fb57995ed1/media-3627615@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e372f1eb669e6f1875256543a9ef64c0/media-3627615~dark@2x.png"
+        }
+      ]
+    },
+    "media-3627616": {
+      "alt": "Labeled screenshot of an Apple News article on iPhone. The article includes a title and heading layered in front of a header image.",
+      "identifier": "media-3627616",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d7496774f34ed5762b8b96c0fd1c58d/media-3627616@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d447946e67d9bbe919f43570e0fdcccc/media-3627616~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-the-content-in-your-article",
+        "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+        "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component",
+        "doc://com.apple.applenews/documentation/AppleNews/defining-and-applying-text-styles",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Header",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/LinearGradientFill",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-2-Layout-and-Positioning",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-floating-caption",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-pull-quote",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-inset-photo",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-color-to-text-ranges",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-animations",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+      ],
+      "title": "Advanced Design Tutorial 2: Layout and Positioning"
+    }
+  ]
+}

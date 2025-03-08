@@ -1,0 +1,3356 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the types of components that can make up an article.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/components"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple News Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Components"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Components are some of the main objects you use to build your article, along with layouts and styles. Components hold the content of your article and are always in an array called ",
+              "type": "text"
+            },
+            {
+              "code": "components",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each component in your article has a function that is expressed by a property called ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property might be ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "pullquote",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "heading",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A component’s role determines what type of component it is. That is, when a component’s ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that type of component is referred to as a ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table gives you an overview of the components you can use to create an article in Apple News Format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Component category",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Component types",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Body",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Title",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Heading",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (heading1, heading2, heading3, heading4, heading5, heading6), ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleTitle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Intro",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Author",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Byline",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Illustrator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photographer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Quote",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/PullQuote",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Image",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Figure",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Portrait",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleThumbnail",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Galleries and Mosaic",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Gallery",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Mosaic",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio and Video",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Audio",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/EmbedWebVideo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Music",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Podcast",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Video",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Location",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Map",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Place",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Social Media",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FacebookPost",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Instagram",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TikTok",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Tweet",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tables",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/HTMLTable",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advertisements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ReplicaAdvertisement",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Article Structure",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Container",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Section",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Chapter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Aside",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Header",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleLink",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkButton",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Augmented Reality",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ARKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Choosing the component ",
+                  "type": "text"
+                },
+                {
+                  "code": "role",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that best describes your content is important for better voice-over and for facilitating Siri suggestions. For example, instead of styling text in a ",
+                  "type": "text"
+                },
+                {
+                  "code": "body",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " component to make it look like a heading, use a ",
+                  "type": "text"
+                },
+                {
+                  "code": "heading",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " component for that text instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/about-component-animations": {
+      "abstract": [
+        {
+          "text": "Learn how to affect the way in which components come into view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/about-component-animations",
+      "kind": "article",
+      "role": "article",
+      "title": "About Component Animations",
+      "type": "topic",
+      "url": "/documentation/applenews/about-component-animations"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/about-component-behaviors": {
+      "abstract": [
+        {
+          "text": "Learn how to affect components’ reactions to device motion and scrolling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/about-component-behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "About Component Behaviors",
+      "type": "topic",
+      "url": "/documentation/applenews/about-component-behaviors"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene-to-a-chapter-or-a-section-header": {
+      "abstract": [
+        {
+          "text": "Add a scene to your article to create special effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene-to-a-chapter-or-a-section-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene to a Chapter or a Section Header",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene-to-a-chapter-or-a-section-header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-components": {
+      "abstract": [
+        {
+          "text": "Learn the basics for adding components to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Components",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-link": {
+      "abstract": [
+        {
+          "text": "Link to an article by using the article-linking container component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-link",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Article Link",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-an-article-link"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/displaying-components-side-by-side": {
+      "abstract": [
+        {
+          "text": "Configure a side-by-side, horizontal arrangement of components for your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/displaying-components-side-by-side",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Components Side By Side",
+      "type": "topic",
+      "url": "/documentation/applenews/displaying-components-side-by-side"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure": {
+      "abstract": [
+        {
+          "text": "Understand basic JSON concepts and become familiar with the structure of an Apple News Format article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/json-concepts-and-article-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "JSON Concepts and Article Structure",
+      "type": "topic",
+      "url": "/documentation/applenews/json-concepts-and-article-structure"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article": {
+      "abstract": [
+        {
+          "text": "Use container components to create the component hierarchies you need for special article designs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Nesting Components in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/nesting-components-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/tables-in-an-article": {
+      "abstract": [
+        {
+          "text": "Add a JSON or HTML data table, and understand  the options for changing the look of your table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/tables-in-an-article",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tables in an Article",
+      "type": "topic",
+      "url": "/documentation/applenews/tables-in-an-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use HTML formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using HTML with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-html-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/using-markdown-with-apple-news-format": {
+      "abstract": [
+        {
+          "text": "Use Markdown formatting for text components.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/using-markdown-with-apple-news-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Markdown with Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenews/using-markdown-with-apple-news-format"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat": {
+      "abstract": [
+        {
+          "text": "Get Apple News Format reference information, and create signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple News Format",
+      "type": "topic",
+      "url": "/documentation/applenewsformat"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ARKit": {
+      "abstract": [
+        {
+          "text": "The component for adding an augmented reality (AR) experience to your article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKit"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ARKit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARKit"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/arkit"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Addition": {
+      "abstract": [
+        {
+          "text": "Properties that all addition types share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Addition"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Addition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Addition"
+        }
+      ],
+      "role": "symbol",
+      "title": "Addition",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/addition"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/AppearAnimation": {
+      "abstract": [
+        {
+          "text": "An animation type whereby a component appears on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppearAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/AppearAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppearAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppearAnimation",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/appearanimation"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleLink": {
+      "abstract": [
+        {
+          "text": "The container component for creating a link to an article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleLink"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleLink",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articlelink"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleThumbnail": {
+      "abstract": [
+        {
+          "text": "The component for displaying a thumbnail image with an article link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleThumbnail"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleThumbnail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleThumbnail"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleThumbnail",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articlethumbnail"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleTitle": {
+      "abstract": [
+        {
+          "text": "The component for displaying an article title in the ArticleLink component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArticleTitle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArticleTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArticleTitle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/articletitle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Aside": {
+      "abstract": [
+        {
+          "text": "The component for setting apart content that is not directly related to the article, such as promotional content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Aside"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Aside",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Aside"
+        }
+      ],
+      "role": "symbol",
+      "title": "Aside",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/aside"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Audio": {
+      "abstract": [
+        {
+          "text": "The component for adding a playable audio clip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Audio"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Audio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Audio"
+        }
+      ],
+      "role": "symbol",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/audio"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Author": {
+      "abstract": [
+        {
+          "text": "The component for adding the name of the author.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Author"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Author",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Author"
+        }
+      ],
+      "role": "symbol",
+      "title": "Author",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/author"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/BackgroundMotion": {
+      "abstract": [
+        {
+          "text": "The behavior whereby the background of a component moves in the opposite direction from the motion of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackgroundMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/BackgroundMotion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackgroundMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "BackgroundMotion",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/backgroundmotion"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/BackgroundParallax": {
+      "abstract": [
+        {
+          "text": "The behavior whereby the background of a component moves slightly slower than a person’s scroll speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackgroundParallax"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/BackgroundParallax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackgroundParallax"
+        }
+      ],
+      "role": "symbol",
+      "title": "BackgroundParallax",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/backgroundparallax"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/BannerAdvertisement": {
+      "abstract": [
+        {
+          "text": "The component for adding a full-width banner ad.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BannerAdvertisement"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/BannerAdvertisement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BannerAdvertisement"
+        }
+      ],
+      "role": "symbol",
+      "title": "BannerAdvertisement",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/banneradvertisement"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Behavior": {
+      "abstract": [
+        {
+          "text": "Properties shared by all the behaviors you can use to affect how components react to device motion and scrolling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Behavior"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Behavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Behavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "Behavior",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/behavior"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Body": {
+      "abstract": [
+        {
+          "text": "The component for adding body text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Body",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Body"
+        }
+      ],
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/body"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Byline": {
+      "abstract": [
+        {
+          "text": "The component for adding the publication date or contributor credits, especially for articles with multiple contributors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Byline"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Byline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Byline"
+        }
+      ],
+      "role": "symbol",
+      "title": "Byline",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/byline"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption": {
+      "abstract": [
+        {
+          "text": "The component for adding caption text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Caption"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Caption"
+        }
+      ],
+      "role": "symbol",
+      "title": "Caption",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/CaptionDescriptor": {
+      "abstract": [
+        {
+          "text": "The object you use in image components for displaying captions when the image is full-screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CaptionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/CaptionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CaptionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CaptionDescriptor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/captiondescriptor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Chapter": {
+      "abstract": [
+        {
+          "text": "The component for organizing an article into chapters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Chapter"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Chapter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Chapter"
+        }
+      ],
+      "role": "symbol",
+      "title": "Chapter",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/chapter"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/CollectionDisplay": {
+      "abstract": [
+        {
+          "text": "An object used in any container component type to define how the collection of child components is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollectionDisplay"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/CollectionDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollectionDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollectionDisplay",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/collectiondisplay"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Component": {
+      "abstract": [
+        {
+          "text": "Properties shared by all component types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentAddition": {
+      "abstract": [
+        {
+          "text": "Properties that all types of component additions share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentAddition"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentAddition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentAddition"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentAddition",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentaddition"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentAnimation": {
+      "abstract": [
+        {
+          "text": "Properties that all types of animations share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentAnimation",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentanimation"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLink": {
+      "abstract": [
+        {
+          "text": "The component addition object for making a component interactive and opening a link to another location in News.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLink"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLink",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlink"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Container": {
+      "abstract": [
+        {
+          "text": "Properties shared by all container types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Container"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Container",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Container"
+        }
+      ],
+      "role": "symbol",
+      "title": "Container",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/container"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable": {
+      "abstract": [
+        {
+          "text": "The component for adding a JSON data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/DataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataTable",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/datatable"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider": {
+      "abstract": [
+        {
+          "text": "The component for defining a horizontal line to visually divide parts of your article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "role": "symbol",
+      "title": "Divider",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/divider"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/EmbedWebVideo": {
+      "abstract": [
+        {
+          "text": "The component for adding a web video from Dailymotion, Vimeo, or YouTube.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmbedWebVideo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/EmbedWebVideo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmbedWebVideo"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmbedWebVideo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/embedwebvideo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FacebookPost": {
+      "abstract": [
+        {
+          "text": "The component for adding a Facebook post.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FacebookPost"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FacebookPost",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FacebookPost"
+        }
+      ],
+      "role": "symbol",
+      "title": "FacebookPost",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/facebookpost"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FadeInAnimation": {
+      "abstract": [
+        {
+          "text": "The animation whereby a component fades into view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FadeInAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FadeInAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FadeInAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FadeInAnimation",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/fadeinanimation"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Figure": {
+      "abstract": [
+        {
+          "text": "The component for including a figure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Figure"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Figure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Figure"
+        }
+      ],
+      "role": "symbol",
+      "title": "Figure",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/figure"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/FlexibleSpacer": {
+      "abstract": [
+        {
+          "text": "The component for redistributing empty space inside a horizontal stack collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FlexibleSpacer"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/FlexibleSpacer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FlexibleSpacer"
+        }
+      ],
+      "role": "symbol",
+      "title": "FlexibleSpacer",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/flexiblespacer"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Gallery": {
+      "abstract": [
+        {
+          "text": "The component for displaying a sequence of images in a specific order as a horizontal strip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gallery"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Gallery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gallery"
+        }
+      ],
+      "role": "symbol",
+      "title": "Gallery",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/gallery"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/GalleryItem": {
+      "abstract": [
+        {
+          "text": "An object used in a gallery or mosaic component for displaying an individual image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GalleryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/GalleryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GalleryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "GalleryItem",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/galleryitem"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/HTMLTable": {
+      "abstract": [
+        {
+          "text": "The component for adding tables with HTML data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTMLTable"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/HTMLTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HTMLTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "HTMLTable",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/htmltable"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Header": {
+      "abstract": [
+        {
+          "text": "The component for defining the top area of an article, chapter, or section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Header"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Header",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Header"
+        }
+      ],
+      "role": "symbol",
+      "title": "Header",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/header"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Heading": {
+      "abstract": [
+        {
+          "text": "The text component for adding a heading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Heading"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Heading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Heading"
+        }
+      ],
+      "role": "symbol",
+      "title": "Heading",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/heading"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/HorizontalStackDisplay": {
+      "abstract": [
+        {
+          "text": "The object for displaying components side by side in a Container component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HorizontalStackDisplay"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/HorizontalStackDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HorizontalStackDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "HorizontalStackDisplay",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/horizontalstackdisplay"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Illustrator": {
+      "abstract": [
+        {
+          "text": "The component for adding illustrator credit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Illustrator"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Illustrator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Illustrator"
+        }
+      ],
+      "role": "symbol",
+      "title": "Illustrator",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/illustrator"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Image": {
+      "abstract": [
+        {
+          "text": "The component for displaying JPEG, WebP, PNG, or GIF images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/image"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Instagram": {
+      "abstract": [
+        {
+          "text": "The component for adding an Instagram post.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instagram"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Instagram",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Instagram"
+        }
+      ],
+      "role": "symbol",
+      "title": "Instagram",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/instagram"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Intro": {
+      "abstract": [
+        {
+          "text": "The component for adding introductory text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Intro"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Intro",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Intro"
+        }
+      ],
+      "role": "symbol",
+      "title": "Intro",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/intro"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkAddition": {
+      "abstract": [
+        {
+          "text": "The addition object for defining links in text components that don’t use HTML or Markdown formatting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkAddition"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkAddition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkAddition"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkAddition",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/linkaddition"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkButton": {
+      "abstract": [
+        {
+          "text": "The component for opening a link in a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkButton"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkButton",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/linkbutton"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo": {
+      "abstract": [
+        {
+          "text": "The component for including a logo image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Logo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Logo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Logo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/logo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Map": {
+      "abstract": [
+        {
+          "text": "The component for adding a map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Map"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Map",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Map"
+        }
+      ],
+      "role": "symbol",
+      "title": "Map",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/map"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/MapItem": {
+      "abstract": [
+        {
+          "text": "An object used in a map component for specifying the location of a map pin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapItem"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/MapItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MapItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MapItem",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/mapitem"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/MapSpan": {
+      "abstract": [
+        {
+          "text": "An object used in a map or place component for defining the visible area of the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapSpan"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/MapSpan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MapSpan"
+        }
+      ],
+      "role": "symbol",
+      "title": "MapSpan",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/mapspan"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/MediumRectangleAdvertisement": {
+      "abstract": [
+        {
+          "text": "The component for adding a medium, fixed-size rectangle ad.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediumRectangleAdvertisement"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/MediumRectangleAdvertisement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediumRectangleAdvertisement"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediumRectangleAdvertisement",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/mediumrectangleadvertisement"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Mosaic": {
+      "abstract": [
+        {
+          "text": "The component for displaying a set of images as tiles in no particular order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Mosaic"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Mosaic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Mosaic"
+        }
+      ],
+      "role": "symbol",
+      "title": "Mosaic",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/mosaic"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Motion": {
+      "abstract": [
+        {
+          "text": "The behavior whereby a component reacts to the motion of the person’s device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Motion"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Motion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Motion"
+        }
+      ],
+      "role": "symbol",
+      "title": "Motion",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/motion"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/MoveInAnimation": {
+      "abstract": [
+        {
+          "text": "The animation whereby a component moves in from the side of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MoveInAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/MoveInAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MoveInAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MoveInAnimation",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/moveinanimation"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Music": {
+      "abstract": [
+        {
+          "text": "The component for adding a playable music file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Music"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Music",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Music"
+        }
+      ],
+      "role": "symbol",
+      "title": "Music",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/music"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Parallax": {
+      "abstract": [
+        {
+          "text": "The behavior whereby a component moves at a speed different from the scroll speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Parallax"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Parallax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Parallax"
+        }
+      ],
+      "role": "symbol",
+      "title": "Parallax",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/parallax"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo": {
+      "abstract": [
+        {
+          "text": "The component for including a photograph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Photo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/photo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Photographer": {
+      "abstract": [
+        {
+          "text": "The component for adding a photographer credit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Photographer"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photographer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Photographer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Photographer",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/photographer"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Place": {
+      "abstract": [
+        {
+          "text": "The component for adding a map with a specific point of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Place"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Place",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Place"
+        }
+      ],
+      "role": "symbol",
+      "title": "Place",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/place"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Podcast": {
+      "abstract": [
+        {
+          "text": "The component for adding a Podcast show or episode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Podcast"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Podcast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Podcast"
+        }
+      ],
+      "role": "symbol",
+      "title": "Podcast",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/podcast"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Portrait": {
+      "abstract": [
+        {
+          "text": "The component for including an image of a person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Portrait"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Portrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Portrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "Portrait",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/portrait"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/PublisherArticleIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier provided by the publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PublisherArticleIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/PublisherArticleIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PublisherArticleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "PublisherArticleIdentifier",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/publisherarticleidentifier"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/PullQuote": {
+      "abstract": [
+        {
+          "text": "The component for including a pull quote.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PullQuote"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/PullQuote",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PullQuote"
+        }
+      ],
+      "role": "symbol",
+      "title": "PullQuote",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/pullquote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Quote": {
+      "abstract": [
+        {
+          "text": "The component for including a quote.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Quote"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Quote",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Quote"
+        }
+      ],
+      "role": "symbol",
+      "title": "Quote",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ReplicaAdvertisement": {
+      "abstract": [
+        {
+          "text": "The component for delivering digital versions of print advertisements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReplicaAdvertisement"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ReplicaAdvertisement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReplicaAdvertisement"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReplicaAdvertisement",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/replicaadvertisement"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ScaleFadeAnimation": {
+      "abstract": [
+        {
+          "text": "The animation in which a component scales up and fades into view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScaleFadeAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ScaleFadeAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScaleFadeAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScaleFadeAnimation",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/scalefadeanimation"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Section": {
+      "abstract": [
+        {
+          "text": "The component for organizing an article into sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/section"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Springy": {
+      "abstract": [
+        {
+          "text": "The behavior whereby a component acts as if it’s on a short spring.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Springy"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Springy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Springy"
+        }
+      ],
+      "role": "symbol",
+      "title": "Springy",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/springy"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedArticleIdentifier": {
+      "abstract": [
+        {
+          "text": "The patterns supported for article identifiers in UUID format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupportedArticleIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedArticleIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupportedArticleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupportedArticleIdentifier",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/supportedarticleidentifier"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedInternalURLs": {
+      "abstract": [
+        {
+          "text": "Links that go to Apple News and other Apple apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupportedInternalURLs"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedInternalURLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupportedInternalURLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupportedInternalURLs",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/supportedinternalurls"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedURLs": {
+      "abstract": [
+        {
+          "text": "Links that go to Apple News, other Apple apps, and external sites.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SupportedURLs"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedURLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupportedURLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupportedURLs",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/supportedurls"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Text": {
+      "abstract": [
+        {
+          "text": "Properties shared by all text component types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/text"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TikTok": {
+      "abstract": [
+        {
+          "text": "The component for adding a TikTok post.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TikTok"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TikTok",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TikTok"
+        }
+      ],
+      "role": "symbol",
+      "title": "TikTok",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tiktok"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Title": {
+      "abstract": [
+        {
+          "text": "The component for adding an article title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Title"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Title"
+        }
+      ],
+      "role": "symbol",
+      "title": "Title",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/title"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Tweet": {
+      "abstract": [
+        {
+          "text": "The component for adding a Tweet that was posted to Twitter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tweet"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Tweet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tweet"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tweet",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/tweet"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Video": {
+      "abstract": [
+        {
+          "text": "The component for adding a video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Video"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Video",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Video"
+        }
+      ],
+      "role": "symbol",
+      "title": "Video",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/video"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/adding-components",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Component"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "anchor": "Text",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/using-html-with-apple-news-format",
+        "doc://com.apple.applenews/documentation/AppleNews/using-markdown-with-apple-news-format",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Body",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Title",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Heading",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Intro",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Author",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Byline",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Illustrator",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Photographer",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Quote",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/PullQuote",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Text"
+      ],
+      "title": "Text"
+    },
+    {
+      "anchor": "Images",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Image",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Figure",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Portrait",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Logo",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ReplicaAdvertisement",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/CaptionDescriptor"
+      ],
+      "title": "Images"
+    },
+    {
+      "anchor": "Galleries-and-Mosaics",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Gallery",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Mosaic",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/GalleryItem"
+      ],
+      "title": "Galleries and Mosaics"
+    },
+    {
+      "anchor": "Audio-and-Video",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Audio",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Music",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Podcast",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Video",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/EmbedWebVideo"
+      ],
+      "title": "Audio and Video"
+    },
+    {
+      "anchor": "Location",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Map",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/MapItem",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/MapSpan",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Place"
+      ],
+      "title": "Location"
+    },
+    {
+      "anchor": "Social-Media",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Instagram",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/FacebookPost",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TikTok",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Tweet"
+      ],
+      "title": "Social Media"
+    },
+    {
+      "anchor": "Augmented-Reality",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ARKit"
+      ],
+      "title": "Augmented Reality"
+    },
+    {
+      "anchor": "Tables",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/tables-in-an-article"
+      ],
+      "title": "Tables"
+    },
+    {
+      "anchor": "Advertisements",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/BannerAdvertisement",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/MediumRectangleAdvertisement"
+      ],
+      "title": "Advertisements"
+    },
+    {
+      "anchor": "Article-Structure",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/nesting-components-in-an-article",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene-to-a-chapter-or-a-section-header",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-an-article-link",
+        "doc://com.apple.applenews/documentation/AppleNews/displaying-components-side-by-side",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Header",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Container",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Section",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Chapter",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Aside",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/CollectionDisplay",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/HorizontalStackDisplay",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/FlexibleSpacer",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Divider",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleLink",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedArticleIdentifier",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/PublisherArticleIdentifier",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleTitle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ArticleThumbnail",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkButton"
+      ],
+      "title": "Article Structure"
+    },
+    {
+      "anchor": "Animations",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/about-component-animations",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentAnimation",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/AppearAnimation",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/FadeInAnimation",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/MoveInAnimation",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ScaleFadeAnimation"
+      ],
+      "title": "Animations"
+    },
+    {
+      "anchor": "Behaviors",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/about-component-behaviors",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Behavior",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/BackgroundMotion",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/BackgroundParallax",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Motion",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Parallax",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Springy"
+      ],
+      "title": "Behaviors"
+    },
+    {
+      "anchor": "Links",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/LinkAddition",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLink",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Addition",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentAddition",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedURLs",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/SupportedInternalURLs"
+      ],
+      "title": "Links"
+    }
+  ]
+}

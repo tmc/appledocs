@@ -1,0 +1,799 @@
+{
+  "abstract": [
+    {
+      "text": "A block to make a copy of a source texture for filters that can only execute out of place.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscopyallocator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1618883,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@MPSCopyAllocator",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSCopyAllocator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "MPSCopyAllocator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSCopyAllocator"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSKernel",
+              "text": "MPSKernel"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+              "text": "MTLCommandBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLTexture",
+              "text": "MTLTexture"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLTexture",
+              "text": "MTLTexture"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The block takes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A valid pointer to the kernel that is calling the copy allocator.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "filter",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A valid command buffer that can be used to obtain the device against which to allocate the new texture. You may also enqueue operations on the command buffer to initialize the texture on an encoder allocated in the block. You may not submit, enqueue, or wait for scheduling/completion of the command buffer.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "commandBuffer",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The texture that is providing the source image for the filter. You may wish to use its size and pixel format for the next texture, but you are not required to do so.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sourceTexture",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The copy allocator returns a new valid texture to use as the destination for the kernel operation. If the calling function succeeds, its texture parameter will be overwritten with a pointer to this texture. If the calling function fails, then the texture will be released before the calling function returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Allocating a new texture each time is slow (they take up to 1 ms each). You can recycle old textures (or buffers and make texture from them) and reuse the memory inside the copy allocator block.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there is any metadata associated with the source texture, such as colorspace information, resource label, CPU cache mode, purgeable state, etc., it may need to be similarly associated with the new texture to avoid losing your metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the kernel’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618859-cliprect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property doesn’t cover the entire image, you may need to copy pixels from the source texture to the new texture, or regions of the next texture will be uninitialized. You can make a command encoder to encode work on the command buffer here, if necessary. It will be scheduled to run immediately before the kernel work. You may call any of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/enqueue()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods inside the copy allocator block. Make sure to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the command encoder so that the command buffer has no active encoder before returning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The next command placed on the command buffer after the copy allocator returns is almost assuredly going to be encoded with a compute command encoder. Creating any other type of encoder in the copy allocator will probably cost an additional 0.5 ms of both CPU ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " GPU time (or more!) due to a double mode switch penalty.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscopyallocator#1942956",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " shows a minimal copy allocator implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let copyAllocator: MPSCopyAllocator =",
+            "{",
+            "    (kernel: MPSKernel, buffer: MTLCommandBuffer, texture: MTLTexture) -> MTLTexture in",
+            "    ",
+            "    let descriptor = MTLTextureDescriptor.texture2DDescriptor(",
+            "        pixelFormat: texture.pixelFormat,",
+            "        width: texture.width,",
+            "        height: texture.height,",
+            "        mipmapped: false)",
+            "    ",
+            "    return buffer.device.makeTexture(descriptor: descriptor)",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Minimal MPSCopyAllocator Implementation",
+                "type": "text"
+              }
+            ],
+            "anchor": "1942956",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Filters",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/image_filters"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscopyallocator": {
+      "abstract": [
+        {
+          "text": "A block to make a copy of a source texture for filters that can only execute out of place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCopyAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscopyallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCopyAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscopyallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscopyallocator#1942956": {
+      "abstract": [
+        {
+          "text": "Minimal MPSCopyAllocator Implementation",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscopyallocator#1942956",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpscopyallocator#1942956"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSUnaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode": {
+      "abstract": [
+        {
+          "text": "Encodes a kernel into a command buffer, out of place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(commandBuffer:sourceTexture:destinationTexture:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion": {
+      "abstract": [
+        {
+          "text": "Determines the region of the source texture that will be read for an encode operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceRegion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationSize"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLSize) -> MPSRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceRegion(destinationSize:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618859-cliprect": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618859-cliprect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipRect",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618859-cliprect"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618873-encode": {
+      "abstract": [
+        {
+          "text": "This method attempts to apply a kernel in place on a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPlaceTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<any MTLTexture>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fallbackCopyAllocator"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCopyAllocator?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618873-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(commandBuffer:inPlaceTexture:fallbackCopyAllocator:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618873-encode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/2866328-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImage"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationImage"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImage)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/2866328-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(commandBuffer:sourceImage:destinationImage:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/2866328-encode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/commit()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/enqueue()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/enqueue()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueue()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/enqueue()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilCompleted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitUntilCompleted()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/waituntilcompleted()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/waitUntilScheduled()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitUntilScheduled()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/waituntilscheduled()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endEncoding()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder/endencoding()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618873-encode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/2866328-encode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618754-sourceregion"
+      ],
+      "title": "Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscopyallocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscopyallocator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

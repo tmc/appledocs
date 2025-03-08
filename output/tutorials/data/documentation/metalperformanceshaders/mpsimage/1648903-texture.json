@@ -1,0 +1,852 @@
+{
+  "abstract": [
+    {
+      "text": "The underlying texture.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1648903,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSImage(py)texture",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "texture"
+      },
+      {
+        "kind": "text",
+        "text": ": any MTLTexture"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "parent": {
+      "title": "MPSImage"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "texture"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "texture"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLTexture",
+              "text": "MTLTexture"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is a 2D texture if ",
+              "type": "text"
+            },
+            {
+              "code": "numberOfImages=1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "featureChannels<=4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It is a 2D texture array otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid the high cost of premature allocation of the underlying texture, avoid accessing this property except when strictly necessary. Calls to the ",
+              "type": "text"
+            },
+            {
+              "code": "encode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object typically cause their arguments to become allocated. Likewise, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects initialized with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2097547-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method have already been allocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metal/mtlpixelformat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtlpixelformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.documentation/documentation/metal/mtltexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.documentation/documentation/metal/mtltexturetype": {
+      "abstract": [
+        {
+          "text": "The dimension of each image, including whether multiple images are arranged into an array or a cube.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltexturetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype"
+    },
+    "doc://com.apple.documentation/documentation/metal/mtltextureusage": {
+      "abstract": [
+        {
+          "text": "An enumeration for the various options that determine how you can use a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltextureusage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureUsage",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureusage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648828-usage": {
+      "abstract": [
+        {
+          "text": "The intended usage of the underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648828-usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648828-usage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat": {
+      "abstract": [
+        {
+          "text": "The pixel format of the underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize": {
+      "abstract": [
+        {
+          "text": "The number of bytes from the first byte of one pixel to the first byte of the next pixel, in storage order. (Includes padding.)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelSize",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648857-device": {
+      "abstract": [
+        {
+          "text": "The device on which the image will be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648857-device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648857-device"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648880-precision": {
+      "abstract": [
+        {
+          "text": "The number of bits of numeric precision available for each feature channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "precision"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648880-precision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "precision",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648880-precision"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648884-width": {
+      "abstract": [
+        {
+          "text": "The formal width of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648884-width",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648884-width"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648899-label": {
+      "abstract": [
+        {
+          "text": "A string to help identify this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648899-label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648899-label"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages": {
+      "abstract": [
+        {
+          "text": "The number of images for batch processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfImages"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfImages",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels": {
+      "abstract": [
+        {
+          "text": "The number of feature channels per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture": {
+      "abstract": [
+        {
+          "text": "The underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648903-texture"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648948-texturetype": {
+      "abstract": [
+        {
+          "text": "The type of the underlying texture, typically ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureType"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648948-texturetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648948-texturetype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648952-height": {
+      "abstract": [
+        {
+          "text": "The formal height of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648952-height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648952-height"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2097547-init": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2097547-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(texture:featureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2097547-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNFilterNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnfilternode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNPadding",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpadding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2D",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype/type2d"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2DArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype/type2darray"
+    },
+    "link-2528269": {
+      "identifier": "link-2528269",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648857-device",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648884-width",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648952-height",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648948-texturetype",
+        "doc://com.apple.documentation/documentation/metal/mtltexturetype",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat",
+        "doc://com.apple.documentation/documentation/metal/mtlpixelformat",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648880-precision",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648828-usage",
+        "doc://com.apple.documentation/documentation/metal/mtltextureusage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize",
+        "doc://com.apple.documentation/documentation/metal/mtltexture",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648899-label"
+      ],
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimage/1648903-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimage/1648903-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

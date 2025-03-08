@@ -1,0 +1,940 @@
+{
+  "abstract": [
+    {
+      "text": "Add an image that remains stationary when the user scrolls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Fixed Image Fill"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fixed image fill is one of the most captivating effects in Apple News Format. A fixed image fill stays still when the user scrolls. As long as any portion of the filled component is visible in the viewport, the image maintains one position, while the rest of the article seems to scroll independently of the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to use the fixed image fill.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624928",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-ComponentLayout-Object-for-the-Fixed-Image",
+          "level": 3,
+          "text": "Create a ComponentLayout Object for the Fixed Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can make the image span the whole display area, you must create a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#fullScreenImageLayout-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#fullScreenImageLayout-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "fullScreenImageLayout-Copy-This-Code",
+          "level": 4,
+          "text": "fullScreenImageLayout: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"fullScreenImageLayout\": {",
+            "      \"ignoreDocumentMargin\": true,",
+            "      \"minimumHeight\": \"100vmax\",",
+            "      \"margin\": {",
+            "        \"top\": 24,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "fullScreenImageLayout-Result",
+          "level": 4,
+          "text": "fullScreenImageLayout: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentLayouts\": {",
+            "    ...",
+            "    \"fullScreenImageLayout\": {",
+            "      \"ignoreDocumentMargin\": true,",
+            "      \"minimumHeight\": \"100vmax\",",
+            "      \"margin\": {",
+            "        \"top\": 24,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }",
+            "  },",
+            "...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-ComponentTextStyle-Object-for-the-Pull-Quote",
+          "level": 3,
+          "text": "Create a ComponentTextStyle Object for the Pull Quote",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentTextStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for a new color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#pullquoteLight-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentTextStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#pullquoteLight-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "pullquoteLight-Copy-This-Code",
+          "level": 4,
+          "text": "pullquoteLight: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"pullquoteLight\": {",
+            "      \"textColor\": \"#F5F9FB\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "pullquoteLight-Result",
+          "level": 4,
+          "text": "pullquoteLight: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    ...",
+            "    \"pullquoteLight\": {",
+            "      \"textColor\": \"#F5F9FB\"",
+            "    }",
+            "  }",
+            "...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-New-Container-with-a-Fixed-Image-Fill",
+          "level": 3,
+          "text": "Add a New Container with a Fixed Image Fill",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you downloaded a bundle called ",
+              "type": "text"
+            },
+            {
+              "code": "News_Design_Tutorial_Advanced_Article_3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains a thumbnail image. Now, you’ll move that image into your working folder and use it as an image fill.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "static-background.jpg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "News_Design_Tutorial_Advanced_Article_3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder to the folder that contains your working ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#Fixed-Image-Fill-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside your second section, near the end, before this code: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{ \"role\": tweet,",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#Fixed-Image-Fill-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fixed-Image-Fill-Copy-This-Code",
+          "level": 4,
+          "text": "Fixed Image Fill: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"fullScreenImageLayout\",",
+            "          \"style\": {",
+            "            \"fill\": {",
+            "              \"type\": \"image\",",
+            "              \"URL\": \"bundle://static-background.jpg\",",
+            "              \"fillMode\": \"cover\",",
+            "              \"attachment\": \"fixed\",",
+            "              \"verticalAlignment\": \"center\",",
+            "              \"horizontalAlignment\": \"center\"",
+            "            }",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"layout\": \"fullMarginBelowLayout\",",
+            "              \"textStyle\": \"pullquoteLight\",",
+            "              \"text\": \"“QUIA CONSEQUUNTUR MAGNI DOLORES EOS QUI RATIONE VOLUPTATEM SEQUI NESCIUNT.”\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"center\"",
+            "              }",
+            "            }",
+            "          ]",
+            "        },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Fixed-Image-Fill-Result",
+          "level": 4,
+          "text": "Fixed Image Fill: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"bodyBackgroundStyle\",",
+            "      \"components\": [",
+            "        ...",
+            "        {",
+            "          \"role\": \"container\",",
+            "          \"layout\": \"fullScreenImageLayout\",",
+            "          \"style\": {",
+            "            \"fill\": {",
+            "              \"type\": \"image\",",
+            "              \"URL\": \"bundle://static-background.jpg\",",
+            "              \"fillMode\": \"cover\",",
+            "              \"attachment\": \"fixed\",",
+            "              \"verticalAlignment\": \"center\",",
+            "              \"horizontalAlignment\": \"center\"",
+            "            }",
+            "          },",
+            "          \"components\": [",
+            "            {",
+            "              \"role\": \"pullquote\",",
+            "              \"layout\": \"fullMarginBelowLayout\",",
+            "              \"textStyle\": \"pullquoteLight\",",
+            "              \"text\": \"“QUIA CONSEQUUNTUR MAGNI DOLORES EOS QUI RATIONE VOLUPTATEM SEQUI NESCIUNT.”\",",
+            "              \"anchor\": {",
+            "                \"targetAnchorPosition\": \"center\"",
+            "              }",
+            "            }",
+            "          ]",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#Fixed-Image-Fill-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#Fixed-Image-Fill-Copy-This-Code",
+      "kind": "section",
+      "title": "Fixed Image Fill: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill#Fixed-Image-Fill-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#Fixed-Image-Fill-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#Fixed-Image-Fill-Result",
+      "kind": "section",
+      "title": "Fixed Image Fill: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill#Fixed-Image-Fill-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#fullScreenImageLayout-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#fullScreenImageLayout-Copy-This-Code",
+      "kind": "section",
+      "title": "fullScreenImageLayout: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill#fullScreenImageLayout-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#fullScreenImageLayout-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#fullScreenImageLayout-Result",
+      "kind": "section",
+      "title": "fullScreenImageLayout: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill#fullScreenImageLayout-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#pullquoteLight-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#pullquoteLight-Copy-This-Code",
+      "kind": "section",
+      "title": "pullquoteLight: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill#pullquoteLight-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#pullquoteLight-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill#pullquoteLight-Result",
+      "kind": "section",
+      "title": "pullquoteLight: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill#pullquoteLight-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-video": {
+      "abstract": [
+        {
+          "text": "Add a video component inside the header component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Video",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-video"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element": {
+      "abstract": [
+        {
+          "text": "Add a newsletter sign-up element in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Newsletter Sign-Up Element",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar": {
+      "abstract": [
+        {
+          "text": "Create a box with an HTML bulleted list in the margin.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Sidebar",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme": {
+      "abstract": [
+        {
+          "text": "Apply a new color scheme to your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+      "kind": "article",
+      "role": "article",
+      "title": "Giving the Article a Dark Color Scheme",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples",
+      "kind": "section",
+      "title": "Download the Article Bundle Examples",
+      "type": "topic",
+      "url": "/documentation/applenews/setting-up-the-advanced-tutorials#Download-the-Article-Bundle-Examples"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components": {
+      "abstract": [
+        {
+          "text": "Specify the units of measure to use for margins, minimum heights, and other dimensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Measurements for Components",
+      "type": "topic",
+      "url": "/documentation/applenews/specifying-measurements-for-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 3",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageFill": {
+      "abstract": [
+        {
+          "text": "The object for adding an image background fill to a component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFill"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFill",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/imagefill"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624928": {
+      "alt": "Screenshot of an Apple News article with a fixed image fill on iPad.",
+      "identifier": "media-3624928",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9c06288356c7a5ed7d63b9bdd6e2ac3/media-3624928@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22e912a7cc0887181120e09c11b28481/media-3624928~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ImageFill",
+        "doc://com.apple.applenews/documentation/AppleNews/specifying-measurements-for-components"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-3-More-Ideas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+      ],
+      "title": "Advanced Design Tutorial 3: More Ideas"
+    }
+  ]
+}
