@@ -1,0 +1,1168 @@
+{
+  "abstract": [
+    {
+      "text": "An object for writing interpolated string messages to the unified logging system.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/Logger"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:2os6LoggerV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Logger"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Logger"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Logger"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Logger"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/Logger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure and use it to log messages about your app’s behavior. When logging a message, you specify the message and any program variables or custom data to help you assess the state of your app. You also choose a log level to indicate the severity of that message. The system records log messages in memory and, in some cases, also writes those messages to an on-disk data store. The log level determines which messages stay in memory and which go to disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/Logger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, assign an optional subsystem and category string to add context to all messages you log. A subsystem corresponds to a large functional area of your app, and a category corresponds to a specific area within a particular subsystem. When diagnosing problems, use those strings to filter out unrelated messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To log a message, call the method that represents the appropriate log level for that message. To create the message, use a Swift string. Strings may contain interpolated values, such as signed and unsigned integers, floating-point and double values, Booleans, other strings, Objective-C objects, and types that conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/CustomStringConvertible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You can also include metatypes such as ",
+              "type": "text"
+            },
+            {
+              "code": "Int.self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let logger = Logger()",
+            "let x = 42",
+            "logger.info(\"The answer is \\(x)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you include an interpolated string or custom object in your message, the system redacts the value of that string or object by default. This behavior prevents the system from leaking potentially user-sensitive information in the log files, such as the user’s account information. If the data doesn’t contain sensitive information, change the privacy option of that value when logging the information. In the following code example, the system redacts the account information in the first log message, but displays the user’s selection in the second log message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "logger.log(\"Paid with bank account \\(accountNumber)\")   // Redacted!",
+            "logger.log(\"Ordered smoothie \\(smoothieName, privacy: .public)\")  // Visible"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/Logger": {
+      "abstract": [
+        {
+          "text": "An object for writing interpolated string messages to the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "role": "symbol",
+      "title": "Logger",
+      "type": "topic",
+      "url": "/documentation/os/logger"
+    },
+    "doc://com.apple.os/documentation/os/Logger/critical(_:)": {
+      "abstract": [
+        {
+          "text": "Writes a message to the log about a critical event in your app’s execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "critical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/critical(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "critical(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/critical(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/debug(_:)": {
+      "abstract": [
+        {
+          "text": "Writes a debug message to the log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debug"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/debug(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debug(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/debug(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/error(_:)": {
+      "abstract": [
+        {
+          "text": "Writes information about an error to the log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/error(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "error(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/error(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/fault(_:)": {
+      "abstract": [
+        {
+          "text": "Writes a message to the log about a bug that occurs when your app executes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fault"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/fault(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fault(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/fault(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/info(_:)": {
+      "abstract": [
+        {
+          "text": "Writes an informative message to the log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/info(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "info(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/info(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/init()": {
+      "abstract": [
+        {
+          "text": "Creates a logger that writes to the default subsystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/os/logger/init()"
+    },
+    "doc://com.apple.os/documentation/os/Logger/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a logger that writes to the specified log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_os_log",
+          "text": "OSLog"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/init(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/init(subsystem:category:)": {
+      "abstract": [
+        {
+          "text": "Creates a logger using the specified subsystem and category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subsystem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/init(subsystem:category:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(subsystem:category:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/init(subsystem:category:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/log(_:)": {
+      "abstract": [
+        {
+          "text": "Writes a message to the log using the default log type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "log"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/log(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "log(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/log(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/log(level:_:)": {
+      "abstract": [
+        {
+          "text": "Writes a message to the log using the specified log type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "log"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@os_log_type_t",
+          "text": "OSLogType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/log(level:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "log(level:_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/log(level:_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/notice(_:)": {
+      "abstract": [
+        {
+          "text": "Writes a message to the log using the default log type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/notice(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notice(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/notice(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/trace(_:)": {
+      "abstract": [
+        {
+          "text": "Writes a trace message to the log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/trace(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trace(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/trace(_:)"
+    },
+    "doc://com.apple.os/documentation/os/Logger/warning(_:)": {
+      "abstract": [
+        {
+          "text": "Writes information about a warning to the log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "warning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogMessageV",
+          "text": "OSLogMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger/warning(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "warning(_:)",
+      "type": "topic",
+      "url": "/documentation/os/logger/warning(_:)"
+    },
+    "doc://com.apple.os/documentation/os/OSLog": {
+      "abstract": [
+        {
+          "text": "A container of related log messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLog"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLog",
+      "type": "topic",
+      "url": "/documentation/os/oslog"
+    },
+    "doc://com.apple.os/documentation/os/OSLogMessage": {
+      "abstract": [
+        {
+          "text": "An object that represents a log message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogMessage",
+      "type": "topic",
+      "url": "/documentation/os/oslogmessage"
+    },
+    "doc://com.apple.os/documentation/os/OSLogType": {
+      "abstract": [
+        {
+          "text": "The various log levels that the unified logging system provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogType"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogType"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogType",
+      "type": "topic",
+      "url": "/documentation/os/oslogtype"
+    },
+    "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code": {
+      "abstract": [
+        {
+          "text": "Record useful debugging and analysis information, and include dynamic content in your messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Log Messages from Your Code",
+      "type": "topic",
+      "url": "/documentation/os/generating-log-messages-from-your-code"
+    },
+    "doc://com.apple.os/documentation/os/message-argument-formatters": {
+      "abstract": [
+        {
+          "text": "Manage the privacy and presentation of the message’s interpolated values using type-aware formatters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/message-argument-formatters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Message Argument Formatters",
+      "type": "topic",
+      "url": "/documentation/os/message-argument-formatters"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Log-Messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/message-argument-formatters",
+        "doc://com.apple.os/documentation/os/OSLogType"
+      ],
+      "title": "Log Messages"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Logger",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/Logger/init()",
+        "doc://com.apple.os/documentation/os/Logger/init(subsystem:category:)",
+        "doc://com.apple.os/documentation/os/Logger/init(_:)",
+        "doc://com.apple.os/documentation/os/OSLog"
+      ],
+      "title": "Creating a Logger"
+    },
+    {
+      "anchor": "Logging-a-Message",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/Logger/log(_:)",
+        "doc://com.apple.os/documentation/os/Logger/log(level:_:)",
+        "doc://com.apple.os/documentation/os/OSLogType",
+        "doc://com.apple.os/documentation/os/OSLogMessage"
+      ],
+      "title": "Logging a Message"
+    },
+    {
+      "anchor": "Logging-a-Scoped-Message",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/Logger/notice(_:)",
+        "doc://com.apple.os/documentation/os/Logger/debug(_:)",
+        "doc://com.apple.os/documentation/os/Logger/trace(_:)",
+        "doc://com.apple.os/documentation/os/Logger/info(_:)",
+        "doc://com.apple.os/documentation/os/Logger/error(_:)",
+        "doc://com.apple.os/documentation/os/Logger/warning(_:)",
+        "doc://com.apple.os/documentation/os/Logger/fault(_:)",
+        "doc://com.apple.os/documentation/os/Logger/critical(_:)"
+      ],
+      "title": "Logging a Scoped Message"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLogType/title",
+          "value": "os_log_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLogType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_log_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLogType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_log_type_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/logger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

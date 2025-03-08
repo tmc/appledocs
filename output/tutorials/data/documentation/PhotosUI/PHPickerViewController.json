@@ -1,1 +1,3579 @@
-{"variants":[{"paths":["/documentation/photosui/phpickerviewcontroller"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/photosui/phpickerviewcontroller"],"traits":[{"interfaceLanguage":"occ"}]}],"topicSections":[{"anchor":"Creating-a-picker","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/init(configuration:)","doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct"],"title":"Creating a picker"},{"anchor":"Managing-the-configuration","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-17a8p","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePicker(using:)"],"title":"Managing the configuration"},{"anchor":"Setting-content-position-and-scale","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()"],"title":"Setting content position and scale"},{"anchor":"Responding-to-user-selection","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-3zqmt","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc","doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct"],"title":"Responding to user selection"},{"anchor":"Deselecting-assets","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)"],"title":"Deselecting assets"},{"anchor":"Reordering-assets","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)"],"title":"Reordering assets"}],"metadata":{"modules":[{"name":"PhotosUI"}],"navigatorTitle":[{"text":"PHPickerViewController","kind":"identifier"}],"role":"symbol","title":"PHPickerViewController","symbolKind":"class","platforms":[{"beta":false,"introducedAt":"14.0","deprecated":false,"name":"iOS","unavailable":false},{"beta":false,"introducedAt":"14.0","deprecated":false,"name":"iPadOS","unavailable":false},{"beta":false,"introducedAt":"14.0","deprecated":false,"name":"Mac Catalyst","unavailable":false},{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"macOS","unavailable":false},{"beta":false,"introducedAt":"1.0","deprecated":false,"name":"visionOS","unavailable":false}],"externalID":"c:objc(cs)PHPickerViewController","roleHeading":"Class","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PHPickerViewController","kind":"identifier"}]},"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.photokit/documentation/PhotosUI"]]},"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"languages":["swift"],"tokens":[{"kind":"attribute","text":"@"},{"kind":"attribute","preciseIdentifier":"s:ScM","text":"MainActor","identifier":"doc://com.externally.resolved.symbol/s:ScM"},{"kind":"text","text":" "},{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"PHPickerViewController"}]}]},{"kind":"mentions","mentions":["doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app"]},{"kind":"content","content":[{"type":"heading","anchor":"overview","level":2,"text":"Overview"},{"type":"paragraph","inlineContent":[{"text":"The ","type":"text"},{"code":"PHPickerViewController","type":"codeVoice"},{"text":" class is an alternative to ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/UIKit/UIImagePickerController","isActive":true,"type":"reference"},{"text":". ","type":"text"},{"code":"PHPickerViewController","type":"codeVoice"},{"text":" improves stability and reliability, and includes several benefits to developers and users, such as the following:","type":"text"}]},{"type":"unorderedList","items":[{"content":[{"inlineContent":[{"type":"text","text":"Deferred image loading and recovery UI"}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"Reliable handling of large and complex assets, like RAW and panoramic images","type":"text"}]}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"User-selectable assets that aren’t available for "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.documentation/documentation/UIKit/UIImagePickerController"}]}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"Configuration of the picker to display only Live Photos","type":"text"}]}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"Availability of ","type":"text"},{"identifier":"doc://com.apple.photokit/documentation/Photos/PHLivePhoto","isActive":true,"type":"reference"},{"text":" objects without library access","type":"text"}]}]},{"content":[{"inlineContent":[{"type":"text","text":"Stricter validations against invalid inputs"}],"type":"paragraph"}]}]},{"type":"heading","anchor":"Observe-required-viewing-standards","level":3,"text":"Observe required viewing standards"},{"type":"paragraph","inlineContent":[{"type":"text","text":"As a view controller that the system renders on top of your app, the picker controller requires certain prerequisites for operation that your app needs to observe:"}]},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The picker controller disables user interaction if an app alters its visibility, such as by adjusting the "},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity","isActive":true},{"type":"text","text":" of its view’s layer. In iOS 17 and later, the picker controller ignores touch events while its opacity is anything other than fully opaque."}]}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"As a system-rendered UI, you can’t subclass ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController"},{"text":". Its view hierarchy belongs to the system and therefore, the framework provides no access.","type":"text"}]}]}]}]}],"relationshipsSections":[{"kind":"relationships","type":"inheritsFrom","identifiers":["doc://com.externally.resolved.symbol/c:objc(cs)NSViewController","doc://com.externally.resolved.symbol/c:objc(cs)UIViewController"],"title":"Inherits From"},{"kind":"relationships","type":"conformsTo","identifiers":["doc://com.externally.resolved.symbol/s:s7CVarArgP","doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP","doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP","doc://com.externally.resolved.symbol/s:SQ","doc://com.externally.resolved.symbol/s:SH","doc://com.externally.resolved.symbol/c:objc(pl)NSCoding","doc://com.externally.resolved.symbol/c:objc(pl)NSEditor","doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling","doc://com.externally.resolved.symbol/c:objc(pl)NSObject","doc://com.externally.resolved.symbol/c:objc(pl)NSSeguePerforming","doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding","doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider","doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring","doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification","doc://com.externally.resolved.symbol/s:s8SendableP","doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding","doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer","doc://com.externally.resolved.symbol/c:objc(pl)UIContentContainer","doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment","doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting","doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions","doc://com.externally.resolved.symbol/c:objc(pl)UIStateRestoring","doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP","doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment","doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"],"title":"Conforms To"}],"sections":[],"seeAlsoSections":[{"anchor":"Photos-picker-for-UIKit-AppKit","identifiers":["doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc","doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct","doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct","doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct"],"title":"Photos picker for UIKit, AppKit","generated":true}],"kind":"symbol","schemaVersion":{"major":0,"minor":3,"patch":0},"abstract":[{"type":"text","text":"A view controller that provides the user interface for choosing assets from the photo library."}],"references":{"doc://com.externally.resolved.symbol/s:s8SendableP":{"role":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Sendable","kind":"identifier"}],"identifier":"doc://com.externally.resolved.symbol/s:s8SendableP","title":"Sendable","url":"/documentation/Swift/Sendable","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races."}]},"doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP":{"role":"symbol","url":"/documentation/Swift/CustomStringConvertible","type":"topic","abstract":[{"text":"A type with a customized textual representation.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CustomStringConvertible","kind":"identifier"}],"title":"CustomStringConvertible","kind":"symbol"},"doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling":{"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling","fragments":[{"kind":"text","text":"protocol "},{"kind":"identifier","text":"NSExtensionRequestHandling"}],"url":"/documentation/foundation/nsextensionrequesthandling","type":"topic","kind":"symbol","title":"NSExtensionRequestHandling","abstract":[{"text":"The interface an app extension uses to respond to a request from a host app.","type":"text"}],"role":"symbol"},"doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity":{"title":"opacity","url":"/documentation/QuartzCore/CALayer/opacity","kind":"symbol","abstract":[{"text":"The opacity of the receiver. Animatable.","type":"text"}],"role":"symbol","type":"topic","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"opacity","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sf","text":"Float","kind":"typeIdentifier"},{"text":" { ","kind":"text"},{"text":"get","kind":"keyword"},{"text":" ","kind":"text"},{"text":"set","kind":"keyword"},{"text":" }","kind":"text"}],"identifier":"doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity"},"doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting":{"kind":"symbol","url":"/documentation/UIKit/UIPasteConfigurationSupporting","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting","abstract":[{"text":"The interface that determines whether a responder object supports paste configuration.","type":"text"}],"role":"symbol","title":"UIPasteConfigurationSupporting","type":"topic","fragments":[{"text":"@","kind":"attribute"},{"text":"MainActor","kind":"attribute","preciseIdentifier":"s:ScM"},{"text":" ","kind":"text"},{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UIPasteConfigurationSupporting","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"NSObjectProtocol","preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier"}]},"doc://com.externally.resolved.symbol/s:SH":{"type":"topic","role":"symbol","url":"/documentation/Swift/Hashable","abstract":[{"type":"text","text":"A type that can be hashed into a `Hasher` to produce an integer hash value."}],"title":"Hashable","kind":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Hashable"},{"kind":"text","text":" : "},{"preciseIdentifier":"s:SQ","kind":"typeIdentifier","text":"Equatable"}],"identifier":"doc://com.externally.resolved.symbol/s:SH"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/init(configuration:)":{"identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/init(configuration:)","title":"init(configuration:)","url":"/documentation/photosui/phpickerviewcontroller/init(configuration:)","kind":"symbol","fragments":[{"kind":"keyword","text":"convenience"},{"kind":"text","text":" "},{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"configuration","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:8PhotosUI21PHPickerConfigurationV","text":"PHPickerConfiguration","kind":"typeIdentifier"},{"text":")","kind":"text"}],"abstract":[{"text":"Creates a new picker view controller with the configuration you specify.","type":"text"}],"type":"topic","role":"symbol"},"doc://com.externally.resolved.symbol/c:objc(pl)UIContentContainer":{"title":"UIContentContainer","url":"/documentation/UIKit/UIContentContainer","kind":"symbol","abstract":[{"text":"A set of methods for adapting the contents of your view controllers to size and trait changes.","type":"text"}],"role":"symbol","type":"topic","fragments":[{"text":"@","kind":"attribute"},{"preciseIdentifier":"s:ScM","text":"MainActor","kind":"attribute"},{"kind":"text","text":" "},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIContentContainer"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIContentContainer"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-3zqmt":{"kind":"symbol","title":"delegate","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-3zqmt","abstract":[{"type":"text","text":"The picker’s delegate object."}],"type":"topic","url":"/documentation/photosui/phpickerviewcontroller/delegate-3zqmt","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"delegate"},{"text":": (any ","kind":"text"},{"text":"PHPickerViewControllerDelegate","kind":"typeIdentifier","preciseIdentifier":"s:8PhotosUI30PHPickerViewControllerDelegateP"},{"text":")?","kind":"text"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-17a8p":{"kind":"symbol","url":"/documentation/photosui/phpickerviewcontroller/configuration-17a8p","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"configuration"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"PHPickerConfiguration","preciseIdentifier":"s:8PhotosUI21PHPickerConfigurationV"}],"identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-17a8p","title":"configuration","abstract":[{"text":"The configuration you specify when creating the picker.","type":"text"}],"role":"symbol","type":"topic"},"doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios":{"abstract":[{"type":"text","text":"Improve the user experience of finding and selecting assets by using the Photos picker."}],"url":"/documentation/photokit/selecting-photos-and-videos-in-ios","role":"sampleCode","identifier":"doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios","title":"Selecting Photos and Videos in iOS","kind":"article","type":"topic"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb":{"type":"topic","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb","role":"symbol","abstract":[{"type":"text","text":"The picker’s delegate object."}],"url":"/documentation/photosui/phpickerviewcontroller/delegate-8dlnb","kind":"symbol","fragments":[{"kind":"identifier","text":"delegate"}],"title":"delegate"},"doc://com.externally.resolved.symbol/c:objc(cs)NSObject":{"fragments":[{"text":"class ","kind":"text"},{"text":"NSObject","kind":"identifier"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSObject","title":"NSObject","role":"symbol","type":"topic","abstract":[{"text":"The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.","type":"text"}],"url":"/documentation/objectivec/nsobject","kind":"symbol"},"doc://com.externally.resolved.symbol/c:objc(cs)NSViewController":{"abstract":[{"text":"A controller that manages a view, typically loaded from a nib file.","type":"text"}],"type":"topic","title":"NSViewController","fragments":[{"text":"@","kind":"attribute"},{"text":"MainActor","kind":"attribute","preciseIdentifier":"s:ScM"},{"text":" ","kind":"text"},{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"NSViewController"}],"url":"/documentation/AppKit/NSViewController","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSViewController","kind":"symbol","role":"symbol"},"doc://com.externally.resolved.symbol/c:objc(cs)UIViewController":{"url":"/documentation/UIKit/UIViewController","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"An object that manages a view hierarchy for your UIKit app."}],"fragments":[{"kind":"attribute","text":"@"},{"kind":"attribute","preciseIdentifier":"s:ScM","text":"MainActor"},{"kind":"text","text":" "},{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIViewController"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)UIViewController","role":"symbol","title":"UIViewController"},"doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP":{"url":"/documentation/Swift/CustomDebugStringConvertible","type":"topic","title":"CustomDebugStringConvertible","kind":"symbol","identifier":"doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"CustomDebugStringConvertible"}],"role":"symbol","abstract":[{"type":"text","text":"A type with a customized textual representation suitable for debugging purposes."}]},"doc://com.apple.photokit/documentation/PhotosUI":{"type":"topic","identifier":"doc://com.apple.photokit/documentation/PhotosUI","title":"PhotosUI","kind":"symbol","role":"collection","abstract":[{"type":"text","text":"Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality."}],"url":"/documentation/photosui"},"doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP":{"identifier":"doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP","title":"UITraitChangeObservable","url":"/documentation/UIKit/UITraitChangeObservable-67e94","abstract":[{"text":"A type that calls your code in reaction to changes in the trait environment.","type":"text"}],"kind":"symbol","fragments":[{"text":"@","kind":"attribute"},{"preciseIdentifier":"s:ScM","text":"MainActor","kind":"attribute"},{"text":" ","kind":"text"},{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UITraitChangeObservable","kind":"identifier"}],"role":"symbol","type":"topic"},"doc://com.externally.resolved.symbol/s:SQ":{"type":"topic","identifier":"doc://com.externally.resolved.symbol/s:SQ","abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"kind":"symbol","title":"Equatable","url":"/documentation/Swift/Equatable","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Equatable"}],"role":"symbol"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct":{"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PHPickerConfiguration","kind":"identifier"}],"navigatorTitle":[{"text":"PHPickerConfiguration","kind":"identifier"}],"type":"topic","role":"symbol","url":"/documentation/photosui/phpickerconfiguration-swift.struct","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct","title":"PHPickerConfiguration","kind":"symbol","abstract":[{"text":"An object that contains information about how to configure a picker view controller.","type":"text"}]},"doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding":{"kind":"symbol","title":"UIActivityItemsConfigurationProviding","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding","url":"/documentation/UIKit/UIActivityItemsConfigurationProviding","role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIActivityItemsConfigurationProviding"},{"kind":"text","text":" : "},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObjectProtocol"}],"abstract":[{"type":"text","text":"An interface that provides a source for shareable content to fulfill user requests to share current content."}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-3vf53":{"title":"configuration","fragments":[{"kind":"identifier","text":"configuration"}],"abstract":[{"type":"text","text":"The configuration you specify when creating the picker."}],"role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-3vf53","kind":"symbol","type":"topic","url":"/documentation/photosui/phpickerviewcontroller/configuration-3vf53"},"doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment":{"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment","title":"UITraitEnvironment","url":"/documentation/UIKit/UITraitEnvironment","abstract":[{"text":"A set of methods that makes the iOS interface environment available to your app.","type":"text"}],"kind":"symbol","fragments":[{"text":"@","kind":"attribute"},{"preciseIdentifier":"s:ScM","text":"MainActor","kind":"attribute"},{"text":" ","kind":"text"},{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UITraitEnvironment","kind":"identifier"},{"text":" : ","kind":"text"},{"preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol","kind":"typeIdentifier"}],"role":"symbol","type":"topic"},"doc://com.externally.resolved.symbol/c:objc(pl)NSEditor":{"title":"NSEditor","url":"/documentation/AppKit/NSEditor","kind":"symbol","abstract":[{"text":"","type":"text"}],"role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"NSEditor"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSEditor"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()":{"role":"symbol","abstract":[{"text":"Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.","type":"text"}],"title":"scrollToInitialPosition()","kind":"symbol","url":"/documentation/photosui/phpickerviewcontroller/scrolltoinitialposition()","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()","navigatorTitle":[{"text":"scrollToInitialPosition","kind":"identifier"}],"type":"topic","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"scrollToInitialPosition","kind":"identifier"},{"text":"()","kind":"text"}]},"doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions":{"title":"UIResponderStandardEditActions","url":"/documentation/UIKit/UIResponderStandardEditActions","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions","kind":"symbol","type":"topic","fragments":[{"text":"@","kind":"attribute"},{"text":"MainActor","preciseIdentifier":"s:ScM","kind":"attribute"},{"text":" ","kind":"text"},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIResponderStandardEditActions"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"NSObjectProtocol","preciseIdentifier":"c:objc(pl)NSObject"}],"abstract":[{"text":"A set of standard methods that apps can adopt to support editing.","type":"text"}],"role":"symbol"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct":{"navigatorTitle":[{"kind":"identifier","text":"PHPickerFilter"}],"title":"PHPickerFilter","kind":"symbol","type":"topic","url":"/documentation/photosui/phpickerfilter-swift.struct","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"PHPickerFilter"}],"abstract":[{"type":"text","text":"A type that defines the filter to apply to the photo library."}]},"doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider":{"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider","title":"NSTouchBarProvider","url":"/documentation/AppKit/NSTouchBarProvider","abstract":[{"text":"A protocol that an object adopts to create a bar object in your app.","type":"text"}],"kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSTouchBarProvider","kind":"identifier"},{"text":" : ","kind":"text"},{"preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol","kind":"typeIdentifier"}],"role":"symbol","type":"topic"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)":{"role":"symbol","abstract":[{"text":"Deselects assets that are in a selected state.","type":"text"}],"url":"/documentation/photosui/phpickerviewcontroller/deselectassets(withidentifiers:)","type":"topic","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)","kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"deselectAssets","kind":"identifier"},{"text":"(","kind":"text"},{"text":"withIdentifiers","kind":"externalParam"},{"text":": [","kind":"text"},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":"])","kind":"text"}],"navigatorTitle":[{"text":"deselectAssetsWithIdentifiers:","kind":"identifier"}],"title":"deselectAssets(withIdentifiers:)"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-c.class":{"identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-c.class","role":"symbol","type":"topic","kind":"symbol","fragments":[{"kind":"identifier","text":"PHPickerFilter"}],"abstract":[{"text":"A type that defines the filter to apply to the photo library.","type":"text"}],"title":"PHPickerFilter","url":"/documentation/photosui/phpickerfilter-c.class"},"doc://com.apple.photokit/documentation/Photos/PHLivePhoto":{"role":"symbol","title":"PHLivePhoto","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"PHLivePhoto"}],"kind":"symbol","identifier":"doc://com.apple.photokit/documentation/Photos/PHLivePhoto","navigatorTitle":[{"kind":"identifier","text":"PHLivePhoto"}],"url":"/documentation/photos/phlivephoto","type":"topic","abstract":[{"type":"text","text":"A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture."}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController":{"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"PHPickerViewController"}],"url":"/documentation/photosui/phpickerviewcontroller","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController","navigatorTitle":[{"text":"PHPickerViewController","kind":"identifier"}],"kind":"symbol","title":"PHPickerViewController","abstract":[{"text":"A view controller that provides the user interface for choosing assets from the photo library.","type":"text"}],"type":"topic"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-9y5xc":{"type":"topic","kind":"symbol","title":"PHPickerViewControllerDelegate","fragments":[{"text":"PHPickerViewControllerDelegate","kind":"identifier"}],"abstract":[{"text":"A protocol the picker uses to communicate user selections.","type":"text"}],"url":"/documentation/photosui/phpickerviewcontrollerdelegate-9y5xc","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-9y5xc"},"doc://com.externally.resolved.symbol/c:objc(pl)NSSeguePerforming":{"title":"NSSeguePerforming","url":"/documentation/AppKit/NSSeguePerforming","kind":"symbol","abstract":[{"text":"A set of methods that support the mediation of a custom segue.","type":"text"}],"role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"NSSeguePerforming"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSSeguePerforming"},"doc://com.externally.resolved.symbol/c:objc(pl)NSCoding":{"abstract":[{"text":"A protocol that enables an object to be encoded and decoded for archiving and distribution.","type":"text"}],"role":"symbol","type":"topic","title":"NSCoding","kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSCoding","url":"/documentation/foundation/nscoding","fragments":[{"text":"protocol ","kind":"text"},{"text":"NSCoding","kind":"identifier"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:":{"url":"/documentation/photosui/phpickerviewcontroller/updatepickerusingconfiguration:","abstract":[{"text":"Customizes your app’s photo picker according to the given configuration.","type":"text"}],"navigatorTitle":[{"text":"updatePickerUsingConfiguration:","kind":"identifier"}],"title":"updatePickerUsingConfiguration:","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:","role":"symbol","kind":"symbol","fragments":[{"text":"- ","kind":"text"},{"text":"updatePickerUsingConfiguration:","kind":"identifier"}],"type":"topic"},"doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification":{"kind":"symbol","url":"/documentation/AppKit/NSUserInterfaceItemIdentification","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification","abstract":[{"text":"A set of methods used to associate a unique identifier with objects in your user interface.","type":"text"}],"role":"symbol","title":"NSUserInterfaceItemIdentification","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSUserInterfaceItemIdentification","kind":"identifier"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()":{"role":"symbol","abstract":[{"type":"text","text":"Changes the picker’s content scale by making the photo thumbnails smaller in the view."}],"title":"zoomOut()","kind":"symbol","url":"/documentation/photosui/phpickerviewcontroller/zoomout()","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()","navigatorTitle":[{"text":"zoomOut","kind":"identifier"}],"type":"topic","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"zoomOut","kind":"identifier"},{"text":"()","kind":"text"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()":{"role":"symbol","abstract":[{"type":"text","text":"Changes the picker’s content scale by making the photo thumbnails larger in the view."}],"title":"zoomIn()","kind":"symbol","url":"/documentation/photosui/phpickerviewcontroller/zoomin()","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()","navigatorTitle":[{"text":"zoomIn","kind":"identifier"}],"type":"topic","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"zoomIn","kind":"identifier"},{"text":"()","kind":"text"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)":{"url":"/documentation/photosui/phpickerviewcontroller/moveasset(withidentifier:afterassetwithidentifier:)","title":"moveAsset(withIdentifier:afterAssetWithIdentifier:)","kind":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)","abstract":[{"type":"text","text":"Reorders assets that are in a selected state."}],"navigatorTitle":[{"kind":"identifier","text":"moveAssetWithIdentifier:afterAssetWithIdentifier:"}],"role":"symbol","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"moveAsset"},{"kind":"text","text":"("},{"kind":"externalParam","text":"withIdentifier"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"},{"kind":"text","text":", "},{"kind":"externalParam","text":"afterAssetWithIdentifier"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"},{"kind":"text","text":"?)"}],"type":"topic"},"doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring":{"type":"topic","title":"UIUserActivityRestoring","url":"/documentation/UIKit/UIUserActivityRestoring","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring","kind":"symbol","role":"symbol","fragments":[{"kind":"attribute","text":"@"},{"kind":"attribute","text":"MainActor","preciseIdentifier":"s:ScM"},{"kind":"text","text":" "},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"text":"UIUserActivityRestoring","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"NSObjectProtocol","kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject"}],"abstract":[{"type":"text","text":"The protocol you adopt to restore an object’s state from a user activity."}]},"doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer":{"kind":"symbol","title":"UIAppearanceContainer","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer","url":"/documentation/UIKit/UIAppearanceContainer","role":"symbol","type":"topic","fragments":[{"kind":"attribute","text":"@"},{"preciseIdentifier":"s:ScM","kind":"attribute","text":"MainActor"},{"kind":"text","text":" "},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIAppearanceContainer"},{"kind":"text","text":" : "},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObjectProtocol"}],"abstract":[{"type":"text","text":"A protocol that a class must adopt to allow appearance customization using the [`UIAppearance`](doc://com.apple.uikit/documentation/UIKit/UIAppearance) API."}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePicker(using:)":{"kind":"symbol","url":"/documentation/photosui/phpickerviewcontroller/updatepicker(using:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"updatePicker"},{"kind":"text","text":"("},{"kind":"externalParam","text":"using"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"PHPickerConfiguration","preciseIdentifier":"s:8PhotosUI21PHPickerConfigurationV"},{"text":".","kind":"text"},{"preciseIdentifier":"s:8PhotosUI21PHPickerConfigurationV6UpdateV","text":"Update","kind":"typeIdentifier"},{"text":")","kind":"text"}],"identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePicker(using:)","title":"updatePicker(using:)","abstract":[{"text":"Customizes your app’s photo picker according to the given configuration.","type":"text"}],"role":"symbol","type":"topic"},"doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding":{"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding","role":"symbol","fragments":[{"text":"@","kind":"attribute"},{"text":"MainActor","preciseIdentifier":"s:ScM","kind":"attribute"},{"text":" ","kind":"text"},{"text":"protocol","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSStandardKeyBindingResponding"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol"}],"abstract":[{"text":"Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.","type":"text"}],"type":"topic","url":"/documentation/AppKit/NSStandardKeyBindingResponding","kind":"symbol","title":"NSStandardKeyBindingResponding"},"doc://com.externally.resolved.symbol/s:s7CVarArgP":{"type":"topic","title":"CVarArg","abstract":[{"type":"text","text":"A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`."}],"kind":"symbol","url":"/documentation/Swift/CVarArg","identifier":"doc://com.externally.resolved.symbol/s:s7CVarArgP","role":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CVarArg","kind":"identifier"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc":{"kind":"symbol","title":"PHPickerViewControllerDelegate","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc","abstract":[{"type":"text","text":"A set of methods that the delegate must implement to respond to "},{"code":"PHPickerViewController","type":"codeVoice"},{"type":"text","text":" user events."}],"type":"topic","url":"/documentation/photosui/phpickerviewcontrollerdelegate-5yntc","fragments":[{"kind":"keyword","text":"protocol"},{"text":" ","kind":"text"},{"text":"PHPickerViewControllerDelegate","kind":"identifier"}],"navigatorTitle":[{"text":"PHPickerViewControllerDelegate","kind":"identifier"}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class":{"fragments":[{"kind":"identifier","text":"PHPickerConfiguration"}],"url":"/documentation/photosui/phpickerconfiguration-c.class","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class","kind":"symbol","title":"PHPickerConfiguration","abstract":[{"text":"An object that contains information about how to configure a picker view controller.","type":"text"}],"type":"topic"},"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","type":"topic","kind":"technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","url":"/documentation/technologies"},"doc://com.apple.documentation/documentation/UIKit/UIImagePickerController":{"url":"/documentation/UIKit/UIImagePickerController","fragments":[{"text":"@","kind":"attribute"},{"text":"MainActor","preciseIdentifier":"s:ScM","kind":"attribute"},{"kind":"text","text":" "},{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIImagePickerController"}],"title":"UIImagePickerController","type":"topic","abstract":[{"type":"text","text":"A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library."}],"kind":"symbol","role":"symbol","identifier":"doc://com.apple.documentation/documentation/UIKit/UIImagePickerController"},"doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring":{"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring","title":"NSUserActivityRestoring","url":"/documentation/AppKit/NSUserActivityRestoring","abstract":[{"text":"A protocol that marks classes to restore the state of your app to continue a user activity.","type":"text"}],"kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSUserActivityRestoring","kind":"identifier"},{"text":" : ","kind":"text"},{"preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol","kind":"typeIdentifier"}],"role":"symbol","type":"topic"},"doc://com.externally.resolved.symbol/c:objc(pl)UIStateRestoring":{"kind":"symbol","fragments":[{"kind":"attribute","text":"@"},{"kind":"attribute","preciseIdentifier":"s:ScM","text":"MainActor"},{"kind":"text","text":" "},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIStateRestoring"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObjectProtocol"}],"abstract":[{"type":"text","text":"Methods for adding objects to your state restoration archives."}],"role":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIStateRestoring","url":"/documentation/UIKit/UIStateRestoring","title":"UIStateRestoring","type":"topic"},"doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment":{"type":"topic","title":"UIFocusEnvironment","url":"/documentation/UIKit/UIFocusEnvironment","identifier":"doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment","kind":"symbol","role":"symbol","fragments":[{"kind":"attribute","text":"@"},{"kind":"attribute","text":"MainActor","preciseIdentifier":"s:ScM"},{"kind":"text","text":" "},{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"text":"UIFocusEnvironment","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"NSObjectProtocol","kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject"}],"abstract":[{"type":"text","text":"A set of methods that define the focus behavior for a branch of the view hierarchy."}]},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class":{"fragments":[{"kind":"identifier","text":"PHPickerResult"}],"url":"/documentation/photosui/phpickerresult-c.class","role":"symbol","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class","kind":"symbol","title":"PHPickerResult","abstract":[{"text":"Types that represent a selected asset from the user’s photo library.","type":"text"}],"type":"topic"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:":{"fragments":[{"kind":"text","text":"- "},{"kind":"identifier","text":"initWithConfiguration:"}],"role":"symbol","abstract":[{"text":"Creates a new picker view controller with the configuration you specify.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"initWithConfiguration:"}],"kind":"symbol","type":"topic","title":"initWithConfiguration:","identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:","url":"/documentation/photosui/phpickerviewcontroller/initwithconfiguration:"},"doc://com.externally.resolved.symbol/c:objc(pl)NSObject":{"role":"symbol","fragments":[{"text":"protocol ","kind":"text"},{"text":"NSObjectProtocol","kind":"identifier"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSObject","title":"NSObjectProtocol","url":"/documentation/objectivec/nsobjectprotocol","kind":"symbol","type":"topic","abstract":[{"text":"The group of methods that are fundamental to all Objective-C objects.","type":"text"}]},"doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app":{"title":"Delivering an Enhanced Privacy Experience in Your Photos App","url":"/documentation/photokit/delivering-an-enhanced-privacy-experience-in-your-photos-app","type":"topic","abstract":[{"text":"Adopt the latest privacy enhancements to deliver advanced user-privacy controls.","type":"text"}],"kind":"article","role":"article","identifier":"doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app"},"doc://com.externally.resolved.symbol/s:ScM":{"title":"MainActor","type":"topic","role":"symbol","url":"/documentation/Swift/MainActor","fragments":[{"text":"@globalActor","kind":"attribute"},{"text":" ","kind":"text"},{"text":"final","kind":"keyword"},{"text":" ","kind":"text"},{"text":"actor","kind":"keyword"},{"text":" ","kind":"text"},{"text":"MainActor","kind":"identifier"}],"abstract":[{"text":"A singleton actor whose executor is equivalent to the main dispatch queue.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:ScM","kind":"symbol"},"doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct":{"title":"PHPickerResult","type":"topic","kind":"symbol","url":"/documentation/photosui/phpickerresult-swift.struct","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"PHPickerResult"}],"abstract":[{"type":"text","text":"Types that represent a selected asset from the user’s photo library."}],"identifier":"doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"PHPickerResult"}]}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"op":"replace","path":"/identifier/interfaceLanguage","value":"occ"},{"op":"replace","path":"/metadata/platforms","value":[{"deprecated":false,"beta":false,"name":"iOS","unavailable":false,"introducedAt":"14.0"},{"deprecated":false,"beta":false,"name":"iPadOS","unavailable":false,"introducedAt":"14.0"},{"deprecated":false,"beta":false,"name":"Mac Catalyst","unavailable":false,"introducedAt":"14.0"},{"deprecated":false,"beta":false,"name":"macOS","unavailable":false,"introducedAt":"13.0"},{"deprecated":false,"beta":false,"name":"visionOS","unavailable":false,"introducedAt":"1.0"}]},{"op":"replace","path":"/metadata/roleHeading","value":"Class"},{"op":"replace","path":"/metadata/title","value":"PHPickerViewController"},{"op":"replace","path":"/metadata/symbolKind","value":"class"},{"op":"replace","path":"/metadata/fragments","value":[{"text":"PHPickerViewController","kind":"identifier"}]},{"op":"replace","path":"/metadata/navigatorTitle","value":[{"text":"PHPickerViewController","kind":"identifier"}]},{"op":"replace","path":"/hierarchy","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.photokit/documentation/PhotosUI"]]}},{"op":"replace","path":"/topicSections","value":[{"title":"Creating a picker","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:","doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class"],"anchor":"Creating-a-picker"},{"identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-3vf53","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:"],"title":"Managing the configuration","anchor":"Managing-the-configuration"},{"identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()"],"title":"Setting content position and scale","anchor":"Setting-content-position-and-scale"},{"identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb","doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-9y5xc","doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class"],"title":"Responding to user selection","anchor":"Responding-to-user-selection"},{"identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)"],"title":"Deselecting assets","anchor":"Deselecting-assets"},{"identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)"],"title":"Reordering assets","anchor":"Reordering-assets"}]},{"op":"replace","path":"/relationshipsSections","value":[{"kind":"relationships","title":"Inherits From","identifiers":["doc://com.externally.resolved.symbol/c:objc(cs)NSObject","doc://com.externally.resolved.symbol/c:objc(cs)NSViewController","doc://com.externally.resolved.symbol/c:objc(cs)UIViewController"],"type":"inheritsFrom"}]},{"op":"replace","path":"/seeAlsoSections","value":[{"anchor":"Photos-picker-for-UIKit-AppKit","title":"Photos picker for UIKit, AppKit","identifiers":["doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class","doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-c.class","doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class"],"generated":true}]},{"op":"replace","path":"/primaryContentSections/0","value":{"declarations":[{"platforms":["watchOS"],"languages":["occ"],"tokens":[{"kind":"keyword","text":"@interface"},{"kind":"text","text":" "},{"kind":"identifier","text":"PHPickerViewController"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSObject","text":"NSObject","preciseIdentifier":"c:objc(cs)NSObject"}]},{"platforms":["iOS","iPadOS","Mac Catalyst","tvOS","visionOS"],"languages":["occ"],"tokens":[{"text":"@interface","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PHPickerViewController","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"UIViewController","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)UIViewController","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UIViewController"}]},{"platforms":["macOS"],"languages":["occ"],"tokens":[{"text":"@interface","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PHPickerViewController","kind":"identifier"},{"text":" : ","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSViewController","text":"NSViewController","kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSViewController"}]}],"kind":"declarations"}},{"op":"replace","value":[{"kind":"keyword","text":"@property"},{"kind":"text","text":" "},{"kind":"typeIdentifier","preciseIdentifier":"c:f","text":"float"},{"kind":"text","text":" "},{"kind":"identifier","text":"opacity"},{"kind":"text","text":";"}],"path":"/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer~1opacity/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIPasteConfigurationSupporting"},{"kind":"text","text":" <"},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIContentContainer"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIContentContainer/fragments"},{"op":"replace","value":[{"text":"@interface","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSViewController","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"NSResponder","preciseIdentifier":"c:objc(cs)NSResponder","kind":"typeIdentifier"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSViewController/fragments"},{"op":"replace","value":[{"text":"@interface","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UIViewController","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"UIResponder","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UIResponder"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)UIViewController/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIActivityItemsConfigurationProviding"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UITraitEnvironment"},{"kind":"text","text":" <"},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UITraitEnvironment/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSEditor"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSEditor/fragments"},{"op":"replace","value":"scrollToInitialPosition","path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1scrollToInitialPosition()/title"},{"op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"scrollToInitialPosition"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1scrollToInitialPosition()/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIResponderStandardEditActions"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments"},{"op":"replace","value":[{"text":"@protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSTouchBarProvider","kind":"identifier"},{"text":" <","kind":"text"},{"preciseIdentifier":"c:objc(pl)NSObject","text":"NSObject","kind":"typeIdentifier"},{"text":">","kind":"text"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments"},{"op":"replace","value":"deselectAssetsWithIdentifiers:","path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1deselectAssets(withIdentifiers:)/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"deselectAssetsWithIdentifiers:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1deselectAssets(withIdentifiers:)/fragments"},{"op":"replace","value":"PHLivePhoto","path":"/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/title"},{"op":"replace","value":[{"text":"PHLivePhoto","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"PHLivePhoto"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/navigatorTitle"},{"op":"replace","value":"PHPickerViewController","path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/title"},{"op":"replace","value":[{"text":"PHPickerViewController","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/fragments"},{"op":"replace","value":[{"text":"PHPickerViewController","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/navigatorTitle"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSSeguePerforming"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSSeguePerforming/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSUserInterfaceItemIdentification"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceItemIdentification/fragments"},{"op":"replace","value":"zoomOut","path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomOut()/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"zoomOut","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomOut()/fragments"},{"op":"replace","value":"zoomIn","path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomIn()/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"zoomIn","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomIn()/fragments"},{"op":"replace","value":"moveAssetWithIdentifier:afterAssetWithIdentifier:","path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1moveAsset(withIdentifier:afterAssetWithIdentifier:)/title"},{"op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"moveAssetWithIdentifier:afterAssetWithIdentifier:"}],"path":"/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1moveAsset(withIdentifier:afterAssetWithIdentifier:)/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIUserActivityRestoring"},{"kind":"text","text":" <"},{"kind":"typeIdentifier","text":"NSObject","preciseIdentifier":"c:objc(pl)NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIAppearanceContainer"},{"kind":"text","text":" <"},{"kind":"typeIdentifier","text":"NSObject","preciseIdentifier":"c:objc(pl)NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAppearanceContainer/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSStandardKeyBindingResponding"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@interface"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIImagePickerController"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)UINavigationController","text":"UINavigationController"}],"path":"/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSUserActivityRestoring"},{"kind":"text","text":" <"},{"kind":"typeIdentifier","text":"NSObject","preciseIdentifier":"c:objc(pl)NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments"},{"op":"replace","value":[{"kind":"keyword","text":"@protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UIStateRestoring"},{"kind":"text","text":" <"},{"preciseIdentifier":"c:objc(pl)NSObject","kind":"typeIdentifier","text":"NSObject"},{"kind":"text","text":">"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIStateRestoring/fragments"},{"op":"replace","value":[{"text":"@protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UIFocusEnvironment","kind":"identifier"},{"text":" <","kind":"text"},{"text":"NSObject","kind":"typeIdentifier","preciseIdentifier":"c:objc(pl)NSObject"},{"text":">","kind":"text"}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusEnvironment/fragments"},{"op":"replace","value":"NSObject","path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A view controller that provides the user interface for choosing assets from the photo library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHPickerViewController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHPickerViewController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PhotosUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHPickerViewController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHPickerViewController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PHPickerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class is an alternative to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "PHPickerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " improves stability and reliability, and includes several benefits to developers and users, such as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deferred image loading and recovery UI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reliable handling of large and complex assets, like RAW and panoramic images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User-selectable assets that aren’t available for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration of the picker to display only Live Photos",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Availability of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects without library access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stricter validations against invalid inputs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Observe-required-viewing-standards",
+          "level": 3,
+          "text": "Observe required viewing standards",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a view controller that the system renders on top of your app, the picker controller requires certain prerequisites for operation that your app needs to observe:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The picker controller disables user interaction if an app alters its visibility, such as by adjusting the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of its view’s layer. In iOS 17 and later, the picker controller ignores touch events while its opacity is anything other than fully opaque.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As a system-rendered UI, you can’t subclass ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Its view hierarchy belongs to the system and therefore, the framework provides no access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity": {
+      "abstract": [
+        {
+          "text": "The opacity of the receiver. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacity",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer/opacity"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImagePickerController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/photokit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios": {
+      "abstract": [
+        {
+          "text": "Improve the user experience of finding and selecting assets by using the Photos picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Photos and Videos in iOS",
+      "type": "topic",
+      "url": "/documentation/photokit/selecting-photos-and-videos-in-ios"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhoto": {
+      "abstract": [
+        {
+          "text": "A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhoto",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephoto"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class": {
+      "abstract": [
+        {
+          "text": "An object that contains information about how to configure a picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPickerConfiguration",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerconfiguration-c.class"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that contains information about how to configure a picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerConfiguration",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerconfiguration-swift.struct"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-c.class": {
+      "abstract": [
+        {
+          "text": "A type that defines the filter to apply to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPickerFilter",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerfilter-c.class"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct": {
+      "abstract": [
+        {
+          "text": "A type that defines the filter to apply to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerFilter",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerfilter-swift.struct"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class": {
+      "abstract": [
+        {
+          "text": "Types that represent a selected asset from the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPickerResult",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerresult-c.class"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct": {
+      "abstract": [
+        {
+          "text": "Types that represent a selected asset from the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerResult",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerresult-swift.struct"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides the user interface for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerViewController",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-17a8p": {
+      "abstract": [
+        {
+          "text": "The configuration you specify when creating the picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI21PHPickerConfigurationV",
+          "text": "PHPickerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-17a8p",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/configuration-17a8p"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-3vf53": {
+      "abstract": [
+        {
+          "text": "The configuration you specify when creating the picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-3vf53",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/configuration-3vf53"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-3zqmt": {
+      "abstract": [
+        {
+          "text": "The picker’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI30PHPickerViewControllerDelegateP",
+          "text": "PHPickerViewControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-3zqmt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/delegate-3zqmt"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb": {
+      "abstract": [
+        {
+          "text": "The picker’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/delegate-8dlnb"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Deselects assets that are in a selected state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deselectAssets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deselectAssetsWithIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deselectAssets(withIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/deselectassets(withidentifiers:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a new picker view controller with the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI21PHPickerConfigurationV",
+          "text": "PHPickerConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/init(configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/init(configuration:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:": {
+      "abstract": [
+        {
+          "text": "Creates a new picker view controller with the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithConfiguration:",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/initwithconfiguration:"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Reorders assets that are in a selected state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveAsset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "afterAssetWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveAssetWithIdentifier:afterAssetWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "moveAsset(withIdentifier:afterAssetWithIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/moveasset(withidentifier:afterassetwithidentifier:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()": {
+      "abstract": [
+        {
+          "text": "Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollToInitialPosition"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scrollToInitialPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "scrollToInitialPosition()",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/scrolltoinitialposition()"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePicker(using:)": {
+      "abstract": [
+        {
+          "text": "Customizes your app’s photo picker according to the given configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI21PHPickerConfigurationV",
+          "text": "PHPickerConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI21PHPickerConfigurationV6UpdateV",
+          "text": "Update"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePicker(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updatePicker(using:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/updatepicker(using:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:": {
+      "abstract": [
+        {
+          "text": "Customizes your app’s photo picker according to the given configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePickerUsingConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatePickerUsingConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatePickerUsingConfiguration:",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/updatepickerusingconfiguration:"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()": {
+      "abstract": [
+        {
+          "text": "Changes the picker’s content scale by making the photo thumbnails larger in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomIn"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomIn"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomIn()",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/zoomin()"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()": {
+      "abstract": [
+        {
+          "text": "Changes the picker’s content scale by making the photo thumbnails smaller in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomOut"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomOut"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomOut()",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller/zoomout()"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc": {
+      "abstract": [
+        {
+          "text": "A set of methods that the delegate must implement to respond to ",
+          "type": "text"
+        },
+        {
+          "code": "PHPickerViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " user events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontrollerdelegate-5yntc"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-9y5xc": {
+      "abstract": [
+        {
+          "text": "A protocol the picker uses to communicate user selections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-9y5xc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontrollerdelegate-9y5xc"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSEditor": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSEditor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSEditor",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSEditor"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSeguePerforming": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the mediation of a custom segue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSeguePerforming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSeguePerforming",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSSeguePerforming"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserInterfaceItemIdentification"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfigurationProviding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the [`UIAppearance`](doc://com.apple.uikit/documentation/UIKit/UIAppearance) API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAppearanceContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIContentContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIContentContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteConfigurationSupporting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponderStandardEditActions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIStateRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIStateRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitChangeObservable-67e94"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSViewController",
+        "doc://com.externally.resolved.symbol/c:objc(cs)UIViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSEditor",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSeguePerforming",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIContentContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIStateRestoring",
+        "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Photos-picker-for-UIKit-AppKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct"
+      ],
+      "title": "Photos picker for UIKit, AppKit"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-picker",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/init(configuration:)",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct"
+      ],
+      "title": "Creating a picker"
+    },
+    {
+      "anchor": "Managing-the-configuration",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-17a8p",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePicker(using:)"
+      ],
+      "title": "Managing the configuration"
+    },
+    {
+      "anchor": "Setting-content-position-and-scale",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()"
+      ],
+      "title": "Setting content position and scale"
+    },
+    {
+      "anchor": "Responding-to-user-selection",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-3zqmt",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-5yntc",
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-swift.struct"
+      ],
+      "title": "Responding to user selection"
+    },
+    {
+      "anchor": "Deselecting-assets",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)"
+      ],
+      "title": "Deselecting assets"
+    },
+    {
+      "anchor": "Reordering-assets",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)"
+      ],
+      "title": "Reordering assets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/PhotosUI"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-picker",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class"
+              ],
+              "title": "Creating a picker"
+            },
+            {
+              "anchor": "Managing-the-configuration",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/configuration-3vf53",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:"
+              ],
+              "title": "Managing the configuration"
+            },
+            {
+              "anchor": "Setting-content-position-and-scale",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/scrollToInitialPosition()",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomIn()",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/zoomOut()"
+              ],
+              "title": "Setting content position and scale"
+            },
+            {
+              "anchor": "Responding-to-user-selection",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/delegate-8dlnb",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewControllerDelegate-9y5xc",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class"
+              ],
+              "title": "Responding to user selection"
+            },
+            {
+              "anchor": "Deselecting-assets",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)"
+              ],
+              "title": "Deselecting assets"
+            },
+            {
+              "anchor": "Reordering-assets",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)"
+              ],
+              "title": "Reordering assets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSViewController",
+                "doc://com.externally.resolved.symbol/c:objc(cs)UIViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Photos-picker-for-UIKit-AppKit",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-c.class",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-c.class",
+                "doc://com.apple.photokit/documentation/PhotosUI/PHPickerResult-c.class"
+              ],
+              "title": "Photos picker for UIKit, AppKit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHPickerViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              },
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHPickerViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIViewController",
+                    "text": "UIViewController"
+                  }
+                ]
+              },
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHPickerViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSViewController",
+                    "text": "NSViewController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer~1opacity/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "opacity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSEditor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1scrollToInitialPosition()/title",
+          "value": "scrollToInitialPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1scrollToInitialPosition()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scrollToInitialPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1deselectAssets(withIdentifiers:)/title",
+          "value": "deselectAssetsWithIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1deselectAssets(withIdentifiers:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deselectAssetsWithIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/title",
+          "value": "PHLivePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/title",
+          "value": "PHPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSSeguePerforming/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomOut()/title",
+          "value": "zoomOut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomOut()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomOut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomIn()/title",
+          "value": "zoomIn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1zoomIn()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomIn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1moveAsset(withIdentifier:afterAssetWithIdentifier:)/title",
+          "value": "moveAssetWithIdentifier:afterAssetWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController~1moveAsset(withIdentifier:afterAssetWithIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveAssetWithIdentifier:afterAssetWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photosui/phpickerviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photosui/phpickerviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

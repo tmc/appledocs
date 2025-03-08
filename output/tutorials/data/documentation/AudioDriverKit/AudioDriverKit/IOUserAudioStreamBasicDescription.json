@@ -1,0 +1,708 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that encapsulates all of the information for describing the basic format properties of a stream of audio data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@N@AudioDriverKit@S@IOUserAudioStreamBasicDescription",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserAudioStreamBasicDescription"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AudioDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserAudioStreamBasicDescription"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "IOUserAudioStreamBasicDescription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserAudioStreamBasicDescription"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This structure contains the information needed to describe any constant bit rate format that has channels that are the same size. For variable bit rate data and for constant bit rate data where the channels have unequal sizes, the type requires more data than this type provides. However, where applicable, the framework fills out the appropriate fields correctly for these kinds of formats using separate properties for the additional data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In all fields, a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that the field is either unknown, not applicable, or otherwise is inapproprate for the format. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatFlags",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field is an exception to this, where ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is still a valid value for most formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In audio data a frame is one sample across all channels. In non-interleaved audio, the per frame fields identify one channel. In interleaved audio, the per-frame fields identify the set of ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " channels. In uncompressed audio, a packet is one frame, (",
+              "type": "text"
+            },
+            {
+              "code": "mFramesPerPacket == 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). In compressed audio, a packet is an indivisible chunk of compressed data, for example an AAC packet contains 1024 sample frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioDriverKit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioFormatFlags": {
+      "abstract": [
+        {
+          "text": "Flag values that provide more information about the format used by an audio stream basic description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioFormatFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioFormatFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioFormatFlags",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudioformatflags"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioFormatID": {
+      "abstract": [
+        {
+          "text": "An enumeration of four character codes used to identify distinct audio data formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioFormatID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioFormatID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioFormatID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudioformatid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription": {
+      "abstract": [
+        {
+          "text": "A structure that encapsulates all of the information for describing the basic format properties of a stream of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioStreamBasicDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioStreamBasicDescription",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBitsPerChannel": {
+      "abstract": [
+        {
+          "text": "The number of bits of sample data for each channel in a frame of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mBitsPerChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBitsPerChannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mBitsPerChannel",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mbitsperchannel"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBytesPerFrame": {
+      "abstract": [
+        {
+          "text": "The byte count in each frame of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mBytesPerFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBytesPerFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mBytesPerFrame",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mbytesperframe"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBytesPerPacket": {
+      "abstract": [
+        {
+          "text": "The byte count in each packet of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mBytesPerPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBytesPerPacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mBytesPerPacket",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mbytesperpacket"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mChannelsPerFrame": {
+      "abstract": [
+        {
+          "text": "The number of channels in each frame of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mChannelsPerFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mChannelsPerFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mChannelsPerFrame",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mchannelsperframe"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatFlags": {
+      "abstract": [
+        {
+          "text": "Audio format flags for the stream’s format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mFormatFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mFormatFlags",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mformatflags"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatID": {
+      "abstract": [
+        {
+          "text": "The audio format identifier indicating the general kind of data in the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mFormatID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mFormatID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mformatid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFramesPerPacket": {
+      "abstract": [
+        {
+          "text": "The number of sample frames in each packet of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mFramesPerPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFramesPerPacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mFramesPerPacket",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mframesperpacket"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mReserved": {
+      "abstract": [
+        {
+          "text": "An unused field reserved for future use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mReserved"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mReserved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mReserved",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/mreserved"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mSampleRate": {
+      "abstract": [
+        {
+          "text": "The number of sample frames per second of the data in the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "mSampleRate"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mSampleRate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mSampleRate",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription/msamplerate"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamDirection": {
+      "abstract": [
+        {
+          "text": "A type representing the direction of audio flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioStreamDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioStreamDirection",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreamdirection"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetAvailableStreamFormats": {
+      "abstract": [
+        {
+          "text": "Returns the available stream formats as an array of audio stream basic descriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetAvailableStreamFormats"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetAvailableStreamFormats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetAvailableStreamFormats",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/getavailablestreamformats"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetCurrentStreamFormat": {
+      "abstract": [
+        {
+          "text": "Returns the current stream format, as an audio stream basic description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetCurrentStreamFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetCurrentStreamFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetCurrentStreamFormat",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/getcurrentstreamformat"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetNumberAvailableStreamFormats": {
+      "abstract": [
+        {
+          "text": "Returns the number of available stream formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetNumberAvailableStreamFormats"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetNumberAvailableStreamFormats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetNumberAvailableStreamFormats",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/getnumberavailablestreamformats"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetStreamDirection": {
+      "abstract": [
+        {
+          "text": "Gets the direction of the stream: input or output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetStreamDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetStreamDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetStreamDirection",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/getstreamdirection"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetStreamIsActive": {
+      "abstract": [
+        {
+          "text": "Gets a value that indicates whether the stream is active and doing I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetStreamIsActive"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetStreamIsActive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetStreamIsActive",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/getstreamisactive"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetAvailableStreamFormats": {
+      "abstract": [
+        {
+          "text": "Sets the available stream formats to an array of audio stream basic descriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetAvailableStreamFormats"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetAvailableStreamFormats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetAvailableStreamFormats",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/setavailablestreamformats"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetCurrentStreamFormat": {
+      "abstract": [
+        {
+          "text": "Sets the current stream format to a given audio stream basic description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetCurrentStreamFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetCurrentStreamFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetCurrentStreamFormat",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/setcurrentstreamformat"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetStreamIsActive": {
+      "abstract": [
+        {
+          "text": "Sets a Boolean value that indicates whether the stream is active and doing I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetStreamIsActive"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetStreamIsActive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetStreamIsActive",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiostream/setstreamisactive"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Stream-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetCurrentStreamFormat",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetCurrentStreamFormat",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetAvailableStreamFormats",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetAvailableStreamFormats",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetNumberAvailableStreamFormats",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetStreamDirection",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamDirection",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/SetStreamIsActive",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioStream/GetStreamIsActive"
+      ],
+      "title": "Working with Stream Formats"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-the-Sample-Rate",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mSampleRate"
+      ],
+      "title": "Accessing the Sample Rate"
+    },
+    {
+      "anchor": "Identifying-the-Format",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatID",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioFormatID",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFormatFlags",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioFormatFlags"
+      ],
+      "title": "Identifying the Format"
+    },
+    {
+      "anchor": "Accessing-Packet-and-Frame-Layout",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBytesPerPacket",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mFramesPerPacket",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBytesPerFrame",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mChannelsPerFrame",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mBitsPerChannel"
+      ],
+      "title": "Accessing Packet and Frame Layout"
+    },
+    {
+      "anchor": "Infrequently-Used-Properties",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStreamBasicDescription/mReserved"
+      ],
+      "title": "Infrequently Used Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiodriverkit/audiodriverkit/iouseraudiostreambasicdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

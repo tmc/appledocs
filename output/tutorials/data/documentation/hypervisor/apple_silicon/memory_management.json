@@ -1,0 +1,321 @@
+{
+  "abstract": [
+    {
+      "text": "Map memory into the physical address space of the virtual machine.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3624755,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Memory management"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hypervisor virtualizes the memory seen by the guest as physical address space on top of the host’s address space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The name for a physical address in the guest address space is an intermediate physical address or IPA in the host.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s possible to map memory regions in the host process into the intermediate physical address (IPA) with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modify the guest’s access permissions over the entire region or subregions with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map": {
+      "abstract": [
+        {
+          "text": "Maps a region in the virtual address space of the current process into the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_map"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, hv_ipa_t, Int, hv_memory_flags_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_map(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441187-hv_vm_map"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap": {
+      "abstract": [
+        {
+          "text": "Unmaps a region in the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_unmap"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_ipa_t, Int) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_unmap(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441378-hv_vm_unmap"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect": {
+      "abstract": [
+        {
+          "text": "Modifies the permissions of a region in the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_protect"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_ipa_t, Int, hv_memory_flags_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_protect(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441400-hv_vm_protect"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management": {
+      "abstract": [
+        {
+          "text": "Map memory into the physical address space of the virtual machine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/memory_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management": {
+      "abstract": [
+        {
+          "text": "Create and run virtual CPUs, and manage CPU-specific registers and features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vCPU Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/vcpu_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t": {
+      "abstract": [
+        {
+          "text": "The type of an intermediate physical address, which is a guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_ipa_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_ipa_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_ipa_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management"
+      ],
+      "title": "Resource management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3624763",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+        "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap",
+        "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Intermediate physical memory"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/apple_silicon/memory_management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/apple_silicon/memory_management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

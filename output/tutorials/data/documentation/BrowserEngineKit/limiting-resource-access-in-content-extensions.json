@@ -1,0 +1,797 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce the impact of vulnerabilities in web content extensions by limiting privileges.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Limiting resource access in web content extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Web content extensions parse resources and run code from unknown sources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An attacker might supply malformed resources to mount an attack on your browser app and gain access to privileged operating system resources, and the data of the person using your browser app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mitigate the impact of any successful attack by reducing your content extension’s privilege before processing resources from remote websites.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Restrict-the-sandbox-for-your-web-content-extension",
+          "level": 2,
+          "text": "Restrict the sandbox for your web content extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the operating system launches your web content extension, the extension has permissive access to a variety of services and resources that you use to initialize the extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once your extension is ready to begin loading web content, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable/applyRestrictedSandbox(revision:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on your extension’s main object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyWebContentExtension: WebContentExtension {",
+            "",
+            "  func loadContent(from source: URL) {",
+            "\t// Prepare the extension.",
+            "\tself.applyRestrictedSandbox(revision: .revision1)",
+            "\t// Start loading remote content.",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Restrict-resource-access",
+          "level": 2,
+          "text": "Restrict resource access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once your web content extension is locked down, it’s unable to do any of the following.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create, change, or set:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create new processes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create new work queues",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change its working directory",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Duplicate file descriptors",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set kernel debug tracing strings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Obtain or access:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Obtain the full path to filesystem objects",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get its process identifier (PID)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the kernel tick frequency",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get its own mach task",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get special mach host ports",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get or set special mach task ports",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get information about the host system and its scheduler",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the version of the I/O Kit server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access shared dyld caches",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access XPC services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install or use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Objective-C branch prediction support",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install POSIX signal handlers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Write or allocate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write to file descriptors",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allocate portions of the process address space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Design your web content extension so that it doesn’t need to do any of the above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The rendering extension and networking extension both conform to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and you can apply a restricted sandbox to them.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Revision 1 of the restricted sandbox doesn’t apply any additional restrictions to those extensions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Restrict-access-to-system-notifications",
+          "level": 2,
+          "text": "Restrict access to system notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Limit the possibility for malicious code that runs in your web-content extension to post notifications using the system’s notification service by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.web-browser-engine.restrict.notifyd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement with the value ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When it has this entitlement, your web-content extension can’t post notifications by connecting directly to the system’s notification daemon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable": {
+      "abstract": [
+        {
+          "text": "A protocol that browser extensions implement to opt into a more restricted sandbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxAppliable"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxAppliable"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictedSandboxAppliable",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxappliable"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable/applyRestrictedSandbox(revision:)": {
+      "abstract": [
+        {
+          "text": "Puts a browser extension into a more restricted sandbox.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 2,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyRestrictedSandbox"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "revision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit25RestrictedSandboxRevisionO",
+          "text": "RestrictedSandboxRevision"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable/applyRestrictedSandbox(revision:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "applyRestrictedSandbox(revision:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxappliable/applyrestrictedsandbox(revision:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision": {
+      "abstract": [
+        {
+          "text": "Revisions to the restricted sandbox rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxRevision"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxRevision"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictedSandboxRevision",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxrevision"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Grant extensions access to files from within your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing files in browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/accessing-files-in-browser-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension": {
+      "abstract": [
+        {
+          "text": "Adhere to operating-system limits on GPU memory use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Attributing memory to a content extension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/attributing-memory-to-a-content-extension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources": {
+      "abstract": [
+        {
+          "text": "Control access to files and memory in browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension resources",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-resources"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Access-control",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision"
+      ],
+      "title": "Access control"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Access-control",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension"
+              ],
+              "title": "Access control"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/limiting-resource-access-in-content-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/limiting-resource-access-in-content-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,734 @@
+{
+  "abstract": [
+    {
+      "text": "Register the extensions that contribute to preparing your browser app’s UI.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/propagating-view-visibility-information-to-browser-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Propagating view visibility information to extension processes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system contains security checks to ensure that only the apps with which the person is interacting may draw to the screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a browser with extension processes, you need to indicate whether extensions participate in preparing and rendering content for a given view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, the operating system might restrict your extensions’ access to various system resources, which might result in your browser rendering incorrectly, experiencing poor performance, or crashing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your browser’s extension renders content in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or hierarchy of layers, the operating system automatically propagates visibility information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Wrap the root ",
+              "type": "text"
+            },
+            {
+              "code": "CALayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and send a handle to the browser app to host in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-visibility-propagation-interaction-to-the-view",
+          "level": 2,
+          "text": "Add a visibility propagation interaction to the view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that a web content extension or the rendering extension participates in displaying a particular view that doesn’t use a ",
+              "type": "text"
+            },
+            {
+              "code": "CALayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your browser app requests a visibility propagation interaction from that extension’s process and attaches it to the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to use a visibility propagation interaction from the rendering extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "var view: UIView",
+            "",
+            "// Create and configure your view.",
+            "",
+            "let visibility = renderingProcess.createVisibilityPropagationInteraction()",
+            "view.addInteraction(visibility)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the rendering extension is no longer participating in the view, call the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/removeInteraction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to remove the visibility propagation interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your extensions participate in displaying multiple views, create a separate visibility propagation interaction for each view. Don’t reuse the same interaction across multiple views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-content-picture-in-picture",
+          "level": 3,
+          "text": "Display content picture-in-picture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone displays content from your browser app picture-in-picture, create a separate view to present the picture-in-picture content, distinct from the view that displays the content in your browser app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create additional visibility propagation interactions for the rendering extension and web content extension, if they prepare the picture-in-picture content, and add those interactions to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy": {
+      "abstract": [
+        {
+          "text": "An object that holds a reference to layers rendered in another process’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchy"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchy"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchy",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchy"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView": {
+      "abstract": [
+        {
+          "text": "A view that hosts a layer hierarchy you manage in another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingView"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingView"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchyHostingView",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingview"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess/createVisibilityPropagationInteraction()": {
+      "abstract": [
+        {
+          "text": "Returns an interaction that associates a view with the rendering process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createVisibilityPropagationInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIInteraction",
+          "text": "UIInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess/createVisibilityPropagationInteraction()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createVisibilityPropagationInteraction()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/renderingprocess/createvisibilitypropagationinteraction()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess/createVisibilityPropagationInteraction()": {
+      "abstract": [
+        {
+          "text": "Returns an interaction that associates a view with the web content process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createVisibilityPropagationInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIInteraction",
+          "text": "UIInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess/createVisibilityPropagationInteraction()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createVisibilityPropagationInteraction()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/webcontentprocess/createvisibilitypropagationinteraction()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension": {
+      "abstract": [
+        {
+          "text": "Coordinate view-hierarchy and layer-hierarchy changes between processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Hosting browser view layers in the rendering extension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/hosting-browser-view-layers-in-the-rendering-extension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination": {
+      "abstract": [
+        {
+          "text": "Display content in the browser’s UI that an extension renders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View coordination",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/view-coordination"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/removeInteraction(_:)": {
+      "abstract": [
+        {
+          "text": "Removes an interaction from the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "interaction"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIInteraction",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/removeInteraction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeInteraction(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/removeInteraction(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Visibility-propagation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess/createVisibilityPropagationInteraction()",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess/createVisibilityPropagationInteraction()"
+      ],
+      "title": "Visibility propagation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Visibility-propagation",
+              "generated": true,
+              "identifiers": [],
+              "title": "Visibility propagation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1removeInteraction(_:)/title",
+          "value": "removeInteraction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1removeInteraction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeInteraction:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIInteraction",
+              "text": "id<UIInteraction>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "interaction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy/title",
+          "value": "BELayerHierarchy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingView/title",
+          "value": "BELayerHierarchyHostingView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

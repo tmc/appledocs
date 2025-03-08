@@ -1,0 +1,1151 @@
+{
+  "abstract": [
+    {
+      "text": "Create and run virtual CPUs, and manage CPU-specific registers and features.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3624754,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vCPU Management"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hypervisor creates Virtual CPUs with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Call functions that operate on the vCPU from the same thread with the exception of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enter the vCPU by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The function runs until the guest traps or an other thread calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". On exit, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " populates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_exit_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the exit reason.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t use vCPUs on dispatch queues, because work from a single queue can run on different threads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run": {
+      "abstract": [
+        {
+          "text": "Starts the execution of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_run"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_run(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441231-hv_vcpu_run"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy": {
+      "abstract": [
+        {
+          "text": "Destroys the vCPU instance associated with the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_destroy"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_destroy(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441507-hv_vcpu_destroy"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the cumulative execution time of a vCPU, in nanoseconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_exec_time"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_exec_time(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441687-hv_vcpu_get_exec_time"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create": {
+      "abstract": [
+        {
+          "text": "Creates a vCPU instance for the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_create"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<hv_vcpu_t>, UnsafeMutablePointer<UnsafeMutablePointer<hv_vcpu_exit_t>?>, hv_vcpu_config_t?) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_create(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441691-hv_vcpu_create"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt": {
+      "abstract": [
+        {
+          "text": "Gets pending interrupts for a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_pending_interrupt"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_interrupt_type_t, UnsafeMutablePointer<Bool>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_pending_interrupt(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608558-hv_vcpu_get_reg": {
+      "abstract": [
+        {
+          "text": "Gets the current value of a vCPU register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_reg_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608558-hv_vcpu_get_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608558-hv_vcpu_get_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608559-hv_vcpu_get_simd_fp_reg": {
+      "abstract": [
+        {
+          "text": "Gets the current value of a vCPU SIMD and FP register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_simd_fp_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_simd_fp_reg_t, UnsafeMutablePointer<hv_simd_fp_uchar16_t>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608559-hv_vcpu_get_simd_fp_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_simd_fp_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608559-hv_vcpu_get_simd_fp_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608560-hv_vcpu_get_sys_reg": {
+      "abstract": [
+        {
+          "text": "Gets the current value of a vCPU system register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_sys_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_sys_reg_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608560-hv_vcpu_get_sys_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_sys_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608560-hv_vcpu_get_sys_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608561-hv_vcpu_get_trap_debug_exception": {
+      "abstract": [
+        {
+          "text": "Gets whether debug exceptions exit the guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_trap_debug_exceptions"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, UnsafeMutablePointer<Bool>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608561-hv_vcpu_get_trap_debug_exception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_trap_debug_exceptions(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608561-hv_vcpu_get_trap_debug_exception"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608562-hv_vcpu_get_trap_debug_reg_acces": {
+      "abstract": [
+        {
+          "text": "Gets whether debug-register accesses exit the guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_trap_debug_reg_accesses"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, UnsafeMutablePointer<Bool>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608562-hv_vcpu_get_trap_debug_reg_acces",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_trap_debug_reg_accesses(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608562-hv_vcpu_get_trap_debug_reg_acces"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt": {
+      "abstract": [
+        {
+          "text": "Sets pending interrupts for a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_pending_interrupt"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_interrupt_type_t, Bool) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_pending_interrupt(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608564-hv_vcpu_set_reg": {
+      "abstract": [
+        {
+          "text": "Sets the value of a vCPU register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_reg_t, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608564-hv_vcpu_set_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608564-hv_vcpu_set_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608565-hv_vcpu_set_simd_fp_reg": {
+      "abstract": [
+        {
+          "text": "Sets the value of a vCPU SIMD&FP register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_simd_fp_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_simd_fp_reg_t, hv_simd_fp_uchar16_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608565-hv_vcpu_set_simd_fp_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_simd_fp_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608565-hv_vcpu_set_simd_fp_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608566-hv_vcpu_set_sys_reg": {
+      "abstract": [
+        {
+          "text": "Sets the value of a vCPU system register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_sys_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, hv_sys_reg_t, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608566-hv_vcpu_set_sys_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_sys_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608566-hv_vcpu_set_sys_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608567-hv_vcpu_set_trap_debug_exception": {
+      "abstract": [
+        {
+          "text": "Sets whether debug exceptions exit the guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_trap_debug_exceptions"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, Bool) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608567-hv_vcpu_set_trap_debug_exception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_trap_debug_exceptions(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608567-hv_vcpu_set_trap_debug_exception"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608568-hv_vcpu_set_trap_debug_reg_acces": {
+      "abstract": [
+        {
+          "text": "Sets whether debug-register accesses exit the guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_trap_debug_reg_accesses"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, Bool) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608568-hv_vcpu_set_trap_debug_reg_acces",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_trap_debug_reg_accesses(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608568-hv_vcpu_set_trap_debug_reg_acces"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit": {
+      "abstract": [
+        {
+          "text": "Forces an immediate exit of a set of vCPUs of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpus_exit"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<hv_vcpu_t>, UInt32) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpus_exit(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608569-hv_vcpus_exit"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608580-hv_vcpu_config_create": {
+      "abstract": [
+        {
+          "text": "Creates a vCPU configuration object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_config_create"
+        },
+        {
+          "kind": "text",
+          "text": "() -> hv_vcpu_config_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608580-hv_vcpu_config_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_config_create()",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608580-hv_vcpu_config_create"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608581-hv_vcpu_config_get_feature_reg": {
+      "abstract": [
+        {
+          "text": "Gets the value of a feature register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_config_get_feature_reg"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_config_t, hv_feature_reg_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608581-hv_vcpu_config_get_feature_reg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_config_get_feature_reg(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608581-hv_vcpu_config_get_feature_reg"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3608698-hv_vm_get_max_vcpu_count": {
+      "abstract": [
+        {
+          "text": "Returns the maximum number of vCPUs that the hypervisor supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_get_max_vcpu_count"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt32>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3608698-hv_vm_get_max_vcpu_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_get_max_vcpu_count(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3608698-hv_vm_get_max_vcpu_count"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3684877-hv_vcpu_config_get_ccsidr_el1_sy": {
+      "abstract": [
+        {
+          "text": "Returns the Cache Size ID Register (CCSIDR_EL1) values for the vCPU configuration and cache type you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_config_get_ccsidr_el1_sys_reg_values"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_config_t, hv_cache_type_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3684877-hv_vcpu_config_get_ccsidr_el1_sy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_config_get_ccsidr_el1_sys_reg_values(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3684877-hv_vcpu_config_get_ccsidr_el1_sy"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management": {
+      "abstract": [
+        {
+          "text": "Map memory into the physical address space of the virtual machine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/memory_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management": {
+      "abstract": [
+        {
+          "text": "Create and run virtual CPUs, and manage CPU-specific registers and features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vCPU Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/vcpu_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management/exits": {
+      "abstract": [
+        {
+          "text": "Describe virtual machine exit conditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management/exits",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exits",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/vcpu_management/exits"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_feature_reg_t": {
+      "abstract": [
+        {
+          "text": "The type that defines feature registers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_feature_reg_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_feature_reg_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_feature_reg_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_feature_reg_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_interrupt_type_t": {
+      "abstract": [
+        {
+          "text": "The type that defines the vCPU’s interrupts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_interrupt_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_interrupt_type_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_interrupt_type_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_interrupt_type_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_reg_t": {
+      "abstract": [
+        {
+          "text": "The type that defines general registers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_reg_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_reg_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_reg_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_reg_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_simd_fp_reg_t": {
+      "abstract": [
+        {
+          "text": "The type that defines SIMD and floating-point registers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_simd_fp_reg_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_simd_fp_reg_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_simd_fp_reg_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_simd_fp_reg_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_simd_fp_uchar16_t": {
+      "abstract": [
+        {
+          "text": "The value that represents an ARM SIMD and FP register.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_simd_fp_uchar16_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_simd_fp_uchar16_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_simd_fp_uchar16_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_simd_fp_uchar16_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_sys_reg_t": {
+      "abstract": [
+        {
+          "text": "The type of system registers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_sys_reg_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_sys_reg_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_sys_reg_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_sys_reg_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_config_t": {
+      "abstract": [
+        {
+          "text": "The type that defines a vCPU configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_config_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_config_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_config_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_config_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_exit_t": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_exit_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_exit_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_exit_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_t": {
+      "abstract": [
+        {
+          "text": "An opaque value that represents a vCPU instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/os_hv_vcpu_config": {
+      "abstract": [
+        {
+          "text": "Configuration for a virtual CPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_hv_vcpu_config"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/os_hv_vcpu_config",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_hv_vcpu_config",
+      "type": "topic",
+      "url": "/documentation/hypervisor/os_hv_vcpu_config"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management"
+      ],
+      "title": "Resource management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3624769",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3608580-hv_vcpu_config_create",
+        "doc://com.apple.documentation/documentation/hypervisor/3608581-hv_vcpu_config_get_feature_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/3684877-hv_vcpu_config_get_ccsidr_el1_sy",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_config_t",
+        "doc://com.apple.documentation/documentation/hypervisor/os_hv_vcpu_config",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_feature_reg_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuration"
+    },
+    {
+      "anchor": "3624762",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3608698-hv_vm_get_max_vcpu_count",
+        "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+        "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Creation and destruction"
+    },
+    {
+      "anchor": "3624785",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+        "doc://com.apple.documentation/documentation/hypervisor/3608569-hv_vcpus_exit",
+        "doc://com.apple.documentation/documentation/hypervisor/3608557-hv_vcpu_get_pending_interrupt",
+        "doc://com.apple.documentation/documentation/hypervisor/3608563-hv_vcpu_set_pending_interrupt",
+        "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_interrupt_type_t",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/vcpu_management/exits"
+      ],
+      "kind": "taskGroup",
+      "title": "Runtime"
+    },
+    {
+      "anchor": "3624771",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3608558-hv_vcpu_get_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/3608564-hv_vcpu_set_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_reg_t"
+      ],
+      "kind": "taskGroup",
+      "title": "General registers"
+    },
+    {
+      "anchor": "3624774",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3608559-hv_vcpu_get_simd_fp_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/3608565-hv_vcpu_set_simd_fp_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_simd_fp_uchar16_t",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_simd_fp_reg_t"
+      ],
+      "kind": "taskGroup",
+      "title": "SIMD & Floating-point registers"
+    },
+    {
+      "anchor": "3624772",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3608560-hv_vcpu_get_sys_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/3608566-hv_vcpu_set_sys_reg",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_sys_reg_t"
+      ],
+      "kind": "taskGroup",
+      "title": "System registers"
+    },
+    {
+      "anchor": "3624759",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3608561-hv_vcpu_get_trap_debug_exception",
+        "doc://com.apple.documentation/documentation/hypervisor/3608567-hv_vcpu_set_trap_debug_exception",
+        "doc://com.apple.documentation/documentation/hypervisor/3608562-hv_vcpu_get_trap_debug_reg_acces",
+        "doc://com.apple.documentation/documentation/hypervisor/3608568-hv_vcpu_set_trap_debug_reg_acces"
+      ],
+      "kind": "taskGroup",
+      "title": "Trap configuration"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/apple_silicon/vcpu_management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/apple_silicon/vcpu_management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1292 @@
+{
+  "abstract": [
+    {
+      "text": "The status of the file system container, indicating its readiness and activity.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://FSKit/documentation/FSKit",
+        "doc://FSKit/documentation/FSKit/FSFileSystemBase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://FSKit/documentation/FSKit/FSFileSystemBase/containerStatus"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)FSFileSystemBase(py)containerStatus",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "containerStatus"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)FSContainerStatus",
+        "text": "FSContainerStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FSKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "containerStatus"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "containerStatus"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@NSCopying"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "containerStatus"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)FSContainerStatus",
+              "text": "FSContainerStatus"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file system container starts in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/notReady",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state, and then transitions to the other values of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSContainerState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following diagram illustrates the possible state transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your file system implementation updates this property as it changes state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Many events and operations may trigger a state transition, and some transitions depend on a specific file system’s design.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", implement the following common state transitions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "loadResource",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " transitions the state out of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/notReady",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For all block device file systems, this operation changes the state to either ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/blocked",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unloadResource",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " transitions to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/notReady",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " state, as does device termination.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transitioning from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/blocked",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " occurs as a result of resolving the underlying block favorably.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transitioning from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/blocked",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is unusal, but valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transitioning between ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/active",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " can result from maintenance operations such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations/startCheck(task:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", this transition can also occur when activating or deactivating the container’s single volume.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://FSKit/documentation/FSKit": {
+      "abstract": [
+        {
+          "text": "Implement a file system that runs in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FSKit",
+      "type": "topic",
+      "url": "/documentation/fskit"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource": {
+      "abstract": [
+        {
+          "text": "A resource that represents a block storage disk partition.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSBlockDeviceResource"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSBlockDeviceResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSBlockDeviceResource",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState": {
+      "abstract": [
+        {
+          "text": "An enumeration of container state values.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerState"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerState"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState/active": {
+      "abstract": [
+        {
+          "text": "The container is active, and one or more volumes are active.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/active",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStateActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState.active",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate/active"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState/blocked": {
+      "abstract": [
+        {
+          "text": "The container is blocked from transitioning from the not-ready state to the ready state by a potentially-recoverable error.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blocked"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/blocked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStateBlocked"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState.blocked",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate/blocked"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState/notReady": {
+      "abstract": [
+        {
+          "text": "The container isn’t ready.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notReady"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/notReady",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStateNotReady"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState.notReady",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate/notready"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerState/ready": {
+      "abstract": [
+        {
+          "text": "The container is ready, but inactive.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ready"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerState/ready",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStateReady"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerState.ready",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstate/ready"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus": {
+      "abstract": [
+        {
+          "text": "A type that represents a container’s status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerStatus",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus"
+    },
+    "doc://FSKit/documentation/FSKit/FSFileSystemBase": {
+      "abstract": [
+        {
+          "text": "A protocol containing functionality supplied by FSKit to file system implementations.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSFileSystemBase"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSFileSystemBase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSFileSystemBase"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSFileSystemBase",
+      "type": "topic",
+      "url": "/documentation/fskit/fsfilesystembase"
+    },
+    "doc://FSKit/documentation/FSKit/FSFileSystemBase/containerStatus": {
+      "abstract": [
+        {
+          "text": "The status of the file system container, indicating its readiness and activity.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSContainerStatus",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSFileSystemBase/containerStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containerStatus"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "containerStatus",
+      "type": "topic",
+      "url": "/documentation/fskit/fsfilesystembase/containerstatus"
+    },
+    "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations/startCheck(task:options:)": {
+      "abstract": [
+        {
+          "text": "Starts checking the file system with the given options.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startCheck"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "task"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSTask",
+          "text": "FSTask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FSTaskOptions",
+          "text": "FSTaskOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations/startCheck(task:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startCheckWithTask:options:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "startCheck(task:options:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fsmanageableresourcemaintenanceoperations/startcheck(task:options:)"
+    },
+    "doc://FSKit/documentation/FSKit/FSUnaryFileSystem": {
+      "abstract": [
+        {
+          "text": "An abstract base class for implementing a minimal file system.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystem"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSUnaryFileSystem",
+      "type": "topic",
+      "url": "/documentation/fskit/fsunaryfilesystem"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "15.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "containerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "containerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://FSKit/documentation/FSKit",
+                "doc://FSKit/documentation/FSKit/FSFileSystemBase"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)FSContainerStatus",
+                    "text": "FSContainerStatus"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "containerStatus"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState/title",
+          "value": "FSContainerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1active/title",
+          "value": "FSContainerStateActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1active/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStateActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1blocked/title",
+          "value": "FSContainerStateBlocked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1blocked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStateBlocked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1notReady/title",
+          "value": "FSContainerStateNotReady"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1notReady/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStateNotReady"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/title",
+          "value": "FSBlockDeviceResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase/title",
+          "value": "FSFileSystemBase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSFileSystemBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSFileSystemBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1ready/title",
+          "value": "FSContainerStateReady"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerState~1ready/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStateReady"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/title",
+          "value": "FSUnaryFileSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase~1containerStatus/title",
+          "value": "containerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase~1containerStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "containerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/title",
+          "value": "FSContainerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSManageableResourceMaintenanceOperations~1startCheck(task:options:)/title",
+          "value": "startCheckWithTask:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSManageableResourceMaintenanceOperations~1startCheck(task:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startCheckWithTask:options:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fskit/fsfilesystembase/containerstatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fskit/fsfilesystembase/containerstatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,398 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the SME state consisting of the streaming Scalable Vector Extension (SVE) mode and ZA storage enable.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/hypervisor_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/4359488-hv_vcpu_set_sme_state"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 4359488,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@hv_vcpu_set_sme_state",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "hv_vcpu_set_sme_state"
+      },
+      {
+        "kind": "text",
+        "text": "(hv_vcpu_t, UnsafePointer<hv_vcpu_sme_state_t>) -> hv_return_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "15.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "hv_vcpu_set_sme_state(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "hv_vcpu_set_sme_state"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "vcpu"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@hv_vcpu_t",
+              "text": "hv_vcpu_t"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sme_state"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SP",
+              "text": "UnsafePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_sme_state_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@hv_vcpu_sme_state_t",
+              "text": "hv_vcpu_sme_state_t"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@hv_return_t",
+              "text": "hv_return_t"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ID of the vCPU instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "vcpu"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pointer to the SME state to set.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sme_state"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "HV_SUCCESS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on success, ",
+              "type": "text"
+            },
+            {
+              "code": "HV_UNSUPPORTED",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if SME is not supported on the platform, or an error code otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to call this on the owning thread",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " For any entry or exit from streaming SVE mode, all Z vector and P predicate registers are set to zero, and all FPSR flags are set; you need to save this state if you need to retain it across streaming SVE mode transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In streaming SVE mode, the system aliases the SIMD Q registers to the bottom ",
+              "type": "text"
+            },
+            {
+              "code": "128",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bits of the corresponding Z register, and any modification reflects on the Z register state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the optional ",
+              "type": "text"
+            },
+            {
+              "code": "FEAT_SME_FA64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is implemented, the full SIMD instruction set is supported in streaming SVE mode; otherwise many legacy SIMD instructions are illegal in this mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When finished, disable streaming SVE mode and ZA storage; this serves as a power-down hint for SME-related hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UnsafePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafepointer"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_return_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_return_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_sme_state_t": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_sme_state_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_sme_state_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_sme_state_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_t": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hypervisor_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hypervisor_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hypervisor Functions",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hypervisor_functions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/4359488-hv_vcpu_set_sme_state"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/4359488-hv_vcpu_set_sme_state"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

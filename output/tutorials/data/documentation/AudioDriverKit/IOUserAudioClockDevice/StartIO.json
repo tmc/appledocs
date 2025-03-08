@@ -1,0 +1,396 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the clock device to start I/O.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice/StartIO"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserAudioClockDevice@F@StartIO#$@N@AudioDriverKit@E@IOUserAudioStartStopFlags#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "StartIO"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AudioDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "StartIO"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "StartIO"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "StartIO"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@N@AudioDriverKit@E@IOUserAudioStartStopFlags",
+              "text": "IOUserAudioStartStopFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "in_flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " value to indicate I/O startup behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "in_flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. For a list of error codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default implementation always returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclass and override this method to handle hardware-specific tasks during I/O startup, then call the superclass to update the I/O state. The framework expects this call to always succeed or fail. The hardware can take as long as it needs in this call, provided it always either succeeds or fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags": {
+      "abstract": [
+        {
+          "text": "Values that indicate I/O starts or stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioStartStopFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioStartStopFlags",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostartstopflags"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice": {
+      "abstract": [
+        {
+          "text": "An audio clock device object, used to synchronize and perform I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioClockDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioClockDevice",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioclockdevice"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice/StartIO": {
+      "abstract": [
+        {
+          "text": "Tells the clock device to start I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "StartIO"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice/StartIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StartIO",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioclockdevice/startio"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice/StopIO": {
+      "abstract": [
+        {
+          "text": "Tells the clock device to stop I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "StopIO"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice/StopIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopIO",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioclockdevice/stopio"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performing-IO",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioClockDevice/StopIO",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags"
+      ],
+      "title": "Performing I/O"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiodriverkit/iouseraudioclockdevice/startio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

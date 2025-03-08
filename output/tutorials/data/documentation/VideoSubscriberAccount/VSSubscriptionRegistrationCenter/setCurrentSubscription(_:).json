@@ -1,0 +1,716 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the subscription information for the current user.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter/setCurrentSubscription(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)VSSubscriptionRegistrationCenter(im)setCurrentSubscription:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setCurrentSubscription"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)VSSubscription",
+        "text": "VSSubscription"
+      },
+      {
+        "kind": "text",
+        "text": "?)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Video Subscriber Account"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "setCurrentSubscription:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "renamed": "VSUserAccountManager",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "renamed": "VSUserAccountManager",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "renamed": "VSUserAccountManager",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "2.0",
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "renamed": "VSUserAccountManager",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setCurrentSubscription(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCurrentSubscription"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "currentSubscription"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)VSSubscription",
+              "text": "VSSubscription"
+            },
+            {
+              "kind": "text",
+              "text": "?)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that contains the subscription information to set.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "currentSubscription"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app uses this method to set a subscription when the subscriber first authenticates or when their subscription changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the subscriber signs out or loses access to subscription content, your app calls this method with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method as needed to update the subscription, such as when you confirm the validity of the subscription, or in response to app lifecycle events when your app becomes active. The system can use this activity as a hint that the user is actively using the subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system throws an exception if you try to set the current subscription to an unknown access level. Don’t set a subscription if the user only has access to free content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount": {
+      "abstract": [
+        {
+          "text": "Support TV provider and Apple TV app functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Subscriber Account",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription": {
+      "abstract": [
+        {
+          "text": "An object that describes a subscriber’s access to content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VSSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VSSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "VSSubscription",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscription"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter": {
+      "abstract": [
+        {
+          "text": "An object that stores subscription information that the system provides to the Apple TV app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VSSubscriptionRegistrationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VSSubscriptionRegistrationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "VSSubscriptionRegistrationCenter",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscriptionregistrationcenter"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter/setCurrentSubscription(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the subscription information for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCurrentSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VSSubscription",
+          "text": "VSSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter/setCurrentSubscription(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCurrentSubscription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCurrentSubscription(_:)",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscriptionregistrationcenter/setcurrentsubscription(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "2.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "setCurrentSubscription:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCurrentSubscription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "setCurrentSubscription:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)VSSubscription",
+                    "text": "VSSubscription"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "currentSubscription"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object that contains the subscription information to set.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "currentSubscription"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription/title",
+          "value": "VSSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter~1setCurrentSubscription(_:)/title",
+          "value": "setCurrentSubscription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter~1setCurrentSubscription(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCurrentSubscription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter/title",
+          "value": "VSSubscriptionRegistrationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscriptionRegistrationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscriptionRegistrationCenter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videosubscriberaccount/vssubscriptionregistrationcenter/setcurrentsubscription(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videosubscriberaccount/vssubscriptionregistrationcenter/setcurrentsubscription(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

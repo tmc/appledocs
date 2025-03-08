@@ -1,0 +1,698 @@
+{
+  "abstract": [
+    {
+      "text": "Share content, add replacement shortcuts, and perform other rich actions in browser text views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/support-extended-text-interactions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting extended text interactions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your browser’s text view conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, it automatically also conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEResponderEditActions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This protocol adds a collection of optional action methods your text view can implement to support extended text interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the operating system’s standard behavior for an interaction, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your custom view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and call the interaction’s methods in response to ",
+              "type": "text"
+            },
+            {
+              "code": "BEResponderEditActions",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/canPerformAction(_:withSender:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in situations where the interaction is available, but ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to share the selected text using the standard share sheet:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyBrowserTextView: UIView, BETextInput, BEResponderEditActions {",
+            "  func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {",
+            "\tif (action == #selector(share(_:))) {",
+            "\t  return self.canShareSelection",
+            "\t}",
+            "  }",
+            "  ",
+            "  func share(_ sender: Any?) {",
+            "    self.textInteraction.shareText(self.selectedText, from:self.selectionRect)",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEResponderEditActions": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines extended interactions in browser text views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEResponderEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEResponderEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEResponderEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEResponderEditActions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/berespondereditactions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput": {
+      "abstract": [
+        {
+          "text": "A protocol to which text views conform to asynchronously integrate with the text system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextInput",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/canPerformAction(_:withSender:)": {
+      "abstract": [
+        {
+          "text": "Returns whether text related actions, such those included in UIResponderStandardEditActions, can be handled",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerformAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/canPerformAction(_:withSender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformAction:withSender:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "canPerformAction(_:withSender:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/canperformaction(_:withsender:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView": {
+      "abstract": [
+        {
+          "text": "An affiliated view that provides a coordinate system for all geometric values in this protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textInputView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput/textInputView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textInputView"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textInputView",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinput/textinputview"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate protocol that a browser text view uses to notify the text system of changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextInputDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextInputDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextInputDelegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinputdelegate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction you add to a text view to support extended text gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BETextInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BETextInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BETextInteraction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/betextinteraction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit": {
+      "abstract": [
+        {
+          "text": "Process keyboard interactions asynchronously in your iOS browser app’s text view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating custom browser text views with UIKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/integrating-custom-browser-text-views-with-uikit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction": {
+      "abstract": [
+        {
+          "text": "Integrate your web browser engine asynchronously with the text system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text interaction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/text-interaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-text-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate"
+      ],
+      "title": "Custom text views"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-text-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInput",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BETextInputDelegate"
+              ],
+              "title": "Custom text views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1textInputView/title",
+          "value": "textInputView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1textInputView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textInputView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEResponderEditActions/title",
+          "value": "BEResponderEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEResponderEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEResponderEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEResponderEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEResponderEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate/title",
+          "value": "BETextInputDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInputDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput/title",
+          "value": "BETextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInteraction/title",
+          "value": "BETextInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BETextInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1canPerformAction(_:withSender:)/title",
+          "value": "canPerformAction:withSender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BETextInput~1canPerformAction(_:withSender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPerformAction:withSender:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/support-extended-text-interactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/support-extended-text-interactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

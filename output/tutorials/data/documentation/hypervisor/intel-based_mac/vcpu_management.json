@@ -1,0 +1,926 @@
+{
+  "abstract": [
+    {
+      "text": "Create and run virtual CPUs, and manage CPU-specific registers and features.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3570124,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vCPU Management"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441058-hv_vcpu_read_fpstate": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the current architectural x86 floating point and SIMD state of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_read_fpstate"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UnsafeMutableRawPointer, Int) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441058-hv_vcpu_read_fpstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_read_fpstate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441058-hv_vcpu_read_fpstate"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441102-hv_vm_sync_tsc": {
+      "abstract": [
+        {
+          "text": "Synchronizes guest timestamp counters (TSC) across all vCPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_sync_tsc"
+        },
+        {
+          "kind": "text",
+          "text": "(UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441102-hv_vm_sync_tsc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_sync_tsc(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441102-hv_vm_sync_tsc"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run": {
+      "abstract": [
+        {
+          "text": "Starts the execution of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_run"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_run(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441231-hv_vcpu_run"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441240-hv_vcpu_enable_native_msr": {
+      "abstract": [
+        {
+          "text": "Enables or disables a Model-Specific Register (MSR) that the VM uses natively.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_enable_native_msr"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, Bool) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441240-hv_vcpu_enable_native_msr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_enable_native_msr(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441240-hv_vcpu_enable_native_msr"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441346-hv_vcpu_read_msr": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the current value of a Model-Specific Register (MSR) of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_read_msr"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441346-hv_vcpu_read_msr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_read_msr(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441346-hv_vcpu_read_msr"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441386-hv_vcpu_flush": {
+      "abstract": [
+        {
+          "text": "Flushes the cached state of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_flush"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441386-hv_vcpu_flush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_flush(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441386-hv_vcpu_flush"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441434-hv_vcpu_write_msr": {
+      "abstract": [
+        {
+          "text": "Sets the value of a Model-Specific Register (MSR) of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_write_msr"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441434-hv_vcpu_write_msr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_write_msr(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441434-hv_vcpu_write_msr"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441468-hv_vcpu_interrupt": {
+      "abstract": [
+        {
+          "text": "Forces the vCPU instances you provide to immediately exit the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_interrupt"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<hv_vcpuid_t>, UInt32) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441468-hv_vcpu_interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_interrupt(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441468-hv_vcpu_interrupt"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy": {
+      "abstract": [
+        {
+          "text": "Destroys the vCPU instance associated with the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_destroy"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_destroy(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441507-hv_vcpu_destroy"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441540-hv_vcpu_write_register": {
+      "abstract": [
+        {
+          "text": "Sets the value of an architectural x86 register of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_write_register"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, hv_x86_reg_t, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441540-hv_vcpu_write_register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_write_register(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441540-hv_vcpu_write_register"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441588-hv_vcpu_invalidate_tlb": {
+      "abstract": [
+        {
+          "text": "Invalidates the translation look-aside buffer (TLB) of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_invalidate_tlb"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441588-hv_vcpu_invalidate_tlb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_invalidate_tlb(_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441588-hv_vcpu_invalidate_tlb"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441657-hv_vcpu_write_fpstate": {
+      "abstract": [
+        {
+          "text": "Sets the architectural x86 floating point and SIMD state of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_write_fpstate"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UnsafeMutableRawPointer, Int) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441657-hv_vcpu_write_fpstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_write_fpstate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441657-hv_vcpu_write_fpstate"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441678-hv_vcpu_read_register": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the current value of an architectural x86 register of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_read_register"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, hv_x86_reg_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441678-hv_vcpu_read_register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_read_register(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441678-hv_vcpu_read_register"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the cumulative execution time of a vCPU, in nanoseconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_get_exec_time"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpu_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_get_exec_time(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441687-hv_vcpu_get_exec_time"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create": {
+      "abstract": [
+        {
+          "text": "Creates a vCPU instance for the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_create"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<hv_vcpu_t>, UnsafeMutablePointer<UnsafeMutablePointer<hv_vcpu_exit_t>?>, hv_vcpu_config_t?) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_create(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441691-hv_vcpu_create"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3181548-hv_vcpu_run_until": {
+      "abstract": [
+        {
+          "text": "Executes a vCPU until it reaches the deadline defined in absolute time units you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_run_until"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3181548-hv_vcpu_run_until",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_run_until(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3181548-hv_vcpu_run_until"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3181549-hv_vcpu_set_space": {
+      "abstract": [
+        {
+          "text": "Associates the vCPU instance with an allocated address space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_space"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, hv_vm_space_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3181549-hv_vcpu_set_space",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_space(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3181549-hv_vcpu_set_space"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3567096-hv_vcpu_enable_managed_msr": {
+      "abstract": [
+        {
+          "text": "Enables the guest access of a managed Model-Specific Register (MSR).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_enable_managed_msr"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, Bool) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3567096-hv_vcpu_enable_managed_msr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_enable_managed_msr(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3567096-hv_vcpu_enable_managed_msr"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3567097-hv_vcpu_set_msr_access": {
+      "abstract": [
+        {
+          "text": "Controls the guest access of a managed Model-Specific Register (MSR).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_set_msr_access"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, hv_msr_flags_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3567097-hv_vcpu_set_msr_access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_set_msr_access(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3567097-hv_vcpu_set_msr_access"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_msr_flags_t": {
+      "abstract": [
+        {
+          "text": "The type representing the native Model-Specific Register (MSR) permissions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_msr_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_msr_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_msr_flags_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_msr_flags_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_options_t": {
+      "abstract": [
+        {
+          "text": "Options for creating a new vCPU instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpu_options_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_options_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpu_options_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpu_options_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vcpuid_t": {
+      "abstract": [
+        {
+          "text": "The type that describes a vCPU ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vcpuid_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vcpuid_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vcpuid_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vcpuid_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_x86_reg_t": {
+      "abstract": [
+        {
+          "text": "The type that defines x86 architectural registers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_x86_reg_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_x86_reg_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_x86_reg_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_x86_reg_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management": {
+      "abstract": [
+        {
+          "text": "Map memory into the physical address space of the virtual machine, and allocate additional memory for the current task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/memory_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management": {
+      "abstract": [
+        {
+          "text": "Create and run virtual CPUs, and manage CPU-specific registers and features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vCPU Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/1447317-vcpu_creation_behavior": {
+      "abstract": [
+        {
+          "text": "An enumeration representing the default creation options for virtual CPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/1447317-vcpu_creation_behavior",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vCPU Creation Behavior",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management/1447317-vcpu_creation_behavior"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3553338-execution_deadlines": {
+      "abstract": [
+        {
+          "text": "An enumeration that describes available execution deadlines available to vCPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3553338-execution_deadlines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Execution Deadlines",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management/3553338-execution_deadlines"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3567078-msr_permissions": {
+      "abstract": [
+        {
+          "text": "An enumeration that describes possible Model-Specific Register (MSR) permisssions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3567078-msr_permissions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MSR Permissions",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management/3567078-msr_permissions"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3727856-model-specific_registers": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3727856-model-specific_registers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model-Specific Registers",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management/3727856-model-specific_registers"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/extending_vcpu_capabilities_using_model-specific_registers": {
+      "abstract": [
+        {
+          "text": "Configure specific client performance monitoring and enable other vCPU capabilities using Model-Specific Registers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/extending_vcpu_capabilities_using_model-specific_registers",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending vCPU Capabilities Using Model-Specific Registers",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management/extending_vcpu_capabilities_using_model-specific_registers"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs": {
+      "abstract": [
+        {
+          "text": "Read and write to fields of the virtual machine control structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtual Machine Control Structure (VMCS)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs"
+      ],
+      "title": "Resource management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3570127",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441691-hv_vcpu_create",
+        "doc://com.apple.documentation/documentation/hypervisor/1441507-hv_vcpu_destroy",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vcpu_options_t",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/1447317-vcpu_creation_behavior",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vcpuid_t"
+      ],
+      "kind": "taskGroup",
+      "title": "Creation and destruction"
+    },
+    {
+      "anchor": "3570125",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3181548-hv_vcpu_run_until",
+        "doc://com.apple.documentation/documentation/hypervisor/1441468-hv_vcpu_interrupt",
+        "doc://com.apple.documentation/documentation/hypervisor/1441588-hv_vcpu_invalidate_tlb",
+        "doc://com.apple.documentation/documentation/hypervisor/1441386-hv_vcpu_flush",
+        "doc://com.apple.documentation/documentation/hypervisor/1441687-hv_vcpu_get_exec_time",
+        "doc://com.apple.documentation/documentation/hypervisor/1441231-hv_vcpu_run",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3553338-execution_deadlines"
+      ],
+      "kind": "taskGroup",
+      "title": "Runtime"
+    },
+    {
+      "anchor": "3570158",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441102-hv_vm_sync_tsc"
+      ],
+      "kind": "taskGroup",
+      "title": "Synchronization"
+    },
+    {
+      "anchor": "1676834",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/extending_vcpu_capabilities_using_model-specific_registers",
+        "doc://com.apple.documentation/documentation/hypervisor/1441346-hv_vcpu_read_msr",
+        "doc://com.apple.documentation/documentation/hypervisor/1441434-hv_vcpu_write_msr",
+        "doc://com.apple.documentation/documentation/hypervisor/1441240-hv_vcpu_enable_native_msr",
+        "doc://com.apple.documentation/documentation/hypervisor/3567097-hv_vcpu_set_msr_access",
+        "doc://com.apple.documentation/documentation/hypervisor/3567096-hv_vcpu_enable_managed_msr",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_msr_flags_t",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3727856-model-specific_registers",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management/3567078-msr_permissions"
+      ],
+      "kind": "taskGroup",
+      "title": "Model-Specific Registers"
+    },
+    {
+      "anchor": "1676784",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441678-hv_vcpu_read_register",
+        "doc://com.apple.documentation/documentation/hypervisor/1441540-hv_vcpu_write_register",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_x86_reg_t"
+      ],
+      "kind": "taskGroup",
+      "title": "CPU Registers"
+    },
+    {
+      "anchor": "1676814",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441058-hv_vcpu_read_fpstate",
+        "doc://com.apple.documentation/documentation/hypervisor/1441657-hv_vcpu_write_fpstate"
+      ],
+      "kind": "taskGroup",
+      "title": "Floating Point (FP) State"
+    },
+    {
+      "anchor": "3570159",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3181549-hv_vcpu_set_space"
+      ],
+      "kind": "taskGroup",
+      "title": "Memory Affinity"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/intel-based_mac/vcpu_management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/intel-based_mac/vcpu_management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

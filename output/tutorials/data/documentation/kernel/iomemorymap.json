@@ -1,0 +1,955 @@
+{
+  "abstract": [
+    {
+      "text": "A class defining common methods for describing a memory mapping.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorymap"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1442028,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMemoryMap",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOMemoryMap"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOMemoryMap"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOMemoryMap object represents a mapped range of memory, described by a IOMemoryDescriptor. The mapping may be in the kernel or a non-kernel task and has processor cache mode attributes. IOMemoryMap instances are created by IOMemoryDescriptor when it creates mappings in its map method, and returned to the caller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1441811-getsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1441811-getsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/1441811-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1441813-getaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1441813-getaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/1441813-getaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532970-iomapperinsertpage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532970-iomapperinsertpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapperInsertPage",
+      "type": "topic",
+      "url": "/documentation/kernel/1532970-iomapperinsertpage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532978-iomapperiovmfree": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532978-iomapperiovmfree",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapperIOVMFree",
+      "type": "topic",
+      "url": "/documentation/kernel/1532978-iomapperiovmfree"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1532986-iomapperiovmalloc": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1532986-iomapperiovmalloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapperIOVMAlloc",
+      "type": "topic",
+      "url": "/documentation/kernel/1532986-iomapperiovmalloc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575301-iomappedread64": {
+      "abstract": [
+        {
+          "text": "Read eight bytes from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575301-iomappedread64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead64",
+      "type": "topic",
+      "url": "/documentation/kernel/1575301-iomappedread64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575308-ioflushprocessorcache": {
+      "abstract": [
+        {
+          "text": "Flushes the processor cache for mapped memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575308-ioflushprocessorcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFlushProcessorCache",
+      "type": "topic",
+      "url": "/documentation/kernel/1575308-ioflushprocessorcache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575310-iomappedwrite32": {
+      "abstract": [
+        {
+          "text": "Write four bytes to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575310-iomappedwrite32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite32",
+      "type": "topic",
+      "url": "/documentation/kernel/1575310-iomappedwrite32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575311-iomappedread32": {
+      "abstract": [
+        {
+          "text": "Read four bytes from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575311-iomappedread32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead32",
+      "type": "topic",
+      "url": "/documentation/kernel/1575311-iomappedread32"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575313-iomappedwrite64": {
+      "abstract": [
+        {
+          "text": "Write eight bytes to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575313-iomappedwrite64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite64",
+      "type": "topic",
+      "url": "/documentation/kernel/1575313-iomappedwrite64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575315-iomappedwrite16": {
+      "abstract": [
+        {
+          "text": "Write two bytes to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575315-iomappedwrite16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite16",
+      "type": "topic",
+      "url": "/documentation/kernel/1575315-iomappedwrite16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575317-iomappedread8": {
+      "abstract": [
+        {
+          "text": "Read one byte from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575317-iomappedread8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead8",
+      "type": "topic",
+      "url": "/documentation/kernel/1575317-iomappedread8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575318-iomappedwrite8": {
+      "abstract": [
+        {
+          "text": "Write one byte to the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575318-iomappedwrite8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedWrite8",
+      "type": "topic",
+      "url": "/documentation/kernel/1575318-iomappedwrite8"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575322-iomappedread16": {
+      "abstract": [
+        {
+          "text": "Read two bytes from the desired \"Physical\" IOSpace address.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575322-iomappedread16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMappedRead16",
+      "type": "topic",
+      "url": "/documentation/kernel/1575322-iomappedread16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomapper": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapper",
+      "type": "topic",
+      "url": "/documentation/kernel/iomapper"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap": {
+      "abstract": [
+        {
+          "text": "A class defining common methods for describing a memory mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryMap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441758-getphysicaladdress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPhysicalAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441758-getphysicaladdress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441758-getphysicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441764-getmapoptions": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMapOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441764-getmapoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMapOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441764-getmapoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441766-getmemorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441766-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441766-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441789-getlength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441789-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441789-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441792-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441792-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441792-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441805-unmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441805-unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441805-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441809-getaddresstask": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAddressTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441809-getaddresstask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAddressTask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441809-getaddresstask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441817-getphysicalsegment": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPhysicalSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441817-getphysicalsegment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441817-getphysicalsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441843-getvirtualaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getVirtualAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441843-getvirtualaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getVirtualAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1441843-getvirtualaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442001-taggedrelease": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "taggedRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442001-taggedrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taggedRelease",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1442001-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442050-wirerange": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wireRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442050-wirerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wireRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1442050-wirerange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442054-redirect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "redirect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442054-redirect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "redirect",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1442054-redirect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442092-taskdied": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "taskDied"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442092-taskdied",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taskDied",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1442092-taskdied"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812407-getaddress": {
+      "abstract": [
+        {
+          "text": "Accessor to the length of the mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812407-getaddress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAddress()",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812407-getaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812414-getaddresstask": {
+      "abstract": [
+        {
+          "text": "Accessor to the task of the mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812414-getaddresstask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAddressTask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812414-getaddresstask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812419-getlength": {
+      "abstract": [
+        {
+          "text": "Accessor to the length of the mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812419-getlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812419-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812423-getmapoptions": {
+      "abstract": [
+        {
+          "text": "Accessor to the options the mapping was created with.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812423-getmapoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMapOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812423-getmapoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812429-getmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Accessor to the IOMemoryDescriptor the mapping was created from.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812429-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812429-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812435-getphysicaladdress": {
+      "abstract": [
+        {
+          "text": "Return the physical address of the first byte in the mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812435-getphysicaladdress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPhysicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812435-getphysicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812443-getphysicalsegment": {
+      "abstract": [
+        {
+          "text": "Break a mapping into its physically contiguous segments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812443-getphysicalsegment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPhysicalSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812443-getphysicalsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812448-getsize": {
+      "abstract": [
+        {
+          "text": "Accessor to the length of the mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812448-getsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSize()",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812448-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812459-getvirtualaddress": {
+      "abstract": [
+        {
+          "text": "Accessor to the virtual address of the first byte in the mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812459-getvirtualaddress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getVirtualAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812459-getvirtualaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812465-redirect": {
+      "abstract": [
+        {
+          "text": "Replace the memory mapped in a process with new backing memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812465-redirect",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "redirect",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812465-redirect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812474-unmap": {
+      "abstract": [
+        {
+          "text": "Force the IOMemoryMap to unmap, without destroying the object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812474-unmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "unmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/1812474-unmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180655-dispatch": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dispatch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180655-dispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/3180655-dispatch"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180656-getaddress": {
+      "abstract": [
+        {
+          "text": "Returns the address of the memory block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180656-getaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/3180656-getaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180657-getlength": {
+      "abstract": [
+        {
+          "text": "Returns the length of the memory block in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180657-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/3180657-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180658-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the memory map object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180658-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/3180658-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorymap/3438204-getoffset": {
+      "abstract": [
+        {
+          "text": "Returns the offset from the original start of the memory block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorymap/3438204-getoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetOffset",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorymap/3438204-getoffset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomapper",
+        "doc://com.apple.documentation/documentation/kernel/1575322-iomappedread16",
+        "doc://com.apple.documentation/documentation/kernel/1575311-iomappedread32",
+        "doc://com.apple.documentation/documentation/kernel/1575301-iomappedread64",
+        "doc://com.apple.documentation/documentation/kernel/1575317-iomappedread8",
+        "doc://com.apple.documentation/documentation/kernel/1575315-iomappedwrite16",
+        "doc://com.apple.documentation/documentation/kernel/1575310-iomappedwrite32",
+        "doc://com.apple.documentation/documentation/kernel/1575313-iomappedwrite64",
+        "doc://com.apple.documentation/documentation/kernel/1575318-iomappedwrite8",
+        "doc://com.apple.documentation/documentation/kernel/1532986-iomapperiovmalloc",
+        "doc://com.apple.documentation/documentation/kernel/1532978-iomapperiovmfree",
+        "doc://com.apple.documentation/documentation/kernel/1532970-iomapperinsertpage",
+        "doc://com.apple.documentation/documentation/kernel/1575308-ioflushprocessorcache"
+      ],
+      "title": "Mapped Memory"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1770715",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812407-getaddress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812414-getaddresstask",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812419-getlength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812423-getmapoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812429-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812435-getphysicaladdress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812443-getphysicalsegment",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812448-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812459-getvirtualaddress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812465-redirect",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1812474-unmap"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2559766",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1441813-getaddress",
+        "doc://com.apple.documentation/documentation/kernel/1441811-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180655-dispatch",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180656-getaddress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180657-getlength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/3438204-getoffset",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/3180658-free",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441809-getaddresstask",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441789-getlength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441764-getmapoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441766-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441792-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441758-getphysicaladdress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441817-getphysicalsegment",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441843-getvirtualaddress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442054-redirect",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442001-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442092-taskdied",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1441805-unmap",
+        "doc://com.apple.documentation/documentation/kernel/iomemorymap/1442050-wirerange"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorymap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

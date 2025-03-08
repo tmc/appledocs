@@ -1,0 +1,909 @@
+{
+  "abstract": [
+    {
+      "text": "An object that identifies a media playback or streaming environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:16BrowserEngineKit16MediaEnvironmentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MediaEnvironment"
+      }
+    ],
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MediaEnvironment"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MediaEnvironment"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MediaEnvironment"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To stream media in your browser app, create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "MediaEnvironment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the app, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/activate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before you begin any media playback or capture, including using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you get by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/makeCaptureSession()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you are done with the media environment, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/suspend()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you capture media input or prepare streaming content in your browser’s rendering extension, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/activate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess/grantCapability(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to grant a media playback and capture capability, which you create with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/mediaPlaybackAndCapture(environment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/createXPCRepresentation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to send the media environment to the rendering extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, grant the same capability to the web content extension for the page that’s playing or capturing media, by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess/grantCapability(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment": {
+      "abstract": [
+        {
+          "text": "An object that identifies a media playback or streaming environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaEnvironment",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/activate()": {
+      "abstract": [
+        {
+          "text": "Activates the media environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/activate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activate()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment/activate()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/createXPCRepresentation()": {
+      "abstract": [
+        {
+          "text": "Creates an encoded representation of the media environment, suitable for sending over an XPC connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createXPCRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/createXPCRepresentation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createXPCRepresentation()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment/createxpcrepresentation()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/init(webPage:)": {
+      "abstract": [
+        {
+          "text": "Creates a new media environment identified by the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "webPage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/init(webPage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(webPage:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment/init(webpage:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/init(xpcRepresentation:)": {
+      "abstract": [
+        {
+          "text": "Creates a media environment from an XPC representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "xpcRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@xpc_object_t",
+          "text": "xpc_object_t"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/init(xpcRepresentation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(xpcRepresentation:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment/init(xpcrepresentation:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/makeCaptureSession()": {
+      "abstract": [
+        {
+          "text": "Creates a new capture session in this media environment  or throws an error if it can not be created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSession",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/makeCaptureSession()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCaptureSession()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment/makecapturesession()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/suspend()": {
+      "abstract": [
+        {
+          "text": "Suspends the media environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspend"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/suspend()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspend()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/mediaenvironment/suspend()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability": {
+      "abstract": [
+        {
+          "text": "An enumeration that identifies capabilities that a browser app can grant to its extension processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProcessCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProcessCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProcessCapability",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/mediaPlaybackAndCapture(environment:)": {
+      "abstract": [
+        {
+          "text": "The helper extension process may access media hardware required for media capture and playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPlaybackAndCapture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit16MediaEnvironmentV",
+          "text": "MediaEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability/mediaPlaybackAndCapture(environment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProcessCapability.mediaPlaybackAndCapture(environment:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/processcapability/mediaplaybackandcapture(environment:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess/grantCapability(_:)": {
+      "abstract": [
+        {
+          "text": "Grants the specified capability to the process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "grantCapability"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17ProcessCapabilityO",
+          "text": "ProcessCapability"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17ProcessCapabilityO",
+          "text": "ProcessCapability"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17ProcessCapabilityO5GrantV",
+          "text": "Grant"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RenderingProcess/grantCapability(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "grantCapability(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/renderingprocess/grantcapability(_:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess/grantCapability(_:)": {
+      "abstract": [
+        {
+          "text": "Grants the specified capability to the process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "grantCapability"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17ProcessCapabilityO",
+          "text": "ProcessCapability"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17ProcessCapabilityO",
+          "text": "ProcessCapability"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17ProcessCapabilityO5GrantV",
+          "text": "Grant"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/WebContentProcess/grantCapability(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "grantCapability(_:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/webcontentprocess/grantcapability(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/XPC"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-capabilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/ProcessCapability"
+      ],
+      "title": "Extension capabilities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-media-environment",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/init(webPage:)",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/init(xpcRepresentation:)"
+      ],
+      "title": "Creating a media environment"
+    },
+    {
+      "anchor": "Sending-media-environments-over-XPC-connections",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/createXPCRepresentation()"
+      ],
+      "title": "Sending media environments over XPC connections"
+    },
+    {
+      "anchor": "Capturing-media-streams",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/activate()",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/makeCaptureSession()",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/MediaEnvironment/suspend()"
+      ],
+      "title": "Capturing media streams"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/mediaenvironment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1182 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies one or more policies that apply to the displayed certificates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setPolicies(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SFChooseIdentityPanel(im)setPolicies:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setPolicies"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "keyword",
+        "text": "Any"
+      },
+      {
+        "kind": "text",
+        "text": "!)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security Interface"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "setPolicies:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setPolicies(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPolicies"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "policies"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": "!)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The policies to use when evaluating the certificates’ status. You can pass either a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object or an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " (containing one or more ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances) in this parameter. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "policies",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the Apple X.509 Basic Policy is used.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "policies"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class evaluates trust for the certificates it displays. Applications typically display certificates in the context of a specific use, such as SSL or S/MIME. You should set only the policy references that apply to your intended use. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/certificate-key-and-trust-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of policies and object identifiers provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CDSA/CDSA.html#//apple_ref/doc/uid/TP40011172-CH4-CHDEEDBE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/SecPolicy": {
+      "abstract": [
+        {
+          "text": "An object that represents a trust policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecPolicy",
+      "type": "topic",
+      "url": "/documentation/Security/SecPolicy"
+    },
+    "doc://com.apple.documentation/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/Security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface": {
+      "abstract": [
+        {
+          "text": "Provide user interface elements for security features such as authorization, access to digital certificates, and access to items in keychains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security Interface",
+      "type": "topic",
+      "url": "/documentation/securityinterface"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel": {
+      "abstract": [
+        {
+          "text": "A panel or sheet containing a list of identities that a user can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFChooseIdentityPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFChooseIdentityPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFChooseIdentityPanel",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/informativeText()": {
+      "abstract": [
+        {
+          "text": "Returns the informative text currently displayed in the panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "informativeText"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/informativeText()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "informativeText"
+        }
+      ],
+      "role": "symbol",
+      "title": "informativeText()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel/informativetext()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/policies()": {
+      "abstract": [
+        {
+          "text": "Returns an array of policies used to evaluate the status of the displayed certificates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "policies"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/policies()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "policies"
+        }
+      ],
+      "role": "symbol",
+      "title": "policies()",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel/policies()"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setAlternateButtonTitle(_:)": {
+      "abstract": [
+        {
+          "text": "Customizes the title of the alternate button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAlternateButtonTitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setAlternateButtonTitle(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAlternateButtonTitle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAlternateButtonTitle(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel/setalternatebuttontitle(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setDefaultButtonTitle(_:)": {
+      "abstract": [
+        {
+          "text": "Customizes the title of the default button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDefaultButtonTitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setDefaultButtonTitle(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDefaultButtonTitle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDefaultButtonTitle(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel/setdefaultbuttontitle(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setInformativeText(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the optional informative text displayed in the panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInformativeText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setInformativeText(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setInformativeText:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setInformativeText(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel/setinformativetext(_:)"
+    },
+    "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setPolicies(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies one or more policies that apply to the displayed certificates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPolicies"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setPolicies(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPolicies:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPolicies(_:)",
+      "type": "topic",
+      "url": "/documentation/securityinterface/sfchooseidentitypanel/setpolicies(_:)"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CDSA/CDSA.html#//apple_ref/doc/uid/TP40011172-CH4-CHDEEDBE": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CDSA/CDSA.html#//apple_ref/doc/uid/TP40011172-CH4-CHDEEDBE",
+      "title": "AppleX509TP Module",
+      "titleInlineContent": [
+        {
+          "text": "AppleX509TP Module",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CDSA/CDSA.html#//apple_ref/doc/uid/TP40011172-CH4-CHDEEDBE"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-the-Appearance-of-the-Sheet-or-Panel",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setAlternateButtonTitle(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setDefaultButtonTitle(_:)",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/policies()",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/informativeText()",
+        "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setInformativeText(_:)"
+      ],
+      "title": "Customizing the Appearance of the Sheet or Panel"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "setPolicies:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPolicies:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Customizing-the-Appearance-of-the-Sheet-or-Panel",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setAlternateButtonTitle(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setDefaultButtonTitle(_:)",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/policies()",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/informativeText()",
+                "doc://com.apple.securityinterface/documentation/SecurityInterface/SFChooseIdentityPanel/setInformativeText(_:)"
+              ],
+              "title": "Customizing the Appearance of the Sheet or Panel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "setPolicies:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "id"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "policies"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The policies to use when evaluating the certificates’ status. You can pass either a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicy",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object or an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " (containing one or more ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Security/SecPolicy",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instances) in this parameter. If ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "policies",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", the Apple X.509 Basic Policy is used.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "policies"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1policies()/title",
+          "value": "policies"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1policies()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "policies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel/title",
+          "value": "SFChooseIdentityPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFChooseIdentityPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFChooseIdentityPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setPolicies(_:)/title",
+          "value": "setPolicies:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setPolicies(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPolicies:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecPolicy/title",
+          "value": "SecPolicyRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecPolicy/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__SecPolicy",
+              "text": "__SecPolicy"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecPolicyRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setInformativeText(_:)/title",
+          "value": "setInformativeText:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setInformativeText(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setInformativeText:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setDefaultButtonTitle(_:)/title",
+          "value": "setDefaultButtonTitle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setDefaultButtonTitle(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDefaultButtonTitle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1informativeText()/title",
+          "value": "informativeText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1informativeText()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "informativeText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setAlternateButtonTitle(_:)/title",
+          "value": "setAlternateButtonTitle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.securityinterface~1documentation~1SecurityInterface~1SFChooseIdentityPanel~1setAlternateButtonTitle(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAlternateButtonTitle:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/securityinterface/sfchooseidentitypanel/setpolicies(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/securityinterface/sfchooseidentitypanel/setpolicies(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

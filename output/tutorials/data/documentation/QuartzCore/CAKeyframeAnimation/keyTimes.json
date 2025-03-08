@@ -1,0 +1,1405 @@
+{
+  "abstract": [
+    {
+      "text": "An optional array of ",
+      "type": "text"
+    },
+    {
+      "code": "NSNumber",
+      "type": "codeVoice"
+    },
+    {
+      "text": " objects that define the time at which to apply a given keyframe segment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/keyTimes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CAKeyframeAnimation(py)keyTimes",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "keyTimes"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSNumber",
+        "text": "NSNumber"
+      },
+      {
+        "kind": "text",
+        "text": "]?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "keyTimes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "keyTimes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyTimes"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNumber",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNumber",
+              "text": "NSNumber"
+            },
+            {
+              "kind": "text",
+              "text": "]? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each value in the array is a floating point number between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that defines the time point (specified as a fraction of the animation’s total duration) at which to apply the corresponding keyframe value. Each successive value in the array must be greater than, or equal to, the previous value. Usually, the number of elements in the array should match the number of elements in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/values",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property or the number of control points in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/path",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If they do not, the timing of your animation might not be what you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The appropriate values to include in the array are dependent on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/cubic",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the first value in the array must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the last value must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". All intermediate values represent time points between the start and end times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/discrete",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the first value in the array must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the last value must be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The array should have one more entry than appears in the values array. For example, if there are two values, there should be three key times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/paced",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/cubicPaced",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the values in this property are ignored.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the values in this array are invalid or inappropriate for the current calculation mode, they are ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/cubic": {
+      "abstract": [
+        {
+          "text": "Smooth spline calculation between keyframe values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cubic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAAnimationCalculationMode",
+          "text": "CAAnimationCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/cubic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAAnimationCubic"
+        }
+      ],
+      "role": "symbol",
+      "title": "cubic",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationcalculationmode/cubic"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/cubicPaced": {
+      "abstract": [
+        {
+          "text": "Cubic keyframe values are interpolated to produce an even pace throughout the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cubicPaced"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAAnimationCalculationMode",
+          "text": "CAAnimationCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/cubicPaced",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAAnimationCubicPaced"
+        }
+      ],
+      "role": "symbol",
+      "title": "cubicPaced",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationcalculationmode/cubicpaced"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/discrete": {
+      "abstract": [
+        {
+          "text": "Each keyframe value is used in turn, no interpolated values are calculated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discrete"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAAnimationCalculationMode",
+          "text": "CAAnimationCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/discrete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAAnimationDiscrete"
+        }
+      ],
+      "role": "symbol",
+      "title": "discrete",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationcalculationmode/discrete"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/linear": {
+      "abstract": [
+        {
+          "text": "Simple linear calculation between keyframe values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAAnimationCalculationMode",
+          "text": "CAAnimationCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/linear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAAnimationLinear"
+        }
+      ],
+      "role": "symbol",
+      "title": "linear",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationcalculationmode/linear"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/paced": {
+      "abstract": [
+        {
+          "text": "Linear keyframe values are interpolated to produce an even pace throughout the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paced"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAAnimationCalculationMode",
+          "text": "CAAnimationCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationCalculationMode/paced",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAAnimationPaced"
+        }
+      ],
+      "role": "symbol",
+      "title": "paced",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationcalculationmode/paced"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation": {
+      "abstract": [
+        {
+          "text": "An object that provides keyframe animation capabilities for a layer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAKeyframeAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAKeyframeAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAKeyframeAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode": {
+      "abstract": [
+        {
+          "text": "Specifies how intermediate keyframe values are calculated by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAAnimationCalculationMode",
+          "text": "CAAnimationCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "calculationMode",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation/calculationmode"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/keyTimes": {
+      "abstract": [
+        {
+          "text": "An optional array of ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumber",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects that define the time at which to apply a given keyframe segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyTimes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/keyTimes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyTimes"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyTimes",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation/keytimes"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/path": {
+      "abstract": [
+        {
+          "text": "The path for a point-based property to follow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGPathRef",
+          "text": "CGPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/path",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "path"
+        }
+      ],
+      "role": "symbol",
+      "title": "path",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation/path"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions": {
+      "abstract": [
+        {
+          "text": "An optional array of ",
+          "type": "text"
+        },
+        {
+          "code": "CAMediaTimingFunction",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects that define the pacing for each keyframe segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timingFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CAMediaTimingFunction",
+          "text": "CAMediaTimingFunction"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timingFunctions"
+        }
+      ],
+      "role": "symbol",
+      "title": "timingFunctions",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation/timingfunctions"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/values": {
+      "abstract": [
+        {
+          "text": "An array of objects that specify the keyframe values to use for the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "values"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/values",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "values"
+        }
+      ],
+      "role": "symbol",
+      "title": "values",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation/values"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSNumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Keyframe-timing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode"
+      ],
+      "title": "Keyframe timing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "keyTimes"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyTimes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Keyframe-timing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/timingFunctions",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation/calculationMode"
+              ],
+              "title": "Keyframe timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<NSNumber *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "keyTimes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1values/title",
+          "value": "values"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1values/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "values"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/title",
+          "value": "CAKeyframeAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAKeyframeAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAKeyframeAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1cubic/title",
+          "value": "kCAAnimationCubic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1cubic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAAnimationCubic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1calculationMode/title",
+          "value": "calculationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1calculationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "calculationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1cubicPaced/title",
+          "value": "kCAAnimationCubicPaced"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1cubicPaced/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAAnimationCubicPaced"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1discrete/title",
+          "value": "kCAAnimationDiscrete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1discrete/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAAnimationDiscrete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1paced/title",
+          "value": "kCAAnimationPaced"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1paced/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAAnimationPaced"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1linear/title",
+          "value": "kCAAnimationLinear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationCalculationMode~1linear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAAnimationLinear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1timingFunctions/title",
+          "value": "timingFunctions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1timingFunctions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timingFunctions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1keyTimes/title",
+          "value": "keyTimes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1keyTimes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyTimes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1path/title",
+          "value": "path"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation~1path/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "path"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/cakeyframeanimation/keytimes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/cakeyframeanimation/keytimes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

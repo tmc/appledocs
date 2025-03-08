@@ -1,0 +1,640 @@
+{
+  "abstract": [
+    {
+      "text": "Read and write to fields of the virtual machine control structure.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3570161,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Virtual Machine Control Structure (VMCS)"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441053-hv_vmx_vcpu_set_apic_address": {
+      "abstract": [
+        {
+          "text": "Sets the address of the guest Advanced Programmable Interrupt Controller (APIC) for a vCPU in the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_set_apic_address"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, hv_gpaddr_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441053-hv_vmx_vcpu_set_apic_address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_set_apic_address(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441053-hv_vmx_vcpu_set_apic_address"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441144-hv_vmx_vcpu_write_vmcs": {
+      "abstract": [
+        {
+          "text": "Sets the value of a virtual machine control structure (VMCS) field of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_write_vmcs"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441144-hv_vmx_vcpu_write_vmcs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_write_vmcs(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441144-hv_vmx_vcpu_write_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441276-hv_vmx_read_capability": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the VMX virtualization capabilities of the host processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_read_capability"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vmx_capability_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441276-hv_vmx_read_capability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_read_capability(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441276-hv_vmx_read_capability"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441636-hv_vmx_vcpu_read_vmcs": {
+      "abstract": [
+        {
+          "text": "Returns, by reference, the current value of a virtual machine control structure (VMCS) field of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_read_vmcs"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441636-hv_vmx_vcpu_read_vmcs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_read_vmcs(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441636-hv_vmx_vcpu_read_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3182867-hv_vmx_vcpu_read_shadow_vmcs": {
+      "abstract": [
+        {
+          "text": "Returns the current value of a shadow VMCS field of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_read_shadow_vmcs"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3182867-hv_vmx_vcpu_read_shadow_vmcs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_read_shadow_vmcs(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3182867-hv_vmx_vcpu_read_shadow_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3182868-hv_vmx_vcpu_set_shadow_access": {
+      "abstract": [
+        {
+          "text": "Set the access permissions of a shadow VMCS field of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_set_shadow_access"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, hv_shadow_flags_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3182868-hv_vmx_vcpu_set_shadow_access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_set_shadow_access(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3182868-hv_vmx_vcpu_set_shadow_access"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3182869-hv_vmx_vcpu_write_shadow_vmcs": {
+      "abstract": [
+        {
+          "text": "Set the value of a shadow VMCS field of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_write_shadow_vmcs"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UInt64) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3182869-hv_vmx_vcpu_write_shadow_vmcs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_write_shadow_vmcs(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3182869-hv_vmx_vcpu_write_shadow_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3567094-hv_vmx_get_msr_info": {
+      "abstract": [
+        {
+          "text": "Returns information about guest MSR configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_get_msr_info"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vmx_msr_info_t, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3567094-hv_vmx_get_msr_info",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_get_msr_info(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3567094-hv_vmx_get_msr_info"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/3656557-hv_vmx_vcpu_get_cap_write_vmcs": {
+      "abstract": [
+        {
+          "text": "Returns the allowed_0 and allowed_1 masks for a VMCS field of a vCPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_vcpu_get_cap_write_vmcs"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_vcpuid_t, UInt32, UnsafeMutablePointer<UInt64>, UnsafeMutablePointer<UInt64>) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/3656557-hv_vmx_vcpu_get_cap_write_vmcs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_vcpu_get_cap_write_vmcs(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/3656557-hv_vmx_vcpu_get_cap_write_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_shadow_flags_t": {
+      "abstract": [
+        {
+          "text": "Shadow VMCS permissions for the set shadow access function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_shadow_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_shadow_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_shadow_flags_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_shadow_flags_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vmx_capability_t": {
+      "abstract": [
+        {
+          "text": "The type that describes Virtual Machine Extensions (VMX) capability fields.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_capability_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vmx_capability_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_capability_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vmx_capability_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_vmx_msr_info_t": {
+      "abstract": [
+        {
+          "text": "The type that describes Move to Status Register (MSR) information fields.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vmx_msr_info_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_vmx_msr_info_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vmx_msr_info_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_vmx_msr_info_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management": {
+      "abstract": [
+        {
+          "text": "Map memory into the physical address space of the virtual machine, and allocate additional memory for the current task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/memory_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management": {
+      "abstract": [
+        {
+          "text": "Create and run virtual CPUs, and manage CPU-specific registers and features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vCPU Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/vcpu_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs": {
+      "abstract": [
+        {
+          "text": "Read and write to fields of the virtual machine control structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtual Machine Control Structure (VMCS)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469436-virtual_machine_control_structur": {
+      "abstract": [
+        {
+          "text": "Identify the fields of the virtual machine control structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469436-virtual_machine_control_structur",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtual Machine Control Structure (VMCS) Field IDs",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469436-virtual_machine_control_structur"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469442-interrupt_request_irq_codes": {
+      "abstract": [
+        {
+          "text": "An enumeration that describes available interrupt codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469442-interrupt_request_irq_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Interrupt request (IRQ) codes",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469442-interrupt_request_irq_codes"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469470-vmx_exit_reasons": {
+      "abstract": [
+        {
+          "text": "An enumertion that describes the VMX exit reasons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469470-vmx_exit_reasons",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VMX Exit Reasons",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469470-vmx_exit_reasons"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469509-vmx_creation_behavior": {
+      "abstract": [
+        {
+          "text": "An enumeration that describes VMX creation behavior options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469509-vmx_creation_behavior",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VMX Creation Behavior",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469509-vmx_creation_behavior"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469645-vmx_capabilities": {
+      "abstract": [
+        {
+          "text": "An enumeration that represents the available VMX capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469645-vmx_capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VMX Capabilities",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469645-vmx_capabilities"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567083-shadow_permissions": {
+      "abstract": [
+        {
+          "text": "Permissions that define access to the shadow VMCS fields.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567083-shadow_permissions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shadow Permissions",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567083-shadow_permissions"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567084-msr_information_fields": {
+      "abstract": [
+        {
+          "text": "The type that describes Machine Specific Register (MSR) fields.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567084-msr_information_fields",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MSR Information Fields",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567084-msr_information_fields"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/virtual_machine_control_structure_vmcs_field_ids": {
+      "abstract": [
+        {
+          "text": "Fields you can read or change using the Hypervisor framework’s read and write functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/virtual_machine_control_structure_vmcs_field_ids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtual Machine Control Structure (VMCS) Field IDs",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/virtual_machine_control_structure_vmcs_field_ids"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/vcpu_management",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management"
+      ],
+      "title": "Resource management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1676863",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441276-hv_vmx_read_capability",
+        "doc://com.apple.documentation/documentation/hypervisor/3567094-hv_vmx_get_msr_info",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vmx_capability_t",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469645-vmx_capabilities",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_vmx_msr_info_t",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567084-msr_information_fields"
+      ],
+      "kind": "taskGroup",
+      "title": "Capabilities"
+    },
+    {
+      "anchor": "3570156",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/virtual_machine_control_structure_vmcs_field_ids",
+        "doc://com.apple.documentation/documentation/hypervisor/1441636-hv_vmx_vcpu_read_vmcs",
+        "doc://com.apple.documentation/documentation/hypervisor/1441144-hv_vmx_vcpu_write_vmcs",
+        "doc://com.apple.documentation/documentation/hypervisor/3656557-hv_vmx_vcpu_get_cap_write_vmcs",
+        "doc://com.apple.documentation/documentation/hypervisor/1441053-hv_vmx_vcpu_set_apic_address",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469436-virtual_machine_control_structur"
+      ],
+      "kind": "taskGroup",
+      "title": "Field management"
+    },
+    {
+      "anchor": "3570190",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/3182867-hv_vmx_vcpu_read_shadow_vmcs",
+        "doc://com.apple.documentation/documentation/hypervisor/3182868-hv_vmx_vcpu_set_shadow_access",
+        "doc://com.apple.documentation/documentation/hypervisor/3182869-hv_vmx_vcpu_write_shadow_vmcs",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_shadow_flags_t",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/3567083-shadow_permissions"
+      ],
+      "kind": "taskGroup",
+      "title": "Shadow fields"
+    },
+    {
+      "anchor": "3570160",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469509-vmx_creation_behavior",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469470-vmx_exit_reasons",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs/1469442-interrupt_request_irq_codes"
+      ],
+      "kind": "taskGroup",
+      "title": "Shared types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/intel-based_mac/virtual_machine_control_structure_vmcs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

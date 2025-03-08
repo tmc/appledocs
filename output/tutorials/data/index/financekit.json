@@ -1,0 +1,2676 @@
+{
+  "interfaceLanguages": {
+    "data": [
+      {
+        "children": [
+          {
+            "title": "Data storage",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Authorization",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Accounts",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Balances",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Orders",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Transactions",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Merchant categories",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Errors",
+            "type": "groupMarker"
+          }
+        ],
+        "path": "/documentation/financekit",
+        "title": "FinanceKit",
+        "type": "module"
+      }
+    ],
+    "occ": [
+      {
+        "children": [
+          {
+            "title": "Data storage",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Authorization",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Accounts",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Balances",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Orders",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Transactions",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Merchant categories",
+            "type": "groupMarker"
+          },
+          {
+            "title": "Errors",
+            "type": "groupMarker"
+          }
+        ],
+        "path": "/documentation/financekit",
+        "title": "FinanceKit",
+        "type": "module"
+      }
+    ],
+    "swift": [
+      {
+        "children": [
+          {
+            "title": "Data storage",
+            "type": "groupMarker"
+          },
+          {
+            "children": [
+              {
+                "title": "Retrieving the shared instance",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/shared",
+                "title": "static let shared: FinanceStore",
+                "type": "property"
+              },
+              {
+                "title": "Determining data availability",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/isdataavailable(_:)",
+                "title": "static func isDataAvailable(FinanceStore.DataType) -> Bool",
+                "type": "method"
+              },
+              {
+                "title": "Checking authorization status and requesting authorization",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/authorizationstatus()",
+                "title": "func authorizationStatus() async throws -> AuthorizationStatus",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/financestore/requestauthorization()",
+                "title": "func requestAuthorization() async throws -> AuthorizationStatus",
+                "type": "method"
+              },
+              {
+                "title": "Finding accounts",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/accounthistory(since:ismonitoring:)",
+                "title": "func accountHistory(since: FinanceStore.HistoryToken?, isMonitoring: Bool) -> FinanceStore.History<Account>",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/financestore/accounts(query:)",
+                "title": "func accounts(query: AccountQuery) async throws -> [Account]",
+                "type": "method"
+              },
+              {
+                "title": "Getting account balances",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/accountbalances(query:)",
+                "title": "func accountBalances(query: AccountBalanceQuery) async throws -> [AccountBalance]",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/financestore/accountbalancehistory(foraccountid:since:ismonitoring:)",
+                "title": "func accountBalanceHistory(forAccountID: UUID, since: FinanceStore.HistoryToken?, isMonitoring: Bool) -> FinanceStore.History<AccountBalance>",
+                "type": "method"
+              },
+              {
+                "title": "Searching for a specific order",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/containsorder(matching:updateddate:)",
+                "title": "func containsOrder(matching: FullyQualifiedOrderIdentifier, updatedDate: Date?) async throws -> FinanceStore.ContainsOrderResult",
+                "type": "method"
+              },
+              {
+                "title": "Saving or updating orders",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/saveorder(signedarchive:)",
+                "title": "func saveOrder(signedArchive: Data) async throws -> FinanceStore.SaveOrderResult",
+                "type": "method"
+              },
+              {
+                "title": "Monitoring transactions",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/transactionhistory(foraccountid:since:ismonitoring:)",
+                "title": "func transactionHistory(forAccountID: UUID, since: FinanceStore.HistoryToken?, isMonitoring: Bool) -> FinanceStore.History<Transaction>",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/financestore/transactions(query:)",
+                "title": "func transactions(query: TransactionQuery) async throws -> [Transaction]",
+                "type": "method"
+              },
+              {
+                "title": "Enumerations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/==(_:_:)",
+                    "title": "static func == (FinanceStore.ContainsOrderResult, FinanceStore.ContainsOrderResult) -> Bool",
+                    "type": "op"
+                  },
+                  {
+                    "title": "Enumeration Cases",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/exists",
+                    "title": "case exists",
+                    "type": "case"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/newerexists",
+                    "title": "case newerExists",
+                    "type": "case"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/notfound",
+                    "title": "case notFound",
+                    "type": "case"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/olderexists",
+                    "title": "case olderExists",
+                    "type": "case"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  },
+                  {
+                    "title": "Type Aliases",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/allcases-swift.typealias",
+                    "title": "FinanceStore.ContainsOrderResult.AllCases",
+                    "type": "typealias"
+                  },
+                  {
+                    "title": "Type Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/containsorderresult/allcases-swift.type.property",
+                    "title": "static var allCases: [FinanceStore.ContainsOrderResult]",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Default Implementations",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "children": [
+                      {
+                        "title": "Operators",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/containsorderresult/!=(_:_:)",
+                        "title": "static func != (Self, Self) -> Bool",
+                        "type": "op"
+                      }
+                    ],
+                    "path": "/documentation/financekit/financestore/containsorderresult/equatable-implementations",
+                    "title": "Equatable Implementations",
+                    "type": "collection"
+                  }
+                ],
+                "path": "/documentation/financekit/financestore/containsorderresult",
+                "title": "FinanceStore.ContainsOrderResult",
+                "type": "enum"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/datatype/==(_:_:)",
+                    "title": "static func == (FinanceStore.DataType, FinanceStore.DataType) -> Bool",
+                    "type": "op"
+                  },
+                  {
+                    "title": "Enumeration Cases",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/datatype/financialdata",
+                    "title": "case financialData",
+                    "type": "case"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/datatype/orders",
+                    "title": "case orders",
+                    "type": "case"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/datatype/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/datatype/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  },
+                  {
+                    "title": "Default Implementations",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "children": [
+                      {
+                        "title": "Operators",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/datatype/!=(_:_:)",
+                        "title": "static func != (Self, Self) -> Bool",
+                        "type": "op"
+                      }
+                    ],
+                    "path": "/documentation/financekit/financestore/datatype/equatable-implementations",
+                    "title": "Equatable Implementations",
+                    "type": "collection"
+                  }
+                ],
+                "path": "/documentation/financekit/financestore/datatype",
+                "title": "FinanceStore.DataType",
+                "type": "enum"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/==(_:_:)",
+                    "title": "static func == (FinanceStore.SaveOrderResult, FinanceStore.SaveOrderResult) -> Bool",
+                    "type": "op"
+                  },
+                  {
+                    "title": "Enumeration Cases",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/added",
+                    "title": "case added",
+                    "type": "case"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/cancelled",
+                    "title": "case cancelled",
+                    "type": "case"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/newerexisting",
+                    "title": "case newerExisting",
+                    "type": "case"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  },
+                  {
+                    "title": "Type Aliases",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/allcases-swift.typealias",
+                    "title": "FinanceStore.SaveOrderResult.AllCases",
+                    "type": "typealias"
+                  },
+                  {
+                    "title": "Type Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/saveorderresult/allcases-swift.type.property",
+                    "title": "static var allCases: [FinanceStore.SaveOrderResult]",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Default Implementations",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "children": [
+                      {
+                        "title": "Operators",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/saveorderresult/!=(_:_:)",
+                        "title": "static func != (Self, Self) -> Bool",
+                        "type": "op"
+                      }
+                    ],
+                    "path": "/documentation/financekit/financestore/saveorderresult/equatable-implementations",
+                    "title": "Equatable Implementations",
+                    "type": "collection"
+                  }
+                ],
+                "path": "/documentation/financekit/financestore/saveorderresult",
+                "title": "FinanceStore.SaveOrderResult",
+                "type": "enum"
+              },
+              {
+                "title": "Structures",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/changes/deleted",
+                    "title": "let deleted: [Model.ID]",
+                    "type": "property"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/changes/inserted",
+                    "title": "let inserted: [Model]",
+                    "type": "property"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/changes/newtoken",
+                    "title": "let newToken: FinanceStore.HistoryToken",
+                    "type": "property"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/changes/updated",
+                    "title": "let updated: [Model]",
+                    "type": "property"
+                  }
+                ],
+                "path": "/documentation/financekit/financestore/changes",
+                "title": "FinanceStore.Changes",
+                "type": "struct"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Structures",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "children": [
+                      {
+                        "title": "Instance Methods",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/iterator/next()",
+                        "title": "func next() async throws -> FinanceStore.Changes<Model>?",
+                        "type": "method"
+                      },
+                      {
+                        "title": "Type Aliases",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/iterator/element",
+                        "title": "FinanceStore.History.Iterator.Element",
+                        "type": "typealias"
+                      },
+                      {
+                        "title": "Default Implementations",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "children": [
+                          {
+                            "title": "Instance Methods",
+                            "type": "groupMarker"
+                          },
+                          {
+                            "path": "/documentation/financekit/financestore/history/iterator/next(isolation:)",
+                            "title": "func next(isolation: isolated (any Actor)?) async throws(Self.Failure) -> Self.Element?",
+                            "type": "method"
+                          }
+                        ],
+                        "path": "/documentation/financekit/financestore/history/iterator/asynciteratorprotocol-implementations",
+                        "title": "AsyncIteratorProtocol Implementations",
+                        "type": "collection"
+                      }
+                    ],
+                    "path": "/documentation/financekit/financestore/history/iterator",
+                    "title": "FinanceStore.History.Iterator",
+                    "type": "struct"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/history/makeasynciterator()",
+                    "title": "func makeAsyncIterator() -> FinanceStore.History<Model>.Iterator",
+                    "type": "method"
+                  },
+                  {
+                    "title": "Type Aliases",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/history/asynciterator",
+                    "title": "FinanceStore.History.AsyncIterator",
+                    "type": "typealias"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/history/element",
+                    "title": "FinanceStore.History.Element",
+                    "type": "typealias"
+                  },
+                  {
+                    "title": "Default Implementations",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "children": [
+                      {
+                        "title": "Instance Methods",
+                        "type": "groupMarker"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/allsatisfy(_:)",
+                        "title": "func allSatisfy((Self.Element) async throws -> Bool) async rethrows -> Bool",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/compactmap(_:)-74zw7",
+                        "title": "func compactMap<ElementOfResult>((Self.Element) async -> ElementOfResult?) -> AsyncCompactMapSequence<Self, ElementOfResult>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/compactmap(_:)-94ejy",
+                        "title": "func compactMap<ElementOfResult>((Self.Element) async throws -> ElementOfResult?) -> AsyncThrowingCompactMapSequence<Self, ElementOfResult>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/contains(where:)",
+                        "title": "func contains(where: (Self.Element) async throws -> Bool) async rethrows -> Bool",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/drop(while:)",
+                        "title": "func drop(while: (Self.Element) async -> Bool) -> AsyncDropWhileSequence<Self>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/dropfirst(_:)",
+                        "title": "func dropFirst(Int) -> AsyncDropFirstSequence<Self>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/filter(_:)",
+                        "title": "func filter((Self.Element) async -> Bool) -> AsyncFilterSequence<Self>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/first(where:)",
+                        "title": "func first(where: (Self.Element) async throws -> Bool) async rethrows -> Self.Element?",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/flatmap(_:)-166m8",
+                        "title": "func flatMap<SegmentOfResult>((Self.Element) async throws -> SegmentOfResult) -> AsyncThrowingFlatMapSequence<Self, SegmentOfResult>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/flatmap(_:)-64kmg",
+                        "title": "func flatMap<SegmentOfResult>((Self.Element) async -> SegmentOfResult) -> AsyncFlatMapSequence<Self, SegmentOfResult>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/flatmap(_:)-8xy21",
+                        "title": "func flatMap<SegmentOfResult>((Self.Element) async -> SegmentOfResult) -> AsyncFlatMapSequence<Self, SegmentOfResult>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/flatmap(_:)-98bo5",
+                        "title": "func flatMap<SegmentOfResult>((Self.Element) async -> SegmentOfResult) -> AsyncFlatMapSequence<Self, SegmentOfResult>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/map(_:)-9fjs6",
+                        "title": "func map<Transformed>((Self.Element) async throws -> Transformed) -> AsyncThrowingMapSequence<Self, Transformed>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/map(_:)-cawx",
+                        "title": "func map<Transformed>((Self.Element) async -> Transformed) -> AsyncMapSequence<Self, Transformed>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/max(by:)",
+                        "title": "func max(by: (Self.Element, Self.Element) async throws -> Bool) async rethrows -> Self.Element?",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/min(by:)",
+                        "title": "func min(by: (Self.Element, Self.Element) async throws -> Bool) async rethrows -> Self.Element?",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/prefix(_:)",
+                        "title": "func prefix(Int) -> AsyncPrefixSequence<Self>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/prefix(while:)",
+                        "title": "func prefix(while: (Self.Element) async -> Bool) rethrows -> AsyncPrefixWhileSequence<Self>",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/reduce(_:_:)",
+                        "title": "func reduce<Result>(Result, (Result, Self.Element) async throws -> Result) async rethrows -> Result",
+                        "type": "method"
+                      },
+                      {
+                        "path": "/documentation/financekit/financestore/history/reduce(into:_:)",
+                        "title": "func reduce<Result>(into: Result, (inout Result, Self.Element) async throws -> Void) async rethrows -> Result",
+                        "type": "method"
+                      }
+                    ],
+                    "path": "/documentation/financekit/financestore/history/asyncsequence-implementations",
+                    "title": "AsyncSequence Implementations",
+                    "type": "collection"
+                  }
+                ],
+                "path": "/documentation/financekit/financestore/history",
+                "title": "FinanceStore.History",
+                "type": "struct"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Initializers",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/historytoken/init(from:)",
+                    "title": "init(from: any Decoder) throws",
+                    "type": "init"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financestore/historytoken/encode(to:)",
+                    "title": "func encode(to: any Encoder) throws",
+                    "type": "method"
+                  }
+                ],
+                "path": "/documentation/financekit/financestore/historytoken",
+                "title": "FinanceStore.HistoryToken",
+                "type": "struct"
+              }
+            ],
+            "path": "/documentation/financekit/financestore",
+            "title": "FinanceStore",
+            "type": "class"
+          },
+          {
+            "title": "Authorization",
+            "type": "groupMarker"
+          },
+          {
+            "path": "/documentation/financekit/financestore/authorizationstatus()",
+            "title": "func authorizationStatus() async throws -> AuthorizationStatus",
+            "type": "method"
+          },
+          {
+            "path": "/documentation/financekit/financestore/requestauthorization()",
+            "title": "func requestAuthorization() async throws -> AuthorizationStatus",
+            "type": "method"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/==(_:_:)",
+                "title": "static func == (AuthorizationStatus, AuthorizationStatus) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/authorized",
+                "title": "case authorized",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/denied",
+                "title": "case denied",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/notdetermined",
+                "title": "case notDetermined",
+                "type": "case"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/hashvalue",
+                "title": "var hashValue: Int",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/authorizationstatus/hash(into:)",
+                "title": "func hash(into: inout Hasher)",
+                "type": "method"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/authorizationstatus/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/authorizationstatus/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/authorizationstatus",
+            "title": "AuthorizationStatus",
+            "type": "enum"
+          },
+          {
+            "title": "Accounts",
+            "type": "groupMarker"
+          },
+          {
+            "path": "/documentation/financekit/financestore/accounts(query:)",
+            "title": "func accounts(query: AccountQuery) async throws -> [Account]",
+            "type": "method"
+          },
+          {
+            "path": "/documentation/financekit/financestore/accounthistory(since:ismonitoring:)",
+            "title": "func accountHistory(since: FinanceStore.HistoryToken?, isMonitoring: Bool) -> FinanceStore.History<Account>",
+            "type": "method"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/==(_:_:)",
+                "title": "static func == (AssetAccount, AssetAccount) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/accountdescription",
+                "title": "let accountDescription: String?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/currencycode",
+                "title": "let currencyCode: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/displayname",
+                "title": "let displayName: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/id-swift.property",
+                "title": "let id: UUID",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/institutionname",
+                "title": "let institutionName: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/openingdate",
+                "title": "let openingDate: Date?",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/assetaccount/id-swift.typealias",
+                "title": "AssetAccount.ID",
+                "type": "typealias"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/assetaccount/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/assetaccount/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/assetaccount",
+            "title": "AssetAccount",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/==(_:_:)",
+                "title": "static func == (LiabilityAccount, LiabilityAccount) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/accountdescription",
+                "title": "let accountDescription: String?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/creditinformation",
+                "title": "let creditInformation: AccountCreditInformation",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/currencycode",
+                "title": "let currencyCode: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/displayname",
+                "title": "let displayName: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/id-swift.property",
+                "title": "let id: UUID",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/institutionname",
+                "title": "let institutionName: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/openingdate",
+                "title": "let openingDate: Date?",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/liabilityaccount/id-swift.typealias",
+                "title": "LiabilityAccount.ID",
+                "type": "typealias"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/liabilityaccount/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/liabilityaccount/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/liabilityaccount",
+            "title": "LiabilityAccount",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/account/==(_:_:)",
+                "title": "static func == (Account, Account) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/account/asset(_:)",
+                "title": "case asset(AssetAccount)",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/account/liability(_:)",
+                "title": "case liability(LiabilityAccount)",
+                "type": "case"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/account/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/account/accountdescription",
+                "title": "var accountDescription: String?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/assetaccount",
+                "title": "var assetAccount: AssetAccount?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/currencycode",
+                "title": "var currencyCode: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/displayname",
+                "title": "var displayName: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/id-swift.property",
+                "title": "var id: UUID",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/institutionname",
+                "title": "var institutionName: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/liabilityaccount",
+                "title": "var liabilityAccount: LiabilityAccount?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/account/openingdate",
+                "title": "var openingDate: Date?",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/account/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/account/id-swift.typealias",
+                "title": "Account.ID",
+                "type": "typealias"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/account/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/account/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/account",
+            "title": "Account",
+            "type": "enum"
+          },
+          {
+            "title": "Balances",
+            "type": "groupMarker"
+          },
+          {
+            "path": "/documentation/financekit/financestore/accountbalances(query:)",
+            "title": "func accountBalances(query: AccountBalanceQuery) async throws -> [AccountBalance]",
+            "type": "method"
+          },
+          {
+            "path": "/documentation/financekit/financestore/accountbalancehistory(foraccountid:since:ismonitoring:)",
+            "title": "func accountBalanceHistory(forAccountID: UUID, since: FinanceStore.HistoryToken?, isMonitoring: Bool) -> FinanceStore.History<AccountBalance>",
+            "type": "method"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/==(_:_:)",
+                "title": "static func == (AccountBalance, AccountBalance) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/accountid",
+                "title": "let accountID: UUID",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/available",
+                "title": "var available: Balance?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/booked",
+                "title": "var booked: Balance?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/currencycode",
+                "title": "var currencyCode: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/currentbalance",
+                "title": "let currentBalance: CurrentBalance",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/id-swift.property",
+                "title": "let id: UUID",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalance/id-swift.typealias",
+                "title": "AccountBalance.ID",
+                "type": "typealias"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/accountbalance/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/accountbalance/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/accountbalance",
+            "title": "AccountBalance",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalancequery/init(sortdescriptors:predicate:limit:offset:)",
+                "title": "init(sortDescriptors: [SortDescriptor<AccountBalance>], predicate: Predicate<AccountBalance>?, limit: Int?, offset: Int?)",
+                "type": "init"
+              },
+              {
+                "title": "Type Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountbalancequery/predicate(availablesince:until:)",
+                "title": "static func predicate(availableSince: Date, until: Date?) -> Predicate<AccountBalance>",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/accountbalancequery/predicate(bookedsince:until:)",
+                "title": "static func predicate(bookedSince: Date, until: Date?) -> Predicate<AccountBalance>",
+                "type": "method"
+              }
+            ],
+            "path": "/documentation/financekit/accountbalancequery",
+            "title": "AccountBalanceQuery",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/balance/==(_:_:)",
+                "title": "static func == (Balance, Balance) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/balance/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/balance/amount",
+                "title": "let amount: CurrencyAmount",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/balance/asofdate",
+                "title": "let asOfDate: Date",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/balance/creditdebitindicator",
+                "title": "let creditDebitIndicator: CreditDebitIndicator",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/balance/hashvalue",
+                "title": "var hashValue: Int",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/balance/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/balance/hash(into:)",
+                "title": "func hash(into: inout Hasher)",
+                "type": "method"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/balance/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/balance/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/balance",
+            "title": "Balance",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/credit",
+                "title": "case credit",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/debit",
+                "title": "case debit",
+                "type": "case"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/init(rawvalue:)",
+                "title": "init?(rawValue: Int16)",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/rawvalue-swift.property",
+                "title": "var rawValue: Int16",
+                "type": "property"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/allcases-swift.typealias",
+                "title": "CreditDebitIndicator.AllCases",
+                "type": "typealias"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/rawvalue-swift.typealias",
+                "title": "CreditDebitIndicator.RawValue",
+                "type": "typealias"
+              },
+              {
+                "title": "Type Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/creditdebitindicator/allcases-swift.type.property",
+                "title": "static var allCases: [CreditDebitIndicator]",
+                "type": "property"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/creditdebitindicator/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/creditdebitindicator/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Initializers",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/creditdebitindicator/init(from:)",
+                    "title": "init(from: any Decoder) throws",
+                    "type": "init"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/creditdebitindicator/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/creditdebitindicator/encode(to:)",
+                    "title": "func encode(to: any Encoder) throws",
+                    "type": "method"
+                  },
+                  {
+                    "path": "/documentation/financekit/creditdebitindicator/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  }
+                ],
+                "path": "/documentation/financekit/creditdebitindicator/rawrepresentable-implementations",
+                "title": "RawRepresentable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/creditdebitindicator",
+            "title": "CreditDebitIndicator",
+            "type": "enum"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/==(_:_:)",
+                "title": "static func == (CurrentBalance, CurrentBalance) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/available(_:)",
+                "title": "case available(Balance)",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/availableandbooked(available:booked:)",
+                "title": "case availableAndBooked(available: Balance, booked: Balance)",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/booked(_:)",
+                "title": "case booked(Balance)",
+                "type": "case"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/hashvalue",
+                "title": "var hashValue: Int",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/currentbalance/hash(into:)",
+                "title": "func hash(into: inout Hasher)",
+                "type": "method"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/currentbalance/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/currentbalance/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/currentbalance",
+            "title": "CurrentBalance",
+            "type": "enum"
+          },
+          {
+            "title": "Orders",
+            "type": "groupMarker"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/==(_:_:)",
+                "title": "static func == (FullyQualifiedOrderIdentifier, FullyQualifiedOrderIdentifier) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/init(ordertypeidentifier:orderidentifier:)",
+                "title": "init(orderTypeIdentifier: String, orderIdentifier: String)",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/hashvalue",
+                "title": "var hashValue: Int",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/orderidentifier",
+                "title": "var orderIdentifier: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/ordertypeidentifier",
+                "title": "var orderTypeIdentifier: String",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/hash(into:)",
+                "title": "func hash(into: inout Hasher)",
+                "type": "method"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/fullyqualifiedorderidentifier/description",
+                    "title": "var description: String",
+                    "type": "property"
+                  }
+                ],
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/customstringconvertible-implementations",
+                "title": "CustomStringConvertible Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/fullyqualifiedorderidentifier/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/fullyqualifiedorderidentifier/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/fullyqualifiedorderidentifier",
+            "title": "FullyQualifiedOrderIdentifier",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/historytoken/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financestore/historytoken/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              }
+            ],
+            "path": "/documentation/financekit/financestore/historytoken",
+            "title": "FinanceStore.HistoryToken",
+            "type": "struct"
+          },
+          {
+            "path": "/documentation/financekit/financestore/saveorder(signedarchive:)",
+            "title": "func saveOrder(signedArchive: Data) async throws -> FinanceStore.SaveOrderResult",
+            "type": "method"
+          },
+          {
+            "title": "Transactions",
+            "type": "groupMarker"
+          },
+          {
+            "path": "/documentation/financekit/financestore/transactionhistory(foraccountid:since:ismonitoring:)",
+            "title": "func transactionHistory(forAccountID: UUID, since: FinanceStore.HistoryToken?, isMonitoring: Bool) -> FinanceStore.History<Transaction>",
+            "type": "method"
+          },
+          {
+            "path": "/documentation/financekit/financestore/transactions(query:)",
+            "title": "func transactions(query: TransactionQuery) async throws -> [Transaction]",
+            "type": "method"
+          },
+          {
+            "children": [
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountquery/init(sortdescriptors:predicate:limit:offset:)",
+                "title": "init(sortDescriptors: [SortDescriptor<Account>], predicate: Predicate<Account>?, limit: Int?, offset: Int?)",
+                "type": "init"
+              }
+            ],
+            "path": "/documentation/financekit/accountquery",
+            "title": "AccountQuery",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/==(_:_:)",
+                "title": "static func == (AccountCreditInformation, AccountCreditInformation) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/creditlimit",
+                "title": "let creditLimit: CurrencyAmount?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/hashvalue",
+                "title": "var hashValue: Int",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/minimumnextpaymentamount",
+                "title": "let minimumNextPaymentAmount: CurrencyAmount?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/nextpaymentduedate",
+                "title": "let nextPaymentDueDate: Date?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/overduepaymentamount",
+                "title": "let overduePaymentAmount: CurrencyAmount?",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/accountcreditinformation/hash(into:)",
+                "title": "func hash(into: inout Hasher)",
+                "type": "method"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/accountcreditinformation/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/accountcreditinformation/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/accountcreditinformation",
+            "title": "AccountCreditInformation",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currencyamount/==(_:_:)",
+                "title": "static func == (CurrencyAmount, CurrencyAmount) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currencyamount/amount",
+                "title": "let amount: Decimal",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/currencyamount/currencycode",
+                "title": "let currencyCode: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/currencyamount/hashvalue",
+                "title": "var hashValue: Int",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/currencyamount/hash(into:)",
+                "title": "func hash(into: inout Hasher)",
+                "type": "method"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/currencyamount/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/currencyamount/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/currencyamount",
+            "title": "CurrencyAmount",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transaction/==(_:_:)",
+                "title": "static func == (Transaction, Transaction) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transaction/init(from:)",
+                "title": "init(from: any Decoder) throws",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transaction/accountid",
+                "title": "let accountID: UUID",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/creditdebitindicator",
+                "title": "let creditDebitIndicator: CreditDebitIndicator",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/foreigncurrencyamount",
+                "title": "let foreignCurrencyAmount: CurrencyAmount?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/foreigncurrencyexchangerate",
+                "title": "let foreignCurrencyExchangeRate: Decimal?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/id-swift.property",
+                "title": "let id: UUID",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/merchantcategorycode",
+                "title": "let merchantCategoryCode: MerchantCategoryCode?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/merchantname",
+                "title": "let merchantName: String?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/originaltransactiondescription",
+                "title": "let originalTransactionDescription: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/posteddate",
+                "title": "let postedDate: Date?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/status",
+                "title": "let status: TransactionStatus",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/transactionamount",
+                "title": "let transactionAmount: CurrencyAmount",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/transactiondate",
+                "title": "let transactionDate: Date",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/transactiondescription",
+                "title": "let transactionDescription: String",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/transaction/transactiontype",
+                "title": "let transactionType: TransactionType",
+                "type": "property"
+              },
+              {
+                "title": "Instance Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transaction/encode(to:)",
+                "title": "func encode(to: any Encoder) throws",
+                "type": "method"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transaction/id-swift.typealias",
+                "title": "Transaction.ID",
+                "type": "typealias"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transaction/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/transaction/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/transaction",
+            "title": "Transaction",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionquery/init(sortdescriptors:predicate:limit:offset:)",
+                "title": "init(sortDescriptors: [SortDescriptor<Transaction>], predicate: Predicate<Transaction>?, limit: Int?, offset: Int?)",
+                "type": "init"
+              },
+              {
+                "title": "Type Methods",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionquery/predicate(formerchantcategorycodes:)",
+                "title": "static func predicate(forMerchantCategoryCodes: [MerchantCategoryCode]) -> Predicate<Transaction>",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/transactionquery/predicate(forstatuses:)",
+                "title": "static func predicate(forStatuses: [TransactionStatus]) -> Predicate<Transaction>",
+                "type": "method"
+              },
+              {
+                "path": "/documentation/financekit/transactionquery/predicate(fortransactiontypes:)",
+                "title": "static func predicate(forTransactionTypes: [TransactionType]) -> Predicate<Transaction>",
+                "type": "method"
+              }
+            ],
+            "path": "/documentation/financekit/transactionquery",
+            "title": "TransactionQuery",
+            "type": "struct"
+          },
+          {
+            "children": [
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/adjustment",
+                "title": "case adjustment",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/atm",
+                "title": "case atm",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/billpayment",
+                "title": "case billPayment",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/check",
+                "title": "case check",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/deposit",
+                "title": "case deposit",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/directdebit",
+                "title": "case directDebit",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/directdeposit",
+                "title": "case directDeposit",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/dividend",
+                "title": "case dividend",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/fee",
+                "title": "case fee",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/interest",
+                "title": "case interest",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/loan",
+                "title": "case loan",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/pointofsale",
+                "title": "case pointOfSale",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/refund",
+                "title": "case refund",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/standingorder",
+                "title": "case standingOrder",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/transfer",
+                "title": "case transfer",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/unknown",
+                "title": "case unknown",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/withdrawal",
+                "title": "case withdrawal",
+                "type": "case"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/init(rawvalue:)",
+                "title": "init?(rawValue: Int16)",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/rawvalue-swift.property",
+                "title": "var rawValue: Int16",
+                "type": "property"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/allcases-swift.typealias",
+                "title": "TransactionType.AllCases",
+                "type": "typealias"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/rawvalue-swift.typealias",
+                "title": "TransactionType.RawValue",
+                "type": "typealias"
+              },
+              {
+                "title": "Type Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactiontype/allcases-swift.type.property",
+                "title": "static var allCases: [TransactionType]",
+                "type": "property"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactiontype/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/transactiontype/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Initializers",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactiontype/init(from:)",
+                    "title": "init(from: any Decoder) throws",
+                    "type": "init"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactiontype/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactiontype/encode(to:)",
+                    "title": "func encode(to: any Encoder) throws",
+                    "type": "method"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactiontype/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  }
+                ],
+                "path": "/documentation/financekit/transactiontype/rawrepresentable-implementations",
+                "title": "RawRepresentable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/transactiontype",
+            "title": "TransactionType",
+            "type": "enum"
+          },
+          {
+            "children": [
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/authorized",
+                "title": "case authorized",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/booked",
+                "title": "case booked",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/memo",
+                "title": "case memo",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/pending",
+                "title": "case pending",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/rejected",
+                "title": "case rejected",
+                "type": "case"
+              },
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/init(rawvalue:)",
+                "title": "init?(rawValue: Int16)",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/rawvalue-swift.property",
+                "title": "var rawValue: Int16",
+                "type": "property"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/allcases-swift.typealias",
+                "title": "TransactionStatus.AllCases",
+                "type": "typealias"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/rawvalue-swift.typealias",
+                "title": "TransactionStatus.RawValue",
+                "type": "typealias"
+              },
+              {
+                "title": "Type Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/transactionstatus/allcases-swift.type.property",
+                "title": "static var allCases: [TransactionStatus]",
+                "type": "property"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactionstatus/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/transactionstatus/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Initializers",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactionstatus/init(from:)",
+                    "title": "init(from: any Decoder) throws",
+                    "type": "init"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactionstatus/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactionstatus/encode(to:)",
+                    "title": "func encode(to: any Encoder) throws",
+                    "type": "method"
+                  },
+                  {
+                    "path": "/documentation/financekit/transactionstatus/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  }
+                ],
+                "path": "/documentation/financekit/transactionstatus/rawrepresentable-implementations",
+                "title": "RawRepresentable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/transactionstatus",
+            "title": "TransactionStatus",
+            "type": "enum"
+          },
+          {
+            "title": "Merchant categories",
+            "type": "groupMarker"
+          },
+          {
+            "children": [
+              {
+                "title": "Initializers",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/merchantcategorycode/init(rawvalue:)",
+                "title": "init(rawValue: Int16)",
+                "type": "init"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/merchantcategorycode/rawvalue-swift.property",
+                "title": "let rawValue: Int16",
+                "type": "property"
+              },
+              {
+                "title": "Type Aliases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/merchantcategorycode/rawvalue-swift.typealias",
+                "title": "MerchantCategoryCode.RawValue",
+                "type": "typealias"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/description",
+                    "title": "var description: String",
+                    "type": "property"
+                  }
+                ],
+                "path": "/documentation/financekit/merchantcategorycode/customstringconvertible-implementations",
+                "title": "CustomStringConvertible Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/merchantcategorycode/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Initializers",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/init(_:)",
+                    "title": "init?(String)",
+                    "type": "init"
+                  }
+                ],
+                "path": "/documentation/financekit/merchantcategorycode/losslessstringconvertible-implementations",
+                "title": "LosslessStringConvertible Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Initializers",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/init(from:)",
+                    "title": "init(from: any Decoder) throws",
+                    "type": "init"
+                  },
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/hashvalue",
+                    "title": "var hashValue: Int",
+                    "type": "property"
+                  },
+                  {
+                    "title": "Instance Methods",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/encode(to:)",
+                    "title": "func encode(to: any Encoder) throws",
+                    "type": "method"
+                  },
+                  {
+                    "path": "/documentation/financekit/merchantcategorycode/hash(into:)",
+                    "title": "func hash(into: inout Hasher)",
+                    "type": "method"
+                  }
+                ],
+                "path": "/documentation/financekit/merchantcategorycode/rawrepresentable-implementations",
+                "title": "RawRepresentable Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/merchantcategorycode",
+            "title": "MerchantCategoryCode",
+            "type": "struct"
+          },
+          {
+            "title": "Errors",
+            "type": "groupMarker"
+          },
+          {
+            "children": [
+              {
+                "title": "Operators",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/==(_:_:)",
+                "title": "static func == (FinanceError, FinanceError) -> Bool",
+                "type": "op"
+              },
+              {
+                "title": "Enumeration Cases",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/datarestricted(_:)",
+                "title": "case dataRestricted(FinanceStore.DataType)",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/historytokeninvalid",
+                "title": "case historyTokenInvalid",
+                "type": "case"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/unknown",
+                "title": "case unknown",
+                "type": "case"
+              },
+              {
+                "title": "Instance Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/errorcode",
+                "title": "var errorCode: Int",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/errordescription",
+                "title": "var errorDescription: String?",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/erroruserinfo",
+                "title": "var errorUserInfo: [String : Any]",
+                "type": "property"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/failurereason",
+                "title": "var failureReason: String?",
+                "type": "property"
+              },
+              {
+                "title": "Type Properties",
+                "type": "groupMarker"
+              },
+              {
+                "path": "/documentation/financekit/financeerror/errordomain",
+                "title": "static var errorDomain: String",
+                "type": "property"
+              },
+              {
+                "title": "Default Implementations",
+                "type": "groupMarker"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Type Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financeerror/errordomain-8bbwd",
+                    "title": "static var errorDomain: String",
+                    "type": "property"
+                  }
+                ],
+                "path": "/documentation/financekit/financeerror/customnserror-implementations",
+                "title": "CustomNSError Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Operators",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financeerror/!=(_:_:)",
+                    "title": "static func != (Self, Self) -> Bool",
+                    "type": "op"
+                  }
+                ],
+                "path": "/documentation/financekit/financeerror/equatable-implementations",
+                "title": "Equatable Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financeerror/localizeddescription",
+                    "title": "var localizedDescription: String",
+                    "type": "property"
+                  }
+                ],
+                "path": "/documentation/financekit/financeerror/error-implementations",
+                "title": "Error Implementations",
+                "type": "collection"
+              },
+              {
+                "children": [
+                  {
+                    "title": "Instance Properties",
+                    "type": "groupMarker"
+                  },
+                  {
+                    "path": "/documentation/financekit/financeerror/helpanchor",
+                    "title": "var helpAnchor: String?",
+                    "type": "property"
+                  },
+                  {
+                    "path": "/documentation/financekit/financeerror/recoverysuggestion",
+                    "title": "var recoverySuggestion: String?",
+                    "type": "property"
+                  }
+                ],
+                "path": "/documentation/financekit/financeerror/localizederror-implementations",
+                "title": "LocalizedError Implementations",
+                "type": "collection"
+              }
+            ],
+            "path": "/documentation/financekit/financeerror",
+            "title": "FinanceError",
+            "type": "enum"
+          }
+        ],
+        "path": "/documentation/financekit",
+        "title": "FinanceKit",
+        "type": "module"
+      }
+    ]
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 1,
+    "patch": 0
+  }
+}

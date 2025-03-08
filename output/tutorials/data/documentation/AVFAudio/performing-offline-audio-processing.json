@@ -1,0 +1,895 @@
+{
+  "abstract": [
+    {
+      "text": "Add offline audio processing features to your app by enabling offline manual rendering mode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/performing-offline-audio-processing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Performing offline audio processing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You commonly use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add advanced real-time audio playback features to your app. In a real-time scenario, the audio hardware drives the engine’s I/O and renders the data to the output hardware, such as the device’s built-in speaker or connected headphones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realtime.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use ",
+              "type": "text"
+            },
+            {
+              "code": "AVAudioEngine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to perform ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "offline",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " audio processing by enabling the engine’s offline manual rendering mode.  In this mode, the engine’s input and output nodes are disconnected from the audio hardware and the rendering is driven by your app. You use offline manual rendering mode to perform advanced postprocessing tasks, such as applying effects or performing audio analysis, usually much faster than you can do in real time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "offline.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample playground shows you how to enable the audio engine’s manual rendering mode and drive the rendering process from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-Source-Audio",
+          "level": 3,
+          "text": "Prepare the Source Audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample loads its audio data from a file contained within the playground. It creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to wrap the on-disk file and retrieves its input format, which is used to configure later stages of the audio pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sourceFile: AVAudioFile",
+            "let format: AVAudioFormat",
+            "do {",
+            "    let sourceFileURL = Bundle.main.url(forResource: \"Rhythm\", withExtension: \"caf\")!",
+            "    sourceFile = try AVAudioFile(forReading: sourceFileURL)",
+            "    format = sourceFile.processingFormat",
+            "} catch {",
+            "    fatalError(\"Unable to load the source audio file: \\(error.localizedDescription).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-and-Configure-the-Audio-Engine",
+          "level": 3,
+          "text": "Create and Configure the Audio Engine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the engine and configures it to perform the desired processing. It creates a player node to drive the input, feeds its output into a reverb node, and connects the output of the reverb node to the main mixer node (which is implicitly connected to the output node). Finally, it schedules the audio file for playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let engine = AVAudioEngine()",
+            "let player = AVAudioPlayerNode()",
+            "let reverb = AVAudioUnitReverb()",
+            "",
+            "engine.attach(player)",
+            "engine.attach(reverb)",
+            "",
+            "// Set the desired reverb parameters.",
+            "reverb.loadFactoryPreset(.mediumHall)",
+            "reverb.wetDryMix = 50",
+            "",
+            "// Connect the nodes.",
+            "engine.connect(player, to: reverb, format: format)",
+            "engine.connect(reverb, to: engine.mainMixerNode, format: format)",
+            "",
+            "// Schedule the source file.",
+            "player.scheduleFile(sourceFile, at: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-Offline-Manual-Rendering-Mode",
+          "level": 3,
+          "text": "Enable Offline Manual Rendering Mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you started the engine at this point, you’d hear the audio playing through the active output device. To change this default behavior, you need to explicitly configure the engine to use manual rendering mode. The sample enables this mode by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/enableManualRenderingMode(_:format:maximumFrameCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing it the offline rendering mode value, the audio format, and the maximum number of frames to render in a given pass of the render thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    // The maximum number of frames the engine renders in any single render call.",
+            "    let maxFrames: AVAudioFrameCount = 4096",
+            "    try engine.enableManualRenderingMode(.offline, format: format,",
+            "                                         maximumFrameCount: maxFrames)",
+            "} catch {",
+            "    fatalError(\"Enabling manual rendering mode failed: \\(error).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the configuration complete, the sample starts the engine and tells the player to play.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    try engine.start()",
+            "    player.play()",
+            "} catch {",
+            "    fatalError(\"Unable to start audio engine: \\(error).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Prepare-the-Output-Destinations",
+          "level": 3,
+          "text": "Prepare the Output Destinations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike in a real-time playback scenario, the output from the audio engine isn’t rendered to the output hardware, but is instead rendered to an output buffer and ultimately written to a file on disk. The sample creates the buffer object to render into, and an output file in your ",
+              "type": "text"
+            },
+            {
+              "code": "~/Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory to save the processed audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The output buffer to which the engine renders the processed data.",
+            "let buffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat,",
+            "                              frameCapacity: engine.manualRenderingMaximumFrameCount)!",
+            "",
+            "let outputFile: AVAudioFile",
+            "do {",
+            "    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]",
+            "    let outputURL = documentsURL.appendingPathComponent(\"Rhythm-processed.caf\")",
+            "    outputFile = try AVAudioFile(forWriting: outputURL, settings: sourceFile.fileFormat.settings)",
+            "} catch {",
+            "    fatalError(\"Unable to open output audio file: \\(error).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Manually-Render-the-Audio",
+          "level": 3,
+          "text": "Manually Render the Audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sequentially loops over the full duration of the input audio file, and in each pass, asks the engine to render the next batch of frames to the output buffer. If the audio engine successfully renders the data, the sample writes the buffer to the output file on disk. When the sample finishes processing the audio data, it stops the player and engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "while engine.manualRenderingSampleTime < sourceFile.length {",
+            "    do {",
+            "        let frameCount = sourceFile.length - engine.manualRenderingSampleTime",
+            "        let framesToRender = min(AVAudioFrameCount(frameCount), buffer.frameCapacity)",
+            "        ",
+            "        let status = try engine.renderOffline(framesToRender, to: buffer)",
+            "        ",
+            "        switch status {",
+            "            ",
+            "        case .success:",
+            "            // The data rendered successfully. Write it to the output file.",
+            "            try outputFile.write(from: buffer)",
+            "            ",
+            "        case .insufficientDataFromInputNode:",
+            "            // Applicable only when using the input node as one of the sources.",
+            "            break",
+            "            ",
+            "        case .cannotDoInCurrentContext:",
+            "            // The engine couldn't render in the current render call.",
+            "            // Retry in the next iteration.",
+            "            break",
+            "            ",
+            "        case .error:",
+            "            // An error occurred while rendering the audio.",
+            "            fatalError(\"The manual rendering failed.\")",
+            "        }",
+            "    } catch {",
+            "        fatalError(\"The manual rendering failed: \\(error).\")",
+            "    }",
+            "}",
+            "",
+            "// Stop the player node and engine.",
+            "player.stop()",
+            "engine.stop()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ca0e22ea61f7/PerformingOfflineAudioProcessing.zip": {
+      "checksum": "ca0e22ea61f786a3d5ef6f9e3f7b9a94b94a9dbcc396171b488710b5381c5b39db218e31cf18a1165645a3003194770f2d1941aa7abc8fb02112e4ca1e51570e",
+      "identifier": "ca0e22ea61f7/PerformingOfflineAudioProcessing.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ca0e22ea61f7/PerformingOfflineAudioProcessing.zip"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/enableManualRenderingMode(_:format:maximumFrameCount:)": {
+      "abstract": [
+        {
+          "text": "Sets the engine to operate in manual rendering mode with the render format and maximum frame count you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableManualRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioEngineManualRenderingMode",
+          "text": "AVAudioEngineManualRenderingMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumFrameCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioFrameCount",
+          "text": "AVAudioFrameCount"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/enableManualRenderingMode(_:format:maximumFrameCount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enableManualRenderingMode:format:maximumFrameCount:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enableManualRenderingMode(_:format:maximumFrameCount:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine/enablemanualrenderingmode(_:format:maximumframecount:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile": {
+      "abstract": [
+        {
+          "text": "An object that represents an audio file that the system can open for reading or writing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioFile"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioFile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioFile",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiofile"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode": {
+      "abstract": [
+        {
+          "text": "An object that receives audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSinkNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosinknode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode": {
+      "abstract": [
+        {
+          "text": "An object that supplies audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSourceNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosourcenode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine": {
+      "abstract": [
+        {
+          "text": "Perform advanced real-time and offline audio processing, implement 3D spatialization, and work with MIDI and samplers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Engine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-engine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator": {
+      "abstract": [
+        {
+          "text": "Use an audio source node and a custom render callback to generate audio signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a signal generator",
+      "type": "topic",
+      "url": "/documentation/avfaudio/building-a-signal-generator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "offline.png": {
+      "alt": "Flow diagram showing an app using an audio engine in an offline context. The audio flows from the app to a player node, then to an effect node, followed by the output node, and finally back to the app to write the processed audio to disk.",
+      "identifier": "offline.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6a15fd001f0ceebcd185b9ba077250c/offline.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1d5a062d263206388cdc56edb3722e9/offline~dark.png"
+        }
+      ]
+    },
+    "realtime.png": {
+      "alt": "Flow diagram showing an app using an audio engine in a real-time context. The audio flows from the app to a player node, then to a mixer node, followed by the output node, and ultimately to the device speaker or connected headphones.",
+      "identifier": "realtime.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7dde6099f292530041b1e699e27d9ec3/realtime.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b1043c53c1606143dbaf449470bf24b/realtime~dark.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ca0e22ea61f7/PerformingOfflineAudioProcessing.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rendering",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/building-a-signal-generator",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode"
+      ],
+      "title": "Rendering"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rendering",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode"
+              ],
+              "title": "Rendering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/title",
+          "value": "AVAudioFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioFile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/title",
+          "value": "AVAudioEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1enableManualRenderingMode(_:format:maximumFrameCount:)/title",
+          "value": "enableManualRenderingMode:format:maximumFrameCount:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1enableManualRenderingMode(_:format:maximumFrameCount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enableManualRenderingMode:format:maximumFrameCount:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/title",
+          "value": "AVAudioSourceNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSourceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSourceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/title",
+          "value": "AVAudioSinkNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSinkNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSinkNode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/performing-offline-audio-processing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/performing-offline-audio-processing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

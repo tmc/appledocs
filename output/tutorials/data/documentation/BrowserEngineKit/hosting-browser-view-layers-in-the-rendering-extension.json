@@ -1,0 +1,1243 @@
+{
+  "abstract": [
+    {
+      "text": "Coordinate view-hierarchy and layer-hierarchy changes between processes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/hosting-browser-view-layers-in-the-rendering-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Hosting browser view layers in the rendering extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your browser app’s alternative browser engine is split between different extensions, you coordinate those extensions to prepare the browser’s UI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, your browser controls are rendered by the host app, and media is streamed in the rendering extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create layer hierarchies to manage ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in the rendering extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Host those layers in a hosting view that you add to your view hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Indicate to the operating system that the view contains hosted layers, and coordinate changes to the layer hierarchy between your host app and rendering extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you create images or render content to an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/IOSurface/IOSurfaceRef",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in your rendering extension, you can send that object to the host object over XPC and don’t need to render a hosted layer.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you render UI in a web content extension, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "IOSurfaceRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the rendering extension, or generate any UI in the rendering extension other than a ",
+                  "type": "text"
+                },
+                {
+                  "code": "CALayer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you need to create a visibility propagation interaction for the view in the host app.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/propagating-view-visibility-information-to-browser-extensions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-hosted-layer-hierarchy-and-a-hosting-view",
+          "level": 3,
+          "text": "Create a hosted layer hierarchy and a hosting view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the extension process that prepares the rendered content, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and set its layer to the root layer in the content’s layer hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Get the layer hierarchy’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and send it over XPC to your browser app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let layer: CALayer = // Create your content layer.",
+            "if let hierarchy = try? LayerHierarchy() {",
+            "  hierarchy.layer = layer",
+            "  let xpcHandle = hierarchy.handle.createXPCRepresentation()",
+            "  // Send the handle to your browser app, using XPC.",
+            "  // Retain the hierarchy while your app's using it.",
+            "  self.storedHierarchy = hierarchy ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using XPC in browser apps and extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the host app, add the handle to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let xpcHandle: xpc_object_t = // Get the handle from an XPC message.",
+            "if let handle = try? LayerHierarchyHandle(xpcRepresentation: xpcHandle) {",
+            "  let hostingView = LayerHierarchyHostingView()",
+            "  hostingView.handle = handle",
+            "  // Prepare the view for display.",
+            "  self.view.addSubview(hostingView)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Coordinate-updates-to-the-view-and-layer-hierarchy",
+          "level": 3,
+          "text": "Coordinate updates to the view and layer hierarchy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need to make changes to the view hierarchy that involve the ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHierarchyHostingView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", coordinate the changes between the host app and the extension that controls the hosted layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can initiate the update in either the host app or the extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To initiate the update in the host app, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", add the ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHierarchyHostingView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and make changes to the view or its superviews.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use XPC to send a representation of the ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHierarchyHostingTransactionCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the extension, then ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " the transaction coordinator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let coordinator = try? LayerHierarchyHostingTransactionCoordinator() {",
+            "  coordinator.add(hostingView)",
+            "  // Make changes to the hosting view or its view hierarchy.",
+            "  let xpcCoordinator = coordinator.createXPCRepresentation()",
+            "  // Send the xpcCoordinator to the extension that's managing the view's layer.",
+            "  coordinator.commit()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the extension, use the XPC representation of the coordinator to create a ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHierarchyHostingTransactionCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and add the layer hierarchy to the transaction coordinator.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Make changes to the layer or its sublayers, then commit the transaction coordinator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let xpcCoordinator: xpc_object_t = // Get the object from an XPC message.",
+            "if let coordinator = try? LayerHostingHierarchyTransactionCoordinator(xpcRepresentation: xpcCoordinator) {",
+            "  coordinator.add(self.storedHierarchy)",
+            "  // Make change to the layer or its sublayers.",
+            "  coordinator.commit()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to add layers or views to the transaction coordinator before you manipulate those layers or views.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Commit the transaction coordinator as the last action in the process of updating the views or layers, after you send the XPC representation of the transaction coordinator to the other process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To initiate the update in the extension, create a ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHostingHierarchyTransactionCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to track changes to the layer hierarchy, then send it to the host app to create the transaction coordinator you use to track changes to the view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "LayerHierarchyHostingTransactionCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t communicate any information about the updates you make to the views and layers you add to them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use your XPC communication channel to send the context of any changes to views and layers between your browser app and extension processes, along with the transaction coordinator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep the lifetime of transaction coordinators — from initialization until you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — as short as possible to avoid making your UI unresponsive.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system expects you to call ",
+              "type": "text"
+            },
+            {
+              "code": "commit()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within a short interval, and stops coordinating transactions if you exceed this duration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A person using your browser app experiences this as glitches in your app’s user interface and inconsistent animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dispose-of-views-with-hosted-layers",
+          "level": 3,
+          "text": "Dispose of views with hosted layers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the layer that’s rendered in a ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHierarchyHostingView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is no longer needed, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the layer hierarchy in the extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Send an XPC message to notify the browser to remove the view from its superview.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you invalidate a ",
+              "type": "text"
+            },
+            {
+              "code": "LayerHierarchy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can no longer use that hierarchy or its hosting view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy": {
+      "abstract": [
+        {
+          "text": "An object that holds a reference to layers rendered in another process’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchy"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchy"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchy",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchy"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates a layer hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy/invalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchy/invalidate()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHandle": {
+      "abstract": [
+        {
+          "text": "A reference to a layer hierarchy that you share between processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchyHandle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhandle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator": {
+      "abstract": [
+        {
+          "text": "Synchronizes updates to views and layers in different processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingTransactionCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingTransactionCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchyHostingTransactionCoordinator",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()": {
+      "abstract": [
+        {
+          "code": "commit",
+          "type": "codeVoice"
+        },
+        {
+          "text": " must be called on ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "every",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " instance and it must be the last call to each instance.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "note that it does not commit ",
+          "type": "text"
+        },
+        {
+          "code": "CATransaction",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s but rather commits the coordination of transactions in the render server.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "note that coordinators should have as constrained a lifespan as possible and will timeout if held open too long.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator/commit()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView": {
+      "abstract": [
+        {
+          "text": "A view that hosts a layer hierarchy you manage in another process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingView"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerHierarchyHostingView"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerHierarchyHostingView",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/layerhierarchyhostingview"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/propagating-view-visibility-information-to-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Register the extensions that contribute to preparing your browser app’s UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/propagating-view-visibility-information-to-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Propagating view visibility information to extension processes",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination": {
+      "abstract": [
+        {
+          "text": "Display content in the browser’s UI that an extension renders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View coordination",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/view-coordination"
+    },
+    "doc://com.apple.documentation/documentation/IOSurface/IOSurfaceRef": {
+      "abstract": [
+        {
+          "text": "Data type representing an IOSurface opaque object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOSurfaceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface/IOSurfaceRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSurfaceRef",
+      "type": "topic",
+      "url": "/documentation/IOSurface/IOSurfaceRef"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Layer-hosting",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHandle"
+      ],
+      "title": "Layer hosting"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Layer-hosting",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchy",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingView",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHostingTransactionCoordinator",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/LayerHierarchyHandle"
+              ],
+              "title": "Layer hosting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingView/title",
+          "value": "BELayerHierarchyHostingView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy/title",
+          "value": "BELayerHierarchy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator/title",
+          "value": "BELayerHierarchyHostingTransactionCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingTransactionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHostingTransactionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHandle/title",
+          "value": "BELayerHierarchyHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BELayerHierarchyHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchyHostingTransactionCoordinator~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1LayerHierarchy~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1IOSurface~1IOSurfaceRef/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__IOSurface",
+              "text": "__IOSurface"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOSurfaceRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/hosting-browser-view-layers-in-the-rendering-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/hosting-browser-view-layers-in-the-rendering-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
