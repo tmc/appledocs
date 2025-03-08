@@ -1,0 +1,1508 @@
+{
+  "abstract": [
+    {
+      "text": "Register and respond to external GPU notifications that a person initiates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling External GPU Additions and Removals"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person can connect or disconnect external GPUs from a Mac at any time. The following sequence of events occurs when a person properly adds and removes an external GPU from the system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person physically connects an external GPU, macOS adds it to the system, and Metal makes the GPU available to your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "While the system has one or more external GPUs, macOS presents a menu bar icon that allows a person to safely disconnect any external GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person safely disconnects an external GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal notifies your app of the request, and your app migrates all current and future work off of the external GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After all apps (including yours) have stopped using the external GPU, macOS notifies the user that it’s safe to disconnect the GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system removes the external GPU so a person can physically disconnect the GPU from the Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can support external GPUs effectively by responding to these events appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A person can disconnect an external GPU from a Mac at any time, without requesting or following a safe disconnect procedure. Prepare your app for this possibility and take actions in response to an unexpected removal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-a-GPU-Eject-Policy",
+          "level": 3,
+          "text": "Set a GPU Eject Policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can control how your app responds to a safe disconnect request for an external GPU by configuring the ",
+              "type": "text"
+            },
+            {
+              "code": "GPUEjectPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can assign the key to one of the following string values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Tells the system your app manually responds to the safe disconnect request. Your app must register and respond to the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " notification Metal posts. The system waits for your app to remove all references to the external GPU before notifying a person that it’s safe to disconnect the GPU.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "“wait”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allow macOS to quit and relaunch your app with another GPU. Your app can save any state before it quits by implementing the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:willEncodeRestorableState:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method, and restore it at launch by implementing the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:didDecodeRestorableState:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "“relaunch”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allows macOS to force your app to quit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "“kill”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Support external GPUs effectively by setting the ",
+                  "type": "text"
+                },
+                {
+                  "code": "GPUEjectPolicy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "“wait”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and appropriately respond to a safe disconnect (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") notification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-a-GPU-Selection-Policy",
+          "level": 3,
+          "text": "Set a GPU Selection Policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can control whether Metal prefers to use or avoid external GPUs by configuring the ",
+              "type": "text"
+            },
+            {
+              "code": "GPUSelectionPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can assign the key to one of the following string values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metal tries to avoid creating contexts on external GPUs. For legacy OpenGL apps, OpenGL also tries to avoid creating contexts for external GPUs. Set this option only if your app doesn’t run well on an external GPU.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "“avoidRemovable”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If external GPUs are visible to the system, Metal prefers them over other GPUs. Similarly, for legacy OpenGL apps, OpenGL also prefers to create contexts for the external GPU.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "“preferRemovable”",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Register-for-External-GPU-Notifications",
+          "level": 3,
+          "text": "Register for External GPU Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get a list of all the Metal devices available to a system and register an observer that’s called whenever this list changes (or may change due to a safe disconnect request).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let devicesWithObserver = MTLCopyAllDevicesWithObserver(handler: { (device, name) in",
+                    "    self.handleExternalGPUEvents(device: device, notification: name)",
+                    "})",
+                    "deviceList = devicesWithObserver.devices",
+                    "deviceObserver = devicesWithObserver.observer"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id <NSObject> deviceObserver  = nil;",
+                    "NSArray<id<MTLDevice>> *deviceList = nil;",
+                    "deviceList = MTLCopyAllDevicesWithObserver(&deviceObserver,",
+                    "                                           ^(id<MTLDevice> device, MTLDeviceNotificationName name) {",
+                    "                                               [self handleExternalGPUEventsForDevice:device notification:name];",
+                    "                                           });",
+                    "_deviceObserver = deviceObserver;",
+                    "_deviceList = deviceList;"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deregister the observer, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-External-GPU-Notifications",
+          "level": 3,
+          "text": "Respond to External GPU Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal notifies your app about the following external GPU events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metal posts this notification when macOS adds an external GPU to the system. Evaluate the updated list of devices and consider using the new addition.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/wasAdded",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metal posts this notification when the user initiates a safe disconnect request for an external GPU. Your app has approximately one second to migrate work off the device and remove all references to it. If your app fails to do so, macOS notifies the user that your app is blocking the safe disconnect request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Metal posts this notification when macOS removes an external GPU from the system and your app still has references to that device. If the user safely disconnected an external GPU, Metal posts this notification after it posts a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " notification. If the user unexpectedly disconnected an external GPU, Metal posts this notification without first posting a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " notification. After macOS removes an external GPU, Metal completes any command buffers queued for the device with an error, and any new API calls that reference the device fail with an error.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/wasRemoved",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up a method to respond to the notifications, and pass that method to the ",
+              "type": "text"
+            },
+            {
+              "code": "handler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func handleExternalGPUEvents(device: MTLDevice, notification: MTLDeviceNotificationName) {",
+                    "    switch notification {",
+                    "    case .wasAdded:",
+                    "        // Handle addition",
+                    "        break",
+                    "    case .removalRequested:",
+                    "        // Handle safe disconnect",
+                    "        break",
+                    "    case .wasRemoved:",
+                    "        // Handle removal",
+                    "        break",
+                    "    default:",
+                    "        break",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)handleExternalGPUEventsForDevice:(id<MTLDevice>)device notification:(MTLDeviceNotificationName)notification",
+                    "{",
+                    "    if (notification == MTLDeviceWasAddedNotification) {  }",
+                    "    else if (notification == MTLDeviceRemovalRequestedNotification) {  }",
+                    "    else if (notification == MTLDeviceWasRemovedNotification) {  }",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:didDecodeRestorableState:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app finished decoding its restorable state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "app"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDecodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:didDecodeRestorableState:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didDecodeRestorableState:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/application(_:didDecodeRestorableState:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:willEncodeRestorableState:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app is about to encode its restorable state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "app"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willEncodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:willEncodeRestorableState:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:willEncodeRestorableState:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/application(_:willEncodeRestorableState:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver": {
+      "abstract": [
+        {
+          "text": "Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MTLCopyAllDevicesWithObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCopyAllDevicesWithObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCopyAllDevicesWithObserver",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcopyalldeviceswithobserver"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested": {
+      "abstract": [
+        {
+          "text": "A notification that Metal sends to observers when a person requests to remove a GPU device from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removalRequested"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLDeviceNotificationName",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/removalRequested",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceRemovalRequestedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "removalRequested",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationname/removalrequested"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/wasAdded": {
+      "abstract": [
+        {
+          "text": "A notification that Metal sends to observers when the system adds a GPU device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasAdded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLDeviceNotificationName",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/wasAdded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceWasAddedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "wasAdded",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationname/wasadded"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/wasRemoved": {
+      "abstract": [
+        {
+          "text": "A notification that Metal sends to observers when the system removes a GPU device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasRemoved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLDeviceNotificationName",
+          "text": "MTLDeviceNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDeviceNotificationName/wasRemoved",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDeviceWasRemovedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "wasRemoved",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevicenotificationname/wasremoved"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a registered observer of device notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRemoveDeviceObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRemoveDeviceObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRemoveDeviceObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRemoveDeviceObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlremovedeviceobserver(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    },
+    "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus": {
+      "abstract": [
+        {
+          "text": "Use high-speed connections between GPUs to transfer data quickly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Transferring Data Between Connected GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/transferring-data-between-connected-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/transferring-data-with-infinity-fabric-link": {
+      "abstract": [
+        {
+          "text": "Efficiently execute and visualize a compute-intensive simulation using multiple GPUs with a peer-to-peer connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/transferring-data-with-infinity-fabric-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transferring Data with Infinity Fabric Link",
+      "type": "topic",
+      "url": "/documentation/metal/transferring-data-with-infinity-fabric-link"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-External-GPUs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+        "doc://com.apple.metal/documentation/Metal/transferring-data-with-infinity-fabric-link"
+      ],
+      "title": "Working with External GPUs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-External-GPUs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+                "doc://com.apple.metal/documentation/Metal/transferring-data-with-infinity-fabric-link"
+              ],
+              "title": "Working with External GPUs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName~1wasRemoved/title",
+          "value": "MTLDeviceWasRemovedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName~1wasRemoved/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceWasRemovedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRemoveDeviceObserver(_:)/title",
+          "value": "MTLRemoveDeviceObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRemoveDeviceObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRemoveDeviceObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:willEncodeRestorableState:)/title",
+          "value": "application:willEncodeRestorableState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:willEncodeRestorableState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "app"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willEncodeRestorableState:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName~1wasAdded/title",
+          "value": "MTLDeviceWasAddedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName~1wasAdded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceWasAddedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:didDecodeRestorableState:)/title",
+          "value": "application:didDecodeRestorableState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:didDecodeRestorableState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "app"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didDecodeRestorableState:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "coder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName~1removalRequested/title",
+          "value": "MTLDeviceRemovalRequestedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDeviceNotificationName~1removalRequested/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDeviceRemovalRequestedNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/handling-external-gpu-additions-and-removals"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/handling-external-gpu-additions-and-removals"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

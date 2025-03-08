@@ -1,16 +1,32 @@
 {
   "abstract": [
     {
-      "text": "Delete an App Clip invocation you make available to testers in TestFlight.",
+      "text": "Get information about a specific advanced App Clip experience.",
       "type": "text"
     }
   ],
   "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
     "major": {
       "change": "modified",
       "platform": "App Store Connect API",
       "versions": [
         "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
         "3.6"
       ]
     }
@@ -25,7 +41,7 @@
   },
   "identifier": {
     "interfaceLanguage": "data",
-    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_"
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipAdvancedExperiences-_id_"
   },
   "kind": "symbol",
   "legalNotices": {
@@ -34,7 +50,7 @@
     "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
   },
   "metadata": {
-    "externalID": "rest:app_store_connect_api:delete:v1-betaAppClipInvocations-{}",
+    "externalID": "rest:app_store_connect_api:get:v1-appClipAdvancedExperiences-{}",
     "modules": [
       {
         "name": "App Store Connect API"
@@ -43,7 +59,7 @@
     "navigatorTitle": [
       {
         "kind": "identifier",
-        "text": "DELETE /v1/betaAppClipInvocations/{id}"
+        "text": "GET /v1/appClipAdvancedExperiences/{id}"
       }
     ],
     "platforms": [
@@ -56,7 +72,7 @@
     "role": "symbol",
     "roleHeading": "Web Service Endpoint",
     "symbolKind": "httpRequest",
-    "title": "Delete an App Clip Invocation for Testers in TestFlight"
+    "title": "Read Advanced App Clip Experience Information"
   },
   "primaryContentSections": [
     {
@@ -65,7 +81,7 @@
       "tokens": [
         {
           "kind": "method",
-          "text": "DELETE"
+          "text": "GET"
         },
         {
           "kind": "text",
@@ -77,7 +93,7 @@
         },
         {
           "kind": "path",
-          "text": "v1/betaAppClipInvocations/"
+          "text": "v1/appClipAdvancedExperiences/"
         },
         {
           "kind": "parameter",
@@ -93,7 +109,7 @@
             {
               "inlineContent": [
                 {
-                  "text": "The opaque resource ID that uniquely identifies the Beta App Clip Invocations resource.",
+                  "text": "The opaque resource ID that uniquely identifies the Advanced App Clip Experiences resource.",
                   "type": "text"
                 }
               ],
@@ -117,20 +133,133 @@
     {
       "items": [
         {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "link",
+                "version",
+                "status",
+                "action",
+                "isPoweredBy",
+                "place",
+                "placeStatus",
+                "businessCategory",
+                "defaultLanguage",
+                "appClip",
+                "headerImage",
+                "localizations"
+              ]
+            }
+          ],
           "content": [
             {
               "inlineContent": [
                 {
-                  "text": "The request completed successfully and the specific Beta App Clip Invocations resource was deleted.",
+                  "text": "Additional fields to include for each Advanced App Clip Experiences resource returned by the response.",
                   "type": "text"
                 }
               ],
               "type": "paragraph"
             }
           ],
-          "reason": "No Content",
-          "status": 204,
-          "type": []
+          "name": "fields[appClipAdvancedExperiences]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "appClip",
+                "headerImage",
+                "localizations"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The relationship data to include in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximum",
+              "value": "50"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of included Advanced App Clip Experiences resources to return if the advanced App Clip experience localizations relationship is included.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit[localizations]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request completed successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:AppClipAdvancedExperienceResponse",
+              "text": "AppClipAdvancedExperienceResponse"
+            }
+          ]
         },
         {
           "content": [
@@ -227,30 +356,6 @@
               "text": "ErrorResponse"
             }
           ]
-        },
-        {
-          "content": [
-            {
-              "inlineContent": [
-                {
-                  "text": "The provided resource data is not valid.",
-                  "type": "text"
-                }
-              ],
-              "type": "paragraph"
-            }
-          ],
-          "mimeType": "application/json",
-          "reason": "Conflict",
-          "status": 409,
-          "type": [
-            {
-              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
-              "kind": "typeIdentifier",
-              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
-              "text": "ErrorResponse"
-            }
-          ]
         }
       ],
       "kind": "restResponses",
@@ -272,25 +377,35 @@
       "type": "topic",
       "url": "/documentation/appstoreconnectapi"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceResponse": {
       "abstract": [
         {
-          "text": "Delete an App Clip invocation you make available to testers in TestFlight.",
+          "text": "A response that contains a single Advanced App Clip Experiences resource.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_",
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceResponse",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "DELETE /v1/betaAppClipInvocations/{id}"
+          "text": "AppClipAdvancedExperienceResponse"
         }
       ],
       "role": "symbol",
-      "title": "Delete an App Clip Invocation for Testers in TestFlight",
+      "title": "AppClipAdvancedExperienceResponse",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/delete-v1-betaappclipinvocations-_id_"
+      "url": "/documentation/appstoreconnectapi/appclipadvancedexperienceresponse"
     },
     "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
       "abstract": [
@@ -322,65 +437,65 @@
       "type": "topic",
       "url": "/documentation/appstoreconnectapi/errorresponse"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipAdvancedExperiences-_id_": {
       "abstract": [
         {
-          "text": "Get a specific App Clip invocation you configure for testing.",
+          "text": "Get information about a specific advanced App Clip experience.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_",
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipAdvancedExperiences-_id_",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "GET /v1/betaAppClipInvocations/{id}"
+          "text": "GET /v1/appClipAdvancedExperiences/{id}"
         }
       ],
       "role": "symbol",
-      "title": "Read Beta App Clip Invocation Information",
+      "title": "Read Advanced App Clip Experience Information",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/get-v1-betaappclipinvocations-_id_"
+      "url": "/documentation/appstoreconnectapi/get-v1-appclipadvancedexperiences-_id_"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_": {
       "abstract": [
         {
-          "text": "Change an App Clip invocation you make available to testers in the TestFlight app.",
+          "text": "Update and delete an existing advanced App Clip experience.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_",
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "PATCH /v1/betaAppClipInvocations/{id}"
+          "text": "PATCH /v1/appClipAdvancedExperiences/{id}"
         }
       ],
       "role": "symbol",
-      "title": "Modify an App Clip Invocation You Provide to Testers",
+      "title": "Modify and Delete an Advanced App Clip Experience",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/patch-v1-betaappclipinvocations-_id_"
+      "url": "/documentation/appstoreconnectapi/patch-v1-appclipadvancedexperiences-_id_"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperiences": {
       "abstract": [
         {
-          "text": "Configure a new App Clip experience that testers launch using the TestFlight app.",
+          "text": "Configure a new advanced App Clip experience.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperiences",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "POST /v1/betaAppClipInvocations"
+          "text": "POST /v1/appClipAdvancedExperiences"
         }
       ],
       "role": "symbol",
-      "title": "Create an App Clip Invocation for Testers in TestFlight",
+      "title": "Create an Advanced App Clip Experience",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/post-v1-betaappclipinvocations"
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipadvancedexperiences"
     },
     "doc://com.apple.documentation/documentation/technologies": {
       "abstract": [
@@ -405,20 +520,19 @@
   "sections": [],
   "seeAlsoSections": [
     {
-      "anchor": "Managing-Beta-App-Clip-Invocation",
+      "anchor": "Getting-and-Managing-Advanced-App-Clip-Experiences",
       "generated": true,
       "identifiers": [
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_",
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_"
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperiences",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_"
       ],
-      "title": "Managing Beta App Clip Invocation"
+      "title": "Getting and Managing Advanced App Clip Experiences"
     }
   ],
   "variants": [
     {
       "paths": [
-        "/documentation/appstoreconnectapi/delete-v1-betaappclipinvocations-_id_"
+        "/documentation/appstoreconnectapi/get-v1-appclipadvancedexperiences-_id_"
       ],
       "traits": [
         {

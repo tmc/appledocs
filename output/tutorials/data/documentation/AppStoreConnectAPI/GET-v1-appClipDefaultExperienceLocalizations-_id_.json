@@ -1,16 +1,32 @@
 {
   "abstract": [
     {
-      "text": "Delete an App Clip invocation you make available to testers in TestFlight.",
+      "text": "Get localized metadata that appears on the App Clip card of a specific default App Clip experience.",
       "type": "text"
     }
   ],
   "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
     "major": {
       "change": "modified",
       "platform": "App Store Connect API",
       "versions": [
         "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
         "3.6"
       ]
     }
@@ -25,7 +41,7 @@
   },
   "identifier": {
     "interfaceLanguage": "data",
-    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_"
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipDefaultExperienceLocalizations-_id_"
   },
   "kind": "symbol",
   "legalNotices": {
@@ -34,7 +50,7 @@
     "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
   },
   "metadata": {
-    "externalID": "rest:app_store_connect_api:delete:v1-betaAppClipInvocations-{}",
+    "externalID": "rest:app_store_connect_api:get:v1-appClipDefaultExperienceLocalizations-{}",
     "modules": [
       {
         "name": "App Store Connect API"
@@ -43,7 +59,7 @@
     "navigatorTitle": [
       {
         "kind": "identifier",
-        "text": "DELETE /v1/betaAppClipInvocations/{id}"
+        "text": "GET /v1/appClipDefaultExperienceLocalizations/{id}"
       }
     ],
     "platforms": [
@@ -56,7 +72,7 @@
     "role": "symbol",
     "roleHeading": "Web Service Endpoint",
     "symbolKind": "httpRequest",
-    "title": "Delete an App Clip Invocation for Testers in TestFlight"
+    "title": "Read Localization Information of a Default App Clip Experience"
   },
   "primaryContentSections": [
     {
@@ -65,7 +81,7 @@
       "tokens": [
         {
           "kind": "method",
-          "text": "DELETE"
+          "text": "GET"
         },
         {
           "kind": "text",
@@ -77,7 +93,7 @@
         },
         {
           "kind": "path",
-          "text": "v1/betaAppClipInvocations/"
+          "text": "v1/appClipDefaultExperienceLocalizations/"
         },
         {
           "kind": "parameter",
@@ -93,7 +109,7 @@
             {
               "inlineContent": [
                 {
-                  "text": "The opaque resource ID that uniquely identifies the Beta App Clip Invocations resource.",
+                  "text": "The opaque resource ID that uniquely identifies the Default App Clip Experience Localizations resource.",
                   "type": "text"
                 }
               ],
@@ -117,20 +133,132 @@
     {
       "items": [
         {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "locale",
+                "subtitle",
+                "appClipDefaultExperience",
+                "appClipHeaderImage"
+              ]
+            }
+          ],
           "content": [
             {
               "inlineContent": [
                 {
-                  "text": "The request completed successfully and the specific Beta App Clip Invocations resource was deleted.",
+                  "text": "Additional fields to include for each Default App Clip Experience Localizations resource returned by the response.",
                   "type": "text"
                 }
               ],
               "type": "paragraph"
             }
           ],
-          "reason": "No Content",
-          "status": 204,
-          "type": []
+          "name": "fields[appClipDefaultExperienceLocalizations]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "fileSize",
+                "fileName",
+                "sourceFileChecksum",
+                "imageAsset",
+                "uploadOperations",
+                "assetDeliveryState",
+                "appClipDefaultExperienceLocalization"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional fields to include for each Default App Clip Experience Localizations resource returned by the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[appClipHeaderImages]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "appClipDefaultExperience",
+                "appClipHeaderImage"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The relationship data to include in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request completed successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceLocalizationResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:AppClipDefaultExperienceLocalizationResponse",
+              "text": "AppClipDefaultExperienceLocalizationResponse"
+            }
+          ]
         },
         {
           "content": [
@@ -227,30 +355,6 @@
               "text": "ErrorResponse"
             }
           ]
-        },
-        {
-          "content": [
-            {
-              "inlineContent": [
-                {
-                  "text": "The provided resource data is not valid.",
-                  "type": "text"
-                }
-              ],
-              "type": "paragraph"
-            }
-          ],
-          "mimeType": "application/json",
-          "reason": "Conflict",
-          "status": 409,
-          "type": [
-            {
-              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
-              "kind": "typeIdentifier",
-              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
-              "text": "ErrorResponse"
-            }
-          ]
         }
       ],
       "kind": "restResponses",
@@ -272,25 +376,35 @@
       "type": "topic",
       "url": "/documentation/appstoreconnectapi"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceLocalizationResponse": {
       "abstract": [
         {
-          "text": "Delete an App Clip invocation you make available to testers in TestFlight.",
+          "text": "A response that contains a single Default App Clip Experience Localizations resource.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_",
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppClipDefaultExperienceLocalizationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceLocalizationResponse",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "DELETE /v1/betaAppClipInvocations/{id}"
+          "text": "AppClipDefaultExperienceLocalizationResponse"
         }
       ],
       "role": "symbol",
-      "title": "Delete an App Clip Invocation for Testers in TestFlight",
+      "title": "AppClipDefaultExperienceLocalizationResponse",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/delete-v1-betaappclipinvocations-_id_"
+      "url": "/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationresponse"
     },
     "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
       "abstract": [
@@ -322,65 +436,45 @@
       "type": "topic",
       "url": "/documentation/appstoreconnectapi/errorresponse"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipDefaultExperienceLocalizations-_id_": {
       "abstract": [
         {
-          "text": "Get a specific App Clip invocation you configure for testing.",
+          "text": "Get localized metadata that appears on the App Clip card of a specific default App Clip experience.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_",
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipDefaultExperienceLocalizations-_id_",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "GET /v1/betaAppClipInvocations/{id}"
+          "text": "GET /v1/appClipDefaultExperienceLocalizations/{id}"
         }
       ],
       "role": "symbol",
-      "title": "Read Beta App Clip Invocation Information",
+      "title": "Read Localization Information of a Default App Clip Experience",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/get-v1-betaappclipinvocations-_id_"
+      "url": "/documentation/appstoreconnectapi/get-v1-appclipdefaultexperiencelocalizations-_id_"
     },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipDefaultExperienceLocalizations-_id_-appClipHeaderImage": {
       "abstract": [
         {
-          "text": "Change an App Clip invocation you make available to testers in the TestFlight app.",
+          "text": "Get the image that appears on the App Clip card, specific to a locale, for a default App Clip experience.",
           "type": "text"
         }
       ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_",
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipDefaultExperienceLocalizations-_id_-appClipHeaderImage",
       "kind": "symbol",
       "navigatorTitle": [
         {
           "kind": "identifier",
-          "text": "PATCH /v1/betaAppClipInvocations/{id}"
+          "text": "GET /v1/appClipDefaultExperienceLocalizations/{id}/appClipHeaderImage"
         }
       ],
       "role": "symbol",
-      "title": "Modify an App Clip Invocation You Provide to Testers",
+      "title": "Read App Clip Card Image Information for a Localized Default App Clip Experience",
       "type": "topic",
-      "url": "/documentation/appstoreconnectapi/patch-v1-betaappclipinvocations-_id_"
-    },
-    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations": {
-      "abstract": [
-        {
-          "text": "Configure a new App Clip experience that testers launch using the TestFlight app.",
-          "type": "text"
-        }
-      ],
-      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
-      "kind": "symbol",
-      "navigatorTitle": [
-        {
-          "kind": "identifier",
-          "text": "POST /v1/betaAppClipInvocations"
-        }
-      ],
-      "role": "symbol",
-      "title": "Create an App Clip Invocation for Testers in TestFlight",
-      "type": "topic",
-      "url": "/documentation/appstoreconnectapi/post-v1-betaappclipinvocations"
+      "url": "/documentation/appstoreconnectapi/get-v1-appclipdefaultexperiencelocalizations-_id_-appclipheaderimage"
     },
     "doc://com.apple.documentation/documentation/technologies": {
       "abstract": [
@@ -405,20 +499,18 @@
   "sections": [],
   "seeAlsoSections": [
     {
-      "anchor": "Managing-Beta-App-Clip-Invocation",
+      "anchor": "Getting-Metadata-for-Your-Default-App-Clip-Experience",
       "generated": true,
       "identifiers": [
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_",
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_"
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipDefaultExperienceLocalizations-_id_-appClipHeaderImage"
       ],
-      "title": "Managing Beta App Clip Invocation"
+      "title": "Getting Metadata for Your Default App Clip Experience"
     }
   ],
   "variants": [
     {
       "paths": [
-        "/documentation/appstoreconnectapi/delete-v1-betaappclipinvocations-_id_"
+        "/documentation/appstoreconnectapi/get-v1-appclipdefaultexperiencelocalizations-_id_"
       ],
       "traits": [
         {

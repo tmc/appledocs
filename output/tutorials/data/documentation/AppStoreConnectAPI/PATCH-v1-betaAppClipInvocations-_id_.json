@@ -1,7 +1,7 @@
 {
   "abstract": [
     {
-      "text": "Delete an App Clip invocation you make available to testers in TestFlight.",
+      "text": "Change an App Clip invocation you make available to testers in the TestFlight app.",
       "type": "text"
     }
   ],
@@ -25,7 +25,7 @@
   },
   "identifier": {
     "interfaceLanguage": "data",
-    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_"
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_"
   },
   "kind": "symbol",
   "legalNotices": {
@@ -34,7 +34,7 @@
     "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
   },
   "metadata": {
-    "externalID": "rest:app_store_connect_api:delete:v1-betaAppClipInvocations-{}",
+    "externalID": "rest:app_store_connect_api:patch:v1-betaAppClipInvocations-{}",
     "modules": [
       {
         "name": "App Store Connect API"
@@ -43,7 +43,7 @@
     "navigatorTitle": [
       {
         "kind": "identifier",
-        "text": "DELETE /v1/betaAppClipInvocations/{id}"
+        "text": "PATCH /v1/betaAppClipInvocations/{id}"
       }
     ],
     "platforms": [
@@ -56,7 +56,7 @@
     "role": "symbol",
     "roleHeading": "Web Service Endpoint",
     "symbolKind": "httpRequest",
-    "title": "Delete an App Clip Invocation for Testers in TestFlight"
+    "title": "Modify an App Clip Invocation You Provide to Testers"
   },
   "primaryContentSections": [
     {
@@ -65,7 +65,7 @@
       "tokens": [
         {
           "kind": "method",
-          "text": "DELETE"
+          "text": "PATCH"
         },
         {
           "kind": "text",
@@ -115,22 +115,55 @@
       "title": "Path Parameters"
     },
     {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BetaAppClipInvocationUpdateRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:app_store_connect_api:BetaAppClipInvocationUpdateRequest",
+          "text": "BetaAppClipInvocationUpdateRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body you use to update a beta App Clip invocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
       "items": [
         {
           "content": [
             {
               "inlineContent": [
                 {
-                  "text": "The request completed successfully and the specific Beta App Clip Invocations resource was deleted.",
+                  "text": "The request completed successfully.",
                   "type": "text"
                 }
               ],
               "type": "paragraph"
             }
           ],
-          "reason": "No Content",
-          "status": 204,
-          "type": []
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BetaAppClipInvocationResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:BetaAppClipInvocationResponse",
+              "text": "BetaAppClipInvocationResponse"
+            }
+          ]
         },
         {
           "content": [
@@ -251,6 +284,29 @@
               "text": "ErrorResponse"
             }
           ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 422,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
         }
       ],
       "kind": "restResponses",
@@ -271,6 +327,66 @@
       "title": "App Store Connect API",
       "type": "topic",
       "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BetaAppClipInvocationResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Beta App Clip Invocations resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BetaAppClipInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BetaAppClipInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BetaAppClipInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "BetaAppClipInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/betaappclipinvocationresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BetaAppClipInvocationUpdateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to update a Beta App Clip Invocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BetaAppClipInvocationUpdateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BetaAppClipInvocationUpdateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BetaAppClipInvocationUpdateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "BetaAppClipInvocationUpdateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest"
     },
     "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_": {
       "abstract": [
@@ -410,7 +526,7 @@
       "identifiers": [
         "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-betaAppClipInvocations-_id_",
         "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
-        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-betaAppClipInvocations-_id_"
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-betaAppClipInvocations-_id_"
       ],
       "title": "Managing Beta App Clip Invocation"
     }
@@ -418,7 +534,7 @@
   "variants": [
     {
       "paths": [
-        "/documentation/appstoreconnectapi/delete-v1-betaappclipinvocations-_id_"
+        "/documentation/appstoreconnectapi/patch-v1-betaappclipinvocations-_id_"
       ],
       "traits": [
         {
