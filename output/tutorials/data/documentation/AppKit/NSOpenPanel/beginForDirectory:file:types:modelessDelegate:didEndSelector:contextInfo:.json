@@ -1,1 +1,1150 @@
-{"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit","doc://com.apple.appkit/documentation/AppKit/NSOpenPanel"]]},"seeAlsoSections":[{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)"],"anchor":"Related-Documentation","title":"Related Documentation"},{"generated":true,"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/filenames","doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:","doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForDirectory:file:types:","doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForTypes:"],"anchor":"Methods","title":"Methods"}],"deprecationSummary":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Use "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)"},{"type":"text","text":" instead. You can set "},{"type":"codeVoice","code":"absoluteDirectoryPath"},{"type":"text","text":" using "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/directoryURL"},{"type":"text","text":", and you can set "},{"type":"codeVoice","code":"fileTypes"},{"type":"text","text":" using "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes"},{"type":"text","text":"."}]}],"variants":[{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/appkit/nsopenpanel/beginfordirectory:file:types:modelessdelegate:didendselector:contextinfo:"]}],"identifier":{"url":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","interfaceLanguage":"occ"},"schemaVersion":{"major":0,"minor":3,"patch":0},"abstract":[{"text":"Presents a modeless Open panel.","type":"text"}],"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["Mac Catalyst","macOS"],"languages":["occ"],"tokens":[{"kind":"text","text":"- ("},{"preciseIdentifier":"c:v","text":"void","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"beginForDirectory:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSString","text":"NSString","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSString","kind":"typeIdentifier"},{"text":" *) ","kind":"text"},{"text":"path","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"file:","kind":"identifier"},{"text":"(","kind":"text"},{"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSString","text":"NSString","preciseIdentifier":"c:objc(cs)NSString","kind":"typeIdentifier"},{"text":" *) ","kind":"text"},{"text":"name","kind":"internalParam"},{"text":" ","kind":"text"},{"text":"types:","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSArray","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSArray","kind":"typeIdentifier","text":"NSArray"},{"kind":"text","text":" *) "},{"kind":"internalParam","text":"fileTypes"},{"kind":"text","text":" "},{"kind":"identifier","text":"modelessDelegate:"},{"kind":"text","text":"("},{"kind":"keyword","text":"id"},{"kind":"text","text":") "},{"kind":"internalParam","text":"delegate"},{"kind":"text","text":" "},{"kind":"identifier","text":"didEndSelector:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:@T@SEL","text":"SEL","preciseIdentifier":"c:@T@SEL"},{"kind":"text","text":") "},{"kind":"internalParam","text":"didEndSelector"},{"kind":"text","text":" "},{"kind":"identifier","text":"contextInfo:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"void","preciseIdentifier":"c:v"},{"kind":"text","text":" *) "},{"kind":"internalParam","text":"contextInfo"},{"kind":"text","text":";"}]}]},{"kind":"parameters","parameters":[{"name":"path","content":[{"inlineContent":[{"text":"The directory whose files the panel displays. When ","type":"text"},{"type":"codeVoice","code":"nil"},{"text":", the directory is the same directory used in the previous invocation of the panel; this is probably the best choice for most situations.","type":"text"}],"type":"paragraph"}]},{"name":"name","content":[{"inlineContent":[{"text":"Specifies a particular file in ","type":"text"},{"code":"absoluteDirectoryPath","type":"codeVoice"},{"text":" that is selected when the Open panel is presented to the user. When ","type":"text"},{"code":"nil","type":"codeVoice"},{"text":", no file is initially selected.","type":"text"}],"type":"paragraph"}]},{"name":"fileTypes","content":[{"type":"paragraph","inlineContent":[{"text":"An array of file extensions and/or HFS file types. Specifies the files the panel allows the user to select. ","type":"text"},{"code":"nil","type":"codeVoice"},{"text":" makes all files in ","type":"text"},{"code":"absoluteDirectoryPath","type":"codeVoice"},{"text":" selectable by the user. An array of types passed in here will override one set using ","type":"text"},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes","isActive":true},{"text":".","type":"text"}]}]},{"name":"delegate","content":[{"type":"paragraph","inlineContent":[{"text":"This is not the same as a delegate assigned to the panel. This delegate is temporary and the relationship only lasts until the panel is dismissed.","type":"text"}]}]},{"name":"didEndSelector","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"The message sent to "},{"code":"modelessDelegate","type":"codeVoice"},{"type":"text","text":" after the panel’s session has ended, but before dismissing the Open panel. "},{"code":"didEndSelector","type":"codeVoice"},{"type":"text","text":" may dismiss the Open panel itself; otherwise, it will be dismissed on return from the method. The corresponding method should have the following signature:"}]},{"code":["- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo"],"syntax":"objc","type":"codeListing"},{"type":"paragraph","inlineContent":[{"text":"The value passed as ","type":"text"},{"code":"returnCode","type":"codeVoice"},{"text":" will be either ","type":"text"},{"code":"NSCancelButton","type":"codeVoice"},{"text":" or ","type":"text"},{"code":"NSOKButton","type":"codeVoice"},{"text":".","type":"text"}]}]},{"name":"contextInfo","content":[{"inlineContent":[{"text":"Any context information passed to ","type":"text"},{"type":"codeVoice","code":"modelessDelegate"},{"text":" in the ","type":"text"},{"type":"codeVoice","code":"didEndSelector"},{"text":" message.","type":"text"}],"type":"paragraph"}]}]},{"content":[{"type":"heading","level":2,"text":"Discussion","anchor":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Similar to "},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:","isActive":true},{"type":"text","text":", but allows for modeless operation of the panel."}]}],"kind":"content"}],"sections":[],"kind":"symbol","metadata":{"roleHeading":"Instance Method","externalID":"c:objc(cs)NSOpenPanel(im)beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","platforms":[{"beta":false,"unavailable":false,"introducedAt":"10.0","deprecatedAt":"10.6","deprecated":false,"name":"macOS"}],"symbolKind":"method","title":"beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","modules":[{"name":"AppKit"}],"role":"symbol","navigatorTitle":[{"text":"beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","kind":"identifier"}],"fragments":[{"kind":"text","text":"- "},{"kind":"identifier","text":"beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"}]},"references":{"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForDirectory:file:types:":{"deprecated":true,"url":"/documentation/appkit/nsopenpanel/runmodalfordirectory:file:types:","title":"runModalForDirectory:file:types:","kind":"symbol","abstract":[{"text":"Displays the panel and begins a modal event loop that is terminated when the user clicks either OK or Cancel.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForDirectory:file:types:","type":"topic","fragments":[{"text":"- ","kind":"text"},{"text":"runModalForDirectory:file:types:","kind":"identifier"}],"navigatorTitle":[{"kind":"identifier","text":"runModalForDirectory:file:types:"}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:":{"url":"/documentation/appkit/nsopenpanel/beginsheetfordirectory:file:types:modalforwindow:modaldelegate:didendselector:contextinfo:","title":"beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:","fragments":[{"text":"- ","kind":"text"},{"text":"beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:","kind":"identifier"}],"kind":"symbol","type":"topic","navigatorTitle":[{"text":"beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:","kind":"identifier"}],"deprecated":true,"identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:","abstract":[{"text":"Presents an Open panel as a sheet with the directory specified by ","type":"text"},{"code":"absoluteDirectoryPath","type":"codeVoice"},{"text":" and optionally the file specified by ","type":"text"},{"type":"codeVoice","code":"filename"},{"text":" selected.","type":"text"}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForTypes:":{"url":"/documentation/appkit/nsopenpanel/runmodalfortypes:","title":"runModalForTypes:","fragments":[{"kind":"text","text":"- "},{"kind":"identifier","text":"runModalForTypes:"}],"kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"runModalForTypes:"}],"deprecated":true,"identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForTypes:","abstract":[{"type":"text","text":"Displays the panel and begins a modal event loop that is terminated when the user clicks either OK or Cancel."}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit":{"kind":"symbol","url":"/documentation/appkit","title":"AppKit","type":"topic","abstract":[{"text":"Construct and manage a graphical, event-driven user interface for your macOS app.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit","role":"collection"},"doc://com.externally.resolved.symbol/c:objc(cs)NSString":{"identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSString","abstract":[{"text":"A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ","type":"text"}],"role":"symbol","fragments":[{"text":"class ","kind":"text"},{"text":"NSString","kind":"identifier"}],"title":"NSString","kind":"symbol","url":"/documentation/foundation/nsstring","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes":{"type":"topic","kind":"symbol","navigatorTitle":[{"text":"allowedFileTypes","kind":"identifier"}],"url":"/documentation/appkit/nssavepanel/allowedfiletypes","title":"allowedFileTypes","identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"allowedFileTypes","kind":"identifier"},{"text":": [","kind":"text"},{"text":"String","kind":"typeIdentifier","preciseIdentifier":"s:SS"},{"text":"]?","kind":"text"}],"abstract":[{"text":"An array of filename extensions or UTIs that represent the allowed file types for the panel.","type":"text"}],"role":"symbol","deprecated":true},"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)":{"title":"begin(completionHandler:)","identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)","role":"symbol","navigatorTitle":[{"text":"beginWithCompletionHandler:","kind":"identifier"}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"begin"},{"kind":"text","text":"("},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":": ("},{"preciseIdentifier":"c:objc(cs)NSApplication","text":"NSApplication","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"c:@T@NSModalResponse","text":"ModalResponse","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"s:s4Voida","text":"Void","kind":"typeIdentifier"},{"text":")","kind":"text"}],"abstract":[{"text":"Presents the panel as a modeless window.","type":"text"}],"type":"topic","url":"/documentation/appkit/nssavepanel/begin(completionhandler:)","kind":"symbol"},"doc://com.externally.resolved.symbol/c:objc(cs)NSArray":{"title":"NSArray","url":"/documentation/foundation/nsarray","fragments":[{"text":"class ","kind":"text"},{"text":"NSArray","kind":"identifier"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSArray","role":"symbol","type":"topic","abstract":[{"type":"text","text":"An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics."}]},"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel":{"url":"/documentation/appkit/nsopenpanel","title":"NSOpenPanel","fragments":[{"text":"class","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSOpenPanel"}],"kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"NSOpenPanel"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel","abstract":[{"text":"A panel that prompts the user to select a file to open.","type":"text"}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/filenames":{"type":"topic","kind":"symbol","deprecated":true,"navigatorTitle":[{"kind":"identifier","text":"filenames"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/filenames","url":"/documentation/appkit/nsopenpanel/filenames","title":"filenames","role":"symbol","abstract":[{"text":"Returns an array containing the absolute paths (as NSString objects) of the selected files and directories.","type":"text"}],"fragments":[{"kind":"text","text":"- "},{"kind":"identifier","text":"filenames"}]},"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:":{"title":"beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","deprecated":true,"role":"symbol","fragments":[{"text":"- ","kind":"text"},{"text":"beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","kind":"identifier"}],"abstract":[{"text":"Presents a modeless Open panel.","type":"text"}],"kind":"symbol","navigatorTitle":[{"text":"beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:","kind":"identifier"}],"url":"/documentation/appkit/nsopenpanel/beginfordirectory:file:types:modelessdelegate:didendselector:contextinfo:"},"doc://com.externally.resolved.symbol/c:@T@SEL":{"identifier":"doc://com.externally.resolved.symbol/c:@T@SEL","type":"topic","abstract":[{"type":"text","text":"Defines an opaque type that represents a method selector."}],"url":"/documentation/objectivec/sel","title":"SEL","kind":"symbol","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","type":"topic","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","kind":"technologies"},"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/directoryURL":{"abstract":[{"type":"text","text":"The current directory shown in the panel."}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSSavePanel/directoryURL","role":"symbol","url":"/documentation/appkit/nssavepanel/directoryurl","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"directoryURL"},{"kind":"text","text":": "},{"preciseIdentifier":"s:10Foundation3URLV","kind":"typeIdentifier","text":"URL"},{"text":"?","kind":"text"}],"type":"topic","kind":"symbol","navigatorTitle":[{"text":"directoryURL","kind":"identifier"}],"title":"directoryURL"}},"variantOverrides":[{"patch":[{"op":"replace","path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSString/abstract","value":[{"text":"A static, plain-text Unicode string object.","type":"text"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1allowedFileTypes/title","value":"allowedFileTypes"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1allowedFileTypes/fragments","value":[{"text":"allowedFileTypes","kind":"identifier"}]},{"value":"beginWithCompletionHandler:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1begin(completionHandler:)/title","op":"replace"},{"value":[{"text":"- ","kind":"text"},{"text":"beginWithCompletionHandler:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1begin(completionHandler:)/fragments","op":"replace"},{"value":[{"type":"text","text":"A static ordered collection of objects."}],"path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSArray/abstract","op":"replace"},{"value":"NSOpenPanel","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenPanel/title","op":"replace"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenPanel/fragments","value":[{"text":"NSOpenPanel","kind":"identifier"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenPanel/navigatorTitle","value":[{"kind":"identifier","text":"NSOpenPanel"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1directoryURL/title","value":"directoryURL"},{"op":"replace","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1directoryURL/fragments","value":[{"kind":"identifier","text":"directoryURL"}]}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Presents a modeless Open panel.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead. You can set ",
+          "type": "text"
+        },
+        {
+          "code": "absoluteDirectoryPath",
+          "type": "codeVoice"
+        },
+        {
+          "text": " using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/directoryURL",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and you can set ",
+          "type": "text"
+        },
+        {
+          "code": "fileTypes",
+          "type": "codeVoice"
+        },
+        {
+          "text": " using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOpenPanel(im)beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginForDirectory:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "path"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "file:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "types:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSArray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSArray",
+              "text": "NSArray"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fileTypes"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "modelessDelegate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "delegate"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didEndSelector:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@SEL",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SEL",
+              "text": "SEL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "didEndSelector"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contextInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "contextInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The directory whose files the panel displays. When ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the directory is the same directory used in the previous invocation of the panel; this is probably the best choice for most situations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "path"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Specifies a particular file in ",
+                  "type": "text"
+                },
+                {
+                  "code": "absoluteDirectoryPath",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that is selected when the Open panel is presented to the user. When ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", no file is initially selected.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "name"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of file extensions and/or HFS file types. Specifies the files the panel allows the user to select. ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " makes all files in ",
+                  "type": "text"
+                },
+                {
+                  "code": "absoluteDirectoryPath",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " selectable by the user. An array of types passed in here will override one set using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fileTypes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This is not the same as a delegate assigned to the panel. This delegate is temporary and the relationship only lasts until the panel is dismissed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "delegate"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The message sent to ",
+                  "type": "text"
+                },
+                {
+                  "code": "modelessDelegate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " after the panel’s session has ended, but before dismissing the Open panel. ",
+                  "type": "text"
+                },
+                {
+                  "code": "didEndSelector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " may dismiss the Open panel itself; otherwise, it will be dismissed on return from the method. The corresponding method should have the following signature:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo"
+              ],
+              "syntax": "objc",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The value passed as ",
+                  "type": "text"
+                },
+                {
+                  "code": "returnCode",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " will be either ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSCancelButton",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSOKButton",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "didEndSelector"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Any context information passed to ",
+                  "type": "text"
+                },
+                {
+                  "code": "modelessDelegate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "didEndSelector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "contextInfo"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but allows for modeless operation of the panel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel": {
+      "abstract": [
+        {
+          "text": "A panel that prompts the user to select a file to open.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOpenPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOpenPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOpenPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:": {
+      "abstract": [
+        {
+          "text": "Presents a modeless Open panel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenpanel/beginfordirectory:file:types:modelessdelegate:didendselector:contextinfo:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:": {
+      "abstract": [
+        {
+          "text": "Presents an Open panel as a sheet with the directory specified by ",
+          "type": "text"
+        },
+        {
+          "code": "absoluteDirectoryPath",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and optionally the file specified by ",
+          "type": "text"
+        },
+        {
+          "code": "filename",
+          "type": "codeVoice"
+        },
+        {
+          "text": " selected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenpanel/beginsheetfordirectory:file:types:modalforwindow:modaldelegate:didendselector:contextinfo:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/filenames": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the absolute paths (as NSString objects) of the selected files and directories.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "filenames"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/filenames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "filenames"
+        }
+      ],
+      "role": "symbol",
+      "title": "filenames",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenpanel/filenames"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForDirectory:file:types:": {
+      "abstract": [
+        {
+          "text": "Displays the panel and begins a modal event loop that is terminated when the user clicks either OK or Cancel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "runModalForDirectory:file:types:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForDirectory:file:types:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runModalForDirectory:file:types:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runModalForDirectory:file:types:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenpanel/runmodalfordirectory:file:types:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForTypes:": {
+      "abstract": [
+        {
+          "text": "Displays the panel and begins a modal event loop that is terminated when the user clicks either OK or Cancel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "runModalForTypes:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForTypes:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runModalForTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runModalForTypes:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenpanel/runmodalfortypes:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes": {
+      "abstract": [
+        {
+          "text": "An array of filename extensions or UTIs that represent the allowed file types for the panel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedFileTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/allowedFileTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedFileTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedFileTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nssavepanel/allowedfiletypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents the panel as a modeless window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSModalResponse",
+          "text": "ModalResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "begin(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nssavepanel/begin(completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/directoryURL": {
+      "abstract": [
+        {
+          "text": "The current directory shown in the panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/directoryURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "directoryURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "directoryURL",
+      "type": "topic",
+      "url": "/documentation/appkit/nssavepanel/directoryurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@SEL": {
+      "abstract": [
+        {
+          "text": "Defines an opaque type that represents a method selector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@SEL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SEL",
+      "type": "topic",
+      "url": "/documentation/objectivec/sel"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSArray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSString": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSavePanel/begin(completionHandler:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/filenames",
+        "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:",
+        "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForDirectory:file:types:",
+        "doc://com.apple.appkit/documentation/AppKit/NSOpenPanel/runModalForTypes:"
+      ],
+      "title": "Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSString/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1allowedFileTypes/title",
+          "value": "allowedFileTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1allowedFileTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowedFileTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1begin(completionHandler:)/title",
+          "value": "beginWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1begin(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSArray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenPanel/title",
+          "value": "NSOpenPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOpenPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOpenPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1directoryURL/title",
+          "value": "directoryURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSavePanel~1directoryURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "directoryURL"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsopenpanel/beginfordirectory:file:types:modelessdelegate:didendselector:contextinfo:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

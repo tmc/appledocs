@@ -1,0 +1,350 @@
+{
+  "abstract": [
+    {
+      "text": "Enqueues a new entry on the queue.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810927-enqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1810927,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IODataQueue"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "enqueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual Boolean enqueue("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " void *data,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt32dataSize); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Pointer to the data to be added to the queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "data"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Size of the data pointed to by data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dataSize"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns true on success and false on failure. Typically failure means that the queue is full.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method adds a new data entry of dataSize to the queue. It sets the size parameter of the entry pointed to by the tail value and copies the memory pointed to by the data parameter in place in the queue. Once that is done, it moves the tail to the next available location. When attempting to add a new entry towards the end of the queue and there isn't enough space at the end, it wraps back to the beginning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the queue is empty when a new entry is added, sendDataAvailableNotification() is called to send a message to the user process that data is now available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810927-enqueue": {
+      "abstract": [
+        {
+          "text": "Enqueues a new entry on the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810927-enqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810927-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810939-getmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Returns a memory descriptor covering the IODataQueueMemory region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810939-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810939-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810950-initwithcapacity": {
+      "abstract": [
+        {
+          "text": "Initializes an IODataQueue instance with the capacity specified in the size parameter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810950-initwithcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810950-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810963-initwithentries": {
+      "abstract": [
+        {
+          "text": "Initializes an IODataQueue instance with the specified number of entries of the given size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810963-initwithentries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810963-initwithentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810980-senddataavailablenotification": {
+      "abstract": [
+        {
+          "text": "Sends a dataAvailableNotification message to the specified mach port.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810980-senddataavailablenotification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "sendDataAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810980-senddataavailablenotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810994-setnotificationport": {
+      "abstract": [
+        {
+          "text": "Creates a simple mach message targeting the mach port specified in port.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810994-setnotificationport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setNotificationPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810994-setnotificationport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811001-withcapacity": {
+      "abstract": [
+        {
+          "text": "Static method that creates a new IODataQueue instance with the capacity specified in the size parameter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811001-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1811001-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811020-withentries": {
+      "abstract": [
+        {
+          "text": "Static method that creates a new IODataQueue instance with the specified number of entries of the given size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811020-withentries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1811020-withentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810939-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810950-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810963-initwithentries",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810980-senddataavailablenotification",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810994-setnotificationport",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811001-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811020-withentries"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iodataqueue/1810927-enqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

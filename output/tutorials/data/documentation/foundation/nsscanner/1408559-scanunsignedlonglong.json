@@ -1,0 +1,643 @@
+{
+  "abstract": [
+    {
+      "text": "Scans for an unsigned long long value from a decimal representation, returning a found value by reference.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsscanner/1408559-scanunsignedlonglong"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408559,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScanner(im)scanUnsignedLongLong:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSScanner"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "scanUnsignedLongLong:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "scanUnsignedLongLong:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "unsigned"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "long"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "long"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "result"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Upon return, contains the scanned value. Contains ",
+                  "type": "text"
+                },
+                {
+                  "code": "ULLONG_MAX",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on overflow.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "unsignedLongLongValue"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if the receiver finds a valid decimal integer representation, otherwise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". Overflow is considered a valid decimal integer representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All overflow digits are skipped. Skips past excess digits in the case of overflow, so the receiver’s position is past the entire decimal representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Invoke this method with ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "unsignedLongLongValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to simply scan past an unsigned long decimal integer representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScanner",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1408025-scandecimal": {
+      "abstract": [
+        {
+          "text": "Scans for an ",
+          "type": "text"
+        },
+        {
+          "code": "NSDecimal",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDecimal:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1408025-scandecimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDecimal:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1408025-scandecimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1408559-scanunsignedlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for an unsigned long long value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanUnsignedLongLong:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1408559-scanunsignedlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanUnsignedLongLong:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1408559-scanunsignedlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1410914-scanint": {
+      "abstract": [
+        {
+          "text": "Scans for an int value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInt:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1410914-scanint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInt:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1410914-scanint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411082-scaninteger": {
+      "abstract": [
+        {
+          "text": "Scans for an NSInteger value from a decimal representation, returning a found value by reference",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanInteger:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411082-scaninteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanInteger:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411082-scaninteger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411236-scanhexfloat": {
+      "abstract": [
+        {
+          "text": "Scans for a double value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexFloat:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411236-scanhexfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexFloat:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411236-scanhexfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411677-scanfloat": {
+      "abstract": [
+        {
+          "text": "Scans for a float value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanFloat:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411677-scanfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanFloat:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411677-scanfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1411780-scanhexdouble": {
+      "abstract": [
+        {
+          "text": "Scans for a double value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexDouble:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1411780-scanhexdouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexDouble:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1411780-scanhexdouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1412629-scanlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for a long long value from a decimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanLongLong:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1412629-scanlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanLongLong:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1412629-scanlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1412759-scanhexlonglong": {
+      "abstract": [
+        {
+          "text": "Scans for a long long value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexLongLong:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1412759-scanhexlonglong",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexLongLong:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1412759-scanhexlonglong"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1413857-scanhexint": {
+      "abstract": [
+        {
+          "text": "Scans for an unsigned value from a hexadecimal representation, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanHexInt:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1413857-scanhexint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanHexInt:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1413857-scanhexint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscanner/1415922-scandouble": {
+      "abstract": [
+        {
+          "text": "Scans for a double value, returning a found value by reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanDouble:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscanner/1415922-scandouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanDouble:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscanner/1415922-scandouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1408025-scandecimal",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1415922-scandouble",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411677-scanfloat",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411780-scanhexdouble",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411236-scanhexfloat",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1413857-scanhexint",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1412759-scanhexlonglong",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1411082-scaninteger",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1410914-scanint",
+        "doc://com.apple.documentation/documentation/foundation/nsscanner/1412629-scanlonglong"
+      ],
+      "title": "Scanning Numeric Values"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscanner/1408559-scanunsignedlonglong"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/scanner/1408559-scanunsignedlonglong"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}
