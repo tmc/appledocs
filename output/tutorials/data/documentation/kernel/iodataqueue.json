@@ -1,0 +1,586 @@
+{
+  "abstract": [
+    {
+      "text": "A generic queue designed to pass data from the kernel to a user process.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iodataqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1586524,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IODataQueue",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IODataQueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IODataQueue"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IODataQueue class is designed to allow kernel code to queue data to a user process. IODataQueue objects are designed to be used in a single producer / single consumer situation. As such, there are no locks on the data itself. Because the kernel enqueue and user-space dequeue methods follow a strict set of guidelines, no locks are necessary to maintain the integrity of the data struct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each data entry can be variable sized, but the entire size of the queue data region (including overhead for each entry) must be specified up front.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for the IODataQueue instance to notify the user process that data is available, a notification mach port must be set. When the queue is empty and a new entry is added, a message is sent to the specified port.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User client code exists in the IOKit framework that facilitates the creation of the receive notification port as well as the listen process for new data available notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to make the data queue memory available to a user process, the method getMemoryDescriptor() must be used to get an IOMemoryDescriptor instance that can be mapped into a user process. Typically, the clientMemoryForType() method on an IOUserClient instance will be used to request the IOMemoryDescriptor and then return it to be mapped into the user process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue": {
+      "abstract": [
+        {
+          "text": "A generic queue designed to pass data from the kernel to a user process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586519-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586519-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586519-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586520-enqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586520-enqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586520-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586522-withcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586522-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586522-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586523-withentries": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withEntries"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586523-withentries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586523-withentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586525-initwithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586525-initwithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586525-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586526-getmemorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586526-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586526-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586527-setnotificationport": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNotificationPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586527-setnotificationport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNotificationPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586527-setnotificationport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586528-initwithentries": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithEntries"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586528-initwithentries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586528-initwithentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586529-senddataavailablenotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendDataAvailableNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586529-senddataavailablenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendDataAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586529-senddataavailablenotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586530-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586530-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1586530-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810927-enqueue": {
+      "abstract": [
+        {
+          "text": "Enqueues a new entry on the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810927-enqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810927-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810939-getmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Returns a memory descriptor covering the IODataQueueMemory region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810939-getmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810939-getmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810950-initwithcapacity": {
+      "abstract": [
+        {
+          "text": "Initializes an IODataQueue instance with the capacity specified in the size parameter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810950-initwithcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810950-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810963-initwithentries": {
+      "abstract": [
+        {
+          "text": "Initializes an IODataQueue instance with the specified number of entries of the given size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810963-initwithentries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810963-initwithentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810980-senddataavailablenotification": {
+      "abstract": [
+        {
+          "text": "Sends a dataAvailableNotification message to the specified mach port.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810980-senddataavailablenotification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "sendDataAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810980-senddataavailablenotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810994-setnotificationport": {
+      "abstract": [
+        {
+          "text": "Creates a simple mach message targeting the mach port specified in port.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810994-setnotificationport",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setNotificationPort",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1810994-setnotificationport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811001-withcapacity": {
+      "abstract": [
+        {
+          "text": "Static method that creates a new IODataQueue instance with the capacity specified in the size parameter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811001-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1811001-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811020-withentries": {
+      "abstract": [
+        {
+          "text": "Static method that creates a new IODataQueue instance with the specified number of entries of the given size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811020-withentries",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withEntries",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueue/1811020-withentries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsourceinterface": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsourceinterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODataQueueDispatchSourceInterface",
+      "type": "topic",
+      "url": "/documentation/kernel/iodataqueuedispatchsourceinterface"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsource",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueuedispatchsourceinterface"
+      ],
+      "title": "Data Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1675605",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810927-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810939-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810950-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810963-initwithentries",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810980-senddataavailablenotification",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1810994-setnotificationport",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811001-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1811020-withentries"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2860250",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586520-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586519-free",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586526-getmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586530-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586525-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586528-initwithentries",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586529-senddataavailablenotification",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586527-setnotificationport"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2860251",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586522-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iodataqueue/1586523-withentries"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iodataqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
